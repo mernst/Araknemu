@@ -36,7 +36,7 @@ import java.util.function.Supplier;
 public abstract class AbstractCommand<A> implements Command<A> {
     private @SuppressWarnings({"argument", "assignment"}) CommandHelp help = new CommandHelp(this);
     private final EnumSet<Permission> permissions = EnumSet.of(Permission.ACCESS);
-    private @Nullable Supplier<A> argumentsFactory;
+    private Supplier<A> argumentsFactory;
     private boolean initialized = false;
 
     /**
@@ -59,7 +59,7 @@ public abstract class AbstractCommand<A> implements Command<A> {
     }
 
     @Override
-    public @Nullable A createArguments() {
+    public A createArguments() {
         initialize();
 
         if (argumentsFactory != null) {

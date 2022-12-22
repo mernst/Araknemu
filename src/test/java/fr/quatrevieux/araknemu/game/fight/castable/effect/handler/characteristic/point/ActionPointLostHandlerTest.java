@@ -53,7 +53,6 @@ class ActionPointLostHandlerTest extends FightBaseCase {
     private ActionPointLostHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -71,7 +70,6 @@ class ActionPointLostHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void buffFixed() {
         caster.characteristics().alter(Characteristic.WISDOM, 10000);
         requestStack.clear();
@@ -101,7 +99,6 @@ class ActionPointLostHandlerTest extends FightBaseCase {
         requestStack.assertOne(new AddBuff(buff.get()));
     }
 
-    @Test
     void directEffectShouldBeTransformedToSingleTurnBuff() {
         caster.characteristics().alter(Characteristic.WISDOM, 10000);
         requestStack.clear();
@@ -131,7 +128,6 @@ class ActionPointLostHandlerTest extends FightBaseCase {
         requestStack.assertOne(new AddBuff(buff.get()));
     }
 
-    @Test
     void applyOnSelfShouldRemovePointsFromCurrentTurn() {
         requestStack.clear();
 
@@ -162,7 +158,6 @@ class ActionPointLostHandlerTest extends FightBaseCase {
         requestStack.assertOne("GIE101;1;1;;0;;2;0");
     }
 
-    @Test
     void dodgedAllShouldNotAddBuff() {
         target.characteristics().alter(Characteristic.RESISTANCE_ACTION_POINT, 1000);
         requestStack.clear();
@@ -191,7 +186,6 @@ class ActionPointLostHandlerTest extends FightBaseCase {
         requestStack.assertNotContains(AddBuff.class);
     }
 
-    @Test
     void partialDodge() {
         requestStack.clear();
 
@@ -223,7 +217,6 @@ class ActionPointLostHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void withArea() {
         caster.characteristics().alter(Characteristic.WISDOM, 10000);
         requestStack.clear();
@@ -253,7 +246,6 @@ class ActionPointLostHandlerTest extends FightBaseCase {
         assertEquals(0, target.characteristics().get(Characteristic.ACTION_POINT));
     }
 
-    @Test
     void buffStartAndTerminated() {
         caster.characteristics().alter(Characteristic.WISDOM, 10000);
         requestStack.clear();

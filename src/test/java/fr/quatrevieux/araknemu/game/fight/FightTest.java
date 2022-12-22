@@ -79,7 +79,6 @@ class FightTest extends GameBaseCase {
     private PlayerFighter fighter1, fighter2;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -110,7 +109,6 @@ class FightTest extends GameBaseCase {
     }
 
     @Override
-    @AfterEach
     public void tearDown() throws fr.quatrevieux.araknemu.core.di.ContainerException {
         executor.shutdownNow();
         fight.cancel(true);
@@ -118,7 +116,6 @@ class FightTest extends GameBaseCase {
         super.tearDown();
     }
 
-    @Test
     void getters() {
         assertEquals(5, fight.id());
         assertSame(map, fight.map());
@@ -133,7 +130,6 @@ class FightTest extends GameBaseCase {
         assertSame(container.get(FightActionsFactoryRegistry.class), fight.actions());
     }
 
-    @Test
     void fighters() {
         assertCount(0, fight.fighters());
 
@@ -145,12 +141,10 @@ class FightTest extends GameBaseCase {
         assertEquals(Arrays.asList(fighter1, fighter2), fight.fighters());
     }
 
-    @Test
     void stateBadState() {
         assertThrows(InvalidFightStateException.class, () -> fight.state(PlacementState.class));
     }
 
-    @Test
     void stateWithType() {
         assertInstanceOf(NullState.class, fight.state(NullState.class));
 
@@ -159,7 +153,6 @@ class FightTest extends GameBaseCase {
         assertInstanceOf(PlacementState.class, fight.state(PlacementState.class));
     }
 
-    @Test
     void teamByNumber() {
         assertInstanceOf(SimpleTeam.class, fight.team(0));
         assertSame(fighter1, fight.team(0).leader());
@@ -167,14 +160,12 @@ class FightTest extends GameBaseCase {
         assertSame(fighter2, fight.team(1).leader());
     }
 
-    @Test
     void send() {
         fight.send("test");
 
         requestStack.assertLast("test");
     }
 
-    @Test
     void sendWithSpectator() throws SQLException {
         GameSession otherSession = makeSimpleExplorationSession(5);
 
@@ -187,7 +178,6 @@ class FightTest extends GameBaseCase {
         new SendingRequestStack(DummyChannel.class.cast(otherSession.channel())).assertLast("test");
     }
 
-    @RepeatedIfExceptionsTest
     void schedule() throws InterruptedException {
         AtomicBoolean ab = new AtomicBoolean(false);
 
@@ -199,7 +189,6 @@ class FightTest extends GameBaseCase {
         assertTrue(ab.get());
     }
 
-    @RepeatedIfExceptionsTest
     void execute() throws InterruptedException {
         ExecutorFactory.disableDirectExecution();
         AtomicBoolean ab = new AtomicBoolean(false);
@@ -220,7 +209,6 @@ class FightTest extends GameBaseCase {
         assertTrue(ab.get());
     }
 
-    @RepeatedIfExceptionsTest
     void executeWithExceptionShouldBeLogged() throws InterruptedException {
         RuntimeException raisedException = new RuntimeException("my error");
 
@@ -229,7 +217,6 @@ class FightTest extends GameBaseCase {
         Mockito.verify(logger).error("Error on fight executor : my error", raisedException);
     }
 
-    @RepeatedIfExceptionsTest
     void scheduleWithExceptionShouldBeLogged() throws InterruptedException {
         RuntimeException raisedException = new RuntimeException("my error");
 
@@ -240,7 +227,6 @@ class FightTest extends GameBaseCase {
         Mockito.verify(logger).error("Error on fight executor : my error", raisedException);
     }
 
-    @Test
     void executeOnDeadFightShouldBeIgnored() {
         fight.cancel();
 
@@ -248,7 +234,6 @@ class FightTest extends GameBaseCase {
         assertThrows(IllegalStateException.class, () -> fight.schedule(() -> {}, Duration.ZERO));
     }
 
-    @Test
     void scheduleOnFightDeadShouldBeIgnored() throws InterruptedException {
         AtomicBoolean executed = new AtomicBoolean(false);
         fight.schedule(() -> executed.set(true), Duration.ofMillis(10));
@@ -260,7 +245,6 @@ class FightTest extends GameBaseCase {
         assertFalse(executed.get());
     }
 
-    @Test
     void destroy() {
         fight.destroy();
 
@@ -268,7 +252,6 @@ class FightTest extends GameBaseCase {
         assertFalse(fight.alive());
     }
 
-    @Test
     void destroyShouldClearSpectators() throws SQLException {
         Spectator spectator = new Spectator(gamePlayer(), fight);
         fight.spectators().add(spectator);
@@ -279,7 +262,6 @@ class FightTest extends GameBaseCase {
         requestStack.assertEmpty();
     }
 
-    @RepeatedIfExceptionsTest
     void startStop() throws InterruptedException {
         AtomicReference<FightStarted> ref = new AtomicReference<>();
         AtomicReference<FightStopped> ref2 = new AtomicReference<>();
@@ -328,7 +310,6 @@ class FightTest extends GameBaseCase {
         assertBetween(205, 220, (int) fight.duration());
     }
 
-    @Test
     void startShouldInitFighterAndOrderTurnList() {
         // Perform join fight on fighters
         new PlacementState().start(fight);
@@ -355,7 +336,6 @@ class FightTest extends GameBaseCase {
         assertContainsAll(initializedFighters, fighter1, fighter2);
     }
 
-    @Test
     void cancelActive() {
         // Call join fight on fighters
         new PlacementState().start(fight);
@@ -366,7 +346,6 @@ class FightTest extends GameBaseCase {
         assertTrue(fight.alive());
     }
 
-    @Test
     void cancel() {
         AtomicReference<FightCancelled> ref = new AtomicReference<>();
         fight.dispatcher().add(FightCancelled.class, ref::set);
@@ -379,7 +358,6 @@ class FightTest extends GameBaseCase {
         assertFalse(fight.alive());
     }
 
-    @Test
     void cancelActiveForce() {
         AtomicReference<FightCancelled> ref = new AtomicReference<>();
         fight.dispatcher().add(FightCancelled.class, ref::set);
@@ -396,7 +374,6 @@ class FightTest extends GameBaseCase {
         assertFalse(fight.alive());
     }
 
-    @Test
     void register() {
         FightModule module = Mockito.mock(FightModule.class);
 
@@ -408,7 +385,6 @@ class FightTest extends GameBaseCase {
         Mockito.verify(module).listeners();
     }
 
-    @Test
     void nextStateWillNotifyModules() {
         fight.nextState();
 
@@ -421,7 +397,6 @@ class FightTest extends GameBaseCase {
         Mockito.verify(module).stateChanged(fight.state());
     }
 
-    @Test
     void attach() {
         Object attachment = new Object();
         fight.attach(attachment);
@@ -429,7 +404,6 @@ class FightTest extends GameBaseCase {
         assertSame(attachment, fight.attachment(Object.class));
     }
 
-    @Test
     void dispatchToAll() throws SQLException {
         class Foo {}
         AtomicInteger ai = new AtomicInteger();
@@ -448,7 +422,6 @@ class FightTest extends GameBaseCase {
         assertEquals(3, ai.get());
     }
 
-    @Test
     void dispatchToAllWithInitializedTurnList() throws SQLException {
         dataSet
             .pushMonsterSpellsInvocations()
@@ -482,12 +455,10 @@ class FightTest extends GameBaseCase {
         assertEquals(4, ai.get());
     }
 
-    @Test
     void turnListNotStartedShouldFailed() {
         assertThrows(IllegalStateException.class, fight::turnList);
     }
 
-    @Test
     void stopNotStartedShouldFailed() {
         assertThrows(IllegalStateException.class, fight::stop);
     }

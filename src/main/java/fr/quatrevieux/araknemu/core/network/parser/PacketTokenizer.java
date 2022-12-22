@@ -125,7 +125,7 @@ public final class PacketTokenizer {
      *
      * @throws ParsePacketException When no more parts is available, or the number is invalid
      */
-    public @GTENegativeOne int nextNonNegativeOrNegativeOneInt() {
+    public int nextNonNegativeOrNegativeOneInt() {
         try {
             return splitter.nextNonNegativeOrNegativeOneInt();
         } catch (IllegalArgumentException e) {
@@ -144,7 +144,7 @@ public final class PacketTokenizer {
      *
      * @throws ParsePacketException When the number is invalid
      */
-    public @GTENegativeOne int nextNonNegativeOrNegativeOneIntOrDefault(@GTENegativeOne int defaultValue) {
+    public int nextNonNegativeOrNegativeOneIntOrDefault(int defaultValue) {
         try {
             return splitter.nextNonNegativeOrNegativeOneIntOrDefault(defaultValue);
         } catch (IllegalArgumentException e) {
@@ -157,7 +157,7 @@ public final class PacketTokenizer {
      *
      * @throws ParsePacketException When no more parts is available, or the number is invalid
      */
-    public @NonNegative int nextNonNegativeInt() {
+    public int nextNonNegativeInt() {
         try {
             return splitter.nextNonNegativeInt();
         } catch (IllegalArgumentException e) {
@@ -176,7 +176,7 @@ public final class PacketTokenizer {
      *
      * @throws ParsePacketException When the number format is invalid, or is too low
      */
-    public @NonNegative int nextNonNegativeIntOrDefault(@NonNegative int defaultValue) {
+    public int nextNonNegativeIntOrDefault(int defaultValue) {
         try {
             return splitter.nextNonNegativeIntOrDefault(defaultValue);
         } catch (IllegalArgumentException e) {
@@ -189,7 +189,7 @@ public final class PacketTokenizer {
      *
      * @throws ParsePacketException When no more parts is available, or the number is invalid
      */
-    public @Positive int nextPositiveInt() {
+    public int nextPositiveInt() {
         try {
             return splitter.nextPositiveInt();
         } catch (IllegalArgumentException e) {
@@ -208,7 +208,7 @@ public final class PacketTokenizer {
      *
      * @throws ParsePacketException When the number format is invalid or is too low
      */
-    public @Positive int nextPositiveIntOrDefault(@Positive int defaultValue) {
+    public int nextPositiveIntOrDefault(int defaultValue) {
         try {
             return splitter.nextPositiveIntOrDefault(defaultValue);
         } catch (IllegalArgumentException e) {

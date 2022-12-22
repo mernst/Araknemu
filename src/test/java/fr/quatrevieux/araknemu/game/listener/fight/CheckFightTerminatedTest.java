@@ -32,7 +32,6 @@ class CheckFightTerminatedTest extends FightBaseCase {
     private CheckFightTerminated listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -44,14 +43,12 @@ class CheckFightTerminatedTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onFighterDieAlreadyFighting() {
         listener.on(new FighterDie(player.fighter(), player.fighter()));
 
         assertTrue(fight.active());
     }
 
-    @Test
     void onFighterDieWillTerminateFight() {
         player.fighter().life().alter(player.fighter(), -1000);
 

@@ -40,7 +40,6 @@ class SendCreatedFightTest extends FightBaseCase {
     private ExplorationMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -54,7 +53,6 @@ class SendCreatedFightTest extends FightBaseCase {
         explorationPlayer().changeMap(map, 133);
     }
 
-    @Test
     void onFightCreated() throws SQLException, ContainerException {
         createSimpleFight(map);
 

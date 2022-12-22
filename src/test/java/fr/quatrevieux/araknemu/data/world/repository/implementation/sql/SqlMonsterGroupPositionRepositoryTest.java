@@ -36,7 +36,6 @@ class SqlMonsterGroupPositionRepositoryTest  extends GameBaseCase {
     private SqlMonsterGroupPositionRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,7 +46,6 @@ class SqlMonsterGroupPositionRepositoryTest  extends GameBaseCase {
         repository = new SqlMonsterGroupPositionRepository(new ConnectionPoolExecutor(app.database().get("game")));
     }
 
-    @Test
     void get() {
         MonsterGroupPosition position = repository.get(new MonsterGroupPosition(10340, -1, 0));
 
@@ -56,25 +54,21 @@ class SqlMonsterGroupPositionRepositoryTest  extends GameBaseCase {
         assertEquals(1, position.groupId());
     }
 
-    @Test
     void has() {
         assertTrue(repository.has(new MonsterGroupPosition(10340, -1, 0)));
         assertFalse(repository.has(new MonsterGroupPosition(404, -1, 0)));
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(new MonsterGroupPosition(10340, 111, 0)));
         assertThrows(EntityNotFoundException.class, () -> repository.get(new MonsterGroupPosition(103404, -1, 0)));
         assertThrows(EntityNotFoundException.class, () -> repository.get(new MonsterGroupPosition(404, 404, 0)));
     }
 
-    @Test
     void byMapNoGroups() {
         assertEquals(Collections.emptyList(), repository.byMap(123));
     }
 
-    @Test
     void byMapSingleGroup() {
         Collection<MonsterGroupPosition> positions = repository.byMap(10540);
 
@@ -82,7 +76,6 @@ class SqlMonsterGroupPositionRepositoryTest  extends GameBaseCase {
         assertEquals(2, positions.stream().findFirst().get().groupId());
     }
 
-    @Test
     void byMapMultipleGroups() {
         Collection<MonsterGroupPosition> positions = repository.byMap(10340);
 
@@ -92,7 +85,6 @@ class SqlMonsterGroupPositionRepositoryTest  extends GameBaseCase {
         );
     }
 
-    @Test
     void all() {
         Collection<MonsterGroupPosition> positions = repository.all();
 

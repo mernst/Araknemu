@@ -185,8 +185,8 @@ public final class BanIpService<A extends LivingAccount> {
     public final class RuleBuilder {
         private final IPAddressString ipAddress;
         private String cause = "";
-        private @MonotonicNonNull Duration duration = null;
-        private @MonotonicNonNull A banisher = null;
+        private Duration duration = null;
+        private A banisher = null;
 
         private RuleBuilder(IPAddressString ipAddress) {
             this.ipAddress = ipAddress;

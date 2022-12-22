@@ -41,7 +41,6 @@ class KickBannedAccountTest extends GameBaseCase {
     private AccountService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,7 +48,6 @@ class KickBannedAccountTest extends GameBaseCase {
         service = container.get(AccountService.class);
     }
 
-    @Test
     void listenerShouldKickAccountOnBan() {
         dataSet.use(Banishment.class);
         Account account1 = dataSet.push(new Account(-1, "name", "pass", "pseudo", Collections.emptySet(), "", ""));
@@ -66,7 +64,6 @@ class KickBannedAccountTest extends GameBaseCase {
         assertFalse(session.isAlive());
     }
 
-    @Test
     void listenerShouldKickAccountOnBanWithoutBanisher() {
         dataSet.use(Banishment.class);
         Account account1 = dataSet.push(new Account(-1, "name", "pass", "pseudo", Collections.emptySet(), "", ""));

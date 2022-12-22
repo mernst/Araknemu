@@ -46,18 +46,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class HydratorsAggregateTest extends TestCase {
     private HydratorsAggregate hydrator;
 
-    @BeforeEach
     void setUp() {
         hydrator = new HydratorsAggregate();
     }
 
-    @Test
     void supports() {
         assertTrue(hydrator.supports(new CommandWithString(), null));
         assertFalse(hydrator.supports(new CommandWithObject(), null));
     }
 
-    @Test
     void hydrate() throws Exception {
         CommandParser.Arguments parsedArguments = new CommandParser.Arguments("", "", "", Arrays.asList("foo", "bar"), null);
 
@@ -67,14 +64,12 @@ class HydratorsAggregateTest extends TestCase {
         assertEquals("bar", hydrator.hydrate(new CommandWithObject(), new CommandWithObject().createArguments(), parsedArguments).bar);
     }
 
-    @Test
     void hydrateNotSupported() throws Exception {
         CommandParser.Arguments parsedArguments = new CommandParser.Arguments("", "", "", Arrays.asList("foo", "bar"), null);
 
         assertThrowsWithMessage(CommandException.class, "Cannot parse arguments for command CommandWithObject", () -> hydrator.hydrate(new CommandWithObject(), null, parsedArguments));
     }
 
-    @Test
     void helpNotSupported() {
         CommandWithObject command = new CommandWithObject();
         CommandHelp help = command.help();
@@ -94,7 +89,6 @@ class HydratorsAggregateTest extends TestCase {
         );
     }
 
-    @Test
     void help() {
         CommandWithObject command = new CommandWithObject();
         CommandHelp help = command.help();
@@ -171,7 +165,6 @@ class HydratorsAggregateTest extends TestCase {
         public void execute(AdminPerformer performer, Arguments arguments) throws AdminException {}
 
         static public class Arguments {
-            @Argument(metaVar = "BAR", usage = "Define bar")
             public String bar = "_";
         }
 

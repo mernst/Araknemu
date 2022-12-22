@@ -29,9 +29,9 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  */
 public final class SendMessageError {
     private final ChatException.Error error;
-    private final @Nullable String target;
+    private final String target;
 
-    public SendMessageError(ChatException.Error error, @Nullable String target) {
+    public SendMessageError(ChatException.Error error, String target) {
         this.error = error;
         this.target = target;
     }

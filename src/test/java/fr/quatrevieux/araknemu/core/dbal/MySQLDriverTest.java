@@ -34,7 +34,6 @@ import java.sql.Statement;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MySQLDriverTest {
-    @Test
     void newConnection() throws IOException, SQLException {
         MySQLDriver driver = new MySQLDriver(
             new DefaultConfiguration(new IniDriver(new Ini(new File("src/test/test_config.ini"))))

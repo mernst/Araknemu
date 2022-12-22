@@ -39,7 +39,7 @@ public final class FireworkEffect implements UseEffectHandler {
     }
 
     @Override
-    public void applyToTarget(UseEffect effect, ExplorationPlayer caster, @Nullable ExplorationPlayer target, @Nullable ExplorationMapCell cell) {
+    public void applyToTarget(UseEffect effect, ExplorationPlayer caster, ExplorationPlayer target, ExplorationMapCell cell) {
         caster.interactions().push(
             new LaunchFirework(
                 caster,
@@ -56,7 +56,7 @@ public final class FireworkEffect implements UseEffectHandler {
     }
 
     @Override
-    public boolean checkTarget(UseEffect effect, ExplorationPlayer caster, @Nullable ExplorationPlayer target, @Nullable ExplorationMapCell cell) {
+    public boolean checkTarget(UseEffect effect, ExplorationPlayer caster, ExplorationPlayer target, ExplorationMapCell cell) {
         return cell != null;
     }
 }

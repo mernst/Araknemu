@@ -49,7 +49,6 @@ class ReflectDamageHandlerTest extends FightBaseCase {
     private ReflectDamageHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -66,7 +65,6 @@ class ReflectDamageHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handle() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -82,7 +80,6 @@ class ReflectDamageHandlerTest extends FightBaseCase {
         assertThrows(UnsupportedOperationException.class, () -> handler.handle(scope, scope.effects().get(0)));
     }
 
-    @Test
     void buff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -108,7 +105,6 @@ class ReflectDamageHandlerTest extends FightBaseCase {
         assertEquals(5, found.get().remainingTurns());
     }
 
-    @Test
     void onDirectDamageWillAddReflected() {
         SpellEffect returnEffect = Mockito.mock(SpellEffect.class);
 
@@ -124,7 +120,6 @@ class ReflectDamageHandlerTest extends FightBaseCase {
         assertEquals(20, damage.value());
     }
 
-    @Test
     void onDirectDamageShouldIgnoreSelfDamage() {
         SpellEffect returnEffect = Mockito.mock(SpellEffect.class);
 
@@ -140,7 +135,6 @@ class ReflectDamageHandlerTest extends FightBaseCase {
         assertEquals(20, damage.value());
     }
 
-    @Test
     void ignoreOnDamage() {
         SpellEffect returnEffect = Mockito.mock(SpellEffect.class);
 
@@ -156,7 +150,6 @@ class ReflectDamageHandlerTest extends FightBaseCase {
         assertEquals(20, damage.value());
     }
 
-    @Test
     void onDirectDamageShouldBeBoostedByWisdom() {
         caster.characteristics().alter(Characteristic.WISDOM, 50);
 

@@ -31,7 +31,7 @@ public interface FightCell extends BattlefieldCell {
     @Override
     public FightMap map();
 
-    public @Nullable Fighter fighter();
+    public Fighter fighter();
 
     /**
      * Set a fighter on this cell

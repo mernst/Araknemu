@@ -43,28 +43,28 @@ public final class GamePlayerExperience {
     /**
      * Get the current player level
      */
-    public @Positive int level() {
+    public int level() {
         return entity.level();
     }
 
     /**
      * Get the minimal experience for current level
      */
-    public @NonNegative long min() {
+    public long min() {
         return service.byLevel(entity.level()).experience();
     }
 
     /**
      * Get the current player experience
      */
-    public @NonNegative long current() {
+    public long current() {
         return entity.experience();
     }
 
     /**
      * Get the next level experience
      */
-    public @NonNegative long max() {
+    public long max() {
         return service.byLevel(entity.level() + 1).experience();
     }
 
@@ -80,7 +80,7 @@ public final class GamePlayerExperience {
      *
      * @param experience Experience to add
      */
-    public void add(@NonNegative long experience) {
+    public void add(long experience) {
         entity.setExperience(entity.experience() + experience);
 
         if (maxLevelReached()) {

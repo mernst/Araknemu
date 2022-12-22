@@ -31,14 +31,12 @@ class TurnMiddleTest extends FightBaseCase {
     private Fight fight;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         fight = createFight();
     }
 
-    @Test
     void generate() {
         assertEquals(
             "GTM|1;0;295;6;3;122;;295|2;0;50;6;3;125;;50",
@@ -46,7 +44,6 @@ class TurnMiddleTest extends FightBaseCase {
         );
     }
 
-    @Test
     void generateWithHiddenFighterShouldNotSendCell() {
         fight.fighters().get(1).setHidden(fight.fighters().get(1), true);
 
@@ -56,7 +53,6 @@ class TurnMiddleTest extends FightBaseCase {
         );
     }
 
-    @Test
     void generateWithActiveTurnShouldShowTurnPoints() {
         fight.start(new AlternateTeamFighterOrder());
         fight.turnList().start();
@@ -70,7 +66,6 @@ class TurnMiddleTest extends FightBaseCase {
         );
     }
 
-    @Test
     void generateWithDeadFighter() {
         player.fighter().init();
         player.fighter().life().alter(player.fighter(), -1000);

@@ -43,7 +43,6 @@ class RangeValidatorTest  extends FightBaseCase {
     private RangeValidator validator;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -57,7 +56,6 @@ class RangeValidatorTest  extends FightBaseCase {
         validator = new RangeValidator();
     }
 
-    @Test
     void valid() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -69,7 +67,6 @@ class RangeValidatorTest  extends FightBaseCase {
         assertNull(validator.validate(turn, spell, fight.map().get(186)));
     }
 
-    @Test
     void tooAway() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -84,7 +81,6 @@ class RangeValidatorTest  extends FightBaseCase {
         );
     }
 
-    @Test
     void tooNear() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -99,7 +95,6 @@ class RangeValidatorTest  extends FightBaseCase {
         );
     }
 
-    @Test
     void boostedRange() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -114,7 +109,6 @@ class RangeValidatorTest  extends FightBaseCase {
         assertNull(validator.validate(turn, spell, fight.map().get(102)));
     }
 
-    @Test
     void rangeMalus() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);

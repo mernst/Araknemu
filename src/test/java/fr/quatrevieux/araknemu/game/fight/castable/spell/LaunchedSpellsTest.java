@@ -37,7 +37,6 @@ class LaunchedSpellsTest extends FightBaseCase {
     private LaunchedSpells launchedSpells;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -45,14 +44,12 @@ class LaunchedSpellsTest extends FightBaseCase {
         launchedSpells = new LaunchedSpells();
     }
 
-    @Test
     void validNotLaunched() {
         Spell spell = Mockito.mock(Spell.class);
 
         launchedSpells.valid(spell, fight.map().get(123));
     }
 
-    @Test
     void validAlreadyLaunchedWithoutConstraints() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -67,7 +64,6 @@ class LaunchedSpellsTest extends FightBaseCase {
         assertTrue(launchedSpells.valid(spell, fight.map().get(123)));
     }
 
-    @Test
     void validWithCooldown() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -82,7 +78,6 @@ class LaunchedSpellsTest extends FightBaseCase {
         assertFalse(launchedSpells.valid(spell, fight.map().get(123)));
     }
 
-    @Test
     void validWithMaxPerTurn() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -101,7 +96,6 @@ class LaunchedSpellsTest extends FightBaseCase {
         assertFalse(launchedSpells.valid(spell, fight.map().get(123)));
     }
 
-    @Test
     void validWithMaxPerTarget() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -122,7 +116,6 @@ class LaunchedSpellsTest extends FightBaseCase {
         assertTrue(launchedSpells.valid(spell, player.fighter().cell()));
     }
 
-    @Test
     void refreshWillRemoveSpellsIfCooldownReachZero() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);

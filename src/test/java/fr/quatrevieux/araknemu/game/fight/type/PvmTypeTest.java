@@ -33,7 +33,6 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PvmTypeTest extends GameBaseCase {
-    @Test
     void values() {
         RewardsGenerator generator = new PvmRewardsGenerator(Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
         PvmType type = new PvmType(generator, configuration.fight());

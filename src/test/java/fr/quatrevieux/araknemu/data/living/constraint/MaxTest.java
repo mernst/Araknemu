@@ -32,7 +32,6 @@ class MaxTest {
         }
     }
 
-    @Test
     void check() {
         Max<Entity, Object, Integer> max = new Max<>(new Object(), entity -> entity.value, 8);
 

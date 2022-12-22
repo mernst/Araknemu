@@ -35,12 +35,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class EffectToCharacteristicMappingTest extends TestCase {
     private EffectToCharacteristicMapping mapping = new EffectToCharacteristicMapping();
     
-    @Test
     void createNotFound() {
         assertThrows(NoSuchElementException.class, () -> mapping.create(Effect.INFLICT_DAMAGE_FIRE, 0));
     }
 
-    @Test
     void createPositive() {
         CharacteristicEffect effect = mapping.create(Effect.ADD_INTELLIGENCE, 15);
 
@@ -50,7 +48,6 @@ class EffectToCharacteristicMappingTest extends TestCase {
         assertEquals(15, effect.boost());
     }
 
-    @Test
     void createNegative() {
         CharacteristicEffect effect = mapping.create(Effect.SUB_INTELLIGENCE, 15);
 
@@ -60,7 +57,6 @@ class EffectToCharacteristicMappingTest extends TestCase {
         assertEquals(-15, effect.boost());
     }
 
-    @Test
     void isNegative() {
         assertTrue(mapping.isNegative(Effect.SUB_AGILITY));
         assertTrue(mapping.isNegative(Effect.SUB_CHANCE));
@@ -68,7 +64,6 @@ class EffectToCharacteristicMappingTest extends TestCase {
         assertFalse(mapping.isNegative(Effect.ADD_REDUCE_DAMAGE_EARTH));
     }
 
-    @Test
     void createRandomWithoutMaxValue() {
         CharacteristicEffect effect = mapping.createRandom(
             new ItemTemplateEffectEntry(Effect.ADD_AGILITY, 10, 0, 0, "")
@@ -80,7 +75,6 @@ class EffectToCharacteristicMappingTest extends TestCase {
         assertEquals(10, effect.boost());
     }
 
-    @Test
     void createRandomWithMaxValue() {
         CharacteristicEffect effect = mapping.createRandom(
             new ItemTemplateEffectEntry(Effect.ADD_AGILITY, 0, 100, 0, "")
@@ -95,7 +89,6 @@ class EffectToCharacteristicMappingTest extends TestCase {
         );
     }
 
-    @Test
     void createMax() {
         CharacteristicEffect effect = mapping.createMaximize(
             new ItemTemplateEffectEntry(Effect.ADD_AGILITY, 0, 100, 0, "")
@@ -105,7 +98,6 @@ class EffectToCharacteristicMappingTest extends TestCase {
         assertEquals(100, effect.boost());
     }
 
-    @Test
     void createMaxWithNegativeValue() {
         CharacteristicEffect effect = mapping.createMaximize(
             new ItemTemplateEffectEntry(Effect.SUB_AGILITY, 10, 100, 0, "")
@@ -115,7 +107,6 @@ class EffectToCharacteristicMappingTest extends TestCase {
         assertEquals(-10, effect.boost());
     }
 
-    @Test
     void createFromListMaximize() {
         List<CharacteristicEffect> effects = mapping.create(
             Arrays.asList(
@@ -133,7 +124,6 @@ class EffectToCharacteristicMappingTest extends TestCase {
         assertEquals(100, effects.get(1).boost());
     }
 
-    @Test
     void createFromListRandom() {
         List<CharacteristicEffect> effects = mapping.create(
             Arrays.asList(
@@ -150,7 +140,6 @@ class EffectToCharacteristicMappingTest extends TestCase {
         assertBetween(10, 100, effects.get(1).boost());
     }
 
-    @Test
     void createFromListFixed() {
         List<CharacteristicEffect> effects = mapping.create(
             Arrays.asList(

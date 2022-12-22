@@ -38,7 +38,6 @@ class SqlBankItemRepositoryTest extends GameBaseCase {
     private SqlBankItemRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -50,12 +49,10 @@ class SqlBankItemRepositoryTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(new BankItem(123, 2, 123, 0, null, 0)));
     }
 
-    @Test
     void addAndGet() {
         BankItem item = repository.add(
             new BankItem(
@@ -77,7 +74,6 @@ class SqlBankItemRepositoryTest extends GameBaseCase {
         assertEquals(5, item.quantity());
     }
 
-    @Test
     void has() {
         BankItem item = repository.add(
             new BankItem(
@@ -94,7 +90,6 @@ class SqlBankItemRepositoryTest extends GameBaseCase {
         assertFalse(repository.has(new BankItem(0, 0, 0, 0, null, 0)));
     }
 
-    @Test
     void update() {
         BankItem item = repository.add(
             new BankItem(
@@ -120,7 +115,6 @@ class SqlBankItemRepositoryTest extends GameBaseCase {
         assertEquals(1, item.quantity());
     }
 
-    @Test
     void updateNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.update(
             new BankItem(
@@ -134,7 +128,6 @@ class SqlBankItemRepositoryTest extends GameBaseCase {
         ));
     }
 
-    @Test
     void delete() {
         BankItem item = repository.add(
             new BankItem(
@@ -152,7 +145,6 @@ class SqlBankItemRepositoryTest extends GameBaseCase {
         assertFalse(repository.has(item));
     }
 
-    @Test
     void deleteNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.delete(
             new BankItem(
@@ -166,7 +158,6 @@ class SqlBankItemRepositoryTest extends GameBaseCase {
         ));
     }
 
-    @Test
     void count() {
         AccountBank bank = new AccountBank(1, 2, 0);
 

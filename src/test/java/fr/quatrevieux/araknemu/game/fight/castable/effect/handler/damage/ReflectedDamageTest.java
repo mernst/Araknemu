@@ -35,7 +35,6 @@ class ReflectedDamageTest extends FightBaseCase {
     private Fight fight;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -48,7 +47,6 @@ class ReflectedDamageTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void withoutModification() {
         ReflectedDamage rd = new ReflectedDamage(new Damage(15, Element.AIR).reflect(5), caster);
 
@@ -57,7 +55,6 @@ class ReflectedDamageTest extends FightBaseCase {
         assertSame(caster, rd.target());
     }
 
-    @Test
     void withResistance() {
         caster.characteristics().alter(Characteristic.RESISTANCE_PERCENT_AIR, 20);
         caster.characteristics().alter(Characteristic.RESISTANCE_AIR, 5);
@@ -69,7 +66,6 @@ class ReflectedDamageTest extends FightBaseCase {
         assertSame(caster, rd.target());
     }
 
-    @Test
     void changeTarget() {
         target.characteristics().alter(Characteristic.RESISTANCE_PERCENT_AIR, 10);
         target.characteristics().alter(Characteristic.RESISTANCE_AIR, 1);
@@ -82,7 +78,6 @@ class ReflectedDamageTest extends FightBaseCase {
         assertSame(target, rd.target());
     }
 
-    @Test
     void tooHighResistanceShouldIgnoreReflectedDamage() {
         caster.characteristics().alter(Characteristic.RESISTANCE_PERCENT_AIR, 20);
         caster.characteristics().alter(Characteristic.RESISTANCE_AIR, 25);
@@ -94,7 +89,6 @@ class ReflectedDamageTest extends FightBaseCase {
         assertSame(caster, rd.target());
     }
 
-    @Test
     void multiply() {
         ReflectedDamage rd = new ReflectedDamage(new Damage(15, Element.AIR).reflect(5), caster);
 

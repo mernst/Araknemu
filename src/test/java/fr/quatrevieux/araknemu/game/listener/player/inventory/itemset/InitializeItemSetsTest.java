@@ -36,7 +36,6 @@ class InitializeItemSetsTest extends GameBaseCase {
     private ItemService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -48,14 +47,12 @@ class InitializeItemSetsTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onGameJoinedWithoutItemSets() {
         listener.on(new GameJoined());
 
         requestStack.assertEmpty();
     }
 
-    @Test
     void onGameJoinedWithItemSets() throws SQLException, ContainerException, InventoryException {
         InventoryEntry entry1 = gamePlayer().inventory().add(service.create(2425), 1, 0);
         InventoryEntry entry2 = gamePlayer().inventory().add(service.create(2641), 1, 6);

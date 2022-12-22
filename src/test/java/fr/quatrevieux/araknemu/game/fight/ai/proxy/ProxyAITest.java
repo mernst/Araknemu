@@ -36,7 +36,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ProxyAITest extends AiBaseCase {
-    @Test
     void baseProxy() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(152))
@@ -77,7 +76,6 @@ class ProxyAITest extends AiBaseCase {
         assertEquals(2, proxy.turn().points().movementPoints());
     }
 
-    @Test
     void withPosition() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(152))
@@ -139,7 +137,6 @@ class ProxyAITest extends AiBaseCase {
         assertFalse(proxy.map().get(152).hasFighter());
     }
 
-    @Test
     void startIsDisabled() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(152))

@@ -48,7 +48,6 @@ class AskExchangeTest extends GameBaseCase {
     private AskExchange handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -60,7 +59,6 @@ class AskExchangeTest extends GameBaseCase {
         handler = new AskExchange(container.get(ExchangeFactory.class));
     }
 
-    @Test
     void success() throws ErrorPacket {
         handler.handle(session, new ExchangeRequest(ExchangeType.PLAYER_EXCHANGE, other.id(), null));
 
@@ -70,7 +68,6 @@ class AskExchangeTest extends GameBaseCase {
         assertInstanceOf(TargetExchangeRequestDialog.class, other.interactions().get(Interaction.class));
     }
 
-    @Test
     void notOnMap() throws ErrorPacket {
         player.leave();
         assertThrows(ErrorPacket.class, () -> handler.handle(session, new ExchangeRequest(ExchangeType.PLAYER_EXCHANGE, other.id(), null)));
@@ -79,7 +76,6 @@ class AskExchangeTest extends GameBaseCase {
         assertFalse(other.interactions().busy());
     }
 
-    @Test
     void successWithNpcStore() throws ErrorPacket, SQLException {
         dataSet.pushNpcWithStore();
 
@@ -92,24 +88,20 @@ class AskExchangeTest extends GameBaseCase {
         assertInstanceOf(StoreDialog.class, player.interactions().get(Interaction.class));
     }
 
-    @Test
     void invalidTarget() {
         assertThrows(ErrorPacket.class, () -> handler.handle(session, new ExchangeRequest(ExchangeType.PLAYER_EXCHANGE, -8, null)));
     }
 
-    @Test
     void invalidType() {
         assertThrows(ErrorPacket.class, () -> handler.handle(session, new ExchangeRequest(ExchangeType.BANK, other.id(), null)));
     }
 
-    @Test
     void notExploring() {
         session.setExploration(null);
 
         assertThrows(CloseImmediately.class, () -> handlePacket(new ExchangeRequest(ExchangeType.PLAYER_EXCHANGE, other.id(), null)));
     }
 
-    @Test
     void functional() throws Exception {
         handlePacket(new ExchangeRequest(ExchangeType.PLAYER_EXCHANGE, other.id(), null));
 

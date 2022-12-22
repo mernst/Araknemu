@@ -42,7 +42,6 @@ class ChallengeBuilderTest extends GameBaseCase {
     private ChallengeBuilder builder;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -51,7 +50,6 @@ class ChallengeBuilderTest extends GameBaseCase {
         builder = new ChallengeBuilder(container.get(FightService.class), container.get(FighterFactory.class), new RandomUtil(), new ChallengeType(configuration.fight()));
     }
 
-    @Test
     void buildSimple() throws Exception {
         Fight fight = builder
             .fighter(gamePlayer())
@@ -71,7 +69,6 @@ class ChallengeBuilderTest extends GameBaseCase {
         assertEquals(1, fight.id());
     }
 
-    @Test
     void buildWillRandomizeTeamNumbers() throws Exception {
         builder
             .fighter(gamePlayer())

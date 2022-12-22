@@ -41,7 +41,6 @@ class PvmKamasProviderTest extends FightBaseCase {
     private List<Fighter> monsterFighters;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -53,7 +52,6 @@ class PvmKamasProviderTest extends FightBaseCase {
         monsterFighters = new ArrayList<>(fight.team(1).fighters());
     }
 
-    @Test
     void withOneMonster() {
         EndFightResults results = new EndFightResults(
             fight,
@@ -73,7 +71,6 @@ class PvmKamasProviderTest extends FightBaseCase {
         assertNotEquals(reward.kamas(), otherReward.kamas());
     }
 
-    @Test
     void withMultipleMonsters() {
         EndFightResults results = new EndFightResults(
             fight,
@@ -92,7 +89,6 @@ class PvmKamasProviderTest extends FightBaseCase {
         assertNotEquals(reward.kamas(), otherReward.kamas());
     }
 
-    @Test
     void withoutMonsters() {
         EndFightResults results = new EndFightResults(
             fight,

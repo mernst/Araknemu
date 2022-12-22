@@ -39,7 +39,7 @@ import java.util.Map;
 public final class RaulebaqueModule implements FightModule {
     private final Fight fight;
 
-    private @MonotonicNonNull Map<Fighter, FightCell> startPositions;
+    private Map<Fighter, FightCell> startPositions;
 
     public RaulebaqueModule(Fight fight) {
         this.fight = fight;

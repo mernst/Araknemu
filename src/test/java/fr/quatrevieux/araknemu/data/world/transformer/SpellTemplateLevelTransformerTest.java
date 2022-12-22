@@ -29,18 +29,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class SpellTemplateLevelTransformerTest extends TestCase {
     private SpellTemplateLevelTransformer transformer = new SpellTemplateLevelTransformer(new EffectAreaTransformer());
 
-    @Test
     void unserializeEmpty() {
         assertNull(transformer.unserialize(""));
         assertNull(transformer.unserialize(null));
     }
 
-    @Test
     void unserializeMinusOne() {
         assertNull(transformer.unserialize("-1"));
     }
 
-    @Test
     void unserializeValid() {
         SpellTemplate.Level level = transformer.unserialize("265,7,,,4,0,0d0+7|265,8,,,4,0,0d0+8|2|0|0|50|100|false|false|false|false|0|0|0|5|CcCc||18;19;3;1;41|9|false");
 
@@ -88,22 +85,18 @@ class SpellTemplateLevelTransformerTest extends TestCase {
         assertEquals(2, level.effectAreas().get(1).size());
     }
 
-    @Test
     void unserializeInvalid() {
         assertThrows(IllegalArgumentException.class, () -> transformer.unserialize("invalid"), "Cannot parse spell level 'invalid'");
     }
 
-    @Test
     void unserializeBadRange() {
         assertThrows(IllegalArgumentException.class, () -> transformer.unserialize("265,7,,,4,0,0d0+7|265,8,,,4,0,0d0+8|2|5|2|50|100|false|false|false|false|0|0|0|5|CcCc||18;19;3;1;41|9|false"));
     }
 
-    @Test
     void unserializeBadAreas() {
         assertThrows(IllegalArgumentException.class, () -> transformer.unserialize("265,7,,,4,0,0d0+7|265,8,,,4,0,0d0+8|2|0|0|50|100|false|false|false|false|0|0|0|5|Cc||18;19;3;1;41|9|false"));
     }
 
-    @Test
     void serialize() {
         assertThrows(UnsupportedOperationException.class, () -> transformer.serialize(null));
     }

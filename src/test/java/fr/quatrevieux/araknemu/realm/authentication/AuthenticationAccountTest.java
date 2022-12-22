@@ -39,7 +39,6 @@ class AuthenticationAccountTest extends RealmBaseCase {
     private AuthenticationService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -51,7 +50,6 @@ class AuthenticationAccountTest extends RealmBaseCase {
         );
     }
 
-    @Test
     void accountValues() {
         AuthenticationAccount account = new AuthenticationAccount(
             new Account(1, "user", "pass", "pseudo", EnumSet.noneOf(Permission.class), "question", "response"),
@@ -66,7 +64,6 @@ class AuthenticationAccountTest extends RealmBaseCase {
         assertFalse(account.isMaster());
     }
 
-    @Test
     void password() {
         AuthenticationAccount account = new AuthenticationAccount(
             new Account(1, "user", "pass", "pseudo"),
@@ -79,7 +76,6 @@ class AuthenticationAccountTest extends RealmBaseCase {
         assertTrue(account.password().check("pass"));
     }
 
-    @Test
     void updatePassword() {
         Account entity = dataSet.push(new Account(1, "user", "pass", "pseudo", EnumSet.noneOf(Permission.class), "question", "response"));
         AuthenticationAccount account = new AuthenticationAccount(entity, new PlainTextHash().parse("pass"), service);
@@ -91,7 +87,6 @@ class AuthenticationAccountTest extends RealmBaseCase {
         assertEquals("newPass", dataSet.refresh(entity).password());
     }
 
-    @Test
     void isAlive() {
         AuthenticationAccount account = new AuthenticationAccount(
             new Account(1, "user", "pass", "pseudo"),
@@ -108,7 +103,6 @@ class AuthenticationAccountTest extends RealmBaseCase {
         assertFalse(account.isLogged());
     }
 
-    @Test
     void attach() {
         AuthenticationAccount account = new AuthenticationAccount(
             new Account(1, "user", "pass", "pseudo"),
@@ -122,7 +116,6 @@ class AuthenticationAccountTest extends RealmBaseCase {
         assertTrue(service.isAuthenticated(account));
     }
 
-    @Test
     void detach() {
         AuthenticationAccount account = new AuthenticationAccount(
             new Account(1, "user", "pass", "pseudo"),
@@ -137,7 +130,6 @@ class AuthenticationAccountTest extends RealmBaseCase {
         assertFalse(session.isLogged());
     }
 
-    @Test
     void send() {
         AuthenticationAccount account = new AuthenticationAccount(
             new Account(1, "user", "pass", "pseudo"),

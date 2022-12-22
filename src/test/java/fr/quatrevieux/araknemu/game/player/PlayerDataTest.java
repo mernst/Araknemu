@@ -57,7 +57,6 @@ class PlayerDataTest  extends GameBaseCase {
     private PlayerData data;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -101,7 +100,6 @@ class PlayerDataTest  extends GameBaseCase {
         data = new PlayerData(dispatcher, player, entity, spellBook, experience);
     }
 
-    @Test
     void characteristics() {
         data.build();
 
@@ -110,7 +108,6 @@ class PlayerDataTest  extends GameBaseCase {
         assertEquals(6, data.characteristics().get(Characteristic.ACTION_POINT));
     }
 
-    @Test
     void life() {
         data.build();
 
@@ -122,7 +119,6 @@ class PlayerDataTest  extends GameBaseCase {
         assertEquals(10, data.life().current());
     }
 
-    @Test
     void lifeBuildMoreThanMax() {
         player.entity().setLife(100000);
         data.build();
@@ -133,7 +129,6 @@ class PlayerDataTest  extends GameBaseCase {
         assertEquals(345, data.life().max());
     }
 
-    @Test
     void experience() {
         assertEquals(50, data.experience().level());
         assertEquals(5350000, data.experience().min());
@@ -141,12 +136,10 @@ class PlayerDataTest  extends GameBaseCase {
         assertEquals(5860000, data.experience().max());
     }
 
-    @Test
     void spells() {
         assertSame(player.properties().spells(), data.spells());
     }
 
-    @Test
     void kamas() {
         entity.setKamas(1456);
 

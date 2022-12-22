@@ -36,7 +36,6 @@ import java.util.Collections;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FightListTest extends FightBaseCase {
-    @Test
     void generateNotActive() throws ContainerException, SQLException {
         dataSet.pushMaps().pushSubAreas().pushAreas();
         ExplorationMap map = container.get(ExplorationMapService.class).load(10340);
@@ -50,7 +49,6 @@ class FightListTest extends FightBaseCase {
         );
     }
 
-    @RepeatedIfExceptionsTest
     void generateActive() throws SQLException, ContainerException {
         dataSet.pushMaps().pushSubAreas().pushAreas();
         ExplorationMap map = container.get(ExplorationMapService.class).load(10340);

@@ -90,7 +90,7 @@ public final class ScriptLoaderContextConfigurator<C extends Context> extends Ab
 
     private Command instantiate(Container container, Class<? extends Command> type) throws InstantiationException, IllegalAccessException, InvocationTargetException {
         for (Constructor constructor : type.getConstructors()) {
-            final Object @Nullable[] parameters = resolveArguments(container, constructor);
+            final Object[] parameters = resolveArguments(container, constructor);
 
             if (parameters != null) {
                 return (Command) constructor.newInstance(parameters);
@@ -101,7 +101,7 @@ public final class ScriptLoaderContextConfigurator<C extends Context> extends Ab
         return type.newInstance();
     }
 
-    private Object @Nullable[] resolveArguments(Container container, Constructor constructor) {
+    private Object[] resolveArguments(Container container, Constructor constructor) {
         final Class[] parametersTypes = constructor.getParameterTypes();
         final Object[] parameters = new Object[parametersTypes.length];
 

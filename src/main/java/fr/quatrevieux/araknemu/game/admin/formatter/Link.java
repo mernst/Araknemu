@@ -69,8 +69,8 @@ public final class Link {
         protected abstract void configure(Link link, String target);
     }
 
-    private @MonotonicNonNull String text;
-    private String @MonotonicNonNull[] arguments;
+    private String text;
+    private String[] arguments;
 
     /**
      * Define the link text

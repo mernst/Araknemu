@@ -25,7 +25,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameActionCancelTest {
-    @Test
     void parse() {
         GameActionCancel.Parser parser = new GameActionCancel.Parser();
 
@@ -35,7 +34,6 @@ class GameActionCancelTest {
         assertEquals("azerty", packet.argument());
     }
 
-    @Test
     void parseBadFormat() {
         assertThrows(ParsePacketException.class, () -> new GameActionCancel.Parser().parse("invalid"), "GKEinvalid : The packet should have 2 parts separated by a pipe");
     }

@@ -30,14 +30,12 @@ class AdminLoaderTest extends LoaderTestCase {
     private AdminLoader loader;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         loader = new AdminLoader();
     }
 
-    @Test
     void load() throws ContainerException {
         PacketHandler[] handlers = loader.load(container);
 

@@ -28,17 +28,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class NullContextTest extends TestCase {
-    @Test
     void command() {
         assertThrows(CommandNotFoundException.class, () -> new NullContext().command("cmd"));
     }
 
-    @Test
     void commands() {
         assertTrue(new NullContext().commands().isEmpty());
     }
 
-    @Test
     void child() {
         assertThrows(ContextNotFoundException.class, () -> new NullContext().child("child"));
     }

@@ -52,7 +52,6 @@ class MoveToTargetCellHandlerTest extends FightBaseCase {
     private PlayerFighter target;
     private MoveToTargetCellHandler handler;
 
-    @Test
     void buffNotSupported() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(165))
@@ -77,7 +76,6 @@ class MoveToTargetCellHandlerTest extends FightBaseCase {
         assertThrows(UnsupportedOperationException.class, () -> handler.buff(scope, scope.effects().get(0)));
     }
 
-    @Test
     void applySuccess() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(235))
@@ -109,7 +107,6 @@ class MoveToTargetCellHandlerTest extends FightBaseCase {
         assertSame(destination, target.cell());
     }
 
-    @Test
     void applyShouldIgnoreIfDistanceIsZero() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(235))
@@ -140,8 +137,6 @@ class MoveToTargetCellHandlerTest extends FightBaseCase {
         assertSame(lastCell, target.cell());
     }
 
-    @ParameterizedTest
-    @MethodSource("provideTargets")
     void applyBlocked(int targetCell, int min, int max) {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(196))

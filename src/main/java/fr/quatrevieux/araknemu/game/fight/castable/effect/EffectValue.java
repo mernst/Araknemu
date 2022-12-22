@@ -54,8 +54,8 @@ public final class EffectValue implements Cloneable {
     private int boost = 0;
     private int percent = 100;
     private int fixed = 0;
-    private @NonNegative int multiply = 1;
-    private @NonNegative int value = 0;
+    private int multiply = 1;
+    private int value = 0;
 
     EffectValue(SpellEffect effect) {
         this.effect = effect;
@@ -141,7 +141,7 @@ public final class EffectValue implements Cloneable {
      * Unlike percent, the multiplier will be used at the end of the operation.
      * So, it multiplies jet, percent and fixed bonus
      */
-    public EffectValue multiply(@NonNegative int value) {
+    public EffectValue multiply(int value) {
         this.multiply = value;
 
         return this;
@@ -150,7 +150,7 @@ public final class EffectValue implements Cloneable {
     /**
      * Get the dice value
      */
-    public @NonNegative int value() {
+    public int value() {
         return applyBoost(jet());
     }
 
@@ -238,7 +238,7 @@ public final class EffectValue implements Cloneable {
         }
     }
 
-    private @NonNegative int jet() {
+    private int jet() {
         switch (state) {
             case FIXED:
                 return value;
@@ -255,7 +255,7 @@ public final class EffectValue implements Cloneable {
         }
     }
 
-    private @NonNegative int applyBoost(int value) {
+    private int applyBoost(int value) {
         return Math.max(
             ((boost + value) * percent / 100 + fixed + effect.boost()) * multiply,
             0

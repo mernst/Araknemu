@@ -45,7 +45,6 @@ class DefaultSlotTest extends GameBaseCase {
     private ItemStorage<InventoryEntry> storage;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -65,7 +64,6 @@ class DefaultSlotTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getters() {
         assertEquals(Optional.empty(), slot.entry());
         assertEquals(Optional.empty(), slot.equipment());
@@ -73,7 +71,6 @@ class DefaultSlotTest extends GameBaseCase {
         slot.check(null, 1);
     }
 
-    @Test
     void setNewEntry() throws ContainerException, InventoryException {
         InventoryEntry entry = slot.set(
             container.get(ItemService.class).create(39),
@@ -90,7 +87,6 @@ class DefaultSlotTest extends GameBaseCase {
         );
     }
 
-    @Test
     void setAfterMoveWillStackItem() throws ContainerException, InventoryException, SQLException {
         Item item = container.get(ItemService.class).create(39);
         InventoryEntry entry = slot.set(item, 3);

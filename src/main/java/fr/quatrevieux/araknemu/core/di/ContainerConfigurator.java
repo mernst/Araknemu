@@ -43,7 +43,7 @@ public interface ContainerConfigurator {
      *
      * @return this
      */
-    public <@NonNull T> ContainerConfigurator set(Class<T> type, @NonNull T object);
+    public <T> ContainerConfigurator set(Class<T> type, T object);
 
     /**
      * Add a factory to the container
@@ -53,7 +53,7 @@ public interface ContainerConfigurator {
      *
      * @return this
      */
-    public <@NonNull T> ContainerConfigurator factory(Class<T> type, FactoryItem.Factory<T> factory);
+    public <T> ContainerConfigurator factory(Class<T> type, FactoryItem.Factory<T> factory);
 
     /**
      * Add a factory to the container and persist (i.e. cache) the value
@@ -63,5 +63,5 @@ public interface ContainerConfigurator {
      *
      * @return this
      */
-    public <@NonNull T> ContainerConfigurator persist(Class<T> type, FactoryItem.Factory<T> factory);
+    public <T> ContainerConfigurator persist(Class<T> type, FactoryItem.Factory<T> factory);
 }

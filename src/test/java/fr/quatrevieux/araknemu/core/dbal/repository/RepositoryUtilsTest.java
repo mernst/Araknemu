@@ -70,7 +70,6 @@ class RepositoryUtilsTest {
     private RepositoryUtils<Person> utils;
     private ConnectionPoolExecutor pool;
 
-    @BeforeEach
     void setUp() throws IOException, SQLException {
         pool = new ConnectionPoolExecutor(
             new DefaultDatabaseHandler(
@@ -90,12 +89,10 @@ class RepositoryUtilsTest {
         pool.query("INSERT INTO PERSON VALUES (1, 'JOHN', 'DOE', 23), (2, 'ALAN', 'SMITH', 45), (3, 'JEAN', 'DUPONT', 32)");
     }
 
-    @AfterEach
     void tearDown() throws SQLException {
         pool.query("DROP TABLE PERSON");
     }
 
-    @Test
     void findOneFound() throws RepositoryException {
         Person p = utils.findOne("SELECT * FROM PERSON WHERE ID = ?", rs -> rs.setInt(1, 1));
 
@@ -105,7 +102,6 @@ class RepositoryUtilsTest {
         assertEquals(23, p.age);
     }
 
-    @Test
     void findOneNotFound() {
         assertThrows(
             EntityNotFoundException.class,
@@ -113,7 +109,6 @@ class RepositoryUtilsTest {
         );
     }
 
-    @Test
     void findOneBaqQuery() {
         assertThrows(
             RepositoryException.class,
@@ -121,7 +116,6 @@ class RepositoryUtilsTest {
         );
     }
 
-    @Test
     void findAll() throws RepositoryException {
         List<Person> people = utils.findAll(
             "SELECT * FROM PERSON WHERE FIRST_NAME LIKE ?",
@@ -133,7 +127,6 @@ class RepositoryUtilsTest {
         assertEquals("JEAN", people.get(1).firstName);
     }
 
-    @Test
     void findAllBaqQuery() {
         assertThrows(
             RepositoryException.class,
@@ -141,7 +134,6 @@ class RepositoryUtilsTest {
         );
     }
 
-    @Test
     void aggregate() throws RepositoryException {
         assertEquals(2, utils.aggregate(
             "SELECT COUNT(*) FROM PERSON WHERE FIRST_NAME LIKE ?",
@@ -149,7 +141,6 @@ class RepositoryUtilsTest {
         ));
     }
 
-    @Test
     void simpleUpdate() throws RepositoryException {
         assertEquals(2, utils.update(
             "UPDATE PERSON SET AGE = ? WHERE ID > ?",
@@ -163,7 +154,6 @@ class RepositoryUtilsTest {
         assertEquals(63, utils.findOne("SELECT * FROM PERSON WHERE ID = ?", rs -> rs.setInt(1, 3)).age);
     }
 
-    @Test
     void insertUpdate() throws RepositoryException {
         Person p = new Person();
         p.age = 41;

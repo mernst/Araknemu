@@ -44,7 +44,6 @@ class WeaponConstraintsValidatorTest extends FightBaseCase {
     private WeaponConstraintsValidator validator;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -64,7 +63,6 @@ class WeaponConstraintsValidatorTest extends FightBaseCase {
         validator = new WeaponConstraintsValidator();
     }
 
-    @Test
     void success() {
         CastableWeapon weapon = weapon(40);
 
@@ -72,7 +70,6 @@ class WeaponConstraintsValidatorTest extends FightBaseCase {
         assertNull(validator.validate(turn, weapon, fight.map().get(221)));
     }
 
-    @Test
     void error() {
         CastableWeapon weapon = weapon(40);
 

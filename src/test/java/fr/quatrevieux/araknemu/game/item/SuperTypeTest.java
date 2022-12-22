@@ -26,7 +26,6 @@ import java.util.NoSuchElementException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SuperTypeTest {
-    @Test
     void byId() {
         assertSame(SuperType.WEAPON, SuperType.byId(2));
         assertThrows(NoSuchElementException.class, () -> SuperType.byId(-1));

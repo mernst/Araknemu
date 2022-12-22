@@ -49,7 +49,7 @@ public final class ClientUid implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "Ai";
         }
     }

@@ -36,18 +36,15 @@ class ConfigurationLoaderTest extends TestCase {
     private ConfigurationLoader loader;
     private Path basePath;
 
-    @BeforeEach
     void setUp() {
         loader = new ConfigurationLoader(basePath = Paths.get("src/test"));
     }
 
-    @AfterEach
     void tearDown() throws IOException {
         Files.deleteIfExists(basePath.resolve("config.ini"));
         Files.deleteIfExists(basePath.resolve("config.ini.dist"));
     }
 
-    @Test
     void loadDefaultConfig() throws IOException {
         Files.copy(basePath.resolve("test_config.ini"), basePath.resolve("config.ini"));
 
@@ -59,7 +56,6 @@ class ConfigurationLoaderTest extends TestCase {
         assertEquals("araknemu", dbConfig.connection("test_mysql").user());
     }
 
-    @Test
     void loadDefaultDistConfig() throws IOException {
         Files.copy(basePath.resolve("test_config.ini"), basePath.resolve("config.ini.dist"));
 
@@ -71,7 +67,6 @@ class ConfigurationLoaderTest extends TestCase {
         assertEquals("araknemu", dbConfig.connection("test_mysql").user());
     }
 
-    @Test
     void loadWithConfigurationFileName() throws IOException {
         Configuration config = loader.configFileName("test_config.ini").load();
         DatabaseConfiguration dbConfig = config.module(DatabaseConfiguration.MODULE);
@@ -81,7 +76,6 @@ class ConfigurationLoaderTest extends TestCase {
         assertEquals("araknemu", dbConfig.connection("test_mysql").user());
     }
 
-    @Test
     void loadWithConfigurationFilePath() throws IOException {
         Configuration config = loader.configFile(basePath.resolve("test_config.ini").toAbsolutePath()).load();
         DatabaseConfiguration dbConfig = config.module(DatabaseConfiguration.MODULE);
@@ -91,7 +85,6 @@ class ConfigurationLoaderTest extends TestCase {
         assertEquals("araknemu", dbConfig.connection("test_mysql").user());
     }
 
-    @Test
     void loadWithConfigurationFileNotFoundOrNotHandled() {
         assertThrows(IllegalArgumentException.class, () -> loader.load());
         assertThrows(IllegalArgumentException.class, () -> loader.configFileName("not_found").load());

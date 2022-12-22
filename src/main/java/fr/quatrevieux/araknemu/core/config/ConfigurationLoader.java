@@ -40,7 +40,7 @@ public final class ConfigurationLoader {
     private final List<FileLoader> loaders = new ArrayList<>();
     private final Path baseDirectory;
 
-    private @MonotonicNonNull Path configFile;
+    private Path configFile;
 
     public ConfigurationLoader(Path baseDirectory, FileLoader[] loaders) {
         this.baseDirectory = baseDirectory;
@@ -89,8 +89,7 @@ public final class ConfigurationLoader {
      *
      * @param loader The file loader
      */
-    @RequiresNonNull("loaders")
-    public void register(@UnknownInitialization ConfigurationLoader this, FileLoader loader) {
+    public void register(ConfigurationLoader this, FileLoader loader) {
         loaders.add(loader);
     }
 

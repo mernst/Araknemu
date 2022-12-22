@@ -100,16 +100,16 @@ public final class UseObject implements PacketHandler<GameSession, ObjectUseRequ
     private static class ApplyItemOperation implements Operation<Boolean> {
         private final UsableItem item;
         private final ExplorationPlayer caster;
-        private final @Nullable ExplorationMapCell targetCell;
+        private final ExplorationMapCell targetCell;
 
-        public ApplyItemOperation(UsableItem item, ExplorationPlayer caster, @Nullable ExplorationMapCell targetCell) {
+        public ApplyItemOperation(UsableItem item, ExplorationPlayer caster, ExplorationMapCell targetCell) {
             this.item = item;
             this.caster = caster;
             this.targetCell = targetCell;
         }
 
         @Override
-        public Boolean onExplorationPlayer(@Nullable ExplorationPlayer target) {
+        public Boolean onExplorationPlayer(ExplorationPlayer target) {
             if (!item.checkTarget(caster, target, targetCell)) {
                 return false;
             }

@@ -56,7 +56,6 @@ class StealVitalityHandlerTest extends FightBaseCase {
     private StealVitalityHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -74,7 +73,6 @@ class StealVitalityHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handle() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -89,7 +87,6 @@ class StealVitalityHandlerTest extends FightBaseCase {
         assertThrows(UnsupportedOperationException.class, () -> handler.handle(scope, scope.effects().get(0)));
     }
 
-    @Test
     void buffSingleTarget() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -141,7 +138,6 @@ class StealVitalityHandlerTest extends FightBaseCase {
         assertEquals(50, target.life().max());
     }
 
-    @Test
     void buffShouldKillTargetIfEffectIsHigherThatItsLife() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -180,7 +176,6 @@ class StealVitalityHandlerTest extends FightBaseCase {
         assertTrue(target.dead());
     }
 
-    @Test
     void buffSingleTargetMaximized() {
         target.buffs().add(new Buff(Mockito.mock(SpellEffect.class), Mockito.mock(Spell.class), target, target, new BuffHook() {
             @Override
@@ -237,7 +232,6 @@ class StealVitalityHandlerTest extends FightBaseCase {
         assertEquals(50, target.life().max());
     }
 
-    @Test
     void buffNoTargetShouldDoNothing() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -267,7 +261,6 @@ class StealVitalityHandlerTest extends FightBaseCase {
         assertEquals(295, caster.life().max());
     }
 
-    @Test
     void buffMultipleTargets() {
         fight = fightBuilder()
             .addSelf(fb -> fb.cell(384).maxLife(295))

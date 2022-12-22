@@ -37,7 +37,7 @@ public interface MonsterReward {
     /**
      * Winning base experience
      */
-    public @NonNegative long experience();
+    public long experience();
 
     /**
      * List of dropped items

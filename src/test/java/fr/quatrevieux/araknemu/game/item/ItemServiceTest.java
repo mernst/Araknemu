@@ -49,7 +49,6 @@ class ItemServiceTest extends GameBaseCase {
     private ItemService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -68,7 +67,6 @@ class ItemServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void preload() {
         Logger logger = Mockito.mock(Logger.class);
 
@@ -81,7 +79,6 @@ class ItemServiceTest extends GameBaseCase {
         Mockito.verify(logger).info("Successfully load {} items", 18);
     }
 
-    @Test
     void create() {
         Item item = service.create(39);
 
@@ -98,7 +95,6 @@ class ItemServiceTest extends GameBaseCase {
         assertEquals(2, wearable.characteristics().get(0).boost());
     }
 
-    @Test
     void createRandomStats() {
         Item item1 = service.create(2425);
         Item item2 = service.create(2425);
@@ -106,7 +102,6 @@ class ItemServiceTest extends GameBaseCase {
         assertNotEquals(item1, item2);
     }
 
-    @Test
     void createMaxStats() {
         Item item1 = service.create(2425, true);
         Item item2 = service.create(2425, true);
@@ -121,7 +116,6 @@ class ItemServiceTest extends GameBaseCase {
         assertEquals(10, wearable.characteristics().get(1).boost());
     }
 
-    @Test
     void createWithItemTemplate() {
         ItemTemplate template = container.get(ItemTemplateRepository.class).get(39);
 
@@ -139,7 +133,6 @@ class ItemServiceTest extends GameBaseCase {
         assertEquals(2, wearable.characteristics().get(0).boost());
     }
 
-    @Test
     void createBulkWithFixedStats() {
         ItemTemplate template = container.get(ItemTemplateRepository.class).get(39);
 
@@ -150,7 +143,6 @@ class ItemServiceTest extends GameBaseCase {
         assertEquals(3, (int) items.get(service.create(39)));
     }
 
-    @Test
     void createBulkWithRandomStats() {
         ItemTemplate template = container.get(ItemTemplateRepository.class).get(2422);
         Map<Item, Integer> items = service.createBulk(template, 3);
@@ -159,7 +151,6 @@ class ItemServiceTest extends GameBaseCase {
         assertTrue(items.entrySet().stream().allMatch(entry-> entry.getKey().template().equals(template) && entry.getValue() == 1));
     }
 
-    @Test
     void retrieve() {
         Item item = service.create(2425);
 
@@ -177,7 +168,6 @@ class ItemServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void createWithItemSet() {
         Item item = service.create(2425);
 
@@ -185,14 +175,12 @@ class ItemServiceTest extends GameBaseCase {
         assertEquals(1, item.set().get().id());
     }
 
-    @Test
     void createWithoutItemSet() {
         Item item = service.create(39);
 
         assertFalse(item.set().isPresent());
     }
 
-    @Test
     void itemSet() {
         GameItemSet set = service.itemSet(1);
 
@@ -221,7 +209,6 @@ class ItemServiceTest extends GameBaseCase {
         assertEquals(5, set.bonus(7).characteristics().get(5).value());
     }
 
-    @Test
     void name() {
         assertEquals("item", service.name());
     }

@@ -37,7 +37,6 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LeaveSpectatorFightTest extends FightBaseCase {
-    @Test
     void success() throws Exception {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         fight.nextState();
@@ -57,7 +56,6 @@ class LeaveSpectatorFightTest extends FightBaseCase {
         assertSame(spectator, ref.get().spectator());
     }
 
-    @Test
     void notSpectator() throws Exception {
         assertThrows(CloseImmediately.class, () -> handlePacket(new LeaveFightRequest()));
     }

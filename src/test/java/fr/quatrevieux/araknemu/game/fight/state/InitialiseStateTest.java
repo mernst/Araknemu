@@ -45,7 +45,6 @@ class InitialiseStateTest extends GameBaseCase {
     private FightState nextState;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -73,13 +72,11 @@ class InitialiseStateTest extends GameBaseCase {
         );
     }
 
-    @Test
     void start() {
         new InitialiseState().start(fight);
         assertSame(nextState, fight.state());
     }
 
-    @Test
     void id() {
         assertEquals(1, new InitialiseState().id());
     }

@@ -27,16 +27,16 @@ import org.checkerframework.checker.nullness.qual.NonNull;
  *
  * @param <T> The value type
  */
-public final class ValueItem<T extends @NonNull Object> implements ContainerItem<T> {
+public final class ValueItem<T extends Object> implements ContainerItem<T> {
     private final Class<T> type;
-    private final @NonNull T value;
+    private final T value;
 
-    public ValueItem(Class<T> type, @NonNull T value) {
+    public ValueItem(Class<T> type, T value) {
         this.type = type;
         this.value = value;
     }
 
-    public ValueItem(@NonNull T value) {
+    public ValueItem(T value) {
         this((Class<T>) value.getClass(), value);
     }
 
@@ -46,7 +46,7 @@ public final class ValueItem<T extends @NonNull Object> implements ContainerItem
     }
 
     @Override
-    public @NonNull T value(Container container) {
+    public T value(Container container) {
         return value;
     }
 }

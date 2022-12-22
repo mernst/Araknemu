@@ -35,14 +35,12 @@ class SavePlayerTest extends GameBaseCase {
     private SavePlayer listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         listener = new SavePlayer(gamePlayer());
     }
 
-    @Test
     void onDisconnect() throws SQLException, ContainerException {
         gamePlayer().setPosition(new Position(78, 96));
 

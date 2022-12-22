@@ -39,7 +39,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CustomEnumOptionHandlerTest extends TestCase {
     static class Arguments {
-        @Argument(handler = CustomEnumOptionHandler.class, metaVar = "value")
         public Values value;
 
         @Option(name = "--opt", handler = CustomEnumOptionHandler.class)
@@ -77,7 +76,6 @@ class CustomEnumOptionHandlerTest extends TestCase {
         }
     }
 
-    @Test
     void hydrate() throws Exception {
         Command command = new Command();
         AnnotationHydrator hydrator = new AnnotationHydrator();

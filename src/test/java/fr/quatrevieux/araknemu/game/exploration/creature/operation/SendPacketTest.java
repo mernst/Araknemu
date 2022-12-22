@@ -29,14 +29,12 @@ import org.junit.jupiter.api.Test;
 import java.sql.SQLException;
 
 class SendPacketTest extends GameBaseCase {
-    @Test
     void onExplorationPlayer() throws SQLException, ContainerException {
         explorationPlayer().apply(new SendPacket("my packet"));
 
         requestStack.assertLast("my packet");
     }
 
-    @Test
     void onNpc() throws SQLException, ContainerException {
         dataSet
             .pushMaps()

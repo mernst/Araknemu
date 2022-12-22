@@ -38,7 +38,6 @@ class SaveUpgradedSpellTest extends GameBaseCase {
     private SaveUpgradedSpell listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -48,7 +47,6 @@ class SaveUpgradedSpellTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onSpellUpgraded() throws ContainerException, SQLException, NoSuchFieldException, IllegalAccessException {
         PlayerSpell spell = dataSet.push(new PlayerSpell(1, 202, false, 2, 3));
 

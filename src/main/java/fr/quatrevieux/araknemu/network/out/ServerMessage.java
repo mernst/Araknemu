@@ -51,9 +51,9 @@ public final class ServerMessage {
      * The message box name
      * Can be null
      */
-    private final @Nullable String name;
+    private final String name;
 
-    public ServerMessage(boolean displayNow, int messageId, Object[] parameters, @Nullable String name) {
+    public ServerMessage(boolean displayNow, int messageId, Object[] parameters, String name) {
         this.displayNow = displayNow;
         this.messageId = messageId;
         this.parameters = parameters;

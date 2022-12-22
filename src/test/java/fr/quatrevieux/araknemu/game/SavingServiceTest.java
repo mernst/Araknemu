@@ -40,7 +40,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SavingServiceTest extends GameBaseCase {
-    @Test
     void executeFunctional() throws SQLException, InterruptedException {
         SavingService service = container.get(SavingService.class);
         RealmConnector connector = container.get(RealmConnector.class);
@@ -61,7 +60,6 @@ class SavingServiceTest extends GameBaseCase {
         Mockito.verify(connector).updateState(2, GameHost.State.ONLINE, true);
     }
 
-    @Test
     void executeShouldReturnFalseOnSaving() throws Exception {
         ExecutorFactory.disableDirectExecution();
         gamePlayer(true);
@@ -72,7 +70,6 @@ class SavingServiceTest extends GameBaseCase {
         assertFalse(service.execute());
     }
 
-    @Test
     void autosave() throws SQLException, InterruptedException {
         setConfigValue("autosave.interval", "0.01s");
         SavingService service = new SavingService(container.get(PlayerService.class), container.get(GameConfiguration.class), container.get(Dispatcher.class));
@@ -87,7 +84,6 @@ class SavingServiceTest extends GameBaseCase {
         assertEquals(new Position(123, 45), dataSet.refresh(new Player(player.id())).position());
     }
 
-    @Test
     void name() {
         SavingService service = container.get(SavingService.class);
         assertEquals("saving", service.name());

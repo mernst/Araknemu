@@ -43,7 +43,6 @@ class RemoveObjectTest extends FightBaseCase {
     private InventoryEntry entry;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -56,7 +55,6 @@ class RemoveObjectTest extends FightBaseCase {
         handler = new RemoveObject();
     }
 
-    @Test
     void handleError() throws Exception {
         try {
             handler.handle(session, new ObjectDeleteRequest(45, 10));
@@ -67,7 +65,6 @@ class RemoveObjectTest extends FightBaseCase {
         }
     }
 
-    @Test
     void handleSuccessAllItems() throws Exception {
         requestStack.clear();
         handler.handle(session, new ObjectDeleteRequest(entry.id(), 10));
@@ -78,7 +75,6 @@ class RemoveObjectTest extends FightBaseCase {
         );
     }
 
-    @Test
     void handleSuccessPartial() throws Exception {
         requestStack.clear();
         handler.handle(session, new ObjectDeleteRequest(entry.id(), 3));
@@ -91,7 +87,6 @@ class RemoveObjectTest extends FightBaseCase {
         );
     }
 
-    @Test
     void functionalNotAllowedOnActiveFight() throws Exception {
         Fight fight = createFight();
         fight.start(new AlternateTeamFighterOrder());
@@ -99,7 +94,6 @@ class RemoveObjectTest extends FightBaseCase {
         assertErrorPacket(Error.cantDoDuringFight(), () -> handlePacket(new ObjectDeleteRequest(entry.id(), 10)));
     }
 
-    @Test
     void functionalSuccessDuringPlacement() throws Exception {
         createFight();
         requestStack.clear();

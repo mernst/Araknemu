@@ -55,7 +55,7 @@ public final class RealmPacketParserMiddleware implements ConfigurableSession.Re
     private final PacketParser[] loginPackets;
     private final PacketParser parser;
 
-    private @NonNegative int packetCount = 0;
+    private int packetCount = 0;
 
     /**
      * @param loginPackets The "indexed" packets (i.e. recognized by there received position)

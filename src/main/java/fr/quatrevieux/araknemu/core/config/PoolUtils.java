@@ -46,7 +46,7 @@ public final class PoolUtils implements Pool {
     }
 
     @Override
-    public @Nullable String get(String key) {
+    public String get(String key) {
         return pool.get(key);
     }
 
@@ -75,21 +75,21 @@ public final class PoolUtils implements Pool {
     /**
      * Parse a config item as a positive integer (i.e. >= 1)
      */
-    public @Positive int positiveInteger(String key, @Positive int defaultValue) {
+    public int positiveInteger(String key, int defaultValue) {
         return Asserter.assertPositive(integer(key, defaultValue));
     }
 
     /**
      * Parse a config item as a non-negative integer (i.e. >= 0)
      */
-    public @NonNegative int nonNegativeInteger(String key, @NonNegative int defaultValue) {
+    public int nonNegativeInteger(String key, int defaultValue) {
         return Asserter.assertNonNegative(integer(key, defaultValue));
     }
 
     /**
      * Parse a config item as a percent integer (i.e. in interval [0, 100])
      */
-    public @IntRange(from = 0, to = 100) int percent(String key, @IntRange(from = 0, to = 100) int defaultValue) {
+    public int percent(String key, int defaultValue) {
         return Asserter.assertPercent(integer(key, defaultValue));
     }
 

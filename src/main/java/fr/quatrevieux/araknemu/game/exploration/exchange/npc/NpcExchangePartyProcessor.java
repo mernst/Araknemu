@@ -99,12 +99,12 @@ public final class NpcExchangePartyProcessor implements ExchangePartyProcessor, 
     }
 
     @Override
-    public void addKamas(@Positive long kamas) {
+    public void addKamas(long kamas) {
         // No-op
     }
 
     @Override
-    public void addItem(Item item, @Positive int quantity) {
+    public void addItem(Item item, int quantity) {
         // No-op
     }
 
@@ -154,10 +154,10 @@ public final class NpcExchangePartyProcessor implements ExchangePartyProcessor, 
         storage.notifyChanges(last);
     }
 
-    private static Map<ItemEntry, @Positive Integer> buildItems(NpcExchangeEntry entry) {
-        final Map<ItemEntry, @Positive Integer> items = new HashMap<>();
+    private static Map<ItemEntry, Integer> buildItems(NpcExchangeEntry entry) {
+        final Map<ItemEntry, Integer> items = new HashMap<>();
 
-        for (Map.Entry<ItemTemplate, @Positive Integer> item : entry.items()) {
+        for (Map.Entry<ItemTemplate, Integer> item : entry.items()) {
             items.put(new NpcExchangeItemEntry(item.getKey()), item.getValue());
         }
 
@@ -170,7 +170,7 @@ public final class NpcExchangePartyProcessor implements ExchangePartyProcessor, 
      */
     private class Storage implements ExchangeStorage {
         private final NpcExchangeEntry entry;
-        private final Map<ItemEntry, @Positive Integer> items;
+        private final Map<ItemEntry, Integer> items;
 
         public Storage(NpcExchangeEntry entry) {
             this.entry = entry;
@@ -178,12 +178,12 @@ public final class NpcExchangePartyProcessor implements ExchangePartyProcessor, 
         }
 
         @Override
-        public Map<ItemEntry, @Positive Integer> items() {
+        public Map<ItemEntry, Integer> items() {
             return items;
         }
 
         @Override
-        public @NonNegative long kamas() {
+        public long kamas() {
             return entry.kamas();
         }
 

@@ -61,7 +61,7 @@ public final class ExplorationMapService implements PreloadableService, EventsSu
     private final Dispatcher dispatcher;
     private final CellLoader loader;
 
-    private final ConcurrentMap<@NonNegative Integer, ExplorationMap> maps = new ConcurrentHashMap<>();
+    private final ConcurrentMap<Integer, ExplorationMap> maps = new ConcurrentHashMap<>();
 
     public ExplorationMapService(MapTemplateRepository repository, FightService fightService, AreaService areaService, Dispatcher dispatcher, CellLoader loader) {
         this.repository = repository;
@@ -74,7 +74,7 @@ public final class ExplorationMapService implements PreloadableService, EventsSu
     /**
      * Load the exploration map
      */
-    public ExplorationMap load(@NonNegative int mapId) throws EntityNotFoundException {
+    public ExplorationMap load(int mapId) throws EntityNotFoundException {
         final ExplorationMap loadedMap = maps.get(mapId);
 
         if (loadedMap == null) {

@@ -51,7 +51,6 @@ class ChangeAppearanceHandlerTest extends FightBaseCase {
     private ChangeAppearanceHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -69,7 +68,6 @@ class ChangeAppearanceHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void buffWillAddBuffToListAndChangeAppearance() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -98,7 +96,6 @@ class ChangeAppearanceHandlerTest extends FightBaseCase {
         requestStack.assertOne(new ActionEffect(149, caster, target.id(), 90, 1234, 5));
     }
 
-    @Test
     void buffWithAreaMultipleFighters() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -121,7 +118,6 @@ class ChangeAppearanceHandlerTest extends FightBaseCase {
         assertTrue(target.buffs().stream().anyMatch(buff -> buff.effect().equals(effect)));
     }
 
-    @Test
     void handleWithGfxId() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -141,7 +137,6 @@ class ChangeAppearanceHandlerTest extends FightBaseCase {
         requestStack.assertOne(new ActionEffect(149, caster, target.id(), 90, 1234, 1));
     }
 
-    @Test
     void handleShouldRemoveCurrentAppearanceWithNegativeEffect() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -166,7 +161,6 @@ class ChangeAppearanceHandlerTest extends FightBaseCase {
         requestStack.assertLast(new ActionEffect(149, caster, target.id(), 90, 90, 0));
     }
 
-    @Test
     void handleShouldDoNothingIfCurrentAppearanceDoNotMatchWithEffect() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -191,7 +185,6 @@ class ChangeAppearanceHandlerTest extends FightBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void handleShouldDoNothingWhenNegativeEffectIfAppearanceIsNotChanged() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

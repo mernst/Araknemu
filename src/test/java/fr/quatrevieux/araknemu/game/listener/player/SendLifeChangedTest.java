@@ -33,7 +33,6 @@ class SendLifeChangedTest extends GameBaseCase {
     private SendLifeChanged listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -44,14 +43,12 @@ class SendLifeChangedTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onLifeChangedNoDiff() {
         listener.on(new LifeChanged(100, 100));
 
         requestStack.assertEmpty();
     }
 
-    @Test
     void onLifeChangedNegative() throws SQLException, ContainerException {
         listener.on(new LifeChanged(100, 50));
 
@@ -60,7 +57,6 @@ class SendLifeChangedTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onLifeChangedPositive() throws SQLException, ContainerException {
         listener.on(new LifeChanged(100, 150));
 

@@ -32,7 +32,6 @@ class SendSaveInProgressTest extends GameBaseCase {
     private SendSaveInProgress listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -40,7 +39,6 @@ class SendSaveInProgressTest extends GameBaseCase {
         listener = new SendSaveInProgress(container.get(PlayerService.class));
     }
 
-    @Test
     void onSavingGame() {
         listener.on(new SavingGame());
 

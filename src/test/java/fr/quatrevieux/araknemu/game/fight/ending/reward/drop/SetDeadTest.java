@@ -36,7 +36,6 @@ class SetDeadTest extends FightBaseCase {
     private Fight fight;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -45,7 +44,6 @@ class SetDeadTest extends FightBaseCase {
         fight.nextState();
     }
 
-    @Test
     void applyOnPlayer() {
         DropReward reward = new DropReward(RewardType.WINNER, player.fighter(), Collections.emptyList());
 
@@ -54,7 +52,6 @@ class SetDeadTest extends FightBaseCase {
         assertEquals(0, player.properties().life().current());
     }
 
-    @Test
     void applyOnMonster() {
         MonsterFighter fighter = (MonsterFighter) fight.team(1).fighters().stream().findFirst().get();
 

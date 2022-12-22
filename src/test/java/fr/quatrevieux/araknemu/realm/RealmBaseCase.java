@@ -119,7 +119,6 @@ public class RealmBaseCase extends DatabaseTestCase {
     protected GameHost gameHost;
     protected GameConnectorStub connector;
 
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -172,7 +171,6 @@ public class RealmBaseCase extends DatabaseTestCase {
         gameHost.setState(GameHost.State.ONLINE);
     }
 
-    @AfterEach
     void tearDown() throws ContainerException {
         dataSet.destroy();
     }

@@ -41,7 +41,6 @@ class PlayerItemSetTest extends GameBaseCase {
     private ItemService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -53,7 +52,6 @@ class PlayerItemSetTest extends GameBaseCase {
         service = container.get(ItemService.class);
     }
 
-    @Test
     void empty() {
         PlayerItemSet set = new PlayerItemSet(
             service.itemSet(1)
@@ -67,7 +65,6 @@ class PlayerItemSetTest extends GameBaseCase {
         assertCount(0, set.items());
     }
 
-    @Test
     void add() throws ContainerException {
         PlayerItemSet set = new PlayerItemSet(service.itemSet(1));
 
@@ -96,7 +93,6 @@ class PlayerItemSetTest extends GameBaseCase {
         assertEquals(5, set.bonus().characteristics().get(1).value());
     }
 
-    @Test
     void apply() throws ContainerException {
         PlayerItemSet set = new PlayerItemSet(service.itemSet(1));
 
@@ -111,7 +107,6 @@ class PlayerItemSetTest extends GameBaseCase {
         assertEquals(5, characteristics.get(Characteristic.INTELLIGENCE));
     }
 
-    @Test
     void applySpecials() throws ContainerException, SQLException {
         PlayerItemSet set = new PlayerItemSet(service.itemSet(60));
 
@@ -129,7 +124,6 @@ class PlayerItemSetTest extends GameBaseCase {
         assertEquals(60, player.properties().characteristics().specials().get(SpecialEffects.Type.INITIATIVE));
     }
 
-    @Test
     void applyCurrentBonus() throws ContainerException, SQLException {
         GamePlayer player = gamePlayer();
         PlayerItemSet set = new PlayerItemSet(service.itemSet(60));
@@ -149,7 +143,6 @@ class PlayerItemSetTest extends GameBaseCase {
         assertEquals(60, player.properties().characteristics().specials().get(SpecialEffects.Type.INITIATIVE));
     }
 
-    @Test
     void relieveLastBonus() throws ContainerException, SQLException {
         GamePlayer player = gamePlayer();
         PlayerItemSet set = new PlayerItemSet(service.itemSet(60));

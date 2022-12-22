@@ -42,7 +42,6 @@ class ExplorationServiceTest extends GameBaseCase {
     private ExplorationService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -55,7 +54,6 @@ class ExplorationServiceTest extends GameBaseCase {
         dataSet.pushMaps().pushSubAreas().pushAreas();
     }
 
-    @Test
     void create() throws SQLException, ContainerException {
         GamePlayer player = gamePlayer();
 
@@ -64,7 +62,6 @@ class ExplorationServiceTest extends GameBaseCase {
         assertTrue(explorationPlayer.dispatcher().has(InitializeGame.class));
     }
 
-    @Test
     void listeners() throws Exception {
         ExplorationMap map = container.get(ExplorationMapService.class).load(10340);
 

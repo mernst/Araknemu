@@ -35,7 +35,6 @@ class SetSpellModifierEffectTest extends GameBaseCase {
     private GamePlayer player;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -43,7 +42,6 @@ class SetSpellModifierEffectTest extends GameBaseCase {
         player = gamePlayer(true);
     }
 
-    @Test
     void applyFirstTime() {
         handler.apply(
             new SpecialEffect(handler, Effect.SPELL_SET_DELAY, new int [] {3, 0, 2}, ""),
@@ -53,7 +51,6 @@ class SetSpellModifierEffectTest extends GameBaseCase {
         assertEquals(2, player.properties().spells().boosts().modifiers(3).fixedDelay());
     }
 
-    @Test
     void applyAlreadySetBetterBoost() {
         player.properties().spells().boosts().set(3, SpellsBoosts.Modifier.SET_DELAY, 1);
 
@@ -65,7 +62,6 @@ class SetSpellModifierEffectTest extends GameBaseCase {
         assertEquals(1, player.properties().spells().boosts().modifiers(3).fixedDelay());
     }
 
-    @Test
     void applyAlreadyWorstBoost() {
         player.properties().spells().boosts().set(3, SpellsBoosts.Modifier.SET_DELAY, 4);
 
@@ -77,7 +73,6 @@ class SetSpellModifierEffectTest extends GameBaseCase {
         assertEquals(2, player.properties().spells().boosts().modifiers(3).fixedDelay());
     }
 
-    @Test
     void relieveNotCurrentBoost() {
         player.properties().spells().boosts().set(3, SpellsBoosts.Modifier.SET_DELAY, 4);
 
@@ -89,7 +84,6 @@ class SetSpellModifierEffectTest extends GameBaseCase {
         assertEquals(4, player.properties().spells().boosts().modifiers(3).fixedDelay());
     }
 
-    @Test
     void relieveSuccess() {
         player.properties().spells().boosts().set(3, SpellsBoosts.Modifier.SET_DELAY, 2);
 
@@ -101,7 +95,6 @@ class SetSpellModifierEffectTest extends GameBaseCase {
         assertFalse(player.properties().spells().boosts().modifiers(3).has(SpellsBoosts.Modifier.SET_DELAY));
     }
 
-    @Test
     void create() {
         assertEquals(
             new SpecialEffect(handler, Effect.SPELL_SET_DELAY, new int[] {3, 0, 5}, ""),

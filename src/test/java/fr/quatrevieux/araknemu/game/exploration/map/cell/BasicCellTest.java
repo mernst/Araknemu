@@ -45,7 +45,6 @@ class BasicCellTest extends GameBaseCase {
     private ExplorationMapService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -54,7 +53,6 @@ class BasicCellTest extends GameBaseCase {
         service = container.get(ExplorationMapService.class);
     }
 
-    @Test
     void map() {
         ExplorationMap map = service.load(10340);
 
@@ -63,7 +61,6 @@ class BasicCellTest extends GameBaseCase {
         assertSame(map, cell.map());
     }
 
-    @Test
     void walkableCell() {
         BasicCell cell = new BasicCell(185, repository.get(10340).cells()[185], service.load(10340));
 
@@ -71,7 +68,6 @@ class BasicCellTest extends GameBaseCase {
         assertTrue(cell.walkable());
     }
 
-    @Test
     void deactivatedCell() {
         BasicCell cell = new BasicCell(0, repository.get(10340).cells()[0], service.load(10340));
 
@@ -79,7 +75,6 @@ class BasicCellTest extends GameBaseCase {
         assertFalse(cell.walkable());
     }
 
-    @Test
     void unwalkableCell() {
         BasicCell cell = new BasicCell(209, repository.get(10340).cells()[209], service.load(10340));
 
@@ -87,7 +82,6 @@ class BasicCellTest extends GameBaseCase {
         assertFalse(cell.walkable());
     }
 
-    @Test
     void equals() {
         BasicCell cell = new BasicCell(185, repository.get(10340).cells()[185], service.load(10340));
 
@@ -97,13 +91,11 @@ class BasicCellTest extends GameBaseCase {
         assertNotEquals(cell, new Object());
     }
 
-    @Test
     void free() {
         assertTrue(new BasicCell(185, repository.get(10340).cells()[185], service.load(10340)).free());
         assertFalse(new BasicCell(209, repository.get(10340).cells()[209], service.load(10340)).free());
     }
 
-    @Test
     void freeWithCreature() throws Exception {
         ExplorationPlayer player = makeOtherExplorationPlayer();
         ExplorationMap map = container.get(ExplorationMapService.class).load(10340);
@@ -116,7 +108,6 @@ class BasicCellTest extends GameBaseCase {
         assertTrue(new BasicCell(185, repository.get(10340).cells()[185], service.load(10340)).free());
     }
 
-    @Test
     void apply() throws Exception {
         ExplorationMap map = explorationPlayer().map();
         ExplorationPlayer other = makeOtherExplorationPlayer();
@@ -150,7 +141,6 @@ class BasicCellTest extends GameBaseCase {
         assertEquals(Arrays.asList(explorationPlayer()), creatures);
     }
 
-    @Test
     void applyWithReturnValueShouldSkipOtherCreatures() throws Exception {
         ExplorationMap map = explorationPlayer().map();
         ExplorationPlayer other = makeOtherExplorationPlayer();
@@ -171,7 +161,6 @@ class BasicCellTest extends GameBaseCase {
         assertEquals(Arrays.asList(explorationPlayer()), creatures);
     }
 
-    @Test
     void applyShouldNotFailedIfCreatureLeaveMapDuringApplication() throws Exception {
         ExplorationMap map = explorationPlayer().map();
         ExplorationPlayer me = explorationPlayer();

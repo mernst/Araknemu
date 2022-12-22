@@ -101,7 +101,6 @@ class SimpleItemStorageTest extends TestCase {
     private SimpleItemStorage<Entry> storage;
     private Dispatcher dispatcher;
 
-    @BeforeEach
     void setUp() {
         storage = new SimpleItemStorage<>(
             dispatcher = Mockito.mock(Dispatcher.class),
@@ -109,19 +108,16 @@ class SimpleItemStorageTest extends TestCase {
         );
     }
 
-    @Test
     void getNotFound() {
         assertThrows(ItemNotFoundException.class, () -> storage.get(0));
     }
 
-    @Test
     void addWillDispatchEvent() throws InventoryException {
         Entry entry = storage.add(new Resource(new ItemTemplate(284, 48, "Sel", 1, new ArrayList<>(), 1, "", 0, "", 10), new ItemType(48, "Poudre", SuperType.RESOURCE, null), new ArrayList<>()));
 
         Mockito.verify(dispatcher).dispatch(Mockito.argThat(argument -> ObjectAdded.class.cast(argument).entry() == entry));
     }
 
-    @Test
     void addWillCreateNewEntry() throws InventoryException {
         Item item = new Resource(new ItemTemplate(284, 48, "Sel", 1, new ArrayList<>(), 1, "", 0, "", 10), new ItemType(48, "Poudre", SuperType.RESOURCE, null), new ArrayList<>());
         Entry entry = storage.add(item, 5);
@@ -132,7 +128,6 @@ class SimpleItemStorageTest extends TestCase {
         assertEquals(ItemEntry.DEFAULT_POSITION, entry.position());
     }
 
-    @Test
     void addWillIncrementId() throws InventoryException {
         Item item = new Resource(new ItemTemplate(284, 48, "Sel", 1, new ArrayList<>(), 1, "", 0, "", 10), new ItemType(48, "Poudre", SuperType.RESOURCE, null), new ArrayList<>());
 
@@ -141,7 +136,6 @@ class SimpleItemStorageTest extends TestCase {
         assertEquals(3, storage.add(item, 5).id());
     }
 
-    @Test
     void addGet() throws InventoryException {
         Item item = new Resource(new ItemTemplate(284, 48, "Sel", 1, new ArrayList<>(), 1, "", 0, "", 10), new ItemType(48, "Poudre", SuperType.RESOURCE, null), new ArrayList<>());
         Entry entry = storage.add(item, 5);
@@ -149,7 +143,6 @@ class SimpleItemStorageTest extends TestCase {
         assertSame(entry, storage.get(1));
     }
 
-    @Test
     void iterator() throws InventoryException {
         Item item = new Resource(new ItemTemplate(284, 48, "Sel", 1, new ArrayList<>(), 1, "", 0, "", 10), new ItemType(48, "Poudre", SuperType.RESOURCE, null), new ArrayList<>());
 
@@ -162,7 +155,6 @@ class SimpleItemStorageTest extends TestCase {
         assertIterableEquals(entries, storage);
     }
 
-    @Test
     void createWithInitialEntries() throws InventoryException {
         List<Entry> entries = Arrays.asList(
             new Entry(5, Mockito.mock(Item.class), 2, -1),
@@ -185,7 +177,6 @@ class SimpleItemStorageTest extends TestCase {
         assertEquals(13, storage.add(Mockito.mock(Item.class)).id());
     }
 
-    @Test
     void deleteNotFound() {
         SimpleItemStorage<Entry> storage = new SimpleItemStorage<>(
             dispatcher,
@@ -196,7 +187,6 @@ class SimpleItemStorageTest extends TestCase {
         assertThrows(ItemNotFoundException.class, () -> storage.delete(5));
     }
 
-    @Test
     void deleteByIdSuccess() throws InventoryException {
         List<Entry> entries = Arrays.asList(
             new Entry(5, Mockito.mock(Item.class), 2, -1),
@@ -217,7 +207,6 @@ class SimpleItemStorageTest extends TestCase {
         );
     }
 
-    @Test
     void deleteByEntrySuccess() throws InventoryException {
         List<Entry> entries = Arrays.asList(
             new Entry(5, Mockito.mock(Item.class), 2, -1),
@@ -238,7 +227,6 @@ class SimpleItemStorageTest extends TestCase {
         );
     }
 
-    @Test
     void deleteWillTriggerEvent() throws InventoryException {
         List<Entry> entries = Arrays.asList(
             new Entry(5, Mockito.mock(Item.class), 2, -1),

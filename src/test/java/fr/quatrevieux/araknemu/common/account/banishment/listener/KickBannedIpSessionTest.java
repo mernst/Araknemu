@@ -36,14 +36,12 @@ class KickBannedIpSessionTest extends GameBaseCase {
     private KickBannedIpSession listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         listener = new KickBannedIpSession(server::sessions);
     }
 
-    @Test
     void onIpBanned() {
         GameSession s1 = server.createSession("14.25.36.1");
         GameSession s2 = server.createSession("14.25.36.2");

@@ -31,7 +31,7 @@ public class ErrorPacket extends HandlingException implements WritePacket {
         this.packet = packet;
     }
 
-    public ErrorPacket(Object packet, @Nullable Throwable cause) {
+    public ErrorPacket(Object packet, Throwable cause) {
         super(cause);
         this.packet = packet;
     }

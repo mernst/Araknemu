@@ -28,44 +28,44 @@ public interface TurnPoints {
     /**
      * Get the current fighter movement points
      */
-    public @NonNegative int movementPoints();
+    public int movementPoints();
 
     /**
      * Add movement points to the current turn
      */
-    public void addMovementPoints(@NonNegative int value);
+    public void addMovementPoints(int value);
 
     /**
      * Remove movement points to the current turn
      *
      * @return int The real removed MP amount
      */
-    public @NonNegative int removeMovementPoints(@NonNegative int value);
+    public int removeMovementPoints(int value);
 
     /**
      * Get the current fighter action points
      */
-    public @NonNegative int actionPoints();
+    public int actionPoints();
 
     /**
      * Add action points to the current turn
      */
-    public void addActionPoints(@NonNegative int value);
+    public void addActionPoints(int value);
 
     /**
      * Remove action points to the current turn
      *
      * @return int The real removed AP amount
      */
-    public @NonNegative int removeActionPoints(@NonNegative int value);
+    public int removeActionPoints(int value);
 
     /**
      * Get the quantity of action points used on the current turn
      */
-    public @NonNegative int usedActionPoints();
+    public int usedActionPoints();
 
     /**
      * Get the quantity of movement points used on the current turn
      */
-    public @NonNegative int usedMovementPoints();
+    public int usedMovementPoints();
 }

@@ -32,7 +32,6 @@ import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SpellsHelperTest extends AiBaseCase {
-    @Test
     void available() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -48,7 +47,6 @@ class SpellsHelperTest extends AiBaseCase {
         assertArrayEquals(new int [] {}, helper().available().mapToInt(Spell::id).toArray());
     }
 
-    @Test
     void hasAvailable() throws NoSuchFieldException, IllegalAccessException {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -67,7 +65,6 @@ class SpellsHelperTest extends AiBaseCase {
         assertFalse(helper().hasAvailable());
     }
 
-    @Test
     void withEffect() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -79,7 +76,6 @@ class SpellsHelperTest extends AiBaseCase {
         assertArrayEquals(new int [] {6}, helper().withEffect(265).mapToInt(Spell::id).toArray());
     }
 
-    @Test
     void withEffectWithPredicate() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -89,7 +85,6 @@ class SpellsHelperTest extends AiBaseCase {
         assertArrayEquals(new int [] {17, 6}, helper().withEffect(e -> e.effect() > 100).mapToInt(Spell::id).toArray());
     }
 
-    @Test
     void caster() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))

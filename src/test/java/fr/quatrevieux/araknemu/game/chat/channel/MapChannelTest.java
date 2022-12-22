@@ -42,20 +42,17 @@ class MapChannelTest extends GameBaseCase {
     private MapChannel channel;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         channel = new MapChannel();
     }
 
-    @Test
     void authorized() throws SQLException {
         assertFalse(channel.authorized(gamePlayer()));
         assertTrue(channel.authorized(explorationPlayer().player()));
     }
 
-    @Test
     void sendExplorationMap() throws SQLException, ContainerException {
         ExplorationPlayer player = explorationPlayer();
 
@@ -91,7 +88,6 @@ class MapChannelTest extends GameBaseCase {
         Mockito.verify(l3).on(Mockito.any(BroadcastedMessage.class));
     }
 
-    @Test
     void notOnMapShouldIgnore() throws SQLException, ContainerException {
         ExplorationPlayer player = explorationPlayer();
         player.leave();
@@ -102,7 +98,6 @@ class MapChannelTest extends GameBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void sendItem() throws SQLException, ContainerException {
         channel.send(
             gamePlayer(),

@@ -42,14 +42,12 @@ class ResourceFactoryTest extends GameBaseCase {
     private ResourceFactory factory;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         factory = new ResourceFactory(container.get(EffectToSpecialMapping.class));
     }
 
-    @Test
     void createSimple() {
         ItemTemplate template = new ItemTemplate(284, 48, "Sel", 1, new ArrayList<>(), 1, "", 0, "", 10);
         ItemType type = new ItemType(48, "Poudre", SuperType.RESOURCE, null);
@@ -61,7 +59,6 @@ class ResourceFactoryTest extends GameBaseCase {
         assertSame(type, item.type());
     }
 
-    @Test
     void createWillFilterNonSpecialEffects() {
         ItemTemplate template = new ItemTemplate(284, 48, "Sel", 1, Arrays.asList(new ItemTemplateEffectEntry(Effect.INFLICT_DAMAGE_FIRE, 1, 2, 0, "")), 1, "", 0, "", 10);
         ItemType type = new ItemType(48, "Poudre", SuperType.RESOURCE, null);
@@ -73,7 +70,6 @@ class ResourceFactoryTest extends GameBaseCase {
         assertSame(type, item.type());
     }
 
-    @Test
     void createWithSpecialEffect() {
         ItemTemplate template = new ItemTemplate(284, 48, "Sel", 1, Arrays.asList(new ItemTemplateEffectEntry(Effect.NULL1, 0, 0, 0, "test")), 1, "", 0, "", 10);
         ItemType type = new ItemType(48, "Poudre", SuperType.RESOURCE, null);
@@ -87,7 +83,6 @@ class ResourceFactoryTest extends GameBaseCase {
         assertEquals("test", item.specials().get(0).text());
     }
 
-    @Test
     void retrieveWithSpecialEffect() {
         ItemTemplate template = new ItemTemplate(284, 48, "Sel", 1, new ArrayList<>(), 1, "", 0, "", 10);
         ItemType type = new ItemType(48, "Poudre", SuperType.RESOURCE, null);

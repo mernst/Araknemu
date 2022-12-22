@@ -43,7 +43,6 @@ class SessionLoggerTest {
         }
     }
 
-    @BeforeEach
     void setUp() {
         logger = Mockito.mock(Logger.class);
 
@@ -53,35 +52,30 @@ class SessionLoggerTest {
         session = configurator.create(new DummyChannel());
     }
 
-    @Test
     void receivePacket() {
         session.receive("my packet");
 
         Mockito.verify(logger).debug(MarkerManager.getMarker("RECEIVED"), "[{}] Recv << {}", session, "my packet");
     }
 
-    @Test
     void sessionClosed() {
         session.receive(new SessionClosed());
 
         Mockito.verify(logger).debug(MarkerManager.getMarker("SESSION"), "[{}] Session closed", session);
     }
 
-    @Test
     void sessionCreated() {
         session.receive(new SessionCreated());
 
         Mockito.verify(logger).debug(MarkerManager.getMarker("SESSION"), "[{}] Session created", session);
     }
 
-    @Test
     void sendPacket() {
         session.send("my packet");
 
         Mockito.verify(logger).debug(MarkerManager.getMarker("SENT"), "[{}] Send >> {}", session, "my packet");
     }
 
-    @Test
     void exception() {
         Exception e = new Exception("my error");
         session.exception(e);
@@ -89,7 +83,6 @@ class SessionLoggerTest {
         Mockito.verify(logger).error(MarkerManager.getMarker("NETWORK_ERROR"), "[{}] Uncaught exception", session, e);
     }
 
-    @Test
     void exceptionWithPreviousCause() {
         Exception previous = new Exception("previous");
         Exception e = new Exception("my error", previous);
@@ -99,7 +92,6 @@ class SessionLoggerTest {
         Mockito.verify(logger).error(MarkerManager.getMarker("NETWORK_ERROR"), "[{}] Cause : {}", session, previous);
     }
 
-    @Test
     void exceptionHandlerNotFound() {
         session.exception(new HandlerNotFoundException(new Ping()));
 

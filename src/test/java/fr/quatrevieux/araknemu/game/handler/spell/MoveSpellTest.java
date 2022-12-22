@@ -30,7 +30,6 @@ class MoveSpellTest extends GameBaseCase {
     private MoveSpell handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -39,7 +38,6 @@ class MoveSpellTest extends GameBaseCase {
         gamePlayer(true);
     }
 
-    @Test
     void moveSpellToFreePlace() throws Exception {
         handler.handle(
             session,
@@ -51,7 +49,6 @@ class MoveSpellTest extends GameBaseCase {
         assertEquals(5, dataSet.refresh(gamePlayer().properties().spells().entry(3).entity()).position());
     }
 
-    @Test
     void moveSpellWithAlreadyTakenPlace() throws Exception {
         gamePlayer().properties().spells().entry(17).move(2);
         handler.handle(

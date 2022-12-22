@@ -34,7 +34,6 @@ class CircleAreaTest extends GameBaseCase {
     private FightMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -42,7 +41,6 @@ class CircleAreaTest extends GameBaseCase {
         map = new FightMap(container.get(MapTemplateRepository.class).get(10340));
     }
 
-    @Test
     void getters() {
         CircleArea area = new CircleArea(new EffectArea(EffectArea.Type.CIRCLE, 2));
 
@@ -50,7 +48,6 @@ class CircleAreaTest extends GameBaseCase {
         assertEquals(2, area.size());
     }
 
-    @Test
     void resolveSize0() {
         assertEquals(
             Collections.singleton(map.get(123)),
@@ -58,7 +55,6 @@ class CircleAreaTest extends GameBaseCase {
         );
     }
 
-    @Test
     void resolve() {
         assertCollectionEquals(
             new CircleArea(new EffectArea(EffectArea.Type.LINE, 2)).resolve(map.get(123), map.get(137)),

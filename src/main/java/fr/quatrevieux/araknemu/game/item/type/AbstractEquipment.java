@@ -40,11 +40,11 @@ import java.util.Optional;
 public abstract class AbstractEquipment implements Item {
     private final ItemTemplate template;
     private final ItemType type;
-    private final @Nullable GameItemSet set;
+    private final GameItemSet set;
     private final List<CharacteristicEffect> characteristics;
     private final List<SpecialEffect> specials;
 
-    public AbstractEquipment(ItemTemplate template, ItemType type, @Nullable GameItemSet set, List<CharacteristicEffect> characteristics, List<SpecialEffect> specials) {
+    public AbstractEquipment(ItemTemplate template, ItemType type, GameItemSet set, List<CharacteristicEffect> characteristics, List<SpecialEffect> specials) {
         this.template = template;
         this.type = type;
         this.set = set;
@@ -98,7 +98,7 @@ public abstract class AbstractEquipment implements Item {
     }
 
     @Override
-    public boolean equals(@Nullable Object obj) {
+    public boolean equals(Object obj) {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }

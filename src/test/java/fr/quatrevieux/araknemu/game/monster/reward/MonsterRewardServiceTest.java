@@ -34,7 +34,6 @@ class MonsterRewardServiceTest extends GameBaseCase {
     private MonsterRewardService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -45,7 +44,6 @@ class MonsterRewardServiceTest extends GameBaseCase {
         dataSet.pushMonsterTemplates();
     }
 
-    @Test
     void preload() {
         Logger logger = Mockito.mock(Logger.class);
 
@@ -55,7 +53,6 @@ class MonsterRewardServiceTest extends GameBaseCase {
         Mockito.verify(logger).info("{} monsters rewards loaded", 3);
     }
 
-    @Test
     void get() {
         MonsterReward reward = service.get(31, 1);
 
@@ -70,7 +67,6 @@ class MonsterRewardServiceTest extends GameBaseCase {
         assertEquals(39, reward.items().get(0).itemTemplateId());
     }
 
-    @Test
     void getNotFound() {
         MonsterReward reward = service.get(5, 1);
 
@@ -79,7 +75,6 @@ class MonsterRewardServiceTest extends GameBaseCase {
         assertCount(0, reward.items());
     }
 
-    @Test
     void name() {
         assertEquals("monster.reward", service.name());
     }

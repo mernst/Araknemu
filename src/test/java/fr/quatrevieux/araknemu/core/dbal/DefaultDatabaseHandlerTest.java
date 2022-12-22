@@ -38,7 +38,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class DefaultDatabaseHandlerTest extends TestCase {
     private DefaultDatabaseHandler handler;
 
-    @BeforeEach
     void setUp() throws IOException {
         handler = new DefaultDatabaseHandler(
             new DefaultConfiguration(
@@ -50,12 +49,10 @@ class DefaultDatabaseHandlerTest extends TestCase {
         );
     }
 
-    @Test
     void getWithInvalidDriver() {
         assertThrows(IllegalArgumentException.class, () -> handler.get("invalid"));
     }
 
-    @Test
     void getWillCreatePool() throws SQLException {
         ConnectionPool pool = handler.get("realm");
 
@@ -88,28 +85,23 @@ class DefaultDatabaseHandlerTest extends TestCase {
         });
     }
 
-    @Test
     void getWillRetrievePool() throws SQLException {
         assertSame(handler.get("realm"), handler.get("realm"));
     }
 
-    @Test
     void getNotSamePool() throws SQLException {
         assertNotEquals(handler.get("realm"), handler.get("no_shared"));
     }
 
-    @Test
     void getWithAutoReconnect() throws SQLException {
         assertInstanceOf(AutoReconnectConnectionPool.class, handler.get("test_ar"));
     }
 
-    @Test
     void getWithRefreshPool() throws SQLException {
         assertInstanceOf(RefreshConnectionPool.class, handler.get("test_refresh"));
         handler.stop(); // Ensure that refresh task is stopped
     }
 
-    @Test
     void stop() throws SQLException {
         ConnectionPool pool = handler.get("realm");
 

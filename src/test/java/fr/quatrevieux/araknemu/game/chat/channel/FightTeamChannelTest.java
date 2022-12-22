@@ -46,19 +46,16 @@ class FightTeamChannelTest extends FightBaseCase {
     private FightTeamChannel channel;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         channel = new FightTeamChannel();
     }
 
-    @Test
     void type() {
         assertSame(ChannelType.FIGHT_TEAM, channel.type());
     }
 
-    @Test
     void authorized() throws Exception {
         assertFalse(channel.authorized(gamePlayer()));
 
@@ -66,12 +63,10 @@ class FightTeamChannelTest extends FightBaseCase {
         assertTrue(channel.authorized(gamePlayer()));
     }
 
-    @Test
     void sendDuringExploration() {
         assertThrows(ChatException.class, () -> new ChatService(configuration.chat(), new Channel[] {channel}).send(gamePlayer(), new Message(ChannelType.FIGHT_TEAM, null, "hello", "")));
     }
 
-    @Test
     void sendItem() throws Exception {
         createFight();
 
@@ -83,7 +78,6 @@ class FightTeamChannelTest extends FightBaseCase {
         requestStack.assertLast(Information.cannotPostItemOnChannel());
     }
 
-    @Test
     void sendToFight() throws Exception {
         Fight fight = createFight();
 

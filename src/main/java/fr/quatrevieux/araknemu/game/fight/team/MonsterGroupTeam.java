@@ -60,7 +60,7 @@ public final class MonsterGroupTeam implements FightTeam {
     }
 
     @Override
-    public @Nullable Fighter leader() {
+    public Fighter leader() {
         return null;
     }
 

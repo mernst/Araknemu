@@ -53,7 +53,7 @@ public final class Movement<F extends ActiveFighter> implements ActionGenerator<
     private final ToDoubleFunction<CoordinateCell<BattlefieldCell>> scoreFunction;
     private final Predicate<ScoredCell> filter;
 
-    private @MonotonicNonNull Pathfinder<BattlefieldCell> pathfinder;
+    private Pathfinder<BattlefieldCell> pathfinder;
 
     /**
      * Creates the Movement action generator

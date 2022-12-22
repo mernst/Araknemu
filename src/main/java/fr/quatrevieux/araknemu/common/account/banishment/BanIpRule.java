@@ -34,9 +34,9 @@ import java.util.Optional;
  */
 public final class BanIpRule<A extends LivingAccount> {
     private final BanIp banIp;
-    private final @Nullable A banisher;
+    private final A banisher;
 
-    public BanIpRule(BanIp banIp, @Nullable A banisher) {
+    public BanIpRule(BanIp banIp, A banisher) {
         this.banIp = banIp;
         this.banisher = banisher;
     }

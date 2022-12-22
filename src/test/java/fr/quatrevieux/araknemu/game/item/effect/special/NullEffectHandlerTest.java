@@ -28,7 +28,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NullEffectHandlerTest extends TestCase {
-    @Test
     void create() {
         assertEquals(
             new SpecialEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {1, 2, 3}, "a"),
@@ -36,7 +35,6 @@ class NullEffectHandlerTest extends TestCase {
         );
     }
 
-    @Test
     void instance() {
         assertInstanceOf(NullEffectHandler.class, NullEffectHandler.INSTANCE);
     }

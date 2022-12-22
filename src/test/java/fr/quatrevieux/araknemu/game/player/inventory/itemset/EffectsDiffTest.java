@@ -30,7 +30,6 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EffectsDiffTest extends TestCase {
-    @Test
     void diff() {
         EffectsDiff diff = new EffectsDiff(
             Arrays.asList(
@@ -52,7 +51,6 @@ class EffectsDiffTest extends TestCase {
         assertArrayEquals(new int [] {10, 0, 0}, diff.toRelieve().get(0).arguments());
     }
 
-    @Test
     void diffFromNothing() {
         EffectsDiff diff = new EffectsDiff(
             new ArrayList<>(),
@@ -71,7 +69,6 @@ class EffectsDiffTest extends TestCase {
         assertCount(0, diff.toRelieve());
     }
 
-    @Test
     void diffToNothing() {
         EffectsDiff diff = new EffectsDiff(
             Arrays.asList(

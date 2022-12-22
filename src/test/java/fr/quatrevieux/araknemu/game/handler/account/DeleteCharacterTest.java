@@ -42,7 +42,6 @@ class DeleteCharacterTest extends GameBaseCase {
     private DeleteCharacter handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -56,26 +55,22 @@ class DeleteCharacterTest extends GameBaseCase {
         dataSet.use(PlayerItem.class);
     }
 
-    @Test
     void deletePlayerNotFound() {
         assertThrows(ErrorPacket.class, () -> handler.handle(session, new DeleteCharacterRequest(123, "")));
     }
 
-    @Test
     void deleteBadAccount() throws ContainerException {
         Player player = dataSet.pushPlayer("test", 78, 2);
 
         assertThrows(ErrorPacket.class, () -> handler.handle(session, new DeleteCharacterRequest(player.id(), "")));
     }
 
-    @Test
     void deleteBadServer() throws ContainerException {
         Player player = dataSet.pushPlayer("test", session.account().id(), 45);
 
         assertThrows(ErrorPacket.class, () -> handler.handle(session, new DeleteCharacterRequest(player.id(), "")));
     }
 
-    @Test
     void deleteBadAnswer() throws ContainerException {
         Player player = dataSet.pushPlayer("test", session.account().id(), 2);
 
@@ -85,7 +80,6 @@ class DeleteCharacterTest extends GameBaseCase {
         assertThrows(ErrorPacket.class, () -> handler.handle(session, new DeleteCharacterRequest(player.id(), "")));
     }
 
-    @Test
     void deleteSuccessLowLevel() throws Exception {
         Player other = dataSet.pushPlayer("test", session.account().id(), 2);
         Player player = dataSet.pushPlayer("to_delete", session.account().id(), 2);
@@ -108,7 +102,6 @@ class DeleteCharacterTest extends GameBaseCase {
         assertFalse(container.get(PlayerRepository.class).has(player));
     }
 
-    @Test
     void deleteSuccessHighLevel() throws Exception {
         Player other = dataSet.pushPlayer("test", session.account().id(), 2);
         Player player = dataSet.pushPlayer("to_delete", session.account().id(), 2);

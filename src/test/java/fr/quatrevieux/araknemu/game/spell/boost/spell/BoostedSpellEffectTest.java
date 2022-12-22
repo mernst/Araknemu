@@ -44,7 +44,6 @@ class BoostedSpellEffectTest extends GameBaseCase {
     private SpellModifiers modifiers;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,7 +51,6 @@ class BoostedSpellEffectTest extends GameBaseCase {
         modifiers = new MapSpellModifiers(1, map);
     }
 
-    @Test
     void simpleEffect() {
         BoostedSpellEffect effect = new BoostedSpellEffect(
             new SpellTemplateEffectAdapter(
@@ -79,7 +77,6 @@ class BoostedSpellEffectTest extends GameBaseCase {
         assertEquals(SpellEffectTarget.DEFAULT, effect.target());
     }
 
-    @Test
     void damageEffect() {
         BoostedSpellEffect effect = new BoostedSpellEffect(
             new SpellTemplateEffectAdapter(
@@ -99,7 +96,6 @@ class BoostedSpellEffectTest extends GameBaseCase {
         assertEquals(5, effect.boost());
     }
 
-    @Test
     void baseDamageBoost() {
         BoostedSpellEffect effect = new BoostedSpellEffect(
             new SpellTemplateEffectAdapter(
@@ -119,7 +115,6 @@ class BoostedSpellEffectTest extends GameBaseCase {
         assertEquals(0, effect.boost());
     }
 
-    @Test
     void damageEffectFixed() {
         BoostedSpellEffect effect = new BoostedSpellEffect(
             new SpellTemplateEffectAdapter(
@@ -139,7 +134,6 @@ class BoostedSpellEffectTest extends GameBaseCase {
         assertEquals(5, effect.boost());
     }
 
-    @Test
     void healEffect() {
         BoostedSpellEffect effect = new BoostedSpellEffect(
             new SpellTemplateEffectAdapter(
@@ -160,7 +154,6 @@ class BoostedSpellEffectTest extends GameBaseCase {
         assertEquals(10, effect.boost());
     }
 
-    @Test
     void healEffectFixed() {
         BoostedSpellEffect effect = new BoostedSpellEffect(
             new SpellTemplateEffectAdapter(

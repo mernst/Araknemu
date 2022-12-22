@@ -34,7 +34,6 @@ class SendPlayerChangeOrientationTest extends GameBaseCase {
     private SendPlayerChangeOrientation listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -45,7 +44,6 @@ class SendPlayerChangeOrientationTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onOrientationChanged() throws SQLException, ContainerException {
         listener.on(new OrientationChanged(explorationPlayer(), Direction.SOUTH_EAST));
 

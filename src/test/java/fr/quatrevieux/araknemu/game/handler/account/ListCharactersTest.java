@@ -42,7 +42,6 @@ class ListCharactersTest extends GameBaseCase {
     private ListCharacters handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -57,14 +56,12 @@ class ListCharactersTest extends GameBaseCase {
         ;
     }
 
-    @Test
     void noCharacters() throws Exception {
         handler.handle(session, new AskCharacterList(false));
 
         requestStack.assertLast(new CharactersList(ServerList.ONE_YEAR, Collections.EMPTY_LIST));
     }
 
-    @Test
     void withCharacters() throws Exception {
         Player first = dataSet.push(Player.forCreation(1, 2, "first", Race.ECAFLIP, Gender.MALE, new Colors(-1, -1, -1)));
         Player second = dataSet.push(Player.forCreation(1, 2, "second", Race.FECA, Gender.MALE, new Colors(-1, -1, -1)));

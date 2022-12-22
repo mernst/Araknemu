@@ -29,7 +29,6 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CloseInactiveSessionTest extends GameBaseCase {
-    @Test
     void handle() throws Exception {
         handlePacket(new SessionIdle(Duration.ofMinutes(15)));
 

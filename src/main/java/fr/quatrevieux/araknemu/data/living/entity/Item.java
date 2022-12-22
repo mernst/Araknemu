@@ -51,12 +51,12 @@ public interface Item {
     /**
      * The item quantity
      */
-    public @NonNegative int quantity();
+    public int quantity();
 
     /**
      * Change the quantity
      *
      * @param quantity New quantity. Must be positive
      */
-    public void setQuantity(@NonNegative int quantity);
+    public void setQuantity(int quantity);
 }

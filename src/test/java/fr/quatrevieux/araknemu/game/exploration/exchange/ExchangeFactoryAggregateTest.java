@@ -29,14 +29,12 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ExchangeFactoryAggregateTest extends GameBaseCase {
-    @Test
     void createInvalidType() {
         ExchangeFactoryAggregate<ExplorationPlayer> factory = new ExchangeFactoryAggregate<>();
 
         assertThrows(IllegalArgumentException.class, () -> factory.create(ExchangeType.BANK, explorationPlayer(), makeOtherExplorationPlayer()));
     }
 
-    @Test
     void createSuccess() throws Exception {
         ExplorationPlayer initiator = explorationPlayer();
         ExplorationPlayer target = makeOtherExplorationPlayer();

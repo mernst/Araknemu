@@ -48,14 +48,12 @@ class SendFightStateToSpectatorTest extends FightBaseCase {
     private Fight fight;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
     }
 
-    @Test
     void onStartWatchFightTurnNotYetStarted() throws SQLException {
         SendFightStateToSpectator listener = new SendFightStateToSpectator(new Spectator(gamePlayer(), fight));
         requestStack.clear();
@@ -73,7 +71,6 @@ class SendFightStateToSpectatorTest extends FightBaseCase {
         );
     }
 
-    @Test
     void onStartWatchFightTurnStarted() throws SQLException {
         SendFightStateToSpectator listener = new SendFightStateToSpectator(new Spectator(gamePlayer(), fight));
         requestStack.clear();
@@ -93,7 +90,6 @@ class SendFightStateToSpectatorTest extends FightBaseCase {
         );
     }
 
-    @Test
     void onStartWatchFightWithDeadFighter() throws SQLException {
         PlayerFighter deadFighter = makePlayerFighter(makeSimpleGamePlayer(15));
 
@@ -120,7 +116,6 @@ class SendFightStateToSpectatorTest extends FightBaseCase {
         );
     }
 
-    @Test
     void onStartWatchFightWithBuffs() throws SQLException {
         SendFightStateToSpectator listener = new SendFightStateToSpectator(new Spectator(gamePlayer(), fight));
 
@@ -158,7 +153,6 @@ class SendFightStateToSpectatorTest extends FightBaseCase {
         );
     }
 
-    @Test
     void onStartWatchFightWithInvisibility() throws SQLException {
         SendFightStateToSpectator listener = new SendFightStateToSpectator(new Spectator(gamePlayer(), fight));
 

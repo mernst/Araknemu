@@ -30,12 +30,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class Argon2HashTest {
     private Argon2Hash hash;
 
-    @BeforeEach
     void setUp() {
         hash = new Argon2Hash();
     }
 
-    @Test
     void hash() {
         Password password = hash.hash("test");
 
@@ -46,7 +44,6 @@ class Argon2HashTest {
         assertTrue(password.toString().startsWith("$argon2id$v=19$m=65536,t=4,p=8$"));
     }
 
-    @Test
     void parse() {
         Password password = hash.parse("$argon2id$v=19$m=65536,t=4,p=8$VD0Sb6gphmn8Nzqrq+SBzA$5QJbvXjQSFzeM9oFhqYLS73uQS/2K0q4WUX1Fgvr+uU");
 
@@ -57,19 +54,16 @@ class Argon2HashTest {
         assertEquals("$argon2id$v=19$m=65536,t=4,p=8$VD0Sb6gphmn8Nzqrq+SBzA$5QJbvXjQSFzeM9oFhqYLS73uQS/2K0q4WUX1Fgvr+uU", password.toString());
     }
 
-    @Test
     void supports() {
         assertTrue(hash.supports("$argon2id$v=19$m=65536,t=4,p=8$VD0Sb6gphmn8Nzqrq+SBzA$5QJbvXjQSFzeM9oFhqYLS73uQS/2K0q4WUX1Fgvr+uU"));
         assertTrue(hash.supports("$argon2i$v=19$m=65536,t=4,p=8$VD0Sb6gphmn8Nzqrq+SBzA$5QJbvXjQSFzeM9oFhqYLS73uQS/2K0q4WUX1Fgvr+uU"));
         assertFalse(hash.supports("test"));
     }
 
-    @Test
     void name() {
         assertEquals("argon2", hash.name());
     }
 
-    @Test
     void needRehash() {
         Password password = hash.parse("$argon2id$v=19$m=65536,t=4,p=8$VD0Sb6gphmn8Nzqrq+SBzA$5QJbvXjQSFzeM9oFhqYLS73uQS/2K0q4WUX1Fgvr+uU");
 
@@ -89,7 +83,6 @@ class Argon2HashTest {
         assertTrue(password.needRehash());
     }
 
-    @Test
     void typesInteroperability() {
         Password password = hash.hash("test");
 
@@ -100,7 +93,6 @@ class Argon2HashTest {
         assertTrue(passwordOnOtherHash.needRehash());
     }
 
-    @Test
     void parameters() {
         assertTrue(hash.hash("test").toString().startsWith("$argon2id$v=19$m=65536,t=4,p=8$"));
         assertTrue(hash.setType(Argon2Factory.Argon2Types.ARGON2i).hash("test").toString().startsWith("$argon2i$v=19$m=65536,t=4,p=8$"));
@@ -109,7 +101,6 @@ class Argon2HashTest {
         assertTrue(hash.setParallelism(3).hash("test").toString().startsWith("$argon2i$v=19$m=54000,t=5,p=3$"));
     }
 
-    @Test
     void typeByName() {
         assertSame(Argon2Factory.Argon2Types.ARGON2d, Argon2Hash.typeByName("argon2d"));
         assertSame(Argon2Factory.Argon2Types.ARGON2i, Argon2Hash.typeByName("argon2i"));

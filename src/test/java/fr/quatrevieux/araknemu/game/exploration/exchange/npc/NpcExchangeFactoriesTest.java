@@ -37,7 +37,6 @@ class NpcExchangeFactoriesTest extends GameBaseCase {
     private NpcService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,7 +51,6 @@ class NpcExchangeFactoriesTest extends GameBaseCase {
         player = explorationPlayer();
     }
 
-    @Test
     void createNpcStore() {
         GameNpc npc = service.get(10001);
         ExchangeInteraction interaction = factories.create(ExchangeType.NPC_STORE, player, npc);
@@ -63,7 +61,6 @@ class NpcExchangeFactoriesTest extends GameBaseCase {
         requestStack.assertOne(new ExchangeCreated(ExchangeType.NPC_STORE, npc));
     }
 
-    @Test
     void createNpcExchange() {
         GameNpc npc = service.get(472);
         ExchangeInteraction interaction = factories.create(ExchangeType.NPC_EXCHANGE, player, npc);

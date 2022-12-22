@@ -39,7 +39,7 @@ public interface ArgumentsHydrator {
      *
      * @return The filled command arguments
      */
-    public <@Nullable A> A hydrate(Command<A> command, @Nullable A commandArguments, CommandParser.Arguments parsedArguments) throws Exception;
+    public <A> A hydrate(Command<A> command, A commandArguments, CommandParser.Arguments parsedArguments) throws Exception;
 
     /**
      * Fill the command help object with the arguments system
@@ -58,5 +58,5 @@ public interface ArgumentsHydrator {
      * Check if the argument object is supported
      * May check the command type or the arguments type
      */
-    public <A> boolean supports(Command<A> command, @Nullable A commandArguments);
+    public <A> boolean supports(Command<A> command, A commandArguments);
 }

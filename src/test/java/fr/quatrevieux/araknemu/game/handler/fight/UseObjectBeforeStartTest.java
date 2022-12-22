@@ -40,7 +40,6 @@ class UseObjectBeforeStartTest extends FightBaseCase {
     private UseObjectBeforeStart handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -50,7 +49,6 @@ class UseObjectBeforeStartTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handleDoNothing() throws Exception {
         createFight();
 
@@ -62,7 +60,6 @@ class UseObjectBeforeStartTest extends FightBaseCase {
         requestStack.assertAll(new Noop());
         assertEquals(1, entry.quantity());    }
 
-    @Test
     void handleSuccess() throws Exception {
         player.properties().life().set(10);
 
@@ -85,7 +82,6 @@ class UseObjectBeforeStartTest extends FightBaseCase {
         assertEquals(0, entry.quantity());
     }
 
-    @Test
     void functionalErrorOnActiveFight() throws Exception {
         InventoryEntry entry = player.inventory().add(container.get(ItemService.class).create(468));
 
@@ -95,7 +91,6 @@ class UseObjectBeforeStartTest extends FightBaseCase {
         assertErrorPacket(Error.cantDoDuringFight(), () -> handlePacket(new ObjectUseRequest(entry.id(), 0, 0, false)));
     }
 
-    @Test
     void functionalSuccess() throws Exception {
         player.properties().life().set(10);
 

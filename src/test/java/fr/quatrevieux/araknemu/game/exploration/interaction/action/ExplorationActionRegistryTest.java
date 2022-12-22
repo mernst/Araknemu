@@ -42,7 +42,6 @@ class ExplorationActionRegistryTest extends FightBaseCase {
     private ExplorationActionRegistry factory;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -55,7 +54,6 @@ class ExplorationActionRegistryTest extends FightBaseCase {
         dataSet.pushMaps().pushSubAreas().pushAreas();
     }
 
-    @Test
     void createNotFound() {
         assertThrows(
             Exception.class,
@@ -64,7 +62,6 @@ class ExplorationActionRegistryTest extends FightBaseCase {
         );
     }
 
-    @Test
     void createSuccess() throws Exception {
         explorationPlayer().move(explorationPlayer().map().get(100), Direction.SOUTH_EAST);
 
@@ -73,7 +70,6 @@ class ExplorationActionRegistryTest extends FightBaseCase {
         assertInstanceOf(Move.class, action);
     }
 
-    @Test
     void register() throws Exception {
         Action action = Mockito.mock(Action.class);
         factory.register(ActionType.NONE, (player, type, arguments) -> action);

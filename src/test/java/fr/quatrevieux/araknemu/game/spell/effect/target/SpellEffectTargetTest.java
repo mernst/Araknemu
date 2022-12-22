@@ -43,7 +43,6 @@ class SpellEffectTargetTest extends FightBaseCase {
     PlayerFighter teammate;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -56,14 +55,12 @@ class SpellEffectTargetTest extends FightBaseCase {
         fight.state(PlacementState.class).joinTeam(teammate, caster.team());
     }
 
-    @Test
     void testDefault() {
         assertTrue(SpellEffectTarget.DEFAULT.test(caster, caster));
         assertTrue(SpellEffectTarget.DEFAULT.test(caster, enemy));
         assertTrue(SpellEffectTarget.DEFAULT.test(caster, teammate));
     }
 
-    @Test
     void testNotTeam() {
         SpellEffectTarget et = new SpellEffectTarget(SpellEffectTarget.NOT_TEAM);
 
@@ -72,7 +69,6 @@ class SpellEffectTargetTest extends FightBaseCase {
         assertFalse(et.test(caster, teammate));
     }
 
-    @Test
     void testNotSelf() {
         SpellEffectTarget et = new SpellEffectTarget(SpellEffectTarget.NOT_SELF);
 
@@ -81,7 +77,6 @@ class SpellEffectTargetTest extends FightBaseCase {
         assertTrue(et.test(caster, teammate));
     }
 
-    @Test
     void testNotEnemy() {
         SpellEffectTarget et = new SpellEffectTarget(SpellEffectTarget.NOT_ENEMY);
 
@@ -90,7 +85,6 @@ class SpellEffectTargetTest extends FightBaseCase {
         assertTrue(et.test(caster, teammate));
     }
 
-    @Test
     void testOnlyInvoc() {
         SpellEffectTarget et = new SpellEffectTarget(SpellEffectTarget.ONLY_INVOC);
 
@@ -99,7 +93,6 @@ class SpellEffectTargetTest extends FightBaseCase {
         assertFalse(et.test(caster, teammate));
     }
 
-    @Test
     void testNotEnemyAndNotSelf() {
         SpellEffectTarget et = new SpellEffectTarget(SpellEffectTarget.NOT_ENEMY | SpellEffectTarget.NOT_SELF);
 
@@ -108,7 +101,6 @@ class SpellEffectTargetTest extends FightBaseCase {
         assertTrue(et.test(caster, teammate));
     }
 
-    @Test
     void invocation() throws SQLException {
         dataSet
             .pushMonsterTemplateInvocations()
@@ -136,7 +128,6 @@ class SpellEffectTargetTest extends FightBaseCase {
         assertFalse(et.test(caster, teammate));
     }
 
-    @Test
     void equalsAndHash() {
         SpellEffectTarget et = new SpellEffectTarget(SpellEffectTarget.NOT_ENEMY | SpellEffectTarget.NOT_SELF);
 

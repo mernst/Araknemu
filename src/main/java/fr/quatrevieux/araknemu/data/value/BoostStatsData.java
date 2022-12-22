@@ -75,11 +75,11 @@ public final class BoostStatsData {
     }
 
     public static final class Interval {
-        private final @NonNegative int start;
-        private final @Positive int cost;
-        private final @Positive int boost;
+        private final int start;
+        private final int cost;
+        private final int boost;
 
-        public Interval(@NonNegative int start, @Positive int cost, @Positive int boost) {
+        public Interval(int start, int cost, int boost) {
             this.start = start;
             this.cost = cost;
             this.boost = boost;
@@ -89,24 +89,21 @@ public final class BoostStatsData {
          * The start characteristics points interval for the current boost rule
          * This value is inclusive
          */
-        @Pure
-        public @NonNegative int start() {
+        public int start() {
             return start;
         }
 
         /**
          * The cost for boot the characteristic
          */
-        @Pure
-        public @Positive int cost() {
+        public int cost() {
             return cost;
         }
 
         /**
          * The boost value : how many characteristics points are added on boost
          */
-        @Pure
-        public @Positive int boost() {
+        public int boost() {
             return boost;
         }
 

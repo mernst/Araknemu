@@ -52,14 +52,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ExplorationMapTest extends GameBaseCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         dataSet.pushMaps().pushSubAreas().pushAreas();
     }
 
-    @Test
     void data() throws ContainerException {
         MapTemplate template = dataSet.refresh(new MapTemplate(10300, null, null, null, null, null, null, 0, false));
 
@@ -71,7 +69,6 @@ class ExplorationMapTest extends GameBaseCase {
         assertEquals(new Geolocation(-4, 3), map.geolocation());
     }
 
-    @Test
     void addPlayerWillAddSprite() throws ContainerException, SQLException {
         MapTemplate template = dataSet.refresh(new MapTemplate(10300, null, null, null, null, null, null, 0, false));
 
@@ -85,7 +82,6 @@ class ExplorationMapTest extends GameBaseCase {
         assertEquals(explorationPlayer().sprite().toString(), map.sprites().toArray()[0].toString());
     }
 
-    @Test
     void addPlayerWillDispatchEvent() throws Exception {
         AtomicReference<NewSpriteOnMap> ref = new AtomicReference<>();
 
@@ -120,7 +116,6 @@ class ExplorationMapTest extends GameBaseCase {
         assertEquals(other.sprite().toString(), ref.get().sprite().toString());
     }
 
-    @Test
     void addNpc() throws ContainerException, SQLException {
         MapTemplate template = dataSet.refresh(new MapTemplate(10300, null, null, null, null, null, null, 0, false));
         dataSet.pushNpcs();
@@ -157,7 +152,6 @@ class ExplorationMapTest extends GameBaseCase {
         assertSame(npc.sprite(), ref.get().sprite());
     }
 
-    @Test
     void addAlreadyAdded() throws Exception {
         ExplorationMap map = explorationPlayer().map();
         ExplorationPlayer player = makeOtherExplorationPlayer();
@@ -166,7 +160,6 @@ class ExplorationMapTest extends GameBaseCase {
         assertThrows(IllegalArgumentException.class, () -> map.add(player));
     }
 
-    @Test
     void removeNotExists() throws Exception {
         ExplorationMap map = explorationPlayer().map();
         ExplorationPlayer player = makeOtherExplorationPlayer();
@@ -174,7 +167,6 @@ class ExplorationMapTest extends GameBaseCase {
         assertThrows(IllegalArgumentException.class, () -> map.remove(player));
     }
 
-    @Test
     void sendWillSendToPlayers() throws ContainerException, SQLException {
         MapTemplate template = dataSet.refresh(new MapTemplate(10300, null, null, null, null, null, null, 0, false));
 
@@ -188,7 +180,6 @@ class ExplorationMapTest extends GameBaseCase {
         requestStack.assertLast("my packet");
     }
 
-    @Test
     void removeWillSendPacket() throws Exception {
         explorationPlayer();
         ExplorationPlayer other = new ExplorationPlayer(makeOtherPlayer());
@@ -206,21 +197,18 @@ class ExplorationMapTest extends GameBaseCase {
         assertFalse(map.creatures().contains(other));
     }
 
-    @Test
     void creatureNotFound() throws SQLException, ContainerException {
         ExplorationMap map = explorationPlayer().map();
 
         assertThrows(NoSuchElementException.class, () -> map.creature(-5));
     }
 
-    @Test
     void creatureFound() throws SQLException, ContainerException {
         ExplorationMap map = explorationPlayer().map();
 
         assertSame(explorationPlayer(), map.creature(explorationPlayer().id()));
     }
 
-    @Test
     void has() throws SQLException, ContainerException {
         ExplorationMap map = explorationPlayer().map();
 
@@ -228,13 +216,11 @@ class ExplorationMapTest extends GameBaseCase {
         assertFalse(map.has(-5));
     }
 
-    @Test
     void canLaunchFight() throws ContainerException {
         assertFalse(container.get(ExplorationMapService.class).load(10300).canLaunchFight());
         assertTrue(container.get(ExplorationMapService.class).load(10340).canLaunchFight());
     }
 
-    @Test
     void fightPlaces() {
         ExplorationMap map = container.get(ExplorationMapService.class).load(10340);
 
@@ -245,7 +231,6 @@ class ExplorationMapTest extends GameBaseCase {
         );
     }
 
-    @Test
     void cellEquals() throws SQLException, ContainerException {
         ExplorationMap map = explorationPlayer().map();
 
@@ -254,7 +239,6 @@ class ExplorationMapTest extends GameBaseCase {
         assertNotEquals(map.get(123), new Object());
     }
 
-    @Test
     void getPreloadedCellsWillKeepInstance() throws ContainerException, SQLException {
         MapTemplate template = dataSet.refresh(new MapTemplate(10300, null, null, null, null, null, null, 0, false));
         dataSet.pushTrigger(new MapTrigger(10300, 123, 0, "10300,465", "-1"));
@@ -271,7 +255,6 @@ class ExplorationMapTest extends GameBaseCase {
         assertSame(map.get(125), map.get(125));
     }
 
-    @Test
     void getBasicCellWillBeReinstantiated() throws ContainerException, SQLException {
         MapTemplate template = dataSet.refresh(new MapTemplate(10300, null, null, null, null, null, null, 0, false));
 
@@ -284,7 +267,6 @@ class ExplorationMapTest extends GameBaseCase {
         assertSame(map, map.get(456).map());
     }
 
-    @Test
     void apply() throws Exception {
         dataSet.pushNpcs();
         ExplorationMap map = explorationPlayer().map();
@@ -316,7 +298,6 @@ class ExplorationMapTest extends GameBaseCase {
         assertEquals(Arrays.asList(npc), npcs);
     }
 
-    @Test
     void applyWithReturnValueShouldIgnoreNextCreatures() throws Exception {
         dataSet.pushNpcs();
         ExplorationMap map = explorationPlayer().map();

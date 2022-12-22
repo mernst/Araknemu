@@ -28,7 +28,6 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FightActionTest {
-    @Test
     void generateOnSuccess() {
         assertEquals(
             "GA0;1;123;arg",
@@ -71,7 +70,6 @@ class FightActionTest {
         );
     }
 
-    @Test
     void generateOnFail() {
         assertEquals(
             "GA;1;123;arg",

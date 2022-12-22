@@ -40,7 +40,7 @@ public final class Asserter {
      *
      * @throws IllegalArgumentException When the value is not positive
      */
-    public static @Positive int assertPositive(int value) {
+    public static int assertPositive(int value) {
         if (value < 1) {
             throw new IllegalArgumentException("The value must be positive");
         }
@@ -53,7 +53,7 @@ public final class Asserter {
      *
      * @throws IllegalArgumentException When the value is negative
      */
-    public static @NonNegative int assertNonNegative(int value) {
+    public static int assertNonNegative(int value) {
         if (value < 0) {
             throw new IllegalArgumentException("The value must be positive or null");
         }
@@ -66,7 +66,7 @@ public final class Asserter {
      *
      * @throws IllegalArgumentException When the value is negative
      */
-    public static @NonNegative long assertNonNegative(long value) {
+    public static long assertNonNegative(long value) {
         if (value < 0) {
             throw new IllegalArgumentException("The value must be positive");
         }
@@ -79,7 +79,7 @@ public final class Asserter {
      *
      * @throws IllegalArgumentException When the value is too low
      */
-    public static @GTENegativeOne int assertGTENegativeOne(int value) {
+    public static int assertGTENegativeOne(int value) {
         if (value < -1) {
             throw new IllegalArgumentException("The value must be >= -1");
         }
@@ -92,7 +92,7 @@ public final class Asserter {
      *
      * @throws IllegalArgumentException When the value is negative
      */
-    public static @IntRange(from = 0, to = 100) int assertPercent(int value) {
+    public static int assertPercent(int value) {
         if (value < 0 || value > 100) {
             throw new IllegalArgumentException("The value must be in range [0, 100]");
         }
@@ -110,7 +110,7 @@ public final class Asserter {
      *
      * @throws IndexOutOfBoundsException When the value is out of range
      */
-    public static @IndexFor("#1") <T> int assertIndexFor(T[] array, int index) {
+    public static <T> int assertIndexFor(T[] array, int index) {
         if (index < 0 || index >= array.length) {
             throw new IndexOutOfBoundsException("Invalid index " + index + " for array of length " + array.length);
         }
@@ -124,7 +124,7 @@ public final class Asserter {
      * @see Asserter#assertNonNegative(int) For perform a runtime check of the value
      */
     @SuppressWarnings("return") // Checker do not resolve "assert" instruction
-    public static @NonNegative int castNonNegative(int value) {
+    public static int castNonNegative(int value) {
         assert value >= 0;
 
         return value;
@@ -136,7 +136,7 @@ public final class Asserter {
      * @see Asserter#assertNonNegative(long) For perform a runtime check of the value
      */
     @SuppressWarnings("return") // Checker do not resolve "assert" instruction
-    public static @NonNegative long castNonNegative(long value) {
+    public static long castNonNegative(long value) {
         assert value >= 0;
 
         return value;
@@ -148,7 +148,7 @@ public final class Asserter {
      * @see Asserter#assertPositive(int) For perform a runtime check of the value
      */
     @SuppressWarnings("return") // Checker do not resolve "assert" instruction
-    public static @Positive int castPositive(int value) {
+    public static int castPositive(int value) {
         assert value > 0;
 
         return value;
@@ -158,7 +158,7 @@ public final class Asserter {
      * Cast an int to a positive int without perform runtime check
      */
     @SuppressWarnings("return") // Checker do not resolve "assert" instruction
-    public static @Positive long castPositive(long value) {
+    public static long castPositive(long value) {
         assert value > 0;
 
         return value;

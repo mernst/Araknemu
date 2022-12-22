@@ -32,7 +32,6 @@ class MonsterTest extends GameBaseCase {
     private Monster monster;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -44,7 +43,6 @@ class MonsterTest extends GameBaseCase {
         monster = container.get(MonsterService.class).load(34).all().get(2);
     }
 
-    @Test
     void values() {
         assertEquals(34, monster.id());
         assertEquals(1568, monster.gfxId());

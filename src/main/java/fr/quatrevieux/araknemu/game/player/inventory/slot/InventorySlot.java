@@ -37,8 +37,7 @@ public interface InventorySlot {
     /**
      * The slot id
      */
-    @Pure
-    public @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int id();
+    public int id();
 
     /**
      * Get the current entry
@@ -65,12 +64,12 @@ public interface InventorySlot {
      *
      * This method will be called after an {@link fr.quatrevieux.araknemu.game.player.inventory.PlayerInventory#add(Item)}
      */
-    public InventoryEntry set(Item item, @Positive int quantity) throws InventoryException;
+    public InventoryEntry set(Item item, int quantity) throws InventoryException;
 
     /**
      * Set the entry to the slot without do any checks
      */
-    public void uncheckedSet(@Nullable InventoryEntry entry);
+    public void uncheckedSet(InventoryEntry entry);
 
     /**
      * Remove the current entry

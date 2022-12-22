@@ -33,20 +33,17 @@ class SendBlockSpectatorsOptionChangedMessageTest extends FightBaseCase {
     private Fight fight;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         listener = new SendBlockSpectatorsOptionChangedMessage(fight = createFight());
     }
 
-    @Test
     void onAllow() {
         listener.on(new AllowSpectatorChanged(fight.team(0).options(), true));
         requestStack.assertLast(Information.spectatorsAllowed());
     }
 
-    @Test
     void onBlock() {
         listener.on(new AllowSpectatorChanged(fight.team(0).options(), false));
         requestStack.assertLast(Information.spectatorsBlocked());

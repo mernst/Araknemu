@@ -28,10 +28,10 @@ import org.checkerframework.dataflow.qual.Pure;
 public final class Question {
     private final int id;
     private final int[] responseIds;
-    private final @MinLen(1) String[] parameters;
+    private final String[] parameters;
     private final String condition;
 
-    public Question(int id, int[] responseIds, @MinLen(1) String[] parameters, String condition) {
+    public Question(int id, int[] responseIds, String[] parameters, String condition) {
         this.id = id;
         this.responseIds = responseIds;
         this.parameters = parameters;
@@ -42,7 +42,6 @@ public final class Question {
      * The question ID
      * Should corresponds with dialog SWF
      */
-    @Pure
     public int id() {
         return id;
     }
@@ -50,7 +49,6 @@ public final class Question {
     /**
      * List of available response ids
      */
-    @Pure
     public int[] responseIds() {
         return responseIds;
     }
@@ -58,8 +56,7 @@ public final class Question {
     /**
      * Get the question variable / parameters like name
      */
-    @Pure
-    public @MinLen(1) String[] parameters() {
+    public String[] parameters() {
         return parameters;
     }
 
@@ -67,7 +64,6 @@ public final class Question {
      * Get the question condition
      * If not match, the next question should be asked
      */
-    @Pure
     public String condition() {
         return condition;
     }

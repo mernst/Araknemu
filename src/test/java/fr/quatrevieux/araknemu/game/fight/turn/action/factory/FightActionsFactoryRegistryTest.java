@@ -43,7 +43,6 @@ class FightActionsFactoryRegistryTest extends FightBaseCase {
     private Fighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,12 +51,10 @@ class FightActionsFactoryRegistryTest extends FightBaseCase {
         factory = container.get(FightActionsFactoryRegistry.class);
     }
 
-    @Test
     void createActionNotFound() {
         assertThrows(FightException.class, () -> factory.create(fighter, ActionType.NONE, new String[] {}));
     }
 
-    @Test
     void createMove() throws Exception {
         player.fighter().move(fight.map().get(185));
 
@@ -65,26 +62,22 @@ class FightActionsFactoryRegistryTest extends FightBaseCase {
         assertThrows(IllegalArgumentException.class, () -> factory.create(fighter, ActionType.MOVE, new String[] {}));
     }
 
-    @Test
     void createCast() throws Exception {
         assertInstanceOf(Cast.class, factory.create(fighter, ActionType.CAST, new String[] {"3", "123"}));
         assertThrows(IllegalArgumentException.class, () -> factory.create(fighter, ActionType.CAST, new String[] {"3"}));
         assertThrows(IllegalArgumentException.class, () -> factory.create(fighter, ActionType.CAST, new String[] {"3", "1000"}));
     }
 
-    @Test
     void createCastSpellNotFound() throws Exception {
         assertInstanceOf(SpellNotFound.class, factory.create(fighter, ActionType.CAST, new String[] {"7458", "123"}));
     }
 
-    @Test
     void createCloseCombat() throws Exception {
         assertInstanceOf(CloseCombat.class, factory.create(fighter, ActionType.CLOSE_COMBAT, new String[] {"123"}));
         assertThrows(IllegalArgumentException.class, () -> factory.create(fighter, ActionType.CLOSE_COMBAT, new String[] {}));
         assertThrows(IllegalArgumentException.class, () -> factory.create(fighter, ActionType.CLOSE_COMBAT, new String[] {"1000"}));
     }
 
-    @Test
     void getters() {
         assertInstanceOf(CastFactory.class, factory.cast());
         assertInstanceOf(CloseCombatFactory.class, factory.closeCombat());

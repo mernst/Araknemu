@@ -50,7 +50,6 @@ class SendMessageTest extends FightBaseCase {
     private SendMessage handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -63,7 +62,6 @@ class SendMessageTest extends FightBaseCase {
         );
     }
 
-    @Test
     void handleMapMessageOnExploration() throws Exception {
         explorationPlayer();
 
@@ -87,7 +85,6 @@ class SendMessageTest extends FightBaseCase {
         );
     }
 
-    @Test
     void handleUnauthorizedChannel() throws Exception {
         explorationPlayer();
 
@@ -108,7 +105,6 @@ class SendMessageTest extends FightBaseCase {
         }
     }
 
-    @Test
     void handleInvalidPrivateTarget() throws Exception {
         explorationPlayer();
 
@@ -132,7 +128,6 @@ class SendMessageTest extends FightBaseCase {
         }
     }
 
-    @Test
     void handleSyntaxError() throws Exception {
         explorationPlayer();
 
@@ -153,7 +148,6 @@ class SendMessageTest extends FightBaseCase {
         }
     }
 
-    @Test
     void handleCantChat() throws Exception {
         explorationPlayer();
         gamePlayer().restrictions().set(Restrictions.Restriction.DENY_CHAT);
@@ -170,7 +164,6 @@ class SendMessageTest extends FightBaseCase {
         }
     }
 
-    @Test
     void asSpectatorFromGlobalChannel() throws Exception {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
 

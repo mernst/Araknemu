@@ -40,7 +40,6 @@ class AlterVitalityHookTest extends FightBaseCase {
     private PlayerFighter target;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -56,7 +55,6 @@ class AlterVitalityHookTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void add() {
         AlterVitalityHook hook = AlterVitalityHook.add(fight);
         requestStack.clear();
@@ -85,7 +83,6 @@ class AlterVitalityHookTest extends FightBaseCase {
         assertEquals(50, target.life().current());
     }
 
-    @Test
     void remove() {
         AlterVitalityHook hook = AlterVitalityHook.remove(fight);
         requestStack.clear();

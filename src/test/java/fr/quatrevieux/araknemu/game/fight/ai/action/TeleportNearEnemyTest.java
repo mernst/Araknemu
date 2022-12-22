@@ -25,7 +25,6 @@ import org.junit.jupiter.api.Test;
 
 class TeleportNearEnemyTest extends AiBaseCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -33,7 +32,6 @@ class TeleportNearEnemyTest extends AiBaseCase {
         dataSet.pushFunctionalSpells();
     }
 
-    @Test
     void success() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122).spell(142, 5))
@@ -43,7 +41,6 @@ class TeleportNearEnemyTest extends AiBaseCase {
         assertCast(142, 110);
     }
 
-    @Test
     void alreadyNearEnemy() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(110).spell(142, 5))
@@ -53,7 +50,6 @@ class TeleportNearEnemyTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void notEnoughAP() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122).spell(142, 5))
@@ -65,7 +61,6 @@ class TeleportNearEnemyTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void noAP() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122).spell(142, 5))
@@ -77,7 +72,6 @@ class TeleportNearEnemyTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void noTeleportSpells() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122))

@@ -31,7 +31,6 @@ class SendNeedHelpOptionChangedMessageTest extends FightBaseCase {
     private Fight fight;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -39,20 +38,17 @@ class SendNeedHelpOptionChangedMessageTest extends FightBaseCase {
         listener = new SendNeedHelpOptionChangedMessage();
     }
 
-    @Test
     void onlySendToTeam() {
         requestStack.clear();
         listener.on(new NeedHelpChanged(fight.team(1).options(), true));
         requestStack.assertEmpty();
     }
 
-    @Test
     void onRequest() {
         listener.on(new NeedHelpChanged(fight.team(0).options(), true));
         requestStack.assertLast(Information.helpRequested());
     }
 
-    @Test
     void onStop() {
         listener.on(new NeedHelpChanged(fight.team(0).options(), false));
         requestStack.assertLast(Information.helpRequestStopped());

@@ -35,7 +35,6 @@ class GradeSetTest extends GameBaseCase {
     private GradeSet gradeSet;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,7 +46,6 @@ class GradeSetTest extends GameBaseCase {
         gradeSet = container.get(MonsterService.class).load(31);
     }
 
-    @Test
     void all() {
         assertCount(5, gradeSet.all());
         assertArrayEquals(
@@ -58,12 +56,10 @@ class GradeSetTest extends GameBaseCase {
         assertSame(gradeSet.all(), gradeSet.all());
     }
 
-    @Test
     void inDefaultInterval() {
         assertSame(gradeSet.all(), gradeSet.in(new Interval(1, Integer.MAX_VALUE)));
     }
 
-    @Test
     void in() {
         assertEquals(gradeSet.all(), gradeSet.in(new Interval(1, 50)));
         assertEquals(Collections.emptyList(), gradeSet.in(new Interval(1, 1)));
@@ -72,17 +68,14 @@ class GradeSetTest extends GameBaseCase {
         assertCollectionEquals(gradeSet.in(new Interval(3, 5)), gradeSet.all().get(1), gradeSet.all().get(2), gradeSet.all().get(3));
     }
 
-    @Test
     void randomInvalidInterval() {
         assertThrows(NoSuchElementException.class, () -> gradeSet.random(new Interval(50, 100)));
     }
 
-    @Test
     void randomOnlyOneMatch() {
         assertEquals(gradeSet.all().get(4), gradeSet.random(new Interval(6, 10)));
     }
 
-    @Test
     void random() {
         Map<Integer, Integer> levels = new HashMap<>();
 

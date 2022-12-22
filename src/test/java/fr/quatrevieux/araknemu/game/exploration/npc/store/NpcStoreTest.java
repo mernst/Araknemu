@@ -45,7 +45,6 @@ class NpcStoreTest extends GameBaseCase {
     private ItemService itemService;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -63,7 +62,6 @@ class NpcStoreTest extends GameBaseCase {
         );
     }
 
-    @Test
     void available() {
         assertArrayEquals(
             store.available().stream().map(ItemTemplate::id).toArray(),
@@ -71,14 +69,12 @@ class NpcStoreTest extends GameBaseCase {
         );
     }
 
-    @Test
     void has() {
         assertTrue(store.has(39));
         assertTrue(store.has(2425));
         assertFalse(store.has(404));
     }
 
-    @Test
     void buyOneWithFixedStats() {
         Map<Item, Integer> ret = store.buy(39, 1).items();
 
@@ -87,7 +83,6 @@ class NpcStoreTest extends GameBaseCase {
         assertEquals(1, (int) ret.get(itemService.create(39)));
     }
 
-    @Test
     void buyMultipleWithFixedStats() {
         Map<Item, Integer> ret = store.buy(39, 5).items();
 
@@ -96,7 +91,6 @@ class NpcStoreTest extends GameBaseCase {
         assertEquals(5, (int) ret.get(itemService.create(39)));
     }
 
-    @Test
     void buyOneWithRandomStats() {
         Map<Item, Integer> ret = store.buy(2425, 1).items();
 
@@ -114,7 +108,6 @@ class NpcStoreTest extends GameBaseCase {
         assertNotEquals(item, other);
     }
 
-    @Test
     void buyMultipleWithRandomStats() {
         Map<Item, Integer> ret = store.buy(2425, 5).items();
 
@@ -123,14 +116,12 @@ class NpcStoreTest extends GameBaseCase {
         assertEquals(5, ret.values().stream().mapToInt(Integer::intValue).sum());
     }
 
-    @Test
     void price() {
         assertEquals(100, store.buy(39, 1).price());
         assertEquals(500, store.buy(39, 5).price());
         assertEquals(2750, store.buy(2425, 5).price());
     }
 
-    @Test
     void sellPrice() {
         Item item = container.get(ItemService.class).create(39);
 
@@ -144,7 +135,6 @@ class NpcStoreTest extends GameBaseCase {
         assertEquals(0, store.sellPrice(item, 100));
     }
 
-    @Test
     void factory() throws SQLException {
         dataSet.pushNpcs();
 

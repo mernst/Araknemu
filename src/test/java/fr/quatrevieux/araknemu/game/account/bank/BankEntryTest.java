@@ -40,7 +40,6 @@ class BankEntryTest extends GameBaseCase {
     private BankEntry entry;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -54,7 +53,6 @@ class BankEntryTest extends GameBaseCase {
         entry = bank.add(container.get(ItemService.class).create(39), 3);
     }
 
-    @Test
     void getters() {
         assertEquals(1, entry.id());
         assertEquals(39, entry.templateId());
@@ -72,7 +70,6 @@ class BankEntryTest extends GameBaseCase {
         assertEquals(2, entry.effects().get(0).min());
     }
 
-    @Test
     void add() {
         AtomicReference<ObjectQuantityChanged> ref = new AtomicReference<>();
         bank.dispatcher().add(ObjectQuantityChanged.class, ref::set);
@@ -83,7 +80,6 @@ class BankEntryTest extends GameBaseCase {
         assertSame(entry, ref.get().entry());
     }
 
-    @Test
     void addInvalidQuantity() {
         AtomicReference<ObjectQuantityChanged> ref = new AtomicReference<>();
         bank.dispatcher().add(ObjectQuantityChanged.class, ref::set);
@@ -95,7 +91,6 @@ class BankEntryTest extends GameBaseCase {
         assertEquals(3, entry.quantity());
     }
 
-    @Test
     void remove() {
         AtomicReference<ObjectQuantityChanged> ref = new AtomicReference<>();
         bank.dispatcher().add(ObjectQuantityChanged.class, ref::set);
@@ -106,7 +101,6 @@ class BankEntryTest extends GameBaseCase {
         assertSame(entry, ref.get().entry());
     }
 
-    @Test
     void removeAll() {
         AtomicReference<ObjectDeleted> ref = new AtomicReference<>();
         bank.dispatcher().add(ObjectDeleted.class, ref::set);
@@ -117,7 +111,6 @@ class BankEntryTest extends GameBaseCase {
         assertSame(entry, ref.get().entry());
     }
 
-    @Test
     void removeInvalidQuantity() {
         AtomicReference<ObjectQuantityChanged> ref = new AtomicReference<>();
         bank.dispatcher().add(ObjectQuantityChanged.class, ref::set);

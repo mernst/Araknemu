@@ -27,7 +27,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class AdminMoveTest {
     private AdminMove.Parser parser = new AdminMove.Parser();
 
-    @Test
     void success() {
         AdminMove move = parser.parse("-4,5");
 
@@ -35,7 +34,6 @@ class AdminMoveTest {
         assertEquals(5, move.geolocation().y());
     }
 
-    @Test
     void badFormat() {
         assertThrows(ParsePacketException.class, () -> parser.parse("invalid"));
     }

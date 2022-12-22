@@ -35,7 +35,6 @@ import java.util.stream.Stream;
 
 class LineOfSightTest extends CommandTestCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,7 +46,6 @@ class LineOfSightTest extends CommandTestCase {
         requestStack.clear();
     }
 
-    @Test
     void success() throws AdminException, SQLException {
         executeWithAdminUser("lineofsight");
 
@@ -64,7 +62,6 @@ class LineOfSightTest extends CommandTestCase {
         );
     }
 
-    @Test
     void withTarget() throws AdminException, SQLException {
         executeWithAdminUser("lineofsight", "269");
 

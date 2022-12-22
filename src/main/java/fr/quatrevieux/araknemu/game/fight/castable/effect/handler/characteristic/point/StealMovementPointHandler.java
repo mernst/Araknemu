@@ -49,7 +49,7 @@ public final class StealMovementPointHandler extends AbstractStealPointHandler {
     }
 
     @Override
-    protected void applyOnCurrentTurn(Fight fight, Turn turn, FighterData caster, @Positive int toAdd) {
+    protected void applyOnCurrentTurn(Fight fight, Turn turn, FighterData caster, int toAdd) {
         turn.points().addMovementPoints(toAdd);
         fight.send(ActionEffect.addMovementPoints(caster, toAdd));
     }

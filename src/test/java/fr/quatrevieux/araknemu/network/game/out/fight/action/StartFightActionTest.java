@@ -27,7 +27,6 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StartFightActionTest {
-    @Test
     void generate() {
         Action action = Mockito.mock(Action.class);
         Fighter fighter = Mockito.mock(Fighter.class);

@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AdminCommandTest {
-    @Test
     void parse() {
         AdminCommand.Parser parser = new AdminCommand.Parser();
 

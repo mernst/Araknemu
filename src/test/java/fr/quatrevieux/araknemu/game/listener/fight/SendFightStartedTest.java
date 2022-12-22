@@ -38,7 +38,6 @@ class SendFightStartedTest extends GameBaseCase {
     private Fight fight;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -65,7 +64,6 @@ class SendFightStartedTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onFightStarted() {
         listener.on(new FightStarted(fight));
 

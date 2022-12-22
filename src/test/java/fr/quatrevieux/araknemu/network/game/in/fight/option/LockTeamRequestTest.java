@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class LockTeamRequestTest {
-    @Test
     void parse() {
         assertNotNull(new LockTeamRequest.Parser().parse(""));
     }

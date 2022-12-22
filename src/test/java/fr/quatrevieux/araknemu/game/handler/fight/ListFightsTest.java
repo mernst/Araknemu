@@ -41,14 +41,12 @@ class ListFightsTest extends FightBaseCase {
     private ListFights handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         handler = new ListFights(container.get(FightService.class));
     }
 
-    @Test
     void withoutFights() throws SQLException, ContainerException {
         explorationPlayer();
 
@@ -57,7 +55,6 @@ class ListFightsTest extends FightBaseCase {
         requestStack.assertLast(new FightList(Collections.emptyList()));
     }
 
-    @Test
     void fightsOnBadMap() throws SQLException, ContainerException {
         explorationPlayer();
 
@@ -69,7 +66,6 @@ class ListFightsTest extends FightBaseCase {
         requestStack.assertLast(new FightList(Collections.emptyList()));
     }
 
-    @Test
     void fightsOnCurrentMap() throws SQLException, ContainerException {
         ExplorationMap map = container.get(ExplorationMapService.class).load(10340);
         explorationPlayer().changeMap(map, 123);

@@ -36,14 +36,12 @@ class CancelGameActionTest extends GameBaseCase {
     private CancelGameAction handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         handler = new CancelGameAction();
     }
 
-    @Test
     void handleCancelMove() throws Exception {
         dataSet.pushMaps().pushSubAreas().pushAreas();
 

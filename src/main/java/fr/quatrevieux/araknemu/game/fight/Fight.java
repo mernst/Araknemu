@@ -78,7 +78,7 @@ public final class Fight implements Dispatcher, Sender {
 
     private final Lock executorLock = new ReentrantLock();
     private final EffectsHandler effects = new EffectsHandler();
-    private @MonotonicNonNull FightTurnList turnList;
+    private FightTurnList turnList;
 
     private final StopWatch duration = new StopWatch();
     private volatile boolean alive = true;
@@ -148,7 +148,6 @@ public final class Fight implements Dispatcher, Sender {
     /**
      * Get the fight map
      */
-    @Pure
     public FightMap map() {
         return map;
     }
@@ -163,7 +162,6 @@ public final class Fight implements Dispatcher, Sender {
     /**
      * Get the current fight state if the type corresponds
      */
-    @Pure
     @SuppressWarnings("unchecked")
     public <T extends FightState> T state(Class<T> type) {
         if (!type.isInstance(statesFlow.current())) {
@@ -184,7 +182,6 @@ public final class Fight implements Dispatcher, Sender {
     /**
      * Get the fight type
      */
-    @Pure
     public FightType type() {
         return type;
     }
@@ -389,7 +386,7 @@ public final class Fight implements Dispatcher, Sender {
      * Get an attachment by its type
      */
     @SuppressWarnings("unchecked")
-    public <T> @Nullable T attachment(Class<T> type) {
+    public <T> T attachment(Class<T> type) {
         return (T) attachments.get(type);
     }
 

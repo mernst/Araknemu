@@ -45,7 +45,6 @@ class KillHandlerTest extends FightBaseCase {
     private KillHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -63,7 +62,6 @@ class KillHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void apply() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -81,7 +79,6 @@ class KillHandlerTest extends FightBaseCase {
         requestStack.assertLast(ActionEffect.fighterDie(caster, target));
     }
 
-    @Test
     void buffNotSupported() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

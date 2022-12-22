@@ -40,7 +40,6 @@ class AlterPointHookTest extends FightBaseCase {
     private PlayerFighter target;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -55,7 +54,6 @@ class AlterPointHookTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void addActionPoint() {
         AlterPointHook hook = AlterPointHook.addActionPoint(fight);
 
@@ -79,7 +77,6 @@ class AlterPointHookTest extends FightBaseCase {
         assertEquals(6, caster.characteristics().get(Characteristic.ACTION_POINT));
     }
 
-    @Test
     void removeActionPoint() {
         AlterPointHook hook = AlterPointHook.removeActionPoint(fight);
 
@@ -103,7 +100,6 @@ class AlterPointHookTest extends FightBaseCase {
         assertEquals(6, caster.characteristics().get(Characteristic.ACTION_POINT));
     }
 
-    @Test
     void addMovementPoint() {
         AlterPointHook hook = AlterPointHook.addMovementPoint(fight);
 
@@ -127,7 +123,6 @@ class AlterPointHookTest extends FightBaseCase {
         assertEquals(3, caster.characteristics().get(Characteristic.MOVEMENT_POINT));
     }
 
-    @Test
     void removeMovementPoint() {
         AlterPointHook hook = AlterPointHook.removeMovementPoint(fight);
 

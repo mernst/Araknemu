@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TemporaryRightsGrantedTest {
-    @Test
     void string() {
         assertEquals("BAIOBob", new TemporaryRightsGranted("Bob").toString());
     }

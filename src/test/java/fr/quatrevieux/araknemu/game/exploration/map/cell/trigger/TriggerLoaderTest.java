@@ -40,7 +40,6 @@ class TriggerLoaderTest extends GameBaseCase {
     private MapTemplateRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -51,12 +50,10 @@ class TriggerLoaderTest extends GameBaseCase {
         repository = container.get(MapTemplateRepository.class);
     }
 
-    @Test
     void loadWithoutTriggers() {
         assertCount(0, loader.load(mapService.load(10300), repository.get(10300).cells()));
     }
 
-    @Test
     void loadWithTriggers() throws SQLException, ContainerException {
         dataSet.pushTrigger(new MapTrigger(10300, 123, 0, "13001,321", "-1"));
         dataSet.pushTrigger(new MapTrigger(10300, 456, 0, "13002,125", "-1"));

@@ -42,7 +42,6 @@ class RealmSessionConfiguratorTest extends RealmBaseCase {
     private RealmSessionConfigurator configurator;
     private Logger logger;
 
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -70,7 +69,6 @@ class RealmSessionConfiguratorTest extends RealmBaseCase {
         );
     }
 
-    @Test
     void opened() throws Exception {
         ConfigurableSession session = new ConfigurableSession(channel);
         RealmSession realmSession = new RealmSession(session);
@@ -82,7 +80,6 @@ class RealmSessionConfiguratorTest extends RealmBaseCase {
         requestStack.assertLast("HC"+realmSession.key().key());
     }
 
-    @Test
     void exceptionShouldCloseSession() {
         ConfigurableSession session = new ConfigurableSession(channel);
         RealmSession realmSession = new RealmSession(session);
@@ -93,7 +90,6 @@ class RealmSessionConfiguratorTest extends RealmBaseCase {
         assertFalse(realmSession.isAlive());
     }
 
-    @Test
     void exceptionCaughtRateLimit() {
         ConfigurableSession session = new ConfigurableSession(channel);
         RealmSession realmSession = new RealmSession(session);

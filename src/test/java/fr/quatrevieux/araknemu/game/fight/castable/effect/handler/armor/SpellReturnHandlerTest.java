@@ -47,7 +47,6 @@ class SpellReturnHandlerTest extends FightBaseCase {
     private SpellReturnHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -64,7 +63,6 @@ class SpellReturnHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handle() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -80,7 +78,6 @@ class SpellReturnHandlerTest extends FightBaseCase {
         assertThrows(UnsupportedOperationException.class, () -> handler.handle(scope, scope.effects().get(0)));
     }
 
-    @Test
     void buff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -106,7 +103,6 @@ class SpellReturnHandlerTest extends FightBaseCase {
         assertEquals(5, found.get().remainingTurns());
     }
 
-    @Test
     void onCastTargetWillIgnoreSelfDamage() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -130,7 +126,6 @@ class SpellReturnHandlerTest extends FightBaseCase {
         assertContains(caster, scope.targets());
     }
 
-    @Test
     void onCastTargetWillIgnorePoisonEffects() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -155,7 +150,6 @@ class SpellReturnHandlerTest extends FightBaseCase {
         assertContains(target, scope.targets());
     }
 
-    @Test
     void onCastTargetWillIgnoreNotDamageNorLooseApEffect() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -180,7 +174,6 @@ class SpellReturnHandlerTest extends FightBaseCase {
         assertContains(target, scope.targets());
     }
 
-    @Test
     void onCastTargetWillFailedTooHighLevelSpell() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -207,7 +200,6 @@ class SpellReturnHandlerTest extends FightBaseCase {
         assertCollectionEquals(scope.targets(), target);
     }
 
-    @Test
     void onCastTargetWillFailedTooLowProbability() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -234,7 +226,6 @@ class SpellReturnHandlerTest extends FightBaseCase {
         assertCollectionEquals(scope.targets(), target);
     }
 
-    @Test
     void onCastTargetWillReturnDamageSpell() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -261,7 +252,6 @@ class SpellReturnHandlerTest extends FightBaseCase {
         assertCollectionEquals(scope.effects().get(0).targets(), caster);
     }
 
-    @Test
     void onCastTargetWillReturnApLooseSpell() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

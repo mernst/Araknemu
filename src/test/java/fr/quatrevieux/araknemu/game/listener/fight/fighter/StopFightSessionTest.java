@@ -35,7 +35,6 @@ class StopFightSessionTest extends FightBaseCase {
     private PlayerFighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -44,7 +43,6 @@ class StopFightSessionTest extends FightBaseCase {
         listener = new StopFightSession(fighter);
     }
 
-    @Test
     void onFighterRemoved() {
         listener.on(new FightLeaved());
 

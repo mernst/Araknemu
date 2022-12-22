@@ -61,7 +61,7 @@ public final class GamePlayerRace {
     /**
      * Get the race life per level
      */
-    public @Positive int life(@Positive int level) {
+    public int life(int level) {
         return entity.startLife() + (level - 1) * entity.perLevelLife();
     }
 
@@ -82,7 +82,7 @@ public final class GamePlayerRace {
     /**
      * Get the race start stats
      */
-    public Characteristics baseStats(@Positive int level) {
+    public Characteristics baseStats(int level) {
         for (Map.Entry<Integer, Characteristics> entry  : entity.baseStats().entrySet()) {
             if (entry.getKey() <= level) {
                 return entry.getValue();
@@ -102,7 +102,7 @@ public final class GamePlayerRace {
     /**
      * Get start pods
      */
-    public @Positive int startPods() {
+    public int startPods() {
         return entity.startPods();
     }
 

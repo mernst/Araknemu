@@ -25,12 +25,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ConnectionKeyTest {
-    @Test
     void constructor() {
         assertEquals("azerty", new ConnectionKey("azerty").key());
     }
 
-    @Test
     void generate() {
         ConnectionKey key = new ConnectionKey();
 
@@ -40,7 +38,6 @@ public class ConnectionKeyTest {
         assertNotEquals(key.key(), new ConnectionKey().key());
     }
 
-    @Test
     void decodeRandomKey() {
         for (int i = 0; i < 100; ++i) {
             String data = "my_secret_data";
@@ -52,7 +49,6 @@ public class ConnectionKeyTest {
         }
     }
 
-    @Test
     void decodeWithSpecialChars() {
         String data = "é#ç@à²";
 
@@ -62,7 +58,6 @@ public class ConnectionKeyTest {
         assertEquals(data, key.decode(encoded));
     }
 
-    @Test
     void decodeWithComplexKey() {
         String data = "my_secret_data";
 

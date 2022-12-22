@@ -33,7 +33,6 @@ class SqlQuestionRepositoryTest extends GameBaseCase {
     private SqlQuestionRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -43,12 +42,10 @@ class SqlQuestionRepositoryTest extends GameBaseCase {
         repository = new SqlQuestionRepository(new ConnectionPoolExecutor(app.database().get("game")));
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(-5));
     }
 
-    @Test
     void getById() {
         Question question = repository.get(3786);
 
@@ -58,7 +55,6 @@ class SqlQuestionRepositoryTest extends GameBaseCase {
         assertEquals("", question.condition());
     }
 
-    @Test
     void getByEntity() {
         Question question = repository.get(new Question(3786, null, null, null));
 
@@ -68,14 +64,12 @@ class SqlQuestionRepositoryTest extends GameBaseCase {
         assertEquals("", question.condition());
     }
 
-    @Test
     void has() {
         assertTrue(repository.has(new Question(3786, null, null, null)));
         assertTrue(repository.has(new Question(3596, null, null, null)));
         assertFalse(repository.has(new Question(-5, null, null, null)));
     }
 
-    @Test
     void all() {
         assertArrayEquals(
             new Object[] {3596, 3786},
@@ -83,14 +77,12 @@ class SqlQuestionRepositoryTest extends GameBaseCase {
         );
     }
 
-    @Test
     void byNpc() {
         assertArrayEquals(new int[] {3596, 3786}, repository.byNpc(new Npc(0, 0, null, null, new int[] {3596, 3786})).stream().mapToInt(Question::id).toArray());
         assertArrayEquals(new int[] {3786}, repository.byNpc(new Npc(0, 0, null, null, new int[] {3786})).stream().mapToInt(Question::id).toArray());
         assertArrayEquals(new int[] {}, repository.byNpc(new Npc(0, 0, null, null, new int[] {})).stream().mapToInt(Question::id).toArray());
     }
 
-    @Test
     void byIds() {
         assertArrayEquals(new int[] {3596, 3786}, repository.byIds(new int[] {3596, 3786}).stream().mapToInt(Question::id).toArray());
         assertArrayEquals(new int[] {3786}, repository.byIds(new int[] {3786}).stream().mapToInt(Question::id).toArray());

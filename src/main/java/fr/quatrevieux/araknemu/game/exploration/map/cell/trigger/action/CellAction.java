@@ -36,5 +36,5 @@ public interface CellAction {
     /**
      * Get the trigger cell id
      */
-    public @NonNegative int cell();
+    public int cell();
 }

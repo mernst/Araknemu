@@ -67,13 +67,13 @@ public class SpellTemplateLevelTransformer implements Transformer<SpellTemplate.
     }
 
     @Override
-    public @PolyNull String serialize(SpellTemplate.@PolyNull Level value) {
+    public String serialize(SpellTemplate.Level value) {
         throw new UnsupportedOperationException();
     }
 
     @Override
     @SuppressWarnings("return")
-    public SpellTemplate.@PolyNull Level unserialize(@PolyNull String serialize) {
+    public SpellTemplate.Level unserialize(String serialize) {
         if (serialize == null || serialize.isEmpty() || "-1".equals(serialize)) {
             return null;
         }
@@ -117,7 +117,7 @@ public class SpellTemplateLevelTransformer implements Transformer<SpellTemplate.
         return value.isEmpty() ? 0 : Integer.parseInt(value);
     }
 
-    private @NonNegative int nonNegative(String value) {
+    private int nonNegative(String value) {
         return value.isEmpty() ? 0 : ParseUtils.parseNonNegativeInt(value);
     }
 

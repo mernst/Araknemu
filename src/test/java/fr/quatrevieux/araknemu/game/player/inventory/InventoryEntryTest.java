@@ -46,7 +46,6 @@ class InventoryEntryTest extends GameBaseCase {
     private PlayerInventory inventory;
     private ListenerAggregate dispatcher;
 
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -61,7 +60,6 @@ class InventoryEntryTest extends GameBaseCase {
         dispatcher = gamePlayer().dispatcher();
     }
 
-    @Test
     void getters() throws InventoryException, ContainerException {
         Item item = container.get(ItemService.class).create(284);
 
@@ -75,28 +73,24 @@ class InventoryEntryTest extends GameBaseCase {
         assertEquals(284, entry.templateId());
     }
 
-    @Test
     void moveNegativeQuantity() throws InventoryException, ContainerException {
         InventoryEntry entry = inventory.add(container.get(ItemService.class).create(284));
 
         assertThrows(InventoryException.class, () -> entry.move(0, -5), "Invalid quantity given");
     }
 
-    @Test
     void moveTooHighQuantity() throws InventoryException, ContainerException {
         InventoryEntry entry = inventory.add(container.get(ItemService.class).create(284));
 
         assertThrows(InventoryException.class, () -> entry.move(0, 100), "Invalid quantity given");
     }
 
-    @Test
     void moveAlreadyOnRequestedPosition() throws InventoryException, ContainerException {
         InventoryEntry entry = inventory.add(container.get(ItemService.class).create(284));
 
         assertThrowsWithMessage(InventoryException.class, "The item is already on the requested position", () -> entry.move(-1, 1));
     }
 
-    @Test
     void moveAll() throws InventoryException, ContainerException {
         InventoryEntry entry = inventory.add(
             container.get(ItemService.class).create(40)
@@ -111,7 +105,6 @@ class InventoryEntryTest extends GameBaseCase {
         assertEquals(1, entry.position());
     }
 
-    @Test
     void movePartial() throws InventoryException, ContainerException {
         Item item = container.get(ItemService.class).create(40);
         InventoryEntry entry = inventory.add(item, 10);
@@ -153,7 +146,6 @@ class InventoryEntryTest extends GameBaseCase {
         assertSame(item, ref1.get().item());
     }
 
-    @Test
     void add() throws InventoryException, ContainerException {
         InventoryEntry entry = inventory.add(
             container.get(ItemService.class).create(284),
@@ -169,7 +161,6 @@ class InventoryEntryTest extends GameBaseCase {
         assertSame(entry, ref.get().entry());
     }
 
-    @Test
     void remove() throws InventoryException, ContainerException {
         InventoryEntry entry = inventory.add(
             container.get(ItemService.class).create(284),
@@ -185,7 +176,6 @@ class InventoryEntryTest extends GameBaseCase {
         assertSame(entry, ref.get().entry());
     }
 
-    @Test
     void removeTooHighQuantity() throws InventoryException, ContainerException {
         InventoryEntry entry = inventory.add(
             container.get(ItemService.class).create(284),
@@ -201,7 +191,6 @@ class InventoryEntryTest extends GameBaseCase {
         assertNull(ref.get());
     }
 
-    @Test
     void removeAll() throws InventoryException, ContainerException {
         InventoryEntry entry = inventory.add(
             container.get(ItemService.class).create(284),

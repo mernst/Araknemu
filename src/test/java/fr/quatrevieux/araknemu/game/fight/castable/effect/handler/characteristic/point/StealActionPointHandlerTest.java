@@ -54,7 +54,6 @@ class StealActionPointHandlerTest extends FightBaseCase {
     private StealActionPointHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -72,7 +71,6 @@ class StealActionPointHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void buffFixed() {
         caster.characteristics().alter(Characteristic.WISDOM, 10000);
         requestStack.clear();
@@ -112,7 +110,6 @@ class StealActionPointHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void directEffectShouldBeTransformedToSingleTurnBuffForTargetAndAddTurnPointToCaster() {
         caster.characteristics().alter(Characteristic.WISDOM, 10000);
         requestStack.clear();
@@ -150,7 +147,6 @@ class StealActionPointHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyOnSelfShouldBeIgnored() {
         requestStack.clear();
 
@@ -175,7 +171,6 @@ class StealActionPointHandlerTest extends FightBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void dodgedAllShouldNotAddBuff() {
         target.characteristics().alter(Characteristic.RESISTANCE_ACTION_POINT, 1000);
         requestStack.clear();
@@ -206,7 +201,6 @@ class StealActionPointHandlerTest extends FightBaseCase {
         requestStack.assertNotContains(AddBuff.class);
     }
 
-    @Test
     void partialDodge() {
         requestStack.clear();
 
@@ -246,7 +240,6 @@ class StealActionPointHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void withArea() {
         fight.cancel(true);
 
@@ -286,7 +279,6 @@ class StealActionPointHandlerTest extends FightBaseCase {
         assertEquals(0, fight.fighters().get(2).characteristics().get(Characteristic.ACTION_POINT));
     }
 
-    @Test
     void buffStartAndTerminated() {
         caster.characteristics().alter(Characteristic.WISDOM, 10000);
         requestStack.clear();

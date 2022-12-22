@@ -67,7 +67,6 @@ class SimpleContextTest extends GameBaseCase {
         }
     }
 
-    @Test
     void addCommand() throws CommandNotFoundException {
         Command command = Mockito.mock(Command.class);
 
@@ -79,7 +78,6 @@ class SimpleContextTest extends GameBaseCase {
         assertSame(command, context.command("cmd"));
     }
 
-    @Test
     void commandFromParent() throws CommandNotFoundException {
         SimpleContext parent = new SimpleContext(new NullContext());
 
@@ -92,7 +90,6 @@ class SimpleContextTest extends GameBaseCase {
         assertSame(command, context.command("cmd"));
     }
 
-    @Test
     void commands() {
         SimpleContext parent = new SimpleContext(new NullContext());
 
@@ -110,7 +107,6 @@ class SimpleContextTest extends GameBaseCase {
         assertCollectionEquals(context.commands(), p1, p2, c1, c2, c3);
     }
 
-    @Test
     void commandsShouldFilterOverriddenParentCommands() {
         SimpleContext parent = new SimpleContext(new NullContext());
 
@@ -127,7 +123,6 @@ class SimpleContextTest extends GameBaseCase {
         assertCollectionEquals(context.commands(), p2, c1, c2);
     }
 
-    @Test
     void addChild() throws ContextNotFoundException {
         SimpleContext context = new SimpleContext(new NullContext());
 
@@ -137,7 +132,6 @@ class SimpleContextTest extends GameBaseCase {
         assertSame(child, context.child("child"));
     }
 
-    @Test
     void childFromParent() throws ContextNotFoundException {
         SimpleContext parent = new SimpleContext(new NullContext());
 

@@ -10,17 +10,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ExecutorFactoryTest {
-    @BeforeEach
     void setUp() {
         ExecutorFactory.enableTestingMode();
     }
 
-    @AfterEach
     void tearDown() {
         ExecutorFactory.resetTestingExecutor();
     }
 
-    @Test
     void directExecution() {
         ExecutorFactory.enableTestingMode();
         ExecutorFactory.enableDirectExecution();
@@ -38,7 +35,6 @@ class ExecutorFactoryTest {
         assertTrue(b.get());
     }
 
-    @Test
     void disableDirectExecution() {
         ExecutorFactory.disableDirectExecution();
 
@@ -55,7 +51,6 @@ class ExecutorFactoryTest {
         assertFalse(b.get());
     }
 
-    @Test
     void resetTestingExecutorsShouldStopExecutors() {
         ScheduledExecutorService e1 = ExecutorFactory.createSingleThread();
         ScheduledExecutorService e2 = ExecutorFactory.createSingleThread();
@@ -66,7 +61,6 @@ class ExecutorFactoryTest {
         assertTrue(e2.isShutdown());
     }
 
-    @Test
     void createExecutorOnTestingMode() {
         ScheduledExecutorService e = ExecutorFactory.createSingleThread();
 
@@ -75,7 +69,6 @@ class ExecutorFactoryTest {
         assertEquals("TestingExecutor", ExecutorFactory.create(5).getClass().getSimpleName());
     }
 
-    @Test
     void createWithoutTestingMode() {
         ExecutorFactory.disableTestingMode();
 

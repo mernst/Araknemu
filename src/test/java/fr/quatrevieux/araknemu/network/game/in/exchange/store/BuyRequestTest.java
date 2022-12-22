@@ -28,12 +28,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class BuyRequestTest {
     private BuyRequest.Parser parser;
 
-    @BeforeEach
     void setUp() {
         parser = new BuyRequest.Parser();
     }
 
-    @Test
     void parseSuccess() {
         BuyRequest request = parser.parse("12|3");
 
@@ -41,7 +39,6 @@ class BuyRequestTest {
         assertEquals(3, request.quantity());
     }
 
-    @Test
     void parseInvalidFormat() {
         assertThrows(ParsePacketException.class, () -> parser.parse("invalid"));
     }

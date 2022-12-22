@@ -39,7 +39,7 @@ public final class TargetCellValidator implements CastConstraintValidator {
     }
 
     @Override
-    public @Nullable Error validate(Turn turn, Castable castable, BattlefieldCell target) {
+    public Error validate(Turn turn, Castable castable, BattlefieldCell target) {
         if (!target.walkableIgnoreFighter()) {
             return Error.cantCastCellNotAvailable();
         }

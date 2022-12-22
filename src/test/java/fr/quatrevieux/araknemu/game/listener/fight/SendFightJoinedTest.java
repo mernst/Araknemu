@@ -41,7 +41,6 @@ class SendFightJoinedTest extends FightBaseCase {
     private PlayerFighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -54,7 +53,6 @@ class SendFightJoinedTest extends FightBaseCase {
         listener = new SendFightJoined(fighter);
     }
 
-    @Test
     void onFightJoined() {
         listener.on(new FightJoined(fight, fighter));
 

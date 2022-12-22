@@ -39,7 +39,6 @@ class FightMapTest extends GameBaseCase {
     private FightMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -50,19 +49,16 @@ class FightMapTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getters() {
         assertEquals(10340, map.id());
     }
 
-    @Test
     void decoder() {
         assertSame(map.decoder(), map.decoder());
         assertSame(map.get(124), map.decoder().nextCellByDirection(map.get(123), Direction.EAST).get());
         assertSame(map.get(122), map.decoder().nextCellByDirection(map.get(123), Direction.WEST).get());
     }
 
-    @Test
     void iterator() {
         Iterator<BattlefieldCell> it = map.iterator();
 
@@ -71,7 +67,6 @@ class FightMapTest extends GameBaseCase {
         assertSame(map.get(2), it.next());
     }
 
-    @Test
     void getWalkable() {
         FightCell cell = map.get(123);
 
@@ -83,7 +78,6 @@ class FightMapTest extends GameBaseCase {
         assertSame(map, cell.map());
     }
 
-    @Test
     void getNotWalkable() {
         FightCell cell = map.get(1);
 
@@ -95,7 +89,6 @@ class FightMapTest extends GameBaseCase {
         assertSame(map, cell.map());
     }
 
-    @Test
     void startPlaces() throws ContainerException {
         assertArrayEquals(container.get(MapTemplateRepository.class).get(10340).fightPlaces()[0], map.startPlaces(0).stream().mapToInt(FightCell::id).toArray());
         assertArrayEquals(container.get(MapTemplateRepository.class).get(10340).fightPlaces()[1], map.startPlaces(1).stream().mapToInt(FightCell::id).toArray());
@@ -103,7 +96,6 @@ class FightMapTest extends GameBaseCase {
         assertEquals(Collections.emptyList(), map.startPlaces(10));
     }
 
-    @Test
     void values() {
         assertEquals(17, map.dimensions().height());
         assertEquals(15, map.dimensions().width());

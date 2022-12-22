@@ -40,7 +40,6 @@ public class DatabaseTestCase extends TestCase {
     protected ConnectionPool connection;
     protected ConnectionPoolExecutor poolUtils;
 
-    @BeforeEach
     public void setUp() throws Exception {
         connection =  new DefaultDatabaseHandler(
             new DefaultConfiguration(

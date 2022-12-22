@@ -28,7 +28,7 @@ import java.util.Map;
  * Default implementation of configuration system
  */
 public final class DefaultConfiguration implements Configuration {
-    private final Map<ConfigurationModule<?>, @NonNull Object> modules = new HashMap<>();
+    private final Map<ConfigurationModule<?>, Object> modules = new HashMap<>();
 
     private final Driver driver;
 
@@ -38,7 +38,7 @@ public final class DefaultConfiguration implements Configuration {
 
     @Override
     @SuppressWarnings({"unchecked", "cast.unsafe"})
-    public <C extends @NonNull Object> @NonNull C module(ConfigurationModule<C> module) {
+    public <C extends Object> C module(ConfigurationModule<C> module) {
         C config = (C) modules.get(module);
 
         if (config != null) {

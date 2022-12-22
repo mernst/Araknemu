@@ -30,12 +30,12 @@ import org.checkerframework.checker.nullness.qual.PolyNull;
  */
 public final class IpAddressTransformer implements Transformer<IPAddressString> {
     @Override
-    public @PolyNull String serialize(@PolyNull IPAddressString value) {
+    public String serialize(IPAddressString value) {
         return value == null ? null : value.toNormalizedString();
     }
 
     @Override
-    public @PolyNull IPAddressString unserialize(@PolyNull String serialize) throws TransformerException {
+    public IPAddressString unserialize(String serialize) throws TransformerException {
         return serialize == null ? null : new IPAddressString(serialize);
     }
 }

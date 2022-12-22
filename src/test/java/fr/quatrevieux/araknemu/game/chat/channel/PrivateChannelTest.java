@@ -43,7 +43,6 @@ class PrivateChannelTest extends GameBaseCase {
     private GamePlayer other;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -57,12 +56,10 @@ class PrivateChannelTest extends GameBaseCase {
         other = makeOtherPlayer();
     }
 
-    @Test
     void authorized() throws SQLException {
         assertTrue(channel.authorized(gamePlayer()));
     }
 
-    @Test
     void notOnline() throws SQLException, ContainerException {
         assertThrows(ChatException.class, () -> channel.send(
             gamePlayer(),
@@ -75,7 +72,6 @@ class PrivateChannelTest extends GameBaseCase {
         ));
     }
 
-    @Test
     void noTarget() throws SQLException, ContainerException {
         assertThrows(ChatException.class, () -> channel.send(
             gamePlayer(),
@@ -88,7 +84,6 @@ class PrivateChannelTest extends GameBaseCase {
         ));
     }
 
-    @Test
     void success() throws SQLException, ContainerException, ChatException {
         List<ConcealedMessage> events = new ArrayList<>();
 

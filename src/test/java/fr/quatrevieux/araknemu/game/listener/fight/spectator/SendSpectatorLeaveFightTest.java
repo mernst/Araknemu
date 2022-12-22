@@ -34,14 +34,12 @@ class SendSpectatorLeaveFightTest extends FightBaseCase {
     private Fight fight;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
     }
 
-    @Test
     void onStopWatchFight() throws SQLException {
         SendSpectatorLeaveFight listener = new SendSpectatorLeaveFight(new Spectator(gamePlayer(), fight));
         requestStack.clear();

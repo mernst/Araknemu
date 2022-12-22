@@ -35,7 +35,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class EnsureExploringTest extends GameBaseCase{
 
-    @Test
     void handleNoPlayer() {
         PacketHandler inner = Mockito.mock(PacketHandler.class);
         EnsureExploring handler = new EnsureExploring<>(inner);
@@ -43,7 +42,6 @@ class EnsureExploringTest extends GameBaseCase{
         assertThrows(CloseImmediately.class, () -> handler.handle(session, Mockito.mock(Packet.class)));
     }
 
-    @Test
     void handleSuccess() throws Exception {
         PacketHandler inner = Mockito.mock(PacketHandler.class);
         EnsureExploring handler = new EnsureExploring<>(inner);
@@ -56,7 +54,6 @@ class EnsureExploringTest extends GameBaseCase{
         Mockito.verify(inner).handle(session, packet);
     }
 
-    @Test
     void packet() throws ContainerException {
         assertEquals(
             AskCharacterList.class,

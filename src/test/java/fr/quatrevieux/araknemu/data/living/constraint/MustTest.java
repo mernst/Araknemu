@@ -36,7 +36,6 @@ class MustTest {
         }
     }
 
-    @Test
     void check() {
         Must<Entity, Object> must = new Must<>(new EntityConstraint[] {
             new NotEmpty<>(new Object(), Entity::getValue),
@@ -48,7 +47,6 @@ class MustTest {
         assertTrue(must.check(new Entity("123")));
     }
 
-    @Test
     void error() {
         Must<Entity, Integer> must = new Must<>(new EntityConstraint[] {
             new NotEmpty<>(1, Entity::getValue),

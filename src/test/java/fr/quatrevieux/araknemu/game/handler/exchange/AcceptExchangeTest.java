@@ -38,7 +38,6 @@ class AcceptExchangeTest extends GameBaseCase {
     private ExplorationPlayer other;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,7 +51,6 @@ class AcceptExchangeTest extends GameBaseCase {
         }
     }
 
-    @Test
     void acceptShouldToggleState() throws Exception {
         handlePacket(new ExchangeReady());
         requestStack.assertLast(new ExchangeAccepted(true, player));
@@ -61,7 +59,6 @@ class AcceptExchangeTest extends GameBaseCase {
         requestStack.assertLast(new ExchangeAccepted(false, player));
     }
 
-    @Test
     void acceptForProcessExchange() throws Exception {
         player.interactions().get(ExchangeDialog.class).kamas(1000);
         other.interactions().get(ExchangeDialog.class).accept();
@@ -73,7 +70,6 @@ class AcceptExchangeTest extends GameBaseCase {
         assertEquals(14225, player.inventory().kamas());
     }
 
-    @Test
     void notExploring() {
         session.setExploration(null);
 

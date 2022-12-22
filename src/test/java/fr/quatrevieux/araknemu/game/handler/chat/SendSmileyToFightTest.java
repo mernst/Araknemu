@@ -25,7 +25,6 @@ import fr.quatrevieux.araknemu.network.game.out.chat.Smiley;
 import org.junit.jupiter.api.Test;
 
 class SendSmileyToFightTest extends FightBaseCase {
-    @Test
     void inFight() throws Exception {
         createFight();
 

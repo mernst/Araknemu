@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AskRandomNameTest {
-    @Test
     void parser() {
         AskRandomName.Parser parser = new AskRandomName.Parser();
 

@@ -34,7 +34,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class GeolocationServiceTest extends GameBaseCase {
     private GeolocationService service;
 
-    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -52,7 +51,6 @@ class GeolocationServiceTest extends GameBaseCase {
         ;
     }
 
-    @Test
     void findSuccess() {
         GeolocationService.GeolocationContext context = new GeolocationService.GeolocationContext();
         context.superArea(3);
@@ -63,7 +61,6 @@ class GeolocationServiceTest extends GameBaseCase {
         assertSame(map, service.find(new Geolocation(3, 6), context));
     }
 
-    @Test
     void findWithSubArea() throws SQLException {
         pushMapsOnSameGeoposition();
 
@@ -73,7 +70,6 @@ class GeolocationServiceTest extends GameBaseCase {
         assertEquals(99002, service.find(new Geolocation(42, 24), context.subArea(1)).id());
     }
 
-    @Test
     void findWithSuperArea() throws SQLException {
         pushMapsOnSameGeoposition();
 
@@ -83,12 +79,10 @@ class GeolocationServiceTest extends GameBaseCase {
         assertEquals(99001, service.find(new Geolocation(42, 24), context.superArea(3)).id());
     }
 
-    @Test
     void findNotFound() {
         assertThrows(EntityNotFoundException.class, () -> service.find(new Geolocation(40, 4), new GeolocationService.GeolocationContext()));
     }
 
-    @Test
     void findShouldReturnTheBiggerMap() throws SQLException {
         dataSet
             .pushMap(99001, "", 1, 1, "", "Hhaaeaaaaa", "", new Geolocation(42, 24), 1, false)
@@ -98,7 +92,6 @@ class GeolocationServiceTest extends GameBaseCase {
         assertEquals(99002, service.find(new Geolocation(42, 24), new GeolocationService.GeolocationContext()).id());
     }
 
-    @Test
     void findWithIndoor() throws SQLException {
         dataSet
             .pushMap(99001, "", 1, 1, "", "Hhaaeaaaaa", "", new Geolocation(42, 24), 1, true)

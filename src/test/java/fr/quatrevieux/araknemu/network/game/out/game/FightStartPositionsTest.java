@@ -42,7 +42,6 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FightStartPositionsTest {
-    @Test
     void generate() {
         class FakeCell implements MapCell {
             private final int id;

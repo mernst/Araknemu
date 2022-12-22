@@ -29,7 +29,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class FightPlacesTransformerTest extends TestCase {
     private FightPlacesTransformer transformer = new FightPlacesTransformer();
 
-    @Test
     void unserializeSuccess() {
         int[][] places = transformer.unserialize("dKdvdgc3cPc4dhdwdZ|fIftfee1eMeyeNe2fffu");
 
@@ -41,7 +40,6 @@ class FightPlacesTransformerTest extends TestCase {
         assertCount(0, transformer.unserialize(null));
     }
 
-    @Test
     void unserializeError() {
         assertThrows(RuntimeException.class, () -> transformer.unserialize("  invalid  "));
     }

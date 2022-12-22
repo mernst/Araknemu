@@ -35,14 +35,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SaveTest extends CommandTestCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         command = new Save(container.get(SavingService.class));
     }
 
-    @Test
     void executeSuccess() throws SQLException, AdminException, InterruptedException {
         GamePlayer player = gamePlayer(true);
         player.setPosition(new Position(123, 45));
@@ -53,7 +51,6 @@ class SaveTest extends CommandTestCase {
         assertEquals(new Position(123, 45), dataSet.refresh(new Player(player.id())).position());
     }
 
-    @Test
     void executeAlreadyInProgress() throws Exception {
         ExecutorFactory.disableDirectExecution();
         gamePlayer(true);
@@ -64,7 +61,6 @@ class SaveTest extends CommandTestCase {
         assertOutput("A save is already in progress");
     }
 
-    @Test
     void help() {
         assertHelp(
             "save - Save all connected players",

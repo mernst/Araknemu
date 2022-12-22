@@ -204,7 +204,6 @@ public class GameBaseCase extends DatabaseTestCase {
     protected GameDataSet dataSet;
     protected Accessors accessors;
 
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -284,7 +283,6 @@ public class GameBaseCase extends DatabaseTestCase {
         container.get(GameService.class).subscribe();
     }
 
-    @AfterEach
     public void tearDown() throws ContainerException {
         ExecutorFactory.resetTestingExecutor();
         dataSet.destroy();

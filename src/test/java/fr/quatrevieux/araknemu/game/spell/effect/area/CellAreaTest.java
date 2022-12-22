@@ -33,7 +33,6 @@ class CellAreaTest extends GameBaseCase {
     private FightMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -41,7 +40,6 @@ class CellAreaTest extends GameBaseCase {
         map = new FightMap(container.get(MapTemplateRepository.class).get(10340));
     }
 
-    @Test
     void resolve() {
         assertEquals(
             Collections.singleton(map.get(123)),

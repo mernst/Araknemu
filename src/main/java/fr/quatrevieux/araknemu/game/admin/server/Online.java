@@ -161,8 +161,7 @@ public final class Online extends AbstractCommand<Online.Arguments> {
         @Option(name = "--skip", usage = "Skip the first lines.")
         private int skip = 0;
 
-        @Argument(metaVar = "SEARCH", usage = "Optional. Filter the online player name. Return only players containing the search term into the name.")
-        private @MonotonicNonNull String search = null;
+        private String search = null;
 
         /**
          * Apply the options on the stream

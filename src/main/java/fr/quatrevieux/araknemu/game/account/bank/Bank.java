@@ -56,7 +56,7 @@ public final class Bank implements Inventory<BankEntry>, Dispatcher {
     private final ListenerAggregate dispatcher = new DefaultListenerAggregate();
     private final Wallet wallet;
 
-    private @MonotonicNonNull ItemStorage<BankEntry> storage;
+    private ItemStorage<BankEntry> storage;
 
     public Bank(BankService service, AccountBank entity) {
         this.service = service;
@@ -65,19 +65,18 @@ public final class Bank implements Inventory<BankEntry>, Dispatcher {
         wallet = new SimpleWallet(entity, dispatcher);
     }
 
-    @Pure
     @Override
-    public @NonNegative long kamas() {
+    public long kamas() {
         return wallet.kamas();
     }
 
     @Override
-    public void addKamas(@Positive long quantity) {
+    public void addKamas(long quantity) {
         wallet.addKamas(quantity);
     }
 
     @Override
-    public void removeKamas(@Positive long quantity) {
+    public void removeKamas(long quantity) {
         wallet.removeKamas(quantity);
     }
 
@@ -87,7 +86,7 @@ public final class Bank implements Inventory<BankEntry>, Dispatcher {
     }
 
     @Override
-    public BankEntry add(Item item, @Positive int quantity, @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int position) throws InventoryException {
+    public BankEntry add(Item item, int quantity, int position) throws InventoryException {
         return storage().add(item, quantity, position);
     }
 
@@ -125,7 +124,7 @@ public final class Bank implements Inventory<BankEntry>, Dispatcher {
     /**
      * Get the cost for open the current bank
      */
-    public @NonNegative long cost() {
+    public long cost() {
         return service.cost(entity);
     }
 
@@ -159,7 +158,7 @@ public final class Bank implements Inventory<BankEntry>, Dispatcher {
     /**
      * Create a new entry
      */
-    private BankEntry create(int id, Item item, @Positive int quantity, @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int position) {
+    private BankEntry create(int id, Item item, int quantity, int position) {
         return new BankEntry(
             this,
             new BankItem(

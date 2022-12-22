@@ -34,7 +34,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class OnlineTest extends CommandTestCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -46,7 +45,6 @@ class OnlineTest extends CommandTestCase {
         ;
     }
 
-    @Test
     void executeWithoutArguments() throws Exception {
         gamePlayer(true);
         makeOtherPlayer();
@@ -60,7 +58,6 @@ class OnlineTest extends CommandTestCase {
         );
     }
 
-    @Test
     void executeWithExploringPlayer() throws Exception {
         explorationPlayer();
 
@@ -72,7 +69,6 @@ class OnlineTest extends CommandTestCase {
         );
     }
 
-    @Test
     void executeWithFightingPlayer() throws Exception {
         GamePlayer player = gamePlayer(true);
         ExplorationMap map = container.get(ExplorationMapService.class).load(10340);
@@ -91,7 +87,6 @@ class OnlineTest extends CommandTestCase {
         );
     }
 
-    @Test
     void executeFilterByNameOneMatch() throws Exception {
         gamePlayer(true);
         makeOtherPlayer();
@@ -104,7 +99,6 @@ class OnlineTest extends CommandTestCase {
         );
     }
 
-    @Test
     void executeFilterByNameTwoMatch() throws Exception {
         gamePlayer(true);
         makeOtherPlayer();
@@ -118,7 +112,6 @@ class OnlineTest extends CommandTestCase {
         );
     }
 
-    @Test
     void executeFilterByNameNoneMatch() throws Exception {
         gamePlayer(true);
         makeOtherPlayer();
@@ -131,7 +124,6 @@ class OnlineTest extends CommandTestCase {
         );
     }
 
-    @Test
     void limit() throws Exception {
         explorationPlayer();
         makeOtherPlayer();
@@ -146,7 +138,6 @@ class OnlineTest extends CommandTestCase {
         );
     }
 
-    @Test
     void skip() throws Exception {
         explorationPlayer();
         makeOtherPlayer();
@@ -165,7 +156,6 @@ class OnlineTest extends CommandTestCase {
         );
     }
 
-    @Test
     void help() {
         assertHelp(
             "online - List online players",

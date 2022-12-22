@@ -44,7 +44,6 @@ class StartDialogTest extends GameBaseCase {
     private ExplorationMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -63,7 +62,6 @@ class StartDialogTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handleSuccess() {
         handler.handle(session, new CreateDialogRequest(-47204));
 
@@ -78,7 +76,6 @@ class StartDialogTest extends GameBaseCase {
         );
     }
 
-    @Test
     void handleNotOnMap() {
         player.leave();
         assertThrows(ErrorPacket.class, () -> handlePacket(new CreateDialogRequest(-47204)));
@@ -86,13 +83,11 @@ class StartDialogTest extends GameBaseCase {
         assertFalse(player.interactions().interacting());
     }
 
-    @Test
     void handleNotFound() {
         assertThrows(NoSuchElementException.class, () -> handler.handle(session, new CreateDialogRequest(404)));
         assertFalse(player.interactions().interacting());
     }
 
-    @Test
     void handleNotNpc() throws Exception {
         ExplorationPlayer other = makeOtherExplorationPlayer();
         other.changeMap(map, 123);
@@ -101,14 +96,12 @@ class StartDialogTest extends GameBaseCase {
         assertFalse(player.interactions().interacting());
     }
 
-    @Test
     void functionalSuccess() throws Exception {
         handlePacket(new CreateDialogRequest(-47204));
 
         assertTrue(player.interactions().interacting());
     }
 
-    @Test
     void functionalNotExploring() {
         session.setExploration(null);
 

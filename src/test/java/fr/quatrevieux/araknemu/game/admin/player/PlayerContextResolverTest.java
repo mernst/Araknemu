@@ -49,7 +49,6 @@ class PlayerContextResolverTest extends GameBaseCase {
     private AdminUser adminUser;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -62,7 +61,6 @@ class PlayerContextResolverTest extends GameBaseCase {
         adminUser = container.get(AdminSessionService.class).user(gamePlayer(true));
     }
 
-    @Test
     void resolveByGamePlayer() throws SQLException, ContainerException, ContextException {
         Context context = resolver.resolve(gamePlayer());
 
@@ -71,7 +69,6 @@ class PlayerContextResolverTest extends GameBaseCase {
         assertInstanceOf(AccountContext.class, context.child("account"));
     }
 
-    @Test
     void resolveByName() throws SQLException, ContainerException, ContextException {
         Context context = resolver.resolve(adminUser, () -> "Bob");
 
@@ -79,12 +76,10 @@ class PlayerContextResolverTest extends GameBaseCase {
         assertInstanceOf(AccountContext.class, context.child("account"));
     }
 
-    @Test
     void resolvePlayerNotFound() {
         assertThrowsWithMessage(ContextException.class, "Cannot found the player notFound", () -> resolver.resolve(adminUser, () -> "notFound"));
     }
 
-    @Test
     void register() throws ContextException, CommandNotFoundException, SQLException {
         Command command = Mockito.mock(Command.class);
         Mockito.when(command.name()).thenReturn("mocked");
@@ -103,7 +98,6 @@ class PlayerContextResolverTest extends GameBaseCase {
         assertSame(command, context.command("mocked"));
     }
 
-    @Test
     void resolveShouldKeepContextInstance() throws ContextException, CommandNotFoundException, SQLException {
         Context context1 = resolver.resolve(adminUser, () -> "Bob");
         Context context2 = resolver.resolve(adminUser, () -> "Bob");

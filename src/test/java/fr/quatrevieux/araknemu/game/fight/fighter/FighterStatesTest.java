@@ -37,7 +37,6 @@ class FighterStatesTest extends FightBaseCase {
     private States states;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,7 +46,6 @@ class FighterStatesTest extends FightBaseCase {
         fight.state(PlacementState.class).startFight();
     }
 
-    @Test
     void pushNewState() {
         AtomicReference<FighterStateChanged> ref = new AtomicReference<>();
         fight.dispatcher().add(FighterStateChanged.class, ref::set);
@@ -61,7 +59,6 @@ class FighterStatesTest extends FightBaseCase {
         assertEquals(FighterStateChanged.Type.ADD, ref.get().type());
     }
 
-    @Test
     void pushStateAlreadyActive() {
         states.push(5);
         requestStack.clear();
@@ -74,7 +71,6 @@ class FighterStatesTest extends FightBaseCase {
         assertNull(ref.get());
     }
 
-    @Test
     void pushStateAlreadyActiveWithHigherDuration() {
         states.push(5, 3);
         requestStack.clear();
@@ -88,7 +84,6 @@ class FighterStatesTest extends FightBaseCase {
         assertEquals(FighterStateChanged.Type.UPDATE, ref.get().type());
     }
 
-    @Test
     void pushStateAlreadyActiveWithLowerDuration() {
         states.push(5, 3);
 
@@ -99,7 +94,6 @@ class FighterStatesTest extends FightBaseCase {
         assertNull(ref.get());
     }
 
-    @Test
     void pushAlreadyActiveWithIndefiniteDuration() {
         states.push(5, 3);
 
@@ -112,7 +106,6 @@ class FighterStatesTest extends FightBaseCase {
         assertEquals(FighterStateChanged.Type.UPDATE, ref.get().type());
     }
 
-    @Test
     void hasAll() {
         states.push(5);
         states.push(4);
@@ -123,7 +116,6 @@ class FighterStatesTest extends FightBaseCase {
         assertFalse(states.hasAll(new int[] {3, 5, 8}));
     }
 
-    @Test
     void hasOne() {
         states.push(5);
         states.push(4);
@@ -134,7 +126,6 @@ class FighterStatesTest extends FightBaseCase {
         assertFalse(states.hasOne(new int[] {8}));
     }
 
-    @Test
     void refresh() {
         AtomicReference<FighterStateChanged> ref = new AtomicReference<>();
         fight.dispatcher().add(FighterStateChanged.class, ref::set);
@@ -162,7 +153,6 @@ class FighterStatesTest extends FightBaseCase {
         assertEquals(FighterStateChanged.Type.REMOVE, ref.get().type());
     }
 
-    @Test
     void removeNotFound() {
         AtomicReference<FighterStateChanged> ref = new AtomicReference<>();
         fight.dispatcher().add(FighterStateChanged.class, ref::set);
@@ -172,7 +162,6 @@ class FighterStatesTest extends FightBaseCase {
         assertNull(ref.get());
     }
 
-    @Test
     void remove() {
         states.push(5);
 

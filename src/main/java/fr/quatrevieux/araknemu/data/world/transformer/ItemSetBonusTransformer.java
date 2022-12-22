@@ -39,7 +39,7 @@ import java.util.stream.Collectors;
  */
 public final class ItemSetBonusTransformer implements Transformer<List<List<ItemTemplateEffectEntry>>> {
     @Override
-    public @PolyNull String serialize(@PolyNull List<List<ItemTemplateEffectEntry>> value) {
+    public String serialize(List<List<ItemTemplateEffectEntry>> value) {
         if (value == null) {
             return null;
         }
@@ -56,7 +56,7 @@ public final class ItemSetBonusTransformer implements Transformer<List<List<Item
     }
 
     @Override
-    public @NonNull List<List<ItemTemplateEffectEntry>> unserialize(@PolyNull String serialize) {
+    public List<List<ItemTemplateEffectEntry>> unserialize(String serialize) {
         if (serialize == null || serialize.isEmpty()) {
             return Collections.emptyList();
         }

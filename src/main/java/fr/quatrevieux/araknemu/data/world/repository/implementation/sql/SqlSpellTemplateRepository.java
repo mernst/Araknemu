@@ -118,7 +118,7 @@ final class SqlSpellTemplateRepository implements SpellTemplateRepository {
                 record.getString("SPELL_NAME"),
                 record.getInt("SPELL_SPRITE"),
                 record.getString("SPELL_SPRITE_ARG"),
-                new SpellTemplate.@Nullable Level[]{
+                new SpellTemplate.Level[]{
                     record.nullableUnserialize("SPELL_LVL_1", levelTransformer),
                     record.nullableUnserialize("SPELL_LVL_2", levelTransformer),
                     record.nullableUnserialize("SPELL_LVL_3", levelTransformer),

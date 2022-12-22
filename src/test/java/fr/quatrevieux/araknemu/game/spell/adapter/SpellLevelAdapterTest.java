@@ -38,7 +38,6 @@ class SpellLevelAdapterTest extends GameBaseCase {
     private SpellEffectService effectService;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -48,7 +47,6 @@ class SpellLevelAdapterTest extends GameBaseCase {
         effectService = container.get(SpellEffectService.class);
     }
 
-    @Test
     void getters() {
         SpellLevelAdapter spell = new SpellLevelAdapter(
             1, repository.get(202), repository.get(202).levels()[0],
@@ -82,7 +80,6 @@ class SpellLevelAdapterTest extends GameBaseCase {
         assertEquals("0,1,1", spell.spriteArgs());
     }
 
-    @Test
     void effectsWithTarget() {
         SpellTemplate template = repository.get(6);
         SpellLevelAdapter spell = new SpellLevelAdapter(
@@ -98,7 +95,6 @@ class SpellLevelAdapterTest extends GameBaseCase {
         assertEquals(new SpellEffectTarget(4), spell.criticalEffects().get(0).target());
     }
 
-    @Test
     void effectsMultiple() {
         SpellTemplate template = repository.get(2);
 

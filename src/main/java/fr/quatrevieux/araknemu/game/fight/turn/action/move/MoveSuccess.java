@@ -86,7 +86,7 @@ public final class MoveSuccess implements MoveResult {
     }
 
     @Override
-    public @NonNegative int lostMovementPoints() {
+    public int lostMovementPoints() {
         return Asserter.castNonNegative(path.size() - 1); // The path contains the current fighter's cell
     }
 

@@ -58,7 +58,7 @@ public final class PlayerInventory implements Inventory<InventoryEntry>, Dispatc
     private final Accessories accessories;
     private final ItemSets itemSets;
 
-    private @NonNegative int weight;
+    private int weight;
 
     @SuppressWarnings({"assignment", "argument", "return"})
     public PlayerInventory(GamePlayer owner, Player player, Collection<InventoryService.LoadedItem> items) {
@@ -85,7 +85,7 @@ public final class PlayerInventory implements Inventory<InventoryEntry>, Dispatc
     }
 
     @Override
-    public InventoryEntry add(Item item, @Positive int quantity, @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int position) throws InventoryException {
+    public InventoryEntry add(Item item, int quantity, int position) throws InventoryException {
         final InventorySlot target = slots.get(position);
 
         target.check(item, quantity);
@@ -133,7 +133,7 @@ public final class PlayerInventory implements Inventory<InventoryEntry>, Dispatc
      *
      * @return The item contained in the slot, or an empty Optional
      */
-    public Optional<Item> bySlot(@IntRange(from = 0, to = InventorySlots.SLOT_MAX) int slotId) throws InventoryException {
+    public Optional<Item> bySlot(int slotId) throws InventoryException {
         return slots.get(slotId).entry().map(InventoryEntry::item);
     }
 
@@ -179,19 +179,18 @@ public final class PlayerInventory implements Inventory<InventoryEntry>, Dispatc
         }
     }
 
-    @Pure
     @Override
-    public @NonNegative long kamas() {
+    public long kamas() {
         return player.kamas();
     }
 
     @Override
-    public void addKamas(@Positive long quantity) {
+    public void addKamas(long quantity) {
         wallet.addKamas(quantity);
     }
 
     @Override
-    public void removeKamas(@Positive long quantity) {
+    public void removeKamas(long quantity) {
         wallet.removeKamas(quantity);
     }
 
@@ -204,7 +203,7 @@ public final class PlayerInventory implements Inventory<InventoryEntry>, Dispatc
      * @return true if the entry change position
      *         false if the entry is destroyed (like stacking or eat)
      */
-    boolean move(InventoryEntry entry, @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int position) throws InventoryException {
+    boolean move(InventoryEntry entry, int position) throws InventoryException {
         final InventorySlot target = slots.get(position);
 
         target.check(entry.item(), entry.quantity());

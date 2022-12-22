@@ -32,7 +32,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SetLifeTest extends CommandTestCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -41,7 +40,6 @@ class SetLifeTest extends CommandTestCase {
         );
     }
 
-    @Test
     void executeWithFixedLife() throws ContainerException, SQLException, AdminException {
         gamePlayer().properties().life().set(5);
 
@@ -51,7 +49,6 @@ class SetLifeTest extends CommandTestCase {
         assertOutput("Life of Bob is set to 100");
     }
 
-    @Test
     void executeWithMaxLife() throws ContainerException, SQLException, AdminException {
         gamePlayer().properties().life().set(5);
 
@@ -61,12 +58,10 @@ class SetLifeTest extends CommandTestCase {
         assertOutput("Bob retrieve all his life");
     }
 
-    @Test
     void executeMissingParameter() throws ContainerException, SQLException, AdminException {
         assertThrowsWithMessage(CommandException.class, "Argument \"number|max\" is required", () -> execute("setlife"));
     }
 
-    @Test
     void help() {
         assertHelp(
             "setlife - Change the player current life",

@@ -45,7 +45,7 @@ public final class DefaultItemFactory implements ItemFactory {
     }
 
     @Override
-    public Item create(ItemTemplate template, ItemType type, @Nullable GameItemSet set, boolean maximize) {
+    public Item create(ItemTemplate template, ItemType type, GameItemSet set, boolean maximize) {
         final ItemFactory factory = factories.get(type.superType());
 
         if (factory == null) {
@@ -56,7 +56,7 @@ public final class DefaultItemFactory implements ItemFactory {
     }
 
     @Override
-    public Item retrieve(ItemTemplate template, ItemType type, @Nullable GameItemSet set, List<ItemTemplateEffectEntry> effects) {
+    public Item retrieve(ItemTemplate template, ItemType type, GameItemSet set, List<ItemTemplateEffectEntry> effects) {
         final ItemFactory factory = factories.get(type.superType());
 
         if (factory == null) {

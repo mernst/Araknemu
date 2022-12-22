@@ -34,7 +34,6 @@ class RemoveDeadFighterTest extends FightBaseCase {
     private RemoveDeadFighter listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -48,14 +47,12 @@ class RemoveDeadFighterTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onFighterDieNotCurrentTurn() {
         listener.on(new FighterDie(other.fighter(), other.fighter()));
 
         assertFalse(other.fighter().cell().hasFighter());
     }
 
-    @Test
     void onFighterDieCurrentTurn() {
         player.fighter().life().alter(player.fighter(), -1000);
         listener.on(new FighterDie(player.fighter(), player.fighter()));

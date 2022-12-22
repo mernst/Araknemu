@@ -54,7 +54,6 @@ class ExplorationPlayerTest extends GameBaseCase {
     private ExplorationPlayer player;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -63,7 +62,6 @@ class ExplorationPlayerTest extends GameBaseCase {
         session.setExploration(player);
     }
 
-    @Test
     void sprite() throws SQLException, ContainerException {
         assertEquals(
             new PlayerSprite(new ExplorationPlayer(gamePlayer())).toString(),
@@ -71,7 +69,6 @@ class ExplorationPlayerTest extends GameBaseCase {
         );
     }
 
-    @Test
     void join() throws ContainerException {
         ExplorationMap map = container.get(ExplorationMapService.class).load(player.position().map());
 
@@ -98,14 +95,12 @@ class ExplorationPlayerTest extends GameBaseCase {
         assertSame(map, ref.get());
     }
 
-    @Test
     void joinInvalidMap() throws ContainerException {
         ExplorationMap map = container.get(ExplorationMapService.class).load(10340);
 
         assertThrows(IllegalArgumentException.class, () -> player.join(map));
     }
 
-    @Test
     void joinInvalidCell() throws ContainerException {
         player.player().setPosition(new Position(10300, 1000));
         ExplorationMap map = container.get(ExplorationMapService.class).load(10300);
@@ -113,7 +108,6 @@ class ExplorationPlayerTest extends GameBaseCase {
         assertThrows(IllegalStateException.class, () -> player.join(map));
     }
 
-    @Test
     void move() throws ContainerException {
         ExplorationMap map = container.get(ExplorationMapService.class).load(player.position().map());
         player.join(map);
@@ -131,7 +125,6 @@ class ExplorationPlayerTest extends GameBaseCase {
         assertSame(player, ref.get().player());
     }
 
-    @Test
     void moveInvalidCell() throws ContainerException {
         ExplorationMap map = container.get(ExplorationMapService.class).load(player.position().map());
         player.join(map);
@@ -139,12 +132,10 @@ class ExplorationPlayerTest extends GameBaseCase {
         assertThrows(IllegalArgumentException.class, () -> player.move(container.get(ExplorationMapService.class).load(10340).get(123), Direction.EAST));
     }
 
-    @Test
     void moveNotOnMap() throws ContainerException {
         assertThrows(IllegalArgumentException.class, () -> player.move(container.get(ExplorationMapService.class).load(10340).get(123), Direction.EAST));
     }
 
-    @Test
     void leave() throws ContainerException {
         ExplorationMap map = container.get(ExplorationMapService.class).load(player.position().map());
         player.join(map);
@@ -172,7 +163,6 @@ class ExplorationPlayerTest extends GameBaseCase {
         assertThrows(IllegalStateException.class, () -> player.cell());
     }
 
-    @Test
     void changeCell() throws ContainerException {
         ExplorationMap map = container.get(ExplorationMapService.class).load(player.position().map());
         player.join(map);
@@ -189,7 +179,6 @@ class ExplorationPlayerTest extends GameBaseCase {
         );
     }
 
-    @Test
     void changeCellInvalidCell() throws ContainerException {
         ExplorationMap map = container.get(ExplorationMapService.class).load(player.position().map());
         player.join(map);
@@ -200,12 +189,10 @@ class ExplorationPlayerTest extends GameBaseCase {
         assertEquals(map.get(200), player.cell());
     }
 
-    @Test
     void changeCellNotOnMap() throws ContainerException {
         assertThrows(IllegalStateException.class, () -> player.changeCell(147));
     }
 
-    @Test
     void changeMap() throws ContainerException {
         ExplorationMap map = container.get(ExplorationMapService.class).load(10300);
 
@@ -239,33 +226,27 @@ class ExplorationPlayerTest extends GameBaseCase {
         assertEquals(new Position(10300, 85), player.position());
     }
 
-    @Test
     void inventory() {
         assertInstanceOf(PlayerInventory.class, player.inventory());
     }
 
-    @Test
     void life() {
         assertInstanceOf(PlayerLife.class, player.properties().life());
     }
 
-    @Test
     void interactions() {
         assertFalse(player.interactions().busy());
     }
 
-    @Test
     void player() throws SQLException, ContainerException {
         assertSame(gamePlayer(), player.player());
     }
 
-    @Test
     void register() {
         player.register(session);
         assertSame(player, session.exploration());
     }
 
-    @Test
     void unregister() {
         session.setExploration(player);
 
@@ -274,7 +255,6 @@ class ExplorationPlayerTest extends GameBaseCase {
         assertNull(session.exploration());
     }
 
-    @Test
     void unregisterShouldLeaveMap() throws ContainerException {
         session.setExploration(player);
 
@@ -287,7 +267,6 @@ class ExplorationPlayerTest extends GameBaseCase {
         assertFalse(map.creatures().contains(player));
     }
 
-    @Test
     void unregisterShouldStopExploration() throws ContainerException {
         session.setExploration(player);
 
@@ -303,7 +282,6 @@ class ExplorationPlayerTest extends GameBaseCase {
         assertSame(session, ref.get().session());
     }
 
-    @Test
     void unregisterShouldStopInteractions() {
         session.setExploration(player);
         player.interactions().push(Mockito.mock(BlockingAction.class));
@@ -314,7 +292,6 @@ class ExplorationPlayerTest extends GameBaseCase {
         assertFalse(player.interactions().busy());
     }
 
-    @Test
     void restrictions() {
         assertTrue(player.restrictions().canChallenge());
         assertFalse(player.restrictions().canAttack());
@@ -322,7 +299,6 @@ class ExplorationPlayerTest extends GameBaseCase {
         assertFalse(player.restrictions().isSlow());
     }
 
-    @Test
     void orientation() throws ContainerException {
         assertEquals(Direction.SOUTH_EAST, player.orientation());
 
@@ -339,7 +315,6 @@ class ExplorationPlayerTest extends GameBaseCase {
         assertSame(Direction.WEST, ref.get().orientation());
     }
 
-    @Test
     void apply() {
         Object o = new Object();
         Operation<Object> operation = Mockito.mock(Operation.class);

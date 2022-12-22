@@ -34,7 +34,6 @@ class CastableWeaponTest extends GameBaseCase {
     private ItemService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,7 +46,6 @@ class CastableWeaponTest extends GameBaseCase {
         service = container.get(ItemService.class);
     }
 
-    @Test
     void values() {
         CastableWeapon weapon = weapon(40);
 
@@ -56,7 +54,6 @@ class CastableWeaponTest extends GameBaseCase {
         assertEquals(50, weapon.criticalHit());
     }
 
-    @Test
     void effectsHammer() {
         CastableWeapon weapon = weapon(2416);
 
@@ -87,7 +84,6 @@ class CastableWeaponTest extends GameBaseCase {
         assertInstanceOf(CrossArea.class, weapon.effects().get(1).area());
     }
 
-    @Test
     void effectsSword() {
         CastableWeapon weapon = weapon(40);
 
@@ -106,7 +102,6 @@ class CastableWeaponTest extends GameBaseCase {
         assertInstanceOf(CellArea.class, weapon.effects().get(0).area());
     }
 
-    @Test
     void criticalEffect() {
         CastableWeapon weapon = weapon(40);
 
@@ -125,7 +120,6 @@ class CastableWeaponTest extends GameBaseCase {
         assertInstanceOf(CellArea.class, weapon.criticalEffects().get(0).area());
     }
 
-    @Test
     void constraintsHammer() {
         CastableWeapon weapon = weapon(40);
 
@@ -145,7 +139,6 @@ class CastableWeaponTest extends GameBaseCase {
         assertArrayEquals(new int[] {1, 3, 18, 42}, constraints.forbiddenStates());
     }
 
-    @Test
     void constraintsBow() {
         CastableWeapon weapon = weapon(89);
 

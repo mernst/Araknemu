@@ -42,7 +42,6 @@ class BankTest extends GameBaseCase {
     private Bank bank;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -55,7 +54,6 @@ class BankTest extends GameBaseCase {
         bank = new Bank(container.get(BankService.class), new AccountBank(1, 1, 0));
     }
 
-    @Test
     void kamas() {
         AtomicReference<KamasChanged> ref = new AtomicReference<>();
         bank.dispatcher().add(KamasChanged.class, ref::set);
@@ -75,7 +73,6 @@ class BankTest extends GameBaseCase {
         assertEquals(10000, bank.kamas());
     }
 
-    @Test
     void retrieveItem() {
         dataSet.push(new BankItem(1, 1, 1, 39, new ArrayList<>(), 5));
         dataSet.push(new BankItem(1, 1, 2, 40, new ArrayList<>(), 3));
@@ -86,7 +83,6 @@ class BankTest extends GameBaseCase {
         assertEquals(3, bank.get(2).quantity());
     }
 
-    @Test
     void addAndGet() {
         AtomicReference<ObjectAdded> ref = new AtomicReference<>();
         bank.dispatcher().add(ObjectAdded.class, ref::set);
@@ -100,7 +96,6 @@ class BankTest extends GameBaseCase {
         assertSame(entry, ref.get().entry());
     }
 
-    @Test
     void delete() {
         AtomicReference<ObjectDeleted> ref = new AtomicReference<>();
         bank.dispatcher().add(ObjectDeleted.class, ref::set);
@@ -112,7 +107,6 @@ class BankTest extends GameBaseCase {
         assertSame(entry, ref.get().entry());
     }
 
-    @Test
     void save() {
         bank.addKamas(5000);
         bank.save();
@@ -120,7 +114,6 @@ class BankTest extends GameBaseCase {
         assertEquals(5000, dataSet.refresh(bank.entity()).kamas());
     }
 
-    @Test
     void cost() {
         dataSet.push(new BankItem(1, 1, 1, 39, new ArrayList<>(), 5));
         dataSet.push(new BankItem(1, 1, 2, 40, new ArrayList<>(), 3));
@@ -128,7 +121,6 @@ class BankTest extends GameBaseCase {
         assertEquals(2, bank.cost());
     }
 
-    @Test
     void exchange() throws SQLException {
         assertInstanceOf(BankExchangeParty.class, bank.exchange(explorationPlayer()));
     }

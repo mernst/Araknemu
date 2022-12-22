@@ -35,10 +35,10 @@ public final class PlayerItem implements Item {
     private final int entryId;
     private final int itemTemplateId;
     private final List<ItemTemplateEffectEntry> effects;
-    private @NonNegative int quantity;
-    private @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int position;
+    private int quantity;
+    private int position;
 
-    public PlayerItem(int playerId, int entryId, int itemTemplateId, List<ItemTemplateEffectEntry> effects, @NonNegative int quantity, @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int position) {
+    public PlayerItem(int playerId, int entryId, int itemTemplateId, List<ItemTemplateEffectEntry> effects, int quantity, int position) {
         this.playerId = playerId;
         this.entryId = entryId;
         this.itemTemplateId = itemTemplateId;
@@ -67,20 +67,20 @@ public final class PlayerItem implements Item {
     }
 
     @Override
-    public @NonNegative int quantity() {
+    public int quantity() {
         return quantity;
     }
 
-    public @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int position() {
+    public int position() {
         return position;
     }
 
     @Override
-    public void setQuantity(@NonNegative int quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public void setPosition(@IntRange(from = -1, to = InventorySlots.SLOT_MAX) int position) {
+    public void setPosition(int position) {
         this.position = position;
     }
 }

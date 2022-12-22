@@ -30,12 +30,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class TokenServiceTest {
     private TokenService service;
 
-    @BeforeEach
     void setUp() {
         service = new TokenService();
     }
 
-    @Test
     void generateAndGet() {
         Account account = new Account(-1);
 
@@ -43,19 +41,16 @@ class TokenServiceTest {
         assertSame(account, service.get(token));
     }
 
-    @Test
     void getNotFound() {
         assertThrows(NoSuchElementException.class, () -> service.get("not_found"));
     }
 
-    @Test
     void getTwice() {
         String token = service.generate(new Account(-1));
         service.get(token);
         assertThrows(NoSuchElementException.class, () -> service.get("not_found"));
     }
 
-    @Test
     void generateNotSameToken() {
         assertNotEquals(service.generate(new Account(-1)), service.generate(new Account(-1)));
     }

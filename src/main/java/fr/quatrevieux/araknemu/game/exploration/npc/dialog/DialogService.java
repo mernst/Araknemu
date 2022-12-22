@@ -248,7 +248,7 @@ public final class DialogService implements PreloadableService {
      *
      * @return The created action or null if no factory is found (a warning will be logged)
      */
-    private @Nullable Action createAction(ResponseAction action) {
+    private Action createAction(ResponseAction action) {
         final ActionFactory factory = actionFactories.get(action.action());
 
         if (factory == null) {

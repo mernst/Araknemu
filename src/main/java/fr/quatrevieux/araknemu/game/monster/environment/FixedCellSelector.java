@@ -28,10 +28,10 @@ import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
  * Cell selector for fixed monster group
  */
 public final class FixedCellSelector implements SpawnCellSelector {
-    private final @NonNegative int cell;
-    private @MonotonicNonNull ExplorationMap map;
+    private final int cell;
+    private ExplorationMap map;
 
-    public FixedCellSelector(@NonNegative int cell) {
+    public FixedCellSelector(int cell) {
         this.cell = cell;
     }
 

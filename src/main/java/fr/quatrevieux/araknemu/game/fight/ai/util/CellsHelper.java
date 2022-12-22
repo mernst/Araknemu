@@ -39,7 +39,7 @@ import java.util.stream.StreamSupport;
 public final class CellsHelper {
     private final AI ai;
 
-    private @MonotonicNonNull Decoder<BattlefieldCell> decoder;
+    private Decoder<BattlefieldCell> decoder;
 
     CellsHelper(AI ai) {
         this.ai = ai;

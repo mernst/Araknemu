@@ -34,7 +34,6 @@ class LeaveDialogTest extends GameBaseCase {
     private ExplorationPlayer player;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -50,7 +49,6 @@ class LeaveDialogTest extends GameBaseCase {
         );
     }
 
-    @Test
     void factory() {
         LeaveDialog.Factory factory = new LeaveDialog.Factory();
 
@@ -59,12 +57,10 @@ class LeaveDialogTest extends GameBaseCase {
         assertSame(factory.create(new ResponseAction(1, "LEAVE", "")), factory.create(new ResponseAction(2, "LEAVE", "")));
     }
 
-    @Test
     void check() {
         assertTrue(new LeaveDialog().check(player));
     }
 
-    @Test
     void apply() {
         new LeaveDialog().apply(player);
 

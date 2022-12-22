@@ -36,7 +36,6 @@ class MaxLengthTest {
         }
     }
 
-    @Test
     void check() {
         MaxLength<Entity, Object> maxLength = new MaxLength<>(new Object(), Entity::getValue, 3);
 

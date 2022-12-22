@@ -46,7 +46,6 @@ class PlayerExchangeRequestTest extends GameBaseCase {
     private PlayerExchangeRequest request;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -59,7 +58,6 @@ class PlayerExchangeRequestTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void startSuccess() {
         player.interactions().start(request);
 
@@ -69,7 +67,6 @@ class PlayerExchangeRequestTest extends GameBaseCase {
         assertInstanceOf(TargetExchangeRequestDialog.class, other.interactions().get(ExchangeInteraction.class));
     }
 
-    @Test
     void startSelfCantExchangeRestriction() {
         player.player().restrictions().set(Restrictions.Restriction.DENY_EXCHANGE);
 
@@ -81,7 +78,6 @@ class PlayerExchangeRequestTest extends GameBaseCase {
         requestStack.assertLast(new ExchangeRequestError(ExchangeRequestError.Error.CANT_EXCHANGE));
     }
 
-    @Test
     void startTargetCantExchangeRestriction() {
         other.player().restrictions().set(Restrictions.Restriction.DENY_EXCHANGE);
 
@@ -93,7 +89,6 @@ class PlayerExchangeRequestTest extends GameBaseCase {
         requestStack.assertLast(new ExchangeRequestError(ExchangeRequestError.Error.CANT_EXCHANGE));
     }
 
-    @Test
     void startTargetBusy() {
         Interaction interaction = Mockito.mock(Interaction.class);
         Mockito.when(interaction.start()).thenReturn(interaction);
@@ -107,7 +102,6 @@ class PlayerExchangeRequestTest extends GameBaseCase {
         requestStack.assertLast(new ExchangeRequestError(ExchangeRequestError.Error.CANT_EXCHANGE));
     }
 
-    @Test
     void startTargetExchanging() {
         Interaction interaction = Mockito.mock(ExchangeInteraction.class);
         Mockito.when(interaction.start()).thenReturn(interaction);
@@ -121,7 +115,6 @@ class PlayerExchangeRequestTest extends GameBaseCase {
         requestStack.assertLast(new ExchangeRequestError(ExchangeRequestError.Error.ALREADY_EXCHANGE));
     }
 
-    @Test
     void startBadMap() {
         other.changeMap(
             container.get(ExplorationMapService.class).load(10540),
@@ -136,7 +129,6 @@ class PlayerExchangeRequestTest extends GameBaseCase {
         requestStack.assertLast(new ExchangeRequestError(ExchangeRequestError.Error.CANT_EXCHANGE));
     }
 
-    @Test
     void startNotOnMap() {
         player.leave();
         player.interactions().start(request);
@@ -147,7 +139,6 @@ class PlayerExchangeRequestTest extends GameBaseCase {
         requestStack.assertLast(new ExchangeRequestError(ExchangeRequestError.Error.CANT_EXCHANGE));
     }
 
-    @Test
     void startOverweight() {
         player.properties().characteristics().base().set(Characteristic.STRENGTH, -10000000);
         player.interactions().start(request);
@@ -158,7 +149,6 @@ class PlayerExchangeRequestTest extends GameBaseCase {
         requestStack.assertLast(new ExchangeRequestError(ExchangeRequestError.Error.OVERWEIGHT));
     }
 
-    @Test
     void leave() {
         player.interactions().start(request);
 
@@ -170,7 +160,6 @@ class PlayerExchangeRequestTest extends GameBaseCase {
         assertFalse(other.interactions().busy());
     }
 
-    @Test
     void stop() {
         player.interactions().start(request);
 

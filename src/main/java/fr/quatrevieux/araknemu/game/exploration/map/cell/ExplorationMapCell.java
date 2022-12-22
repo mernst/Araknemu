@@ -31,7 +31,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  */
 public interface ExplorationMapCell extends MapCell<ExplorationMapCell> {
     @Override
-    public @NonNegative int id();
+    public int id();
 
     @Override
     public ExplorationMap map();
@@ -48,7 +48,7 @@ public interface ExplorationMapCell extends MapCell<ExplorationMapCell> {
      *
      * @see ExplorationCreature#apply(Operation)
      */
-    public default <R> @Nullable R apply(Operation<R> operation)  {
+    public default <R> R apply(Operation<R> operation)  {
         // Optimisation : the cell is not walkable, no creatures can be located here
         if (!walkable()) {
             return null;

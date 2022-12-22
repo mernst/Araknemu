@@ -32,13 +32,13 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 public final class WalkableFightCell implements FightCell {
     private final FightMap map;
     private final CellData template;
-    private final @NonNegative int id;
+    private final int id;
     private final CoordinateCell<BattlefieldCell> coordinate;
 
-    private @Nullable Fighter fighter;
+    private Fighter fighter;
 
     @SuppressWarnings({"assignment", "argument"})
-    public WalkableFightCell(FightMap map, CellData template, @NonNegative int id) {
+    public WalkableFightCell(FightMap map, CellData template, int id) {
         this.map = map;
         this.template = template;
         this.id = id;
@@ -46,7 +46,7 @@ public final class WalkableFightCell implements FightCell {
     }
 
     @Override
-    public @NonNegative int id() {
+    public int id() {
         return id;
     }
 
@@ -76,7 +76,7 @@ public final class WalkableFightCell implements FightCell {
     }
 
     @Override
-    public @Nullable Fighter fighter() {
+    public Fighter fighter() {
         return fighter;
     }
 
@@ -104,7 +104,7 @@ public final class WalkableFightCell implements FightCell {
     }
 
     @Override
-    public boolean equals(@Nullable Object o) {
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }

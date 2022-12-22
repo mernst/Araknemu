@@ -29,18 +29,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class InstantTransformerTest {
     private InstantTransformer transformer;
 
-    @BeforeEach
     void setUp() {
         transformer = new InstantTransformer();
     }
 
-    @Test
     void withNull() {
         assertNull(transformer.serialize(null));
         assertNull(transformer.unserialize(null));
     }
 
-    @Test
     void withDate() {
         final Instant instant = Instant.parse("2020-06-15T15:25:30.00Z");
 

@@ -34,7 +34,6 @@ class CheckboardAreaTest extends GameBaseCase {
     private FightMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -42,7 +41,6 @@ class CheckboardAreaTest extends GameBaseCase {
         map = new FightMap(container.get(MapTemplateRepository.class).get(10340));
     }
 
-    @Test
     void getters() {
         CheckboardArea area = new CheckboardArea(new EffectArea(EffectArea.Type.CHECKERBOARD, 2));
 
@@ -50,7 +48,6 @@ class CheckboardAreaTest extends GameBaseCase {
         assertEquals(2, area.size());
     }
 
-    @Test
     void resolveSize0() {
         assertEquals(
             Collections.singleton(map.get(123)),
@@ -58,7 +55,6 @@ class CheckboardAreaTest extends GameBaseCase {
         );
     }
 
-    @Test
     void resolvePairSize() {
         assertCollectionEquals(
             new CheckboardArea(new EffectArea(EffectArea.Type.CHECKERBOARD, 2)).resolve(map.get(123), map.get(137)),
@@ -76,7 +72,6 @@ class CheckboardAreaTest extends GameBaseCase {
         );
     }
 
-    @Test
     void resolveImpairSize() {
         assertCollectionEquals(
             new CheckboardArea(new EffectArea(EffectArea.Type.CHECKERBOARD, 1)).resolve(map.get(123), map.get(137)),

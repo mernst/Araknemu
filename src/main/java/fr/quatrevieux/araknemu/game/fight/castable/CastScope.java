@@ -37,7 +37,6 @@ public interface CastScope<F extends FighterData, C extends BattlefieldCell> {
     /**
      * Get the casted action
      */
-    @Pure
     public Castable action();
 
     /**
@@ -48,13 +47,11 @@ public interface CastScope<F extends FighterData, C extends BattlefieldCell> {
     /**
      * Get the caster
      */
-    @Pure
     public F caster();
 
     /**
      * Get the targeted cell
      */
-    @Pure
     public C target();
 
     /**
@@ -92,14 +89,12 @@ public interface CastScope<F extends FighterData, C extends BattlefieldCell> {
     /**
      * Get list of effects to apply
      */
-    @Pure
     public List<? extends EffectScope<F>> effects();
 
     public static interface EffectScope<F extends FighterData> {
         /**
          * The related effect
          */
-        @Pure
         public SpellEffect effect();
 
         /**

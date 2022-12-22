@@ -45,7 +45,6 @@ class ArmorSimulatorTest extends FightBaseCase {
     private Fighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -56,7 +55,6 @@ class ArmorSimulatorTest extends FightBaseCase {
         player.properties().characteristics().base().set(Characteristic.STRENGTH, 0);
     }
 
-    @Test
     void simulateShouldIgnoreNotBuff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -72,7 +70,6 @@ class ArmorSimulatorTest extends FightBaseCase {
         assertEquals(0, performSimulation(spell, effect).selfBoost());
     }
 
-    @Test
     void simulateBuff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -97,7 +94,6 @@ class ArmorSimulatorTest extends FightBaseCase {
         assertEquals(500, performSimulation(spell, effect).selfBoost());
     }
 
-    @Test
     void simulateArea() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -116,7 +112,6 @@ class ArmorSimulatorTest extends FightBaseCase {
         assertEquals(50, simulation.enemiesBoost());
     }
 
-    @Test
     void shouldOnlyConsiderCasterCharacteristics() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -137,7 +132,6 @@ class ArmorSimulatorTest extends FightBaseCase {
         assertEquals(50, simulation.enemiesBoost());
     }
 
-    @Test
     void simulateShouldConsiderCasterIntelligence() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -156,7 +150,6 @@ class ArmorSimulatorTest extends FightBaseCase {
         assertEquals(80, performSimulation(spell, effect).selfBoost());
     }
 
-    @Test
     void simulateSingleElementArmorShouldConsiderCasterIntelligenceAndProtectedElement() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

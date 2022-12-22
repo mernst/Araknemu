@@ -33,11 +33,11 @@ public final class FighterTurnPoints implements TurnPoints {
     private final Fight fight;
     private final Fighter fighter;
 
-    private @NonNegative int movementPoints;
-    private @NonNegative int actionPoints;
+    private int movementPoints;
+    private int actionPoints;
 
-    private @NonNegative int usedMovementPoints;
-    private @NonNegative int usedActionPoints;
+    private int usedMovementPoints;
+    private int usedActionPoints;
 
     public FighterTurnPoints(Fight fight, Fighter fighter) {
         this.fight = fight;
@@ -48,7 +48,7 @@ public final class FighterTurnPoints implements TurnPoints {
     }
 
     @Override
-    public @NonNegative int movementPoints() {
+    public int movementPoints() {
         return Math.max(movementPoints - usedMovementPoints, 0);
     }
 
@@ -57,19 +57,19 @@ public final class FighterTurnPoints implements TurnPoints {
      *
      * @param points Points to remove
      */
-    public void useMovementPoints(@NonNegative int points) {
+    public void useMovementPoints(int points) {
         usedMovementPoints += points;
 
         fight.dispatch(new MovementPointsUsed(fighter, points));
     }
 
     @Override
-    public void addMovementPoints(@NonNegative int value) {
+    public void addMovementPoints(int value) {
         movementPoints += value;
     }
 
     @Override
-    public @NonNegative int removeMovementPoints(@NonNegative int value) {
+    public int removeMovementPoints(int value) {
         if (value > movementPoints()) {
             value = movementPoints();
         }
@@ -80,7 +80,7 @@ public final class FighterTurnPoints implements TurnPoints {
     }
 
     @Override
-    public @NonNegative int actionPoints() {
+    public int actionPoints() {
         return Math.max(actionPoints - usedActionPoints, 0);
     }
 
@@ -89,19 +89,19 @@ public final class FighterTurnPoints implements TurnPoints {
      *
      * @param points Points to remove
      */
-    public void useActionPoints(@NonNegative int points) {
+    public void useActionPoints(int points) {
         usedActionPoints += points;
 
         fight.dispatch(new ActionPointsUsed(fighter, points));
     }
 
     @Override
-    public void addActionPoints(@NonNegative int value) {
+    public void addActionPoints(int value) {
         actionPoints += value;
     }
 
     @Override
-    public @NonNegative int removeActionPoints(@NonNegative int value) {
+    public int removeActionPoints(int value) {
         if (value > actionPoints()) {
             value = actionPoints();
         }
@@ -112,12 +112,12 @@ public final class FighterTurnPoints implements TurnPoints {
     }
 
     @Override
-    public @NonNegative int usedActionPoints() {
+    public int usedActionPoints() {
         return usedActionPoints;
     }
 
     @Override
-    public @NonNegative int usedMovementPoints() {
+    public int usedMovementPoints() {
         return usedMovementPoints;
     }
 }

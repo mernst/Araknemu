@@ -201,7 +201,6 @@ public final class Goto extends AbstractCommand<Goto.Arguments> {
         @Option(name = "--force", usage = "Force the teleporation even if the player is busy or in fight.")
         private boolean force = false;
 
-        @Argument(metaVar = "TYPE TARGET", multiValued = true)
         private List<String> targets;
 
         public boolean force() {

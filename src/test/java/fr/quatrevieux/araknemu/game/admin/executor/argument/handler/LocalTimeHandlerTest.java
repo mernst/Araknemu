@@ -37,7 +37,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LocalTimeHandlerTest extends TestCase {
     static class Arguments {
-        @Argument
         public LocalTime time;
     }
 
@@ -59,7 +58,6 @@ class LocalTimeHandlerTest extends TestCase {
         }
     }
 
-    @Test
     void hydrate() throws Exception {
         LocalTimeHandlerTest.Command command = new LocalTimeHandlerTest.Command();
         AnnotationHydrator hydrator = new AnnotationHydrator();

@@ -30,7 +30,6 @@ class DefaultTeamOptionsTest extends FightBaseCase {
     private DefaultTeamOptions options;
     private Fight fight;
 
-    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -39,7 +38,6 @@ class DefaultTeamOptionsTest extends FightBaseCase {
         options = new DefaultTeamOptions(fight.team(0));
     }
 
-    @Test
     void defaultValues() {
         assertTrue(options.allowSpectators());
         assertTrue(options.allowJoinTeam());

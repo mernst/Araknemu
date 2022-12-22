@@ -31,7 +31,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 public final class Max<T, E, V extends Comparable> extends AbstractValueConstraint<T, E, V> {
     private final V value;
 
-    public Max(@NonNull E error, Getter<T, V> getter, V value) {
+    public Max(E error, Getter<T, V> getter, V value) {
         super(error, getter);
         this.value = value;
     }

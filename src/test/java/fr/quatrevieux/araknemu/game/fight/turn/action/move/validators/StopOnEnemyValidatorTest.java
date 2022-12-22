@@ -48,7 +48,6 @@ class StopOnEnemyValidatorTest extends FightBaseCase {
     private StopOnEnemyValidator validator;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -60,7 +59,6 @@ class StopOnEnemyValidatorTest extends FightBaseCase {
         turn.start();
     }
 
-    @Test
     void validatePathWithNoEnnemy() {
         Path<FightCell> path = new Path<FightCell>(
             fight.map().decoder(),
@@ -81,7 +79,6 @@ class StopOnEnemyValidatorTest extends FightBaseCase {
         assertSame(result, result2);
     }
 
-    @Test
     void validatePathWithEnnemy() throws SQLException {
         Path<FightCell> path = new Path<FightCell>(
             fight.map().decoder(),
@@ -108,7 +105,6 @@ class StopOnEnemyValidatorTest extends FightBaseCase {
         assertEquals(213, result2.target().id());
     }
 
-    @Test
     void validatePathWithEnnemyOnLastStepShouldDoNothing() throws SQLException {
         Path<FightCell> path = new Path<FightCell>(
             fight.map().decoder(),
@@ -131,7 +127,6 @@ class StopOnEnemyValidatorTest extends FightBaseCase {
         assertSame(result, result2);
     }
 
-    @Test
     void functionalStopped() {
         other.fighter().move(fight.map().get(198));
 

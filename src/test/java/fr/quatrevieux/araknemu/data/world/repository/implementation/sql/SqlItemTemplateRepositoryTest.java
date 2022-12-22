@@ -38,7 +38,6 @@ class SqlItemTemplateRepositoryTest extends GameBaseCase {
     private SqlItemTemplateRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,12 +51,10 @@ class SqlItemTemplateRepositoryTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(-5));
     }
 
-    @Test
     void getById() {
         ItemTemplate item = repository.get(39);
 
@@ -71,7 +68,6 @@ class SqlItemTemplateRepositoryTest extends GameBaseCase {
         assertEquals(100, item.price());
     }
 
-    @Test
     void getByTemplate() {
         ItemTemplate item = repository.get(new ItemTemplate(40, 0, null, 0, null, 0, null, 0, null, 0));
 
@@ -88,13 +84,11 @@ class SqlItemTemplateRepositoryTest extends GameBaseCase {
         assertEquals("CS>4", item.condition());
     }
 
-    @Test
     void has() {
         assertTrue(repository.has(new ItemTemplate(40, 0, null, 0, null, 0, null, 0, null, 0)));
         assertFalse(repository.has(new ItemTemplate(-5, 0, null, 0, null, 0, null, 0, null, 0)));
     }
 
-    @Test
     void load() {
         assertCount(3, repository.load());
         assertContains(new ItemTemplate(39, 1, "Petite Amulette du Hibou", 1, Arrays.asList(new ItemTemplateEffectEntry(Effect.ADD_INTELLIGENCE, 2, 0, 0, "0d0+2")), 4, "", 0, "", 100), repository.load());

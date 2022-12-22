@@ -131,14 +131,14 @@ public final class PvmXpProvider implements DropRewardProvider {
     }
 
     private static class ExtractXp implements FighterOperation {
-        private @NonNegative long xp;
+        private long xp;
 
         @Override
         public void onMonster(MonsterFighter fighter) {
             xp += fighter.reward().experience();
         }
 
-        public @NonNegative long get() {
+        public long get() {
             return xp;
         }
     }

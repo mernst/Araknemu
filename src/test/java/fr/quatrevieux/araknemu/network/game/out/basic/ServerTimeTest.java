@@ -27,7 +27,6 @@ import java.util.GregorianCalendar;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ServerTimeTest {
-    @Test
     void generate() {
         Calendar calendar = new GregorianCalendar(648, 5, 12, 15, 25, 32);
 

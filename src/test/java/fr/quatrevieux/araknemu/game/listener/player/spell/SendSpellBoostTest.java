@@ -30,7 +30,6 @@ class SendSpellBoostTest extends GameBaseCase {
     private SendSpellBoost listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -39,7 +38,6 @@ class SendSpellBoostTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onSpellBoostChanged() {
         listener.on(
             new SpellBoostChanged(5, SpellsBoosts.Modifier.DAMAGE, 15)

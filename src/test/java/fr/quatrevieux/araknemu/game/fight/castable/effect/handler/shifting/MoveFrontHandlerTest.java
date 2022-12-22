@@ -49,7 +49,6 @@ class MoveFrontHandlerTest extends FightBaseCase {
     private PlayerFighter target;
     private MoveFrontHandler handler;
 
-    @Test
     void buffNotSupported() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(277))
@@ -74,7 +73,6 @@ class MoveFrontHandlerTest extends FightBaseCase {
         assertThrows(UnsupportedOperationException.class, () -> handler.buff(scope, scope.effects().get(0)));
     }
 
-    @Test
     void applySuccess() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(277))
@@ -107,7 +105,6 @@ class MoveFrontHandlerTest extends FightBaseCase {
         assertSame(destination, target.cell());
     }
 
-    @Test
     void applyBlocked() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(236))
@@ -135,7 +132,6 @@ class MoveFrontHandlerTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.slide(caster, target, destination));
     }
 
-    @Test
     void applyBlockedWithoutMovementShouldNotPerformMove() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(206))

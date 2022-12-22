@@ -41,7 +41,6 @@ class TargetCellValidatorTest extends FightBaseCase {
     private TargetCellValidator validator;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -55,7 +54,6 @@ class TargetCellValidatorTest extends FightBaseCase {
         validator = new TargetCellValidator();
     }
 
-    @Test
     void notAvailableCell() {
         Spell spell = Mockito.mock(Spell.class);
 
@@ -66,7 +64,6 @@ class TargetCellValidatorTest extends FightBaseCase {
         );
     }
 
-    @Test
     void cellNotFree() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -81,7 +78,6 @@ class TargetCellValidatorTest extends FightBaseCase {
         );
     }
 
-    @Test
     void freeCell() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -93,7 +89,6 @@ class TargetCellValidatorTest extends FightBaseCase {
         assertNull(validator.validate(turn, spell, fight.map().get(123)));
     }
 
-    @Test
     void noNeedFreeCell() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);

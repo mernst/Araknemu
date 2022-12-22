@@ -41,7 +41,6 @@ class SqlPlayerRaceRepositoryTest extends GameBaseCase {
     private SqlPlayerRaceRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -54,12 +53,10 @@ class SqlPlayerRaceRepositoryTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(Race.NO_CLASS));
     }
 
-    @Test
     void getFound() {
         PlayerRace race = repository.get(Race.FECA);
 
@@ -77,7 +74,6 @@ class SqlPlayerRaceRepositoryTest extends GameBaseCase {
         assertArrayEquals(new int[] {3, 6, 17}, race.spells());
     }
 
-    @Test
     void getWithPlayerRaceEntity() {
         assertEquals(
             Race.FECA,
@@ -87,13 +83,11 @@ class SqlPlayerRaceRepositoryTest extends GameBaseCase {
         );
     }
 
-    @Test
     void has() {
         assertTrue(repository.has(new PlayerRace(Race.FECA)));
         assertFalse(repository.has(new PlayerRace(Race.NO_CLASS)));
     }
 
-    @Test
     void load() {
         Collection<PlayerRace> loaded = repository.load();
 

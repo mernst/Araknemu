@@ -42,7 +42,7 @@ public final class NextQuestion implements Action {
     private final int[] questionIds;
 
     // Lazy loading of questions : prevent from stack overflow
-    private @MonotonicNonNull Collection<NpcQuestion> questions;
+    private Collection<NpcQuestion> questions;
 
     public NextQuestion(DialogService service, int[] questionIds) {
         this.service = service;

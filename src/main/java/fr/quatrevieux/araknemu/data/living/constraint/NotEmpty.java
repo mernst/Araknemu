@@ -27,8 +27,8 @@ import org.checkerframework.checker.nullness.qual.NonNull;
  * @param <T> The entity type
  * @param <E> The error type
  */
-public final class NotEmpty<T, @NonNull E> extends AbstractValueConstraint<T, E, String> {
-    public NotEmpty(@NonNull E error, Getter<T, String> getter) {
+public final class NotEmpty<T, E> extends AbstractValueConstraint<T, E, String> {
+    public NotEmpty(E error, Getter<T, String> getter) {
         super(error, getter);
     }
 

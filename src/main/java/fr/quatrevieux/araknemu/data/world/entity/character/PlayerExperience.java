@@ -26,19 +26,19 @@ import org.checkerframework.checker.index.qual.Positive;
  * Player level and experience
  */
 public final class PlayerExperience {
-    private final @Positive int level;
-    private final @NonNegative long experience;
+    private final int level;
+    private final long experience;
 
-    public PlayerExperience(@Positive int level, @NonNegative long experience) {
+    public PlayerExperience(int level, long experience) {
         this.level = level;
         this.experience = experience;
     }
 
-    public @Positive int level() {
+    public int level() {
         return level;
     }
 
-    public @NonNegative long experience() {
+    public long experience() {
         return experience;
     }
 }

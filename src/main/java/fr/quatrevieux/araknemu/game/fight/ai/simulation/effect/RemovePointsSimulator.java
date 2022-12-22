@@ -34,14 +34,14 @@ import org.checkerframework.checker.index.qual.Positive;
 public final class RemovePointsSimulator implements EffectSimulator {
     private final Characteristic pointCharacteristic;
     private final Characteristic resistanceCharacteristic;
-    private final @Positive int multiplier;
+    private final int multiplier;
 
     /**
      * @param pointCharacteristic Removed point characteristic (i.e. Characteristic.ACTION_POINT or Characteristic.MOVEMENT_POINT)
      * @param resistanceCharacteristic Characteristic use for dodge point removal
      * @param multiplier Boost multiplier. Must be a positive integer
      */
-    public RemovePointsSimulator(Characteristic pointCharacteristic, Characteristic resistanceCharacteristic, @Positive int multiplier) {
+    public RemovePointsSimulator(Characteristic pointCharacteristic, Characteristic resistanceCharacteristic, int multiplier) {
         this.pointCharacteristic = pointCharacteristic;
         this.resistanceCharacteristic = resistanceCharacteristic;
         this.multiplier = multiplier;

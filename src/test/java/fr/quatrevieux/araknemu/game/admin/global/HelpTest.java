@@ -43,14 +43,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class HelpTest extends CommandTestCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         command = new Help(container.get(ArgumentsHydrator.class));
     }
 
-    @Test
     void executeGlobal() throws SQLException, AdminException {
         execute("help");
 
@@ -62,7 +60,6 @@ class HelpTest extends CommandTestCase {
         assertInfo("<u><a href='asfunction:onHref,ExecCmd,help info,true'>info</a></u> - Display information on the selected player");
     }
 
-    @Test
     void executeShouldFilterForbiddenCommands() throws SQLException, AdminException {
         final AdminUser performer = user();
         final CommandParser.Arguments parsedArgs = new CommandParser.Arguments("", "", command.name(), Collections.singletonList("help"), user().self());
@@ -95,7 +92,6 @@ class HelpTest extends CommandTestCase {
         assertTrue(messages.stream().anyMatch(s -> s.contains("grant")));
     }
 
-    @Test
     void executeGlobalWithContext() throws SQLException, AdminException {
         executeLine("> account help");
 
@@ -106,7 +102,6 @@ class HelpTest extends CommandTestCase {
         assertInfo("<u><a href='asfunction:onHref,ExecCmd,> account help info,true'>info</a></u> - Display info about the account");
     }
 
-    @Test
     void executeCommand() throws SQLException, AdminException {
         execute("help", "setlife");
 
@@ -126,7 +121,6 @@ class HelpTest extends CommandTestCase {
         );
     }
 
-    @Test
     void help() {
         assertHelp(
             "help - Show help for use the console commands",

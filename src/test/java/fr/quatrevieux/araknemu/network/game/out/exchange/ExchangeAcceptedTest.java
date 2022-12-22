@@ -27,7 +27,6 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ExchangeAcceptedTest extends GameBaseCase {
-    @Test
     void generate() throws SQLException {
         assertEquals(
             "EK11",

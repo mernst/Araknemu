@@ -50,7 +50,6 @@ class SelectCharacterTest extends GameBaseCase {
     private SelectCharacter handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -69,7 +68,6 @@ class SelectCharacterTest extends GameBaseCase {
         ;
     }
 
-    @Test
     void handleBadPlayer() throws Exception {
         try {
             handler.handle(session, new ChoosePlayingCharacter(123));
@@ -78,7 +76,6 @@ class SelectCharacterTest extends GameBaseCase {
         }
     }
 
-    @Test
     void handleSuccess() {
         int id = dataSet.push(new Player(-1, 1, 2, "Bob", Race.FECA, Gender.MALE, new Colors(123, 456, 789), 23, new DefaultCharacteristics())).id();
 
@@ -92,7 +89,6 @@ class SelectCharacterTest extends GameBaseCase {
         requestStack.assertOne(Information.currentIpAddress("127.0.0.1"));
     }
 
-    @Test
     void handleWillSendChatChannels() throws Exception {
         int id = dataSet.push(new Player(-1, 1, 2, "Bob", Race.FECA, Gender.MALE, new Colors(123, 456, 789), 23, new DefaultCharacteristics(), new Position(10300, 123), EnumSet.of(ChannelType.INFO, ChannelType.PRIVATE), 0, 0, Integer.MAX_VALUE, 0, new Position(10540, 210), 0)).id();
 
@@ -101,7 +97,6 @@ class SelectCharacterTest extends GameBaseCase {
         requestStack.assertOne(new ChannelSubscribed(EnumSet.of(ChannelType.INFO, ChannelType.PRIVATE)));
     }
 
-    @Test
     void cannotReselectCharacter() throws Exception {
         int id = dataSet.push(new Player(-1, 1, 2, "Bob", Race.FECA, Gender.MALE, new Colors(123, 456, 789), 23, new DefaultCharacteristics())).id();
 
@@ -109,7 +104,6 @@ class SelectCharacterTest extends GameBaseCase {
         assertThrows(CloseWithPacket.class, () -> handlePacket(new ChoosePlayingCharacter(id)));
     }
 
-    @Test
     void handleWillSendLastSession() {
         int id = dataSet.push(new Player(-1, 1, 2, "Bob", Race.FECA, Gender.MALE, new Colors(123, 456, 789), 23, new DefaultCharacteristics())).id();
         ConnectionLog log = dataSet.push(new ConnectionLog(session.account().id(), Instant.parse("2020-05-10T15:25:00.00Z"), "145.0.23.65"));

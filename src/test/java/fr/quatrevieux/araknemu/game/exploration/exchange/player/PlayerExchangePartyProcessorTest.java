@@ -40,7 +40,6 @@ class PlayerExchangePartyProcessorTest extends GameBaseCase {
     private PlayerExchangePartyProcessor processor;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -53,12 +52,10 @@ class PlayerExchangePartyProcessorTest extends GameBaseCase {
         processor = new PlayerExchangePartyProcessor(player, storage = new PlayerExchangeStorage(player));
     }
 
-    @Test
     void validateEmpty() {
         assertTrue(processor.validate());
     }
 
-    @Test
     void validateSuccess() {
         ItemEntry entry = player.inventory().add(container.get(ItemService.class).create(2422));
 
@@ -68,7 +65,6 @@ class PlayerExchangePartyProcessorTest extends GameBaseCase {
         assertTrue(processor.validate());
     }
 
-    @Test
     void validateFailed() {
         ItemEntry entry = player.inventory().add(container.get(ItemService.class).create(2422));
 
@@ -80,7 +76,6 @@ class PlayerExchangePartyProcessorTest extends GameBaseCase {
         assertEquals(1, storage.quantity(entry));
     }
 
-    @Test
     void terminateAccepted() {
         ExchangeInteraction interaction = Mockito.mock(ExchangeInteraction.class);
         Mockito.when(interaction.start()).thenReturn(interaction);
@@ -92,7 +87,6 @@ class PlayerExchangePartyProcessorTest extends GameBaseCase {
         requestStack.assertLast(new ExchangeLeaved(true));
     }
 
-    @Test
     void terminateNotAccepted() {
         ExchangeInteraction interaction = Mockito.mock(ExchangeInteraction.class);
         Mockito.when(interaction.start()).thenReturn(interaction);
@@ -104,7 +98,6 @@ class PlayerExchangePartyProcessorTest extends GameBaseCase {
         requestStack.assertLast(new ExchangeLeaved(false));
     }
 
-    @Test
     void accepted() {
         assertFalse(processor.accepted());
 
@@ -115,14 +108,12 @@ class PlayerExchangePartyProcessorTest extends GameBaseCase {
         assertFalse(processor.accepted());
     }
 
-    @Test
     void addKamas() {
         processor.addKamas(100);
 
         assertEquals(15325, player.inventory().kamas());
     }
 
-    @Test
     void addItem() {
         Item item = container.get(ItemService.class).create(2422);
 
@@ -134,7 +125,6 @@ class PlayerExchangePartyProcessorTest extends GameBaseCase {
         assertEquals(item, entry.item());
     }
 
-    @Test
     void process() {
         ExchangePartyProcessor otherProcess = Mockito.mock(ExchangePartyProcessor.class);
 
@@ -156,7 +146,6 @@ class PlayerExchangePartyProcessorTest extends GameBaseCase {
         assertEquals(15125, player.inventory().kamas());
     }
 
-    @Test
     void processEmpty() {
         ExchangePartyProcessor otherProcess = Mockito.mock(ExchangePartyProcessor.class);
         processor.process(otherProcess);

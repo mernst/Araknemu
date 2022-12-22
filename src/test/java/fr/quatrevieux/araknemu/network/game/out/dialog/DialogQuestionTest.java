@@ -41,7 +41,6 @@ class DialogQuestionTest extends GameBaseCase {
     private DialogService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -54,22 +53,18 @@ class DialogQuestionTest extends GameBaseCase {
         player = explorationPlayer();
     }
 
-    @Test
     void generateWithoutResponses() {
         assertEquals("DQ3593", new DialogQuestion(question(3593), Collections.emptyList(), player).toString());
     }
 
-    @Test
     void generateWithOneResponse() {
         assertEquals("DQ3596|3182", new DialogQuestion(question(3596), question(3596).responses(player), player).toString());
     }
 
-    @Test
     void generateWithTwoResponses() {
         assertEquals("DQ3786|3323;3324", new DialogQuestion(question(3786), question(3786).responses(player), player).toString());
     }
 
-    @Test
     void generateWithParameters() throws SQLException, ContainerException {
         dataSet.pushQuestion(new Question(1234, new int[0], new String[] {"[name]", "a2"}, ""));
 

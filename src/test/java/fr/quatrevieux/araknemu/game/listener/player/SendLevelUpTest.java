@@ -33,7 +33,6 @@ class SendLevelUpTest extends GameBaseCase {
     private SendLevelUp listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -42,7 +41,6 @@ class SendLevelUpTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onLevelUp() throws SQLException, ContainerException {
         listener.on(new PlayerLevelUp(50));
 

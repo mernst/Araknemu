@@ -31,7 +31,6 @@ import java.util.NoSuchElementException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SafeLinkedListTest {
-    @Test
     void simpleAddAndIterate() {
         SafeLinkedList<Integer> list = new SafeLinkedList<>();
         assertIterableEquals(Collections.emptyList(), list);
@@ -47,7 +46,6 @@ class SafeLinkedListTest {
         assertIterableEquals(Arrays.asList(5, 6, 8, 15), list);
     }
 
-    @Test
     void addAndRemove() {
         SafeLinkedList<Integer> list = new SafeLinkedList<>();
 
@@ -83,7 +81,6 @@ class SafeLinkedListTest {
         assertIterableEquals(Collections.emptyList(), list);
     }
 
-    @Test
     void removeMultiple() {
         SafeLinkedList<Integer> list = new SafeLinkedList<>();
 
@@ -117,7 +114,6 @@ class SafeLinkedListTest {
         assertIterableEquals(Collections.singletonList(6), list);
     }
 
-    @Test
     void removeTwiceNotAllowed() {
         SafeLinkedList<Integer> list = new SafeLinkedList<>();
 
@@ -133,7 +129,6 @@ class SafeLinkedListTest {
         assertIterableEquals(Arrays.asList(2, 3), list);
     }
 
-    @Test
     void removeNextNotCalled() {
         SafeLinkedList<Integer> list = new SafeLinkedList<>();
 
@@ -147,7 +142,6 @@ class SafeLinkedListTest {
         assertIterableEquals(Arrays.asList(1, 2, 3), list);
     }
 
-    @Test
     void nextOnEmptyList() {
         SafeLinkedList<Integer> list = new SafeLinkedList<>();
 
@@ -155,7 +149,6 @@ class SafeLinkedListTest {
         assertThrows(NoSuchElementException.class, it::next);
     }
 
-    @Test
     void nextAfterEndOfList() {
         SafeLinkedList<Integer> list = new SafeLinkedList<>();
 
@@ -171,7 +164,6 @@ class SafeLinkedListTest {
         assertThrows(NoSuchElementException.class, it::next);
     }
 
-    @Test
     void addDuringIteration() {
         SafeLinkedList<Integer> list = new SafeLinkedList<>();
 
@@ -193,7 +185,6 @@ class SafeLinkedListTest {
         assertIterableEquals(Arrays.asList(1, 2, 3, 11, 12, 13), list);
     }
 
-    @Test
     void addDuringIterationOfIteration() {
         SafeLinkedList<Integer> list = new SafeLinkedList<>();
 

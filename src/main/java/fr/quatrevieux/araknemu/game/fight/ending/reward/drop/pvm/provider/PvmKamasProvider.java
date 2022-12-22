@@ -42,8 +42,8 @@ public final class PvmKamasProvider implements DropRewardProvider {
     }
 
     private static class ExtractKamas implements FighterOperation {
-        private @NonNegative int minKamas = 0;
-        private @NonNegative int maxKamas = 0;
+        private int minKamas = 0;
+        private int maxKamas = 0;
 
         @Override
         public void onMonster(MonsterFighter fighter) {

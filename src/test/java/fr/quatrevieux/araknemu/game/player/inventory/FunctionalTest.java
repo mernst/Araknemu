@@ -57,7 +57,6 @@ public class FunctionalTest extends FightBaseCase {
     private ItemService itemService;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -75,7 +74,6 @@ public class FunctionalTest extends FightBaseCase {
         gamePlayer().dispatcher().remove(new SendWeight(player).listeners()[1].getClass());
     }
 
-    @Test
     void addNewItem() throws InventoryException {
         Item item = itemService.create(284);
 
@@ -93,7 +91,6 @@ public class FunctionalTest extends FightBaseCase {
         );
     }
 
-    @Test
     void addManyItems() throws InventoryException {
         Item item = itemService.create(284);
 
@@ -111,7 +108,6 @@ public class FunctionalTest extends FightBaseCase {
         );
     }
 
-    @Test
     void addMultipleItems() throws InventoryException {
         List<InventoryEntry> entries = Arrays.asList(
             inventory.add(itemService.create(2411)),
@@ -132,7 +128,6 @@ public class FunctionalTest extends FightBaseCase {
         );
     }
 
-    @Test
     void moveBadQuantity() throws InventoryException {
         InventoryEntry entry = inventory.add(itemService.create(2411));
         requestStack.clear();
@@ -144,7 +139,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(1, entry.quantity());
     }
 
-    @Test
     void moveBadSlot() throws InventoryException {
         InventoryEntry entry = inventory.add(itemService.create(2411));
         requestStack.clear();
@@ -156,7 +150,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(1, entry.quantity());
     }
 
-    @Test
     void moveSlotFull() throws InventoryException {
         inventory.add(itemService.create(39), 1, 0);
         InventoryEntry entry = inventory.add(itemService.create(2425));
@@ -169,7 +162,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(1, entry.quantity());
     }
 
-    @Test
     void moveSuccess() throws InventoryException {
         InventoryEntry entry = inventory.add(itemService.create(2425));
         requestStack.clear();
@@ -181,7 +173,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(1, entry.quantity());
     }
 
-    @Test
     void moveSuccessFromStackedItem() throws InventoryException {
         InventoryEntry entry = inventory.add(itemService.create(39), 10);
         requestStack.clear();
@@ -204,7 +195,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(1, newEntry.quantity());
     }
 
-    @Test
     void equipItem() throws InventoryException, SQLException, ContainerException {
         InventoryEntry entry = inventory.add(itemService.create(2425, true));
         requestStack.clear();
@@ -221,7 +211,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(10, gamePlayer().properties().characteristics().stuff().get(Characteristic.STRENGTH));
     }
 
-    @Test
     void equipItemBadLevel() throws InventoryException, SQLException, ContainerException {
         dataSet.pushHighLevelItems();
 
@@ -233,7 +222,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(-1, entry.position());
     }
 
-    @Test
     void unequipItem() throws InventoryException, SQLException, ContainerException {
         InventoryEntry entry = inventory.add(itemService.create(2425, true), 1, 0);
         requestStack.clear();
@@ -250,7 +238,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(0, gamePlayer().properties().characteristics().stuff().get(Characteristic.STRENGTH));
     }
 
-    @Test
     void equipAccessoryItemOnExploration() throws InventoryException, SQLException, ContainerException {
         explorationPlayer();
 
@@ -266,7 +253,6 @@ public class FunctionalTest extends FightBaseCase {
         );
     }
 
-    @Test
     void equipNotAccessoryItemOnExploration() throws InventoryException, SQLException, ContainerException {
         explorationPlayer();
 
@@ -280,12 +266,10 @@ public class FunctionalTest extends FightBaseCase {
         );
     }
 
-    @Test
     void addBadPosition() {
         assertThrows(InventoryException.class, () -> inventory.add(itemService.create(2425), 1, 6), "Cannot add this item to this slot");
     }
 
-    @Test
     void deleteSimpleItem() throws InventoryException {
         InventoryEntry entry = inventory.add(itemService.create(2425));
         requestStack.clear();
@@ -300,7 +284,6 @@ public class FunctionalTest extends FightBaseCase {
         );
     }
 
-    @Test
     void deleteEquipedItem() throws InventoryException, SQLException, ContainerException {
         InventoryEntry entry = inventory.add(itemService.create(2425), 1, 0);
         requestStack.clear();
@@ -323,7 +306,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(0, inventory.weight());
     }
 
-    @Test
     void deleteAccessory() throws InventoryException, SQLException, ContainerException {
         explorationPlayer();
 
@@ -340,7 +322,6 @@ public class FunctionalTest extends FightBaseCase {
         );
     }
 
-    @Test
     void removeItem() throws InventoryException {
         InventoryEntry entry = inventory.add(itemService.create(2411), 10, -1);
         requestStack.clear();
@@ -356,7 +337,6 @@ public class FunctionalTest extends FightBaseCase {
         );
     }
 
-    @Test
     void removeEntry() throws InventoryException {
         InventoryEntry entry = inventory.add(itemService.create(2411), 10, -1);
         requestStack.clear();
@@ -372,7 +352,6 @@ public class FunctionalTest extends FightBaseCase {
         );
     }
 
-    @Test
     void addWillStack() throws InventoryException {
         InventoryEntry entry = inventory.add(itemService.create(2411, true));
         requestStack.clear();
@@ -387,7 +366,6 @@ public class FunctionalTest extends FightBaseCase {
         );
     }
 
-    @Test
     void moveAndStack() throws InventoryException {
         InventoryEntry entry = inventory.add(itemService.create(2425, true));
         InventoryEntry entry2 = inventory.add(itemService.create(2425, true), 1, 0);
@@ -408,7 +386,6 @@ public class FunctionalTest extends FightBaseCase {
         );
     }
 
-    @Test
     void moveItemWillIndexingForStacking() throws InventoryException {
         InventoryEntry entry = inventory.add(itemService.create(2425, true), 1, 0);
         entry.move(-1, 1);
@@ -420,7 +397,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(-1, entry.position());
     }
 
-    @Test
     void moveToUseBar() throws SQLException, ContainerException, InventoryException {
         dataSet.pushUsableItems();
 
@@ -436,7 +412,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(41, newEntry.position());
     }
 
-    @Test
     void moveToUseBarNotUsable() throws SQLException, ContainerException, InventoryException {
         dataSet.pushUsableItems();
 
@@ -448,7 +423,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(-1, entry.position());
     }
 
-    @Test
     void equipWithItemSetAlreadySet() throws InventoryException, SQLException, ContainerException {
         inventory.add(itemService.create(2411, true), 1, HelmetSlot.SLOT_ID);
         InventoryEntry entry = inventory.add(itemService.create(2425, true));
@@ -471,7 +445,6 @@ public class FunctionalTest extends FightBaseCase {
         );
     }
 
-    @Test
     void unequipWillRemoveItemSet() throws InventoryException {
         InventoryEntry entry = inventory.add(itemService.create(2425, true), 1, AmuletSlot.SLOT_ID);
         requestStack.clear();
@@ -489,7 +462,6 @@ public class FunctionalTest extends FightBaseCase {
         );
     }
 
-    @Test
     void equipItemSetWillUpdateSpecialEffects() throws ContainerException, InventoryException, SQLException {
         inventory.add(container.get(ItemService.class).create(8213), 1, 0);
         inventory.add(container.get(ItemService.class).create(8219), 1, 2);
@@ -502,7 +474,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(30, gamePlayer().properties().characteristics().specials().get(SpecialEffects.Type.INITIATIVE));
     }
 
-    @Test
     void unequipItemSetWillUpdateSpecialEffects() throws ContainerException, InventoryException, SQLException {
         inventory.add(container.get(ItemService.class).create(8213), 1, 0);
         inventory.add(container.get(ItemService.class).create(8219), 1, 2);
@@ -515,7 +486,6 @@ public class FunctionalTest extends FightBaseCase {
     }
 
 
-    @Test
     void equipSpellModifierItem() throws InventoryException, SQLException, ContainerException {
         Item item = itemService.retrieve(39, Arrays.asList(
             new ItemTemplateEffectEntry(Effect.SPELL_ADD_DAMAGE, 3, 0, 15, "")
@@ -532,7 +502,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(0, gamePlayer().properties().spells().boosts().modifiers(3).damage());
     }
 
-    @Test
     void equipAccessoryOnFightDuringPlacement() throws Exception {
         createFight();
 
@@ -551,7 +520,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(90, player.fighter().characteristics().get(Characteristic.STRENGTH));
     }
 
-    @Test
     void unequipAccessoryOnFightDuringPlacement() throws Exception {
         InventoryEntry entry = inventory.add(itemService.create(2411, true));
         entry.move(HelmetSlot.SLOT_ID, 1);
@@ -571,7 +539,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(50, player.fighter().characteristics().get(Characteristic.STRENGTH));
     }
 
-    @Test
     void addKamas() {
         assertEquals(15225, inventory.kamas());
 
@@ -581,7 +548,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertLast(new Stats(player.properties()));
     }
 
-    @Test
     void removeAndAddSameItem() {
         Item item = itemService.create(39);
 

@@ -45,7 +45,7 @@ public final class ChannelSet implements Set<ChannelType> {
     }
 
     @Override
-    public @NonNegative int size() {
+    public int size() {
         return set.size();
     }
 
@@ -71,7 +71,7 @@ public final class ChannelSet implements Set<ChannelType> {
 
     @Override
     @SuppressWarnings({"toarray.nullable.elements.not.newarray", "override.param", "return"})
-    public <T> T @NonNull[] toArray(T @NonNull[] ts) {
+    public <T> T[] toArray(T[] ts) {
         return set.toArray(ts);
     }
 
@@ -132,7 +132,7 @@ public final class ChannelSet implements Set<ChannelType> {
     }
 
     @Override
-    public boolean equals(@Nullable Object obj) {
+    public boolean equals(Object obj) {
         return set.equals(obj);
     }
 }

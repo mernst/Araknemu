@@ -28,12 +28,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class SpecialEffectsTest extends TestCase {
     private SpecialEffects effects;
 
-    @BeforeEach
     void setUp() {
         effects = new SpecialEffects();
     }
 
-    @Test
     void add() {
         effects.add(SpecialEffects.Type.PODS, 10);
 
@@ -44,7 +42,6 @@ class SpecialEffectsTest extends TestCase {
         assertEquals(25, effects.get(SpecialEffects.Type.PODS));
     }
 
-    @Test
     void sub() {
         effects.sub(SpecialEffects.Type.PODS, 10);
 
@@ -55,7 +52,6 @@ class SpecialEffectsTest extends TestCase {
         assertEquals(-25, effects.get(SpecialEffects.Type.PODS));
     }
 
-    @Test
     void clear() {
         effects.add(SpecialEffects.Type.PODS, 10);
         effects.clear();

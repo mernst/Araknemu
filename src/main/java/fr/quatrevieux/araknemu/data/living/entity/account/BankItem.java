@@ -34,9 +34,9 @@ public final class BankItem implements Item {
     private final int entryId;
     private final int itemTemplateId;
     private final List<ItemTemplateEffectEntry> effects;
-    private @NonNegative int quantity;
+    private int quantity;
 
-    public BankItem(int accountId, int serverId, int entryId, int itemTemplateId, List<ItemTemplateEffectEntry> effects, @NonNegative int quantity) {
+    public BankItem(int accountId, int serverId, int entryId, int itemTemplateId, List<ItemTemplateEffectEntry> effects, int quantity) {
         this.accountId = accountId;
         this.serverId = serverId;
         this.entryId = entryId;
@@ -81,12 +81,12 @@ public final class BankItem implements Item {
     }
 
     @Override
-    public @NonNegative int quantity() {
+    public int quantity() {
         return quantity;
     }
 
     @Override
-    public void setQuantity(@NonNegative int quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 }

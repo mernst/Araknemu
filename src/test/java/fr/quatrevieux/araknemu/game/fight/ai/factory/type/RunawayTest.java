@@ -29,7 +29,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RunawayTest extends AiBaseCase {
-    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -38,7 +37,6 @@ class RunawayTest extends AiBaseCase {
         dataSet.pushFunctionalSpells();
     }
 
-    @Test
     void shouldBoostFirst() {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(342))
@@ -48,7 +46,6 @@ class RunawayTest extends AiBaseCase {
         assertCast(6, 342);
     }
 
-    @Test
     void shouldAttackIfCantBoost() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(342))
@@ -60,7 +57,6 @@ class RunawayTest extends AiBaseCase {
         assertCast(3, 327);
     }
 
-    @Test
     void shouldMoveToAttackIfCantAttackFromTheCurrentCell() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(342))
@@ -75,7 +71,6 @@ class RunawayTest extends AiBaseCase {
         assertCast(3, 241);
     }
 
-    @Test
     void shouldMoveFarEnemyIfCantAttack() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210))
@@ -91,7 +86,6 @@ class RunawayTest extends AiBaseCase {
         assertEquals(12, distance(getEnemy(0)));
     }
 
-    @Test
     void shouldBoostAlliesIfCantMoveOrAttack() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210).spell(27, 5))
@@ -107,7 +101,6 @@ class RunawayTest extends AiBaseCase {
         assertInCastEffectArea(198);
     }
 
-    @Test
     void shouldDoNothingOtherwise() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210).spell(27, 5))

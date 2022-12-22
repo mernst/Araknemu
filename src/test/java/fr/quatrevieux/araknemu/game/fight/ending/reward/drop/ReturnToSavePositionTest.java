@@ -39,7 +39,6 @@ class ReturnToSavePositionTest extends FightBaseCase {
     private PlayerFighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -50,7 +49,6 @@ class ReturnToSavePositionTest extends FightBaseCase {
         fighter = player.fighter();
     }
 
-    @Test
     void applyOnPlayerFighter() {
         player.setSavedPosition(new Position(123, 456));
 
@@ -61,7 +59,6 @@ class ReturnToSavePositionTest extends FightBaseCase {
         assertEquals(new Position(123, 456), player.position());
     }
 
-    @Test
     void applyOnMonster() {
         MonsterFighter fighter = (MonsterFighter) fight.team(1).fighters().stream().findFirst().get();
 

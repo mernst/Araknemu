@@ -42,9 +42,9 @@ final class SqlMapTemplateRepository implements MapTemplateRepository {
     private final QueryExecutor executor;
     private final RepositoryUtils<MapTemplate> utils;
     private final Transformer<CellData[]> cellsTransformer;
-    private final Transformer<@NonNegative int[][]> fightPlacesTransformer;
+    private final Transformer<int[][]> fightPlacesTransformer;
 
-    public SqlMapTemplateRepository(QueryExecutor executor, Transformer<CellData[]> cellsTransformer, Transformer<@NonNegative int[][]> fightPlacesTransformer) {
+    public SqlMapTemplateRepository(QueryExecutor executor, Transformer<CellData[]> cellsTransformer, Transformer<int[][]> fightPlacesTransformer) {
         this.executor = executor;
         this.cellsTransformer = cellsTransformer;
         this.fightPlacesTransformer = fightPlacesTransformer;
@@ -88,7 +88,7 @@ final class SqlMapTemplateRepository implements MapTemplateRepository {
     }
 
     @Override
-    public MapTemplate get(@NonNegative int id) {
+    public MapTemplate get(int id) {
         return utils.findOne(
             "SELECT * FROM maps WHERE id = ?",
             stmt -> stmt.setInt(1, id)

@@ -58,7 +58,6 @@ class ContextCommandParserTest extends GameBaseCase {
     private AdminUser user;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -78,12 +77,10 @@ class ContextCommandParserTest extends GameBaseCase {
         );
     }
 
-    @Test
     void parseEmpty() {
         assertThrows(CommandException.class, () -> parser.parse(user, "  "), "Empty command");
     }
 
-    @Test
     void parseSimple() throws AdminException {
         CommandParser.Arguments arguments = parser.parse(user, "simple");
 
@@ -94,7 +91,6 @@ class ContextCommandParserTest extends GameBaseCase {
         assertInstanceOf(AggregationContext.class, arguments.context());
     }
 
-    @Test
     void parseWithArguments() throws AdminException {
         CommandParser.Arguments arguments = parser.parse(user, "  cmd arg1   arg2  val1  ");
 
@@ -105,7 +101,6 @@ class ContextCommandParserTest extends GameBaseCase {
         assertInstanceOf(AggregationContext.class, arguments.context());
     }
 
-    @Test
     void parseWithForceSelfContext() throws AdminException {
         CommandParser.Arguments arguments = parser.parse(user, "!cmd arg");
 
@@ -116,7 +111,6 @@ class ContextCommandParserTest extends GameBaseCase {
         assertSame(user.self(), arguments.context());
     }
 
-    @Test
     void parseWithSubContext() throws AdminException {
         CommandParser.Arguments arguments = parser.parse(user, "> account cmd arg");
 
@@ -127,12 +121,10 @@ class ContextCommandParserTest extends GameBaseCase {
         assertSame(user.self().child("account"), arguments.context());
     }
 
-    @Test
     void parseWithNotFoundSubContext() {
         assertThrows(ContextNotFoundException.class, () -> parser.parse(user, ">notFound cmd"));
     }
 
-    @Test
     void parseWithResolvedContext() throws ContainerException, AdminException {
         Player player = dataSet.pushPlayer("John", 5, 2);
 
@@ -158,7 +150,6 @@ class ContextCommandParserTest extends GameBaseCase {
         assertSame(john, PlayerContext.class.cast(arguments.context()).player());
     }
 
-    @Test
     void parseWithResolvedContextWithoutArgument() throws ContainerException, AdminException {
         session.attach(new GameAccount(
             new Account(5),
@@ -174,7 +165,6 @@ class ContextCommandParserTest extends GameBaseCase {
         assertInstanceOf(DebugContext.class, arguments.context());
     }
 
-    @Test
     void parseWithBadContextArgument() {
         assertThrows(ContextException.class, () -> parser.parse(user, "@NotFound cmd"), "Cannot found the player NotFound");
     }

@@ -35,7 +35,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HealTest extends AiBaseCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -43,7 +42,6 @@ class HealTest extends AiBaseCase {
         dataSet.pushFunctionalSpells();
     }
 
-    @Test
     void success() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122).currentLife(50).maxLife(100).spell(121).spell(131))
@@ -53,7 +51,6 @@ class HealTest extends AiBaseCase {
         assertCast(121, 122);
     }
 
-    @Test
     void notEnoughAP() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122).currentLife(50).maxLife(100).spell(121).spell(131))
@@ -64,7 +61,6 @@ class HealTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void notAP() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122).currentLife(50).maxLife(100).spell(121).spell(131))
@@ -75,7 +71,6 @@ class HealTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void shouldIgnoreIfHealMostlyEnemies() throws SQLException {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(327).currentLife(50).maxLife(100).spell(130))
@@ -88,7 +83,6 @@ class HealTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void shouldIgnoreIfCanKillAllyOrItself() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(327).currentLife(15).maxLife(100).spell(102))
@@ -99,7 +93,6 @@ class HealTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void withAreaSpell() throws SQLException {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(126).spells(223).currentLife(50).maxLife(100).spell(121).spell(131).spell(130))
@@ -116,7 +109,6 @@ class HealTest extends AiBaseCase {
         assertNotInCastEffectArea(122);
     }
 
-    @Test
     void scoreShouldHandleSpellAPCost() {
         Spell spell = Mockito.mock(Spell.class);
 
@@ -140,7 +132,6 @@ class HealTest extends AiBaseCase {
         assertEquals(3.75, Heal.class.cast(action).score(simulation));
     }
 
-    @Test
     void score() throws SQLException {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122).currentLife(50).maxLife(100))

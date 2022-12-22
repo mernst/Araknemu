@@ -46,7 +46,7 @@ public final class MonsterAiFactory implements AiFactory<Fighter> {
     }
 
     class ResolveAi implements FighterOperation {
-        private @MonotonicNonNull AI<Fighter> ai;
+        private AI<Fighter> ai;
 
         @Override
         public void onMonster(MonsterFighter fighter) {

@@ -39,7 +39,6 @@ class SendCreatureMoveTest extends GameBaseCase {
     private ExplorationPlayer creature;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,7 +46,6 @@ class SendCreatureMoveTest extends GameBaseCase {
         listener = new SendCreatureMove(creature.map());
     }
 
-    @Test
     void onMove() {
         Path<ExplorationMapCell> path = new Path<>(
             new Decoder<>(creature.map()),

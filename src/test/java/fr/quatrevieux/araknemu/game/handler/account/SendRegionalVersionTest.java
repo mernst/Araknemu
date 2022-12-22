@@ -30,7 +30,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class SendRegionalVersionTest extends GameBaseCase {
     private SendRegionalVersion handler;
 
-    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -38,7 +37,6 @@ class SendRegionalVersionTest extends GameBaseCase {
         handler = new SendRegionalVersion();
     }
 
-    @Test
     void handle() throws Exception {
         handler.handle(session, new AskRegionalVersion());
 

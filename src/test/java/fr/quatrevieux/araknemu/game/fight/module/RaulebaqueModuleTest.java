@@ -39,7 +39,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  *
  */
 class RaulebaqueModuleTest extends FightBaseCase {
-    @Test
     void effect() throws Exception {
         Fight fight = createFight(false);
 
@@ -61,7 +60,6 @@ class RaulebaqueModuleTest extends FightBaseCase {
         assertSame(otherCell, other.fighter().cell());
     }
 
-    @Test
     void startPositions() throws Exception {
         Fight fight = createFight(false);
         RaulebaqueModule module = new RaulebaqueModule(fight);

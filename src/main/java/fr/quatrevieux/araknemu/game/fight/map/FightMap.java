@@ -41,7 +41,7 @@ import java.util.List;
  */
 public final class FightMap implements BattlefieldMap {
     private final MapTemplate template;
-    private final FightCell @SameLen("this") [] cells;
+    private final FightCell[] cells;
     private final Decoder<FightCell> decoder;
 
     @SuppressWarnings({"argument", "method.invocation"}) // Do not resolve SameLen from template.cells()
@@ -54,7 +54,7 @@ public final class FightMap implements BattlefieldMap {
     /**
      * Get the map id
      */
-    public @NonNegative int id() {
+    public int id() {
         return template.id();
     }
 
@@ -64,7 +64,7 @@ public final class FightMap implements BattlefieldMap {
      * @param cellId The cell id
      */
     @Override
-    public FightCell get(@NonNegative @IndexFor("this") int cellId) {
+    public FightCell get(int cellId) {
         return cells[cellId];
     }
 
@@ -72,8 +72,8 @@ public final class FightMap implements BattlefieldMap {
      * Get start places for a team
      */
     @SuppressWarnings("assignment") // fightPlaces bounds are not checked
-    public List<FightCell> startPlaces(@NonNegative int team) {
-        final @IndexFor("this") int[][] places = template.fightPlaces();
+    public List<FightCell> startPlaces(int team) {
+        final int[][] places = template.fightPlaces();
 
         if (team >= places.length) {
             return Collections.emptyList();
@@ -88,15 +88,13 @@ public final class FightMap implements BattlefieldMap {
         return startCells;
     }
 
-    @Pure
     @Override
     public Dimensions dimensions() {
         return template.dimensions();
     }
 
-    @Pure
     @Override
-    public @LengthOf("this") int size() {
+    public int size() {
         return cells.length;
     }
 
@@ -129,12 +127,12 @@ public final class FightMap implements BattlefieldMap {
         // an adapter is created as Decoder parameter
         return new Decoder<>(new DofusMap<FightCell>() {
             @Override
-            public @LengthOf({"this"}) int size() {
+            public int size() {
                 return FightMap.this.size();
             }
 
             @Override
-            public FightCell get(@IndexFor({"this"}) int id) {
+            public FightCell get(int id) {
                 return FightMap.this.get(id);
             }
 
@@ -145,7 +143,7 @@ public final class FightMap implements BattlefieldMap {
         });
     }
 
-    private static FightCell @SameLen("#1") [] makeCells(FightMap map, CellData @SameLen("#1") [] template) {
+    private static FightCell[] makeCells(FightMap map, CellData[] template) {
         final FightCell[] cells = new FightCell[template.length];
 
         for (int i = 0; i < template.length; ++i) {

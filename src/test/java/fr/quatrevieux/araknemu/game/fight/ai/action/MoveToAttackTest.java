@@ -35,19 +35,16 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class MoveToAttackTest extends AiBaseCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         action = MoveToAttack.nearest(container.get(Simulator.class));
     }
 
-    @Test
     void generateNotInitialized() {
         assertFalse(action.generate(Mockito.mock(AI.class), Mockito.mock(AiActionFactory.class)).isPresent());
     }
 
-    @Test
     void success() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(150))
@@ -60,7 +57,6 @@ class MoveToAttackTest extends AiBaseCase {
         assertEquals(122, fighter.cell().id());
     }
 
-    @Test
     void alreadyOnValidCell() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122))
@@ -71,7 +67,6 @@ class MoveToAttackTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void noMP() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(150))
@@ -84,7 +79,6 @@ class MoveToAttackTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void noAP() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(150))
@@ -97,7 +91,6 @@ class MoveToAttackTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void noEnoughAP() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(150))
@@ -110,7 +103,6 @@ class MoveToAttackTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void bestTarget() throws SQLException {
         dataSet.pushFunctionalSpells();
         action = MoveToAttack.bestTarget(container.get(Simulator.class));
@@ -137,7 +129,6 @@ class MoveToAttackTest extends AiBaseCase {
         assertEquals(165, fighter.cell().id());
     }
 
-    @Test
     void shouldNotMoveIfBlockedByOtherFighters() throws SQLException, NoSuchFieldException, IllegalAccessException {
         dataSet.pushFunctionalSpells();
         action = MoveToAttack.bestTarget(container.get(Simulator.class));
@@ -153,7 +144,6 @@ class MoveToAttackTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void shouldNotMoveIfCanAttackButWithEnemyOnAdjacentCell() throws SQLException, NoSuchFieldException, IllegalAccessException {
         dataSet.pushFunctionalSpells();
         action = MoveToAttack.bestTarget(container.get(Simulator.class));
@@ -169,7 +159,6 @@ class MoveToAttackTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void shouldMoveIfCanAttackDespiteEnemyOnAdjacentCell() throws SQLException, NoSuchFieldException, IllegalAccessException {
         dataSet.pushFunctionalSpells();
         action = MoveToAttack.bestTarget(container.get(Simulator.class));
@@ -186,7 +175,6 @@ class MoveToAttackTest extends AiBaseCase {
         assertEquals(196, fighter.cell().id());
     }
 
-    @Test
     void nearestShouldSelectBestTargetIfInSameDistance() throws SQLException, NoSuchFieldException, IllegalAccessException {
         dataSet.pushFunctionalSpells();
 

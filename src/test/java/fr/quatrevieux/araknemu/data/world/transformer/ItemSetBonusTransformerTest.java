@@ -33,13 +33,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class ItemSetBonusTransformerTest extends TestCase {
     private ItemSetBonusTransformer transformer = new ItemSetBonusTransformer();
 
-    @Test
     void serializeEmpty() {
         assertEquals("", transformer.serialize(Collections.emptyList()));
         assertNull(transformer.serialize(null));
     }
 
-    @Test
     void serialize() {
         assertEquals(
             "125:25,123:45;125:50,123:100",
@@ -58,7 +56,6 @@ class ItemSetBonusTransformerTest extends TestCase {
         );
     }
 
-    @Test
     void unserializeNull() {
         assertEquals(
             Collections.emptyList(),
@@ -66,7 +63,6 @@ class ItemSetBonusTransformerTest extends TestCase {
         );
     }
 
-    @Test
     void unserializeEmpty() {
         assertEquals(
             Collections.emptyList(),
@@ -74,7 +70,6 @@ class ItemSetBonusTransformerTest extends TestCase {
         );
     }
 
-    @Test
     void unserializeWithEmptyEffects() {
         assertEquals(
             Arrays.asList(
@@ -86,7 +81,6 @@ class ItemSetBonusTransformerTest extends TestCase {
         );
     }
 
-    @Test
     void unserializeWithSingleEffect() {
         List<List<ItemTemplateEffectEntry>> bonus = transformer.unserialize(";125:10");
 
@@ -98,7 +92,6 @@ class ItemSetBonusTransformerTest extends TestCase {
         assertEquals(10, bonus.get(1).get(0).min());
     }
 
-    @Test
     void unserializeWithMultipleEffects() {
         List<List<ItemTemplateEffectEntry>> bonus = transformer.unserialize("125:25,123:45;125:50,123:100");
 
@@ -117,7 +110,6 @@ class ItemSetBonusTransformerTest extends TestCase {
         assertEquals(100, bonus.get(1).get(1).min());
     }
 
-    @Test
     void unserializeError() {
         assertThrows(
             RuntimeException.class,

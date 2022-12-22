@@ -71,7 +71,7 @@ public final class CastTargetResolver {
         Collection<F> targets = null;
 
         for (BattlefieldCell cell : effect.area().resolve(target, caster.cell())) {
-            final @Nullable F resolvedTarget = (/*@Nullable*/ F) cell.fighter();
+            final F resolvedTarget = (/*@Nullable*/ F) cell.fighter();
 
             if (resolvedTarget == null || !effect.target().test(caster, resolvedTarget)) {
                 continue;

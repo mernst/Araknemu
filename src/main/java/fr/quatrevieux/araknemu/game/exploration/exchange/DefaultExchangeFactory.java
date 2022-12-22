@@ -40,7 +40,7 @@ public final class DefaultExchangeFactory implements ExchangeFactory<Exploration
 
     @Override
     public ExchangeInteraction create(ExchangeType type, ExplorationPlayer initiator, ExplorationCreature target) {
-        final @Nullable ExchangeInteraction exchange = target.apply(new CreateExchange(type, initiator));
+        final ExchangeInteraction exchange = target.apply(new CreateExchange(type, initiator));
 
         if (exchange == null) {
             throw new IllegalArgumentException("Bad target");

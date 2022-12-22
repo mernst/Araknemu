@@ -38,7 +38,6 @@ class ApplyEndFightRewardTest extends FightBaseCase {
     private ApplyEndFightReward listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -46,14 +45,12 @@ class ApplyEndFightRewardTest extends FightBaseCase {
         listener = new ApplyEndFightReward(player.fighter());
     }
 
-    @Test
     void onFightFinishedWithoutReward() {
         listener.on(new FightFinished(new DropReward(RewardType.WINNER, player.fighter(), Collections.emptyList())));
 
         assertFalse(player.isFighting());
     }
 
-    @Test
     void onFightFinishedWithXpReward() {
         long lastXp = player.properties().experience().current();
 

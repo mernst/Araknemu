@@ -36,7 +36,6 @@ class ChannelSetTest {
     private ChannelSet channelSet;
     private ListenerAggregate dispatcher;
 
-    @BeforeEach
     void setUp() {
         base = EnumSet.noneOf(ChannelType.class);
         channelSet = new ChannelSet(
@@ -45,7 +44,6 @@ class ChannelSetTest {
         );
     }
 
-    @Test
     void size() {
         channelSet.add(ChannelType.PRIVATE);
         channelSet.add(ChannelType.MESSAGES);
@@ -53,14 +51,12 @@ class ChannelSetTest {
         assertEquals(2, channelSet.size());
     }
 
-    @Test
     void isEmpty() {
         assertTrue(channelSet.isEmpty());
         channelSet.add(ChannelType.PRIVATE);
         assertFalse(channelSet.isEmpty());
     }
 
-    @Test
     void contains() {
         channelSet.add(ChannelType.PRIVATE);
         channelSet.add(ChannelType.MESSAGES);
@@ -69,7 +65,6 @@ class ChannelSetTest {
         assertFalse(channelSet.contains(ChannelType.ADMIN));
     }
 
-    @Test
     void containsAll() {
         channelSet.add(ChannelType.PRIVATE);
         channelSet.add(ChannelType.MESSAGES);
@@ -80,7 +75,6 @@ class ChannelSetTest {
         )));
     }
 
-    @Test
     void equals() {
         channelSet.add(ChannelType.PRIVATE);
         channelSet.add(ChannelType.MESSAGES);
@@ -89,7 +83,6 @@ class ChannelSetTest {
         assertNotEquals(channelSet, EnumSet.allOf(ChannelType.class));
     }
 
-    @Test
     void addSuccess() {
         AtomicReference<Collection<ChannelType>> ref = new AtomicReference<>();
         dispatcher.add(ChannelSubscriptionAdded.class, evt -> ref.set(evt.channels()));
@@ -99,7 +92,6 @@ class ChannelSetTest {
         assertEquals(Collections.singleton(ChannelType.TRADE), ref.get());
     }
 
-    @Test
     void addAlreadyExists() {
         channelSet.add(ChannelType.TRADE);
 
@@ -110,7 +102,6 @@ class ChannelSetTest {
         assertNull(ref.get());
     }
 
-    @Test
     void removeSuccess() {
         channelSet.add(ChannelType.TRADE);
 
@@ -122,7 +113,6 @@ class ChannelSetTest {
         assertFalse(channelSet.contains(ChannelType.TRADE));
     }
 
-    @Test
     void removeNotFound() {
         AtomicReference<Collection<ChannelType>> ref = new AtomicReference<>();
         dispatcher.add(ChannelSubscriptionRemoved.class, evt -> ref.set(evt.channels()));
@@ -131,7 +121,6 @@ class ChannelSetTest {
         assertNull(ref.get());
     }
 
-    @Test
     void addAll() {
         channelSet.add(ChannelType.TRADE);
 
@@ -143,7 +132,6 @@ class ChannelSetTest {
         assertEquals(EnumSet.of(ChannelType.INFO, ChannelType.MESSAGES), ref.get());
     }
 
-    @Test
     void removeAll() {
         channelSet.add(ChannelType.TRADE);
         channelSet.add(ChannelType.INFO);

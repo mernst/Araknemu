@@ -28,7 +28,6 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FinishFightActionTest {
-    @Test
     void generateMove() {
         Action action = Mockito.mock(Action.class);
         Fighter fighter = Mockito.mock(Fighter.class);
@@ -40,7 +39,6 @@ class FinishFightActionTest {
         assertEquals("GAF2|123", new FinishFightAction(action).toString());
     }
 
-    @Test
     void generateOther() {
         Action action = Mockito.mock(Action.class);
         Fighter fighter = Mockito.mock(Fighter.class);

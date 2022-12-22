@@ -46,7 +46,7 @@ public interface ItemEntry {
      *
      * @see ItemEntry#isDefaultPosition() To check if the entry is on default position
      */
-    public @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int position();
+    public int position();
 
     /**
      * Check if the entry is on the default position
@@ -65,7 +65,7 @@ public interface ItemEntry {
     /**
      * Get the item quantity
      */
-    public @NonNegative int quantity();
+    public int quantity();
 
     /**
      * Add the quantity to the entry
@@ -74,7 +74,7 @@ public interface ItemEntry {
      *
      * @throws InventoryException When invalid quantity given
      */
-    public void add(@Positive int quantity);
+    public void add(int quantity);
 
     /**
      * Remove the quantity to the entry
@@ -83,7 +83,7 @@ public interface ItemEntry {
      *
      * @throws InventoryException When invalid quantity given
      */
-    public void remove(@Positive int quantity) throws InventoryException;
+    public void remove(int quantity) throws InventoryException;
 
     /**
      * Export the item effects

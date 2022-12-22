@@ -47,7 +47,6 @@ class SwitchPositionOnAttackHandlerTest extends FightBaseCase {
     private Fight fight;
     private SwitchPositionOnAttackHandler handler;
 
-    @Test
     void handleDirectEffectNotSupported() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(165))
@@ -71,7 +70,6 @@ class SwitchPositionOnAttackHandlerTest extends FightBaseCase {
         assertThrows(UnsupportedOperationException.class, () -> handler.handle(scope, scope.effects().get(0)));
     }
 
-    @Test
     void buffWillAddBuffToList() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(165))
@@ -106,7 +104,6 @@ class SwitchPositionOnAttackHandlerTest extends FightBaseCase {
         assertEquals(5, found.get().remainingTurns());
     }
 
-    @Test
     void buffShouldIgnoreSelf() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(165))
@@ -135,7 +132,6 @@ class SwitchPositionOnAttackHandlerTest extends FightBaseCase {
         assertFalse(found.isPresent());
     }
 
-    @Test
     void buffWithAreaMultipleFighters() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(165))
@@ -160,7 +156,6 @@ class SwitchPositionOnAttackHandlerTest extends FightBaseCase {
         assertTrue(fight.fighters().get(2).buffs().stream().anyMatch(buff -> buff.effect().equals(effect)));
     }
 
-    @Test
     void buffWithPoisonDamageShouldBeIgnored() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(165))
@@ -201,7 +196,6 @@ class SwitchPositionOnAttackHandlerTest extends FightBaseCase {
         assertEquals(150, target.cell().id());
     }
 
-    @Test
     void buffWithDirectDamage() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(165))
@@ -250,7 +244,6 @@ class SwitchPositionOnAttackHandlerTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.teleport(caster, caster, fight.map().get(150)));
     }
 
-    @Test
     void buffWithReflectedDamage() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(165).charac(Characteristic.COUNTER_DAMAGE, 5))

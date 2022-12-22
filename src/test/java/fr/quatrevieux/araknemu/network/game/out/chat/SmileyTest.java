@@ -27,7 +27,6 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SmileyTest extends GameBaseCase {
-    @Test
     void string() throws SQLException {
         assertEquals("cS1|3", new Smiley(explorationPlayer(), 3).toString());
     }

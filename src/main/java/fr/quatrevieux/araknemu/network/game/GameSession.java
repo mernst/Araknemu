@@ -41,40 +41,36 @@ import java.util.Optional;
  * Session wrapper for game server
  */
 public final class GameSession extends AbstractDelegatedSession implements AccountSession<GameAccount>, Dispatcher {
-    private @Nullable GameAccount account;
-    private @Nullable GamePlayer player;
-    private @Nullable ExplorationPlayer exploration;
-    private @Nullable PlayerFighter fighter;
-    private @Nullable Spectator spectator;
-    private @MonotonicNonNull SessionLog log;
+    private GameAccount account;
+    private GamePlayer player;
+    private ExplorationPlayer exploration;
+    private PlayerFighter fighter;
+    private Spectator spectator;
+    private SessionLog log;
 
     public GameSession(Session session) {
         super(session);
     }
 
     @Override
-    @EnsuresNonNull({"account()", "this.account"})
     @SuppressWarnings("contracts.postcondition")
     public void attach(GameAccount account) {
         this.account = account;
     }
 
     @Override
-    @Pure
-    public @Nullable GameAccount account() {
+    public GameAccount account() {
         return account;
     }
 
     @Override
-    @Pure
-    @EnsuresNonNullIf(expression = {"account()", "this.account"}, result = true)
     @SuppressWarnings({"contracts.postcondition", "contracts.conditional.postcondition.true.override", "contracts.conditional.postcondition"})
     public boolean isLogged() {
         return account != null;
     }
 
     @Override
-    public @Nullable GameAccount detach() {
+    public GameAccount detach() {
         return account = null;
     }
 
@@ -83,7 +79,7 @@ public final class GameSession extends AbstractDelegatedSession implements Accou
      *
      * @throws IllegalStateException When a player is already set
      */
-    public void setPlayer(@Nullable GamePlayer player) {
+    public void setPlayer(GamePlayer player) {
         if (this.player != null && player != null) {
             throw new IllegalStateException("A player is already loaded");
         }
@@ -96,7 +92,7 @@ public final class GameSession extends AbstractDelegatedSession implements Accou
      *
      * @return The player instance, or null is not in game
      */
-    public @Nullable GamePlayer player() {
+    public GamePlayer player() {
         return player;
     }
 
@@ -105,14 +101,14 @@ public final class GameSession extends AbstractDelegatedSession implements Accou
      *
      * @return The player instance, or null if not on exploration
      */
-    public @Nullable ExplorationPlayer exploration() {
+    public ExplorationPlayer exploration() {
         return exploration;
     }
 
     /**
      * Set the exploration player
      */
-    public void setExploration(@Nullable ExplorationPlayer exploration) {
+    public void setExploration(ExplorationPlayer exploration) {
         this.exploration = exploration;
     }
 
@@ -121,28 +117,28 @@ public final class GameSession extends AbstractDelegatedSession implements Accou
      *
      * @return The fighter or null is not fighting
      */
-    public @Nullable PlayerFighter fighter() {
+    public PlayerFighter fighter() {
         return fighter;
     }
 
     /**
      * Set the fighter
      */
-    public void setFighter(@Nullable PlayerFighter fighter) {
+    public void setFighter(PlayerFighter fighter) {
         this.fighter = fighter;
     }
 
     /**
      * Get the current active spectator session
      */
-    public @Nullable Spectator spectator() {
+    public Spectator spectator() {
         return spectator;
     }
 
     /**
      * Define the spectator session
      */
-    public void setSpectator(@Nullable Spectator spectator) {
+    public void setSpectator(Spectator spectator) {
         this.spectator = spectator;
     }
 

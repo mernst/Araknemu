@@ -50,7 +50,6 @@ class LivingMonsterGroupPositionTest extends GameBaseCase {
     private LivingMonsterGroupPosition monsterGroupPosition;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -74,7 +73,6 @@ class LivingMonsterGroupPositionTest extends GameBaseCase {
         );
     }
 
-    @Test
     void populate() {
         assertCount(0, map.creatures());
 
@@ -85,7 +83,6 @@ class LivingMonsterGroupPositionTest extends GameBaseCase {
         assertCount(2, map.creatures());
     }
 
-    @Test
     void available() {
         monsterGroupPosition.populate(map);
 
@@ -95,7 +92,6 @@ class LivingMonsterGroupPositionTest extends GameBaseCase {
         );
     }
 
-    @Test
     void spawn() {
         monsterGroupPosition.populate(map);
         assertCount(2, monsterGroupPosition.available());
@@ -104,7 +100,6 @@ class LivingMonsterGroupPositionTest extends GameBaseCase {
         assertCount(3, monsterGroupPosition.available());
     }
 
-    @Test
     void respawn() {
         monsterGroupPosition.populate(map);
         map.remove(monsterGroupPosition.available().get(0));
@@ -117,13 +112,11 @@ class LivingMonsterGroupPositionTest extends GameBaseCase {
         assertCount(2, monsterGroupPosition.available());
     }
 
-    @Test
     void mapNotLoaded() {
         assertThrows(IllegalStateException.class, monsterGroupPosition::spawn);
         assertThrows(IllegalStateException.class, monsterGroupPosition::respawn);
     }
 
-    @Test
     void fixedGroup() {
         monsterGroupPosition = new LivingMonsterGroupPosition(
             container.get(MonsterGroupFactory.class),
@@ -151,7 +144,6 @@ class LivingMonsterGroupPositionTest extends GameBaseCase {
         assertEquals(2, group.monsters().get(1).level());
     }
 
-    @Test
     void cell() {
         monsterGroupPosition.populate(map);
 
@@ -159,7 +151,6 @@ class LivingMonsterGroupPositionTest extends GameBaseCase {
         assertTrue(monsterGroupPosition.cell().free());
     }
 
-    @Test
     void startFight() throws SQLException {
         monsterGroupPosition.populate(map);
 
@@ -178,7 +169,6 @@ class LivingMonsterGroupPositionTest extends GameBaseCase {
         assertInstanceOf(PvmType.class, fight.type());
     }
 
-    @Test
     void startFightWithFixedTeamNumber() throws SQLException {
         monsterGroupPosition = new LivingMonsterGroupPosition(
             container.get(MonsterGroupFactory.class),
@@ -200,7 +190,6 @@ class LivingMonsterGroupPositionTest extends GameBaseCase {
         assertInstanceOf(MonsterGroupTeam.class, fight.team(1));
     }
 
-    @RepeatedIfExceptionsTest
     void startFightShouldRespawnGroup() throws SQLException, InterruptedException {
         monsterGroupPosition = new LivingMonsterGroupPosition(
             container.get(MonsterGroupFactory.class),
@@ -225,7 +214,6 @@ class LivingMonsterGroupPositionTest extends GameBaseCase {
         assertEquals(1, monsterGroupPosition.available().size());
     }
 
-    @Test
     void availableWithoutPopulate() {
         assertCount(0, monsterGroupPosition.available());
     }

@@ -58,7 +58,7 @@ public final class WeaponConstraintsValidator implements CastConstraintValidator
     }
 
     @Override
-    public @Nullable Error validate(Turn turn, CastableWeapon weapon, BattlefieldCell target) {
+    public Error validate(Turn turn, CastableWeapon weapon, BattlefieldCell target) {
         return validator.validate(turn, weapon, target);
     }
 }

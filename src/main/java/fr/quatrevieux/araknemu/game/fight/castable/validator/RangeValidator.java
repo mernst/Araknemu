@@ -45,7 +45,7 @@ public final class RangeValidator implements CastConstraintValidator {
     }
 
     @Override
-    public @Nullable Error validate(Turn turn, Castable castable, BattlefieldCell target) {
+    public Error validate(Turn turn, Castable castable, BattlefieldCell target) {
         final int distance = turn.fighter().cell().coordinate().distance(target);
 
         Interval range = castable.constraints().range();

@@ -34,13 +34,13 @@ public final class ItemTemplate {
     private final String name;
     private final int level;
     private final List<ItemTemplateEffectEntry> effects;
-    private final @NonNegative int weight;
+    private final int weight;
     private final String condition;
     private final int itemSet;
-    private final @Nullable String weaponInfo;
-    private final @NonNegative int price;
+    private final String weaponInfo;
+    private final int price;
 
-    public ItemTemplate(int id, int type, String name, int level, List<ItemTemplateEffectEntry> effects, @NonNegative int weight, String condition, int itemSet, @Nullable String weaponInfo, @NonNegative int price) {
+    public ItemTemplate(int id, int type, String name, int level, List<ItemTemplateEffectEntry> effects, int weight, String condition, int itemSet, String weaponInfo, int price) {
         this.id = id;
         this.type = type;
         this.name = name;
@@ -73,7 +73,7 @@ public final class ItemTemplate {
         return effects;
     }
 
-    public @NonNegative int weight() {
+    public int weight() {
         return weight;
     }
 
@@ -88,16 +88,16 @@ public final class ItemTemplate {
     /**
      * Get weapon characteristics, like AP cost, range...
      */
-    public @Nullable String weaponInfo() {
+    public String weaponInfo() {
         return weaponInfo;
     }
 
-    public @NonNegative int price() {
+    public int price() {
         return price;
     }
 
     @Override
-    public boolean equals(@Nullable Object o) {
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }

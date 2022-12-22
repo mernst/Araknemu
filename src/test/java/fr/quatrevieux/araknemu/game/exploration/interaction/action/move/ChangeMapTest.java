@@ -39,7 +39,6 @@ class ChangeMapTest extends GameBaseCase {
     private ExplorationMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,7 +48,6 @@ class ChangeMapTest extends GameBaseCase {
         map = container.get(ExplorationMapService.class).load(10540);
     }
 
-    @Test
     void dataNoCinematic() throws Exception {
         ChangeMap changeMap = new ChangeMap(player, map, 123);
 
@@ -58,7 +56,6 @@ class ChangeMapTest extends GameBaseCase {
         assertArrayEquals(new Object[] {""}, changeMap.arguments());
     }
 
-    @Test
     void dataCinematic() throws Exception {
         ChangeMap changeMap = new ChangeMap(player, map, 123, 6);
 
@@ -67,7 +64,6 @@ class ChangeMapTest extends GameBaseCase {
         assertArrayEquals(new Object[] {6}, changeMap.arguments());
     }
 
-    @Test
     void startWithoutCinematic() throws Exception {
         requestStack.clear();
 
@@ -90,7 +86,6 @@ class ChangeMapTest extends GameBaseCase {
         );
     }
 
-    @Test
     void startWithCinematic() throws Exception {
         requestStack.clear();
 

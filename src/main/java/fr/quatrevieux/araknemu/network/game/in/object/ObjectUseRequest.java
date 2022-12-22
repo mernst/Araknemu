@@ -35,35 +35,31 @@ import org.checkerframework.dataflow.qual.Pure;
 public final class ObjectUseRequest implements Packet {
     private final int objectId;
     private final int target;
-    private final @GTENegativeOne int cell;
+    private final int cell;
     private final boolean isTarget;
 
-    public ObjectUseRequest(int objectId, int target, @GTENegativeOne int cell, boolean isTarget) {
+    public ObjectUseRequest(int objectId, int target, int cell, boolean isTarget) {
         this.objectId = objectId;
         this.target = target;
         this.cell = cell;
         this.isTarget = isTarget;
     }
 
-    @Pure
     public int objectId() {
         return objectId;
     }
 
-    @Pure
     public int target() {
         return target;
     }
 
-    @Pure
-    public @GTENegativeOne int cell() {
+    public int cell() {
         return cell;
     }
 
     /**
      * Does a target is provided by the packet (i.e. use on target)
      */
-    @Pure
     public boolean isTarget() {
         return isTarget;
     }
@@ -88,7 +84,7 @@ public final class ObjectUseRequest implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "OU";
         }
     }

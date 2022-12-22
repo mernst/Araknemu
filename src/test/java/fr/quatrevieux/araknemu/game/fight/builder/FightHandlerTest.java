@@ -52,7 +52,6 @@ class FightHandlerTest extends GameBaseCase {
     private FightService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -61,7 +60,6 @@ class FightHandlerTest extends GameBaseCase {
         service = container.get(FightService.class);
     }
 
-    @Test
     void withChallengeFight() throws ContainerException {
         FightHandler<ChallengeBuilder> handler = new FightHandler<>(
             container.get(FightService.class),
@@ -88,7 +86,6 @@ class FightHandlerTest extends GameBaseCase {
         assertCount(2, fight.fighters());
     }
 
-    @Test
     void displayOnMap() throws SQLException, ContainerException {
         ExplorationMap map = container.get(ExplorationMapService.class).load(10340);
 
@@ -134,7 +131,6 @@ class FightHandlerTest extends GameBaseCase {
         assertCount(0, service.fightsByMap(10340));
     }
 
-    @Test
     void cancelFightWillRemoveTheFight() throws ContainerException {
         ExplorationMap map = container.get(ExplorationMapService.class).load(10340);
 
@@ -161,7 +157,6 @@ class FightHandlerTest extends GameBaseCase {
         assertCount(0, service.fightsByMap(10340));
     }
 
-    @Test
     void startWillRegisterModules() throws ContainerException {
         DefaultListenerAggregate dispatcher = new DefaultListenerAggregate();
         FightModule module = Mockito.mock(FightModule.class);

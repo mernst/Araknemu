@@ -73,7 +73,6 @@ public class FunctionalTest extends FightBaseCase {
     private PlayerFighter fighter2;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -99,7 +98,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void poisonSpell() {
         castNormal(181, fighter1.cell()); // Tremblement
 
@@ -135,7 +133,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(3, buff2.get().remainingTurns());
     }
 
-    @Test
     void skipNextTurn() {
         castNormal(1630, fighter2.cell());
 
@@ -154,7 +151,6 @@ public class FunctionalTest extends FightBaseCase {
         assertSame(fighter2, fight.turnList().currentFighter());
     }
 
-    @Test
     void skipNextTurnSelfCast() {
         // #61 Skip next turn not working on self-buff
         castNormal(1630, fighter1.cell());
@@ -166,7 +162,6 @@ public class FunctionalTest extends FightBaseCase {
         assertSame(fighter2, fight.turnList().currentFighter());
     }
 
-    @Test
     void probableEffectSpell() {
         Spell spell = castNormal(109, fighter2.cell()); // Bluff
 
@@ -183,7 +178,6 @@ public class FunctionalTest extends FightBaseCase {
         );
     }
 
-    @Test
     void returnSpell() {
         castNormal(4, fighter1.cell()); // Return spell
         fighter1.turn().stop();
@@ -198,7 +192,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.returnSpell(fighter1, true));
     }
 
-    @Test
     void pointsChange() {
         castNormal(115, fighter1.cell()); // Odorat
 
@@ -234,7 +227,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(3, fighter1.characteristics().get(Characteristic.MOVEMENT_POINT));
     }
 
-    @Test
     void addCharacteristic() {
         castNormal(42, fighter1.cell()); // Chance
 
@@ -250,7 +242,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(0, fighter2.characteristics().get(Characteristic.LUCK));
     }
 
-    @Test
     void removeCharacteristic() {
         castNormal(468, fighter2.cell()); // Flêche d'huile
 
@@ -266,7 +257,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(0, fighter2.characteristics().get(Characteristic.INTELLIGENCE));
     }
 
-    @Test
     void armor() {
         castNormal(1, fighter1.cell()); // Armure Incandescente
         fighter1.turn().stop();
@@ -294,7 +284,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertNotContainsPrefix("GA;105");
     }
 
-    @Test
     void healOrMultiplyDamage() {
         int healCount = 0;
 
@@ -325,7 +314,6 @@ public class FunctionalTest extends FightBaseCase {
         assertTrue(healCount > 1);
     }
 
-    @Test
     void state() {
         castNormal(686, fighter1.cell()); // Picole
 
@@ -340,7 +328,6 @@ public class FunctionalTest extends FightBaseCase {
         assertFalse(fighter1.states().has(1));
     }
 
-    @Test
     void stateExpiration() {
         castNormal(686, fighter1.cell()); // Picole
 
@@ -353,7 +340,6 @@ public class FunctionalTest extends FightBaseCase {
         assertFalse(fighter1.states().has(1));
     }
 
-    @Test
     void dispelBuffs() {
         castNormal(42, fighter1.cell()); // Chance;
 
@@ -365,7 +351,6 @@ public class FunctionalTest extends FightBaseCase {
         assertIterableEquals(Collections.EMPTY_LIST, fighter1.buffs());
     }
 
-    @Test
     void heal() {
         fighter1.life().alter(fighter1, -50);
 
@@ -377,7 +362,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.alterLifePoints(fighter1, fighter1, heal));
     }
 
-    @Test
     void healAsBuff() {
         fighter1.life().alter(fighter1, -50);
 
@@ -394,7 +378,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.alterLifePoints(fighter1, fighter1, heal));
     }
 
-    @Test
     void healOnDamage() {
         castNormal(1556, fighter1.cell()); // Fourberie
 
@@ -406,7 +389,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.alterLifePoints(fighter1, fighter1, heal));
     }
 
-    @Test
     void avoidDamageByMovingBack() {
         fighter1.move(fight.map().get(150));
         fighter2.move(fight.map().get(165));
@@ -421,7 +403,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.slide(fighter2, fighter1, fight.map().get(135)));
     }
 
-    @Test
     void moveBack() {
         fighter1.move(fight.map().get(150));
         fighter2.move(fight.map().get(165));
@@ -432,7 +413,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.slide(fighter1, fighter2, fight.map().get(180)));
     }
 
-    @Test
     void moveToTargetCell() {
         fighter1.move(fight.map().get(291));
         fighter2.move(fight.map().get(277));
@@ -443,7 +423,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.slide(fighter1, fighter2, fight.map().get(235)));
     }
 
-    @Test
     void moveFront() {
         fighter1.move(fight.map().get(305));
         fighter2.move(fight.map().get(193));
@@ -454,7 +433,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.slide(fighter1, fighter2, fight.map().get(277)));
     }
 
-    @Test
     void switchPosition() {
         fighter1.move(fight.map().get(305));
         fighter2.move(fight.map().get(193));
@@ -468,7 +446,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.teleport(fighter1, fighter2, fight.map().get(305)));
     }
 
-    @Test
     void switchOnAttack() {
         fight.cancel(true);
 
@@ -502,7 +479,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.teleport(fighter1, fighter1, fight.map().get(150)));
     }
 
-    @Test
     void switchOnAttackWithChaining() {
         fight.cancel(true);
 
@@ -544,7 +520,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.teleport(fighters.get(0), fighters.get(0), fight.map().get(211)));
     }
 
-    @Test
     void switchOnAttackWithSpellReturn() {
         fight.cancel(true);
 
@@ -581,7 +556,6 @@ public class FunctionalTest extends FightBaseCase {
     /**
      * See: https://github.com/Arakne/Araknemu/pull/206#issuecomment-984841521
      */
-    @Test
     void switchThenAttack() {
         fight.cancel(true);
 
@@ -609,7 +583,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.teleport(fighter1, fighter1, fight.map().get(170)));
     }
 
-    @Test
     void reflectDamageSpell() {
         castNormal(82, fighter1.cell()); // Contre
         fighter1.turn().stop();
@@ -621,7 +594,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.alterLifePoints(fighter1, fighter2, -7));
     }
 
-    @Test
     void reflectDamageCharacteristic() {
         fighter2.characteristics().alter(Characteristic.COUNTER_DAMAGE, 5);
 
@@ -632,7 +604,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.alterLifePoints(fighter2, fighter1, -5));
     }
 
-    @Test
     void switchOnAttackAndReflectDamage() {
         fight.cancel(true);
 
@@ -677,7 +648,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.teleport(fighters.get(0), fighters.get(0), fight.map().get(271)));
     }
 
-    @Test
     void actionPointLost() {
         fighter2.move(fight.map().get(211));
         fighter1.characteristics().alter(Characteristic.WISDOM, 100);
@@ -695,7 +665,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(6, fighter2.characteristics().get(Characteristic.ACTION_POINT));
     }
 
-    @Test
     void movementPointLost() {
         fighter2.move(fight.map().get(211));
         fighter1.characteristics().alter(Characteristic.WISDOM, 100);
@@ -713,7 +682,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(3, fighter2.characteristics().get(Characteristic.MOVEMENT_POINT));
     }
 
-    @Test
     void stealActionPoints() {
         fighter2.move(fight.map().get(241));
         fighter1.characteristics().alter(Characteristic.WISDOM, 100);
@@ -742,7 +710,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(6, fighter2.characteristics().get(Characteristic.ACTION_POINT));
     }
 
-    @Test
     void stealMovementPoints() {
         fighter2.move(fight.map().get(241));
         fighter1.characteristics().alter(Characteristic.WISDOM, 100);
@@ -764,7 +731,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(3, fighter2.characteristics().get(Characteristic.MOVEMENT_POINT));
     }
 
-    @Test
     void casterFixedDamage() {
         castNormal(135, fighter2.cell()); // Mot de Sacrifice
 
@@ -774,7 +740,6 @@ public class FunctionalTest extends FightBaseCase {
         assertTrue(fighter2.life().isFull());
     }
 
-    @Test
     void fixedDamage() {
         castNormal(536, fighter1.cell()); // Banzai
 
@@ -783,7 +748,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(5, damage);
     }
 
-    @Test
     void fixedStealLife() {
         List<Fighter> fighters = configureFight(builder -> builder
             .addSelf(fb -> fb.cell(207).charac(Characteristic.LUCK, 100).currentLife(500).maxLife(1000))
@@ -799,7 +763,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(800, fighters.get(0).life().current());
     }
 
-    @Test
     void percentLifeDamage() {
         castNormal(951, fighter2.cell()); // Rocaille
 
@@ -808,7 +771,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(44, damage);
     }
 
-    @Test
     void percentLifeLostDamage() {
         fighter1.life().alter(fighter1, -100);
         castNormal(1708, fighter2.cell()); // Correction Bwork
@@ -818,7 +780,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(30, damage);
     }
 
-    @Test
     void punishment() {
         List<Fighter> fighters = configureFight(builder -> builder
             .addSelf(fb -> fb.cell(207).charac(Characteristic.LUCK, 100).currentLife(200).maxLife(500))
@@ -832,7 +793,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(122, damage);
     }
 
-    @Test
     void motlotov() {
         fighter1.life().alter(fighter1, -195); // Set life to 100LP
         castNormal(427, fighter1.cell()); // Mot Lotof
@@ -855,7 +815,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(17, fighter2.life().current());
     }
 
-    @Test
     void givePercentLife() {
         List<Fighter> fighters = configureFight(builder -> builder
             .addSelf(fb -> fb.cell(185).charac(Characteristic.LUCK, 100).currentLife(200).maxLife(200))
@@ -872,7 +831,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.alterLifePoints(fighters.get(0), fighters.get(1), 20));
     }
 
-    @Test
     void maximizeTargetEffects() {
         castNormal(410, fighter2.cell()); // Brokle
         passTurns(1);
@@ -882,7 +840,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.alterLifePoints(fighter1, fighter2, -45));
     }
 
-    @Test
     void minimizeCastedEffects() {
         castNormal(416, fighter2.cell()); // Poisse
         fighter1.turn().stop();
@@ -893,7 +850,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.alterLifePoints(fighter2, fighter1, -1));
     }
 
-    @Test
     void multiplyDamage() {
         castNormal(2115, fighter1.cell()); // Tir Puissant du Dopeul
         passTurns(1);
@@ -903,7 +859,6 @@ public class FunctionalTest extends FightBaseCase {
         assertBetween(20, 34, damage);
     }
 
-    @Test
     void damageOnActionPointUse() {
         castNormal(200, fighter2.cell()); // Poison Paralysant
         fighter1.turn().stop();
@@ -916,7 +871,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.alterLifePoints(fighter1, fighter2, -12));
     }
 
-    @Test
     void boostCasterSight() {
         castNormal(505, fighter1.cell()); // Rage Primaire
 
@@ -924,7 +878,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(4, fighter1.characteristics().get(Characteristic.SIGHT_BOOST));
     }
 
-    @Test
     void decreaseCasterSight() {
         castNormal(978, fighter1.cell()); // Obscurité
 
@@ -932,7 +885,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(-6, fighter1.characteristics().get(Characteristic.SIGHT_BOOST));
     }
 
-    @Test
     void kill() {
         castNormal(415, fighter2.cell());
 
@@ -940,7 +892,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.fighterDie(fighter1, fighter2));
     }
 
-    @Test
     void addCharacteristicNotDispellable() {
         List<Fighter> fighters = configureFight(builder -> builder
             .addSelf(fb -> fb.cell(185).charac(Characteristic.LUCK, 100))
@@ -955,7 +906,6 @@ public class FunctionalTest extends FightBaseCase {
         assertBetween(121, 170, fighters.get(1).characteristics().get(Characteristic.STRENGTH));
     }
 
-    @Test
     void addVitality() {
         int currentLife = fighter1.life().current();
         int currentLifeMax = fighter1.life().max();
@@ -974,7 +924,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(currentLifeMax, fighter1.life().max());
     }
 
-    @Test
     void addVitalityDieOnDebuff() {
         List<Fighter> fighters = configureFight(builder -> builder
             .addSelf(fb -> fb.cell(185).charac(Characteristic.LUCK, 100).currentLife(100))
@@ -992,7 +941,6 @@ public class FunctionalTest extends FightBaseCase {
     }
 
     // See: https://github.com/Arakne/Araknemu/issues/250
-    @Test
     void dieOnBuffRefresh() {
         castNormal(155, fighter1.cell()); // Vitality
         fighter1.life().alter(fighter1, -300);
@@ -1003,7 +951,6 @@ public class FunctionalTest extends FightBaseCase {
         assertTrue(fighter1.dead());
     }
 
-    @Test
     void invisibility() {
         castNormal(72, fighter1.cell()); // Invisibilité
 
@@ -1016,7 +963,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.fighterVisible(fighter1, fighter1));
     }
 
-    @Test
     void invisibilityShouldShowCellWhenCastSpell() {
         castNormal(72, fighter1.cell()); // Invisibilité
 
@@ -1029,7 +975,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(new CellShown(fighter1, fighter1.cell().id()));
     }
 
-    @Test
     void invisibilityShouldTerminateWhenCastDirectDamageSpell() {
         castNormal(72, fighter1.cell()); // Invisibilité
 
@@ -1042,7 +987,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.fighterVisible(fighter1, fighter1));
     }
 
-    @Test
     void stealCharacteristic() {
         castNormal(1723, fighter2.cell()); // Spajuste
 
@@ -1060,7 +1004,6 @@ public class FunctionalTest extends FightBaseCase {
         assertEquals(0, fighter2.characteristics().get(Characteristic.AGILITY));
     }
 
-    @Test
     void boostSpellDamage() {
         List<Fighter> fighters = configureFight(builder -> builder
             .addSelf(fb -> fb.cell(311).charac(Characteristic.STRENGTH, 100).spell(171, 5))
@@ -1086,7 +1029,6 @@ public class FunctionalTest extends FightBaseCase {
         assertBetween(102, 106, damage);
     }
 
-    @Test
     void healOnAttack() {
         castNormal(1687, fighter1.cell()); // Soin Sylvestre
         fighter2.life().alter(fighter2, -20);
@@ -1102,7 +1044,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.alterLifePoints(fighter1, fighter2, damage));
     }
 
-    @Test
     void addCharacteristicOnDamage() {
         castNormal(433, fighter1.cell()); // Châtiment Osé
         fighter1.turn().stop();
@@ -1119,7 +1060,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.buff(buff, damage));
     }
 
-    @Test
     void addVitalityOnDamage() {
         castNormal(441, fighter1.cell()); // Châtiment Vitalesque
         fighter1.turn().stop();
@@ -1137,7 +1077,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.buff(buff, damage));
     }
 
-    @Test
     void revealInvisibleFighter() {
         fighter2.setHidden(fighter2, true);
 
@@ -1147,7 +1086,6 @@ public class FunctionalTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.fighterVisible(fighter1, fighter2));
     }
 
-    @Test
     void invocation() throws SQLException {
         dataSet
             .pushMonsterTemplateInvocations()

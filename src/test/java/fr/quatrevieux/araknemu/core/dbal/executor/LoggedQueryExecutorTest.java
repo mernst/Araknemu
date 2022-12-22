@@ -26,7 +26,6 @@ import org.mockito.Mockito;
 import java.sql.SQLException;
 
 class LoggedQueryExecutorTest {
-    @Test
     void query() throws SQLException {
         Logger logger = Mockito.mock(Logger.class);
         QueryExecutor executor = Mockito.mock(QueryExecutor.class);
@@ -39,7 +38,6 @@ class LoggedQueryExecutorTest {
         Mockito.verify(executor).query("my query");
     }
 
-    @Test
     void prepare() throws SQLException {
         Logger logger = Mockito.mock(Logger.class);
         QueryExecutor executor = Mockito.mock(QueryExecutor.class);

@@ -47,7 +47,7 @@ public final class ConstraintsAggregateValidator<T extends Castable> implements 
     }
 
     @Override
-    public @Nullable Error validate(Turn turn, T action, BattlefieldCell target) {
+    public Error validate(Turn turn, T action, BattlefieldCell target) {
         for (CastConstraintValidator<? super T> validator : validators) {
             final Error error = validator.validate(turn, action, target);
 

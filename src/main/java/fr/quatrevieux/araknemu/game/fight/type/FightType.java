@@ -34,13 +34,11 @@ public interface FightType {
      *
      * https://github.com/Emudofus/Dofus/blob/1.29/dofus/managers/GameManager.as#L1255
      */
-    @Pure
     public int id();
 
     /**
      * Can cancel the fight without penalties
      */
-    @Pure
     public boolean canCancel();
 
     /**
@@ -48,7 +46,6 @@ public interface FightType {
      *
      * @see FightType#placementDuration() For get the placement time limit
      */
-    @Pure
     public boolean hasPlacementTimeLimit();
 
     /**
@@ -57,18 +54,15 @@ public interface FightType {
      *
      * @see FightType#hasPlacementTimeLimit()
      */
-    @Pure
     public Duration placementDuration();
 
     /**
      * Get the maximum duration of a turn
      */
-    @Pure
     public Duration turnDuration();
 
     /**
      * Get the rewards generator
      */
-    @Deterministic
     public RewardsGenerator rewards();
 }

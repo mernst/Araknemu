@@ -47,7 +47,6 @@ class RemoveStateHandlerTest extends FightBaseCase {
     private RemoveStateHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -65,7 +64,6 @@ class RemoveStateHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handle() {
         target.states().push(4);
         requestStack.clear();
@@ -89,7 +87,6 @@ class RemoveStateHandlerTest extends FightBaseCase {
         assertFalse(target.states().has(4));
     }
 
-    @Test
     void handleWithoutState() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -108,7 +105,6 @@ class RemoveStateHandlerTest extends FightBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void buff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

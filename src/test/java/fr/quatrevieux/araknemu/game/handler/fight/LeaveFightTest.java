@@ -47,7 +47,6 @@ class LeaveFightTest extends FightBaseCase {
     private ExplorationMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -59,7 +58,6 @@ class LeaveFightTest extends FightBaseCase {
         explorationPlayer();
     }
 
-    @Test
     void leaveFightDuringPlacementNotLeader() throws SQLException, ContainerException, JoinFightException {
         Fight fight = createSimpleFight(map);
         Fighter fighter = makePlayerFighter(gamePlayer());
@@ -75,7 +73,6 @@ class LeaveFightTest extends FightBaseCase {
         requestStack.assertLast(new CancelFight());
     }
 
-    @Test
     void leaveFightDuringPlacementLeaderWillDissolveTeam() throws Exception {
         Fight fight = createFight();
 
@@ -95,7 +92,6 @@ class LeaveFightTest extends FightBaseCase {
         requestStack.assertLast(new CancelFight());
     }
 
-    @Test
     void leaveFightActiveStateNotLastOfTeam() throws SQLException, ContainerException, JoinFightException {
         Fight fight = createSimpleFight(map);
         Fighter fighter = makePlayerFighter(gamePlayer());
@@ -120,7 +116,6 @@ class LeaveFightTest extends FightBaseCase {
         assertEquals(new Position(10540, 123), dataSet.refresh(new Player(gamePlayer().id())).position());
     }
 
-    @RepeatedIfExceptionsTest
     void leaveFightActiveStateOnCurrentTurnWillStopTheTurn() throws Exception {
         Fight fight = createFight();
 
@@ -137,7 +132,6 @@ class LeaveFightTest extends FightBaseCase {
         assertSame(other.fighter(), fight.turnList().currentFighter());
     }
 
-    @Test
     void leaveFightActiveStateLastOfTeamWillTerminateFight() throws Exception {
         Fight fight = createFight();
 

@@ -37,14 +37,12 @@ class DefaultSpectatorFactoryTest extends FightBaseCase {
     private DefaultSpectatorFactory factory;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         factory = new DefaultSpectatorFactory();
     }
 
-    @Test
     void create() throws SQLException {
         GamePlayer player = gamePlayer();
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));

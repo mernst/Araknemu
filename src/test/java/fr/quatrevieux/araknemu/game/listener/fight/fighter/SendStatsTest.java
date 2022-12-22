@@ -32,7 +32,6 @@ class SendStatsTest extends FightBaseCase {
     private SendStats listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -41,7 +40,6 @@ class SendStatsTest extends FightBaseCase {
         listener = new SendStats(player.fighter());
     }
 
-    @Test
     void onCharacteristicChanged() {
         listener.on(new FighterCharacteristicChanged(Characteristic.STRENGTH, 10));
 

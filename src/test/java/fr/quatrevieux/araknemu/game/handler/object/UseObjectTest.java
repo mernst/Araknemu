@@ -50,7 +50,6 @@ class UseObjectTest extends GameBaseCase {
     private UseObject handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -63,7 +62,6 @@ class UseObjectTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handleForSelfSuccessWithBoostStatsObject() throws Exception {
         InventoryEntry entry = explorationPlayer().inventory().add(container.get(ItemService.class).create(800));
         requestStack.clear();
@@ -83,7 +81,6 @@ class UseObjectTest extends GameBaseCase {
         assertEquals(1, explorationPlayer().properties().characteristics().base().get(Characteristic.AGILITY));
     }
 
-    @Test
     void handleDoNothing() throws Exception {
         InventoryEntry entry = explorationPlayer().inventory().add(container.get(ItemService.class).create(468));
         requestStack.clear();
@@ -93,7 +90,6 @@ class UseObjectTest extends GameBaseCase {
         requestStack.assertAll(new Noop());
     }
 
-    @Test
     void handleForTargetNotOnMapShouldDoNothing() throws Exception {
         InventoryEntry entry = explorationPlayer().inventory().add(container.get(ItemService.class).create(468));
 
@@ -111,7 +107,6 @@ class UseObjectTest extends GameBaseCase {
         assertEquals(1, entry.quantity());
     }
 
-    @Test
     void handleForTargetPlayer() throws Exception {
         InventoryEntry entry = explorationPlayer().inventory().add(container.get(ItemService.class).create(468));
 
@@ -131,7 +126,6 @@ class UseObjectTest extends GameBaseCase {
         assertEquals(0, entry.quantity());
     }
 
-    @Test
     void handleForTargetCell() throws Exception {
         InventoryEntry entry = explorationPlayer().inventory().add(container.get(ItemService.class).create(2240), 100);
         requestStack.clear();
@@ -146,7 +140,6 @@ class UseObjectTest extends GameBaseCase {
         assertEquals(99, entry.quantity());
     }
 
-    @Test
     void handleForTargetInvalidCellShouldDoNothing() throws Exception {
         InventoryEntry entry = explorationPlayer().inventory().add(container.get(ItemService.class).create(2240), 100);
         requestStack.clear();
@@ -157,7 +150,6 @@ class UseObjectTest extends GameBaseCase {
         assertEquals(100, entry.quantity());
     }
 
-    @Test
     void handleForTargetNpc() throws Exception {
         dataSet.pushNpcs();
 
@@ -173,7 +165,6 @@ class UseObjectTest extends GameBaseCase {
         requestStack.assertAll(new Noop());
     }
 
-    @Test
     void handleCantUseObject() throws Exception {
         gamePlayer().restrictions().set(Restrictions.Restriction.DENY_USE_OBJECT);
         InventoryEntry entry = explorationPlayer().inventory().add(container.get(ItemService.class).create(800));
@@ -182,7 +173,6 @@ class UseObjectTest extends GameBaseCase {
         assertErrorPacket(Error.cantDoOnCurrentState(), () -> handler.handle(session, new ObjectUseRequest(entry.id(), 0, 0, false)));
     }
 
-    @Test
     void functionalSuccess() throws Exception {
         InventoryEntry entry = explorationPlayer().inventory().add(container.get(ItemService.class).create(800));
         requestStack.clear();
@@ -192,7 +182,6 @@ class UseObjectTest extends GameBaseCase {
         assertEquals(1, explorationPlayer().properties().characteristics().base().get(Characteristic.AGILITY));
     }
 
-    @Test
     void functionalErrorNotExploring() throws Exception {
         gamePlayer().stop(gamePlayer().exploration());
 

@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CharacteristicTest {
-    @Test
     void fromId() {
         assertEquals(Characteristic.STRENGTH, Characteristic.fromId(10));
         assertEquals(Characteristic.VITALITY, Characteristic.fromId(11));
@@ -34,7 +33,6 @@ class CharacteristicTest {
         assertEquals(Characteristic.INTELLIGENCE, Characteristic.fromId(15));
     }
 
-    @Test
     void id() {
         assertEquals(10, Characteristic.STRENGTH.id());
         assertEquals(11, Characteristic.VITALITY.id());

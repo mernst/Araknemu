@@ -44,10 +44,10 @@ import java.util.stream.Collectors;
  */
 public final class RemoveObject implements Action {
     private final int itemId;
-    private final @Positive int quantity;
+    private final int quantity;
     private final boolean required;
 
-    public RemoveObject(int itemId, @Positive int quantity, boolean required) {
+    public RemoveObject(int itemId, int quantity, boolean required) {
         this.itemId = itemId;
         this.quantity = quantity;
         this.required = required;

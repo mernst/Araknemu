@@ -38,7 +38,6 @@ class SendUpgradedSpellTest extends FightBaseCase {
     private SendUpgradedSpell listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -51,7 +50,6 @@ class SendUpgradedSpellTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onSpellUpgraded() throws ContainerException, SQLException {
         SpellBookEntry entry = new SpellBookEntry(
             null,
@@ -67,7 +65,6 @@ class SendUpgradedSpellTest extends FightBaseCase {
         );
     }
 
-    @Test
     void onSpellUpgradedDuringFight() throws Exception {
         createFight();
         PlayerFighter fighter = player.fighter();

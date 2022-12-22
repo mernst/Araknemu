@@ -30,7 +30,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MonsterListTransformerTest extends TestCase {
-    @Test
     void invalid() {
         MonsterListTransformer transformer = new MonsterListTransformer();
 
@@ -39,7 +38,6 @@ class MonsterListTransformerTest extends TestCase {
         assertThrows(UnsupportedOperationException.class, () -> transformer.serialize(Collections.emptyList()));
     }
 
-    @Test
     void unserialize() {
         MonsterListTransformer transformer = new MonsterListTransformer();
 
@@ -60,7 +58,6 @@ class MonsterListTransformerTest extends TestCase {
         assertEquals(1, list.get(2).rate());
     }
 
-    @Test
     void unserializeWithRate() {
         MonsterListTransformer transformer = new MonsterListTransformer();
 

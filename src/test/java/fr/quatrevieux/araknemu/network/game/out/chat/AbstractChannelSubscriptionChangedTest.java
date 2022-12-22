@@ -35,7 +35,6 @@ class AbstractChannelSubscriptionChangedTest {
         }
     }
 
-    @Test
     void withOneChannel() {
         assertEquals(
             "cC+@",
@@ -43,7 +42,6 @@ class AbstractChannelSubscriptionChangedTest {
         );
     }
 
-    @Test
     void withMultipleChannels() {
         assertEquals(
             "cC-ip*",

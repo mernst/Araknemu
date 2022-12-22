@@ -45,7 +45,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class SendInventoryUpdateTest extends GameBaseCase {
     private ListenerAggregate dispatcher;
 
-    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -54,7 +53,6 @@ class SendInventoryUpdateTest extends GameBaseCase {
         dispatcher.register(new SendInventoryUpdate(gamePlayer()));
     }
 
-    @Test
     void onObjectAdded() {
         InventoryEntry entry = new InventoryEntry(
             null,
@@ -67,7 +65,6 @@ class SendInventoryUpdateTest extends GameBaseCase {
         requestStack.assertLast(new AddItem(entry));
     }
 
-    @Test
     void onObjectDeleted() {
         InventoryEntry entry = new InventoryEntry(null, new PlayerItem(1, 5, 3, null, 1, 3), null);
 
@@ -78,7 +75,6 @@ class SendInventoryUpdateTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onObjectMoved() {
         InventoryEntry entry = new InventoryEntry(
             null,
@@ -93,7 +89,6 @@ class SendInventoryUpdateTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onObjectQuantityChanged() {
         InventoryEntry entry = new InventoryEntry(
             null,
@@ -108,7 +103,6 @@ class SendInventoryUpdateTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onKamasChanged() throws SQLException {
         dispatcher.dispatch(new KamasChanged(0, 15225));
 

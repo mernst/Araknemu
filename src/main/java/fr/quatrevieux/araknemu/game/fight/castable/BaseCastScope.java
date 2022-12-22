@@ -46,7 +46,7 @@ public class BaseCastScope<F extends FighterData, C extends BattlefieldCell> imp
     private final C target;
 
     private final List<EffectScope> effects;
-    private final Map<F, @Nullable F> targetMapping = new HashMap<>();
+    private final Map<F, F> targetMapping = new HashMap<>();
 
     protected BaseCastScope(Castable action, F caster, C target, List<SpellEffect> effects) {
         this.action = action;
@@ -66,7 +66,6 @@ public class BaseCastScope<F extends FighterData, C extends BattlefieldCell> imp
     }
 
     @Override
-    @Pure
     public final Castable action() {
         return action;
     }
@@ -81,13 +80,11 @@ public class BaseCastScope<F extends FighterData, C extends BattlefieldCell> imp
     }
 
     @Override
-    @Pure
     public final F caster() {
         return caster;
     }
 
     @Override
-    @Pure
     public final C target() {
         return target;
     }
@@ -125,7 +122,6 @@ public class BaseCastScope<F extends FighterData, C extends BattlefieldCell> imp
     }
 
     @Override
-    @Pure
     public final List<EffectScope> effects() {
         return effects;
     }
@@ -137,7 +133,7 @@ public class BaseCastScope<F extends FighterData, C extends BattlefieldCell> imp
      *
      * @return Resolved target. Null if the target is removed
      */
-    private @Nullable F resolveTarget(F baseTarget) {
+    private F resolveTarget(F baseTarget) {
         F target = targetMapping.get(baseTarget);
 
         // Target is removed, or it's the original one : do not resolve chaining
@@ -176,7 +172,6 @@ public class BaseCastScope<F extends FighterData, C extends BattlefieldCell> imp
         /**
          * The related effect
          */
-        @Pure
         public SpellEffect effect() {
             return effect;
         }

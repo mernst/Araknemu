@@ -42,7 +42,6 @@ class ConstraintBuilderTest {
         }
     }
 
-    @Test
     void withOneConstraint() {
         ConstraintBuilder builder = new ConstraintBuilder();
 
@@ -51,7 +50,6 @@ class ConstraintBuilderTest {
         assertTrue(constraint instanceof Max);
     }
 
-    @Test
     void withTwoConstraints() {
         ConstraintBuilder builder = new ConstraintBuilder();
 
@@ -60,7 +58,6 @@ class ConstraintBuilderTest {
         assertTrue(constraint instanceof Must);
     }
 
-    @Test
     void functional() {
         ConstraintBuilder<Entity, String> builder = new ConstraintBuilder<>();
 

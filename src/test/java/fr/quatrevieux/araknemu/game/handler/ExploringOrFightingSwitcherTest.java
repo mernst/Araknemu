@@ -34,7 +34,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ExploringOrFightingSwitcherTest extends FightBaseCase {
-    @Test
     void handleNotFightingNorExploring() {
         PacketHandler exp = Mockito.mock(PacketHandler.class);
         PacketHandler fig = Mockito.mock(PacketHandler.class);
@@ -44,7 +43,6 @@ class ExploringOrFightingSwitcherTest extends FightBaseCase {
         assertThrows(CloseImmediately.class, () -> handler.handle(session, Mockito.mock(Packet.class)));
     }
 
-    @Test
     void handleOnFight() throws Exception {
         PacketHandler exp = Mockito.mock(PacketHandler.class);
         PacketHandler fig = Mockito.mock(PacketHandler.class);
@@ -60,7 +58,6 @@ class ExploringOrFightingSwitcherTest extends FightBaseCase {
         Mockito.verify(exp, Mockito.never()).handle(session, packet);
     }
 
-    @Test
     void handleOnExploration() throws Exception {
         PacketHandler exp = Mockito.mock(PacketHandler.class);
         PacketHandler fig = Mockito.mock(PacketHandler.class);
@@ -76,7 +73,6 @@ class ExploringOrFightingSwitcherTest extends FightBaseCase {
         Mockito.verify(fig, Mockito.never()).handle(session, packet);
     }
 
-    @Test
     void packet() {
         assertEquals(
             GameActionRequest.class,

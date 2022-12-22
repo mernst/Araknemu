@@ -39,7 +39,6 @@ import java.util.concurrent.Executors;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StatesFlowTest extends GameBaseCase {
-    @Test
     void flow() {
         FightState s1 = Mockito.mock(FightState.class);
         FightState s2 = Mockito.mock(FightState.class);

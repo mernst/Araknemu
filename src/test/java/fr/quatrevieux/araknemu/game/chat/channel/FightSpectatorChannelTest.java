@@ -44,20 +44,17 @@ class FightSpectatorChannelTest extends FightBaseCase {
     private FightSpectatorChannel channel;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         channel = new FightSpectatorChannel(ChannelType.FIGHT_TEAM);
     }
 
-    @Test
     void type() {
         assertSame(ChannelType.FIGHT_TEAM, channel.type());
         assertSame(ChannelType.MESSAGES, new FightSpectatorChannel(ChannelType.MESSAGES).type());
     }
 
-    @Test
     void authorized() throws SQLException {
         assertFalse(channel.authorized(gamePlayer()));
 
@@ -65,7 +62,6 @@ class FightSpectatorChannelTest extends FightBaseCase {
         assertTrue(channel.authorized(gamePlayer()));
     }
 
-    @Test
     void sendShouldSendToSpectators() throws SQLException, NoSuchFieldException, IllegalAccessException, ChatException {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
 
@@ -95,7 +91,6 @@ class FightSpectatorChannelTest extends FightBaseCase {
         ));
     }
 
-    @Test
     void sendShouldNotSendToFighters() throws Exception {
         Fight fight = createFight();
 
@@ -109,7 +104,6 @@ class FightSpectatorChannelTest extends FightBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void cannotSendItems() throws SQLException, ChatException {
         channel.send(
             gamePlayer(),
@@ -119,7 +113,6 @@ class FightSpectatorChannelTest extends FightBaseCase {
         requestStack.assertLast(Information.cannotPostItemOnChannel());
     }
 
-    @Test
     void sendFunctionalShouldSupportTeamAndDefaultChannelTypes() throws SQLException, ChatException {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
 

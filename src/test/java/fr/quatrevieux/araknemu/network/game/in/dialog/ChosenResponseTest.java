@@ -28,17 +28,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class ChosenResponseTest {
     private ChosenResponse.Parser parser;
 
-    @BeforeEach
     void setUp() {
         parser = new ChosenResponse.Parser();
     }
 
-    @Test
     void parseError() {
         assertThrows(ParsePacketException.class, () -> parser.parse("invalid"));
     }
 
-    @Test
     void parse() {
         ChosenResponse response = parser.parse("123|456");
 

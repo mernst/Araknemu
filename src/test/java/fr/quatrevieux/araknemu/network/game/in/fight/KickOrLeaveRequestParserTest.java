@@ -26,7 +26,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class KickOrLeaveRequestParserTest extends TestCase {
-    @Test
     void kick() {
         Packet p = new KickOrLeaveRequestParser().parse("123");
 
@@ -34,7 +33,6 @@ class KickOrLeaveRequestParserTest extends TestCase {
         assertEquals(123, ((KickFighterRequest) p).fighterId());
     }
 
-    @Test
     void leave() {
         assertInstanceOf(LeaveFightRequest.class, new KickOrLeaveRequestParser().parse(""));
     }

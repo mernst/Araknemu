@@ -37,7 +37,6 @@ class MinLengthTest {
         }
     }
 
-    @Test
     void check() {
         MinLength<Entity, Object> maxLength = new MinLength<>(new Object(), Entity::getValue, 3);
 

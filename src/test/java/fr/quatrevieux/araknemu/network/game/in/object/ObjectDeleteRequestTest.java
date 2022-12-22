@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ObjectDeleteRequestTest {
-    @Test
     void parse() {
         ObjectDeleteRequest request = new ObjectDeleteRequest.Parser().parse("12|5");
 
@@ -34,12 +33,10 @@ class ObjectDeleteRequestTest {
         assertEquals(5, request.quantity());
     }
 
-    @Test
     void parseBadFormat() {
         assertThrows(ParsePacketException.class, () -> new ObjectDeleteRequest.Parser().parse("invalid"));
     }
 
-    @Test
     void parseNegativeQuantity() {
         assertThrows(ParsePacketException.class, () -> new ObjectDeleteRequest.Parser().parse("12|-5"));
     }

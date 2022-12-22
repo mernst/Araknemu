@@ -50,7 +50,6 @@ class RemovePointsSimulatorTest extends FightBaseCase {
     private RemovePointsSimulator simulator;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -59,7 +58,6 @@ class RemovePointsSimulatorTest extends FightBaseCase {
         simulator = new RemovePointsSimulator(Characteristic.ACTION_POINT, Characteristic.RESISTANCE_ACTION_POINT, 200);
     }
 
-    @Test
     void simulateSimple() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -79,7 +77,6 @@ class RemovePointsSimulatorTest extends FightBaseCase {
         assertEquals(-1000, simulation.selfBoost());
     }
 
-    @Test
     void simulateWithInterval() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -100,7 +97,6 @@ class RemovePointsSimulatorTest extends FightBaseCase {
         assertEquals(-250, simulation.selfBoost());
     }
 
-    @Test
     void simulateBuff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -139,7 +135,6 @@ class RemovePointsSimulatorTest extends FightBaseCase {
         assertEquals(-10000, simulation.selfBoost());
     }
 
-    @Test
     void simulateArea() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -162,8 +157,6 @@ class RemovePointsSimulatorTest extends FightBaseCase {
         assertEquals(-100, simulation.enemiesBoost());
     }
 
-    @ParameterizedTest
-    @MethodSource("provideWisdom")
     void shouldTakeWisdomInAccount(int casterWisdom, int targetResistance, double expectedBoost) {
         fighter.characteristics().alter(Characteristic.WISDOM, casterWisdom);
         other.fighter().characteristics().alter(Characteristic.RESISTANCE_ACTION_POINT, targetResistance);
@@ -200,7 +193,6 @@ class RemovePointsSimulatorTest extends FightBaseCase {
         );
     }
 
-    @Test
     void simulateLimitedToTargetPoints() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -220,7 +212,6 @@ class RemovePointsSimulatorTest extends FightBaseCase {
         assertEquals(-1200, simulation.enemiesBoost());
     }
 
-    @Test
     void simulateShouldIgnoreTargetIfHasNoPoints() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

@@ -46,7 +46,6 @@ class StealLifeSimulatorTest extends FightBaseCase {
     private Fighter target;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -58,27 +57,23 @@ class StealLifeSimulatorTest extends FightBaseCase {
         fighter.life().alter(fighter, -30);
     }
 
-    @Test
     void simulateSimple() {
         assertEquals(-15, simulate().enemiesLife());
         assertEquals(7, simulate().selfLife());
     }
 
-    @Test
     void simulateWithResistance() {
         target.characteristics().alter(Characteristic.RESISTANCE_EARTH, 5);
         assertEquals(-10, simulate().enemiesLife());
         assertEquals(5, simulate().selfLife());
     }
 
-    @Test
     void simulateWithBoost() {
         fighter.characteristics().alter(Characteristic.STRENGTH, 100);
         assertEquals(-25, simulate().enemiesLife());
         assertEquals(12, simulate().selfLife());
     }
 
-    @Test
     void simulateBuff() {
         StealLifeSimulator simulator = new StealLifeSimulator(Element.EARTH);
 
@@ -113,7 +108,6 @@ class StealLifeSimulatorTest extends FightBaseCase {
         assertEquals(-37.5, simulation.enemiesLife());
     }
 
-    @Test
     void simulateArea() {
         StealLifeSimulator simulator = new StealLifeSimulator(Element.EARTH);
 

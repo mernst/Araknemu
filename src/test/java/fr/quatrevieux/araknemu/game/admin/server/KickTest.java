@@ -40,7 +40,6 @@ class KickTest extends CommandTestCase {
     private int id = 1000;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -48,7 +47,6 @@ class KickTest extends CommandTestCase {
         gamePlayer(true).account().grant(Permission.values());
     }
 
-    @Test
     void kickNone() throws AdminException, SQLException {
         execute("kick", "--all");
 
@@ -56,7 +54,6 @@ class KickTest extends CommandTestCase {
         assertTrue(session.isAlive());
     }
 
-    @Test
     void kickAll() throws SQLException, NoSuchFieldException, AdminException, IllegalAccessException {
         GamePlayer[] players = new GamePlayer[] {
             createPlayerWithIp(null),
@@ -77,7 +74,6 @@ class KickTest extends CommandTestCase {
         }
     }
 
-    @Test
     void kickAllShouldIgnoreGameMaster() throws SQLException, NoSuchFieldException, AdminException, IllegalAccessException {
         GamePlayer simplePlayer = createPlayerWithIp(null);
         GamePlayer gameMaster = createPlayerWithIp(null);
@@ -91,7 +87,6 @@ class KickTest extends CommandTestCase {
         assertTrue(getSession(gameMaster).isAlive());
     }
 
-    @Test
     void kickByIp() throws SQLException, NoSuchFieldException, IllegalAccessException, AdminException {
         GamePlayer match = createPlayerWithIp("12.34.56.78");
         GamePlayer notMatch = createPlayerWithIp("14.25.36.78");
@@ -103,7 +98,6 @@ class KickTest extends CommandTestCase {
         assertTrue(getSession(notMatch).isAlive());
     }
 
-    @Test
     void kickByIpMask() throws SQLException, NoSuchFieldException, IllegalAccessException, AdminException {
         GamePlayer gp1 = createPlayerWithIp("12.34.56.78");
         GamePlayer gp2 = createPlayerWithIp("12.34.14.23");
@@ -117,12 +111,10 @@ class KickTest extends CommandTestCase {
         assertTrue(getSession(gp3).isAlive());
     }
 
-    @Test
     void missingFilter() {
         assertThrowsWithMessage(CommandException.class, "At least one filter must be defined, or use --all to kick all players", () -> execute("kick"));
     }
 
-    @Test
     void kickWithMessage() throws SQLException, NoSuchFieldException, AdminException, IllegalAccessException {
         GamePlayer[] players = new GamePlayer[] {
             createPlayerWithIp(null),
@@ -143,7 +135,6 @@ class KickTest extends CommandTestCase {
         }
     }
 
-    @Test
     void help() {
         assertHelp(
             "kick - Kick many players from current game server",

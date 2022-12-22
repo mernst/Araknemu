@@ -37,7 +37,7 @@ public final class LeaveExchangeRequest implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "EV";
         }
     }

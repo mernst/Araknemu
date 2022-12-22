@@ -38,12 +38,12 @@ import java.util.Map;
  */
 public final class BoostStatsDataTransformer implements Transformer<BoostStatsData> {
     @Override
-    public @PolyNull String serialize(@PolyNull BoostStatsData value) {
+    public String serialize(BoostStatsData value) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override
-    public @NonNull BoostStatsData unserialize(@PolyNull String serialize) {
+    public BoostStatsData unserialize(String serialize) {
         if (serialize == null || serialize.isEmpty()) {
             throw new IllegalArgumentException("Boost stats cannot be empty");
         }

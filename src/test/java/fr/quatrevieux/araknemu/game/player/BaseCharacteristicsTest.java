@@ -44,7 +44,6 @@ class BaseCharacteristicsTest extends GameBaseCase {
 
     private ListenerAggregate dispatcher;
 
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -66,14 +65,12 @@ class BaseCharacteristicsTest extends GameBaseCase {
         baseCharacteristics = new BaseCharacteristics(dispatcher = new DefaultListenerAggregate(), race, player);
     }
 
-    @Test
     void getWillAddRaceAndPlayerStats() {
         assertEquals(0, baseCharacteristics.get(Characteristic.COUNTER_DAMAGE));
         assertEquals(8, baseCharacteristics.get(Characteristic.ACTION_POINT));
         assertEquals(150, baseCharacteristics.get(Characteristic.STRENGTH));
     }
 
-    @Test
     void setWillUpdatePlayerStats() {
         baseCharacteristics.set(Characteristic.INTELLIGENCE, 50);
 
@@ -81,7 +78,6 @@ class BaseCharacteristicsTest extends GameBaseCase {
         assertEquals(50, playerStats.get(Characteristic.INTELLIGENCE));
     }
 
-    @Test
     void add() {
         AtomicReference<CharacteristicsChanged> ref = new AtomicReference<>();
         dispatcher.add(CharacteristicsChanged.class, ref::set);
@@ -92,7 +88,6 @@ class BaseCharacteristicsTest extends GameBaseCase {
         assertEquals(160, baseCharacteristics.get(Characteristic.STRENGTH));
     }
 
-    @Test
     void apLevel1() {
         player.setLevel(1);
         player.stats().set(Characteristic.ACTION_POINT, 0);
@@ -100,7 +95,6 @@ class BaseCharacteristicsTest extends GameBaseCase {
         assertEquals(6, baseCharacteristics.get(Characteristic.ACTION_POINT));
     }
 
-    @Test
     void apLevel100() {
         player.setLevel(100);
         player.stats().set(Characteristic.ACTION_POINT, 0);

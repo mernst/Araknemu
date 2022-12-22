@@ -28,7 +28,6 @@ import java.util.Collection;
 import static org.junit.jupiter.api.Assertions.fail;
 
 class RealmParserLoaderTest {
-    @Test
     void packets() {
         ParserLoader loader = new RealmParserLoader();
 

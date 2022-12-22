@@ -48,12 +48,12 @@ public final class WearableFactory implements ItemFactory {
     }
 
     @Override
-    public Item create(ItemTemplate template, ItemType type, @Nullable GameItemSet set, boolean maximize) {
+    public Item create(ItemTemplate template, ItemType type, GameItemSet set, boolean maximize) {
         return create(template, type, set, template.effects(), maximize);
     }
 
     @Override
-    public Item retrieve(ItemTemplate template, ItemType type, @Nullable GameItemSet set, List<ItemTemplateEffectEntry> effects) {
+    public Item retrieve(ItemTemplate template, ItemType type, GameItemSet set, List<ItemTemplateEffectEntry> effects) {
         return create(template, type, set, effects, false);
     }
 
@@ -62,7 +62,7 @@ public final class WearableFactory implements ItemFactory {
         return type;
     }
 
-    private Item create(ItemTemplate template, ItemType type, @Nullable GameItemSet set, List<ItemTemplateEffectEntry> effects, boolean maximize) {
+    private Item create(ItemTemplate template, ItemType type, GameItemSet set, List<ItemTemplateEffectEntry> effects, boolean maximize) {
         return new Wearable(
             template,
             type,

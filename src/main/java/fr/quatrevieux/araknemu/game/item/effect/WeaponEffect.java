@@ -29,11 +29,11 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  */
 public final class WeaponEffect implements ItemEffect {
     private final Effect effect;
-    private final @NonNegative int min;
-    private final @NonNegative int max;
-    private final @NonNegative int extra;
+    private final int min;
+    private final int max;
+    private final int extra;
 
-    public WeaponEffect(Effect effect, @NonNegative int min, @NonNegative int max, @NonNegative int extra) {
+    public WeaponEffect(Effect effect, int min, int max, int extra) {
         this.effect = effect;
         this.min = min;
         this.max = max;
@@ -50,20 +50,20 @@ public final class WeaponEffect implements ItemEffect {
         return new ItemTemplateEffectEntry(effect, min, max, extra, "1d" + (max - min + 1) + "+" + (min - 1));
     }
 
-    public @NonNegative int min() {
+    public int min() {
         return min;
     }
 
-    public @NonNegative int max() {
+    public int max() {
         return max;
     }
 
-    public @NonNegative int extra() {
+    public int extra() {
         return extra;
     }
 
     @Override
-    public boolean equals(@Nullable Object o) {
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }

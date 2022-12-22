@@ -32,14 +32,14 @@ import java.util.Optional;
  * Null object for slot
  */
 public final class NullSlot implements InventorySlot {
-    private final @IntRange(from = 0, to = 57) int id;
+    private final int id;
 
-    public NullSlot(@IntRange(from = 0, to = 57) int id) {
+    public NullSlot(int id) {
         this.id = id;
     }
 
     @Override
-    public @IntRange(from = 0, to = 57) int id() {
+    public int id() {
         return id;
     }
 
@@ -54,7 +54,7 @@ public final class NullSlot implements InventorySlot {
     }
 
     @Override
-    public void uncheckedSet(@Nullable InventoryEntry entry) {
+    public void uncheckedSet(InventoryEntry entry) {
         // Cannot store anything an null slot
     }
 
@@ -64,7 +64,7 @@ public final class NullSlot implements InventorySlot {
     }
 
     @Override
-    public InventoryEntry set(Item item, @Positive int quantity) throws InventoryException {
+    public InventoryEntry set(Item item, int quantity) throws InventoryException {
         throw new InventoryException("Null slot");
     }
 }

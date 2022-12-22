@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AskCharacterListTest {
-    @Test
     void parse() {
         AskCharacterList.Parser parser = new AskCharacterList.Parser();
 

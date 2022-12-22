@@ -31,7 +31,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 public abstract class AbstractLivingAccount<S extends Session> implements LivingAccount<S> {
     protected final Account account;
 
-    protected @Nullable S session;
+    protected S session;
 
     public AbstractLivingAccount(Account account) {
         this.account = account;
@@ -68,7 +68,6 @@ public abstract class AbstractLivingAccount<S extends Session> implements Living
     }
 
     @Override
-    @EnsuresNonNullIf(expression = "session", result = true)
     public boolean isLogged() {
         return session != null && session.isAlive();
     }

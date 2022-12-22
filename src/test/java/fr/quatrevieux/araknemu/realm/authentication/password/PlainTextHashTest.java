@@ -27,12 +27,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class PlainTextHashTest {
     private PlainTextHash hash;
 
-    @BeforeEach
     void setUp() {
         hash = new PlainTextHash();
     }
 
-    @Test
     void parse() {
         Password password = hash.parse("test");
 
@@ -43,7 +41,6 @@ class PlainTextHashTest {
         assertFalse(password.needRehash());
     }
 
-    @Test
     void hash() {
         Password password = hash.hash("test");
 
@@ -54,12 +51,10 @@ class PlainTextHashTest {
         assertFalse(password.needRehash());
     }
 
-    @Test
     void supports() {
         assertTrue(hash.supports("test"));
     }
 
-    @Test
     void name() {
         assertEquals("plain", hash.name());
     }

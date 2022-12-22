@@ -41,7 +41,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class ConnectionPoolExecutorTest {
     private ConnectionPoolExecutor utils;
 
-    @BeforeEach
     void setUp() throws IOException, SQLException {
         utils = new ConnectionPoolExecutor(
             new DefaultDatabaseHandler(
@@ -55,7 +54,6 @@ class ConnectionPoolExecutorTest {
         );
     }
 
-    @Test
     void query() throws SQLException {
         utils.query("create table test_table (`value` text)");
 
@@ -70,7 +68,6 @@ class ConnectionPoolExecutorTest {
         utils.query("drop table test_table");
     }
 
-    @Test
     void prepare() throws SQLException {
         utils.query("create table test_table (`value` text)");
 
@@ -95,7 +92,6 @@ class ConnectionPoolExecutorTest {
         utils.query("drop table test_table");
     }
 
-    @Test
     void size() throws SQLException {
         assertEquals(4, utils.size());
 
@@ -104,7 +100,6 @@ class ConnectionPoolExecutorTest {
         assertEquals(3, utils.size());
     }
 
-    @Test
     void close() throws Exception {
         assertEquals(4, utils.size());
 

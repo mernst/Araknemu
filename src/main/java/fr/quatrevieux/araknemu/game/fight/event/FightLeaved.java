@@ -28,13 +28,13 @@ import java.util.Optional;
  * The fighter has leave the fight
  */
 public final class FightLeaved {
-    private final @Nullable FightReward reward;
+    private final FightReward reward;
 
     public FightLeaved() {
         this(null);
     }
 
-    public FightLeaved(@Nullable FightReward reward) {
+    public FightLeaved(FightReward reward) {
         this.reward = reward;
     }
 

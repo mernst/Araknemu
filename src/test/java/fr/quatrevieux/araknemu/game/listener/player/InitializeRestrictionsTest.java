@@ -32,14 +32,12 @@ class InitializeRestrictionsTest extends GameBaseCase {
     private InitializeRestrictions listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         listener = new InitializeRestrictions(gamePlayer());
     }
 
-    @Test
     void onGameJoined() throws SQLException, ContainerException {
         listener.on(new GameJoined());
 

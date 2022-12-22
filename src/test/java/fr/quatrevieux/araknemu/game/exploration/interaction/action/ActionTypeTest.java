@@ -26,7 +26,6 @@ import java.util.NoSuchElementException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ActionTypeTest {
-    @Test
     void byId() {
         assertSame(ActionType.CHANGE_MAP, ActionType.byId(2));
         assertSame(ActionType.FIREWORK, ActionType.byId(228));

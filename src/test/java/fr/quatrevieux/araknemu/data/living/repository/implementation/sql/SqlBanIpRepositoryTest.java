@@ -41,7 +41,6 @@ class SqlBanIpRepositoryTest extends RealmBaseCase {
     private SqlBanIpRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -54,12 +53,10 @@ class SqlBanIpRepositoryTest extends RealmBaseCase {
         );
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(new BanIp(1, null, null, null, null, 0)));
     }
 
-    @Test
     void addAndGet() {
         BanIp entity = new BanIp(new IPAddressString("156.32.47.0/24"), Instant.parse("2020-07-30T15:00:00.Z"), Instant.parse("2020-07-30T15:00:00.Z"), "my cause", 3);
         entity = repository.add(entity);
@@ -72,21 +69,18 @@ class SqlBanIpRepositoryTest extends RealmBaseCase {
         assertEquals(3, repository.get(entity).banisherId());
     }
 
-    @Test
     void delete() {
         BanIp entity = repository.add(new BanIp(new IPAddressString("156.32.47.0/24"), Instant.parse("2020-07-30T15:00:00.Z"), Instant.parse("2020-07-30T15:00:00.Z"), "my cause", 3));
         repository.delete(entity);
         assertFalse(repository.has(entity));
     }
 
-    @Test
     void has() {
         assertFalse(repository.has(new BanIp(1, null, null, null, null, 0)));
         BanIp entity = repository.add(new BanIp(new IPAddressString("156.32.47.0/24"), Instant.parse("2020-07-30T15:00:00.Z"), Instant.parse("2020-07-30T15:00:00.Z"), "my cause", 3));
         assertTrue(repository.has(entity));
     }
 
-    @Test
     void available() {
         dataSet.push(new BanIp(new IPAddressString("156.32.47.0/24"), Instant.now(), Instant.now().minus(1, ChronoUnit.HOURS), "ban 1", -1));
         dataSet.push(new BanIp(new IPAddressString("125.112.32.56"), Instant.now(), Instant.now().plus(1, ChronoUnit.HOURS), "ban 2", 1));
@@ -99,7 +93,6 @@ class SqlBanIpRepositoryTest extends RealmBaseCase {
         assertEquals(new IPAddressString("32.0.0.0/8"), entries.get(1).ipAddress());
     }
 
-    @Test
     void updated() {
         Instant now = Instant.now();
 
@@ -114,7 +107,6 @@ class SqlBanIpRepositoryTest extends RealmBaseCase {
         assertEquals(new IPAddressString("32.0.0.0/8"), entries.get(1).ipAddress());
     }
 
-    @Test
     void disable() {
         Instant now = Instant.now();
 

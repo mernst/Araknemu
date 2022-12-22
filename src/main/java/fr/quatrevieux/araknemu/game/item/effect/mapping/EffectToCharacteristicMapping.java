@@ -151,7 +151,7 @@ public final class EffectToCharacteristicMapping implements EffectMapper<Charact
      *
      * @throws NoSuchElementException When effect is not registered
      */
-    public CharacteristicEffect create(Effect effect, @NonNegative int value) {
+    public CharacteristicEffect create(Effect effect, int value) {
         final MappedCharacteristic mapped = get(effect);
 
         return new CharacteristicEffect(effect, value, mapped.multiplier, mapped.characteristic);

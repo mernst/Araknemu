@@ -36,14 +36,12 @@ class ShowFightDetailsTest extends FightBaseCase {
     private ShowFightDetails handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         handler = new ShowFightDetails(container.get(FightService.class));
     }
 
-    @Test
     void handleSuccess() throws SQLException, ContainerException {
         ExplorationMap map = container.get(ExplorationMapService.class).load(10340);
         explorationPlayer().changeMap(map, 123);

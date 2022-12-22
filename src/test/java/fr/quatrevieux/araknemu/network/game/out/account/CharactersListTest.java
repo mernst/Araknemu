@@ -39,12 +39,10 @@ import java.util.Collections;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CharactersListTest extends GameBaseCase {
-    @Test
     void generateNoCharacters() {
         assertEquals("ALK123|0", new CharactersList(123, Collections.EMPTY_LIST).toString());
     }
 
-    @Test
     void generateWithOneCharacter() throws ContainerException {
         assertEquals(
             "ALK123|1|5;name;15;90;-1;33;2b;;;1;;;",
@@ -64,7 +62,6 @@ class CharactersListTest extends GameBaseCase {
         );
     }
 
-    @Test
     void generateWithAccessories() throws ContainerException {
         assertEquals(
             "ALK123|1|5;name;15;90;-1;33;2b;,c,17,,;;1;;;",

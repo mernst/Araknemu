@@ -37,7 +37,6 @@ class FighterTurnPointsTest extends FightBaseCase {
     private FighterTurnPoints points;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,13 +46,11 @@ class FighterTurnPointsTest extends FightBaseCase {
         points = new FighterTurnPoints(fight, fighter);
     }
 
-    @Test
     void defaults() {
         assertEquals(3, points.movementPoints());
         assertEquals(6, points.actionPoints());
     }
 
-    @Test
     void useMovementPoints() {
         AtomicReference<MovementPointsUsed> ref = new AtomicReference<>();
         fight.dispatcher().add(MovementPointsUsed.class, ref::set);
@@ -67,7 +64,6 @@ class FighterTurnPointsTest extends FightBaseCase {
         assertEquals(2, points.usedMovementPoints());
     }
 
-    @Test
     void useActionPoints() {
         AtomicReference<ActionPointsUsed> ref = new AtomicReference<>();
         fight.dispatcher().add(ActionPointsUsed.class, ref::set);
@@ -81,21 +77,18 @@ class FighterTurnPointsTest extends FightBaseCase {
         assertEquals(2, points.usedActionPoints());
     }
 
-    @Test
     void addMovementPoints() {
         points.addMovementPoints(3);
 
         assertEquals(6, points.movementPoints());
     }
 
-    @Test
     void removeMovementPoints() {
         points.removeMovementPoints(2);
 
         assertEquals(1, points.movementPoints());
     }
 
-    @Test
     void removeAndAddMovementPoints() {
         points.removeMovementPoints(10);
         assertEquals(0, points.movementPoints());
@@ -104,21 +97,18 @@ class FighterTurnPointsTest extends FightBaseCase {
         assertEquals(2, points.movementPoints());
     }
 
-    @Test
     void addActionPoints() {
         points.addActionPoints(3);
 
         assertEquals(9, points.actionPoints());
     }
 
-    @Test
     void removeActionPoints() {
         points.removeActionPoints(2);
 
         assertEquals(4, points.actionPoints());
     }
 
-    @Test
     void removeAndAddActionPoints() {
         points.removeActionPoints(10);
         assertEquals(0, points.actionPoints());

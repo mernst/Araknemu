@@ -34,7 +34,6 @@ class SendFighterVisibleTest extends FightBaseCase {
     private SendFighterVisible listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -43,7 +42,6 @@ class SendFighterVisibleTest extends FightBaseCase {
         );
     }
 
-    @Test
     void onFighterVisible() {
         requestStack.clear();
         listener.on(new FighterVisible(player.fighter(), other.fighter()));

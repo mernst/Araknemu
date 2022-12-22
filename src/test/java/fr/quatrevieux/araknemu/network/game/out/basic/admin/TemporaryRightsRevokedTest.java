@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TemporaryRightsRevokedTest {
-    @Test
     void string() {
         assertEquals("BAICBob", new TemporaryRightsRevoked("Bob").toString());
     }

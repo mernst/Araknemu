@@ -74,7 +74,6 @@ public final class SetLife extends AbstractCommand<SetLife.Arguments> {
 
     @SuppressWarnings("initialization.field.uninitialized")
     public static final class Arguments {
-        @Argument(required = true, metaVar = "number|max")
         private String value;
 
         public String value() {
@@ -89,7 +88,7 @@ public final class SetLife extends AbstractCommand<SetLife.Arguments> {
             return "max".equalsIgnoreCase(value);
         }
 
-        public @NonNegative int number() {
+        public int number() {
             return ParseUtils.parseNonNegativeInt(value);
         }
     }

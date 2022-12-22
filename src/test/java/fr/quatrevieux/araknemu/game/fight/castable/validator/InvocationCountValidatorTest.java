@@ -45,7 +45,6 @@ class InvocationCountValidatorTest extends FightBaseCase {
     private InvocationCountValidator validator;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -58,7 +57,6 @@ class InvocationCountValidatorTest extends FightBaseCase {
         validator = new InvocationCountValidator();
     }
 
-    @Test
     void maxInvocReached() {
         Spell spell = Mockito.mock(Spell.class);
         Fighter invoc = Mockito.mock(Fighter.class);
@@ -76,7 +74,6 @@ class InvocationCountValidatorTest extends FightBaseCase {
         );
     }
 
-    @Test
     void maxInvocReachedWithMultipleInvoc() {
         Spell spell = Mockito.mock(Spell.class);
         Fighter invoc = Mockito.mock(Fighter.class);
@@ -101,7 +98,6 @@ class InvocationCountValidatorTest extends FightBaseCase {
         );
     }
 
-    @Test
     void success() {
         Spell spell = Mockito.mock(Spell.class);
 
@@ -109,7 +105,6 @@ class InvocationCountValidatorTest extends FightBaseCase {
         assertNull(validator.validate(turn, spell, fight.map().get(123)));
     }
 
-    @Test
     void successWithMultipleInvoc() {Spell spell = Mockito.mock(Spell.class);
         Fighter invoc = Mockito.mock(Fighter.class);
         Mockito.when(invoc.invoker()).thenReturn(fighter);
@@ -125,7 +120,6 @@ class InvocationCountValidatorTest extends FightBaseCase {
         assertNull(validator.validate(turn, spell, fight.map().get(123)));
     }
 
-    @Test
     void ignoreNotInvocationSpell() {
         Spell spell = Mockito.mock(Spell.class);
         Fighter invoc = Mockito.mock(Fighter.class);

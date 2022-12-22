@@ -44,7 +44,6 @@ class TeleportHandlerTest extends FightBaseCase {
     private TeleportHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -58,7 +57,6 @@ class TeleportHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void applySuccess() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -83,7 +81,6 @@ class TeleportHandlerTest extends FightBaseCase {
         assertFalse(lastCell.hasFighter());
     }
 
-    @Test
     void applyNotFreeCell() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

@@ -28,7 +28,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ComputedCharacteristicsTest {
-    @Test
     void computedPointResistance() {
         MutableCharacteristics inner = new DefaultCharacteristics();
         ComputedCharacteristics<Characteristics> c = new ComputedCharacteristics<>(inner);
@@ -44,7 +43,6 @@ class ComputedCharacteristicsTest {
         assertEquals(11, c.get(Characteristic.RESISTANCE_MOVEMENT_POINT));
     }
 
-    @Test
     void notComputedCharacteristic() {
         MutableCharacteristics inner = new DefaultCharacteristics();
         ComputedCharacteristics<Characteristics> c = new ComputedCharacteristics<>(inner);
@@ -54,7 +52,6 @@ class ComputedCharacteristicsTest {
         assertEquals(44, c.get(Characteristic.STRENGTH));
     }
 
-    @Test
     void equalityAndHashCode() {
         assertEquals(new ComputedCharacteristics<>(new DefaultCharacteristics()), new ComputedCharacteristics<>(new DefaultCharacteristics()));
         assertNotEquals(new ComputedCharacteristics<>(new DefaultCharacteristics()), new DefaultCharacteristics());

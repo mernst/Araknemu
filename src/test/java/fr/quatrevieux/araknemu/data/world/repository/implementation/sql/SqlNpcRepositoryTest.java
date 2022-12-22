@@ -36,7 +36,6 @@ class SqlNpcRepositoryTest extends GameBaseCase {
     private SqlNpcRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -48,12 +47,10 @@ class SqlNpcRepositoryTest extends GameBaseCase {
         repository = new SqlNpcRepository(new ConnectionPoolExecutor(app.database().get("game")));
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(-5));
     }
 
-    @Test
     void getById() {
         Npc npc = repository.get(457);
 
@@ -64,14 +61,12 @@ class SqlNpcRepositoryTest extends GameBaseCase {
         assertArrayEquals(new int[] {16196, 16197}, npc.questions());
     }
 
-    @Test
     void getWithoutQuestions() {
         Npc npc = repository.get(666);
 
         assertArrayEquals(new int[] {}, npc.questions());
     }
 
-    @Test
     void getByEntity() {
         Npc npc = repository.get(new Npc(457, 0, null, null, null));
 
@@ -81,7 +76,6 @@ class SqlNpcRepositoryTest extends GameBaseCase {
         assertEquals(Direction.SOUTH_EAST, npc.orientation());
     }
 
-    @Test
     void has() {
         assertTrue(repository.has(new Npc(457, 0, null, null, null)));
         assertTrue(repository.has(new Npc(458, 0, null, null, null)));
@@ -89,7 +83,6 @@ class SqlNpcRepositoryTest extends GameBaseCase {
         assertFalse(repository.has(new Npc(-5, 0, null, null, null)));
     }
 
-    @Test
     void all() {
         assertArrayEquals(
             new Object[] {457, 458, 472, 666},
@@ -97,7 +90,6 @@ class SqlNpcRepositoryTest extends GameBaseCase {
         );
     }
 
-    @Test
     void byMapId() {
         assertArrayEquals(new Object[] {457, 458}, repository.byMapId(10302).stream().map(Npc::id).toArray());
         assertArrayEquals(new Object[] {472}, repository.byMapId(10340).stream().map(Npc::id).toArray());

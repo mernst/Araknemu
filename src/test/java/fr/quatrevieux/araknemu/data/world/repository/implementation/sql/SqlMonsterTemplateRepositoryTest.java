@@ -39,7 +39,6 @@ class SqlMonsterTemplateRepositoryTest extends GameBaseCase {
     private ConnectionPoolExecutor executor;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,12 +51,10 @@ class SqlMonsterTemplateRepositoryTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(-5));
     }
 
-    @Test
     void getById() {
         MonsterTemplate template = repository.get(31);
 
@@ -117,7 +114,6 @@ class SqlMonsterTemplateRepositoryTest extends GameBaseCase {
         assertEquals(5, (int) template.grades()[4].spells().get(213));
     }
 
-    @Test
     void getByEntity() {
         MonsterTemplate template = repository.get(new MonsterTemplate(31, null, 0, null, null, null));
 
@@ -128,7 +124,6 @@ class SqlMonsterTemplateRepositoryTest extends GameBaseCase {
         assertCount(5, template.grades());
     }
 
-    @Test
     void invalidCharacteristicsLengths() throws SQLException {
         executor.query(
             "INSERT INTO `MONSTER_TEMPLATE` (`MONSTER_ID`, `MONSTER_NAME`, `GFXID`, `COLORS`, `AI`, `CHARACTERISTICS`, `LIFE_POINTS`, `INITIATIVES`, `SPELLS`) VALUES " +
@@ -142,14 +137,12 @@ class SqlMonsterTemplateRepositoryTest extends GameBaseCase {
         assertThrows(IllegalArgumentException.class, () -> repository.get(3));
     }
 
-    @Test
     void has() {
         assertTrue(repository.has(new MonsterTemplate(31, null, 0, null, null, null)));
         assertTrue(repository.has(new MonsterTemplate(36, null, 0, null, null, null)));
         assertFalse(repository.has(new MonsterTemplate(-5, null, 0, null, null, null)));
     }
 
-    @Test
     void all() {
         List<MonsterTemplate> templates = repository.all();
 

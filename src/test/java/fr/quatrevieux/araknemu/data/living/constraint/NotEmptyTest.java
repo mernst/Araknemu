@@ -37,7 +37,6 @@ class NotEmptyTest {
         }
     }
 
-    @Test
     void check() {
         NotEmpty<Entity, Object> maxLength = new NotEmpty<>(new Object(), Entity::getValue);
 

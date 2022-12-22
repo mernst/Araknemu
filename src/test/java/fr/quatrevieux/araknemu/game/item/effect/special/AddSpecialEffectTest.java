@@ -35,7 +35,6 @@ class AddSpecialEffectTest extends GameBaseCase {
     private AddSpecialEffect handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -43,7 +42,6 @@ class AddSpecialEffectTest extends GameBaseCase {
         handler = new AddSpecialEffect(SpecialEffects.Type.DISCERNMENT);
     }
 
-    @Test
     void apply() {
         handler.apply(
             new SpecialEffect(handler, Effect.ADD_DISCERNMENT, new int[] {15, 0, 0}, ""),
@@ -53,7 +51,6 @@ class AddSpecialEffectTest extends GameBaseCase {
         assertEquals(15, player.properties().characteristics().specials().get(SpecialEffects.Type.DISCERNMENT));
     }
 
-    @Test
     void relieve() {
         player.properties().characteristics().specials().add(SpecialEffects.Type.DISCERNMENT, 15);
 
@@ -65,7 +62,6 @@ class AddSpecialEffectTest extends GameBaseCase {
         assertEquals(0, player.properties().characteristics().specials().get(SpecialEffects.Type.DISCERNMENT));
     }
 
-    @Test
     void createMaximizeWithRange() {
         SpecialEffect effect = handler.create(
             new ItemTemplateEffectEntry(Effect.ADD_DISCERNMENT, 10, 25, 0, ""),
@@ -78,7 +74,6 @@ class AddSpecialEffectTest extends GameBaseCase {
         assertEquals("0d0+25", effect.text());
     }
 
-    @Test
     void createMaximizeWithFixed() {
         SpecialEffect effect = handler.create(
             new ItemTemplateEffectEntry(Effect.ADD_DISCERNMENT, 10, 0, 0, ""),
@@ -91,7 +86,6 @@ class AddSpecialEffectTest extends GameBaseCase {
         assertEquals("0d0+10", effect.text());
     }
 
-    @Test
     void createRandomWithFixed() {
         SpecialEffect effect = handler.create(
             new ItemTemplateEffectEntry(Effect.ADD_DISCERNMENT, 10, 0, 0, ""),
@@ -104,7 +98,6 @@ class AddSpecialEffectTest extends GameBaseCase {
         assertEquals("0d0+10", effect.text());
     }
 
-    @Test
     void createRandom() {
         SpecialEffect effect = handler.create(
             new ItemTemplateEffectEntry(Effect.ADD_DISCERNMENT, 10, 25, 0, ""),

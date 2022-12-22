@@ -33,7 +33,6 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 
 class InvocationFighterCharacteristicsTest extends FightBaseCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
         createFight();
@@ -44,7 +43,6 @@ class InvocationFighterCharacteristicsTest extends FightBaseCase {
         ;
     }
 
-    @Test
     void withLevel1Invoker() {
         InvocationFighterCharacteristics characteristics = new InvocationFighterCharacteristics(
             container.get(MonsterService.class).load(36).get(1),
@@ -59,7 +57,6 @@ class InvocationFighterCharacteristicsTest extends FightBaseCase {
         assertEquals(60, characteristics.get(Characteristic.WISDOM));
     }
 
-    @Test
     void withLevel50Invoker() {
         InvocationFighterCharacteristics characteristics = new InvocationFighterCharacteristics(
             container.get(MonsterService.class).load(36).get(1),
@@ -74,7 +71,6 @@ class InvocationFighterCharacteristicsTest extends FightBaseCase {
         assertEquals(60, characteristics.get(Characteristic.WISDOM));
     }
 
-    @Test
     void baseMethods() {
         InvocationFighterCharacteristics characteristics = new InvocationFighterCharacteristics(
             container.get(MonsterService.class).load(36).get(1),
@@ -87,7 +83,6 @@ class InvocationFighterCharacteristicsTest extends FightBaseCase {
         assertSame(container.get(MonsterService.class).load(36).get(1).characteristics(), characteristics.initial());
     }
 
-    @Test
     void alter() {
         Fighter invoc = Mockito.mock(Fighter.class);
 

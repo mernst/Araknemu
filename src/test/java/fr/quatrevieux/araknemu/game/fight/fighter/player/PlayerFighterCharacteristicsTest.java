@@ -37,7 +37,6 @@ class PlayerFighterCharacteristicsTest extends FightBaseCase {
     private PlayerFighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,25 +46,21 @@ class PlayerFighterCharacteristicsTest extends FightBaseCase {
         fighterCharacteristics = new PlayerFighterCharacteristics(baseCharacteristics, fighter = player.fighter());
     }
 
-    @Test
     void initiative() {
         assertEquals(baseCharacteristics.initiative(), fighterCharacteristics.initiative());
     }
 
-    @Test
     void get() {
         assertEquals(baseCharacteristics.get(Characteristic.ACTION_POINT), fighterCharacteristics.get(Characteristic.ACTION_POINT));
         assertEquals(baseCharacteristics.get(Characteristic.STRENGTH), fighterCharacteristics.get(Characteristic.STRENGTH));
     }
 
-    @Test
     void getWithBuff() {
         fighterCharacteristics.alter(Characteristic.STRENGTH, 10);
 
         assertEquals(10 + baseCharacteristics.get(Characteristic.STRENGTH), fighterCharacteristics.get(Characteristic.STRENGTH));
     }
 
-    @Test
     void delegates() {
         assertEquals(baseCharacteristics.base(), fighterCharacteristics.base());
         assertEquals(baseCharacteristics.stuff(), fighterCharacteristics.stuff());
@@ -74,7 +69,6 @@ class PlayerFighterCharacteristicsTest extends FightBaseCase {
         assertEquals(baseCharacteristics.pods(), fighterCharacteristics.pods());
     }
 
-    @Test
     void alter() {
         AtomicReference<FighterCharacteristicChanged> ref = new AtomicReference<>();
         fighter.dispatcher().add(FighterCharacteristicChanged.class, ref::set);
@@ -92,7 +86,6 @@ class PlayerFighterCharacteristicsTest extends FightBaseCase {
         assertEquals(-10, ref.get().value());
     }
 
-    @Test
     void initial() {
         assertSame(baseCharacteristics, fighterCharacteristics.initial());
     }

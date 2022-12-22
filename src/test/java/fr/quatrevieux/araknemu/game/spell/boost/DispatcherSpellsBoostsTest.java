@@ -40,7 +40,6 @@ class DispatcherSpellsBoostsTest extends GameBaseCase {
     private ListenerAggregate dispatcher;
     private DispatcherSpellsBoosts boosts;
 
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -48,7 +47,6 @@ class DispatcherSpellsBoostsTest extends GameBaseCase {
         boosts = new DispatcherSpellsBoosts(new SimpleSpellsBoosts(), dispatcher);
     }
 
-    @Test
     void boost() {
         boosts.set(1, SpellsBoosts.Modifier.DAMAGE, 5);
 
@@ -61,7 +59,6 @@ class DispatcherSpellsBoostsTest extends GameBaseCase {
         assertEquals(10, ref.get().value());
     }
 
-    @Test
     void set() {
         AtomicReference<SpellBoostChanged> ref = new AtomicReference<>();
         dispatcher.add(SpellBoostChanged.class, ref::set);
@@ -72,7 +69,6 @@ class DispatcherSpellsBoostsTest extends GameBaseCase {
         assertEquals(5, ref.get().value());
     }
 
-    @Test
     void unset() {
         boosts.set(1, SpellsBoosts.Modifier.DAMAGE, 5);
 
@@ -86,7 +82,6 @@ class DispatcherSpellsBoostsTest extends GameBaseCase {
         assertEquals(0, ref.get().value());
     }
 
-    @Test
     void get() throws SQLException, ContainerException {
         dataSet.pushSpells();
 
@@ -101,7 +96,6 @@ class DispatcherSpellsBoostsTest extends GameBaseCase {
         assertEquals(5, boosted.effects().get(0).boost());
     }
 
-    @Test
     void all() {
         boosts.set(3, SpellsBoosts.Modifier.DAMAGE, 5);
         boosts.set(6, SpellsBoosts.Modifier.AP_COST, 5);

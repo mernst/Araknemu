@@ -32,12 +32,12 @@ import java.util.Map;
 public final class NpcExchange {
     private final int id;
     private final int npcTemplateId;
-    private final @NonNegative long requiredKamas;
-    private final Map<Integer, @Positive Integer> requiredItems;
-    private final @NonNegative long exchangedKamas;
-    private final Map<Integer, @Positive Integer> exchangedItems;
+    private final long requiredKamas;
+    private final Map<Integer, Integer> requiredItems;
+    private final long exchangedKamas;
+    private final Map<Integer, Integer> exchangedItems;
 
-    public NpcExchange(int id, int npcTemplateId, @NonNegative long requiredKamas, Map<Integer, @Positive Integer> requiredItems, @NonNegative long exchangedKamas, Map<Integer, @Positive Integer> exchangedItems) {
+    public NpcExchange(int id, int npcTemplateId, long requiredKamas, Map<Integer, Integer> requiredItems, long exchangedKamas, Map<Integer, Integer> exchangedItems) {
         this.id = id;
         this.npcTemplateId = npcTemplateId;
         this.requiredKamas = requiredKamas;
@@ -65,7 +65,7 @@ public final class NpcExchange {
     /**
      * The required amount of kamas for perform the exchange
      */
-    public @NonNegative long requiredKamas() {
+    public long requiredKamas() {
         return requiredKamas;
     }
 
@@ -77,14 +77,14 @@ public final class NpcExchange {
      *
      * @see fr.quatrevieux.araknemu.data.world.entity.item.ItemTemplate#id()
      */
-    public Map<Integer, @Positive Integer> requiredItems() {
+    public Map<Integer, Integer> requiredItems() {
         return requiredItems;
     }
 
     /**
      * The amount of exchanged kamas
      */
-    public @NonNegative long exchangedKamas() {
+    public long exchangedKamas() {
         return exchangedKamas;
     }
 
@@ -96,7 +96,7 @@ public final class NpcExchange {
      *
      * @see fr.quatrevieux.araknemu.data.world.entity.item.ItemTemplate#id()
      */
-    public Map<Integer, @Positive Integer> exchangedItems() {
+    public Map<Integer, Integer> exchangedItems() {
         return exchangedItems;
     }
 }

@@ -38,7 +38,6 @@ class AddKamasTest extends FightBaseCase {
     private PlayerFighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,7 +48,6 @@ class AddKamasTest extends FightBaseCase {
         fighter = player.fighter();
     }
 
-    @Test
     void applyWithoutKamas() {
         DropReward reward = new DropReward(RewardType.WINNER, fighter, Collections.emptyList());
 
@@ -60,7 +58,6 @@ class AddKamasTest extends FightBaseCase {
         assertEquals(lastKamas, player.properties().kamas());
     }
 
-    @Test
     void applyWithKamas() {
         DropReward reward = new DropReward(RewardType.WINNER, fighter, Collections.emptyList());
         reward.setKamas(1000);
@@ -72,7 +69,6 @@ class AddKamasTest extends FightBaseCase {
         assertEquals(1000, player.properties().kamas() - lastKamas);
     }
 
-    @Test
     void applyOnMonster() {
         MonsterFighter fighter = (MonsterFighter) fight.team(1).fighters().stream().findFirst().get();
 

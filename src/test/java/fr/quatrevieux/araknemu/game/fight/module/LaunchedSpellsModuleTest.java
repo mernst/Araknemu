@@ -33,7 +33,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LaunchedSpellsModuleTest extends FightBaseCase {
-    @Test
     void fighterInitialized() throws Exception {
         Fight fight = createFight(false);
         fight.register(new LaunchedSpellsModule(fight));
@@ -44,7 +43,6 @@ class LaunchedSpellsModuleTest extends FightBaseCase {
         assertInstanceOf(LaunchedSpells.class, player.fighter().attachment(LaunchedSpells.class));
     }
 
-    @Test
     void spellCasted() throws Exception {
         Fight fight = createFight(false);
         fight.register(new LaunchedSpellsModule(fight));
@@ -73,7 +71,6 @@ class LaunchedSpellsModuleTest extends FightBaseCase {
         assertFalse(player.fighter().attachment(LaunchedSpells.class).valid(player.fighter().spells().get(6), player.fighter().cell()));
     }
 
-    @Test
     void turnTerminated() throws Exception {
         Fight fight = createFight(false);
         fight.register(new LaunchedSpellsModule(fight));

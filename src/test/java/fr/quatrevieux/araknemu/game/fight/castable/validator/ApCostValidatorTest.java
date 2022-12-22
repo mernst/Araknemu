@@ -41,7 +41,6 @@ class ApCostValidatorTest extends FightBaseCase {
     private ApCostValidator validator;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -53,7 +52,6 @@ class ApCostValidatorTest extends FightBaseCase {
         validator = new ApCostValidator();
     }
 
-    @Test
     void notEnoughAp() {
         Spell spell = Mockito.mock(Spell.class);
 
@@ -66,7 +64,6 @@ class ApCostValidatorTest extends FightBaseCase {
         );
     }
 
-    @Test
     void success() {
         Spell spell = Mockito.mock(Spell.class);
 

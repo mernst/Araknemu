@@ -36,7 +36,6 @@ class AdminSessionServiceTest extends GameBaseCase {
     private AdminSessionService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -45,14 +44,12 @@ class AdminSessionServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void userWillCreateAnAdminUser() throws SQLException, ContainerException, AdminException {
         AdminUser user = service.user(gamePlayer());
 
         assertEquals(gamePlayer().id(), user.id());
     }
 
-    @Test
     void userGetSameUser() throws SQLException, ContainerException, AdminException {
         assertSame(
             service.user(gamePlayer()),
@@ -60,7 +57,6 @@ class AdminSessionServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void userGetAndDisconnectWillRemovePlayer() throws SQLException, ContainerException, AdminException {
         AdminUser user = service.user(gamePlayer());
 

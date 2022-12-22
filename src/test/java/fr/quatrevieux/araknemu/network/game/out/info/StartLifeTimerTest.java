@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class StartLifeTimerTest {
 
-    @Test
     void start() {
         assertEquals("ILS1000", new StartLifeTimer(1000).toString());
     }

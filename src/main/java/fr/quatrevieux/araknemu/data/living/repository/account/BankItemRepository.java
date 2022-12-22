@@ -64,5 +64,5 @@ public interface BankItemRepository extends MutableRepository<BankItem> {
      *
      * @return The number of item entries
      */
-    public @NonNegative int count(AccountBank bank);
+    public int count(AccountBank bank);
 }

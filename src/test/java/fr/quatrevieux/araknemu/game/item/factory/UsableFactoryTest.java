@@ -44,7 +44,6 @@ class UsableFactoryTest extends GameBaseCase {
     private UsableFactory factory;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -54,7 +53,6 @@ class UsableFactoryTest extends GameBaseCase {
         );
     }
 
-    @Test
     void create() {
         ItemType type = new ItemType(12, "Potion", SuperType.USABLE, null);
         Item item = factory.create(
@@ -70,7 +68,6 @@ class UsableFactoryTest extends GameBaseCase {
         assertSame(type, item.type());
     }
 
-    @Test
     void retrieve() {
         ItemType type = new ItemType(12, "Potion", SuperType.USABLE, null);
         Item item = factory.retrieve(

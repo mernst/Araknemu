@@ -37,7 +37,6 @@ class SendNewFighterTest extends FightBaseCase {
     private SendNewFighter listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -45,7 +44,6 @@ class SendNewFighterTest extends FightBaseCase {
         listener = new SendNewFighter(fight);
     }
 
-    @Test
     void onFighterAdded() throws SQLException, ContainerException, JoinFightException {
         PlayerFighter fighter = makePlayerFighter(makeSimpleGamePlayer(10));
         fight.team(0).join(fighter);

@@ -59,7 +59,6 @@ class ExplorationMapServiceTest extends FightBaseCase {
     private ListenerAggregate dispatcher;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -78,7 +77,6 @@ class ExplorationMapServiceTest extends FightBaseCase {
         ;
     }
 
-    @Test
     void load() throws SQLException, ContainerException {
         AtomicReference<MapLoaded> ref = new AtomicReference<>();
         dispatcher.add(MapLoaded.class, ref::set);
@@ -105,7 +103,6 @@ class ExplorationMapServiceTest extends FightBaseCase {
         assertTrue(map.dispatcher().has(SendCreatureMove.class));
     }
 
-    @Test
     void loadByMapTemplate() throws SQLException, ContainerException {
         MapTemplate template = container.get(MapTemplateRepository.class).get(10540);
 
@@ -119,7 +116,6 @@ class ExplorationMapServiceTest extends FightBaseCase {
         assertSame(map, service.load(template));
     }
 
-    @Test
     void listeners() throws SQLException, ContainerException {
         ListenerAggregate dispatcher = new DefaultListenerAggregate();
         dispatcher.register(service);
@@ -130,7 +126,6 @@ class ExplorationMapServiceTest extends FightBaseCase {
         assertTrue(player.dispatcher().has(SendMapData.class));
     }
 
-    @Test
     void fightListeners() throws Exception {
         ExplorationMap map = service.load(10340);
         explorationPlayer().changeMap(map, 123);
@@ -160,7 +155,6 @@ class ExplorationMapServiceTest extends FightBaseCase {
         );
     }
 
-    @Test
     void preloadWithTriggers() throws SQLException, ContainerException {
         dataSet.pushTrigger(new MapTrigger(10300, 120, Teleport.ACTION_ID, "123,45", ""));
         dataSet.pushTrigger(new MapTrigger(10300, 125, Teleport.ACTION_ID, "123,45", ""));
@@ -177,7 +171,6 @@ class ExplorationMapServiceTest extends FightBaseCase {
         Mockito.verify(logger).info(Mockito.eq("{} maps successfully loaded in {}ms"), Mockito.eq(4), Mockito.any());
     }
 
-    @Test
     void name() {
         assertEquals("map", service.name());
     }

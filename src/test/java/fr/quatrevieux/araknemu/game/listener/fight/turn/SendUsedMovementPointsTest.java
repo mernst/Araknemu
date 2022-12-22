@@ -33,7 +33,6 @@ class SendUsedMovementPointsTest extends FightBaseCase {
     private SendUsedMovementPoints listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -42,7 +41,6 @@ class SendUsedMovementPointsTest extends FightBaseCase {
         );
     }
 
-    @Test
     void onMovementPointsUsed() {
         listener.on(new MovementPointsUsed(player.fighter(), 4));
 

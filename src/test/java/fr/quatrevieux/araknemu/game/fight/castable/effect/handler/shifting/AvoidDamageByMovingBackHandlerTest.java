@@ -46,7 +46,6 @@ class AvoidDamageByMovingBackHandlerTest extends FightBaseCase {
     private Fight fight;
     private AvoidDamageByMovingBackHandler handler;
 
-    @Test
     void handleDirectEffectNotSupported() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(165))
@@ -70,7 +69,6 @@ class AvoidDamageByMovingBackHandlerTest extends FightBaseCase {
         assertThrows(UnsupportedOperationException.class, () -> handler.handle(scope, scope.effects().get(0)));
     }
 
-    @Test
     void buffWillAddBuffToList() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(165))
@@ -105,7 +103,6 @@ class AvoidDamageByMovingBackHandlerTest extends FightBaseCase {
         assertEquals(5, found.get().remainingTurns());
     }
 
-    @Test
     void buffWithAreaMultipleFighters() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(165))
@@ -132,7 +129,6 @@ class AvoidDamageByMovingBackHandlerTest extends FightBaseCase {
         assertTrue(target.buffs().stream().anyMatch(buff -> buff.effect().equals(effect)));
     }
 
-    @Test
     void buffWithDirectDamage() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(165))
@@ -175,7 +171,6 @@ class AvoidDamageByMovingBackHandlerTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.slide(caster, target, fight.map().get(120)));
     }
 
-    @Test
     void attackFromDistantCellShouldBeIgnored() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(180))
@@ -217,7 +212,6 @@ class AvoidDamageByMovingBackHandlerTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.alterLifePoints(caster, target, -15));
     }
 
-    @Test
     void buffWithPoisonDamageShouldBeIgnored() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(165))
@@ -258,7 +252,6 @@ class AvoidDamageByMovingBackHandlerTest extends FightBaseCase {
         assertEquals(150, target.cell().id());
     }
 
-    @Test
     void randomChance() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(165))

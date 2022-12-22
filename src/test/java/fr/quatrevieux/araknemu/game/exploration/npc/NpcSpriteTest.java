@@ -34,7 +34,6 @@ import java.util.Collections;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NpcSpriteTest extends GameBaseCase {
-    @Test
     void simpleNpc() {
         NpcSprite sprite = new NpcSprite(new GameNpc(
             new Npc(472, 878, new Position(10340, 82), Direction.SOUTH_EAST, new int[] {3786}),
@@ -47,7 +46,6 @@ class NpcSpriteTest extends GameBaseCase {
         assertEquals(40, sprite.gfxId());
     }
 
-    @Test
     void withCustomArtworkAndExtraClip() {
         NpcSprite sprite = new NpcSprite(new GameNpc(
             new Npc(472, 878, new Position(10340, 82), Direction.SOUTH_EAST, new int[] {3786}),

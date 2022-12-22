@@ -33,7 +33,6 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AggressiveTest extends AiBaseCase {
-    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -42,7 +41,6 @@ class AggressiveTest extends AiBaseCase {
         dataSet.pushFunctionalSpells();
     }
 
-    @Test
     void shouldBoostFirst() {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(342))
@@ -52,7 +50,6 @@ class AggressiveTest extends AiBaseCase {
         assertCast(6, 342);
     }
 
-    @Test
     void shouldAttackIfCantBoost() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(342))
@@ -64,7 +61,6 @@ class AggressiveTest extends AiBaseCase {
         assertCast(3, 327);
     }
 
-    @Test
     void shouldMoveToAttackIfCantAttackFromTheCurrentCell() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(342))
@@ -79,7 +75,6 @@ class AggressiveTest extends AiBaseCase {
         assertCast(3, 241);
     }
 
-    @Test
     void shouldMoveNearEnemyIfCantAttack() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210))
@@ -95,7 +90,6 @@ class AggressiveTest extends AiBaseCase {
         assertEquals(8, distance(getEnemy(0)));
     }
 
-    @Test
     void shouldMoveTeleportNearEnemyIfCantAttackAndMove() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210).spell(142, 5))
@@ -114,7 +108,6 @@ class AggressiveTest extends AiBaseCase {
         assertEquals(6, distance(getEnemy(0)));
     }
 
-    @Test
     void shouldBoostAlliesIfCantMoveOrAttack() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210).spell(27, 5))
@@ -130,7 +123,6 @@ class AggressiveTest extends AiBaseCase {
         assertInCastEffectArea(198);
     }
 
-    @Test
     void shouldHealIfCantMoveOrAttackOrBoost() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210).spell(121).currentLife(50).maxLife(100))
@@ -144,7 +136,6 @@ class AggressiveTest extends AiBaseCase {
         assertCast(121, 210);
     }
 
-    @Test
     void shouldDoNothingOtherwise() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210).spell(27, 5))
@@ -158,7 +149,6 @@ class AggressiveTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void withoutDistanceSpellsShouldMoveNearEnemy() throws NoSuchFieldException, IllegalAccessException {
         SpellBook spells = player.properties().spells();
         Field field = spells.getClass().getDeclaredField("entries");
@@ -176,7 +166,6 @@ class AggressiveTest extends AiBaseCase {
         assertEquals(2, distance(getEnemy(0)));
     }
 
-    @Test
     void withoutDistanceSpellsShouldAttack() throws NoSuchFieldException, IllegalAccessException {
         SpellBook spells = player.properties().spells();
         Field field = spells.getClass().getDeclaredField("entries");
@@ -192,7 +181,6 @@ class AggressiveTest extends AiBaseCase {
         assertCast(145, 277);
     }
 
-    @Test
     void withoutDistanceSpellsButWithAreaShouldBeConsideredAsDistanceSpell() throws NoSuchFieldException, IllegalAccessException {
         SpellBook spells = player.properties().spells();
         Field field = spells.getClass().getDeclaredField("entries");

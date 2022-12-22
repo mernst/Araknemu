@@ -44,7 +44,6 @@ class StatesValidatorTest extends FightBaseCase {
     private StatesValidator validator;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -56,7 +55,6 @@ class StatesValidatorTest extends FightBaseCase {
         validator = new StatesValidator();
     }
 
-    @Test
     void validateWithoutStates() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -69,7 +67,6 @@ class StatesValidatorTest extends FightBaseCase {
         assertNull(validator.validate(turn, spell, fight.map().get(186)));
     }
 
-    @Test
     void withForbiddenState() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -87,7 +84,6 @@ class StatesValidatorTest extends FightBaseCase {
         );
     }
 
-    @Test
     void withMissingRequiredState() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -106,7 +102,6 @@ class StatesValidatorTest extends FightBaseCase {
         );
     }
 
-    @Test
     void success() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);

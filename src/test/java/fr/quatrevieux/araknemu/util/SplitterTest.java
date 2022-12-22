@@ -26,7 +26,6 @@ import java.util.NoSuchElementException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SplitterTest {
-    @Test
     void empty() {
         Splitter splitter = new Splitter("", ',');
 
@@ -38,7 +37,6 @@ class SplitterTest {
         assertThrows(NoSuchElementException.class, splitter::nextPart);
     }
 
-    @Test
     void withoutSeparator() {
         Splitter splitter = new Splitter("foo", ',');
 
@@ -49,7 +47,6 @@ class SplitterTest {
         assertThrows(NoSuchElementException.class, splitter::nextPart);
     }
 
-    @Test
     void onlySeparators() {
         Splitter splitter = new Splitter(",,", ',');
 
@@ -65,7 +62,6 @@ class SplitterTest {
         assertFalse(splitter.hasNext());
         assertThrows(NoSuchElementException.class, splitter::nextPart);
     }
-    @Test
     void nextPartOrDefault() {
         Splitter splitter = new Splitter("foo,bar", ',');
 
@@ -75,7 +71,6 @@ class SplitterTest {
         assertEquals("default", splitter.nextPartOrDefault("default"));
     }
 
-    @Test
     void nextInt() {
         Splitter splitter = new Splitter("12,-23,,invalid", ',');
 
@@ -86,7 +81,6 @@ class SplitterTest {
         assertThrows(NoSuchElementException.class, splitter::nextInt);
     }
 
-    @Test
     void nextIntOrDefault() {
         Splitter splitter = new Splitter("12,-23,,invalid", ',');
 
@@ -97,7 +91,6 @@ class SplitterTest {
         assertEquals(42, splitter.nextIntOrDefault(42));
     }
 
-    @Test
     void nextIntWithBase() {
         Splitter splitter = new Splitter("fa,-a,,invalid", ',');
 
@@ -108,7 +101,6 @@ class SplitterTest {
         assertThrows(NoSuchElementException.class, () -> splitter.nextInt(16));
     }
 
-    @Test
     void nextNonNegativeOrNegativeOneInt() {
         Splitter splitter = new Splitter("12,-23,-1,0,,invalid", ',');
 
@@ -121,7 +113,6 @@ class SplitterTest {
         assertThrows(NoSuchElementException.class, splitter::nextNonNegativeOrNegativeOneInt);
     }
 
-    @Test
     void nextNonNegativeOrNegativeOneIntOrDefault() {
         Splitter splitter = new Splitter("12,-23,-1,0,,invalid", ',');
 
@@ -134,7 +125,6 @@ class SplitterTest {
         assertEquals(42, splitter.nextNonNegativeOrNegativeOneIntOrDefault(42));
     }
 
-    @Test
     void nextNonNegativeInt() {
         Splitter splitter = new Splitter("12,-23,-1,0,,invalid", ',');
 
@@ -147,7 +137,6 @@ class SplitterTest {
         assertThrows(NoSuchElementException.class, splitter::nextNonNegativeInt);
     }
 
-    @Test
     void nextNonNegativeIntOrDefault() {
         Splitter splitter = new Splitter("12,-23,-1,0,,invalid", ',');
 
@@ -160,7 +149,6 @@ class SplitterTest {
         assertEquals(42, splitter.nextNonNegativeIntOrDefault(42));
     }
 
-    @Test
     void nextNonNegativeIntWithBase() {
         Splitter splitter = new Splitter("c,-f,-1,0,fa,,invalid", ',');
 
@@ -174,7 +162,6 @@ class SplitterTest {
         assertThrows(NoSuchElementException.class, () -> splitter.nextNonNegativeInt(16));
     }
 
-    @Test
     void nextPositiveInt() {
         Splitter splitter = new Splitter("12,-23,-1,0,1,,invalid", ',');
 
@@ -188,7 +175,6 @@ class SplitterTest {
         assertThrows(NoSuchElementException.class, splitter::nextPositiveInt);
     }
 
-    @Test
     void nextPositiveIntOrDefault() {
         Splitter splitter = new Splitter("12,-23,-1,0,1,,invalid", ',');
 
@@ -202,7 +188,6 @@ class SplitterTest {
         assertEquals(42, splitter.nextPositiveIntOrDefault(42));
     }
 
-    @Test
     void nextSplit() {
         Splitter splitter = new Splitter("a,b;c,d;e", ';');
 
@@ -224,7 +209,6 @@ class SplitterTest {
         assertThrows(NoSuchElementException.class, subSplit::nextPart);
     }
 
-    @Test
     void toIntArray() {
         assertArrayEquals(new int[] {123, 45, 74}, new Splitter("123;45;74", ';').toIntArray());
         assertArrayEquals(new int[] {123}, new Splitter("123", ';').toIntArray());
@@ -232,7 +216,6 @@ class SplitterTest {
         assertThrows(NumberFormatException.class, new Splitter("invalid", ';')::toIntArray);
     }
 
-    @Test
     void toIntArrayShouldMoveCursorToEnd() {
         Splitter splitter = new Splitter("12;34", ';');
 

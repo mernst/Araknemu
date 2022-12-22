@@ -36,7 +36,6 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameActionResponseTest extends GameBaseCase {
-    @Test
     void generateWithOneArgument() {
         assertEquals(
             "GA3;1;45;abKebIgbf",
@@ -44,7 +43,6 @@ class GameActionResponseTest extends GameBaseCase {
         );
     }
 
-    @Test
     void generateWithoutArguments() {
         assertEquals(
             "GA3;1;45",
@@ -52,7 +50,6 @@ class GameActionResponseTest extends GameBaseCase {
         );
     }
 
-    @Test
     void generateWithoutTwoArguments() {
         assertEquals(
             "GA3;1;45;aaa;bbb",
@@ -60,7 +57,6 @@ class GameActionResponseTest extends GameBaseCase {
         );
     }
 
-    @Test
     void generateWithMoveAction() throws SQLException, ContainerException, PathException {
         ExplorationPlayer player = explorationPlayer();
 
@@ -75,12 +71,10 @@ class GameActionResponseTest extends GameBaseCase {
         assertEquals("GA3;1;1;aexbftdgl", new GameActionResponse(action).toString());
     }
 
-    @Test
     void noop() {
         assertEquals("GA;0", GameActionResponse.NOOP.toString());
     }
 
-    @Test
     void generateWithActionNoArguments() throws SQLException, ContainerException {
         ExplorationPlayer player = explorationPlayer();
 
@@ -92,7 +86,6 @@ class GameActionResponseTest extends GameBaseCase {
         assertEquals("GA;0;1", new GameActionResponse(action).toString());
     }
 
-    @Test
     void generateWithActionMultipleArguments() throws SQLException, ContainerException {
         ExplorationPlayer player = explorationPlayer();
 

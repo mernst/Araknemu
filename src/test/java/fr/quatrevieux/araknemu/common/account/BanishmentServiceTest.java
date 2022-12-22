@@ -48,7 +48,6 @@ class BanishmentServiceTest extends GameBaseCase {
     private ListenerAggregate dispatcher;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -61,7 +60,6 @@ class BanishmentServiceTest extends GameBaseCase {
         dataSet.use(Banishment.class);
     }
 
-    @Test
     void isBanned() {
         login();
         GameAccount account = session.account();
@@ -71,7 +69,6 @@ class BanishmentServiceTest extends GameBaseCase {
         assertTrue(service.isBanned(account));
     }
 
-    @Test
     void isBannedShouldIgnoreGameMasterAccount() {
         GameAccount account = new GameAccount(
             new Account(1, "", "", "", EnumSet.allOf(Permission.class), "", ""),
@@ -83,7 +80,6 @@ class BanishmentServiceTest extends GameBaseCase {
         assertFalse(service.isBanned(account));
     }
 
-    @Test
     void banWithoutBanisher() {
         AtomicReference<AccountBanned> ref = new AtomicReference<>();
         dispatcher.add(AccountBanned.class, ref::set);
@@ -116,7 +112,6 @@ class BanishmentServiceTest extends GameBaseCase {
         assertSame(entry, ref.get().entry());
     }
 
-    @Test
     void banWithBanisher() {
         AtomicReference<AccountBanned> ref = new AtomicReference<>();
         dispatcher.add(AccountBanned.class, ref::set);
@@ -155,7 +150,6 @@ class BanishmentServiceTest extends GameBaseCase {
         assertSame(entry, ref.get().entry());
     }
 
-    @Test
     void list() {
         GameAccount account = new GameAccount(
             new Account(1, "", "", ""),
@@ -190,7 +184,6 @@ class BanishmentServiceTest extends GameBaseCase {
         assertFalse(entries.get(3).banisher().isPresent());
     }
 
-    @Test
     void unban() {
         GameAccount account = new GameAccount(
             new Account(1, "", "", ""),

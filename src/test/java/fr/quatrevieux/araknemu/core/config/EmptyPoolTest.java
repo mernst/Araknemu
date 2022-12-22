@@ -26,7 +26,6 @@ import java.util.Collections;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EmptyPoolTest {
-    @Test
     void values() {
         assertFalse(new EmptyPool().has("foo"));
         assertNull(new EmptyPool().get("foo"));

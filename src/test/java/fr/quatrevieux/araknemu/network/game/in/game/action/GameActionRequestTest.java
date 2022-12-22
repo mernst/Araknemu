@@ -25,7 +25,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameActionRequestTest {
-    @Test
     void parse() {
         GameActionRequest.Parser parser = new GameActionRequest.Parser();
 
@@ -35,7 +34,6 @@ class GameActionRequestTest {
         assertArrayEquals(new String[] {"dfi"}, ga.arguments());
     }
 
-    @Test
     void parseInvalid() {
         GameActionRequest.Parser parser = new GameActionRequest.Parser();
 

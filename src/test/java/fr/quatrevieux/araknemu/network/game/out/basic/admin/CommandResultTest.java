@@ -25,7 +25,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CommandResultTest {
-    @Test
     void generate() {
         assertEquals(
             "BAT0My result",

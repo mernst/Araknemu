@@ -49,7 +49,6 @@ class ExchangeDialogTest extends GameBaseCase {
     private ExchangeDialog dialog;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -66,7 +65,6 @@ class ExchangeDialogTest extends GameBaseCase {
         dialog = new ExchangeDialog(local);
     }
 
-    @Test
     void start() {
         player.interactions().start(dialog);
 
@@ -75,7 +73,6 @@ class ExchangeDialogTest extends GameBaseCase {
         assertSame(dialog, player.interactions().get(ExchangeDialog.class));
     }
 
-    @Test
     void stop() {
         player.interactions().start(dialog);
         other.interactions().start(distant.dialog());
@@ -86,7 +83,6 @@ class ExchangeDialogTest extends GameBaseCase {
         assertFalse(player.interactions().interacting());
     }
 
-    @Test
     void leave() {
         player.interactions().start(dialog);
         other.interactions().start(distant.dialog());
@@ -97,7 +93,6 @@ class ExchangeDialogTest extends GameBaseCase {
         assertFalse(player.interactions().interacting());
     }
 
-    @Test
     void accept() {
         player.interactions().start(dialog);
 
@@ -108,7 +103,6 @@ class ExchangeDialogTest extends GameBaseCase {
         requestStack.assertLast(new ExchangeAccepted(false, player));
     }
 
-    @Test
     void kamas() {
         player.interactions().start(dialog);
 
@@ -116,7 +110,6 @@ class ExchangeDialogTest extends GameBaseCase {
         requestStack.assertLast(new LocalExchangeKamas(100));
     }
 
-    @Test
     void item() throws SQLException {
         dataSet
             .pushItemTemplates()

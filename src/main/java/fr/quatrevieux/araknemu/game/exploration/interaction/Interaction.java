@@ -30,7 +30,7 @@ public interface Interaction {
      *
      * @return The started interaction or null if the interaction is aborted
      */
-    public @Nullable Interaction start();
+    public Interaction start();
 
     /**
      * Terminate the interaction

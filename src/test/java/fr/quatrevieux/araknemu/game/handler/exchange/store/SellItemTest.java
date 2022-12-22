@@ -40,7 +40,6 @@ class SellItemTest extends GameBaseCase {
     private ItemService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -50,7 +49,6 @@ class SellItemTest extends GameBaseCase {
         service = container.get(ItemService.class);
     }
 
-    @Test
     void success() throws Exception {
         openStore();
 
@@ -63,7 +61,6 @@ class SellItemTest extends GameBaseCase {
         assertEquals(7, entry.quantity());
     }
 
-    @Test
     void failedItemNotAvailable() throws Exception {
         openStore();
 
@@ -72,7 +69,6 @@ class SellItemTest extends GameBaseCase {
         requestStack.assertLast(ItemSold.failed());
     }
 
-    @Test
     void failedNotInExploration() {
         session.setExploration(null);
         assertThrows(CloseImmediately.class, () -> handlePacket(new SellRequest(39, 5)));

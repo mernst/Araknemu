@@ -38,12 +38,12 @@ public final class SimpleWallet implements Wallet {
     }
 
     @Override
-    public @NonNegative long kamas() {
+    public long kamas() {
         return entity.kamas();
     }
 
     @Override
-    public void addKamas(@Positive long quantity) {
+    public void addKamas(long quantity) {
         if (quantity <= 0) {
             throw new IllegalArgumentException("Quantity must be a positive number");
         }
@@ -52,7 +52,7 @@ public final class SimpleWallet implements Wallet {
     }
 
     @Override
-    public void removeKamas(@Positive long quantity) {
+    public void removeKamas(long quantity) {
         if (quantity <= 0) {
             throw new IllegalArgumentException("Quantity must be a positive number");
         }

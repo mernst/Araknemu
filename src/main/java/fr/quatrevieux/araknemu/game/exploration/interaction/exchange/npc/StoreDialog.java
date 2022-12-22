@@ -67,7 +67,7 @@ public final class StoreDialog implements ExchangeInteraction {
      * @param itemId The item id (item template id for the npc store)
      * @param quantity The asked quantity
      */
-    public void buy(int itemId, @Positive int quantity) {
+    public void buy(int itemId, int quantity) {
         try {
             exchange.buy(itemId, quantity);
             exchange.send(ItemBought.success());
@@ -82,7 +82,7 @@ public final class StoreDialog implements ExchangeInteraction {
      * @param itemId The inventory item entry id
      * @param quantity The sell quantity
      */
-    public void sell(int itemId, @Positive int quantity) {
+    public void sell(int itemId, int quantity) {
         try {
             exchange.sell(itemId, quantity);
             exchange.send(ItemSold.success());

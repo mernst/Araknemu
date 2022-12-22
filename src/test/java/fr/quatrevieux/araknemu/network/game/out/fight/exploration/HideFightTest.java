@@ -30,7 +30,6 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class HideFightTest extends FightBaseCase {
-    @Test
     void generate() throws ContainerException, SQLException {
         dataSet.pushMaps().pushSubAreas().pushAreas();
 

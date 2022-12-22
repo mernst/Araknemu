@@ -49,7 +49,7 @@ public final class SpellBook implements SpellList, Dispatcher {
     private final Player player;
 
     private final Map<Integer, SpellBookEntry> entries = new HashMap<>();
-    private final @Nullable SpellBookEntry[] entriesByPosition = new SpellBookEntry[MAX_POSITION];
+    private final SpellBookEntry[] entriesByPosition = new SpellBookEntry[MAX_POSITION];
     private final SpellsBoosts boosts;
 
     @SuppressWarnings("argument")
@@ -105,7 +105,6 @@ public final class SpellBook implements SpellList, Dispatcher {
      * @param spellId Spell to check
      */
     @Override
-    @EnsuresKeyForIf(result = true, expression = "#1", map = "entries")
     @SuppressWarnings("contracts.conditional.postcondition") // checker do not consider null check as key existence
     public boolean has(int spellId) {
         final SpellBookEntry entry = entries.get(spellId);
@@ -143,7 +142,7 @@ public final class SpellBook implements SpellList, Dispatcher {
     /**
      * Get available spell upgrade points
      */
-    public @NonNegative int upgradePoints() {
+    public int upgradePoints() {
         return player.spellPoints();
     }
 

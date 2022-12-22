@@ -48,7 +48,6 @@ class BanTest extends CommandTestCase {
     private GameAccount target;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -64,20 +63,17 @@ class BanTest extends CommandTestCase {
         dataSet.use(Banishment.class);
     }
 
-    @Test
     void banInvalidAction() {
         assertThrowsWithMessage(CommandException.class, "Argument \"ACTION\" is required", () -> execute("ban"));
         assertThrowsWithMessage(CommandException.class, "\"invalid\" is not a valid value for \"ACTION\"", () -> execute("ban", "invalid"));
     }
 
-    @Test
     void banListEmpty() throws SQLException, AdminException {
         execute("ban", "list");
 
         assertOutput("No ban entries found");
     }
 
-    @Test
     void banList() throws SQLException, AdminException {
         dataSet.push(new Banishment(target.id(), Instant.parse("2020-03-25T15:00:00.Z"), Instant.parse("2020-03-30T15:00:00.Z"), "ban 1", 1));
         dataSet.push(new Banishment(target.id(), Instant.parse("2020-07-25T15:00:00.Z"), Instant.parse("2020-07-30T15:00:00.Z"), "ban 2", -1));
@@ -92,7 +88,6 @@ class BanTest extends CommandTestCase {
         );
     }
 
-    @Test
     void banFor() throws SQLException, AdminException {
         execute("ban", "for", "1h", "my", "ban", "message");
 
@@ -106,7 +101,6 @@ class BanTest extends CommandTestCase {
         assertEquals(1, banishment.banisherId());
     }
 
-    @Test
     void banFunctionalShouldKickBannedAccount() throws SQLException, AdminException {
         GameSession targetSession = server.createSession();
         target.attach(targetSession);
@@ -117,14 +111,12 @@ class BanTest extends CommandTestCase {
         assertFalse(targetSession.isAlive());
     }
 
-    @Test
     void banForInvalidArguments() {
         assertThrowsWithMessage(CommandException.class, "Argument \"DURATION\" is required", () -> execute("ban", "for"));
         assertThrowsWithMessage(CommandException.class, "Option \"DURATION\" takes an operand", () -> execute("ban", "for", "invalid"));
         assertThrowsWithMessage(CommandException.class, "Argument \"CAUSE\" is required", () -> execute("ban", "for", "1h"));
     }
 
-    @Test
     void banForCannotBanSelf() {
         login();
         command = new Ban(
@@ -135,7 +127,6 @@ class BanTest extends CommandTestCase {
         assertThrowsWithMessage(CommandException.class, "Cannot ban yourself", () -> execute("ban", "for", "1h", "cause"));
     }
 
-    @Test
     void banForCannotBanGameMaster() {
         command = new Ban(
             target = new GameAccount(
@@ -149,7 +140,6 @@ class BanTest extends CommandTestCase {
         assertThrowsWithMessage(CommandException.class, "Cannot ban a game master", () -> execute("ban", "for", "1h", "cause"));
     }
 
-    @Test
     void unban() throws SQLException, AdminException {
         container.get(BanishmentService.class).ban(target, Duration.ofHours(1), "my cause");
 
@@ -159,7 +149,6 @@ class BanTest extends CommandTestCase {
         assertOutput("The account to ban has been unbaned");
     }
 
-    @Test
     void help() {
         assertHelp(
             "ban - Ban an account",

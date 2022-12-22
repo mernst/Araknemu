@@ -51,7 +51,7 @@ public interface Command<A> {
     /**
      * Create the command arguments POJO or default value
      */
-    public default @Nullable A createArguments() {
+    public default A createArguments() {
         return null;
     }
 

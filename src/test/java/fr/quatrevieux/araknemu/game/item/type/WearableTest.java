@@ -39,7 +39,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class WearableTest {
-    @Test
     void getters() {
         Wearable wearable = new Wearable(
             new ItemTemplate(39, 1, "Petite Amulette du Hibou", 1, Arrays.asList(new ItemTemplateEffectEntry(Effect.ADD_INTELLIGENCE, 2, 0, 0, "0d0+2")), 4, "", 0, "", 100),
@@ -53,7 +52,6 @@ class WearableTest {
         assertEquals(Arrays.asList(new CharacteristicEffect(Effect.ADD_INTELLIGENCE, 2, +1, Characteristic.INTELLIGENCE)), wearable.characteristics());
     }
 
-    @Test
     void equalsBadType() {
         assertNotEquals(
             new Wearable(
@@ -67,7 +65,6 @@ class WearableTest {
         );
     }
 
-    @Test
     void equalsBadCharacteristics() {
         assertNotEquals(
             new Wearable(
@@ -86,7 +83,6 @@ class WearableTest {
         );
     }
 
-    @Test
     void equalsOk() {
         assertEquals(
             new Wearable(
@@ -106,7 +102,6 @@ class WearableTest {
         );
     }
 
-    @Test
     void effects() {
         Wearable wearable = new Wearable(
             new ItemTemplate(39, 1, "Petite Amulette du Hibou", 1, Arrays.asList(new ItemTemplateEffectEntry(Effect.ADD_INTELLIGENCE, 2, 0, 0, "0d0+2")), 4, "", 0, "", 100),
@@ -125,7 +120,6 @@ class WearableTest {
         );
     }
 
-    @Test
     void apply() {
         Wearable wearable = new Wearable(
             new ItemTemplate(39, 1, "Petite Amulette du Hibou", 1, Arrays.asList(new ItemTemplateEffectEntry(Effect.ADD_INTELLIGENCE, 2, 0, 0, "0d0+2")), 4, "", 0, "", 100),

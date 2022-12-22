@@ -30,7 +30,6 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SelfContextResolverTest extends GameBaseCase {
-    @Test
     void resolve() throws SQLException, AdminException {
         AdminUser user = container.get(AdminSessionService.class).user(gamePlayer());
 

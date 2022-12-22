@@ -34,20 +34,20 @@ import java.util.Optional;
  * Base slot class
  */
 public final class SimpleSlot implements InventorySlot {
-    private final @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int id;
+    private final int id;
     private final SlotConstraint[] constraints;
     private final ItemStorage<InventoryEntry> storage;
 
-    private @Nullable InventoryEntry entry;
+    private InventoryEntry entry;
 
-    public SimpleSlot(@IntRange(from = -1, to = InventorySlots.SLOT_MAX) int id, SlotConstraint[] constraints, ItemStorage<InventoryEntry> storage) {
+    public SimpleSlot(int id, SlotConstraint[] constraints, ItemStorage<InventoryEntry> storage) {
         this.id = id;
         this.constraints = constraints;
         this.storage = storage;
     }
 
     @Override
-    public @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int id() {
+    public int id() {
         return id;
     }
 
@@ -77,14 +77,14 @@ public final class SimpleSlot implements InventorySlot {
     }
 
     @Override
-    public InventoryEntry set(Item item, @Positive int quantity) throws InventoryException {
+    public InventoryEntry set(Item item, int quantity) throws InventoryException {
         check(item, quantity);
 
         return entry = storage.add(item, quantity, id);
     }
 
     @Override
-    public void uncheckedSet(@Nullable InventoryEntry entry) {
+    public void uncheckedSet(InventoryEntry entry) {
         this.entry = entry;
     }
 }

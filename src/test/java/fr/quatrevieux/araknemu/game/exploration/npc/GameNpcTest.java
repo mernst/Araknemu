@@ -55,7 +55,6 @@ class GameNpcTest extends GameBaseCase {
     private NpcTemplate template;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -73,7 +72,6 @@ class GameNpcTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getters() {
         assertInstanceOf(NpcSprite.class, npc.sprite());
         assertEquals(82, npc.position().cell());
@@ -83,7 +81,6 @@ class GameNpcTest extends GameBaseCase {
         assertEquals(878, npc.template().id());
     }
 
-    @Test
     void join() throws SQLException {
         assertThrows(IllegalStateException.class, npc::cell);
 
@@ -96,7 +93,6 @@ class GameNpcTest extends GameBaseCase {
         assertTrue(map.creatures().contains(npc));
     }
 
-    @Test
     void apply() {
         Object o = new Object();
         Operation<Object> operation = Mockito.mock(Operation.class);
@@ -107,7 +103,6 @@ class GameNpcTest extends GameBaseCase {
         Mockito.verify(operation).onNpc(npc);
     }
 
-    @Test
     void questionSuccess() throws SQLException, ContainerException {
         NpcQuestion question = npc.question(explorationPlayer()).get();
 
@@ -115,14 +110,12 @@ class GameNpcTest extends GameBaseCase {
         assertTrue(question.check(explorationPlayer()));
     }
 
-    @Test
     void questionNotFound() throws SQLException, ContainerException {
         npc = new GameNpc(entity, template, Collections.emptyList(), Collections.emptyList());
 
         assertFalse(npc.question(explorationPlayer()).isPresent());
     }
 
-    @Test
     void exchangeFactoryWithStore() throws ContainerException {
         NpcStore store = new NpcStore(container.get(ItemService.class), configuration.economy(), Collections.emptyList());
         npc = new GameNpc(entity, template, Collections.emptyList(), Collections.singleton(store));
@@ -130,21 +123,18 @@ class GameNpcTest extends GameBaseCase {
         assertSame(store, npc.exchangeFactory(ExchangeType.NPC_STORE));
     }
 
-    @Test
     void storeNotAvailable() throws ContainerException {
         npc = new GameNpc(entity, template, Collections.emptyList(), Collections.emptyList());
 
         assertThrows(NoSuchElementException.class, () -> npc.exchangeFactory(ExchangeType.NPC_STORE));
     }
 
-    @Test
     void exchangeNotAvailable() throws ContainerException {
         npc = new GameNpc(entity, template, Collections.emptyList(), Collections.emptyList());
 
         assertThrows(NoSuchElementException.class, () -> npc.exchangeFactory(ExchangeType.NPC_EXCHANGE));
     }
 
-    @Test
     void exchangeFactoryWithExchange() {
         GameNpcExchange exchange = new GameNpcExchange(Collections.emptyList());
         npc = new GameNpc(entity, template, Collections.emptyList(), Collections.singleton(exchange));
@@ -152,7 +142,6 @@ class GameNpcTest extends GameBaseCase {
         assertSame(exchange, npc.exchangeFactory(ExchangeType.NPC_EXCHANGE));
     }
 
-    @Test
     void exchange() throws SQLException {
         GameNpcExchange npcExchange = new GameNpcExchange(Collections.emptyList());
         npc = new GameNpc(entity, template, Collections.emptyList(), Collections.singleton(npcExchange));
@@ -165,7 +154,6 @@ class GameNpcTest extends GameBaseCase {
         assertSame(npc, ((NpcExchangeParty) exchange).target());
     }
 
-    @Test
     void exchangeNotSupported() {
         assertThrows(NoSuchElementException.class, () -> npc.exchange(ExchangeType.PLAYER_EXCHANGE, explorationPlayer()));
     }

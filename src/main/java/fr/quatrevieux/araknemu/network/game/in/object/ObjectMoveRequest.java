@@ -36,10 +36,10 @@ import org.checkerframework.common.value.qual.MinLen;
  */
 public final class ObjectMoveRequest implements Packet {
     private final int id;
-    private final @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int position;
-    private final @Positive int quantity;
+    private final int position;
+    private final int quantity;
 
-    public ObjectMoveRequest(int id, @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int position, @Positive int quantity) {
+    public ObjectMoveRequest(int id, int position, int quantity) {
         this.id = id;
         this.position = position;
         this.quantity = quantity;
@@ -49,11 +49,11 @@ public final class ObjectMoveRequest implements Packet {
         return id;
     }
 
-    public @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int position() {
+    public int position() {
         return position;
     }
 
-    public @Positive int quantity() {
+    public int quantity() {
         return quantity;
     }
 
@@ -70,11 +70,11 @@ public final class ObjectMoveRequest implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "OM";
         }
 
-        private @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int checkValidPosition(@GTENegativeOne int position) {
+        private int checkValidPosition(int position) {
             if (position > InventorySlots.SLOT_MAX) {
                 throw new ParsePacketException(code(), "Invalid object position " + position);
             }

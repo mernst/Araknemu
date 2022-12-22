@@ -42,7 +42,6 @@ class LineLaunchValidatorTest extends FightBaseCase {
     private LineLaunchValidator validator;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -56,7 +55,6 @@ class LineLaunchValidatorTest extends FightBaseCase {
         validator = new LineLaunchValidator();
     }
 
-    @Test
     void notInLine() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -72,7 +70,6 @@ class LineLaunchValidatorTest extends FightBaseCase {
         );
     }
 
-    @Test
     void noInLineConstraint() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -84,7 +81,6 @@ class LineLaunchValidatorTest extends FightBaseCase {
         assertNull(validator.validate(turn, spell, fight.map().get(186)));
     }
 
-    @Test
     void lowRange() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -97,7 +93,6 @@ class LineLaunchValidatorTest extends FightBaseCase {
         assertNull(validator.validate(turn, spell, fight.map().get(200)));
     }
 
-    @Test
     void casterCell() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -110,7 +105,6 @@ class LineLaunchValidatorTest extends FightBaseCase {
         assertNull(validator.validate(turn, spell, fight.map().get(185)));
     }
 
-    @Test
     void inLine() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);

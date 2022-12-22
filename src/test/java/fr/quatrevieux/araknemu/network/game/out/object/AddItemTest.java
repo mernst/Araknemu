@@ -38,7 +38,6 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AddItemTest {
-    @Test
     void simpleItem() {
         assertEquals(
             "OAKOc~11c~5~~",
@@ -56,7 +55,6 @@ class AddItemTest {
         );
     }
 
-    @Test
     void wearedItemWithStats() {
         assertEquals(
             "OAKOc~27~5~0~7e#2#0#0#0d0+2",

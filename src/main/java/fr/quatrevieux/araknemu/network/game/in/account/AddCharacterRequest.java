@@ -81,11 +81,11 @@ public final class AddCharacterRequest implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "AA";
         }
 
-        private static @IntRange(from = -1, to = Colors.MAX_COLOR_VALUE) int checkColor(int value) {
+        private static int checkColor(int value) {
             if (value < -1 || value > Colors.MAX_COLOR_VALUE) {
                 throw new ParsePacketException("AA", "Invalid color value");
             }

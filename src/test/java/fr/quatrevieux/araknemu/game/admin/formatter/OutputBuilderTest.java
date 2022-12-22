@@ -25,7 +25,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class OutputBuilderTest {
-    @Test
     void append() {
         OutputBuilder builder = new OutputBuilder();
 
@@ -39,7 +38,6 @@ class OutputBuilderTest {
         );
     }
 
-    @Test
     void line() {
         OutputBuilder builder = new OutputBuilder();
 
@@ -55,7 +53,6 @@ class OutputBuilderTest {
         );
     }
 
-    @Test
     void title() {
         OutputBuilder builder = new OutputBuilder();
 
@@ -69,7 +66,6 @@ class OutputBuilderTest {
         );
     }
 
-    @Test
     void indent() {
         OutputBuilder builder = new OutputBuilder();
 
@@ -88,7 +84,6 @@ class OutputBuilderTest {
         );
     }
 
-    @Test
     void variables() {
         OutputBuilder builder = new OutputBuilder();
 

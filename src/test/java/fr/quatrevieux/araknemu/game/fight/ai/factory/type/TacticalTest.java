@@ -29,7 +29,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TacticalTest extends AiBaseCase {
-    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -38,7 +37,6 @@ class TacticalTest extends AiBaseCase {
         dataSet.pushFunctionalSpells();
     }
 
-    @Test
     void shouldBoostFirst() {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(342))
@@ -48,7 +46,6 @@ class TacticalTest extends AiBaseCase {
         assertCast(6, 342);
     }
 
-    @Test
     void shouldAttackIfCantBoost() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(342))
@@ -60,7 +57,6 @@ class TacticalTest extends AiBaseCase {
         assertCast(3, 327);
     }
 
-    @Test
     void shouldMoveToAttackIfCantAttackFromTheCurrentCell() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(342))
@@ -75,7 +71,6 @@ class TacticalTest extends AiBaseCase {
         assertCast(3, 241);
     }
 
-    @Test
     void shouldMoveNearEnemyIfCantAttackBecauseToFar() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210))
@@ -91,7 +86,6 @@ class TacticalTest extends AiBaseCase {
         assertEquals(8, distance(getEnemy(0)));
     }
 
-    @Test
     void shouldMoveFarEnemyIfCantAttackButInRange() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210))
@@ -108,7 +102,6 @@ class TacticalTest extends AiBaseCase {
         assertEquals(8, distance(getEnemy(0)));
     }
 
-    @Test
     void shouldMoveTeleportNearEnemyIfCantAttackAndMove() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210).spell(142, 5))
@@ -127,7 +120,6 @@ class TacticalTest extends AiBaseCase {
         assertEquals(6, distance(getEnemy(0)));
     }
 
-    @Test
     void shouldBoostAlliesIfCantMoveOrAttack() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210).spell(27, 5))
@@ -143,7 +135,6 @@ class TacticalTest extends AiBaseCase {
         assertInCastEffectArea(198);
     }
 
-    @Test
     void shouldHealIfLessThan50PercentLife() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(298).spell(121).spell(81).currentLife(50).maxLife(100))
@@ -158,7 +149,6 @@ class TacticalTest extends AiBaseCase {
         assertCast(121, 298);
     }
 
-    @Test
     void shouldDebuffIfCantBoostOrAttack() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(298).spell(121).spell(81).currentLife(80).maxLife(100))
@@ -173,7 +163,6 @@ class TacticalTest extends AiBaseCase {
         assertCast(81, 256);
     }
 
-    @Test
     void shouldHealIfCantDebuff() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(298).spell(121).currentLife(80).maxLife(100))
@@ -188,7 +177,6 @@ class TacticalTest extends AiBaseCase {
         assertCast(121, 298);
     }
 
-    @Test
     void shouldDoNothingOtherwise() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210).spell(27, 5))

@@ -33,14 +33,12 @@ class PvmBuilderFactoryTest  extends GameBaseCase {
     private PvmBuilderFactory factory;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         factory = new PvmBuilderFactory(container.get(FighterFactory.class), container.get(PvmType.class));
     }
 
-    @Test
     void create() throws ContainerException {
         assertNotNull(factory.create(container.get(FightService.class)));
     }

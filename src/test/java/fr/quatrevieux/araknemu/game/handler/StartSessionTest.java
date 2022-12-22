@@ -28,14 +28,12 @@ class StartSessionTest extends GameBaseCase {
     private StartSession handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         handler = new StartSession();
     }
 
-    @Test
     void handle() {
         handler.handle(session, new SessionCreated());
 

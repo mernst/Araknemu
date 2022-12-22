@@ -35,7 +35,6 @@ class SendSpriteRemovedTest extends GameBaseCase {
     private SendSpriteRemoved listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -45,7 +44,6 @@ class SendSpriteRemovedTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onSpriteRemoved() throws SQLException, ContainerException {
         explorationPlayer();
 

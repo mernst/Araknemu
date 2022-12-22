@@ -42,7 +42,6 @@ class FinishStateTest extends FightBaseCase {
     private FinishState state;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -51,7 +50,6 @@ class FinishStateTest extends FightBaseCase {
         state = new FinishState();
     }
 
-    @Test
     void start() {
         other.fighter().life().alter(player.fighter(), -1000);
 
@@ -82,7 +80,6 @@ class FinishStateTest extends FightBaseCase {
         );
     }
 
-    @Test
     void startOnWinningPvmFight() throws Exception {
         fight = createPvmFight();
         fight.nextState();
@@ -103,7 +100,6 @@ class FinishStateTest extends FightBaseCase {
         assertEquals(241, player.properties().experience().current() - lastXp);
     }
 
-    @Test
     void levelUpShouldRestoreLife() throws Exception {
         // Issue #192 : The life is not restored because SynchronizeLife is performed after LevelUp
         // See: https://github.com/Arakne/Araknemu/issues/192
@@ -124,7 +120,6 @@ class FinishStateTest extends FightBaseCase {
         assertTrue(player.properties().life().isFull());
     }
 
-    @Test
     void startOnLoosingPvmFight() throws Exception {
         fight = createPvmFight();
         fight.nextState();

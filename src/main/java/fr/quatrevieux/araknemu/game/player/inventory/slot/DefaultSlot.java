@@ -46,8 +46,7 @@ public final class DefaultSlot implements InventorySlot {
     }
 
     @Override
-    @Pure
-    public @IntVal(ItemEntry.DEFAULT_POSITION) int id() {
+    public int id() {
         return ItemEntry.DEFAULT_POSITION;
     }
 
@@ -85,12 +84,12 @@ public final class DefaultSlot implements InventorySlot {
     }
 
     @Override
-    public InventoryEntry set(Item item, @Positive int quantity) throws InventoryException {
+    public InventoryEntry set(Item item, int quantity) throws InventoryException {
         return storage.add(item, quantity, id());
     }
 
     @Override
-    public void uncheckedSet(@Nullable InventoryEntry entry) {
+    public void uncheckedSet(InventoryEntry entry) {
         // Do not store a single item : do nothing
     }
 }

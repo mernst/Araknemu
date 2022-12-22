@@ -37,7 +37,6 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class StatsTest extends GameBaseCase {
-    @Test
     void generateWithOnlyClassStats() throws Exception {
         dataSet.pushRaces();
 
@@ -54,7 +53,6 @@ class StatsTest extends GameBaseCase {
         );
     }
 
-    @Test
     void generateNotFullLife() throws Exception {
         dataSet.pushRaces();
 
@@ -67,7 +65,6 @@ class StatsTest extends GameBaseCase {
         );
     }
 
-    @Test
     void generateWithStuffStatsAndSpecials() throws Exception {
         dataSet.pushRaces();
         dataSet.pushItemTemplates();
@@ -88,7 +85,6 @@ class StatsTest extends GameBaseCase {
         );
     }
 
-    @Test
     void generateWithXp() throws Exception {
         dataSet.pushRaces();
 
@@ -102,7 +98,6 @@ class StatsTest extends GameBaseCase {
         );
     }
 
-    @Test
     void generateWithKamas() throws Exception {
         dataSet.pushRaces();
 
@@ -115,7 +110,6 @@ class StatsTest extends GameBaseCase {
         );
     }
 
-    @Test
     void forPlayerFighter() throws SQLException, ContainerException {
         PlayerFighter fighter = new PlayerFighter(gamePlayer(true));
 
@@ -125,7 +119,6 @@ class StatsTest extends GameBaseCase {
         );
     }
 
-    @Test
     void generateWithPointResistance() throws Exception {
         dataSet.pushRaces();
         dataSet.pushItemTemplates();

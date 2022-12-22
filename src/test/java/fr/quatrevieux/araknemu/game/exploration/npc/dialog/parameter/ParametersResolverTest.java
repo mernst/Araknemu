@@ -34,7 +34,6 @@ class ParametersResolverTest extends GameBaseCase {
     private Logger logger;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -45,19 +44,16 @@ class ParametersResolverTest extends GameBaseCase {
         );
     }
 
-    @Test
     void resolveConstant() {
         assertEquals("my constant", resolver.resolve("my constant", player));
         Mockito.verify(logger, Mockito.never()).warn(Mockito.anyString());
     }
 
-    @Test
     void resolveUndefinedVariable() {
         assertEquals("[my_var]", resolver.resolve("[my_var]", player));
         Mockito.verify(logger).warn("Undefined dialog variable {}", "my_var");
     }
 
-    @Test
     void resolveVariable() {
         assertEquals(1, resolver.resolve("[id]", player));
     }

@@ -29,7 +29,7 @@ import org.checkerframework.checker.nullness.qual.PolyNull;
  */
 public final class EffectAreaTransformer implements Transformer<EffectArea> {
     @Override
-    public @PolyNull String serialize(@PolyNull EffectArea value) {
+    public String serialize(EffectArea value) {
         if (value == null) {
             return null;
         }
@@ -38,7 +38,7 @@ public final class EffectAreaTransformer implements Transformer<EffectArea> {
     }
 
     @Override
-    public @PolyNull EffectArea unserialize(@PolyNull String serialize) {
+    public EffectArea unserialize(String serialize) {
         if (serialize == null) {
             return null;
         }

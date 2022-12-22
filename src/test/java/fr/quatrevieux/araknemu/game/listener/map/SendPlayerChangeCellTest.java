@@ -34,7 +34,6 @@ class SendPlayerChangeCellTest extends GameBaseCase {
     private SendPlayerChangeCell listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -45,7 +44,6 @@ class SendPlayerChangeCellTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onCellChanged() throws SQLException, ContainerException {
         listener.on(new CellChanged(explorationPlayer(), 123));
 

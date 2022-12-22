@@ -27,7 +27,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MutableComputedCharacteristicsTest {
-    @Test
     void alter() {
         MutableCharacteristics inner = new DefaultCharacteristics();
         MutableComputedCharacteristics c = new MutableComputedCharacteristics(inner);
@@ -43,7 +42,6 @@ class MutableComputedCharacteristicsTest {
         assertEquals(15, inner.get(Characteristic.STRENGTH));
     }
 
-    @Test
     void computedPointResistance() {
         MutableComputedCharacteristics c = new MutableComputedCharacteristics(new DefaultCharacteristics());
 

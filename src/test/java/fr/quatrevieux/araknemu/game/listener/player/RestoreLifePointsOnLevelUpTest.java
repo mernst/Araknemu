@@ -32,14 +32,12 @@ class RestoreLifePointsOnLevelUpTest extends GameBaseCase {
     private RestoreLifePointsOnLevelUp listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         listener = new RestoreLifePointsOnLevelUp(gamePlayer(true));
     }
 
-    @Test
     void onLevelUp() throws SQLException {
         gamePlayer().properties().life().set(4);
 
@@ -48,7 +46,6 @@ class RestoreLifePointsOnLevelUpTest extends GameBaseCase {
         assertTrue(gamePlayer().properties().life().isFull());
     }
 
-    @Test
     void functional() throws SQLException {
         gamePlayer().properties().life().set(4);
         gamePlayer().properties().experience().add(10000000);

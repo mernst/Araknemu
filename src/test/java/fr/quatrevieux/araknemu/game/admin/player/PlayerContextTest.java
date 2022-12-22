@@ -33,7 +33,6 @@ class PlayerContextTest extends GameBaseCase {
     private PlayerContext context;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -48,7 +47,6 @@ class PlayerContextTest extends GameBaseCase {
         );
     }
 
-    @Test
     void commands() throws CommandNotFoundException {
         assertInstanceOf(Info.class, context.command("info"));
         assertInstanceOf(SetLife.class, context.command("setlife"));
@@ -68,7 +66,6 @@ class PlayerContextTest extends GameBaseCase {
         assertContainsType(Kick.class, context.commands());
     }
 
-    @Test
     void children() throws ContextNotFoundException {
         assertInstanceOf(AccountContext.class, context.child("account"));
     }

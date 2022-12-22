@@ -50,7 +50,6 @@ class RemoveCharacteristicHandlerTest extends FightBaseCase {
     private RemoveCharacteristicHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -68,7 +67,6 @@ class RemoveCharacteristicHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handle() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -83,7 +81,6 @@ class RemoveCharacteristicHandlerTest extends FightBaseCase {
         assertThrows(UnsupportedOperationException.class, () -> handler.handle(scope, scope.effects().get(0)));
     }
 
-    @Test
     void buff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -111,7 +108,6 @@ class RemoveCharacteristicHandlerTest extends FightBaseCase {
         assertEquals(buff1.get().effect().min(), buff2.get().effect().min());
     }
 
-    @Test
     void onBuffStartedAndTerminated() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 

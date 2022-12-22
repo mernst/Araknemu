@@ -38,7 +38,6 @@ class LearnSpellEffectTest extends GameBaseCase {
     private LearnSpellEffect effect;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,7 +51,6 @@ class LearnSpellEffectTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void checkAlreadyLearned() throws SQLException, ContainerException {
         assertFalse(
             effect.check(
@@ -66,7 +64,6 @@ class LearnSpellEffectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void checkTooHighLevelSpell() throws SQLException, ContainerException {
         dataSet.pushHighLevelSpells();
 
@@ -82,7 +79,6 @@ class LearnSpellEffectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void checkOk() throws SQLException, ContainerException {
         assertTrue(
             effect.check(
@@ -92,7 +88,6 @@ class LearnSpellEffectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void checkTarget() throws SQLException {
         assertFalse(
             effect.checkTarget(
@@ -104,7 +99,6 @@ class LearnSpellEffectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void apply() throws SQLException, ContainerException {
         effect.apply(
             new UseEffect(null, Effect.LEARN_SPELL, new int[] {0, 0, 202}),

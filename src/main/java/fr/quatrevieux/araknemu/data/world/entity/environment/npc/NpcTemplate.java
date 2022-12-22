@@ -38,9 +38,9 @@ public final class NpcTemplate {
     private final String accessories;
     private final int extraClip;
     private final int customArtwork;
-    private final int @Nullable[] storeItems;
+    private final int[] storeItems;
 
-    public NpcTemplate(int id, int gfxId, int scaleX, int scaleY, Gender gender, Colors colors, String accessories, int extraClip, int customArtwork, int @Nullable[] storeItems) {
+    public NpcTemplate(int id, int gfxId, int scaleX, int scaleY, Gender gender, Colors colors, String accessories, int extraClip, int customArtwork, int[] storeItems) {
         this.id = id;
         this.gfxId = gfxId;
         this.scaleX = scaleX;

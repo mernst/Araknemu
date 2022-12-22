@@ -28,9 +28,9 @@ import org.checkerframework.checker.index.qual.NonNegative;
 public final class AccountBank implements WalletEntity {
     private final int accountId;
     private final int serverId;
-    private @NonNegative long kamas;
+    private long kamas;
 
-    public AccountBank(int accountId, int serverId, @NonNegative long kamas) {
+    public AccountBank(int accountId, int serverId, long kamas) {
         this.accountId = accountId;
         this.serverId = serverId;
         this.kamas = kamas;
@@ -55,12 +55,12 @@ public final class AccountBank implements WalletEntity {
     }
 
     @Override
-    public @NonNegative long kamas() {
+    public long kamas() {
         return kamas;
     }
 
     @Override
-    public void setKamas(@NonNegative long kamas) {
+    public void setKamas(long kamas) {
         this.kamas = kamas;
     }
 }

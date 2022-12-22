@@ -30,12 +30,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class CharacteristicsTransformerTest {
     private CharacteristicsTransformer transformer;
 
-    @BeforeEach
     void setUp() {
         transformer = new CharacteristicsTransformer();
     }
 
-    @Test
     void serializeSameValue() {
         DefaultCharacteristics characteristics = new DefaultCharacteristics();
 
@@ -49,7 +47,6 @@ class CharacteristicsTransformerTest {
         );
     }
 
-    @Test
     void serializeIgnoreNull() {
         DefaultCharacteristics characteristics = new DefaultCharacteristics();
 
@@ -61,7 +58,6 @@ class CharacteristicsTransformerTest {
         assertEquals("a:2to;h:3;", transformer.serialize(characteristics));
     }
 
-    @Test
     void serializeOneStat() {
         DefaultCharacteristics characteristics = new DefaultCharacteristics();
 
@@ -70,7 +66,6 @@ class CharacteristicsTransformerTest {
         assertEquals("a:68;", transformer.serialize(characteristics));
     }
 
-    @Test
     void serializeNegativeValue() {
         DefaultCharacteristics characteristics = new DefaultCharacteristics();
 
@@ -79,22 +74,18 @@ class CharacteristicsTransformerTest {
         assertEquals("a:-68;", transformer.serialize(characteristics));
     }
 
-    @Test
     void serializeEmpty() {
         assertEquals("", transformer.serialize(new DefaultCharacteristics()));
     }
 
-    @Test
     void serializeNull() {
         assertNull(transformer.serialize(null));
     }
 
-    @Test
     void unserializeNull() {
         assertNull(transformer.unserialize(null));
     }
 
-    @Test
     void unserializeNegativeValue() {
         DefaultCharacteristics characteristics = new DefaultCharacteristics();
 
@@ -103,12 +94,10 @@ class CharacteristicsTransformerTest {
         assertEquals(characteristics, transformer.unserialize("a:-68"));
     }
 
-    @Test
     void unserializeEmpty() {
         assertEquals(new DefaultCharacteristics(), transformer.unserialize(""));
     }
 
-    @Test
     void functional() {
         DefaultCharacteristics characteristics = new DefaultCharacteristics();
 
@@ -124,7 +113,6 @@ class CharacteristicsTransformerTest {
         );
     }
 
-    @Test
     void serializeRaceStats() {
         DefaultCharacteristics characteristics = new DefaultCharacteristics();
 

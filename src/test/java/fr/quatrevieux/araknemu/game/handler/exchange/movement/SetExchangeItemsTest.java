@@ -37,7 +37,6 @@ class SetExchangeItemsTest extends GameBaseCase {
     private ExplorationPlayer other;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -53,7 +52,6 @@ class SetExchangeItemsTest extends GameBaseCase {
         dataSet.pushItemTemplates().pushItemSets();
     }
 
-    @Test
     void success() throws Exception {
         InventoryEntry entry = player.inventory().add(container.get(ItemService.class).create(2422));
 
@@ -62,7 +60,6 @@ class SetExchangeItemsTest extends GameBaseCase {
         requestStack.assertLast(new LocalExchangeObject(entry, 1));
     }
 
-    @Test
     void notExploring() {
         session.setExploration(null);
 

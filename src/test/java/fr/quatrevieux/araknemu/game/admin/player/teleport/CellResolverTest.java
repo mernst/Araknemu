@@ -31,14 +31,12 @@ class CellResolverTest extends GameBaseCase {
     private CellResolver resolver;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         resolver = new CellResolver();
     }
 
-    @Test
     void resolve() throws SQLException {
         Target target = new Target(explorationPlayer().map(), 123);
 

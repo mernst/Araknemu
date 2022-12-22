@@ -40,7 +40,6 @@ class SendTeamFighterRemovedTest extends FightBaseCase {
     private Fighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -58,14 +57,12 @@ class SendTeamFighterRemovedTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onFighterRemovedDuringPlacement() {
         listener.on(new FighterRemoved(fighter, fight));
 
         requestStack.assertLast(new RemoveTeamFighters(fight.team(0), Collections.singleton(fighter)));
     }
 
-    @Test
     void onFighterRemovedNotPlacementState() {
         fight.state(PlacementState.class).startFight();
         requestStack.clear();

@@ -69,7 +69,7 @@ public final class RandomMonsterListGenerator implements MonsterListGenerator {
     /**
      * Get a random group size from the maximal size
      */
-    private @Positive int groupSize(@NonNegative int maxSize) {
+    private int groupSize(int maxSize) {
         if (maxSize == 0) {
             maxSize = SIZE_PROBABILITIES.length + 2;
         } else if (maxSize == 1) {

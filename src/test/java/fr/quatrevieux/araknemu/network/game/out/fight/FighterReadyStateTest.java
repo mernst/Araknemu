@@ -26,7 +26,6 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FighterReadyStateTest {
-    @Test
     void notReady() {
         Fighter fighter = Mockito.mock(Fighter.class);
 
@@ -36,7 +35,6 @@ class FighterReadyStateTest {
         assertEquals("GR05", new FighterReadyState(fighter).toString());
     }
 
-    @Test
     void ready() {
         Fighter fighter = Mockito.mock(Fighter.class);
 

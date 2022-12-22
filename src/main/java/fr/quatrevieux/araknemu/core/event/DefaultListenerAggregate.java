@@ -113,7 +113,6 @@ public final class DefaultListenerAggregate implements ListenerAggregate {
     }
 
     @Override
-    @EnsuresKeyForIf(expression = "#1", map = "listeners", result = true)
     public boolean has(Class<? extends Listener> listenerClass) {
         return listeners.containsKey(listenerClass);
     }
@@ -129,7 +128,7 @@ public final class DefaultListenerAggregate implements ListenerAggregate {
 
     @Override
     @SuppressWarnings({"unchecked", "cast.unsafe"})
-    public <E extends Listener> @Nullable E get(Class<E> listenerClass) {
+    public <E extends Listener> E get(Class<E> listenerClass) {
         return (E) listeners.get(listenerClass);
     }
 

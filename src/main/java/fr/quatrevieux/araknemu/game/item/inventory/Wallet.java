@@ -33,8 +33,7 @@ public interface Wallet {
      *
      * @return The amount of kamas. Always positive
      */
-    @Pure
-    public @NonNegative long kamas();
+    public long kamas();
 
     /**
      * Add kamas to the inventory
@@ -44,7 +43,7 @@ public interface Wallet {
      *
      * @throws IllegalArgumentException When a null or negative quantity is given
      */
-    public void addKamas(@Positive long quantity);
+    public void addKamas(long quantity);
 
     /**
      * Remove kamas from the inventory
@@ -54,5 +53,5 @@ public interface Wallet {
      *
      * @throws IllegalArgumentException When an invalid quantity is given
      */
-    public void removeKamas(@Positive long quantity);
+    public void removeKamas(long quantity);
 }

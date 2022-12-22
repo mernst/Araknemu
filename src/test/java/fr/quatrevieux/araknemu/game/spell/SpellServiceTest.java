@@ -33,7 +33,6 @@ class SpellServiceTest extends GameBaseCase {
     private SpellService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -45,7 +44,6 @@ class SpellServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void get() {
         SpellLevels levels = service.get(3);
 
@@ -59,7 +57,6 @@ class SpellServiceTest extends GameBaseCase {
         assertEquals(5, levels.level(2).apCost());
     }
 
-    @Test
     void preload() {
         Logger logger = Mockito.mock(Logger.class);
 
@@ -69,7 +66,6 @@ class SpellServiceTest extends GameBaseCase {
         Mockito.verify(logger).info("{} spells loaded", 5);
     }
 
-    @Test
     void name() {
         assertEquals("spell", service.name());
     }

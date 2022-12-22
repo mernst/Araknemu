@@ -44,7 +44,6 @@ class GamePlayerExperienceTest extends GameBaseCase {
     private ListenerAggregate dispatcher;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -62,7 +61,6 @@ class GamePlayerExperienceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void values() {
         assertEquals(7, gamePlayerExperience.level());
         assertEquals(7300, gamePlayerExperience.min());
@@ -71,14 +69,12 @@ class GamePlayerExperienceTest extends GameBaseCase {
         assertFalse(gamePlayerExperience.maxLevelReached());
     }
 
-    @Test
     void maxLevelReached() {
         player.setLevel(200);
 
         assertTrue(gamePlayerExperience.maxLevelReached());
     }
 
-    @Test
     void addExperienceOnMaxLevel() {
         player.setLevel(200);
 
@@ -91,7 +87,6 @@ class GamePlayerExperienceTest extends GameBaseCase {
         assertNotNull(ref.get());
     }
 
-    @Test
     void addExperienceWithoutLevelUp() {
         AtomicReference<PlayerXpChanged> ref = new AtomicReference<>();
         dispatcher.add(PlayerXpChanged.class, ref::set);
@@ -103,7 +98,6 @@ class GamePlayerExperienceTest extends GameBaseCase {
         assertNotNull(ref.get());
     }
 
-    @Test
     void addExperienceWithOnLevelUp() {
         AtomicReference<PlayerLevelUp> ref = new AtomicReference<>();
         dispatcher.add(PlayerLevelUp.class, ref::set);
@@ -120,7 +114,6 @@ class GamePlayerExperienceTest extends GameBaseCase {
         assertEquals(8, ref.get().level());
     }
 
-    @Test
     void addExperienceWithMultipleLevel() {
         AtomicReference<PlayerLevelUp> ref = new AtomicReference<>();
         dispatcher.add(PlayerLevelUp.class, ref::set);
@@ -137,7 +130,6 @@ class GamePlayerExperienceTest extends GameBaseCase {
         assertEquals(9, ref.get().level());
     }
 
-    @Test
     void addExperienceWithMaxLevelReach() {
         AtomicReference<PlayerLevelUp> ref = new AtomicReference<>();
         dispatcher.add(PlayerLevelUp.class, ref::set);
@@ -154,7 +146,6 @@ class GamePlayerExperienceTest extends GameBaseCase {
         assertEquals(200, ref.get().level());
     }
 
-    @Test
     void functionalNewLevel() throws SQLException, ContainerException {
         GamePlayer player = gamePlayer(true);
         requestStack.clear();
@@ -173,7 +164,6 @@ class GamePlayerExperienceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void functionalAddXp() throws SQLException, ContainerException {
         GamePlayer player = gamePlayer(true);
         requestStack.clear();

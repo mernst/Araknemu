@@ -34,7 +34,6 @@ class SendAccessoriesTest extends GameBaseCase {
     private SendAccessories listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -45,7 +44,6 @@ class SendAccessoriesTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onEquipmentChangedNotAccessory() {
         listener.on(
             new EquipmentChanged(
@@ -57,7 +55,6 @@ class SendAccessoriesTest extends GameBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void onEquipmentChangedWithAccessoryOnEntry() throws SQLException, ContainerException {
         listener.on(
             new EquipmentChanged(
@@ -74,7 +71,6 @@ class SendAccessoriesTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onEquipmentChangedWithAccessoryOnSlot() throws SQLException, ContainerException {
         listener.on(
             new EquipmentChanged(

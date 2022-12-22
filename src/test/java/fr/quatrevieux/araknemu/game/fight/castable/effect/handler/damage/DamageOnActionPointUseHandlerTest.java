@@ -52,7 +52,6 @@ class DamageOnActionPointUseHandlerTest extends FightBaseCase {
     private DamageOnActionPointUseHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -70,7 +69,6 @@ class DamageOnActionPointUseHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void applyNotSupported() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -87,7 +85,6 @@ class DamageOnActionPointUseHandlerTest extends FightBaseCase {
         assertThrows(UnsupportedOperationException.class, () -> handler.handle(scope, scope.effects().get(0)));
     }
 
-    @Test
     void buffWillAddBuffToList() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -114,7 +111,6 @@ class DamageOnActionPointUseHandlerTest extends FightBaseCase {
         assertEquals(5, found.get().remainingTurns());
     }
 
-    @Test
     void buffWithAreaMultipleFighters() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -133,7 +129,6 @@ class DamageOnActionPointUseHandlerTest extends FightBaseCase {
         assertTrue(target.buffs().stream().anyMatch(buff -> buff.effect().equals(effect)));
     }
 
-    @Test
     void onEndTurnWithoutUsedAPShouldDoNothing() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -158,7 +153,6 @@ class DamageOnActionPointUseHandlerTest extends FightBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void onEndTurnWithUsedAP() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -185,7 +179,6 @@ class DamageOnActionPointUseHandlerTest extends FightBaseCase {
         requestStack.assertLast(ActionEffect.alterLifePoints(target, caster, -30));
     }
 
-    @Test
     void onEndTurnWithUsedAPShouldBeBoosted() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -214,7 +207,6 @@ class DamageOnActionPointUseHandlerTest extends FightBaseCase {
         requestStack.assertLast(ActionEffect.alterLifePoints(target, caster, -50));
     }
 
-    @Test
     void onEndTurnWithMinAP() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 

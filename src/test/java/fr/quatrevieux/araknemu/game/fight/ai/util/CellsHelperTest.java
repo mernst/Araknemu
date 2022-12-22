@@ -26,7 +26,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CellsHelperTest extends AiBaseCase {
-    @Test
     void stream() {
         assertTrue(helper().stream().anyMatch(c -> c.id() == 123));
         assertTrue(helper().stream().anyMatch(c -> c.id() == 125));
@@ -34,13 +33,11 @@ class CellsHelperTest extends AiBaseCase {
         assertFalse(helper().stream().anyMatch(c -> c.id() == 145));
     }
 
-    @Test
     void adjacent() {
         assertArrayEquals(new int[] {138, 137, 108, 109}, helper().adjacent().mapToInt(MapCell::id).toArray());
         assertArrayEquals(new int[] {195, 196}, helper().adjacent(ai.map().get(210)).mapToInt(MapCell::id).toArray());
     }
 
-    @Test
     void pathfinder() {
         assertNotNull(helper().pathfinder());
         assertNotSame(helper().pathfinder(), helper().pathfinder());

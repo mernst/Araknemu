@@ -35,11 +35,11 @@ import org.checkerframework.dataflow.qual.Pure;
  */
 public final class Message implements Packet {
     private final ChannelType channel;
-    private final @Nullable String target;
+    private final String target;
     private final String message;
     private final String items;
 
-    public Message(ChannelType channel, @Nullable String target, String message, String items) {
+    public Message(ChannelType channel, String target, String message, String items) {
         this.channel = channel;
         this.target = target;
         this.message = message;
@@ -53,8 +53,7 @@ public final class Message implements Packet {
     /**
      * The target is null when send to a global chat
      */
-    @Pure
-    public @Nullable String target() {
+    public String target() {
         return target;
     }
 
@@ -91,7 +90,7 @@ public final class Message implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "BM";
         }
     }

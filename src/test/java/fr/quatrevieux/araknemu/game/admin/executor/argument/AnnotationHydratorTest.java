@@ -44,12 +44,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class AnnotationHydratorTest {
     private AnnotationHydrator hydrator;
 
-    @BeforeEach
     void setUp() {
         hydrator = new AnnotationHydrator();
     }
 
-    @Test
     void notSupported() {
         Command<Object> command = new Command<Object>() {
             @Override
@@ -76,7 +74,6 @@ class AnnotationHydratorTest {
         assertFalse(hydrator.supports(command, null));
     }
 
-    @Test
     void hydrateWithNull() {
         Command<Object> command = new Command<Object>() {
             @Override
@@ -104,20 +101,17 @@ class AnnotationHydratorTest {
     }
 
     static class Arguments {
-        @Argument(required = true, metaVar = "FOO", usage = "My foo")
         public String foo;
 
         @Option(name = "--bar", usage = "Enable bar")
         public boolean bar = false;
 
-        @Argument(index = 1, metaVar = "DEF", usage = "Arg with default")
         public int withDefault = 42;
 
         @Option(name = "--opt", usage = "Option with default")
         public String optWithDefault = "default";
     }
 
-    @Test
     void explicitCreateArgumentType() throws Exception {
         Command<Arguments> command = new Command<Arguments>() {
             @Override
@@ -164,7 +158,6 @@ class AnnotationHydratorTest {
         assertThrows(CmdLineException.class, () -> hydrator.hydrate(command, new Arguments(), new CommandParser.Arguments("", "", "", Arrays.asList("foo"), null)));
     }
 
-    @Test
     void help() throws Exception {
         Command<Arguments> command = new Command<Arguments>() {
             @Override

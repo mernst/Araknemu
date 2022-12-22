@@ -48,9 +48,8 @@ public final class SessionLogService {
      *
      * @return The log from database, or a new log if not exists
      */
-    @RequiresNonNull("#1.account()")
     @SuppressWarnings("contracts.precondition")
-    public <A extends @NonNull AbstractLivingAccount<?>> SessionLog load(AccountSession<A> session) {
+    public <A extends AbstractLivingAccount<?>> SessionLog load(AccountSession<A> session) {
         try {
             return new SessionLog(
                 repository.currentSession(session.account().id()),
@@ -66,8 +65,7 @@ public final class SessionLogService {
      *
      * @param session The session
      */
-    @RequiresNonNull("#1.account()")
-    public <A extends @NonNull AbstractLivingAccount<?>> SessionLog create(AccountSession<A> session) {
+    public <A extends AbstractLivingAccount<?>> SessionLog create(AccountSession<A> session) {
         return new SessionLog(
             repository.add(new ConnectionLog(
                 session.account().id(),

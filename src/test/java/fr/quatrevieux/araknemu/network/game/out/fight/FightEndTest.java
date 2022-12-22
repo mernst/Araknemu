@@ -34,7 +34,6 @@ import java.util.Collections;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FightEndTest extends FightBaseCase {
-    @Test
     void generateWithoutRewards() throws Exception {
         Fight fight = createFight();
         fight.nextState();
@@ -63,7 +62,6 @@ class FightEndTest extends FightBaseCase {
         );
     }
 
-    @Test
     void generateWithReward() throws Exception {
         Fight fight = createFight();
         fight.nextState();

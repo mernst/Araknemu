@@ -32,12 +32,12 @@ public final class ConnectionLog {
     private final Instant startDate;
     private final String ipAddress;
 
-    private @Nullable Integer serverId;
-    private @Nullable Integer playerId;
-    private @Nullable Instant endDate;
-    private @Nullable String clientUid;
+    private Integer serverId;
+    private Integer playerId;
+    private Instant endDate;
+    private String clientUid;
 
-    public ConnectionLog(int accountId, Instant startDate, String ipAddress, @Nullable Integer serverId, @Nullable Integer playerId, @Nullable Instant endDate, @Nullable String clientUid) {
+    public ConnectionLog(int accountId, Instant startDate, String ipAddress, Integer serverId, Integer playerId, Instant endDate, String clientUid) {
         this.accountId = accountId;
         this.startDate = startDate;
         this.ipAddress = ipAddress;
@@ -57,7 +57,6 @@ public final class ConnectionLog {
      *
      * @see Account#id()
      */
-    @Pure
     public int accountId() {
         return accountId;
     }
@@ -67,7 +66,6 @@ public final class ConnectionLog {
      * Stored as UTC date time
      * This is a part of the primary key
      */
-    @Pure
     public Instant startDate() {
         return startDate;
     }
@@ -77,7 +75,6 @@ public final class ConnectionLog {
      * This address can be either an IPv4 or IPv6, so the value length can reach 45 characters
      * The value cannot be null
      */
-    @Pure
     public String ipAddress() {
         return ipAddress;
     }
@@ -86,8 +83,7 @@ public final class ConnectionLog {
      * Get the selected server id
      * Can be null is the server is not yet selected
      */
-    @Pure
-    public @Nullable Integer serverId() {
+    public Integer serverId() {
         return serverId;
     }
 
@@ -99,8 +95,7 @@ public final class ConnectionLog {
      * Get the selected player id
      * Can be null is the player is not yet selected
      */
-    @Pure
-    public @Nullable Integer playerId() {
+    public Integer playerId() {
         return playerId;
     }
 
@@ -112,12 +107,11 @@ public final class ConnectionLog {
      * Get the end session date
      * This value is null when the session is not terminated
      */
-    @Pure
-    public @Nullable Instant endDate() {
+    public Instant endDate() {
         return endDate;
     }
 
-    public void setEndDate(@Nullable Instant endDate) {
+    public void setEndDate(Instant endDate) {
         this.endDate = endDate;
     }
 
@@ -127,12 +121,11 @@ public final class ConnectionLog {
      *
      * @see fr.quatrevieux.araknemu.network.game.in.account.ClientUid
      */
-    @Pure
-    public @Nullable String clientUid() {
+    public String clientUid() {
         return clientUid;
     }
 
-    public void setClientUid(@Nullable String clientUid) {
+    public void setClientUid(String clientUid) {
         this.clientUid = clientUid;
     }
 }

@@ -44,7 +44,6 @@ public final class SpellBookEntry {
     /**
      * Get the spell
      */
-    @Pure
     public Spell spell() {
         return spell.level(entity.level());
     }
@@ -52,15 +51,13 @@ public final class SpellBookEntry {
     /**
      * Get the spell position
      */
-    @Pure
-    public @IntRange(from = 1, to = 63) int position() {
+    public int position() {
         return entity.position();
     }
 
     /**
      * This entry is a class spell ?
      */
-    @Pure
     public boolean classSpell() {
         return entity.classSpell();
     }
@@ -70,7 +67,7 @@ public final class SpellBookEntry {
      *
      * @param position The target position
      */
-    public void move(@IntRange(from = 1, to = 63) int position) {
+    public void move(int position) {
         if (position < 1) {
             throw new IllegalArgumentException("Bad position");
         }
@@ -108,7 +105,6 @@ public final class SpellBookEntry {
      *
      * /!\ Internal method for listeners
      */
-    @Pure
     public PlayerSpell entity() {
         return entity;
     }

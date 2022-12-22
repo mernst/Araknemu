@@ -47,7 +47,7 @@ final class NpcExchangeItemEntry implements ItemEntry {
     }
 
     @Override
-    public @IntVal(DEFAULT_POSITION) int position() {
+    public int position() {
         return DEFAULT_POSITION;
     }
 
@@ -57,7 +57,7 @@ final class NpcExchangeItemEntry implements ItemEntry {
     }
 
     @Override
-    public @NonNegative int quantity() {
+    public int quantity() {
         return 0;
     }
 
@@ -87,7 +87,7 @@ final class NpcExchangeItemEntry implements ItemEntry {
     }
 
     @Override
-    public boolean equals(@Nullable Object o) {
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }

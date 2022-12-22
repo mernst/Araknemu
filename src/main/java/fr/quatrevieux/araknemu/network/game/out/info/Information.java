@@ -82,7 +82,7 @@ public final class Information extends AbstractInformationMessage {
      * @param characteristic The boosted characteristic
      * @param value The boost value
      */
-    public static @Nullable Information characteristicBoosted(Characteristic characteristic, int value) {
+    public static Information characteristicBoosted(Characteristic characteristic, int value) {
         switch (characteristic) {
             case WISDOM:
                 return new Information(9, value);

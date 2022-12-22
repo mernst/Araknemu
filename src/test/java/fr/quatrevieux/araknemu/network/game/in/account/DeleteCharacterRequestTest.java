@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class DeleteCharacterRequestTest {
     final private DeleteCharacterRequest.Parser parser = new DeleteCharacterRequest.Parser();
 
-    @Test
     void parseWithAnswer() {
         DeleteCharacterRequest packet = parser.parse("123|My answer");
 
@@ -34,7 +33,6 @@ class DeleteCharacterRequestTest {
         assertEquals("My answer", packet.answer());
     }
 
-    @Test
     void parseWithoutAnswer() {
         DeleteCharacterRequest packet = parser.parse("123|");
 

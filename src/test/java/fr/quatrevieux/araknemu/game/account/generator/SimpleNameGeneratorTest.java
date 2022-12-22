@@ -30,20 +30,17 @@ class SimpleNameGeneratorTest extends GameBaseCase {
     private SimpleNameGenerator generator;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         generator = new SimpleNameGenerator(container.get(GameConfiguration.class).player());
     }
 
-    @Test
     void generateLength() {
         assertTrue(generator.generate().length() >= 4);
         assertTrue(generator.generate().length() <= 8);
     }
 
-    @Test
     void generateShouldNotBeSame() {
         assertNotEquals(
             generator.generate(),

@@ -32,7 +32,6 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StorageListTest extends GameBaseCase {
-    @Test
     void generate() throws SQLException {
         dataSet
             .pushItemTemplates()

@@ -31,12 +31,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class IniLoaderTest extends TestCase {
     IniLoader loader;
 
-    @BeforeEach
     void setUp() {
         loader = new IniLoader();
     }
 
-    @Test
     void supports() {
         assertFalse(loader.supports(Paths.get("test.txt")));
         assertFalse(loader.supports(Paths.get("test")));
@@ -48,7 +46,6 @@ class IniLoaderTest extends TestCase {
         assertTrue(loader.supports(Paths.get("test.ini.dist").toAbsolutePath()));
     }
 
-    @Test
     void load() throws IOException {
         Driver driver = loader.load(Paths.get("src/test/test_config.ini"));
 

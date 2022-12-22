@@ -40,7 +40,7 @@ public interface BattlefieldCell extends fr.arakne.utils.maps.BattlefieldCell<Ba
      * Get the fighter on the cell
      * Will return null if the cell has no fighter
      */
-    public @Nullable FighterData fighter();
+    public FighterData fighter();
 
     /**
      * Check if the cell contains a fighter

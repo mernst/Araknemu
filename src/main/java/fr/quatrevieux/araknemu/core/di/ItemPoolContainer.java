@@ -35,8 +35,8 @@ public final class ItemPoolContainer implements Container {
     private final Map<Class, ContainerItem> items = new HashMap<>();
 
     @Override
-    public <@NonNull T> T get(Class<T> type) throws ContainerException {
-        final ContainerItem<@NonNull T> item = (ContainerItem<@NonNull T>) items.get(type);
+    public <T> T get(Class<T> type) throws ContainerException {
+        final ContainerItem<T> item = (ContainerItem<T>) items.get(type);
 
         if (item == null) {
             throw new ItemNotFoundException(type);
@@ -81,21 +81,21 @@ public final class ItemPoolContainer implements Container {
         }
 
         @Override
-        public <@NonNull T> Configurator set(Class<T> type, @NonNull T object) {
+        public <T> Configurator set(Class<T> type, T object) {
             ItemPoolContainer.this.set(new ValueItem<>(type, object));
 
             return this;
         }
 
         @Override
-        public <@NonNull T> Configurator factory(Class<T> type, FactoryItem.Factory<T> factory) {
+        public <T> Configurator factory(Class<T> type, FactoryItem.Factory<T> factory) {
             ItemPoolContainer.this.set(new FactoryItem<>(type, factory));
 
             return this;
         }
 
         @Override
-        public <@NonNull T> Configurator persist(Class<T> type, FactoryItem.Factory<T> factory) {
+        public <T> Configurator persist(Class<T> type, FactoryItem.Factory<T> factory) {
             ItemPoolContainer.this.set(new CachedItem<>(
                 new FactoryItem<>(type, factory)
             ));

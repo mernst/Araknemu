@@ -32,7 +32,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  */
 public final class ExchangeCreated {
     private final ExchangeType type;
-    private final @Nullable Creature target;
+    private final Creature target;
 
     public ExchangeCreated(ExchangeType type) {
         this(type, null);
@@ -42,7 +42,7 @@ public final class ExchangeCreated {
      * @param type The exchange type
      * @param target The exchange target. May be null
      */
-    public ExchangeCreated(ExchangeType type, @Nullable Creature target) {
+    public ExchangeCreated(ExchangeType type, Creature target) {
         this.type = type;
         this.target = target;
     }

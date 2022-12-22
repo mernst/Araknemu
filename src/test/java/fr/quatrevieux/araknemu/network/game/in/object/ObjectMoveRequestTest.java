@@ -28,7 +28,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ObjectMoveRequestTest {
     private ObjectMoveRequest.Parser parser = new ObjectMoveRequest.Parser();
 
-    @Test
     void generateWithoutQuantity() {
         ObjectMoveRequest request = parser.parse("5|2");
 
@@ -37,7 +36,6 @@ class ObjectMoveRequestTest {
         assertEquals(1, request.quantity());
     }
 
-    @Test
     void generateWithQuantity() {
         ObjectMoveRequest request = parser.parse("5|2|52");
 
@@ -46,12 +44,10 @@ class ObjectMoveRequestTest {
         assertEquals(52, request.quantity());
     }
 
-    @Test
     void generateWithNegativeQuantity() {
         assertThrows(ParsePacketException.class, () -> parser.parse("5|2|-2"));
     }
 
-    @Test
     void parseWithInvalidPosition() {
         assertThrows(ParsePacketException.class, () -> parser.parse("5|90"));
     }

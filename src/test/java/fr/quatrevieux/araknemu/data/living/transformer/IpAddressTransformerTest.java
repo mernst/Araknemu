@@ -27,13 +27,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class IpAddressTransformerTest {
     private IpAddressTransformer transformer = new IpAddressTransformer();
 
-    @Test
     void withNull() {
         assertNull(transformer.serialize(null));
         assertNull(transformer.unserialize(null));
     }
 
-    @Test
     void serialize() {
         assertEquals("12.52.102.78", transformer.serialize(new IPAddressString("12.52.102.78")));
         assertEquals("12.52.102.78/24", transformer.serialize(new IPAddressString("12.52.102.78/24")));
@@ -42,7 +40,6 @@ class IpAddressTransformerTest {
         assertEquals("1:2f:::/64", transformer.serialize(new IPAddressString("1:2f:::/64")));
     }
 
-    @Test
     void unserialize() {
         assertEquals(new IPAddressString("12.52.102.78"), transformer.unserialize("12.52.102.78"));
         assertEquals(new IPAddressString("12.52.102.78/24"), transformer.unserialize("12.52.102.78/24"));

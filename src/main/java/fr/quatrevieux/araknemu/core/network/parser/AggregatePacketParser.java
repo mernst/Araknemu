@@ -32,8 +32,8 @@ import java.util.concurrent.ConcurrentMap;
 public final class AggregatePacketParser implements PacketParser {
     private final ConcurrentMap<String, SinglePacketParser> parsers = new ConcurrentHashMap<>();
 
-    private @Positive int minCodeLength = 2;
-    private @Positive int maxCodeLength = 2;
+    private int minCodeLength = 2;
+    private int maxCodeLength = 2;
 
     public AggregatePacketParser(SinglePacketParser[] parsers) {
         for (SinglePacketParser parser : parsers) {

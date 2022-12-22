@@ -28,7 +28,7 @@ import org.checkerframework.checker.nullness.util.NullnessUtil;
  * This class must be extended on a module
  */
 public abstract class AbstractContextConfigurator<C extends Context> implements Cloneable {
-    private @MonotonicNonNull SimpleContext context;
+    private SimpleContext context;
 
     /**
      * Define the context to be configured

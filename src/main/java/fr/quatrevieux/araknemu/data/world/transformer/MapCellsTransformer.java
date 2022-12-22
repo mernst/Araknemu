@@ -42,12 +42,12 @@ public final class MapCellsTransformer implements Transformer<CellData[]> {
     }
 
     @Override
-    public @PolyNull String serialize(CellData @PolyNull[] value) {
+    public String serialize(CellData[] value) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public CellData @PolyNull[] unserialize(@PolyNull String serialize) {
+    public CellData[] unserialize(String serialize) {
         return serialize == null ? null : serializer.deserialize(serialize);
     }
 }

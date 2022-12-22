@@ -114,14 +114,6 @@ public final class Shutdown extends AbstractCommand<Shutdown.Arguments> implemen
 
     @SuppressWarnings("initialization.field.uninitialized")
     public static final class Arguments implements SubArguments<Shutdown> {
-        @Argument(required = true, metaVar = "TIME")
-        @SubCommands({
-            @SubCommand(name = "now", impl = NowArguments.class),
-            @SubCommand(name = "in", impl = InArguments.class),
-            @SubCommand(name = "at", impl = AtArguments.class),
-            @SubCommand(name = "show", impl = ShowArguments.class),
-            @SubCommand(name = "cancel", impl = CancelArguments.class),
-        })
         private SubArguments<Shutdown> sub;
 
         @Override
@@ -152,7 +144,6 @@ public final class Shutdown extends AbstractCommand<Shutdown.Arguments> implemen
 
         @SuppressWarnings("initialization.field.uninitialized")
         public static final class InArguments implements SubArguments<Shutdown> {
-            @Argument(required = true, metaVar = "DURATION")
             private Duration duration;
 
             @Override
@@ -163,7 +154,6 @@ public final class Shutdown extends AbstractCommand<Shutdown.Arguments> implemen
 
         @SuppressWarnings("initialization.field.uninitialized")
         public static final class AtArguments implements SubArguments<Shutdown> {
-            @Argument(required = true, metaVar = "TIME")
             private LocalTime time;
 
             @Override

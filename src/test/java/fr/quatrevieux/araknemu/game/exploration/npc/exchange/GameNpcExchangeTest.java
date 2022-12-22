@@ -46,7 +46,6 @@ class GameNpcExchangeTest extends GameBaseCase {
     private GameNpcExchange exchange;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -67,7 +66,6 @@ class GameNpcExchangeTest extends GameBaseCase {
         exchange = service.load(new NpcTemplate(878, 0, 0, 0, null, null, null, 0, 0, null)).get();
     }
 
-    @Test
     void findNotMatching() {
         NpcExchangeEntry entry = exchange.find(new HashMap<>(), 0);
 
@@ -79,7 +77,6 @@ class GameNpcExchangeTest extends GameBaseCase {
         assertTrue(entry.generate().isEmpty());
     }
 
-    @Test
     void findMatching() throws SQLException {
         ItemEntry itemEntry = explorationPlayer().inventory().add(container.get(ItemService.class).create(39), 2);
 
@@ -99,7 +96,6 @@ class GameNpcExchangeTest extends GameBaseCase {
         assertEquals(1, (int) generated.get(new ArrayList<>(generated.keySet()).get(0)));
     }
 
-    @Test
     void factory() throws SQLException {
         dataSet.pushNpcs();
 

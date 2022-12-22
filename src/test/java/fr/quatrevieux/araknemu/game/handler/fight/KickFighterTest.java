@@ -41,12 +41,10 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class KickFighterTest extends FightBaseCase {
-    @Test
     void notInFight() {
         assertThrows(CloseImmediately.class, () -> handlePacket(new KickFighterRequest(12)));
     }
 
-    @RepeatedIfExceptionsTest
     void notInPlacementState() throws Exception {
         Fight fight = createFight();
         Fighter teammate = makePlayerFighter(makeSimpleGamePlayer(10));
@@ -60,7 +58,6 @@ class KickFighterTest extends FightBaseCase {
         requestStack.assertLast(Error.cantDoDuringFight());
     }
 
-    @RepeatedIfExceptionsTest
     void notTeammate() throws Exception {
         Fight fight = createFight();
         Fighter enemy = makePlayerFighter(makeSimpleGamePlayer(10));
@@ -72,7 +69,6 @@ class KickFighterTest extends FightBaseCase {
         requestStack.assertLast(new Noop());
     }
 
-    @RepeatedIfExceptionsTest
     void fighterNotFound() throws Exception {
         Fight fight = createFight();
 
@@ -81,7 +77,6 @@ class KickFighterTest extends FightBaseCase {
         requestStack.assertLast(new Noop());
     }
 
-    @RepeatedIfExceptionsTest
     void notLeader() throws Exception {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         Fighter me = makePlayerFighter(gamePlayer());
@@ -94,7 +89,6 @@ class KickFighterTest extends FightBaseCase {
         assertTrue(fight.fighters().contains(me));
     }
 
-    @RepeatedIfExceptionsTest
     void success() throws Exception {
         Fight fight = createFight();
         Fighter teammate = makePlayerFighter(makeSimpleGamePlayer(10));
@@ -106,7 +100,6 @@ class KickFighterTest extends FightBaseCase {
         requestStack.assertLast(new RemoveSprite(teammate.sprite()));
     }
 
-    @Test
     void otherKickMe() throws Exception {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         Fighter me = makePlayerFighter(gamePlayer());

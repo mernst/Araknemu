@@ -41,7 +41,6 @@ class NpcQuestionTest extends GameBaseCase {
     private QuestionRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,12 +48,10 @@ class NpcQuestionTest extends GameBaseCase {
         repository = container.get(QuestionRepository.class);
     }
 
-    @Test
     void id() {
         assertEquals(3596, new NpcQuestion(repository.get(3596), Collections.emptyList(), new ParametersResolver(new VariableResolver[0], container.get(Logger.class))).id());
     }
 
-    @Test
     void parameters() throws SQLException, ContainerException {
         assertArrayEquals(new String[0], new NpcQuestion(repository.get(3596), Collections.emptyList(), container.get(ParametersResolver.class)).parameters(explorationPlayer()));
         assertArrayEquals(new String[] {"my constant"}, new NpcQuestion(new Question(123, new int[0], new String[] {"my constant"}, ""), Collections.emptyList(), container.get(ParametersResolver.class)).parameters(explorationPlayer()));
@@ -62,12 +59,10 @@ class NpcQuestionTest extends GameBaseCase {
         assertArrayEquals(new String[] {"const", "Bob", "[undefined]"}, new NpcQuestion(new Question(123, new int[0], new String[] {"const", "[name]", "[undefined]"}, ""), Collections.emptyList(), container.get(ParametersResolver.class)).parameters(explorationPlayer()));
     }
 
-    @Test
     void check() throws SQLException, ContainerException {
         assertTrue(new NpcQuestion(repository.get(3596), Collections.emptyList(), new ParametersResolver(new VariableResolver[0], container.get(Logger.class))).check(explorationPlayer()));
     }
 
-    @Test
     void responsesShouldFilterInvalid() throws SQLException, ContainerException {
         ExplorationPlayer player = explorationPlayer();
 

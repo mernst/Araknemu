@@ -24,13 +24,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PermissionTest {
-    @Test
     void id() {
         assertEquals(1, Permission.ACCESS.id());
         assertEquals(2, Permission.SUPER_ADMIN.id());
     }
 
-    @Test
     void match() {
         assertTrue(Permission.ACCESS.match(3));
         assertTrue(Permission.ACCESS.match(1));

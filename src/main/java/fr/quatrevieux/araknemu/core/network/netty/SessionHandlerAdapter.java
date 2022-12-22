@@ -36,7 +36,6 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * Adapt Netty ChannelInboundHandler to SessionHandler
  */
-@ChannelHandler.Sharable
 public final class SessionHandlerAdapter<S extends Session> extends ChannelInboundHandlerAdapter {
     private final AttributeKey<S> sessionAttribute = AttributeKey.valueOf("session");
 

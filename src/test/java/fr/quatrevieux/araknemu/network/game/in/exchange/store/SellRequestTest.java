@@ -29,12 +29,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class SellRequestTest {
     private SellRequest.Parser parser;
 
-    @BeforeEach
     void setUp() {
         parser = new SellRequest.Parser();
     }
 
-    @Test
     void parseSuccess() {
         SellRequest request = parser.parse("112|3");
 
@@ -42,12 +40,10 @@ class SellRequestTest {
         assertEquals(3, request.quantity());
     }
 
-    @Test
     void parseInvalid() {
         assertThrows(ParsePacketException.class, () -> parser.parse("invalid"));
     }
 
-    @Test
     void parseNegativeQuantity() {
         assertThrows(ParsePacketException.class, () -> parser.parse("112|-3"));
     }

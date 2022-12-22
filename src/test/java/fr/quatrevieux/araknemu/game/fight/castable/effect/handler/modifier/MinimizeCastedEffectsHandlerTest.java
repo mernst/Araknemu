@@ -52,7 +52,6 @@ class MinimizeCastedEffectsHandlerTest extends FightBaseCase {
     private MinimizeCastedEffectsHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -70,7 +69,6 @@ class MinimizeCastedEffectsHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handle() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -85,7 +83,6 @@ class MinimizeCastedEffectsHandlerTest extends FightBaseCase {
         assertThrows(UnsupportedOperationException.class, () -> handler.handle(scope, scope.effects().get(0)));
     }
 
-    @Test
     void buff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -110,7 +107,6 @@ class MinimizeCastedEffectsHandlerTest extends FightBaseCase {
         assertTrue(buff2.isPresent());
     }
 
-    @Test
     void functional() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

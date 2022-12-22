@@ -38,7 +38,6 @@ class InventoryAccessoriesTest extends GameBaseCase {
     private InventoryAccessories accessories;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -62,7 +61,6 @@ class InventoryAccessoriesTest extends GameBaseCase {
         accessories = new InventoryAccessories(slots);
     }
 
-    @Test
     void getAccessory() {
         Accessory accessory = accessories.get(AccessoryType.WEAPON);
 
@@ -71,12 +69,10 @@ class InventoryAccessoriesTest extends GameBaseCase {
         assertEquals(2416, accessory.appearance());
     }
 
-    @Test
     void getNotEquiped() {
         assertInstanceOf(NullAccessory.class, accessories.get(AccessoryType.MANTLE));
     }
 
-    @Test
     void all() {
         assertCount(5, accessories.all());
 
@@ -84,7 +80,6 @@ class InventoryAccessoriesTest extends GameBaseCase {
         assertEquals(2411, accessories.all().get(1).appearance());
     }
 
-    @Test
     void string() {
         assertEquals("970,96b,,,", accessories.toString());
     }

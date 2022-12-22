@@ -74,7 +74,7 @@ public final class SimpleItemStorage<E extends ItemEntry> implements ItemStorage
     }
 
     @Override
-    public E add(Item item, @Positive int quantity, @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int position) {
+    public E add(Item item, int quantity, int position) {
         final E entry = factory.create(++lastId, item, quantity, position);
 
         push(entry);
@@ -109,6 +109,6 @@ public final class SimpleItemStorage<E extends ItemEntry> implements ItemStorage
         /**
          * Create the inventory entry for the current item storage
          */
-        public E create(int id, Item item, @Positive int quantity, @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int position);
+        public E create(int id, Item item, int quantity, int position);
     }
 }

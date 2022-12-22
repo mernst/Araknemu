@@ -42,7 +42,6 @@ class RefuseChallengeTest extends GameBaseCase {
     private ExplorationPlayer other;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -53,14 +52,12 @@ class RefuseChallengeTest extends GameBaseCase {
         other.changeMap(player.map(), 123);
     }
 
-    @Test
     void noInvitation() throws SQLException, ContainerException {
         RefuseChallenge action = new RefuseChallenge(explorationPlayer(), 5);
 
         assertThrows(IllegalArgumentException.class, () -> action.start(new ActionQueue()), "Invalid interaction type");
     }
 
-    @Test
     void badTarget() throws Exception {
         player.interactions().start(invitationHandler().invitation(other, player));
 
@@ -69,7 +66,6 @@ class RefuseChallengeTest extends GameBaseCase {
         assertThrows(IllegalArgumentException.class, () -> action.start(new ActionQueue()), "Invalid challenge target");
     }
 
-    @Test
     void successFromInitiator() throws Exception {
         explorationPlayer().interactions().start(invitationHandler().invitation(player, other));
 
@@ -85,7 +81,6 @@ class RefuseChallengeTest extends GameBaseCase {
         );
     }
 
-    @Test
     void successFromChallenger() {
         other.interactions().start(invitationHandler().invitation(other, player));
 

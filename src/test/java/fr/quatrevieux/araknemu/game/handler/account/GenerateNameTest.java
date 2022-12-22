@@ -37,7 +37,6 @@ class GenerateNameTest extends GameBaseCase {
     private NameGenerator generator;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -46,7 +45,6 @@ class GenerateNameTest extends GameBaseCase {
         );
     }
 
-    @Test
     void handleSuccess() throws Exception {
         Mockito.when(generator.generate()).thenReturn("Cookie");
 
@@ -57,7 +55,6 @@ class GenerateNameTest extends GameBaseCase {
         );
     }
 
-    @Test
     void handleError() throws Exception {
         Mockito.when(generator.generate()).thenThrow(new NameGenerationException());
 

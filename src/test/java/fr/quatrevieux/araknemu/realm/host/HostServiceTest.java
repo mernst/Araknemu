@@ -52,7 +52,6 @@ class HostServiceTest extends RealmBaseCase {
     private boolean checkLogin = true;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -64,7 +63,6 @@ class HostServiceTest extends RealmBaseCase {
         dataSet.use(Player.class);
     }
 
-    @Test
     void declare() {
         AtomicReference<HostsUpdated> ref = new AtomicReference<>();
         container.get(ListenerAggregate.class).add(HostsUpdated.class, ref::set);
@@ -80,7 +78,6 @@ class HostServiceTest extends RealmBaseCase {
         assertEquals(service.all(), ref.get().hosts());
     }
 
-    @Test
     void updateState() {
         AtomicReference<HostsUpdated> ref = new AtomicReference<>();
         container.get(ListenerAggregate.class).add(HostsUpdated.class, ref::set);
@@ -96,12 +93,10 @@ class HostServiceTest extends RealmBaseCase {
         assertEquals(service.all(), ref.get().hosts());
     }
 
-    @Test
     void updateStateHostNotFound() {
         assertThrows(NoSuchElementException.class, () -> service.updateHost(404, GameHost.State.SAVING, false));
     }
 
-    @Test
     void checkLoginWithNoHosts() throws ContainerException {
         service.checkLogin(
             new AuthenticationAccount(
@@ -115,7 +110,6 @@ class HostServiceTest extends RealmBaseCase {
         assertFalse(checkLogin);
     }
 
-    @Test
     void checkLoginWithOneHostsNotLogged() throws ContainerException {
         GameConnectorStub connector = new GameConnectorStub();
         GameHost gh = new GameHost(connector, 1, 1234, "127.0.0.1");
@@ -138,7 +132,6 @@ class HostServiceTest extends RealmBaseCase {
         assertFalse(checkLogin);
     }
 
-    @Test
     void checkLoginWithOneHostsLogged() throws ContainerException {
         GameConnectorStub connector = new GameConnectorStub();
         GameHost gh = new GameHost(connector, 1, 1234, "127.0.0.1");
@@ -161,7 +154,6 @@ class HostServiceTest extends RealmBaseCase {
         assertTrue(checkLogin);
     }
 
-    @Test
     void checkLoginWithMultipleHostsNotLogged() throws ContainerException {
         GameConnectorStub connector1 = new GameConnectorStub();
         GameHost gh1 = new GameHost(connector1, 1, 1234, "127.0.0.1");
@@ -192,7 +184,6 @@ class HostServiceTest extends RealmBaseCase {
         assertFalse(checkLogin);
     }
 
-    @Test
     void checkLoginWithMultipleHostsLogged() throws ContainerException {
         GameConnectorStub connector1 = new GameConnectorStub();
         GameHost gh1 = new GameHost(connector1, 1, 1234, "127.0.0.1");
@@ -224,7 +215,6 @@ class HostServiceTest extends RealmBaseCase {
         assertTrue(checkLogin);
     }
 
-    @Test
     void charactersByHost() throws ContainerException {
         dataSet.push(Player.forCreation(1, 1, "bob", Race.CRA, Gender.FEMALE, new Colors(-1, -1, -1)));
         dataSet.push(Player.forCreation(1, 1, "cc", Race.CRA, Gender.FEMALE, new Colors(-1, -1, -1)));
@@ -251,7 +241,6 @@ class HostServiceTest extends RealmBaseCase {
         assertEquals(1, arr[1].charactersCount());
     }
 
-    @Test
     void searchFriendServers() throws ContainerException {
         dataSet.push(new Account(1, "john", "", "john"));
         dataSet.push(new Account(1, "other", "", "other"));

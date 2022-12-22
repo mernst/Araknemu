@@ -31,19 +31,16 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class MoveNearEnemyTest extends AiBaseCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         action = new MoveNearEnemy();
     }
 
-    @Test
     void generateNotInitialized() {
         assertFalse(action.generate(Mockito.mock(AI.class), Mockito.mock(AiActionFactory.class)).isPresent());
     }
 
-    @Test
     void success() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122))
@@ -57,7 +54,6 @@ class MoveNearEnemyTest extends AiBaseCase {
         assertEquals(0, turn.points().movementPoints());
     }
 
-    @Test
     void withAllyOnPathShouldBeCircumvented() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(151))
@@ -71,7 +67,6 @@ class MoveNearEnemyTest extends AiBaseCase {
         assertEquals(0, turn.points().movementPoints());
     }
 
-    @Test
     void whenAllyBlockAccess() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(211))
@@ -86,7 +81,6 @@ class MoveNearEnemyTest extends AiBaseCase {
     }
 
     // See: https://github.com/Arakne/Araknemu/issues/94
-    @Test
     void notAccessibleCellShouldTruncateToNearestCell() {
         configureFight(fb -> fb
             .map(10342)
@@ -100,7 +94,6 @@ class MoveNearEnemyTest extends AiBaseCase {
         assertEquals(1, turn.points().movementPoints());
     }
 
-    @Test
     void noMP() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122))
@@ -112,7 +105,6 @@ class MoveNearEnemyTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void onAdjacentCell() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(110))

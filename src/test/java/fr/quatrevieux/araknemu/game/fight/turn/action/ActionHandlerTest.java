@@ -46,7 +46,6 @@ class ActionHandlerTest extends FightBaseCase {
     private FightTurn turn;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -57,14 +56,12 @@ class ActionHandlerTest extends FightBaseCase {
     }
 
     @Override
-    @AfterEach
     public void tearDown() throws fr.quatrevieux.araknemu.core.di.ContainerException {
         fight.cancel(true);
 
         super.tearDown();
     }
 
-    @Test
     void startInvalid() {
         assertFalse(actionHandler.start(new Action() {
             @Override
@@ -94,7 +91,6 @@ class ActionHandlerTest extends FightBaseCase {
         }));
     }
 
-    @Test
     void startSuccessWillDispatchEvent() {
         Action action = Mockito.mock(Action.class);
         ActionResult result = Mockito.mock(ActionResult.class);
@@ -113,7 +109,6 @@ class ActionHandlerTest extends FightBaseCase {
         assertSame(result, ref.get().result());
     }
 
-    @Test
     void startFailedWillDispatchEventAndCallFailed() {
         Action action = Mockito.mock(Action.class);
         ActionResult result = Mockito.mock(ActionResult.class);
@@ -134,7 +129,6 @@ class ActionHandlerTest extends FightBaseCase {
         Mockito.verify(result).apply(turn);
     }
 
-    @RepeatedIfExceptionsTest
     void startSuccessTerminateActionWhenDurationIsReached() throws InterruptedException {
         Action action = Mockito.mock(Action.class);
         ActionResult result = Mockito.mock(ActionResult.class);
@@ -153,7 +147,6 @@ class ActionHandlerTest extends FightBaseCase {
         Mockito.verify(result, Mockito.times(1)).apply(turn);
     }
 
-    @Test
     void startWithPendingAction() {
         Action action = Mockito.mock(Action.class);
         ActionResult result = Mockito.mock(ActionResult.class);
@@ -172,7 +165,6 @@ class ActionHandlerTest extends FightBaseCase {
         Mockito.verify(other, Mockito.never()).start();
     }
 
-    @Test
     void terminateWithoutPendingAction() {
         AtomicReference<FightActionTerminated> ref = new AtomicReference<>();
         fight.dispatcher().add(FightActionTerminated.class, ref::set);
@@ -182,7 +174,6 @@ class ActionHandlerTest extends FightBaseCase {
         assertNull(ref.get());
     }
 
-    @Test
     void terminateSuccessWillDispatchEvent() {
         Action action = Mockito.mock(Action.class);
         ActionResult result = Mockito.mock(ActionResult.class);
@@ -204,7 +195,6 @@ class ActionHandlerTest extends FightBaseCase {
         assertSame(action, ref.get().action());
     }
 
-    @RepeatedIfExceptionsTest
     void terminateSuccessWillCancelTimer() throws InterruptedException {
         Action action = Mockito.mock(Action.class);
         ActionResult result = Mockito.mock(ActionResult.class);
@@ -223,7 +213,6 @@ class ActionHandlerTest extends FightBaseCase {
         Mockito.verify(result, Mockito.times(1)).apply(turn);
     }
 
-    @Test
     void terminateWithTerminationListener() {
         Action action = Mockito.mock(Action.class);
         ActionResult result = Mockito.mock(ActionResult.class);
@@ -245,7 +234,6 @@ class ActionHandlerTest extends FightBaseCase {
         assertTrue(b.get());
     }
 
-    @Test
     void terminateWithException() {
         Action action = Mockito.mock(Action.class);
         ActionResult result = Mockito.mock(ActionResult.class);
@@ -267,7 +255,6 @@ class ActionHandlerTest extends FightBaseCase {
         assertTrue(b.get());
     }
 
-    @Test
     void terminateWithTerminationListenerWillRemoveOldListeners() {
         Action action = Mockito.mock(Action.class);
         ActionResult result = Mockito.mock(ActionResult.class);
@@ -292,14 +279,12 @@ class ActionHandlerTest extends FightBaseCase {
         assertEquals(1, i.get());
     }
 
-    @Test
     void terminatedWithoutPendingAction() {
         AtomicBoolean b = new AtomicBoolean();
         actionHandler.terminated(() -> b.set(true));
         assertTrue(b.get());
     }
 
-    @Test
     void terminateOnStoppedFightShouldBeIgnored() {
         Action action = Mockito.mock(Action.class);
         ActionResult result = Mockito.mock(ActionResult.class);

@@ -49,7 +49,6 @@ class BanIpServiceTest extends GameBaseCase {
     private ListenerAggregate dispatcher;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -62,7 +61,6 @@ class BanIpServiceTest extends GameBaseCase {
         dataSet.use(BanIp.class).use(Account.class);
     }
 
-    @Test
     void newRule() {
         AtomicReference<IpBanned<GameAccount>> ref = new AtomicReference<>();
         dispatcher.add(IpBanned.class, ref::set);
@@ -115,7 +113,6 @@ class BanIpServiceTest extends GameBaseCase {
         assertEquals(session.account().id(), dataSet.refresh(new BanIp(5, null, null, null, null, -1)).banisherId());
     }
 
-    @Test
     void isIpBanned() {
         IPAddressString toCheck = new IPAddressString("145.32.213.5");
 
@@ -135,7 +132,6 @@ class BanIpServiceTest extends GameBaseCase {
         assertTrue(service.isIpBanned(new IPAddressString("145.32.213.6")));
     }
 
-    @Test
     void matching() {
         Account account = dataSet.push(new Account(-1, "banisher", "", "banisher"));
 
@@ -145,7 +141,6 @@ class BanIpServiceTest extends GameBaseCase {
         assertEquals("banisher", service.matching(new IPAddressString("145.32.213.5")).get().banisher().get().pseudo());
     }
 
-    @Test
     void rules() {
         Account account = dataSet.push(new Account(-1, "banisher", "", "banisher"));
 
@@ -164,7 +159,6 @@ class BanIpServiceTest extends GameBaseCase {
         assertFalse(rules.get(1).banisher().isPresent());
     }
 
-    @Test
     void refreshWithoutNewRuleShouldDoNothing() {
         service.newRule(new IPAddressString("145.32.213.5")).apply();
         service.newRule(new IPAddressString("145.32.213.6")).apply();
@@ -179,7 +173,6 @@ class BanIpServiceTest extends GameBaseCase {
         assertCount(2, service.rules());
     }
 
-    @Test
     void refreshWithNewRuleShouldLoadTheRuleAndDispatchIpBanned() {
         service.newRule(new IPAddressString("145.32.213.5")).apply();
         service.load();
@@ -195,7 +188,6 @@ class BanIpServiceTest extends GameBaseCase {
         assertTrue(service.isIpBanned(new IPAddressString("145.32.213.6")));
     }
 
-    @Test
     void refreshWithDisableRuleShouldRemove() throws SQLException {
         service.newRule(new IPAddressString("145.32.213.5")).apply();
         service.newRule(new IPAddressString("145.32.213.6")).apply();
@@ -221,7 +213,6 @@ class BanIpServiceTest extends GameBaseCase {
         assertTrue(service.isIpBanned(new IPAddressString("145.32.213.6")));
     }
 
-    @Test
     void load() {
         dataSet.push(new BanIp(new IPAddressString("145.32.213.5"), Instant.now(), null, "cause", -1));
         dataSet.push(new BanIp(new IPAddressString("145.32.213.6"), Instant.now(), Instant.now().minus(1, ChronoUnit.HOURS), "cause", -1));
@@ -236,7 +227,6 @@ class BanIpServiceTest extends GameBaseCase {
         assertTrue(service.isIpBanned(new IPAddressString("145.32.213.7")));
     }
 
-    @Test
     void disable() {
         dataSet.push(new BanIp(new IPAddressString("145.32.213.5"), Instant.now(), null, "cause", -1));
         dataSet.push(new BanIp(new IPAddressString("145.32.213.6"), Instant.now(), null, "cause", -1));

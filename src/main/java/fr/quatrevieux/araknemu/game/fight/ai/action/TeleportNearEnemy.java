@@ -123,8 +123,8 @@ public final class TeleportNearEnemy<F extends ActiveFighter> implements ActionG
     private class Selector {
         private final CoordinateCell<BattlefieldCell> enemyCell;
         private int distance;
-        private @MonotonicNonNull BattlefieldCell cell;
-        private @MonotonicNonNull Spell spell;
+        private BattlefieldCell cell;
+        private Spell spell;
 
         public Selector(BattlefieldCell enemyCell, BattlefieldCell currentCell) {
             this.enemyCell = enemyCell.coordinate();

@@ -36,7 +36,7 @@ public final class EmptyPool implements Pool {
     }
 
     @Override
-    public @Nullable String get(String key) {
+    public String get(String key) {
         return null;
     }
 

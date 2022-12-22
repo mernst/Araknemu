@@ -36,7 +36,6 @@ class NpcRepositoryCacheTest extends GameBaseCase {
     private NpcRepositoryCache repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,12 +46,10 @@ class NpcRepositoryCacheTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(-5));
     }
 
-    @Test
     void getSame() {
         assertSame(
             repository.get(457),
@@ -60,7 +57,6 @@ class NpcRepositoryCacheTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getUsingEntity() {
         assertSame(
             repository.get(new Npc(457, 0, null, null, null)),
@@ -68,19 +64,16 @@ class NpcRepositoryCacheTest extends GameBaseCase {
         );
     }
 
-    @Test
     void hasNotLoaded() {
         assertTrue(repository.has(new Npc(457, 0, null, null, null)));
         assertFalse(repository.has(new Npc(-1, 0, null, null, null)));
     }
 
-    @Test
     void hasCached() {
         repository.get(457);
         assertTrue(repository.has(new Npc(457, 0, null, null, null)));
     }
 
-    @Test
     void all() {
         Collection<Npc> npcs = repository.all();
 
@@ -91,7 +84,6 @@ class NpcRepositoryCacheTest extends GameBaseCase {
         }
     }
 
-    @Test
     void byMapIdNotLoaded() {
         assertEquals(Collections.emptyList(), repository.byMapId(-5));
 
@@ -99,7 +91,6 @@ class NpcRepositoryCacheTest extends GameBaseCase {
         assertEquals(Arrays.asList(repository.get(472)), repository.byMapId(10340));
     }
 
-    @Test
     void byMapIdLoaded() {
         repository.all();
 

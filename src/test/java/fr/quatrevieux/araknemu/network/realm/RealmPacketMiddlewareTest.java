@@ -37,7 +37,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class RealmPacketMiddlewareTest {
     private RealmPacketParserMiddleware middleware;
 
-    @BeforeEach
     void setUp() {
         middleware = new RealmPacketParserMiddleware(
             new PacketParser[] {DofusVersion.parser(), Credentials.parser()},
@@ -47,7 +46,6 @@ class RealmPacketMiddlewareTest {
         );
     }
 
-    @Test
     void loginProcedure() {
         Consumer next = Mockito.mock(Consumer.class);
 
@@ -61,7 +59,6 @@ class RealmPacketMiddlewareTest {
         Mockito.verify(next).accept(Mockito.any(AskQueuePosition.class));
     }
 
-    @Test
     void invalidPacketDuringLogin() {
         Consumer next = Mockito.mock(Consumer.class);
 

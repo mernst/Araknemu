@@ -28,14 +28,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MoveFarEnemiesTest extends AiBaseCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         action = new MoveFarEnemies();
     }
 
-    @Test
     void success() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122))
@@ -55,7 +53,6 @@ class MoveFarEnemiesTest extends AiBaseCase {
         assertEquals(11, distance(getEnemy(1)));
     }
 
-    @Test
     void noMP() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122))
@@ -68,7 +65,6 @@ class MoveFarEnemiesTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void blocked() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(384))
@@ -78,7 +74,6 @@ class MoveFarEnemiesTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void noNearestAccessibleCells() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(384))

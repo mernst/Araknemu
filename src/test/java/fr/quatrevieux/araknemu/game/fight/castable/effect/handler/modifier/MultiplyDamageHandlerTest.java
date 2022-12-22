@@ -50,7 +50,6 @@ class MultiplyDamageHandlerTest extends FightBaseCase {
     private MultiplyDamageHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -68,7 +67,6 @@ class MultiplyDamageHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handle() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -83,7 +81,6 @@ class MultiplyDamageHandlerTest extends FightBaseCase {
         assertThrows(UnsupportedOperationException.class, () -> handler.handle(scope, scope.effects().get(0)));
     }
 
-    @Test
     void buff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -110,7 +107,6 @@ class MultiplyDamageHandlerTest extends FightBaseCase {
         assertEquals(3, buff2.get().effect().min());
     }
 
-    @Test
     void functional() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

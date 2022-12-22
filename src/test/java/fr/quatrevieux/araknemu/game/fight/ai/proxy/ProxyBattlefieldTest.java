@@ -38,7 +38,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ProxyBattlefieldTest extends AiBaseCase {
-    @Test
     void baseValues() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(152))
@@ -54,7 +53,6 @@ class ProxyBattlefieldTest extends AiBaseCase {
         assertSame(battlefield.get(123), ai.map().get(123));
     }
 
-    @Test
     void modifyWithFreeCell() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(152))
@@ -85,7 +83,6 @@ class ProxyBattlefieldTest extends AiBaseCase {
         assertTrue(modified.get(166).sightBlocking());
     }
 
-    @Test
     void modifyWithSetFighter() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(152))
@@ -109,7 +106,6 @@ class ProxyBattlefieldTest extends AiBaseCase {
         assertTrue(modified.get(123).sightBlocking());
     }
 
-    @Test
     void cellSightBlocking() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(152))
@@ -139,7 +135,6 @@ class ProxyBattlefieldTest extends AiBaseCase {
         assertTrue(battlefield.get(167).sightBlocking());
     }
 
-    @Test
     void cellWalkable() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(152))
@@ -169,7 +164,6 @@ class ProxyBattlefieldTest extends AiBaseCase {
         assertFalse(battlefield.get(167).walkable());
     }
 
-    @Test
     void cellValues() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(152))

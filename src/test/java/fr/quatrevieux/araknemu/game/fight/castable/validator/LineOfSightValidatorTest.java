@@ -42,7 +42,6 @@ class LineOfSightValidatorTest extends FightBaseCase {
     private LineOfSightValidator validator;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -56,7 +55,6 @@ class LineOfSightValidatorTest extends FightBaseCase {
         validator = new LineOfSightValidator();
     }
 
-    @Test
     void sightBlocked() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -72,7 +70,6 @@ class LineOfSightValidatorTest extends FightBaseCase {
         );
     }
 
-    @Test
     void success() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -85,7 +82,6 @@ class LineOfSightValidatorTest extends FightBaseCase {
         assertNull(validator.validate(turn, spell, fight.map().get(125)));
     }
 
-    @Test
     void withoutLineOfSightConstraint() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);

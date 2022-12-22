@@ -68,7 +68,6 @@ class PlayerInventoryTest extends GameBaseCase {
     private PlayerInventory inventory;
     private Player player;
 
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -81,12 +80,10 @@ class PlayerInventoryTest extends GameBaseCase {
         dispatcher = gamePlayer().dispatcher();
     }
 
-    @Test
     void getNotFound() {
         assertThrows(ItemNotFoundException.class, () -> inventory.get(0));
     }
 
-    @Test
     void addWillDispatchEvent() throws InventoryException {
         AtomicReference<ObjectAdded> ref = new AtomicReference<>();
         dispatcher.add(ObjectAdded.class, ref::set);
@@ -96,7 +93,6 @@ class PlayerInventoryTest extends GameBaseCase {
         assertSame(entry, ref.get().entry());
     }
 
-    @Test
     void addWillCreateNewEntry() throws InventoryException {
         Item item = new Resource(new ItemTemplate(284, 48, "Sel", 1, new ArrayList<>(), 1, "", 0, "", 10), new ItemType(48, "Poudre", SuperType.RESOURCE, null), new ArrayList<>());
         InventoryEntry entry = inventory.add(item, 5);
@@ -106,7 +102,6 @@ class PlayerInventoryTest extends GameBaseCase {
         assertEquals(ItemEntry.DEFAULT_POSITION, entry.position());
     }
 
-    @Test
     void addGet() throws InventoryException {
         Item item = new Resource(new ItemTemplate(284, 48, "Sel", 1, new ArrayList<>(), 1, "", 0, "", 10), new ItemType(48, "Poudre", SuperType.RESOURCE, null), new ArrayList<>());
         InventoryEntry entry = inventory.add(item, 5);
@@ -114,7 +109,6 @@ class PlayerInventoryTest extends GameBaseCase {
         assertSame(entry, inventory.get(entry.id()));
     }
 
-    @Test
     void iterator() throws InventoryException {
         Item item1 = new Resource(new ItemTemplate(284, 48, "Sel", 1, new ArrayList<>(), 1, "", 0, "", 10), new ItemType(48, "Poudre", SuperType.RESOURCE, null), new ArrayList<>());
         Item item2 = new Resource(new ItemTemplate(285, 48, "Sel", 1, new ArrayList<>(), 1, "", 0, "", 10), new ItemType(48, "Poudre", SuperType.RESOURCE, null), new ArrayList<>());
@@ -129,7 +123,6 @@ class PlayerInventoryTest extends GameBaseCase {
         assertIterableEquals(entries, inventory);
     }
 
-    @Test
     void stream() throws InventoryException {
         Item item1 = new Resource(new ItemTemplate(284, 48, "Sel", 1, new ArrayList<>(), 1, "", 0, "", 10), new ItemType(48, "Poudre", SuperType.RESOURCE, null), new ArrayList<>());
         Item item2 = new Resource(new ItemTemplate(285, 48, "Sel", 1, new ArrayList<>(), 1, "", 0, "", 10), new ItemType(48, "Poudre", SuperType.RESOURCE, null), new ArrayList<>());
@@ -142,7 +135,6 @@ class PlayerInventoryTest extends GameBaseCase {
         assertEquals(15, inventory.stream().mapToInt(InventoryEntry::quantity).sum());
     }
 
-    @Test
     void createWithItems() throws ItemNotFoundException, SQLException, ContainerException {
         Item i1, i2;
 
@@ -165,12 +157,10 @@ class PlayerInventoryTest extends GameBaseCase {
         assertSame(i2, inventory.get(5).item());
     }
 
-    @Test
     void equipmentsEmpty() {
         assertCount(0, inventory.equipments());
     }
 
-    @Test
     void equipments() throws SQLException, ContainerException, InventoryException {
         dataSet
             .pushItemTemplates()
@@ -187,7 +177,6 @@ class PlayerInventoryTest extends GameBaseCase {
         assertContains(inventory.get(2).item(), inventory.equipments());
     }
 
-    @Test
     void accessories() throws SQLException, ContainerException, InventoryException {
         dataSet
             .pushItemTemplates()
@@ -203,7 +192,6 @@ class PlayerInventoryTest extends GameBaseCase {
         assertEquals(2411, inventory.accessories().get(AccessoryType.HELMET).appearance());
     }
 
-    @Test
     void deleteWillRemoveFromSlotAndStorage() throws SQLException, ContainerException, InventoryException {
         dataSet
             .pushItemTemplates()
@@ -242,7 +230,6 @@ class PlayerInventoryTest extends GameBaseCase {
         assertSame(entry, ref2.get().entry());
     }
 
-    @Test
     void addSameItemWillStack() throws InventoryException {
         Item item = new Resource(new ItemTemplate(284, 48, "Sel", 1, new ArrayList<>(), 1, "", 0, "", 10), new ItemType(48, "Poudre", SuperType.RESOURCE, null), new ArrayList<>());
 
@@ -255,17 +242,14 @@ class PlayerInventoryTest extends GameBaseCase {
         assertIterableEquals(Collections.singletonList(entry), inventory);
     }
 
-    @Test
     void owner() throws SQLException, ContainerException {
         assertSame(gamePlayer(), inventory.owner());
     }
 
-    @Test
     void itemSetEmpty() {
         assertCount(0, inventory.itemSets().all());
     }
 
-    @Test
     void itemSetNotEmpty() throws ContainerException, InventoryException, SQLException {
         dataSet.pushItemTemplates().pushItemSets();
 
@@ -289,7 +273,6 @@ class PlayerInventoryTest extends GameBaseCase {
         assertEquals(5, itemSet.bonus().characteristics().get(1).value());
     }
 
-    @Test
     void bySlot() throws SQLException, ContainerException, InventoryException {
         dataSet
             .pushItemTemplates()
@@ -302,7 +285,6 @@ class PlayerInventoryTest extends GameBaseCase {
         assertFalse(inventory.bySlot(5).isPresent());
     }
 
-    @Test
     void weight() throws SQLException, ContainerException {
         dataSet
             .pushItemTemplates()
@@ -327,7 +309,6 @@ class PlayerInventoryTest extends GameBaseCase {
         assertEquals(160, inventory.weight());
     }
 
-    @Test
     void overweight() throws SQLException, ContainerException {
         dataSet
             .pushItemTemplates()
@@ -345,13 +326,11 @@ class PlayerInventoryTest extends GameBaseCase {
         assertTrue(inventory.overweight());
     }
 
-    @Test
     void kamas() {
         player.setKamas(1450);
         assertEquals(1450, inventory.kamas());
     }
 
-    @Test
     void addKamas() throws SQLException {
         player.setKamas(1000);
 
@@ -365,7 +344,6 @@ class PlayerInventoryTest extends GameBaseCase {
         assertEquals(1250, ref.get().newQuantity());
     }
 
-    @Test
     void addKamasWithNegativeAmountShouldRaiseException() throws SQLException {
         player.setKamas(1000);
 
@@ -378,7 +356,6 @@ class PlayerInventoryTest extends GameBaseCase {
         assertNull(ref.get());
     }
 
-    @Test
     void removeKamas() throws SQLException {
         player.setKamas(1000);
 
@@ -392,7 +369,6 @@ class PlayerInventoryTest extends GameBaseCase {
         assertEquals(750, ref.get().newQuantity());
     }
 
-    @Test
     void removeKamasWithNegativeAmountShouldRaiseException() throws SQLException {
         player.setKamas(1000);
 

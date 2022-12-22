@@ -74,7 +74,6 @@ class DefaultConfigurationTest {
 
     private DefaultConfiguration configuration;
 
-    @BeforeEach
     void setUp() throws IOException {
         configuration = new DefaultConfiguration(
             new IniDriver(
@@ -83,7 +82,6 @@ class DefaultConfigurationTest {
         );
     }
 
-    @Test
     void moduleOnFirstCall() {
         Foo module = configuration.module(Foo.MODULE);
 
@@ -91,12 +89,10 @@ class DefaultConfigurationTest {
         assertEquals("baz", module.pool.get("bar"));
     }
 
-    @Test
     void moduleSameInstance() {
         assertSame(configuration.module(Foo.MODULE), configuration.module(Foo.MODULE));
     }
 
-    @Test
     void moduleNotFound() {
         Empty module = configuration.module(Empty.MODULE);
 

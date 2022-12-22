@@ -36,7 +36,6 @@ class LeaveExchangeTest extends GameBaseCase {
     private ExplorationPlayer other;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -46,7 +45,6 @@ class LeaveExchangeTest extends GameBaseCase {
         other.changeMap(player.map(), 123);
     }
 
-    @Test
     void functionalOnRequest() throws Exception {
         player.interactions().start(new PlayerExchangeRequest(player, other));
 
@@ -58,7 +56,6 @@ class LeaveExchangeTest extends GameBaseCase {
         assertFalse(other.interactions().busy());
     }
 
-    @Test
     void functionalOnExchange() throws Exception {
         for (PlayerExchangeParty party : PlayerExchangeParty.make(player, other)) {
             party.start();
@@ -72,7 +69,6 @@ class LeaveExchangeTest extends GameBaseCase {
         assertFalse(other.interactions().busy());
     }
 
-    @Test
     void functionalNotExploring() {
         session.setExploration(null);
 

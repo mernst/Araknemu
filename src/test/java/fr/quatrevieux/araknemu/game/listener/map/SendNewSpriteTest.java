@@ -37,7 +37,6 @@ class SendNewSpriteTest extends GameBaseCase {
     private SendNewSprite listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -46,7 +45,6 @@ class SendNewSpriteTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onSelfSprite() throws SQLException, ContainerException {
         requestStack.clear();
 
@@ -59,7 +57,6 @@ class SendNewSpriteTest extends GameBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void onOtherSprite() throws Exception {
         ExplorationPlayer player = new ExplorationPlayer(makeOtherPlayer());
         player.changeMap(explorationPlayer().map(), 123);

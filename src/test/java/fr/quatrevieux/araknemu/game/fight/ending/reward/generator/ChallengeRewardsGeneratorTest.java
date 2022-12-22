@@ -41,7 +41,6 @@ class ChallengeRewardsGeneratorTest extends FightBaseCase {
     private ChallengeRewardsGenerator generator;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,7 +48,6 @@ class ChallengeRewardsGeneratorTest extends FightBaseCase {
         generator = new ChallengeRewardsGenerator();
     }
 
-    @Test
     void generate() {
         FightRewardsSheet sheet = generator.generate(
             new EndFightResults(fight, Collections.singletonList(player.fighter()), Collections.singletonList(other.fighter()))

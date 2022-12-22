@@ -50,25 +50,21 @@ class GeneratorBuilderTest extends TestCase {
     private GeneratorBuilder<Fighter> builder;
     private Simulator simulator;
 
-    @BeforeEach
     void setUp() {
         builder = new GeneratorBuilder<>();
         simulator = new Simulator(new BaseCriticalityStrategy());
     }
 
-    @Test
     void buildEmpty() {
         assertSame(NullGenerator.INSTANCE, builder.build());
     }
 
-    @Test
     void buildSingleAction() {
         ActionGenerator<Fighter> generator = Mockito.mock(ActionGenerator.class);
 
         assertSame(generator, builder.add(generator).build());
     }
 
-    @Test
     void buildMultiple() throws NoSuchFieldException, IllegalAccessException {
         ActionGenerator<Fighter> g1 = Mockito.mock(ActionGenerator.class);
         ActionGenerator<Fighter> g2 = Mockito.mock(ActionGenerator.class);
@@ -84,7 +80,6 @@ class GeneratorBuilderTest extends TestCase {
         assertArrayEquals(new ActionGenerator[] {g1, g2, g3}, (Object[]) actions.get(built));
     }
 
-    @Test
     void when() throws NoSuchFieldException, IllegalAccessException {
         ActionGenerator<Fighter> gs = Mockito.mock(ActionGenerator.class);
         ActionGenerator<Fighter> go = Mockito.mock(ActionGenerator.class);
@@ -102,72 +97,58 @@ class GeneratorBuilderTest extends TestCase {
         assertSame(go, otherwise.get(built));
     }
 
-    @Test
     void attackFromBestCell() throws NoSuchFieldException, IllegalAccessException {
         assertActions(builder.attackFromBestCell(simulator).build(), MoveToAttack.class, Attack.class);
     }
 
-    @Test
     void attackFromNearestCell() throws NoSuchFieldException, IllegalAccessException {
         assertActions(builder.attackFromNearestCell(simulator).build(), Attack.class, MoveToAttack.class);
     }
 
-    @Test
     void moveToAttack() {
         assertInstanceOf(MoveToAttack.class, builder.moveToAttack(simulator).build());
     }
 
-    @Test
     void attack() {
         assertInstanceOf(Attack.class, builder.attack(simulator).build());
     }
 
-    @Test
     void boostSelf() {
         assertInstanceOf(Boost.class, builder.boostSelf(simulator).build());
     }
 
-    @Test
     void boostAllies() {
         assertInstanceOf(Boost.class, builder.boostAllies(simulator).build());
     }
 
-    @Test
     void moveNearEnemy() {
         assertInstanceOf(MoveNearEnemy.class, builder.moveNearEnemy().build());
     }
 
-    @Test
     void teleportNearEnemy() {
         assertInstanceOf(TeleportNearEnemy.class, builder.teleportNearEnemy().build());
     }
 
-    @Test
     void moveOrTeleportNearEnemy() throws NoSuchFieldException, IllegalAccessException {
         assertActions(builder.moveOrTeleportNearEnemy().build(), MoveNearEnemy.class, TeleportNearEnemy.class);
     }
 
-    @Test
     void moveFarEnemies() {
         assertInstanceOf(MoveFarEnemies.class, builder.moveFarEnemies().build());
     }
 
-    @Test
     void moveNearAllies() {
         assertInstanceOf(MoveNearAllies.class, builder.moveNearAllies().build());
     }
 
-    @Test
     void moveToBoost() throws NoSuchFieldException, IllegalAccessException {
         assertActions(builder.moveToBoost(simulator).build(), MoveToBoost.class, Boost.class);
     }
 
-    @Test
     void heal() {
         assertInstanceOf(Heal.class, builder.heal(simulator).build());
     }
 
-    @Test
     void debuff() {
         assertInstanceOf(Debuff.class, builder.debuff(simulator).build());
     }

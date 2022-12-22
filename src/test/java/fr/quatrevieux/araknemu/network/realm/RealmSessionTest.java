@@ -30,14 +30,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 class RealmSessionTest {
-    @Test
     void channel() {
         Channel channel = new DummyChannel();
 
         assertSame(channel, new RealmSession(new ConfigurableSession(channel)).channel());
     }
 
-    @Test
     void key() {
         RealmSession session = new RealmSession(new ConfigurableSession(new DummyChannel()));
 
@@ -49,7 +47,6 @@ class RealmSessionTest {
         assertEquals(key, session.key().key());
     }
 
-    @Test
     void write() {
         DummyChannel channel = new DummyChannel();
 
@@ -58,7 +55,6 @@ class RealmSessionTest {
         assertEquals("my message", channel.getMessages().lastElement());
     }
 
-    @Test
     void string() {
         RealmSession session = new RealmSession(new ConfigurableSession(new DummyChannel()));
 

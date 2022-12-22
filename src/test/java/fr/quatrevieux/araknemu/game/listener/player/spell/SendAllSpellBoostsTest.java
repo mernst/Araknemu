@@ -33,7 +33,6 @@ class SendAllSpellBoostsTest extends GameBaseCase {
     private SendAllSpellBoosts listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -42,14 +41,12 @@ class SendAllSpellBoostsTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void withoutBoosts() {
         listener.on(new GameJoined());
 
         requestStack.assertEmpty();
     }
 
-    @Test
     void withBoosts() throws SQLException, ContainerException {
         gamePlayer().properties().spells().boosts().boost(3, SpellsBoosts.Modifier.DAMAGE, 15);
         gamePlayer().properties().spells().boosts().boost(3, SpellsBoosts.Modifier.RANGE, 3);

@@ -95,7 +95,7 @@ public abstract class AbstractStealPointHandler implements EffectHandler {
      * @param turn The active turn
      * @param toAdd Number of points to add. This value is always >= 1
      */
-    protected abstract void applyOnCurrentTurn(Fight fight, Turn turn, FighterData caster, @Positive int toAdd);
+    protected abstract void applyOnCurrentTurn(Fight fight, Turn turn, FighterData caster, int toAdd);
 
     /**
      * Apply to all targets and compute the stolen points

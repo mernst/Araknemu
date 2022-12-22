@@ -39,14 +39,12 @@ class EffectToSpecialMappingTest extends GameBaseCase {
     private EffectToSpecialMapping mapping;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         mapping = new EffectToSpecialMapping();
     }
 
-    @Test
     void create() {
         assertEquals(
             new SpecialEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {1, 2, 3}, "a"),
@@ -54,7 +52,6 @@ class EffectToSpecialMappingTest extends GameBaseCase {
         );
     }
 
-    @Test
     void createFromRegisteredHandler() {
         assertEquals(
             new SpecialEffect(new AddSpecialEffect(SpecialEffects.Type.PODS), Effect.ADD_PODS, new int[] {200, 0, 0}, "0d0+200"),
@@ -62,7 +59,6 @@ class EffectToSpecialMappingTest extends GameBaseCase {
         );
     }
 
-    @Test
     void createFromListMaximize() {
         List<SpecialEffect> effects = mapping.create(
             Arrays.asList(
@@ -83,7 +79,6 @@ class EffectToSpecialMappingTest extends GameBaseCase {
         assertArrayEquals(new int [] {10, 0, 384}, effects.get(2).arguments());
     }
 
-    @Test
     void createFromListRandom() {
         List<SpecialEffect> effects = mapping.create(
             Arrays.asList(
@@ -103,7 +98,6 @@ class EffectToSpecialMappingTest extends GameBaseCase {
         assertArrayEquals(new int [] {10, 0, 384}, effects.get(2).arguments());
     }
 
-    @Test
     void createFromListFixed() {
         List<SpecialEffect> effects = mapping.create(
             Arrays.asList(

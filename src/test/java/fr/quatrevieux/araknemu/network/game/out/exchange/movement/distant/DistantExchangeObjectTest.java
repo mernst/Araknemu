@@ -31,7 +31,6 @@ class DistantExchangeObjectTest extends GameBaseCase {
     private ItemEntry entry;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -46,7 +45,6 @@ class DistantExchangeObjectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void generateAdd() {
         assertEquals(
             "EmKO+1|2|2422|8a#f#0#0#0d0+15,7d#21#0#0#0d0+33",
@@ -54,7 +52,6 @@ class DistantExchangeObjectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void generateRemove() {
         assertEquals(
             "EmKO-1",

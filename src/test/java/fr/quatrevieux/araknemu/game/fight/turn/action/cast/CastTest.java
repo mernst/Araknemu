@@ -54,7 +54,6 @@ class CastTest extends FightBaseCase {
     private Fighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -69,7 +68,6 @@ class CastTest extends FightBaseCase {
         turn.start();
     }
 
-    @Test
     void values() {
         Cast cast = new Cast(
             fighter,
@@ -82,7 +80,6 @@ class CastTest extends FightBaseCase {
         assertEquals("Cast{spell=3, target=186}", cast.toString());
     }
 
-    @Test
     void validateBadCell() {
         Cast cast = new Cast(fighter, fighter.spells().get(3), fight.map().get(0));
 
@@ -90,7 +87,6 @@ class CastTest extends FightBaseCase {
         requestStack.assertLast(Error.cantCastCellNotAvailable());
     }
 
-    @Test
     void validateNotEnoughAp() {
         turn.points().useActionPoints(5);
 
@@ -100,7 +96,6 @@ class CastTest extends FightBaseCase {
         requestStack.assertLast(Error.cantCastNotEnoughActionPoints(1, 5));
     }
 
-    @Test
     void validateBadState() {
         fighter.states().push(19);
 
@@ -110,14 +105,12 @@ class CastTest extends FightBaseCase {
         requestStack.assertLast(Error.cantCastBadState());
     }
 
-    @Test
     void validateSuccess() {
         Cast cast = new Cast(fighter, fighter.spells().get(3), fight.map().get(186));
 
         assertTrue(cast.validate(turn));
     }
 
-    @Test
     void startSuccess() {
         Cast cast = new Cast(
             fighter,
@@ -145,7 +138,6 @@ class CastTest extends FightBaseCase {
         assertEquals(Direction.SOUTH_EAST, fighter.orientation());
     }
 
-    @Test
     void startTargetCurrentCellShouldNotChangeTheOrientation() {
         fighter.setOrientation(Direction.NORTH_EAST);
 
@@ -166,7 +158,6 @@ class CastTest extends FightBaseCase {
         assertEquals(Direction.NORTH_EAST, fighter.orientation());
     }
 
-    @Test
     void startCriticalHit() {
         Cast cast = new Cast(
             fighter,
@@ -194,7 +185,6 @@ class CastTest extends FightBaseCase {
         assertEquals(Direction.SOUTH_EAST, fighter.orientation());
     }
 
-    @Test
     void startCriticalFailure() {
         Cast cast = new Cast(
             fighter,
@@ -225,7 +215,6 @@ class CastTest extends FightBaseCase {
         assertEquals(1, turn.points().actionPoints());
     }
 
-    @Test
     void failedWithEndTurn() {
         Spell spell = Mockito.mock(Spell.class);
 
@@ -251,7 +240,6 @@ class CastTest extends FightBaseCase {
         assertFalse(turn.active());
     }
 
-    @Test
     void duration() {
         Cast cast = new Cast(
             fighter,
@@ -262,7 +250,6 @@ class CastTest extends FightBaseCase {
         assertEquals(Duration.ofMillis(500), cast.duration());
     }
 
-    @Test
     void endOnSuccess() {
         AtomicReference<SpellCasted> ref = new AtomicReference<>();
         fight.dispatcher().add(SpellCasted.class, ref::set);
@@ -297,7 +284,6 @@ class CastTest extends FightBaseCase {
         assertEquals(cast, ref.get().action());
     }
 
-    @Test
     void endOnCriticalHit() {
         Cast cast = new Cast(
             fighter,

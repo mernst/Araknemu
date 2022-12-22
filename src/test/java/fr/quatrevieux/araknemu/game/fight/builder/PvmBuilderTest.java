@@ -58,7 +58,6 @@ class PvmBuilderTest extends GameBaseCase {
     private MonsterGroup group;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -100,7 +99,6 @@ class PvmBuilderTest extends GameBaseCase {
         );
     }
 
-    @Test
     void buildMissingData() throws SQLException {
         assertThrows(IllegalStateException.class, () -> builder.build(1));
 
@@ -114,7 +112,6 @@ class PvmBuilderTest extends GameBaseCase {
         builder.build(1);
     }
 
-    @Test
     void build() throws Exception {
         Fight fight = builder
             .initiator(gamePlayer())
@@ -131,7 +128,6 @@ class PvmBuilderTest extends GameBaseCase {
         assertEquals(1, fight.id());
     }
 
-    @Test
     void buildTeamOrderShouldBeRandomized() throws Exception {
         RandomUtil random = new RandomUtil();
 
@@ -160,7 +156,6 @@ class PvmBuilderTest extends GameBaseCase {
         assertBetween(40, 60, playerTeamIsFirstTeam);
     }
 
-    @Test
     void buildNotRandomized() throws Exception {
         builder = new PvmBuilder(
             container.get(FightService.class),

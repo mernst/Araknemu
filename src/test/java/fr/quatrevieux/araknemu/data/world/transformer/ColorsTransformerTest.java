@@ -29,23 +29,19 @@ import static org.junit.jupiter.api.Assertions.*;
 class ColorsTransformerTest {
     private ColorsTransformer transformer;
 
-    @BeforeEach
     void setUp() {
         transformer = new ColorsTransformer();
     }
 
-    @Test
     void withNull() {
         assertNull(transformer.unserialize(null));
         assertNull(transformer.serialize(null));
     }
 
-    @Test
     void serialize() {
         assertEquals("7b,1c8,315", transformer.serialize(new Colors(123, 456, 789)));
     }
 
-    @Test
     void unserializeSimple() {
         Colors colors = transformer.unserialize("7b,1c8,315");
 
@@ -54,12 +50,10 @@ class ColorsTransformerTest {
         assertEquals(789, colors.color3());
     }
 
-    @Test
     void unserializeDefault() {
         assertSame(Colors.DEFAULT, transformer.unserialize("-1,-1,-1"));
     }
 
-    @Test
     void unserializeWithOneDefault() {
         Colors colors = transformer.unserialize("-1,1c8,315");
 
@@ -68,7 +62,6 @@ class ColorsTransformerTest {
         assertEquals(789, colors.color3());
     }
 
-    @Test
     void unserializeInvalid() {
         assertThrows(TransformerException.class, () -> transformer.unserialize("-1,1c8;456"));
     }

@@ -35,19 +35,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class KickTest extends CommandTestCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
     }
 
-    @Test
     void cannotKickSelf() throws SQLException {
         command = new Kick(gamePlayer(true));
 
         assertThrowsWithMessage(CommandException.class, "Cannot kick yourself", () -> execute("kick"));
     }
 
-    @Test
     void kickWithoutMessage() throws Exception {
         GamePlayer target = makeOtherPlayer();
 
@@ -65,7 +62,6 @@ class KickTest extends CommandTestCase {
         assertFalse(session.isAlive());
     }
 
-    @Test
     void kickWithMessage() throws Exception {
         GamePlayer target = makeOtherPlayer();
 

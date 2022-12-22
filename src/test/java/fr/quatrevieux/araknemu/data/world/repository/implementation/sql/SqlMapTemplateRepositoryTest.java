@@ -42,7 +42,6 @@ class SqlMapTemplateRepositoryTest extends GameBaseCase {
     private SqlMapTemplateRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -55,7 +54,6 @@ class SqlMapTemplateRepositoryTest extends GameBaseCase {
         dataSet.pushMaps().pushSubAreas().pushAreas();
     }
 
-    @Test
     void getById() {
         MapTemplate map = repository.get(10300);
 
@@ -74,7 +72,6 @@ class SqlMapTemplateRepositoryTest extends GameBaseCase {
         assertFalse(map.indoor());
     }
 
-    @Test
     void getWithPlaces() {
         assertArrayEquals(
             repository.get(10340).fightPlaces(),
@@ -85,19 +82,16 @@ class SqlMapTemplateRepositoryTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getIndoor() throws SQLException {
         dataSet.pushMap(90002, "", 1, 1, "", "", "", new Geolocation(0, 0), 1, true);
 
         assertTrue(repository.get(90002).indoor());
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(-1));
     }
 
-    @Test
     void getByEntity() {
         MapTemplate map = repository.get(new MapTemplate(10300, null, null, null, null, null, null, 0, false));
 
@@ -105,7 +99,6 @@ class SqlMapTemplateRepositoryTest extends GameBaseCase {
         assertEquals(479, map.cells().length);
     }
 
-    @Test
     void byGeolocation() {
         List<MapTemplate> maps = new ArrayList<>(repository.byGeolocation(new Geolocation(3, 6)));
 
@@ -113,7 +106,6 @@ class SqlMapTemplateRepositoryTest extends GameBaseCase {
         assertEquals(10340, maps.get(0).id());
     }
 
-    @Test
     void byGeolocationMultipleMaps() throws SQLException {
         dataSet.pushMap(5, "", 1, 1, "", "", "", new Geolocation(3, 6), 0, false);
 
@@ -124,18 +116,15 @@ class SqlMapTemplateRepositoryTest extends GameBaseCase {
         assertEquals(10340, maps.get(1).id());
     }
 
-    @Test
     void byGeolocationNoMaps() {
         assertCount(0, repository.byGeolocation(new Geolocation(40, 4)));
     }
 
-    @Test
     void has() {
         assertFalse(repository.has(new MapTemplate(-1, null, null, null, null, null, null, 0, false)));
         assertTrue(repository.has(new MapTemplate(10300, null, null, null, null, null, null, 0, false)));
     }
 
-    @Test
     void all() {
         assertEquals(4, repository.all().size());
     }

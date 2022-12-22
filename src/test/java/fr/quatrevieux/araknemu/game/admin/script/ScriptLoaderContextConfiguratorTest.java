@@ -42,7 +42,6 @@ import java.util.Comparator;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ScriptLoaderContextConfiguratorTest extends CommandTestCase {
-    @Test
     void loadSimpleCommand() throws AdminException, SQLException {
         Logger logger = Mockito.mock(Logger.class);
         DebugContext context = new DebugContext(
@@ -71,7 +70,6 @@ class ScriptLoaderContextConfiguratorTest extends CommandTestCase {
         );
     }
 
-    @Test
     void loadCommandWithDependencies() throws AdminException, SQLException, NoSuchFieldException, IllegalAccessException {
         Logger logger = Mockito.mock(Logger.class);
         DebugContext context = new DebugContext(
@@ -89,7 +87,6 @@ class ScriptLoaderContextConfiguratorTest extends CommandTestCase {
         assertSame(container.get(PlayerService.class), command.getClass().getField("playerService").get(command));
     }
 
-    @Test
     void hydrators() throws AdminException, SQLException {
         Logger logger = Mockito.mock(Logger.class);
         DebugContext context = new DebugContext(
@@ -116,7 +113,6 @@ class ScriptLoaderContextConfiguratorTest extends CommandTestCase {
         assertOutput("arguments : Arguments{arg=bar, opt=true}");
     }
 
-    @Test
     void invalidFileShouldLogAsError() {
         Logger logger = Mockito.mock(Logger.class);
         DebugContext context = new DebugContext(
@@ -132,7 +128,6 @@ class ScriptLoaderContextConfiguratorTest extends CommandTestCase {
         Mockito.verify(logger).error(Mockito.eq("Fail to load command script"), Mockito.<Exception>any());
     }
 
-    @Test
     void directoryNotFoundShouldSkip() {
         Logger logger = Mockito.mock(Logger.class);
         DebugContext context = new DebugContext(
@@ -147,7 +142,6 @@ class ScriptLoaderContextConfiguratorTest extends CommandTestCase {
         Mockito.verify(logger, Mockito.never()).debug(Mockito.anyString(), Mockito.anyString());
     }
 
-    @Test
     void loadShouldKeepCompiledClassAfterReload() throws AdminException, SQLException {
         Logger logger = Mockito.mock(Logger.class);
         ScriptLoaderContextConfigurator<DebugContext> loader = new ScriptLoaderContextConfigurator<>(Paths.get("src/test/scripts/commands/simple"), c -> container, logger);
@@ -161,7 +155,6 @@ class ScriptLoaderContextConfiguratorTest extends CommandTestCase {
         assertSame(commandClass, newContext.command("simple").getClass());
     }
 
-    @Test
     void loadDirectoryCreatedAfterStartup() throws IOException, CommandNotFoundException {
         Path directory = Paths.get("src/test/scripts/commands/not_exists");
 

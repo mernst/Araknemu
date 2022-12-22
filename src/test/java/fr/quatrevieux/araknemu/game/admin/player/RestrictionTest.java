@@ -32,19 +32,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RestrictionTest extends CommandTestCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         command = new Restriction(gamePlayer());
     }
 
-    @Test
     void executeBadOperation() throws ContainerException, SQLException, AdminException {
         assertThrows(CommandException.class, () -> execute("restriction", "*deny_chat"));
     }
 
-    @Test
     void executeAddOneRestriction() throws ContainerException, SQLException, AdminException {
         execute("restriction", "+deny_chat");
 
@@ -52,7 +49,6 @@ class RestrictionTest extends CommandTestCase {
         assertOutput("Bob restrictions updated");
     }
 
-    @Test
     void executeRemoveOneRestriction() throws ContainerException, SQLException, AdminException {
         execute("restriction", "-allow_move_all_direction");
 
@@ -60,7 +56,6 @@ class RestrictionTest extends CommandTestCase {
         assertOutput("Bob restrictions updated");
     }
 
-    @Test
     void executeMultiple() throws ContainerException, SQLException, AdminException {
         execute("restriction", "-allow_move_all_direction", "+deny_chat", "+deny_challenge");
 
@@ -71,7 +66,6 @@ class RestrictionTest extends CommandTestCase {
         assertOutput("Bob restrictions updated");
     }
 
-    @Test
     void help() {
         assertHelp(
             "restriction - Change the player restrictions",

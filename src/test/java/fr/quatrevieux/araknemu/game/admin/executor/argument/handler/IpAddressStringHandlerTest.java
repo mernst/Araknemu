@@ -36,7 +36,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class IpAddressStringHandlerTest extends TestCase {
     static class Arguments {
-        @Argument
         public IPAddressString ip;
     }
 
@@ -58,7 +57,6 @@ class IpAddressStringHandlerTest extends TestCase {
         }
     }
 
-    @Test
     void hydrate() throws Exception {
         IpAddressStringHandlerTest.Command command = new IpAddressStringHandlerTest.Command();
         AnnotationHydrator hydrator = new AnnotationHydrator();

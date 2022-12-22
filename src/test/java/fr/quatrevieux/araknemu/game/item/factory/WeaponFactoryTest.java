@@ -47,7 +47,6 @@ class WeaponFactoryTest extends GameBaseCase {
     private WeaponFactory factory;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -59,7 +58,6 @@ class WeaponFactoryTest extends GameBaseCase {
         );
     }
 
-    @Test
     void createSimple() {
         ItemType type = new ItemType(6, "Épée", SuperType.WEAPON, new EffectArea(EffectArea.Type.CELL, 0));
         Item item = factory.create(
@@ -91,7 +89,6 @@ class WeaponFactoryTest extends GameBaseCase {
         assertFalse(weapon.info().isTwoHanded());
     }
 
-    @Test
     void createWithRandomCharacteristic() {
         ItemType type = new ItemType(6, "Épée", SuperType.WEAPON, new EffectArea(EffectArea.Type.CELL, 0));
         Item item = factory.create(
@@ -115,7 +112,6 @@ class WeaponFactoryTest extends GameBaseCase {
         assertTrue(weapon.characteristics().get(0).value() <= 10);
     }
 
-    @Test
     void createWithMaxCharacteristic() {
         ItemType type = new ItemType(6, "Épée", SuperType.WEAPON, new EffectArea(EffectArea.Type.CELL, 0));
         Item item = factory.create(
@@ -138,7 +134,6 @@ class WeaponFactoryTest extends GameBaseCase {
         assertEquals(10, weapon.characteristics().get(0).value());
     }
 
-    @Test
     void createWithSpecialEffect() {
         ItemType type = new ItemType(6, "Épée", SuperType.WEAPON, new EffectArea(EffectArea.Type.CELL, 0));
         Item item = factory.create(
@@ -160,7 +155,6 @@ class WeaponFactoryTest extends GameBaseCase {
         assertEquals(Effect.NULL1, weapon.specials().get(0).effect());
     }
 
-    @Test
     void createMissingArea() {
         ItemType type = new ItemType(6, "Épée", SuperType.WEAPON, null);
         assertThrows(IllegalArgumentException.class, () -> factory.create(
@@ -173,7 +167,6 @@ class WeaponFactoryTest extends GameBaseCase {
         ));
     }
 
-    @Test
     void createMissingInfo() {
         ItemType type = new ItemType(6, "Épée", SuperType.WEAPON, new EffectArea(EffectArea.Type.CELL, 0));
         assertThrows(IllegalArgumentException.class, () -> factory.create(
@@ -186,7 +179,6 @@ class WeaponFactoryTest extends GameBaseCase {
         ));
     }
 
-    @Test
     void retrieve() {
         ItemType type = new ItemType(6, "Épée", SuperType.WEAPON, new EffectArea(EffectArea.Type.CELL, 0));
         Item item = factory.retrieve(

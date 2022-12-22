@@ -42,7 +42,7 @@ public interface ExchangeParty extends Exchange, Sender {
      *
      * @return The creature, or null if there is no other party on the exchange
      */
-    public @Nullable Creature target();
+    public Creature target();
 
     /**
      * Leave / cancel the exchange (will remove the interaction)

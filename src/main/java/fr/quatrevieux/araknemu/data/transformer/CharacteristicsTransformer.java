@@ -35,7 +35,7 @@ public final class CharacteristicsTransformer implements Transformer<Characteris
     private static final char STATS_SEPARATOR = ';';
 
     @Override
-    public @PolyNull String serialize(@PolyNull Characteristics characteristics) {
+    public String serialize(Characteristics characteristics) {
         if (characteristics == null) {
             return null;
         }
@@ -61,7 +61,7 @@ public final class CharacteristicsTransformer implements Transformer<Characteris
     }
 
     @Override
-    public @PolyNull MutableCharacteristics unserialize(@PolyNull String serialized) {
+    public MutableCharacteristics unserialize(String serialized) {
         if (serialized == null) {
             return null;
         }

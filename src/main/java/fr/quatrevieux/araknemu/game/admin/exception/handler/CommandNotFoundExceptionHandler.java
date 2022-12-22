@@ -37,7 +37,7 @@ import java.util.Optional;
  */
 public final class CommandNotFoundExceptionHandler implements ExceptionHandler.Function<CommandNotFoundException> {
     @Override
-    public void handle(AdminPerformer performer, CommandNotFoundException error, CommandParser.@Nullable Arguments arguments) {
+    public void handle(AdminPerformer performer, CommandNotFoundException error, CommandParser.Arguments arguments) {
         performer.error("Command '{}' is not found", error.command());
 
         if (arguments == null) {

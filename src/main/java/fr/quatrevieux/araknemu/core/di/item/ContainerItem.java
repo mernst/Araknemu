@@ -27,7 +27,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
  * Item of a container
  * @param <T> Contained item
  */
-public interface ContainerItem<T extends @NonNull Object> {
+public interface ContainerItem<T extends Object> {
     /**
      * The item type
      */
@@ -40,5 +40,5 @@ public interface ContainerItem<T extends @NonNull Object> {
      *
      * @return The contained value
      */
-    public @NonNull T value(Container container) throws ContainerException;
+    public T value(Container container) throws ContainerException;
 }

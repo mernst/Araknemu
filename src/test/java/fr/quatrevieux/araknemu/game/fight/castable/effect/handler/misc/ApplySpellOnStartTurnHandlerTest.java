@@ -53,7 +53,6 @@ class ApplySpellOnStartTurnHandlerTest extends FightBaseCase {
     private ApplySpellOnStartTurnHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -73,7 +72,6 @@ class ApplySpellOnStartTurnHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void buffWillAddBuffToList() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -102,7 +100,6 @@ class ApplySpellOnStartTurnHandlerTest extends FightBaseCase {
         assertEquals(5, found.get().remainingTurns());
     }
 
-    @Test
     void buffWithAreaMultipleFighters() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -124,7 +121,6 @@ class ApplySpellOnStartTurnHandlerTest extends FightBaseCase {
         assertTrue(target.buffs().stream().anyMatch(buff -> buff.effect().equals(effect)));
     }
 
-    @Test
     void handleShouldBeConsideredAsBuff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -153,7 +149,6 @@ class ApplySpellOnStartTurnHandlerTest extends FightBaseCase {
         assertEquals(1, found.get().remainingTurns());
     }
 
-    @Test
     void startTurnShouldApplySpell() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -184,7 +179,6 @@ class ApplySpellOnStartTurnHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void spellLevelFromMaxEffectValue() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -215,7 +209,6 @@ class ApplySpellOnStartTurnHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void stopTurnIfTargetDie() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

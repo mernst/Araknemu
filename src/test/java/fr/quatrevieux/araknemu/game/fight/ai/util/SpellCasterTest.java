@@ -39,7 +39,6 @@ class SpellCasterTest extends AiBaseCase {
     private PlayerFighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -54,7 +53,6 @@ class SpellCasterTest extends AiBaseCase {
         caster = new SpellCaster(ai, ai.helper(), new SpellConstraintsValidator());
     }
 
-    @Test
     void simulate() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -75,7 +73,6 @@ class SpellCasterTest extends AiBaseCase {
         assertFalse(caster.simulate(container.get(Simulator.class)).anyMatch(simulation -> simulation.spell().id() == 3));
     }
 
-    @Test
     void validate() {
         Spell spell = fighter.spells().get(3);
 

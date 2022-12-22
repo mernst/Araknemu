@@ -36,7 +36,6 @@ class SendStoragePacketsTest extends GameBaseCase {
     private ItemService itemService;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,14 +51,12 @@ class SendStoragePacketsTest extends GameBaseCase {
         itemService = container.get(ItemService.class);
     }
 
-    @Test
     void onObjectAdded() {
         ItemEntry entry = bank.add(itemService.create(39));
 
         requestStack.assertLast(new StorageObject(entry));
     }
 
-    @Test
     void onObjectQuantityChanged() {
         ItemEntry entry = bank.add(itemService.create(39));
         requestStack.clear();
@@ -69,7 +66,6 @@ class SendStoragePacketsTest extends GameBaseCase {
         requestStack.assertLast(new StorageObject(entry));
     }
 
-    @Test
     void onObjectRemoved() {
         ItemEntry entry = bank.add(itemService.create(39));
         requestStack.clear();
@@ -79,7 +75,6 @@ class SendStoragePacketsTest extends GameBaseCase {
         requestStack.assertLast(new StorageObject(entry));
     }
 
-    @Test
     void onKamasChanged() {
         bank.addKamas(5000);
 

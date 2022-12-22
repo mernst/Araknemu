@@ -30,7 +30,6 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DialogCreatedTest extends GameBaseCase {
-    @Test
     void generate() throws SQLException, ContainerException {
         dataSet
             .pushNpcs()

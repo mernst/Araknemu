@@ -43,7 +43,6 @@ class BanipTest extends CommandTestCase {
     private BanIpService<GameAccount> service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -51,7 +50,6 @@ class BanipTest extends CommandTestCase {
         dataSet.use(Account.class);
     }
 
-    @Test
     void addForeverSuccess() throws SQLException, AdminException {
         execute("banip", "add", "12.36.54.98", "forever", "my", "ban", "cause");
 
@@ -62,7 +60,6 @@ class BanipTest extends CommandTestCase {
         assertEquals("my ban cause", service.matching(new IPAddressString("12.36.54.98")).get().cause());
     }
 
-    @Test
     void addWithDurationSuccess() throws SQLException, AdminException {
         execute("banip", "add", "12.36.54.98", "for", "2h", "my", "ban", "cause");
 
@@ -73,7 +70,6 @@ class BanipTest extends CommandTestCase {
         assertEquals("my ban cause", service.matching(new IPAddressString("12.36.54.98")).get().cause());
     }
 
-    @Test
     void addWithMaskSuccess() throws SQLException, AdminException {
         execute("banip", "add", "12.36.0.0/16", "forever", "my", "ban", "cause");
 
@@ -83,7 +79,6 @@ class BanipTest extends CommandTestCase {
         assertEquals("my ban cause", service.matching(new IPAddressString("12.36.54.98")).get().cause());
     }
 
-    @Test
     void addFunctionalShouldKickSession() throws SQLException, AdminException {
         GameSession session = server.createSession("12.36.54.98");
 
@@ -93,7 +88,6 @@ class BanipTest extends CommandTestCase {
         assertFalse(session.isAlive());
     }
 
-    @Test
     void addBadParameters() {
         assertThrowsWithMessage(CommandException.class, "Argument \"IP_ADDRESS\" is required", () -> execute("banip", "add"));
         assertThrowsWithMessage(CommandException.class, "Invalid IP address given", () -> execute("banip", "add", "invalid"));
@@ -107,7 +101,6 @@ class BanipTest extends CommandTestCase {
         assertThrowsWithMessage(CommandException.class, "Cannot ban your own IP address", () -> execute("banip", "add", "127.0.0.0/24", "forever", "cause"));
     }
 
-    @Test
     void remove() throws SQLException, AdminException {
         service.newRule(new IPAddressString("12.36.54.98")).apply();
 
@@ -117,20 +110,17 @@ class BanipTest extends CommandTestCase {
         assertFalse(service.isIpBanned(new IPAddressString("12.36.54.98")));
     }
 
-    @Test
     void removeBadParameters() {
         assertThrows(CommandException.class, () -> execute("banip", "remove"));
         assertThrows(CommandException.class, () -> execute("banip", "remove", "invalid"));
     }
 
-    @Test
     void listEmpty() throws SQLException, AdminException {
         execute("banip", "list");
 
         assertOutput("The ban ip table is empty");
     }
 
-    @Test
     void list() throws SQLException, AdminException {
         Account banisher = dataSet.push(new Account(-1, "banisher", "", "banisher"));
 
@@ -148,14 +138,12 @@ class BanipTest extends CommandTestCase {
         );
     }
 
-    @Test
     void checkNotMatching() throws SQLException, AdminException {
         execute("banip", "check", "14.25.66.78");
 
         assertOutput("The IP address 14.25.66.78 is not banned. <u><a href='asfunction:onHref,ExecCmd,*banip add 14.25.66.78 for,false'>add</a></u>");
     }
 
-    @Test
     void checkMatching() throws SQLException, AdminException {
         service.newRule(new IPAddressString("14.25.66.0/24")).apply();
 
@@ -167,19 +155,16 @@ class BanipTest extends CommandTestCase {
         );
     }
 
-    @Test
     void checkInvalidArguments() {
         assertThrows(CommandException.class, () -> execute("banip", "check"));
         assertThrows(CommandException.class, () -> execute("banip", "check", "invalid"));
     }
 
-    @Test
     void invalidOperation() {
         assertThrows(CommandException.class, () -> execute("banip"));
         assertThrows(CommandException.class, () -> execute("banip", "invalid"));
     }
 
-    @Test
     void help() {
         assertHelp(
             "banip - Handle banned IP addresses",

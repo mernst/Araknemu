@@ -101,6 +101,6 @@ public class AlterPointHook extends AlterCharacteristicHook {
          *
          * @param value Value to modify. Always a positive number
          */
-        public void modify(TurnPoints points, @NonNegative int value);
+        public void modify(TurnPoints points, int value);
     }
 }

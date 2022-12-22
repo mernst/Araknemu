@@ -47,7 +47,7 @@ public interface MonsterGradesReward {
      *
      * @see fr.quatrevieux.araknemu.game.monster.Monster#gradeNumber()
      */
-    public @NonNegative long experience(@Positive int gradeNumber);
+    public long experience(int gradeNumber);
 
     /**
      * Creates the reward for the given monster grade
@@ -56,5 +56,5 @@ public interface MonsterGradesReward {
      *
      * @see fr.quatrevieux.araknemu.game.monster.Monster#gradeNumber()
      */
-    public MonsterReward grade(@Positive int gradeNumber);
+    public MonsterReward grade(int gradeNumber);
 }

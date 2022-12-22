@@ -34,12 +34,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class InteractionHandlerTest extends TestCase {
     private InteractionHandler handler;
 
-    @BeforeEach
     void setUp() {
         handler = new InteractionHandler();
     }
 
-    @Test
     void interacting() {
         assertFalse(handler.interacting());
         assertFalse(handler.busy());
@@ -53,7 +51,6 @@ class InteractionHandlerTest extends TestCase {
         assertTrue(handler.busy());
     }
 
-    @Test
     void busyOneBlockingAction() throws Exception {
         assertFalse(handler.busy());
 
@@ -62,7 +59,6 @@ class InteractionHandlerTest extends TestCase {
         assertTrue(handler.busy());
     }
 
-    @Test
     void startAlreadyInteracting() {
         Interaction interaction = Mockito.mock(Interaction.class);
         Mockito.when(interaction.start()).thenReturn(interaction);
@@ -71,12 +67,10 @@ class InteractionHandlerTest extends TestCase {
         assertThrows(IllegalStateException.class, () -> handler.start(interaction));
     }
 
-    @Test
     void stopNotInteracting() {
         handler.stop();
     }
 
-    @Test
     void stopInteracting() {
         Interaction interaction = Mockito.mock(Interaction.class);
         Mockito.when(interaction.start()).thenReturn(interaction);
@@ -89,7 +83,6 @@ class InteractionHandlerTest extends TestCase {
         assertFalse(handler.interacting());
     }
 
-    @Test
     void stopWillStopGameActions() throws Exception {
         BlockingAction current = Mockito.spy(MyBlockingAction.class);
 
@@ -102,12 +95,10 @@ class InteractionHandlerTest extends TestCase {
         Mockito.verify(current).cancel(null);
     }
 
-    @Test
     void getNoInteraction() {
         assertThrows(IllegalArgumentException.class, () -> handler.get(Interaction.class));
     }
 
-    @Test
     void getBadType() {
         Interaction interaction = Mockito.mock(Interaction.class);
         Mockito.when(interaction.start()).thenReturn(interaction);
@@ -117,7 +108,6 @@ class InteractionHandlerTest extends TestCase {
         assertThrows(IllegalArgumentException.class, () -> handler.get(ExtendedInteraction.class));
     }
 
-    @Test
     void getSuccess() {
         ExtendedInteraction interaction = Mockito.mock(ExtendedInteraction.class);
         Mockito.when(interaction.start()).thenReturn(interaction);
@@ -127,12 +117,10 @@ class InteractionHandlerTest extends TestCase {
         assertSame(interaction, handler.get(ExtendedInteraction.class));
     }
 
-    @Test
     void removeNotInteracting() {
         assertThrows(IllegalStateException.class, () -> handler.remove());
     }
 
-    @Test
     void removeSuccess() {
         ExtendedInteraction interaction = Mockito.mock(ExtendedInteraction.class);
         Mockito.when(interaction.start()).thenReturn(interaction);
@@ -142,7 +130,6 @@ class InteractionHandlerTest extends TestCase {
         assertSame(interaction, handler.remove());
     }
 
-    @Test
     void pushBlockingActionWhenInteractingWillRaiseError() {
         ExtendedInteraction interaction = Mockito.mock(ExtendedInteraction.class);
         Mockito.when(interaction.start()).thenReturn(interaction);
@@ -152,7 +139,6 @@ class InteractionHandlerTest extends TestCase {
         assertThrows(IllegalStateException.class, () -> handler.push(Mockito.mock(BlockingAction.class)));
     }
 
-    @Test
     void pushNonBlockingActionWhenInteractingWillExecuteAction() throws Exception {
         ExtendedInteraction interaction = Mockito.mock(ExtendedInteraction.class);
         Mockito.when(interaction.start()).thenReturn(interaction);

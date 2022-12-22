@@ -33,7 +33,6 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SqlLivingRepositoriesModuleTest extends RealmBaseCase {
-    @Test
     void instances() throws SQLException, ContainerException {
         Container container = new ItemPoolContainer();
 

@@ -57,7 +57,6 @@ class CharactersServiceTest extends GameBaseCase {
     private PlayerRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -78,7 +77,6 @@ class CharactersServiceTest extends GameBaseCase {
         ;
     }
 
-    @Test
     void list() throws ContainerException {
         Player first = dataSet.push(Player.forCreation(1, 1, "first", Race.ECAFLIP, Gender.MALE, new Colors(-1, -1, -1)));
         Player second = dataSet.push(Player.forCreation(1, 1, "second", Race.FECA, Gender.MALE, new Colors(-1, -1, -1)));
@@ -102,7 +100,6 @@ class CharactersServiceTest extends GameBaseCase {
         assertSame(account, characters.get(1).account());
     }
 
-    @Test
     void listWithItems() throws ContainerException, SQLException {
         Player first = dataSet.push(Player.forCreation(1, 1, "first", Race.ECAFLIP, Gender.MALE, new Colors(-1, -1, -1)));
         Player second = dataSet.push(Player.forCreation(1, 1, "second", Race.FECA, Gender.MALE, new Colors(-1, -1, -1)));
@@ -129,7 +126,6 @@ class CharactersServiceTest extends GameBaseCase {
         assertInstanceOf(EmptyAccessories.class, characters.get(1).spriteInfo().accessories());
     }
 
-    @Test
     void createSuccess() throws ContainerException, CharacterCreationException {
         ListenerAggregate dispatcher = container.get(ListenerAggregate.class);
 
@@ -194,7 +190,6 @@ class CharactersServiceTest extends GameBaseCase {
         assertSame(created, ref2.get());
     }
 
-    @Test
     void createError() throws ContainerException, CharacterCreationException {
         GameAccount account = new GameAccount(
             new Account(5),
@@ -212,7 +207,6 @@ class CharactersServiceTest extends GameBaseCase {
         assertTrue(service.list(account).isEmpty());
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> service.get(
             new GameAccount(
@@ -224,7 +218,6 @@ class CharactersServiceTest extends GameBaseCase {
         ));
     }
 
-    @Test
     void getBadServer() throws ContainerException {
         Player player = dataSet.pushPlayer("test", 5, 1);
 
@@ -238,7 +231,6 @@ class CharactersServiceTest extends GameBaseCase {
         ));
     }
 
-    @Test
     void getBadAccount() throws ContainerException {
         Player player = dataSet.pushPlayer("test", 5, 2);
 
@@ -252,7 +244,6 @@ class CharactersServiceTest extends GameBaseCase {
         ));
     }
 
-    @Test
     void getSuccess() throws ContainerException {
         Player player = dataSet.pushPlayer("test", 5, 2);
 
@@ -268,7 +259,6 @@ class CharactersServiceTest extends GameBaseCase {
         assertEquals("test", character.character().name());
     }
 
-    @Test
     void deleteNotFound() {
         assertThrows(
             EntityNotFoundException.class,
@@ -285,7 +275,6 @@ class CharactersServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void deleteSuccess() throws Exception {
         Player player = dataSet.pushPlayer("test", 5, 2);
 

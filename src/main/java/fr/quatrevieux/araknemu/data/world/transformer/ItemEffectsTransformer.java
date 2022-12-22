@@ -34,7 +34,7 @@ import java.util.List;
  */
 public final class ItemEffectsTransformer implements Transformer<List<ItemTemplateEffectEntry>> {
     @Override
-    public @NonNull String serialize(@PolyNull List<ItemTemplateEffectEntry> value) {
+    public String serialize(List<ItemTemplateEffectEntry> value) {
         if (value == null || value.isEmpty()) {
             return "";
         }
@@ -59,7 +59,7 @@ public final class ItemEffectsTransformer implements Transformer<List<ItemTempla
     }
 
     @Override
-    public @NonNull List<ItemTemplateEffectEntry> unserialize(@PolyNull String serialize) {
+    public List<ItemTemplateEffectEntry> unserialize(String serialize) {
         if (serialize == null || serialize.isEmpty()) {
             return new ArrayList<>();
         }

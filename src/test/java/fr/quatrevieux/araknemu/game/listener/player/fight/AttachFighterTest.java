@@ -33,7 +33,6 @@ class AttachFighterTest extends FightBaseCase {
     private AttachFighter listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -42,7 +41,6 @@ class AttachFighterTest extends FightBaseCase {
         listener = new AttachFighter(gamePlayer());
     }
 
-    @Test
     void onFightJoined() throws Exception {
         Fight fight = createFight(false);
         PlayerFighter fighter = makePlayerFighter(gamePlayer());

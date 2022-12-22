@@ -40,7 +40,6 @@ class BoostedSpellConstraintsTest extends GameBaseCase {
     private BoostedSpellConstraints constraints;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -55,12 +54,10 @@ class BoostedSpellConstraintsTest extends GameBaseCase {
         );
     }
 
-    @Test
     void rangeNotModified() {
         assertSame(spell.constraints().range(), constraints.range());
     }
 
-    @Test
     void rangeBoosted() {
         boostMap.put(SpellsBoosts.Modifier.RANGE, 5);
 
@@ -68,12 +65,10 @@ class BoostedSpellConstraintsTest extends GameBaseCase {
         assertEquals(11, constraints.range().max());
     }
 
-    @Test
     void lineLaunch() {
         assertFalse(constraints.lineLaunch());
     }
 
-    @Test
     void lineOfSigh() {
         assertTrue(constraints.lineOfSight());
 
@@ -82,30 +77,25 @@ class BoostedSpellConstraintsTest extends GameBaseCase {
         assertFalse(constraints.lineOfSight());
     }
 
-    @Test
     void freeCell() {
         assertFalse(constraints.freeCell());
     }
 
-    @Test
     void states() {
         assertSame(spell.constraints().requiredStates(), constraints.requiredStates());
         assertSame(spell.constraints().forbiddenStates(), constraints.forbiddenStates());
     }
 
-    @Test
     void launchDelay() {
         assertEquals(0, constraints.launchDelay());
     }
 
-    @Test
     void launchPerTurn() {
         boostMap.put(SpellsBoosts.Modifier.LAUNCH_PER_TURN, 10);
 
         assertEquals(10, constraints.launchPerTurn());
     }
 
-    @Test
     void launchDelayDefault() throws ContainerException {
         boostMap = new HashMap<>();
         modifiers = new MapSpellModifiers(17, boostMap);
@@ -118,7 +108,6 @@ class BoostedSpellConstraintsTest extends GameBaseCase {
         assertEquals(2, constraints.launchDelay());
     }
 
-    @Test
     void launchDelayFixed() throws ContainerException {
         boostMap = new HashMap<>();
         modifiers = new MapSpellModifiers(17, boostMap);
@@ -133,7 +122,6 @@ class BoostedSpellConstraintsTest extends GameBaseCase {
         assertEquals(1, constraints.launchDelay());
     }
 
-    @Test
     void launchDelayReduce() throws ContainerException {
         boostMap = new HashMap<>();
         modifiers = new MapSpellModifiers(17, boostMap);
@@ -148,7 +136,6 @@ class BoostedSpellConstraintsTest extends GameBaseCase {
         assertEquals(1, constraints.launchDelay());
     }
 
-    @Test
     void launchDelayReduceAndFixed() throws ContainerException {
         boostMap = new HashMap<>();
         modifiers = new MapSpellModifiers(17, boostMap);
@@ -164,7 +151,6 @@ class BoostedSpellConstraintsTest extends GameBaseCase {
         assertEquals(0, constraints.launchDelay());
     }
 
-    @Test
     void launchPerTarget() throws ContainerException {
         boostMap = new HashMap<>();
         modifiers = new MapSpellModifiers(2, boostMap);

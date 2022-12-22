@@ -36,7 +36,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameServiceTest extends GameBaseCase {
-    @Test
     void boot() throws BootException {
         PreloadableService foo = Mockito.mock(PreloadableService.class);
         Mockito.when(foo.name()).thenReturn("foo");

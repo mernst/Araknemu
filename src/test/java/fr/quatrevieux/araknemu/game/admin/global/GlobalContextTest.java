@@ -33,20 +33,17 @@ class GlobalContextTest extends CommandTestCase {
     private GlobalContext context;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         context = new GlobalContext();
     }
 
-    @Test
     void commands() throws CommandNotFoundException {
         assertInstanceOf(Echo.class, context.command("echo"));
         assertContainsType(Echo.class, context.commands());
     }
 
-    @Test
     void register() throws CommandNotFoundException {
         Command command = Mockito.mock(Command.class);
         Mockito.when(command.name()).thenReturn("mocked");

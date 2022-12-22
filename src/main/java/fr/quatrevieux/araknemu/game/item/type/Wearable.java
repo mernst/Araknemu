@@ -32,7 +32,7 @@ import java.util.List;
  * Class for simple equipments
  */
 public final class Wearable extends AbstractEquipment {
-    public Wearable(ItemTemplate template, ItemType type, @Nullable GameItemSet set, List<CharacteristicEffect> characteristics, List<SpecialEffect> specials) {
+    public Wearable(ItemTemplate template, ItemType type, GameItemSet set, List<CharacteristicEffect> characteristics, List<SpecialEffect> specials) {
         super(template, type, set, characteristics, specials);
     }
 }

@@ -43,7 +43,6 @@ class MoveTest extends GameBaseCase {
     private ExplorationPlayer player;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,7 +51,6 @@ class MoveTest extends GameBaseCase {
         player = explorationPlayer();
     }
 
-    @Test
     void success() throws Exception {
         Move move = new Move(
             player,
@@ -77,7 +75,6 @@ class MoveTest extends GameBaseCase {
         assertEquals(Direction.SOUTH_WEST, player.orientation());
     }
 
-    @Test
     void data() throws Exception {
         Move move = new Move(
             player,
@@ -95,7 +92,6 @@ class MoveTest extends GameBaseCase {
         assertEquals(ActionType.MOVE, move.type());
     }
 
-    @Test
     void invalidPath() {
         Move move = new Move(
             player,
@@ -109,7 +105,6 @@ class MoveTest extends GameBaseCase {
         assertFalse(player.interactions().busy());
     }
 
-    @Test
     void notOnMap() {
         Move move = new Move(
             player,
@@ -125,7 +120,6 @@ class MoveTest extends GameBaseCase {
         assertFalse(player.interactions().busy());
     }
 
-    @Test
     void invalidStartCell() {
         player.changeCell(123);
 
@@ -141,7 +135,6 @@ class MoveTest extends GameBaseCase {
         assertFalse(player.interactions().busy());
     }
 
-    @Test
     void moveWithCancel() throws Exception {
         Move move = new Move(
             player,
@@ -166,7 +159,6 @@ class MoveTest extends GameBaseCase {
         assertEquals(Direction.SOUTH_EAST, player.orientation());
     }
 
-    @Test
     void moveWithCancelNull() throws Exception {
         Move move = new Move(
             player,
@@ -190,7 +182,6 @@ class MoveTest extends GameBaseCase {
         assertEquals(279, player.position().cell());
     }
 
-    @Test
     void moveWithCancelNotInPath() throws Exception {
         Move move = new Move(
             player,
@@ -214,7 +205,6 @@ class MoveTest extends GameBaseCase {
         assertEquals(279, player.position().cell());
     }
 
-    @Test
     void blockedPath() throws PathException, ContainerException {
         player.changeMap(container.get(ExplorationMapService.class).load(10340), 123);
         player.move(player.map().get(169), Direction.SOUTH_EAST);
@@ -232,7 +222,6 @@ class MoveTest extends GameBaseCase {
         requestStack.assertLast(GameActionResponse.NOOP);
     }
 
-    @Test
     void pathValidationExceptionWithErrorPacket() throws PathException, ContainerException {
         player.changeMap(container.get(ExplorationMapService.class).load(10340), 123);
         player.move(player.map().get(169), Direction.SOUTH_EAST);
@@ -252,7 +241,6 @@ class MoveTest extends GameBaseCase {
         requestStack.assertAll(GameActionResponse.NOOP, "my error");
     }
 
-    @Test
     void pathValidationExceptionWithoutErrorPacket() throws PathException, ContainerException {
         player.changeMap(container.get(ExplorationMapService.class).load(10340), 123);
         player.move(player.map().get(169), Direction.SOUTH_EAST);
@@ -272,7 +260,6 @@ class MoveTest extends GameBaseCase {
         requestStack.assertAll(GameActionResponse.NOOP);
     }
 
-    @Test
     void functionalSuccess() throws Exception {
         handlePacket(new GameActionRequest(ActionType.MOVE.id(), new String[] {"bftdgl"}));
 
@@ -283,7 +270,6 @@ class MoveTest extends GameBaseCase {
         assertTrue(player.interactions().busy());
     }
 
-    @Test
     void functionalOverweight() throws Exception {
         dataSet.pushItemTemplates();
 
@@ -295,7 +281,6 @@ class MoveTest extends GameBaseCase {
         requestStack.assertAll(GameActionResponse.NOOP, Error.cantMoveOverweight());
     }
 
-    @Test
     void functionalSuccessWithRestrictedDirections() throws Exception {
         player.player().restrictions().unset(Restrictions.Restriction.ALLOW_MOVE_ALL_DIRECTION);
         requestStack.clear();
@@ -306,7 +291,6 @@ class MoveTest extends GameBaseCase {
         assertTrue(player.interactions().busy());
     }
 
-    @Test
     void functionalErrorWithRestrictedDirections() throws Exception {
         player.player().restrictions().unset(Restrictions.Restriction.ALLOW_MOVE_ALL_DIRECTION);
         requestStack.clear();

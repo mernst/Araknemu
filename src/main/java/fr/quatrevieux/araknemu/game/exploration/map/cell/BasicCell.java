@@ -29,7 +29,7 @@ import org.checkerframework.checker.index.qual.NonNegative;
  * Simple cell type
  */
 public final class BasicCell extends AbstractCellDataAdapter<ExplorationMap, ExplorationMapCell> implements ExplorationMapCell {
-    public BasicCell(@NonNegative int id, CellData template, ExplorationMap map) {
+    public BasicCell(int id, CellData template, ExplorationMap map) {
         super(map, template, id);
     }
 

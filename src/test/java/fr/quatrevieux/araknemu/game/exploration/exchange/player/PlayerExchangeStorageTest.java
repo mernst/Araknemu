@@ -38,7 +38,6 @@ class PlayerExchangeStorageTest extends GameBaseCase {
     private ExplorationPlayer player;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -50,12 +49,10 @@ class PlayerExchangeStorageTest extends GameBaseCase {
         storage = new PlayerExchangeStorage(player = explorationPlayer());
     }
 
-    @Test
     void owner() {
         assertSame(player, storage.owner());
     }
 
-    @Test
     void kamas() {
         AtomicReference<KamasChanged> ref = new AtomicReference<>();
         storage.dispatcher().add(KamasChanged.class, ref::set);
@@ -69,7 +66,6 @@ class PlayerExchangeStorageTest extends GameBaseCase {
         assertSame(storage, ref.get().storage());
     }
 
-    @Test
     void accepted() {
         AtomicReference<AcceptChanged> ref = new AtomicReference<>();
         storage.dispatcher().add(AcceptChanged.class, ref::set);
@@ -88,7 +84,6 @@ class PlayerExchangeStorageTest extends GameBaseCase {
         assertSame(storage, ref.get().storage());
     }
 
-    @Test
     void setItem() {
         AtomicReference<ItemMoved> ref = new AtomicReference<>();
         storage.dispatcher().add(ItemMoved.class, ref::set);

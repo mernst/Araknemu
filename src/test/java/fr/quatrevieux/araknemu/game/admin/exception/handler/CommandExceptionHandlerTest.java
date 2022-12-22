@@ -36,7 +36,6 @@ class CommandExceptionHandlerTest extends CommandTestCase {
     private CommandExceptionHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -44,7 +43,6 @@ class CommandExceptionHandlerTest extends CommandTestCase {
         performer = new PerformerWrapper(user());
     }
 
-    @Test
     void withoutArguments() throws AdminException, SQLException {
         CommandException exception = new CommandException("foo", "bar");
 
@@ -56,7 +54,6 @@ class CommandExceptionHandlerTest extends CommandTestCase {
         );
     }
 
-    @Test
     void withArgumentsAndContext() throws AdminException, SQLException {
         CommandException exception = new CommandException("foo", "bar");
         CommandParser.Arguments arguments = new CommandParser.Arguments("", "@John", "foo", new ArrayList<>(), null);

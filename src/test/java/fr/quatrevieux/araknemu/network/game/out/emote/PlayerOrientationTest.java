@@ -30,7 +30,6 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerOrientationTest extends GameBaseCase {
-    @Test
     void generate() throws SQLException, ContainerException {
         ExplorationPlayer exploration = explorationPlayer();
 

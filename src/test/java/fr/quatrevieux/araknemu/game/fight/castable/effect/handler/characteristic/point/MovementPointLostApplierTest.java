@@ -57,7 +57,6 @@ class MovementPointLostApplierTest extends FightBaseCase {
     private MovementPointLostApplier applier;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -75,7 +74,6 @@ class MovementPointLostApplierTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void computeLostPointsWithoutPoints() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Method method = AbstractPointLostApplier.class.getDeclaredMethod("computePointLost", FighterData.class, FighterData.class, int.class);
         method.setAccessible(true);
@@ -85,7 +83,6 @@ class MovementPointLostApplierTest extends FightBaseCase {
         assertEquals(0, method.invoke(applier, caster, target, 100));
     }
 
-    @Test
     void computeLostPointsWithoutMaxPointsButBoosted() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Method method = AbstractPointLostApplier.class.getDeclaredMethod("computePointLost", FighterData.class, FighterData.class, int.class);
         method.setAccessible(true);
@@ -97,8 +94,6 @@ class MovementPointLostApplierTest extends FightBaseCase {
         assertEquals(2, method.invoke(applier, caster, target, 2));
     }
 
-    @ParameterizedTest
-    @MethodSource("provideLostPoints")
     void computeLostPoints(int casterWisdom, int targetResistance, int baseValue, double expectedAvg) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Method method = AbstractPointLostApplier.class.getDeclaredMethod("computePointLost", FighterData.class, FighterData.class, int.class);
         method.setAccessible(true);
@@ -150,7 +145,6 @@ class MovementPointLostApplierTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyNotDodged() {
         caster.characteristics().alter(Characteristic.WISDOM, 100);
         requestStack.clear();
@@ -181,7 +175,6 @@ class MovementPointLostApplierTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyOnActiveTurnShouldRemoveAPFromTurn() {
         caster.characteristics().alter(Characteristic.WISDOM, 1000);
         caster.characteristics().alter(Characteristic.RESISTANCE_MOVEMENT_POINT, -1000);
@@ -215,7 +208,6 @@ class MovementPointLostApplierTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyTotallyDodged() {
         target.characteristics().alter(Characteristic.RESISTANCE_MOVEMENT_POINT, 100);
         requestStack.clear();
@@ -241,7 +233,6 @@ class MovementPointLostApplierTest extends FightBaseCase {
         requestStack.assertAll(new ActionEffect(309, caster, target.id(), 2));
     }
 
-    @Test
     void applyPartiallyDodged() {
         requestStack.clear();
 

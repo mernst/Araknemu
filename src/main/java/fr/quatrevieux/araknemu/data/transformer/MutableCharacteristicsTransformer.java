@@ -31,12 +31,12 @@ public final class MutableCharacteristicsTransformer implements Transformer<Muta
     private final CharacteristicsTransformer inner = new CharacteristicsTransformer();
 
     @Override
-    public @PolyNull String serialize(@PolyNull MutableCharacteristics value) {
+    public String serialize(MutableCharacteristics value) {
         return inner.serialize(value);
     }
 
     @Override
-    public @NonNull MutableCharacteristics unserialize(@PolyNull String serialize) {
+    public MutableCharacteristics unserialize(String serialize) {
         final MutableCharacteristics characteristics = inner.unserialize(serialize);
 
         if (characteristics == null) {

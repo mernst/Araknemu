@@ -49,7 +49,6 @@ class ReduceDamageHandlerTest extends FightBaseCase {
     private ReduceDamageHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -66,7 +65,6 @@ class ReduceDamageHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handle() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -82,7 +80,6 @@ class ReduceDamageHandlerTest extends FightBaseCase {
         assertThrows(UnsupportedOperationException.class, () -> handler.handle(scope, scope.effects().get(0)));
     }
 
-    @Test
     void buff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -108,7 +105,6 @@ class ReduceDamageHandlerTest extends FightBaseCase {
         assertEquals(5, found.get().remainingTurns());
     }
 
-    @Test
     void onDirectDamageWillReduce() {
         SpellEffect returnEffect = Mockito.mock(SpellEffect.class);
 
@@ -124,7 +120,6 @@ class ReduceDamageHandlerTest extends FightBaseCase {
         assertEquals(6, damage.value());
     }
 
-    @Test
     void onDirectDamageWithNegativeStatsWillNotReduce() {
         caster.characteristics().alter(Characteristic.STRENGTH, -1000);
 
@@ -142,7 +137,6 @@ class ReduceDamageHandlerTest extends FightBaseCase {
         assertEquals(20, damage.value());
     }
 
-    @Test
     void onDirectDamageWillUseDamageElementCharacteristicAndIntelligence() {
         SpellEffect returnEffect = Mockito.mock(SpellEffect.class);
 
@@ -169,7 +163,6 @@ class ReduceDamageHandlerTest extends FightBaseCase {
         assertEquals(15, damage.reducedDamage());
     }
 
-    @Test
     void onDirectDamageWillIgnoreUnsupportedElement() {
         SpellEffect returnEffect = Mockito.mock(SpellEffect.class);
 
@@ -187,7 +180,6 @@ class ReduceDamageHandlerTest extends FightBaseCase {
         assertEquals(10, damage.reducedDamage());
     }
 
-    @Test
     void onIndirectDamageShouldBeIgnored() {
         SpellEffect returnEffect = Mockito.mock(SpellEffect.class);
 

@@ -61,7 +61,7 @@ public final class GameActionRequest implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "GA";
         }
     }

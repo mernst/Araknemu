@@ -88,7 +88,7 @@ public final class ProxyPassiveFighter implements FighterData {
     }
 
     @Override
-    public @Positive int level() {
+    public int level() {
         return fighter.level();
     }
 
@@ -118,7 +118,7 @@ public final class ProxyPassiveFighter implements FighterData {
     }
 
     @Override
-    public boolean equals(@Nullable Object o) {
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
@@ -138,7 +138,7 @@ public final class ProxyPassiveFighter implements FighterData {
     }
 
     @Override
-    public @Nullable FighterData invoker() {
+    public FighterData invoker() {
         return fighter.invoker();
     }
 }

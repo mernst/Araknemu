@@ -38,7 +38,6 @@ class AddExperienceTest extends FightBaseCase {
     private PlayerFighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,7 +48,6 @@ class AddExperienceTest extends FightBaseCase {
         fighter = player.fighter();
     }
 
-    @Test
     void applyWithoutXp() {
         DropReward reward = new DropReward(RewardType.WINNER, fighter, Collections.emptyList());
 
@@ -60,7 +58,6 @@ class AddExperienceTest extends FightBaseCase {
         assertEquals(lastXp, player.properties().experience().current());
     }
 
-    @Test
     void applyWithXp() {
         DropReward reward = new DropReward(RewardType.WINNER, fighter, Collections.emptyList());
         reward.setXp(1000);
@@ -72,7 +69,6 @@ class AddExperienceTest extends FightBaseCase {
         assertEquals(1000, player.properties().experience().current() - lastXp);
     }
 
-    @Test
     void applyOnMonster() {
         MonsterFighter fighter = (MonsterFighter) fight.team(1).fighters().stream().findFirst().get();
 

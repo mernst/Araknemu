@@ -36,7 +36,6 @@ class SendSpellLearnedTest extends GameBaseCase {
     private SendLearnedSpell listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -48,7 +47,6 @@ class SendSpellLearnedTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onJoinGame() throws SQLException, ContainerException {
         PlayerSpell entity = new PlayerSpell(1, 2, false);
 

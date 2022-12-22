@@ -41,7 +41,6 @@ class UpgradeSpellTest extends FightBaseCase {
     private UpgradeSpell handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,7 +51,6 @@ class UpgradeSpellTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void upgradeSpellNotFound() throws Exception {
         try {
             handler.handle(session, new SpellUpgrade(-1));
@@ -63,7 +61,6 @@ class UpgradeSpellTest extends FightBaseCase {
         }
     }
 
-    @Test
     void upgradeNotEnoughPoints() throws Exception {
         this.<Player>readField(gamePlayer(), "entity").setSpellPoints(0);
 
@@ -76,7 +73,6 @@ class UpgradeSpellTest extends FightBaseCase {
         }
     }
 
-    @Test
     void upgradeSuccess() throws Exception {
         this.<Player>readField(gamePlayer(), "entity").setSpellPoints(5);
 
@@ -98,7 +94,6 @@ class UpgradeSpellTest extends FightBaseCase {
     /**
      * See issue https://github.com/Arakne/Araknemu/issues/151
      */
-    @Test
     void upgradeLearnedSpell() throws Exception {
         this.<Player>readField(gamePlayer(), "entity").setSpellPoints(5);
         gamePlayer().properties().spells().learn(container.get(SpellService.class).get(202));
@@ -119,7 +114,6 @@ class UpgradeSpellTest extends FightBaseCase {
         assertEquals(2, dataSet.refresh(entry.entity()).level());
     }
 
-    @Test
     void functionalErrorOnActiveFight() throws Exception {
         this.<Player>readField(gamePlayer(), "entity").setSpellPoints(5);
 
@@ -129,7 +123,6 @@ class UpgradeSpellTest extends FightBaseCase {
         assertErrorPacket(Error.cantDoDuringFight(), () -> handlePacket(new SpellUpgrade(3)));
     }
 
-    @Test
     void functionalSuccess() throws Exception {
         this.<Player>readField(gamePlayer(), "entity").setSpellPoints(5);
 

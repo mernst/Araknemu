@@ -85,7 +85,7 @@ public final class BankService {
      * Get the cost for open the bank account
      */
     @SuppressWarnings("return") // bankCostPerEntry is positive, but cannot be annotated
-    @NonNegative long cost(AccountBank bank) {
+    long cost(AccountBank bank) {
         return (long) (itemRepository.count(bank) * configuration.bankCostPerEntry());
     }
 }

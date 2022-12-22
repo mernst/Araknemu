@@ -34,7 +34,6 @@ class AreaRepositoryCacheTest extends GameBaseCase {
     private AreaRepositoryCache repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -45,12 +44,10 @@ class AreaRepositoryCacheTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(-5));
     }
 
-    @Test
     void getSame() {
         assertSame(
             repository.get(12),
@@ -58,7 +55,6 @@ class AreaRepositoryCacheTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getUsingEntity() {
         assertSame(
             repository.get(new Area(12, null, 0)),
@@ -66,19 +62,16 @@ class AreaRepositoryCacheTest extends GameBaseCase {
         );
     }
 
-    @Test
     void hasNotLoaded() {
         assertTrue(repository.has(new Area(12, null, 0)));
         assertFalse(repository.has(new Area(-1, null, 0)));
     }
 
-    @Test
     void hasCached() {
         repository.get(12);
         assertTrue(repository.has(new Area(12, null, 0)));
     }
 
-    @Test
     void all() {
         Collection<Area> templates = repository.all();
 

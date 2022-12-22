@@ -153,7 +153,7 @@ public final class ContextCommandParser implements CommandParser {
     private static class State {
         private final AdminPerformer performer;
         private final String line;
-        private @NonNegative @LTEqLengthOf("line") int cursor = 0;
+        private int cursor = 0;
 
         public State(AdminPerformer performer, String line) {
             this.performer = performer;

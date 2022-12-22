@@ -30,7 +30,6 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ProxyPassiveFighterTest extends AiBaseCase {
-    @Test
     void baseValues() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(152))
@@ -55,7 +54,6 @@ class ProxyPassiveFighterTest extends AiBaseCase {
         assertEquals(ai.enemy().get().hidden(), fighter.hidden());
     }
 
-    @Test
     void equalsAndHashCode() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(152))
@@ -77,7 +75,6 @@ class ProxyPassiveFighterTest extends AiBaseCase {
         assertNotEquals(fighter.hashCode(), ai.fighter().hashCode());
     }
 
-    @Test
     void withOverriddenMap() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(152))

@@ -30,11 +30,11 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  */
 public final class CharacteristicEffect implements ItemEffect {
     private final Effect effect;
-    private final @NonNegative int value;
+    private final int value;
     private final int multiplier;
     private final Characteristic characteristic;
 
-    public CharacteristicEffect(Effect effect, @NonNegative int value, int multiplier, Characteristic characteristic) {
+    public CharacteristicEffect(Effect effect, int value, int multiplier, Characteristic characteristic) {
         this.effect = effect;
         this.value = value;
         this.multiplier = multiplier;
@@ -56,7 +56,7 @@ public final class CharacteristicEffect implements ItemEffect {
      *
      * @see CharacteristicEffect#boost() for the real characteristic value
      */
-    public @NonNegative int value() {
+    public int value() {
         return value;
     }
 
@@ -77,7 +77,7 @@ public final class CharacteristicEffect implements ItemEffect {
     }
 
     @Override
-    public boolean equals(@Nullable Object o) {
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }

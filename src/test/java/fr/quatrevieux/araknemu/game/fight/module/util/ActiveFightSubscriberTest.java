@@ -42,7 +42,6 @@ class ActiveFightSubscriberTest extends FightBaseCase {
         }
     }
 
-    @Test
     void listeners() throws Exception {
         Fight fight = createFight(false);
 

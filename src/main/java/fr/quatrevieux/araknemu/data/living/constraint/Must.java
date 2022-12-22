@@ -28,9 +28,9 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  * @param <T> The entity type
  * @param <E> The error type
  */
-public final class Must<T, @NonNull E> implements EntityConstraint<T, E> {
+public final class Must<T, E> implements EntityConstraint<T, E> {
     private final EntityConstraint<T, E>[] constraints;
-    private @Nullable E error;
+    private E error;
 
     public Must(EntityConstraint<T, E>[] constraints) {
         this.constraints = constraints;
@@ -51,7 +51,7 @@ public final class Must<T, @NonNull E> implements EntityConstraint<T, E> {
     }
 
     @Override
-    public @Nullable E error() {
+    public E error() {
         return error;
     }
 }

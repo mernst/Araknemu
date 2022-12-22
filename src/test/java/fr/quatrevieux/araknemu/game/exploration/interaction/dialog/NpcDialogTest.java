@@ -49,7 +49,6 @@ class NpcDialogTest extends GameBaseCase {
     private DialogService dialogService;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -62,7 +61,6 @@ class NpcDialogTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void startSuccess() {
         GameNpc npc = service.get(472);
         player.interactions().start(new NpcDialog(player, npc));
@@ -80,7 +78,6 @@ class NpcDialogTest extends GameBaseCase {
         );
     }
 
-    @Test
     void startNoQuestionFound() throws ContainerException {
         GameNpc npc = new GameNpc(
             dataSet.refresh(new Npc(472, 0, null, null, null)),
@@ -96,7 +93,6 @@ class NpcDialogTest extends GameBaseCase {
         requestStack.assertAll(new DialogCreationError());
     }
 
-    @Test
     void forQuestionNotStarted() {
         GameNpc npc = new GameNpc(
             dataSet.refresh(new Npc(472, 0, null, null, null)),
@@ -108,7 +104,6 @@ class NpcDialogTest extends GameBaseCase {
         assertThrows(IllegalArgumentException.class, () -> new NpcDialog(player, npc).forQuestion(1));
     }
 
-    @Test
     void stop() {
         GameNpc npc = service.get(472);
         player.interactions().start(new NpcDialog(player, npc));
@@ -124,7 +119,6 @@ class NpcDialogTest extends GameBaseCase {
         requestStack.assertLast(new DialogLeaved());
     }
 
-    @Test
     void next() {
         GameNpc npc = service.get(472);
         player.interactions().start(new NpcDialog(player, npc));
@@ -137,7 +131,6 @@ class NpcDialogTest extends GameBaseCase {
         requestStack.assertLast(new DialogQuestion(question, question.responses(player), player));
     }
 
-    @Test
     void answerNextQuestion() {
         GameNpc npc = service.get(472);
         player.interactions().start(new NpcDialog(player, npc));
@@ -153,7 +146,6 @@ class NpcDialogTest extends GameBaseCase {
         requestStack.assertLast(new DialogQuestion(question, question.responses(player), player));
     }
 
-    @Test
     void answerLeave() {
         GameNpc npc = service.get(472);
         player.interactions().start(new NpcDialog(player, npc));
@@ -169,7 +161,6 @@ class NpcDialogTest extends GameBaseCase {
         assertFalse(player.interactions().busy());
     }
 
-    @Test
     void answerInvalidResponse() {
         GameNpc npc = service.get(472);
         player.interactions().start(new NpcDialog(player, npc));
@@ -179,7 +170,6 @@ class NpcDialogTest extends GameBaseCase {
         assertThrows(NoSuchElementException.class, () -> dialog.forQuestion(3786).answer(1111));
     }
 
-    @Test
     void forQuestionInvalid() {
         GameNpc npc = service.get(472);
         player.interactions().start(new NpcDialog(player, npc));

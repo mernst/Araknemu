@@ -44,7 +44,6 @@ class ValidateRestrictedDirectionsTest extends GameBaseCase {
     private ExplorationMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -58,7 +57,6 @@ class ValidateRestrictedDirectionsTest extends GameBaseCase {
         validator = new ValidateRestrictedDirections();
     }
 
-    @Test
     void validateWithoutRestrictions() throws SQLException, ContainerException {
         ExplorationPlayer player = explorationPlayer();
 
@@ -75,7 +73,6 @@ class ValidateRestrictedDirectionsTest extends GameBaseCase {
         assertSame(path, validator.validate(move, move.path()));
     }
 
-    @Test
     void validateWithRestrictionsSuccess() throws SQLException, ContainerException {
         ExplorationPlayer player = explorationPlayer();
         player.player().restrictions().unset(Restrictions.Restriction.ALLOW_MOVE_ALL_DIRECTION);
@@ -93,7 +90,6 @@ class ValidateRestrictedDirectionsTest extends GameBaseCase {
         assertSame(path, validator.validate(move, move.path()));
     }
 
-    @Test
     void validateWithRestrictionsError() throws SQLException, ContainerException {
         ExplorationPlayer player = explorationPlayer();
         player.player().restrictions().unset(Restrictions.Restriction.ALLOW_MOVE_ALL_DIRECTION);

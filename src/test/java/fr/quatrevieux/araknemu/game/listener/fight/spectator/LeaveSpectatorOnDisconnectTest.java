@@ -34,7 +34,6 @@ import java.util.concurrent.atomic.AtomicReference;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LeaveSpectatorOnDisconnectTest extends FightBaseCase {
-    @Test
     void onDisconnected() throws Exception {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         fight.state(PlacementState.class).startFight();

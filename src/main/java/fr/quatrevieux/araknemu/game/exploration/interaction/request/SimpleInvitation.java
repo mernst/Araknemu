@@ -48,7 +48,7 @@ public final class SimpleInvitation implements Invitation {
     }
 
     @Override
-    public @Nullable Interaction start() {
+    public Interaction start() {
         if (!handler.check(this)) {
             return null;
         }

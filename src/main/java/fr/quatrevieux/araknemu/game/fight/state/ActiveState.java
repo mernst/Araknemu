@@ -57,8 +57,8 @@ import java.util.Collections;
 public final class ActiveState implements LeavableState, EventsSubscriber {
     private final FighterOrderStrategy orderStrategy;
 
-    private @MonotonicNonNull Fight fight;
-    private Listener @MonotonicNonNull[] listeners;
+    private Fight fight;
+    private Listener[] listeners;
 
     public ActiveState(FighterOrderStrategy orderStrategy) {
         this.orderStrategy = orderStrategy;

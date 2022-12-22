@@ -39,7 +39,6 @@ class NpcExchangeServiceTest extends GameBaseCase {
     private NpcExchangeService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -57,14 +56,12 @@ class NpcExchangeServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void loadExchangeNotAvailable() {
         NpcTemplate template = container.get(NpcTemplateRepository.class).get(848);
 
         assertFalse(service.load(template).isPresent());
     }
 
-    @Test
     void loadSuccess() throws SQLException {
         dataSet.pushNpcExchange(1, 878, 100, "39:2", 0, "2422");
 
@@ -74,7 +71,6 @@ class NpcExchangeServiceTest extends GameBaseCase {
         assertSame(service.load(template).get(), service.load(template).get());
     }
 
-    @Test
     void preload() throws SQLException {
         dataSet.pushNpcExchange(1, 878, 100, "39:2", 0, "2422");
         dataSet.pushNpcExchange(2, 878, 0, "2411", 1000, "2414;2425:2");
@@ -91,7 +87,6 @@ class NpcExchangeServiceTest extends GameBaseCase {
         assertTrue(service.load(container.get(NpcTemplateRepository.class).get(878)).isPresent());
     }
 
-    @Test
     void name() {
         assertEquals("npc.exchange", service.name());
     }

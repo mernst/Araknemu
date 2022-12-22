@@ -74,9 +74,9 @@ public final class EffectArea {
     }
 
     private final Type type;
-    private final @IntRange(from = 0, to = 63) int size;
+    private final int size;
 
-    public EffectArea(Type type, @IntRange(from = 0, to = 63) int size) {
+    public EffectArea(Type type, int size) {
         this.type = type;
         this.size = size;
     }
@@ -85,7 +85,7 @@ public final class EffectArea {
         return type;
     }
 
-    public @IntRange(from = 0, to = 63) int size() {
+    public int size() {
         return size;
     }
 
@@ -95,7 +95,7 @@ public final class EffectArea {
     }
 
     @Override
-    public boolean equals(@Nullable Object o) {
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }

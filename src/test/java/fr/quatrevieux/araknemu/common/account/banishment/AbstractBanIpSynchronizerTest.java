@@ -44,7 +44,6 @@ class AbstractBanIpSynchronizerTest extends GameBaseCase {
     private BanIpService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -58,7 +57,6 @@ class AbstractBanIpSynchronizerTest extends GameBaseCase {
     }
 
     @Override
-    @AfterEach
     public void tearDown() throws fr.quatrevieux.araknemu.core.di.ContainerException {
         synchronizer.stopPulling();
         try {
@@ -67,7 +65,6 @@ class AbstractBanIpSynchronizerTest extends GameBaseCase {
         super.tearDown();
     }
 
-    @Test
     void pulling() throws InterruptedException {
         dataSet.push(new BanIp(new IPAddressString("145.32.213.5"), Instant.now(), null, "cause", -1));
 
@@ -86,7 +83,6 @@ class AbstractBanIpSynchronizerTest extends GameBaseCase {
         assertFalse(service.isIpBanned(new IPAddressString("145.32.213.7")));
     }
 
-    @Test
     void listenerShouldKickSessionIfBanned() {
         container.get(ListenerAggregate.class).add(synchronizer.ipBannedListener());
 
@@ -99,7 +95,6 @@ class AbstractBanIpSynchronizerTest extends GameBaseCase {
         assertFalse(session.isAlive());
     }
 
-    @Test
     void listenerShouldKickSessionIfBannedOnPullingNewRule() throws InterruptedException {
         container.get(ListenerAggregate.class).add(synchronizer.ipBannedListener());
         synchronizer.startPulling();

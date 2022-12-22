@@ -29,12 +29,12 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  */
 public final class VoidHydrator implements ArgumentsHydrator {
     @Override
-    public <@Nullable A> A hydrate(Command<A> command, @Nullable A commandArguments, CommandParser.Arguments parsedArguments) throws Exception {
+    public <A> A hydrate(Command<A> command, A commandArguments, CommandParser.Arguments parsedArguments) throws Exception {
         return null;
     }
 
     @Override
-    public <A> boolean supports(Command<A> command, @Nullable A commandArguments) {
+    public <A> boolean supports(Command<A> command, A commandArguments) {
         if (commandArguments != null) {
             return false;
         }

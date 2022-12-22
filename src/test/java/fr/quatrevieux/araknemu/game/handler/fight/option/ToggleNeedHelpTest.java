@@ -42,7 +42,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 // @todo test with unmodifiable team options
 class ToggleNeedHelpTest extends FightBaseCase {
-    @RepeatedIfExceptionsTest
     void shouldSendInformationMessageOnToggle() throws Exception {
         Fight fight = createFight();
 
@@ -55,7 +54,6 @@ class ToggleNeedHelpTest extends FightBaseCase {
         assertFalse(fight.team(0).options().needHelp());
     }
 
-    @Test
     void shouldIgnoreIfNotTeamLeader() throws Exception {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         fight.state(PlacementState.class).joinTeam(makePlayerFighter(gamePlayer()), fight.team(0));
@@ -66,7 +64,6 @@ class ToggleNeedHelpTest extends FightBaseCase {
         assertFalse(fight.team(0).options().needHelp());
     }
 
-    @Test
     void shouldIgnoreIfActiveFight() throws Exception {
         Fight fight = createFight();
         fight.nextState();
@@ -77,12 +74,10 @@ class ToggleNeedHelpTest extends FightBaseCase {
         assertFalse(fight.team(0).options().needHelp());
     }
 
-    @Test
     void notInFightShouldFail() {
         assertThrows(CloseImmediately.class, () -> handlePacket(new NeedHelpRequest()));
     }
 
-    @Test
     void fromExplorationMapShouldSendTeamOption() throws Exception {
         explorationPlayer().changeMap(container.get(ExplorationMapService.class).load(10340), 150);
         ToggleNeedHelp handler = new ToggleNeedHelp();

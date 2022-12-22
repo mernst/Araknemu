@@ -40,7 +40,6 @@ class SendFightsCountTest extends FightBaseCase {
     private ExplorationMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,7 +51,6 @@ class SendFightsCountTest extends FightBaseCase {
         explorationPlayer().changeMap(map, 123);
     }
 
-    @Test
     void onFightStopped() throws SQLException, ContainerException {
         createSimpleFight(map);
 

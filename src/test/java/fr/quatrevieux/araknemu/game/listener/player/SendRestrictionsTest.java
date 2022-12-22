@@ -32,14 +32,12 @@ class SendRestrictionsTest extends GameBaseCase {
     private SendRestrictions listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         listener = new SendRestrictions(gamePlayer());
     }
 
-    @Test
     void onRestrictionsChanged() throws SQLException, ContainerException {
         listener.on(new RestrictionsChanged(gamePlayer().restrictions()));
 

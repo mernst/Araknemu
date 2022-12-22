@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AlignmentTest {
-    @Test
     void byId() {
         assertEquals(Alignment.NONE, Alignment.byId(-1));
         assertEquals(Alignment.NEUTRAL, Alignment.byId(0));

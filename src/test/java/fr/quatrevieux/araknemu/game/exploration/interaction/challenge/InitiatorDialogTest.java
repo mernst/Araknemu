@@ -40,7 +40,6 @@ class InitiatorDialogTest extends GameBaseCase {
     private InitiatorDialog dialog;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -56,17 +55,14 @@ class InitiatorDialogTest extends GameBaseCase {
         dialog = new InitiatorDialog(invitation);
     }
 
-    @Test
     void self() {
         assertSame(initiator, dialog.self());
     }
 
-    @Test
     void interlocutor() {
         assertSame(challenger, dialog.interlocutor());
     }
 
-    @Test
     void stop() {
         dialog.stop();
 
@@ -78,7 +74,6 @@ class InitiatorDialogTest extends GameBaseCase {
         );
     }
 
-    @Test
     void decline() {
         dialog.decline();
 

@@ -39,7 +39,6 @@ class SimulatorTest extends FightBaseCase {
     private PlayerFighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -51,7 +50,6 @@ class SimulatorTest extends FightBaseCase {
         simulator = container.get(Simulator.class);
     }
 
-    @Test
     void simulateWithoutSupportedEffects() {
         simulator = new Simulator(new BaseCriticalityStrategy());
 
@@ -69,7 +67,6 @@ class SimulatorTest extends FightBaseCase {
         assertEquals(other.fighter().cell(), simulation.target());
     }
 
-    @Test
     void simulateAttack() {
         CastSimulation simulation = simulator.simulate(fighter.spells().get(3), fighter, other.fighter().cell());
 
@@ -81,7 +78,6 @@ class SimulatorTest extends FightBaseCase {
         assertEquals(0, simulation.selfBoost());
     }
 
-    @Test
     void simulateAttackShouldIgnoreHiddenFighter() {
         other.fighter().setHidden(other.fighter(), true);
         CastSimulation simulation = simulator.simulate(fighter.spells().get(3), fighter, other.fighter().cell());
@@ -94,7 +90,6 @@ class SimulatorTest extends FightBaseCase {
         assertEquals(0, simulation.selfBoost());
     }
 
-    @Test
     void simulateAttackShouldLimitByTargetLife() {
         fighter.characteristics().alter(Characteristic.FIXED_DAMAGE, 1000);
 
@@ -103,7 +98,6 @@ class SimulatorTest extends FightBaseCase {
         assertEquals(-50, simulation.enemiesLife());
     }
 
-    @Test
     void simulateBoost() {
         CastSimulation simulation = simulator.simulate(getSpell(42, 1), fighter, fighter.cell());
 
@@ -115,7 +109,6 @@ class SimulatorTest extends FightBaseCase {
         assertEquals(79, simulation.selfBoost(), .1);
     }
 
-    @Test
     void simulateWithProbableEffects() {
         CastSimulation simulation = simulator.simulate(getSpell(109, 5), fighter, other.fighter().cell());
 
@@ -127,7 +120,6 @@ class SimulatorTest extends FightBaseCase {
         assertEquals(0, simulation.selfBoost());
     }
 
-    @Test
     void simulateShouldHandleCriticality() {
         assertEquals(-23.5, simulator.simulate(getSpell(109, 5), fighter, other.fighter().cell()).enemiesLife(), 0.1);
 
@@ -135,7 +127,6 @@ class SimulatorTest extends FightBaseCase {
         assertEquals(-36.5, simulator.simulate(getSpell(109, 5), fighter, other.fighter().cell()).enemiesLife(), 0.1);
     }
 
-    @Test
     void simulatePoison() {
         CastSimulation simulation = simulator.simulate(getSpell(181, 5), fighter, other.fighter().cell());
 
@@ -147,7 +138,6 @@ class SimulatorTest extends FightBaseCase {
         assertEquals(0, simulation.selfBoost());
     }
 
-    @Test
     void simulateWithoutCriticalEffects() {
         assertEquals(-2000, simulator.simulate(getSpell(468, 5), fighter, other.fighter().cell()).enemiesBoost());
     }

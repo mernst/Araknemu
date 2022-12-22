@@ -43,7 +43,6 @@ class NpcStoreExchangeTest extends GameBaseCase {
     private NpcStore store;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -55,21 +54,18 @@ class NpcStoreExchangeTest extends GameBaseCase {
         exchange = new NpcStoreExchange(player, npc, store);
     }
 
-    @Test
     void send() {
         exchange.send("test");
 
         requestStack.assertLast("test");
     }
 
-    @Test
     void initialize() {
         exchange.initialize();
 
         requestStack.assertLast(new NpcStoreList(store.available()));
     }
 
-    @Test
     void start() {
         requestStack.clear();
         player.interactions().start(exchange.dialog());
@@ -80,12 +76,10 @@ class NpcStoreExchangeTest extends GameBaseCase {
         );
     }
 
-    @Test
     void dialog() {
         assertInstanceOf(StoreDialog.class, exchange.dialog());
     }
 
-    @Test
     void stop() {
         player.interactions().start(exchange.dialog());
         exchange.stop();
@@ -93,7 +87,6 @@ class NpcStoreExchangeTest extends GameBaseCase {
         assertFalse(player.interactions().busy());
     }
 
-    @Test
     void buySuccess() {
         exchange.buy(39, 2);
 
@@ -102,7 +95,6 @@ class NpcStoreExchangeTest extends GameBaseCase {
         assertEquals(2, player.inventory().get(1).quantity());
     }
 
-    @Test
     void buyInvalidQuantity() {
         assertThrows(IllegalArgumentException.class, () -> exchange.buy(39, -5));
 
@@ -110,7 +102,6 @@ class NpcStoreExchangeTest extends GameBaseCase {
         assertEquals(0, player.inventory().stream().count());
     }
 
-    @Test
     void buyInvalidItem() {
         assertThrows(IllegalArgumentException.class, () -> exchange.buy(404, 1));
 
@@ -118,7 +109,6 @@ class NpcStoreExchangeTest extends GameBaseCase {
         assertEquals(0, player.inventory().stream().count());
     }
 
-    @Test
     void buyNotEnoughKamas() {
         assertThrows(IllegalArgumentException.class, () -> exchange.buy(39, 1000000));
 
@@ -126,13 +116,11 @@ class NpcStoreExchangeTest extends GameBaseCase {
         assertEquals(0, player.inventory().stream().count());
     }
 
-    @Test
     void sellItemNotFound() {
         assertThrows(InventoryException.class, () -> exchange.sell(404, 5));
         assertEquals(15225, player.inventory().kamas());
     }
 
-    @Test
     void sellTooMany() {
         ItemEntry entry = player.inventory().add(container.get(ItemService.class).create(39), 3);
 
@@ -141,7 +129,6 @@ class NpcStoreExchangeTest extends GameBaseCase {
         assertEquals(3, entry.quantity());
     }
 
-    @Test
     void sellSuccess() {
         ItemEntry entry = player.inventory().add(container.get(ItemService.class).create(39), 3);
 
@@ -150,7 +137,6 @@ class NpcStoreExchangeTest extends GameBaseCase {
         assertEquals(1, entry.quantity());
     }
 
-    @Test
     void sellSuccessWithoutKamas() {
         ItemEntry entry = player.inventory().add(container.get(ItemService.class).create(8213), 100);
 

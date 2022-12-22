@@ -34,13 +34,13 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 public final class LaunchFirework implements BlockingAction {
     private final ExplorationPlayer player;
 
-    private final @NonNegative int cell;
+    private final int cell;
     private final int animation;
     private final int size;
 
     private int id;
 
-    public LaunchFirework(ExplorationPlayer player, @NonNegative int cell, int animation, int size) {
+    public LaunchFirework(ExplorationPlayer player, int cell, int animation, int size) {
         this.player = player;
         this.cell = cell;
         this.animation = animation;
@@ -59,7 +59,7 @@ public final class LaunchFirework implements BlockingAction {
     }
 
     @Override
-    public void cancel(@Nullable String argument) {
+    public void cancel(String argument) {
         // No-op method : nothing is done at end of firework
         // Because cancel is called when stopping actions, no exception should be thrown
     }

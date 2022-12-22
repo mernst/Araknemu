@@ -45,7 +45,6 @@ class DefaultDispatcherTest {
         }
     }
 
-    @Test
     void dispatchFound() throws Exception {
         RealmSession session = new RealmSession(new ConfigurableSession(new DummyChannel()));
         MyPacket packet = new MyPacket();
@@ -59,7 +58,6 @@ class DefaultDispatcherTest {
         assertSame(packet, handler.packet);
     }
 
-    @Test
     void dispatchNotFound() {
         DefaultDispatcher<RealmSession> dispatcher = new DefaultDispatcher<>(new MyHandler[]{});
 

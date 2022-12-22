@@ -42,7 +42,6 @@ public class FunctionalFromExplorationMapTest extends FightBaseCase {
     private ExplorationMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -54,7 +53,6 @@ public class FunctionalFromExplorationMapTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void createFightWillShowFight() throws SQLException, ContainerException {
         Fight fight = createSimpleFight(map);
 
@@ -66,7 +64,6 @@ public class FunctionalFromExplorationMapTest extends FightBaseCase {
         );
     }
 
-    @Test
     void startFightWillHideFight() throws SQLException, ContainerException {
         Fight fight = createSimpleFight(map);
         requestStack.clear();
@@ -76,7 +73,6 @@ public class FunctionalFromExplorationMapTest extends FightBaseCase {
         requestStack.assertLast(new HideFight(fight));
     }
 
-    @Test
     void joinFightWillRemoveSpriteFromMap() throws Exception {
         Fight fight = createSimpleFight(map);
 
@@ -99,7 +95,6 @@ public class FunctionalFromExplorationMapTest extends FightBaseCase {
         );
     }
 
-    @Test
     void leaveFightWillRemoveFromTeam() throws Exception {
         Fight fight = createSimpleFight(map);
 
@@ -120,7 +115,6 @@ public class FunctionalFromExplorationMapTest extends FightBaseCase {
         );
     }
 
-    @Test
     void leaveFightLeaderWillCancelFight() throws Exception {
         Fight fight = createSimpleFight(map);
         requestStack.clear();
@@ -135,7 +129,6 @@ public class FunctionalFromExplorationMapTest extends FightBaseCase {
         );
     }
 
-    @Test
     void finishFightWillRemoveFight() throws Exception {
         Fight fight = createSimpleFight(map);
         fight.state(PlacementState.class).startFight();

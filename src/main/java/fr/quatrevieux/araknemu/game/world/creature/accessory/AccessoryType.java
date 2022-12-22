@@ -45,16 +45,16 @@ public enum AccessoryType {
 
     private static final int[] SLOT_IDS = Arrays.stream(values()).mapToInt(AccessoryType::slot).toArray();
 
-    private final @IntRange(from = 0, to = InventorySlots.SLOT_MAX) int slot;
+    private final int slot;
 
-    AccessoryType(@IntRange(from = 0, to = InventorySlots.SLOT_MAX) int slot) {
+    AccessoryType(int slot) {
         this.slot = slot;
     }
 
     /**
      * Get the related inventory slot
      */
-    public @IntRange(from = 0, to = InventorySlots.SLOT_MAX) int slot() {
+    public int slot() {
         return slot;
     }
 

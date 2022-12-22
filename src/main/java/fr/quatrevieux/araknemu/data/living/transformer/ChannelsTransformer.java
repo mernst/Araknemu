@@ -32,7 +32,7 @@ import java.util.Set;
  */
 public final class ChannelsTransformer implements Transformer<Set<ChannelType>> {
     @Override
-    public @NonNull String serialize(@PolyNull Set<ChannelType> value) {
+    public String serialize(Set<ChannelType> value) {
         if (value == null || value.isEmpty()) {
             return "";
         }
@@ -47,7 +47,7 @@ public final class ChannelsTransformer implements Transformer<Set<ChannelType>> 
     }
 
     @Override
-    public @NonNull Set<ChannelType> unserialize(@PolyNull String serialize) {
+    public Set<ChannelType> unserialize(String serialize) {
         final Set<ChannelType> channels = EnumSet.noneOf(ChannelType.class);
 
         if (serialize == null || serialize.isEmpty()) {

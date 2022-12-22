@@ -30,14 +30,12 @@ class GetterResolverTest extends GameBaseCase {
     private ExplorationPlayer player;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         player = explorationPlayer();
     }
 
-    @Test
     void resolver() {
         GetterResolver resolver = new GetterResolver("id", ExplorationPlayer::id);
 

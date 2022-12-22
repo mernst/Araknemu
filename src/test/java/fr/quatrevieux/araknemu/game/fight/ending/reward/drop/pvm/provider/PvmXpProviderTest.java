@@ -41,7 +41,6 @@ class PvmXpProviderTest extends FightBaseCase {
     private List<Fighter> monsterFighters;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -53,7 +52,6 @@ class PvmXpProviderTest extends FightBaseCase {
         monsterFighters = new ArrayList<>(fight.team(1).fighters());
     }
 
-    @Test
     void withOneMonster() {
         EndFightResults results = new EndFightResults(
             fight,
@@ -67,7 +65,6 @@ class PvmXpProviderTest extends FightBaseCase {
         assertEquals(25, reward.xp());
     }
 
-    @Test
     void withoutMonster() {
         EndFightResults results = new EndFightResults(
             fight,
@@ -81,7 +78,6 @@ class PvmXpProviderTest extends FightBaseCase {
         assertEquals(0, reward.xp());
     }
 
-    @Test
     void withTwoMonsters() {
         EndFightResults results = new EndFightResults(
             fight,
@@ -96,7 +92,6 @@ class PvmXpProviderTest extends FightBaseCase {
         assertEquals(241, reward.xp());
     }
 
-    @Test
     void rate() {
         EndFightResults results = new EndFightResults(
             fight,
@@ -110,7 +105,6 @@ class PvmXpProviderTest extends FightBaseCase {
         assertEquals(604, reward.xp());
     }
 
-    @Test
     void withMultipleWinners() {
         assertEquals(20, xpForMultipleWinners(2));
         assertEquals(21, xpForMultipleWinners(3));
@@ -121,7 +115,6 @@ class PvmXpProviderTest extends FightBaseCase {
         assertEquals(47, xpForMultipleWinners(8));
     }
 
-    @Test
     void withMultipleMonsters() {
         assertEquals(55, xpForMultipleMonsters(2));
         assertEquals(89, xpForMultipleMonsters(3));
@@ -133,7 +126,6 @@ class PvmXpProviderTest extends FightBaseCase {
         assertEquals(249, xpForMultipleMonsters(8));
     }
 
-    @Test
     void wisdomBonus() {
         player.properties().characteristics().base().add(Characteristic.WISDOM, 100);
 

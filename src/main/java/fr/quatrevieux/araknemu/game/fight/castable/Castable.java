@@ -42,17 +42,17 @@ public interface Castable {
     /**
      * The AP cost
      */
-    public @NonNegative int apCost();
+    public int apCost();
 
     /**
      * Percent of chance for get critical hit
      */
-    public @NonNegative int criticalHit();
+    public int criticalHit();
 
     /**
      * Percent of chance for get a critical failure
      */
-    public @NonNegative int criticalFailure();
+    public int criticalFailure();
 
     /**
      * Does the castable range is modifiable ?

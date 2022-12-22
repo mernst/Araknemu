@@ -29,17 +29,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class SetOrientationRequestTest {
     private SetOrientationRequest.Parser parser;
 
-    @BeforeEach
     void setUp() {
         parser = new SetOrientationRequest.Parser();
     }
 
-    @Test
     void invalidDirection() {
         assertThrows(ParsePacketException.class, () -> parser.parse("9"));
     }
 
-    @Test
     void parse() {
         assertEquals(Direction.SOUTH_EAST, parser.parse("1").orientation());
         assertEquals(Direction.WEST, parser.parse("4").orientation());

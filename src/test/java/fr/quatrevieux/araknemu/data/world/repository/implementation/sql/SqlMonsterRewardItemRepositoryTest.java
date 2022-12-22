@@ -35,7 +35,6 @@ class SqlMonsterRewardItemRepositoryTest extends GameBaseCase {
     private SqlMonsterRewardItemRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -44,13 +43,11 @@ class SqlMonsterRewardItemRepositoryTest extends GameBaseCase {
         repository = new SqlMonsterRewardItemRepository(new ConnectionPoolExecutor(app.database().get("game")));
     }
 
-    @Test
     void notImplemented() {
         assertThrows(UnsupportedOperationException.class, () -> repository.get(new MonsterRewardItem(0, 0, 0, 0, 0)));
         assertThrows(UnsupportedOperationException.class, () -> repository.has(new MonsterRewardItem(0, 0, 0, 0, 0)));
     }
 
-    @Test
     void byMonster() {
         List<MonsterRewardItem> items = repository.byMonster(36);
 
@@ -63,12 +60,10 @@ class SqlMonsterRewardItemRepositoryTest extends GameBaseCase {
         assertEquals(1d, items.get(0).rate());
     }
 
-    @Test
     void byMonsterNotFound() {
         assertCount(0, repository.byMonster(-5));
     }
 
-    @Test
     void all() {
         Map<Integer, List<MonsterRewardItem>> rewards = repository.all();
 

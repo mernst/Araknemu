@@ -58,7 +58,6 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RealmModuleTest {
-    @Test
     void instances() throws IOException, ContainerException, SQLException {
         Configuration configuration = new DefaultConfiguration(
             new IniDriver(new Ini(new File("src/test/test_config.ini")))

@@ -29,7 +29,6 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AddSpritesTest extends GameBaseCase {
-    @Test
     void generateWithPlayer() throws Exception {
         dataSet
             .pushItemTemplates()

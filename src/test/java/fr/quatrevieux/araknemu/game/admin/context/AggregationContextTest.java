@@ -41,7 +41,6 @@ class AggregationContextTest extends GameBaseCase {
     private AggregationContext context;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -51,7 +50,6 @@ class AggregationContextTest extends GameBaseCase {
         );
     }
 
-    @Test
     void command() throws CommandNotFoundException {
         assertInstanceOf(Help.class, context.command("help"));
         assertInstanceOf(Shutdown.class, context.command("shutdown"));
@@ -60,7 +58,6 @@ class AggregationContextTest extends GameBaseCase {
         assertThrows(CommandNotFoundException.class, () -> context.command("not_found"));
     }
 
-    @Test
     void commands() {
         Collection<Command> commands = context.commands();
 
@@ -71,7 +68,6 @@ class AggregationContextTest extends GameBaseCase {
         assertFalse(commands.stream().anyMatch(fr.quatrevieux.araknemu.game.admin.server.Info.class::isInstance));
     }
 
-    @Test
     void child() throws ContextNotFoundException {
         assertInstanceOf(AccountContext.class, context.child("account"));
         assertThrows(ContextException.class, () -> context.child("not_found"));

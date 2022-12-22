@@ -33,10 +33,10 @@ import org.checkerframework.common.value.qual.MinLen;
  * https://github.com/Emudofus/Dofus/blob/1.29/dofus/aks/Spells.as#L19
  */
 public final class SpellMove implements Packet {
-    private final @NonNegative int spellId;
-    private final @IntRange(from = 1, to = 63) int position;
+    private final int spellId;
+    private final int position;
 
-    public SpellMove(@NonNegative int spellId, @IntRange(from = 1, to = 63) int position) {
+    public SpellMove(int spellId, int position) {
         this.spellId = spellId;
         this.position = position;
     }
@@ -46,7 +46,7 @@ public final class SpellMove implements Packet {
      *
      * @see fr.quatrevieux.araknemu.data.world.entity.SpellTemplate#id()
      */
-    public @NonNegative int spellId() {
+    public int spellId() {
         return spellId;
     }
 
@@ -56,7 +56,7 @@ public final class SpellMove implements Packet {
      *
      * @see fr.quatrevieux.araknemu.data.living.entity.player.PlayerSpell#position()
      */
-    public @IntRange(from = 1, to = 63) int position() {
+    public int position() {
         return position;
     }
 
@@ -76,7 +76,7 @@ public final class SpellMove implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "SM";
         }
     }

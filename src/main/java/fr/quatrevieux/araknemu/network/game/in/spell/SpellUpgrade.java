@@ -32,13 +32,13 @@ import org.checkerframework.common.value.qual.MinLen;
  * https://github.com/Emudofus/Dofus/blob/1.29/dofus/aks/Spells.as#L23
  */
 public final class SpellUpgrade implements Packet {
-    private final @NonNegative int spellId;
+    private final int spellId;
 
-    public SpellUpgrade(@NonNegative int spellId) {
+    public SpellUpgrade(int spellId) {
         this.spellId = spellId;
     }
 
-    public @NonNegative int spellId() {
+    public int spellId() {
         return spellId;
     }
 
@@ -49,7 +49,7 @@ public final class SpellUpgrade implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "SB";
         }
     }

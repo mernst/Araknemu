@@ -29,7 +29,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SupportTest extends AiBaseCase {
-    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -38,7 +37,6 @@ class SupportTest extends AiBaseCase {
         dataSet.pushFunctionalSpells();
     }
 
-    @Test
     void shouldBoostAlliesFirst() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210).spell(27, 5))
@@ -54,7 +52,6 @@ class SupportTest extends AiBaseCase {
         assertInCastEffectArea(198);
     }
 
-    @Test
     void shouldMoveForPerformBestBoost() {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(298).spell(126))
@@ -66,7 +63,6 @@ class SupportTest extends AiBaseCase {
         assertEquals(313, fighter.cell().id());
     }
 
-    @Test
     void shouldAttackIfCantBoost() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210))
@@ -79,7 +75,6 @@ class SupportTest extends AiBaseCase {
         assertCast(3, 165);
     }
 
-    @Test
     void shouldHealIfCantBoost() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210).spell(130))
@@ -93,7 +88,6 @@ class SupportTest extends AiBaseCase {
         assertInCastEffectArea(198);
     }
 
-    @Test
     void shouldDebuffIfCantHeal() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(298).spell(81))
@@ -107,7 +101,6 @@ class SupportTest extends AiBaseCase {
         assertCast(81, 256);
     }
 
-    @Test
     void shouldMoveNearAlliesIfCantAttack() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210))
@@ -125,7 +118,6 @@ class SupportTest extends AiBaseCase {
         assertEquals(2, distance(getAlly(1)));
     }
 
-    @Test
     void shouldDoNothingOtherwise() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210))
@@ -139,7 +131,6 @@ class SupportTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void shouldBoostSelfFirstWhenAlone() {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210).spell(27, 5))
@@ -151,7 +142,6 @@ class SupportTest extends AiBaseCase {
         assertCast(6, 210);
     }
 
-    @Test
     void shouldAttackIfCantBoostSelfWhenAlone() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210))
@@ -163,7 +153,6 @@ class SupportTest extends AiBaseCase {
         assertCast(3, 165);
     }
 
-    @Test
     void shouldMoveFarEnemiesIfCantAttackButWithEnemyInRangeWhenAlone() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210))
@@ -180,7 +169,6 @@ class SupportTest extends AiBaseCase {
         assertEquals(6, distance(getEnemy(0)));
     }
 
-    @Test
     void shouldDoNothingOtherwiseWhenAlone() throws NoSuchFieldException, IllegalAccessException {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210))

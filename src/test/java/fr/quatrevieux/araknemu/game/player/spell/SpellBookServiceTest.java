@@ -44,7 +44,6 @@ class SpellBookServiceTest extends GameBaseCase {
     private SpellBookService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -61,7 +60,6 @@ class SpellBookServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void listeners() {
         ListenerAggregate dispatcher = new DefaultListenerAggregate();
         dispatcher.register(service);
@@ -69,7 +67,6 @@ class SpellBookServiceTest extends GameBaseCase {
         assertTrue(dispatcher.has(SetDefaultPositionSpellBook.class));
     }
 
-    @Test
     void playerLoadedListener() throws SQLException, ContainerException {
         ListenerAggregate dispatcher = new DefaultListenerAggregate();
         dispatcher.register(service);
@@ -86,7 +83,6 @@ class SpellBookServiceTest extends GameBaseCase {
         assertTrue(gamePlayer().dispatcher().has(SendAllSpellBoosts.class));
     }
 
-    @Test
     void loadWithOnlyClassSpell() throws ContainerException {
         Player player = dataSet.pushPlayer("Robert", 1, 2);
 
@@ -109,7 +105,6 @@ class SpellBookServiceTest extends GameBaseCase {
         assertEquals(63, entries.get(2).position());
     }
 
-    @Test
     void loadWithClassSpellUpdated() throws ContainerException {
         Player player = dataSet.pushPlayer("Robert", 1, 2);
 
@@ -136,7 +131,6 @@ class SpellBookServiceTest extends GameBaseCase {
         assertEquals(2, entries.get(2).position());
     }
 
-    @Test
     void loadWithLearnedSpell() throws ContainerException {
         Player player = dataSet.pushPlayer("Robert", 1, 2);
 

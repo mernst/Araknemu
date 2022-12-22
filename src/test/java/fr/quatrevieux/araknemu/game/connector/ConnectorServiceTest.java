@@ -34,7 +34,6 @@ class ConnectorServiceTest extends GameBaseCase {
     private ConnectorService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -44,7 +43,6 @@ class ConnectorServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void isLogged() throws ContainerException {
         assertFalse(service.isLogged(1));
 
@@ -59,7 +57,6 @@ class ConnectorServiceTest extends GameBaseCase {
         assertTrue(service.isLogged(1));
     }
 
-    @Test
     void token() throws ContainerException {
         String token = service.token(1);
 

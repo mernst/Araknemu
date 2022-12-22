@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ObjectUseRequestTest {
-    @Test
     void parseSelfUsage() {
         ObjectUseRequest request = new ObjectUseRequest.Parser().parse("123");
 
@@ -32,7 +31,6 @@ class ObjectUseRequestTest {
         assertFalse(request.isTarget());
     }
 
-    @Test
     void parseWithTarget() {
         ObjectUseRequest request = new ObjectUseRequest.Parser().parse("123|45|325");
 
@@ -42,7 +40,6 @@ class ObjectUseRequestTest {
         assertTrue(request.isTarget());
     }
 
-    @Test
     void parseWithCell() {
         ObjectUseRequest request = new ObjectUseRequest.Parser().parse("123||325");
 

@@ -30,11 +30,11 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  * Cell which trigger an action
  */
 public final class TriggerCell implements ExplorationMapCell {
-    private final @NonNegative int id;
+    private final int id;
     private final CellAction action;
     private final ExplorationMap map;
 
-    public TriggerCell(@NonNegative int id, CellAction action, ExplorationMap map) {
+    public TriggerCell(int id, CellAction action, ExplorationMap map) {
         this.id = id;
         this.action = action;
         this.map = map;
@@ -46,7 +46,7 @@ public final class TriggerCell implements ExplorationMapCell {
     }
 
     @Override
-    public @NonNegative int id() {
+    public int id() {
         return id;
     }
 
@@ -61,7 +61,7 @@ public final class TriggerCell implements ExplorationMapCell {
     }
 
     @Override
-    public boolean equals(@Nullable Object o) {
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }

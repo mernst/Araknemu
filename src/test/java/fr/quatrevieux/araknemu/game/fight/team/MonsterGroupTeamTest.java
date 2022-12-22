@@ -53,7 +53,6 @@ class MonsterGroupTeamTest extends FightBaseCase {
     private MonsterGroup group;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -90,7 +89,6 @@ class MonsterGroupTeamTest extends FightBaseCase {
         );
     }
 
-    @Test
     void values() {
         assertNull(team.leader());
         assertEquals(-503, team.id());
@@ -107,7 +105,6 @@ class MonsterGroupTeamTest extends FightBaseCase {
         assertFalse(team.options().needHelp());
     }
 
-    @Test
     void fighters() {
         assertContainsOnly(MonsterFighter.class, team.fighters());
         assertCount(2, team.fighters());
@@ -115,17 +112,14 @@ class MonsterGroupTeamTest extends FightBaseCase {
         assertArrayEquals(new int[] {20, 65}, team.fighters().stream().mapToInt(fighter -> fighter.life().current()).toArray());
     }
 
-    @Test
     void kick() {
         assertThrows(UnsupportedOperationException.class, () -> team.kick(Mockito.mock(Fighter.class)));
     }
 
-    @Test
     void join() {
         assertThrows(JoinFightException.class, () -> team.join(Mockito.mock(Fighter.class)));
     }
 
-    @Test
     void alive() throws Exception {
         Fight fight = createFight();
 

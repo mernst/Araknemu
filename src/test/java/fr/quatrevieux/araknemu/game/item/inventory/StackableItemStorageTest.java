@@ -46,7 +46,6 @@ class StackableItemStorageTest extends GameBaseCase {
     private ItemStorage<InventoryEntry> baseStorage;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -66,12 +65,10 @@ class StackableItemStorageTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getNotFound() {
         assertThrows(ItemNotFoundException.class, () -> storage.get(5));
     }
 
-    @Test
     void getFound() throws ContainerException, InventoryException {
         InventoryEntry entry = baseStorage.add(
             container.get(ItemService.class).create(39)
@@ -80,7 +77,6 @@ class StackableItemStorageTest extends GameBaseCase {
         assertSame(entry, storage.get(entry.id()));
     }
 
-    @Test
     void addNotExists() throws ContainerException, InventoryException {
         Item item = container.get(ItemService.class).create(39);
         InventoryEntry entry = storage.add(item);
@@ -94,7 +90,6 @@ class StackableItemStorageTest extends GameBaseCase {
         assertSame(entry, storage.find(item).get());
     }
 
-    @Test
     void addExistsWillStack() throws ContainerException, InventoryException {
         Item item = container.get(ItemService.class).create(39);
         InventoryEntry entry = storage.add(item, 5);
@@ -110,7 +105,6 @@ class StackableItemStorageTest extends GameBaseCase {
         );
     }
 
-    @Test
     void addExistsBadPositionWillNoStack() throws ContainerException, InventoryException {
         Item item = container.get(ItemService.class).create(39);
         InventoryEntry entry = storage.add(item, 5);
@@ -132,7 +126,6 @@ class StackableItemStorageTest extends GameBaseCase {
         );
     }
 
-    @Test
     void addExistsInvalidPositionWillChangeStackedItem() throws ContainerException, InventoryException {
         Item item = container.get(ItemService.class).create(39);
         InventoryEntry entry = storage.add(item);
@@ -155,7 +148,6 @@ class StackableItemStorageTest extends GameBaseCase {
         );
     }
 
-    @Test
     void addNotExistsAndBadPosition() throws ContainerException, InventoryException {
         Item item = container.get(ItemService.class).create(39);
         InventoryEntry entry = storage.add(item, 1, 5);
@@ -169,7 +161,6 @@ class StackableItemStorageTest extends GameBaseCase {
         assertFalse(storage.find(item).isPresent());
     }
 
-    @Test
     void createWithNotEmptyStorageWillIndexesItems() throws SQLException, ContainerException {
         GamePlayer player = gamePlayer();
 
@@ -193,7 +184,6 @@ class StackableItemStorageTest extends GameBaseCase {
         assertFalse(storage.find(container.get(ItemService.class).create(40)).isPresent());
     }
 
-    @Test
     void deleteWillUnindexItem() throws ContainerException, InventoryException {
         Item item = container.get(ItemService.class).create(39);
         InventoryEntry entry = storage.add(item);
@@ -204,7 +194,6 @@ class StackableItemStorageTest extends GameBaseCase {
         assertFalse(storage.iterator().hasNext());
     }
 
-    @Test
     void deleteNotIndexedItem() throws ContainerException, InventoryException {
         Item item = container.get(ItemService.class).create(39);
         InventoryEntry entry = storage.add(item, 1, 0);

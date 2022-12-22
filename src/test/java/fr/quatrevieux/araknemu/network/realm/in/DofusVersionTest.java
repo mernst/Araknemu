@@ -25,7 +25,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DofusVersionTest {
-    @Test
     void parser() {
         Packet version = DofusVersion.parser().parse("1.29.1");
 

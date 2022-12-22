@@ -33,7 +33,6 @@ class MapResolverTest extends GameBaseCase {
     private MapResolver resolver;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -46,7 +45,6 @@ class MapResolverTest extends GameBaseCase {
         resolver = new MapResolver(container.get(ExplorationMapService.class));
     }
 
-    @Test
     void resolve() throws SQLException {
         Target target = new Target(explorationPlayer().map(), 123);
 
@@ -56,7 +54,6 @@ class MapResolverTest extends GameBaseCase {
         assertEquals(container.get(ExplorationMapService.class).load(10340), target.map());
     }
 
-    @Test
     void resolveNotFound() {
         assertThrows(IllegalArgumentException.class, () -> resolver.resolve("0", new Target(null, 0)));
     }

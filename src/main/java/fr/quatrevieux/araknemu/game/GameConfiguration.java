@@ -199,28 +199,28 @@ public final class GameConfiguration {
         /**
          * Minimal length of player name
          */
-        public @Positive int nameMinLength() {
+        public int nameMinLength() {
             return pool.positiveInteger("player.name.minLength", 2);
         }
 
         /**
          * Maximal length of player name
          */
-        public @Positive int nameMaxLength() {
+        public int nameMaxLength() {
             return pool.positiveInteger("player.name.maxLength", 20);
         }
 
         /**
          * Maximal length for generated name
          */
-        public @Positive int maxNameGeneratedLength() {
+        public int maxNameGeneratedLength() {
             return pool.positiveInteger("player.name.generated.maxLength", 8);
         }
 
         /**
          * Minimal length for generated name
          */
-        public @Positive int minNameGeneratedLength() {
+        public int minNameGeneratedLength() {
             return pool.positiveInteger("player.name.generated.minLength", 4);
         }
 
@@ -237,7 +237,7 @@ public final class GameConfiguration {
          *
          * To change this value, you should also change in lang.swf, the value `C.SECRET_ANSWER_SINCE_LEVEL`
          */
-        public @Positive int deleteAnswerLevel() {
+        public int deleteAnswerLevel() {
             return pool.positiveInteger("player.deleteAnswerLevel", 20);
         }
 
@@ -245,7 +245,7 @@ public final class GameConfiguration {
          * Get the level up spell points
          * By default, value is set to 1
          */
-        public @NonNegative int spellBoostPointsOnLevelUp() {
+        public int spellBoostPointsOnLevelUp() {
             return pool.nonNegativeInteger("player.level.spellPoints", 1);
         }
 
@@ -253,7 +253,7 @@ public final class GameConfiguration {
          * Get the level up characteristic points
          * By default, value is set to 5
          */
-        public @NonNegative int characteristicPointsOnLevelUp() {
+        public int characteristicPointsOnLevelUp() {
             return pool.nonNegativeInteger("player.level.characteristicPoints", 5);
         }
 
@@ -262,7 +262,7 @@ public final class GameConfiguration {
          * This is the number of milliseconds required to regenerate 1 life point. Set to 0 to disable.
          * By default 1000 (1 LP / sec)
          */
-        public @NonNegative int baseLifeRegeneration() {
+        public int baseLifeRegeneration() {
             return pool.nonNegativeInteger("player.lifeRegeneration.base", 1000);
         }
 
@@ -304,7 +304,7 @@ public final class GameConfiguration {
         /**
          * Number of threads to use for the activity service
          */
-        public @Positive int threadsCount() {
+        public int threadsCount() {
             return pool.positiveInteger("activity.threadsCount", 1);
         }
 
@@ -321,7 +321,7 @@ public final class GameConfiguration {
          * The value must be an integer value between ]0, 100]
          * By default 25%
          */
-        public @IntRange(from = 0, to = 100) int monsterMovePercent() {
+        public int monsterMovePercent() {
             return pool.percent("activity.monsters.movePercent", 25);
         }
 
@@ -329,7 +329,7 @@ public final class GameConfiguration {
          * The maximum move distance for monsters
          * By default 5
          */
-        public @Positive int monsterMoveDistance() {
+        public int monsterMoveDistance() {
             return pool.positiveInteger("activity.monsters.moveDistance", 5);
         }
 
@@ -338,7 +338,7 @@ public final class GameConfiguration {
          * With a factor of 2, the respawn will be 2 times faster
          * By default 1
          */
-        public @Positive int monsterRespawnSpeedFactor() {
+        public int monsterRespawnSpeedFactor() {
             return pool.positiveInteger("activity.monsters.respawnSpeedFactor", 1);
         }
     }

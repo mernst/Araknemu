@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ParseUtilsTest {
-    @Test
     void parsePositive() {
         assertEquals(5, ParseUtils.parsePositiveInt("5"));
         assertEquals(1, ParseUtils.parsePositiveInt("1"));
@@ -37,7 +36,6 @@ class ParseUtilsTest {
         assertThrows(NumberFormatException.class, () -> ParseUtils.parsePositiveInt("invalid"));
     }
 
-    @Test
     void parseNonNegative() {
         assertEquals(5, ParseUtils.parseNonNegativeInt("5"));
         assertEquals(1, ParseUtils.parseNonNegativeInt("1"));
@@ -49,7 +47,6 @@ class ParseUtilsTest {
         assertThrows(NumberFormatException.class, () -> ParseUtils.parseNonNegativeInt("invalid"));
     }
 
-    @Test
     void parseNonNegativeWithBase() {
         assertEquals(11, ParseUtils.parseNonNegativeInt("b", 16));
         assertEquals(1, ParseUtils.parseNonNegativeInt("1", 16));
@@ -61,7 +58,6 @@ class ParseUtilsTest {
         assertThrows(NumberFormatException.class, () -> ParseUtils.parseNonNegativeInt("invalid", 16));
     }
 
-    @Test
     void parseNonNegativeOrNegativeOne() {
         assertEquals(5, ParseUtils.parseNonNegativeOrNegativeOneInt("5"));
         assertEquals(1, ParseUtils.parseNonNegativeOrNegativeOneInt("1"));
@@ -73,7 +69,6 @@ class ParseUtilsTest {
         assertThrows(NumberFormatException.class, () -> ParseUtils.parseNonNegativeOrNegativeOneInt("invalid"));
     }
 
-    @Test
     void parseDecimalChar() {
         assertEquals(0, ParseUtils.parseDecimalChar('0'));
         assertEquals(9, ParseUtils.parseDecimalChar('9'));
@@ -82,7 +77,6 @@ class ParseUtilsTest {
         assertThrows(IllegalArgumentException.class, () -> ParseUtils.parseDecimalChar('@'));
     }
 
-    @Test
     void parseDecimalCharWithString() {
         assertEquals(0, ParseUtils.parseDecimalChar("0"));
         assertEquals(9, ParseUtils.parseDecimalChar("9"));

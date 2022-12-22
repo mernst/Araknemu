@@ -55,7 +55,6 @@ class CommandHelpTest {
         }
     };
 
-    @Test
     void empty() {
         assertEquals(
             "cmd - No description\n" +
@@ -68,7 +67,6 @@ class CommandHelpTest {
         );
     }
 
-    @Test
     void synopsis() {
         assertEquals(
             "cmd - No description\n" +
@@ -81,7 +79,6 @@ class CommandHelpTest {
         );
     }
 
-    @Test
     void description() {
         assertEquals(
             "cmd - My cmd description\n" +
@@ -94,7 +91,6 @@ class CommandHelpTest {
         );
     }
 
-    @Test
     void option() {
         assertEquals(
             "cmd - No description\n" +
@@ -114,7 +110,6 @@ class CommandHelpTest {
         );
     }
 
-    @Test
     void example() {
         assertEquals(
             "cmd - No description\n" +
@@ -133,7 +128,6 @@ class CommandHelpTest {
         );
     }
 
-    @Test
     void exampleTooLongShouldBeAligned() {
         assertEquals(
             "cmd - No description\n" +
@@ -152,7 +146,6 @@ class CommandHelpTest {
         );
     }
 
-    @Test
     void seeAlso() {
         assertEquals(
             "cmd - No description\n" +
@@ -171,7 +164,6 @@ class CommandHelpTest {
         );
     }
 
-    @Test
     void line() {
         assertEquals(
             "cmd - No description\n" +
@@ -188,7 +180,6 @@ class CommandHelpTest {
         );
     }
 
-    @Test
     void hasSynopsis() {
         new CommandHelp(command).modify(b ->
             assertTrue(b.synopsis("cmd ARG").hasSynopsis())
@@ -199,7 +190,6 @@ class CommandHelpTest {
         );
     }
 
-    @Test
     void hasOption() {
         new CommandHelp(command).modify(b -> {
                 b.option("opt", "descr opt");
@@ -209,7 +199,6 @@ class CommandHelpTest {
         }).toString();
     }
 
-    @Test
     void modifyShouldNoModifyCurrentInstance() {
         CommandHelp help = new CommandHelp(command);
         CommandHelp modified = help.modify(builder -> builder.synopsis("cmd [options]").description("My description"));
@@ -237,7 +226,6 @@ class CommandHelpTest {
         );
     }
 
-    @Test
     void withSimpleVariable() {
         assertEquals(
             "cmd - My complex command description with My variable\n" +
@@ -262,7 +250,6 @@ class CommandHelpTest {
         );
     }
 
-    @Test
     void withStringVariable() {
         assertEquals(
             "cmd - Use constant : Constant value\n" +
@@ -286,7 +273,6 @@ class CommandHelpTest {
         FOO, BAR
     }
 
-    @Test
     void withEnumVariable() {
         assertEquals(
             "cmd - Use enum : FOO, BAR\n" +

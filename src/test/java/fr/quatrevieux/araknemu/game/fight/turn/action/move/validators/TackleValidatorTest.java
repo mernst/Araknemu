@@ -60,7 +60,6 @@ class TackleValidatorTest extends FightBaseCase {
     private TackleValidator validator;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -72,7 +71,6 @@ class TackleValidatorTest extends FightBaseCase {
         turn.start();
     }
 
-    @Test
     void validatePathWithNoEnnemy() {
         Path<FightCell> path = new Path<FightCell>(
             fight.map().decoder(),
@@ -93,7 +91,6 @@ class TackleValidatorTest extends FightBaseCase {
         assertSame(result, result2);
     }
 
-    @Test
     void validatePathWithEnnemyNotOnFirstStep() throws SQLException {
         Path<FightCell> path = new Path<FightCell>(
             fight.map().decoder(),
@@ -116,7 +113,6 @@ class TackleValidatorTest extends FightBaseCase {
         assertSame(result, result2);
     }
 
-    @Test
     void validatePathWithEnnemyOnFirstStepWithLessAgilityShouldNotBlock() throws SQLException {
         Path<FightCell> path = new Path<FightCell>(
             fight.map().decoder(),
@@ -140,7 +136,6 @@ class TackleValidatorTest extends FightBaseCase {
         assertSame(result, result2);
     }
 
-    @Test
     void validatePathWithEnnemyOnFirstStepWithMoreAgilityShouldBlockAndRemoveAP() throws SQLException {
         Path<FightCell> path = new Path<FightCell>(
             fight.map().decoder(),
@@ -168,7 +163,6 @@ class TackleValidatorTest extends FightBaseCase {
         assertEquals(185, result2.target().id());
     }
 
-    @Test
     void validateWithRootedStateShouldIgnoreTackle() throws SQLException {
         fighter.states().push(TackleValidator.STATE_ROOTED);
 
@@ -193,7 +187,6 @@ class TackleValidatorTest extends FightBaseCase {
         assertEquals(227, result.target().id());
     }
 
-    @Test
     void validateWithRootedStateEnemyShouldIgnoreTackle() throws SQLException {
 
         Path<FightCell> path = new Path<FightCell>(
@@ -218,7 +211,6 @@ class TackleValidatorTest extends FightBaseCase {
         assertEquals(227, result.target().id());
     }
 
-    @Test
     void validatePathWithEnnemyOnFirstStepWithSameAgilityShouldBlockHalfChance() throws SQLException {
         Path<FightCell> path = new Path<FightCell>(
             fight.map().decoder(),
@@ -250,7 +242,6 @@ class TackleValidatorTest extends FightBaseCase {
         assertBetween(40, 60, blockedCount);
     }
 
-    @Test
     void validatePathWithEnnemyOnFirstStepWithSlightlyLessAgilityShouldBlockLessThanHalfChance() throws SQLException {
         Path<FightCell> path = new Path<FightCell>(
             fight.map().decoder(),
@@ -283,7 +274,6 @@ class TackleValidatorTest extends FightBaseCase {
         assertBetween(20, 40, blockedCount);
     }
 
-    @Test
     void validatePathWithEnnemyOnFirstStepWithSlightlyMoreAgilityShouldBlockMoreThanHalfChance() throws SQLException {
         Path<FightCell> path = new Path<FightCell>(
             fight.map().decoder(),
@@ -316,8 +306,6 @@ class TackleValidatorTest extends FightBaseCase {
         assertBetween(70, 80, blockedCount);
     }
 
-    @MethodSource("provideEnemiesAndChances")
-    @ParameterizedTest
     void validateWithMultipleEnemiesShouldCombineChances(int[] enemiesCells, int chance) {
         FightBuilder builder = fightBuilder().addSelf(fb -> fb.cell(185));
 
@@ -365,8 +353,6 @@ class TackleValidatorTest extends FightBaseCase {
         );
     }
 
-    @MethodSource("provideAgilityAndChance")
-    @ParameterizedTest
     void computeTackle(int performerAgility, int enemyAgility, double escapeProbability) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         FightBuilder builder = fightBuilder()
             .addSelf(fb -> fb.cell(185).charac(Characteristic.AGILITY, performerAgility))
@@ -410,7 +396,6 @@ class TackleValidatorTest extends FightBaseCase {
         );
     }
 
-    @Test
     void functionalStopped() {
         other.fighter().move(fight.map().get(170));
         other.fighter().characteristics().alter(Characteristic.AGILITY, 500);
@@ -435,7 +420,6 @@ class TackleValidatorTest extends FightBaseCase {
         assertEquals(0, fighter.turn().points().actionPoints());
     }
 
-    @Test
     void functionalNotStopped() {
         other.fighter().move(fight.map().get(170));
         fighter.characteristics().alter(Characteristic.AGILITY, 500);

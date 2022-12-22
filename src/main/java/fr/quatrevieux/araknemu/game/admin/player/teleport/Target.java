@@ -31,9 +31,9 @@ import org.checkerframework.dataflow.qual.Pure;
  */
 public final class Target {
     private ExplorationMap map;
-    private @NonNegative int cell;
+    private int cell;
 
-    public Target(ExplorationMap map, @NonNegative int cell) {
+    public Target(ExplorationMap map, int cell) {
         this.map = map;
         this.cell = cell;
     }
@@ -49,14 +49,13 @@ public final class Target {
      * Define the target cell id
      * If the cell is not walkable, a walkable cell will be used instead
      */
-    public void setCell(@NonNegative int cell) {
+    public void setCell(int cell) {
         this.cell = cell;
     }
 
     /**
      * Get the target map
      */
-    @Pure
     public ExplorationMap map() {
         return map;
     }
@@ -66,7 +65,7 @@ public final class Target {
      * The target cell is always walkable
      */
     @SuppressWarnings("return") // Due to call to non-pure methods, check can't follow map() references
-    public @NonNegative @IndexFor("map()") int cell() {
+    public int cell() {
         final ExplorationMap map = map();
         // @todo better algo : get nearest walkable cell
         // @todo save real cell

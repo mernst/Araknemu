@@ -33,7 +33,7 @@ import java.util.function.Consumer;
  * Handle password hash algorithms
  */
 public final class PasswordManager {
-    private final List<@KeyFor("algorithms") String> availableAlgorithms;
+    private final List<String> availableAlgorithms;
     private final Map<String, HashAlgorithm> algorithms = new HashMap<>();
 
     public PasswordManager(List<String> availableAlgorithms, HashAlgorithm... algorithms) {
@@ -86,12 +86,11 @@ public final class PasswordManager {
     /**
      * Register a new algorithm
      */
-    @RequiresNonNull("algorithms")
-    public void register(@UnknownInitialization PasswordManager this, HashAlgorithm algorithm) {
+    public void register(PasswordManager this, HashAlgorithm algorithm) {
         algorithms.put(algorithm.name(), algorithm);
     }
 
-    private static List<@KeyFor("#1") String> checkAlgorithms(Map<String, HashAlgorithm> algorithms, List<String> availableAlgorithms) {
+    private static List<String> checkAlgorithms(Map<String, HashAlgorithm> algorithms, List<String> availableAlgorithms) {
         if (!algorithms.keySet().containsAll(availableAlgorithms)) {
             final List<String> invalidAlgorithms = new ArrayList<>(availableAlgorithms);
             invalidAlgorithms.removeAll(algorithms.keySet());
@@ -99,6 +98,6 @@ public final class PasswordManager {
             throw new IllegalArgumentException("Hash algorithms " + invalidAlgorithms + " are not registered");
         }
 
-        return (List<@KeyFor("algorithms") String>) availableAlgorithms;
+        return (List<String>) availableAlgorithms;
     }
 }

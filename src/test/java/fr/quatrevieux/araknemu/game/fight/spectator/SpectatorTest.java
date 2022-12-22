@@ -34,7 +34,6 @@ import java.util.concurrent.atomic.AtomicReference;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SpectatorTest extends FightBaseCase {
-    @Test
     void startSession() throws SQLException {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         Spectator spectator = new Spectator(gamePlayer(), fight);
@@ -44,7 +43,6 @@ class SpectatorTest extends FightBaseCase {
         assertSame(spectator, session.spectator());
     }
 
-    @Test
     void join() throws SQLException {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         Spectator spectator = new Spectator(gamePlayer(), fight);
@@ -66,7 +64,6 @@ class SpectatorTest extends FightBaseCase {
         requestStack.assertLast("foo");
     }
 
-    @Test
     void stopSession() throws SQLException {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         Spectator spectator = new Spectator(gamePlayer(), fight);
@@ -77,7 +74,6 @@ class SpectatorTest extends FightBaseCase {
         assertNull(session.spectator());
     }
 
-    @Test
     void stop() throws SQLException {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         Spectator spectator = new Spectator(gamePlayer(), fight);
@@ -88,7 +84,6 @@ class SpectatorTest extends FightBaseCase {
         assertNull(session.spectator());
     }
 
-    @Test
     void leave() throws SQLException {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         Spectator spectator = new Spectator(gamePlayer(), fight);
@@ -112,7 +107,6 @@ class SpectatorTest extends FightBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void getters() throws SQLException {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         Spectator spectator = new Spectator(gamePlayer(), fight);
@@ -122,7 +116,6 @@ class SpectatorTest extends FightBaseCase {
         assertSame(gamePlayer().properties(), spectator.properties());
     }
 
-    @Test
     void equalsAndHashCode() throws Exception {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         Spectator spectator = new Spectator(gamePlayer(), fight);

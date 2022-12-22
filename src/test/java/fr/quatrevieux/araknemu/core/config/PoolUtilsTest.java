@@ -37,7 +37,6 @@ class PoolUtilsTest {
     private PoolUtils pool;
     private Map<String, String> map = new HashMap<>();
 
-    @BeforeEach
     void setUp() {
         map.put("test_bool", "yes");
         map.put("test_int", "774");
@@ -69,23 +68,19 @@ class PoolUtilsTest {
         );
     }
 
-    @Test
     void has() {
         assertTrue(pool.has("test_bool"));
         assertFalse(pool.has("not_found"));
     }
 
-    @Test
     void get() {
         assertEquals("yes", pool.get("test_bool"));
     }
 
-    @Test
     void getAll() {
         assertEquals(Collections.singletonList("yes"), pool.getAll("test_bool"));
     }
 
-    @Test
     void iterator() {
         assertIterableEquals(
             map.entrySet(),
@@ -93,7 +88,6 @@ class PoolUtilsTest {
         );
     }
 
-    @Test
     void integer() {
         assertEquals(774, pool.integer("test_int"));
         assertEquals(0, pool.integer("not_found"));
@@ -102,7 +96,6 @@ class PoolUtilsTest {
         assertEquals(123, pool.integer("not_found", 123));
     }
 
-    @Test
     void bool() {
         assertTrue(pool.bool("test_bool"));
         assertFalse(pool.bool("not_found"));
@@ -111,7 +104,6 @@ class PoolUtilsTest {
         assertTrue(pool.bool("not_found", true));
     }
 
-    @Test
     void string() {
         assertEquals("foo", pool.string("test_string"));
         assertEquals("", pool.string("not_found"));
@@ -120,7 +112,6 @@ class PoolUtilsTest {
         assertEquals("bar", pool.string("not_found", "bar"));
     }
 
-    @Test
     void decimal() {
         assertEquals(1.5, pool.decimal("test_double"));
         assertEquals(0, pool.decimal("not_found"));
@@ -129,7 +120,6 @@ class PoolUtilsTest {
         assertEquals(2, pool.decimal("not_found", 2));
     }
 
-    @Test
     void duration() {
         map.put("simple", "15s");
         map.put("min_and_sec", "2m5s");

@@ -35,7 +35,6 @@ class StopDialogTest extends GameBaseCase {
     private ExplorationPlayer player;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -53,7 +52,6 @@ class StopDialogTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void functionalSuccess() throws Exception {
         handlePacket(new LeaveDialogRequest());
 
@@ -61,7 +59,6 @@ class StopDialogTest extends GameBaseCase {
         requestStack.assertLast(new DialogLeaved());
     }
 
-    @Test
     void functionalNotExploring() {
         session.setExploration(null);
 

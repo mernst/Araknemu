@@ -48,7 +48,6 @@ class AbstractEquipmentSlotTest extends GameBaseCase {
     private ItemStorage<InventoryEntry> storage;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -66,7 +65,6 @@ class AbstractEquipmentSlotTest extends GameBaseCase {
         };
     }
 
-    @Test
     void setSuccess() throws ContainerException, InventoryException {
         AtomicReference<EquipmentChanged> ref = new AtomicReference<>();
         dispatcher.add(EquipmentChanged.class, ref::set);
@@ -80,7 +78,6 @@ class AbstractEquipmentSlotTest extends GameBaseCase {
         assertEquals(1, ref.get().slot());
     }
 
-    @Test
     void setForNewEntry() throws ContainerException, InventoryException {
         AtomicReference<EquipmentChanged> ref = new AtomicReference<>();
         dispatcher.add(EquipmentChanged.class, ref::set);
@@ -96,7 +93,6 @@ class AbstractEquipmentSlotTest extends GameBaseCase {
         assertEquals(1, ref.get().slot());
     }
 
-    @Test
     void unset() throws ContainerException, InventoryException {
         AtomicReference<EquipmentChanged> ref = new AtomicReference<>();
         dispatcher.add(EquipmentChanged.class, ref::set);

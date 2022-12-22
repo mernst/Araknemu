@@ -31,7 +31,6 @@ import java.util.Collection;
 import static org.junit.jupiter.api.Assertions.fail;
 
 class CommonParserLoaderTest {
-    @Test
     void packets() {
         ParserLoader loader = new CommonParserLoader();
 

@@ -46,8 +46,8 @@ import java.util.Optional;
 public final class MoveMonsters implements Task {
     private final MonsterEnvironmentService service;
     private final Duration delay;
-    private final @IntRange(from = 0, to = 100) int moveChance;
-    private final @Positive int maxDistance;
+    private final int moveChance;
+    private final int maxDistance;
 
     private final RandomUtil random = new RandomUtil();
 
@@ -59,7 +59,7 @@ public final class MoveMonsters implements Task {
      * @param moveChance Move chance for each groups, in percent
      * @param maxDistance The maximum move distance in cell count
      */
-    public MoveMonsters(MonsterEnvironmentService service, Duration delay, @IntRange(from = 0, to = 100) int moveChance, @Positive int maxDistance) {
+    public MoveMonsters(MonsterEnvironmentService service, Duration delay, int moveChance, int maxDistance) {
         this.service = service;
         this.delay = delay;
         this.moveChance = moveChance;

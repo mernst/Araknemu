@@ -38,7 +38,7 @@ public final class Buff {
     private final BuffHook hook;
     private final boolean canBeDispelled;
 
-    private @GTENegativeOne int remainingTurns;
+    private int remainingTurns;
 
     public Buff(SpellEffect effect, Castable action, Fighter caster, Fighter target, BuffHook hook) {
         this(effect, action, caster, target, hook, true);
@@ -89,7 +89,7 @@ public final class Buff {
      * When this value reached 0, the buff should be removed
      * In case of infinite effect, the returned value is -1
      */
-    public @GTENegativeOne int remainingTurns() {
+    public int remainingTurns() {
         return remainingTurns;
     }
 

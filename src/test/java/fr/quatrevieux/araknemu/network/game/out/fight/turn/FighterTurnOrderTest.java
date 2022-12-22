@@ -36,7 +36,6 @@ class FighterTurnOrderTest extends GameBaseCase {
     private GamePlayer p1, p2;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -64,7 +63,6 @@ class FighterTurnOrderTest extends GameBaseCase {
         fight.start(new AlternateTeamFighterOrder());
     }
 
-    @Test
     void generate() {
         assertEquals(
             "GTL|" + p1.id() + "|" + p2.id(),

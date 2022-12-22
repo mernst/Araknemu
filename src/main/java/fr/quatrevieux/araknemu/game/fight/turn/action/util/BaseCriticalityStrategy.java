@@ -32,7 +32,7 @@ public final class BaseCriticalityStrategy implements CriticalityStrategy {
     private final RandomUtil random = new RandomUtil();
 
     @Override
-    public @Positive int hitRate(ActiveFighter fighter, int base) {
+    public int hitRate(ActiveFighter fighter, int base) {
         if (base <= 2) {
             return Math.max(base, 1);
         }
@@ -46,7 +46,7 @@ public final class BaseCriticalityStrategy implements CriticalityStrategy {
     }
 
     @Override
-    public boolean hit(ActiveFighter fighter, @NonNegative int baseRate) {
+    public boolean hit(ActiveFighter fighter, int baseRate) {
         if (baseRate < 2) { // No criticality
             return false;
         }
@@ -55,12 +55,12 @@ public final class BaseCriticalityStrategy implements CriticalityStrategy {
     }
 
     @Override
-    public @Positive int failureRate(ActiveFighter fighter, @Positive int base) {
+    public int failureRate(ActiveFighter fighter, int base) {
         return Math.max(base - fighter.characteristics().get(Characteristic.FAIL_MALUS), 2);
     }
 
     @Override
-    public boolean failed(ActiveFighter fighter, @NonNegative int baseRate) {
+    public boolean failed(ActiveFighter fighter, int baseRate) {
         return baseRate > 0 && random.reverseBool(failureRate(fighter, baseRate));
     }
 }

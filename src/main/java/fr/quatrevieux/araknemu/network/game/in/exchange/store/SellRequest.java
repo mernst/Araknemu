@@ -33,9 +33,9 @@ import org.checkerframework.common.value.qual.MinLen;
  */
 public final class SellRequest implements Packet {
     private final int itemId;
-    private final @Positive int quantity;
+    private final int quantity;
 
-    public SellRequest(int itemId, @Positive int quantity) {
+    public SellRequest(int itemId, int quantity) {
         this.itemId = itemId;
         this.quantity = quantity;
     }
@@ -50,7 +50,7 @@ public final class SellRequest implements Packet {
     /**
      * Quantity to sell
      */
-    public @Positive int quantity() {
+    public int quantity() {
         return quantity;
     }
 
@@ -66,7 +66,7 @@ public final class SellRequest implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "ES";
         }
     }

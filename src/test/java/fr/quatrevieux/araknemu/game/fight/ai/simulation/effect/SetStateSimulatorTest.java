@@ -44,7 +44,6 @@ class SetStateSimulatorTest extends FightBaseCase {
     private SetStateSimulator simulator;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -56,7 +55,6 @@ class SetStateSimulatorTest extends FightBaseCase {
         ;
     }
 
-    @Test
     void simulateSimple() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -76,7 +74,6 @@ class SetStateSimulatorTest extends FightBaseCase {
         assertEquals(50, simulation.selfBoost());
     }
 
-    @Test
     void simulateNegative() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -96,7 +93,6 @@ class SetStateSimulatorTest extends FightBaseCase {
         assertEquals(-500, simulation.selfBoost());
     }
 
-    @Test
     void simulateUndefinedShouldDoNothing() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -116,7 +112,6 @@ class SetStateSimulatorTest extends FightBaseCase {
         assertEquals(0, simulation.selfBoost());
     }
 
-    @Test
     void simulateBuff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -155,7 +150,6 @@ class SetStateSimulatorTest extends FightBaseCase {
         assertEquals(500, simulation.selfBoost());
     }
 
-    @Test
     void simulateArea() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

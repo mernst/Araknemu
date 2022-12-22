@@ -203,7 +203,7 @@ final class SqlPlayerItemRepository implements PlayerItemRepository {
             throw new UnsupportedOperationException();
         }
 
-        private @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int checkPosition(int position) {
+        private int checkPosition(int position) {
             if (position < -1 || position > InventorySlots.SLOT_MAX) {
                 return ItemEntry.DEFAULT_POSITION;
             }

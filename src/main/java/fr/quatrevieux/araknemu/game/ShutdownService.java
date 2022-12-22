@@ -44,8 +44,8 @@ public final class ShutdownService implements EventsSubscriber {
     private final GameConfiguration configuration;
     private final ScheduledExecutorService executor = ExecutorFactory.createSingleThread();
 
-    private @Nullable ScheduledFuture<?> scheduledShutdown;
-    private @Nullable ScheduledFuture<?> shutdownReminder;
+    private ScheduledFuture<?> scheduledShutdown;
+    private ScheduledFuture<?> shutdownReminder;
 
     public ShutdownService(Araknemu app, Dispatcher dispatcher, GameConfiguration configuration) {
         this.app = app;

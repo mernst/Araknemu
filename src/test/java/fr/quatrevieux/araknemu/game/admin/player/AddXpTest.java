@@ -31,14 +31,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AddXpTest extends CommandTestCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         command = new AddXp(gamePlayer(true));
     }
 
-    @Test
     void executeWithoutLevelUp() throws ContainerException, SQLException, AdminException {
         execute("addxp", "1000");
 
@@ -47,7 +45,6 @@ class AddXpTest extends CommandTestCase {
         assertEquals(5482459, gamePlayer().properties().experience().current());
     }
 
-    @Test
     void executeWithLevelUp() throws ContainerException, SQLException, AdminException {
         execute("addxp", "1000000");
 
@@ -56,7 +53,6 @@ class AddXpTest extends CommandTestCase {
         assertEquals(6481459, gamePlayer().properties().experience().current());
     }
 
-    @Test
     void executeWithLongNumber() throws ContainerException, SQLException, AdminException {
         execute("addxp", "10000000000");
 
@@ -65,7 +61,6 @@ class AddXpTest extends CommandTestCase {
         assertEquals(10005481459L, gamePlayer().properties().experience().current());
     }
 
-    @Test
     void help() {
         assertHelp(
             "addxp - Add experience to player",

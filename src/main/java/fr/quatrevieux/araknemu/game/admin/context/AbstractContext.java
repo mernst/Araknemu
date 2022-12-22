@@ -34,7 +34,7 @@ import java.util.List;
  */
 public abstract class AbstractContext<C extends AbstractContext> implements Context {
     private final List<AbstractContextConfigurator<C>> configurators;
-    private @MonotonicNonNull SimpleContext context;
+    private SimpleContext context;
 
     public AbstractContext(List<AbstractContextConfigurator<C>> configurators) {
         this.configurators = configurators;

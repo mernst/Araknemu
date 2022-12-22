@@ -48,7 +48,6 @@ class EffectsHandlerTest extends FightBaseCase {
     private EffectsHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -61,7 +60,6 @@ class EffectsHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void applyUndefinedEffect() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -78,7 +76,6 @@ class EffectsHandlerTest extends FightBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void applyDamage() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -96,7 +93,6 @@ class EffectsHandlerTest extends FightBaseCase {
         requestStack.assertLast(ActionEffect.alterLifePoints(player.fighter(), other.fighter(), -15));
     }
 
-    @Test
     void applyDamageBuff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -123,7 +119,6 @@ class EffectsHandlerTest extends FightBaseCase {
         requestStack.assertLast(new AddBuff(found.get()));
     }
 
-    @Test
     void applyInfiniteDurationEffect() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -150,7 +145,6 @@ class EffectsHandlerTest extends FightBaseCase {
         requestStack.assertLast(new AddBuff(found.get()));
     }
 
-    @Test
     void applyStealLife() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -174,7 +168,6 @@ class EffectsHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyTeleport() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -193,7 +186,6 @@ class EffectsHandlerTest extends FightBaseCase {
         assertEquals(123, player.fighter().cell().id());
     }
 
-    @Test
     void applyWillCallBuffOnCastTarget() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -215,7 +207,6 @@ class EffectsHandlerTest extends FightBaseCase {
         Mockito.verify(hook).onCastTarget(buff, cast);
     }
 
-    @Test
     void applyWillCallBuffOnCaster() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -237,7 +228,6 @@ class EffectsHandlerTest extends FightBaseCase {
         Mockito.verify(hook).onCast(buff, cast);
     }
 
-    @Test
     void applyWithCastTargetChangedShouldCallOnCastTargetOnNewTarget() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

@@ -40,12 +40,10 @@ public final class ChosenResponse implements Packet {
         this.response = response;
     }
 
-    @Pure
     public int question() {
         return question;
     }
 
-    @Pure
     public int response() {
         return response;
     }
@@ -62,7 +60,7 @@ public final class ChosenResponse implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "DR";
         }
     }

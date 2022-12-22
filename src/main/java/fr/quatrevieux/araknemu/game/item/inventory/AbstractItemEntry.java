@@ -46,26 +46,23 @@ public abstract class AbstractItemEntry implements ItemEntry {
         this.dispatcher = dispatcher;
     }
 
-    @Pure
     @Override
     public final int id() {
         return entity.entryId();
     }
 
-    @Pure
     @Override
     public final Item item() {
         return item;
     }
 
-    @Pure
     @Override
-    public final @NonNegative int quantity() {
+    public final int quantity() {
         return entity.quantity();
     }
 
     @Override
-    public final void add(@Positive int quantity) {
+    public final void add(int quantity) {
         if (quantity <= 0) {
             throw new InventoryException("Invalid quantity given");
         }
@@ -75,7 +72,7 @@ public abstract class AbstractItemEntry implements ItemEntry {
 
     @SuppressWarnings("unchecked")
     @Override
-    public final void remove(@Positive int quantity) throws InventoryException {
+    public final void remove(int quantity) throws InventoryException {
         final int newQuantity = quantity() - quantity;
 
         if (newQuantity < 0) {
@@ -91,19 +88,17 @@ public abstract class AbstractItemEntry implements ItemEntry {
         changeQuantity(newQuantity);
     }
 
-    @Pure
     @Override
     public final List<ItemTemplateEffectEntry> effects() {
         return entity.effects();
     }
 
-    @Pure
     @Override
     public final int templateId() {
         return entity.itemTemplateId();
     }
 
-    private void changeQuantity(@Positive int quantity) {
+    private void changeQuantity(int quantity) {
         entity.setQuantity(quantity);
         dispatcher.dispatch(new ObjectQuantityChanged(this));
     }

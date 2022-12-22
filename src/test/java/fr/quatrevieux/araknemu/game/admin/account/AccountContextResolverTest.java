@@ -43,7 +43,6 @@ class AccountContextResolverTest extends GameBaseCase {
     private AdminUser adminUser;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -53,7 +52,6 @@ class AccountContextResolverTest extends GameBaseCase {
         adminUser = container.get(AdminSessionService.class).user(gamePlayer());
     }
 
-    @Test
     void resolveByGameAccount() throws ContainerException, ContextException {
         Account account = dataSet.push(new Account(-1, "aaa", "", "aaa"));
         GameAccount ga = container.get(AccountService.class).load(account);
@@ -64,7 +62,6 @@ class AccountContextResolverTest extends GameBaseCase {
         assertSame(ga, context.account());
     }
 
-    @Test
     void resolveByPseudoNotLogged() throws ContextException {
         Account account = dataSet.push(new Account(-1, "login", "", "pseudo"));
         Context context = resolver.resolve(adminUser, () -> "pseudo");
@@ -74,7 +71,6 @@ class AccountContextResolverTest extends GameBaseCase {
         assertFalse(((AccountContext) context).account().isLogged());
     }
 
-    @Test
     void resolveByPseudoLogged() throws ContextException {
         GameAccount account = container.get(AccountService.class).load(dataSet.push(new Account(-1, "login", "", "pseudo")));
         account.attach(server.createSession());
@@ -86,12 +82,10 @@ class AccountContextResolverTest extends GameBaseCase {
         assertTrue(((AccountContext) context).account().isLogged());
     }
 
-    @Test
     void invalidArgument() {
         assertThrows(ContextException.class, () -> resolver.resolve(adminUser, () -> "not_found"));
     }
 
-    @Test
     void register() throws ContextException, CommandNotFoundException {
         Command command = Mockito.mock(Command.class);
         Mockito.when(command.name()).thenReturn("mocked");

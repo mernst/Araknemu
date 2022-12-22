@@ -47,7 +47,7 @@ public final class AskGift implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "Ag";
         }
     }

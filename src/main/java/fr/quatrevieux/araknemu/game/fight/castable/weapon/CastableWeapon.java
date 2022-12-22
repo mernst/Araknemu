@@ -35,8 +35,8 @@ import java.util.stream.Collectors;
 public final class CastableWeapon implements Castable {
     private final Weapon weapon;
 
-    private @MonotonicNonNull List<SpellEffect> effects;
-    private @MonotonicNonNull List<SpellEffect> criticalEffects;
+    private List<SpellEffect> effects;
+    private List<SpellEffect> criticalEffects;
 
     public CastableWeapon(Weapon weapon) {
         this.weapon = weapon;
@@ -67,17 +67,17 @@ public final class CastableWeapon implements Castable {
     }
 
     @Override
-    public @NonNegative int apCost() {
+    public int apCost() {
         return weapon.info().apCost();
     }
 
     @Override
-    public @NonNegative int criticalHit() {
+    public int criticalHit() {
         return weapon.info().criticalRate();
     }
 
     @Override
-    public @NonNegative int criticalFailure() {
+    public int criticalFailure() {
         return weapon.info().failureRate();
     }
 

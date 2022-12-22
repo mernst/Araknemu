@@ -43,14 +43,13 @@ import java.util.function.Consumer;
  */
 public final class ProxyBattlefield implements BattlefieldMap {
     private final BattlefieldMap map;
-    private final ProxyCell @Nullable @SameLen("this") [] cells;
+    private final ProxyCell[] cells;
 
     public ProxyBattlefield(BattlefieldMap map) {
         this.map = map;
         this.cells = null;
     }
 
-    @EnsuresNonNull("cells")
     @SuppressWarnings({"assignment", "array.access.unsafe.high"}) // other and this have same length
     private ProxyBattlefield(ProxyBattlefield other) {
         this.map = other.map;
@@ -66,13 +65,13 @@ public final class ProxyBattlefield implements BattlefieldMap {
 
     @Override
     @SuppressWarnings("return") // map and this have same length
-    public @LengthOf("this") int size() {
+    public int size() {
         return map.size();
     }
 
     @Override
     @SuppressWarnings({"argument"}) // map and this have same length
-    public BattlefieldCell get(@IndexFor("this") int id) {
+    public BattlefieldCell get(int id) {
         if (cells == null) {
             return map.get(id);
         }
@@ -119,8 +118,8 @@ public final class ProxyBattlefield implements BattlefieldMap {
     private final class ProxyCell implements BattlefieldCell {
         private final BattlefieldCell cell;
         private boolean free = false;
-        private @Nullable FighterData fighter = null;
-        private @MonotonicNonNull CoordinateCell<BattlefieldCell> coordinates = null;
+        private FighterData fighter = null;
+        private CoordinateCell<BattlefieldCell> coordinates = null;
 
         private ProxyCell(BattlefieldCell cell) {
             this.cell = cell;
@@ -143,7 +142,7 @@ public final class ProxyBattlefield implements BattlefieldMap {
         }
 
         @Override
-        public @Nullable FighterData fighter() {
+        public FighterData fighter() {
             if (free) {
                 return null;
             }
@@ -169,7 +168,7 @@ public final class ProxyBattlefield implements BattlefieldMap {
         }
 
         @Override
-        public @NonNegative int id() {
+        public int id() {
             return cell.id();
         }
 
@@ -215,7 +214,7 @@ public final class ProxyBattlefield implements BattlefieldMap {
          *
          * @return this instance
          */
-        public Modifier free(@NonNegative int cellId) {
+        public Modifier free(int cellId) {
             map.cells[cellId].free = true;
 
             return this;
@@ -226,7 +225,7 @@ public final class ProxyBattlefield implements BattlefieldMap {
          *
          * @param cellId The cell to get
          */
-        public BattlefieldCell get(@NonNegative int cellId) {
+        public BattlefieldCell get(int cellId) {
             return map.cells[cellId];
         }
 
@@ -238,7 +237,7 @@ public final class ProxyBattlefield implements BattlefieldMap {
          *
          * @return this instance
          */
-        public Modifier setFighter(@NonNegative int cellId, FighterData fighter) {
+        public Modifier setFighter(int cellId, FighterData fighter) {
             map.cells[cellId].free = false;
             map.cells[cellId].fighter = fighter;
 

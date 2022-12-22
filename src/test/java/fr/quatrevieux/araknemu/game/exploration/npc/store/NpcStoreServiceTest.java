@@ -34,7 +34,6 @@ class NpcStoreServiceTest extends GameBaseCase {
     private NpcTemplateRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -51,12 +50,10 @@ class NpcStoreServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void loadWithoutStore() {
         assertFalse(service.load(repository.get(848)).isPresent());
     }
 
-    @Test
     void loadWithStore() {
         NpcStore store = service.load(repository.get(10001)).get();
 

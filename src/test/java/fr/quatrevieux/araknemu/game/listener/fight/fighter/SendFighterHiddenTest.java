@@ -31,7 +31,6 @@ class SendFighterHiddenTest extends FightBaseCase {
     private SendFighterHidden listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -40,7 +39,6 @@ class SendFighterHiddenTest extends FightBaseCase {
         );
     }
 
-    @Test
     void onFighterHidden() {
         requestStack.clear();
         listener.on(new FighterHidden(player.fighter(), other.fighter()));

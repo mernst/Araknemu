@@ -29,12 +29,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ShowCellTest extends FightBaseCase {
-    @Test
     void notInFight() {
         assertThrows(CloseImmediately.class, () -> handlePacket(new ShowCellRequest(123)));
     }
 
-    @Test
     void duringPlacement() throws Exception {
         Fight fight = createFight();
 
@@ -43,7 +41,6 @@ class ShowCellTest extends FightBaseCase {
         requestStack.assertLast(new CellShown(gamePlayer().fighter(), 123));
     }
 
-    @Test
     void onActiveFight() throws Exception {
         Fight fight = createFight();
         fight.nextState();

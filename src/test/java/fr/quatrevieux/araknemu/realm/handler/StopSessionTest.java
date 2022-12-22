@@ -39,7 +39,6 @@ class StopSessionTest extends RealmBaseCase {
     private AuthenticationService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -53,12 +52,10 @@ class StopSessionTest extends RealmBaseCase {
         );
     }
 
-    @Test
     void handleNotLogged() {
         handler.handle(session, new SessionClosed());
     }
 
-    @Test
     void handleWillLogout() {
         AuthenticationAccount account = new AuthenticationAccount(
             new Account(1),

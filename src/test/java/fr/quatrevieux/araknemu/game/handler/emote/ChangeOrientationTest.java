@@ -37,14 +37,12 @@ class ChangeOrientationTest extends GameBaseCase {
     private ChangeOrientation handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         handler = new ChangeOrientation();
     }
 
-    @Test
     void handleSuccess() throws Exception {
         ExplorationPlayer exploration = explorationPlayer();
 
@@ -55,7 +53,6 @@ class ChangeOrientationTest extends GameBaseCase {
         requestStack.assertLast(new PlayerOrientation(exploration));
     }
 
-    @Test
     void handleWithRestrictedDirection() throws Exception {
         ExplorationPlayer exploration = explorationPlayer();
         exploration.player().restrictions().unset(Restrictions.Restriction.ALLOW_MOVE_ALL_DIRECTION);
@@ -67,12 +64,10 @@ class ChangeOrientationTest extends GameBaseCase {
         assertEquals(Direction.SOUTH_WEST, exploration.orientation());
     }
 
-    @Test
     void functionalNotExploring() {
         assertThrows(CloseImmediately.class, () -> handlePacket(new SetOrientationRequest(Direction.WEST)));
     }
 
-    @Test
     void functionalSuccess() throws Exception {
         ExplorationPlayer exploration = explorationPlayer();
         handlePacket(new SetOrientationRequest(Direction.WEST));

@@ -48,7 +48,6 @@ class LoadExtraInfoTest extends FightBaseCase {
     private LoadExtraInfo handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -58,7 +57,6 @@ class LoadExtraInfoTest extends FightBaseCase {
         explorationPlayer();
     }
 
-    @Test
     void handleSuccess() throws Exception {
         ExplorationPlayer player = explorationPlayer();
         requestStack.clear();
@@ -74,7 +72,6 @@ class LoadExtraInfoTest extends FightBaseCase {
         );
     }
 
-    @Test
     void handleWithFightsInPlacementState() throws Exception {
         ExplorationMap map = container.get(ExplorationMapService.class).load(10340);
 
@@ -113,7 +110,6 @@ class LoadExtraInfoTest extends FightBaseCase {
         );
     }
 
-    @Test
     void handleWithTeamOptions() throws Exception {
         ExplorationMap map = container.get(ExplorationMapService.class).load(10340);
 
@@ -145,7 +141,6 @@ class LoadExtraInfoTest extends FightBaseCase {
         );
     }
 
-    @Test
     void handleWithFightsInActiveState() throws Exception {
         ExplorationMap map = container.get(ExplorationMapService.class).load(10340);
 
@@ -173,7 +168,6 @@ class LoadExtraInfoTest extends FightBaseCase {
         );
     }
 
-    @Test
     void handleWithNpc() throws Exception {
         dataSet.pushNpcs();
 
@@ -196,7 +190,6 @@ class LoadExtraInfoTest extends FightBaseCase {
         );
     }
 
-    @Test
     void handleWithMonsters() throws Exception {
         dataSet
             .pushMonsterSpells()

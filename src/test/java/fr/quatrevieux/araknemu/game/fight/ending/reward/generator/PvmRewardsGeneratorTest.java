@@ -44,7 +44,6 @@ class PvmRewardsGeneratorTest extends FightBaseCase {
     private PvmRewardsGenerator generator;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -58,7 +57,6 @@ class PvmRewardsGeneratorTest extends FightBaseCase {
         );
     }
 
-    @Test
     void generate() throws Exception {
         Fight fight = createPvmFight();
         fight.nextState();
@@ -89,7 +87,6 @@ class PvmRewardsGeneratorTest extends FightBaseCase {
         assertEquals(0, sheet.rewards().get(1).items().size());
     }
 
-    @Test
     void generateShouldSortWinnersByDiscernment() throws Exception {
         player.properties().characteristics().specials().add(SpecialEffects.Type.DISCERNMENT, 100);
 
@@ -110,7 +107,6 @@ class PvmRewardsGeneratorTest extends FightBaseCase {
         assertEquals(other, sheet.rewards().get(1).fighter());
     }
 
-    @Test
     void generateLooser() throws Exception {
         Fight fight = createPvmFight();
         fight.nextState();
@@ -132,7 +128,6 @@ class PvmRewardsGeneratorTest extends FightBaseCase {
         assertEquals(0, sheet.rewards().get(0).kamas());
     }
 
-    @Test
     void generateFunctional() throws Exception {
         long lastXp = player.properties().experience().current();
         long lastKamas = player.inventory().kamas();

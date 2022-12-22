@@ -30,7 +30,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 public final class InteractionHandler {
     private final ActionQueue gameActions = new ActionQueue();
 
-    private @Nullable Interaction current;
+    private Interaction current;
 
     /**
      * Check if the player is interacting

@@ -39,21 +39,21 @@ public final class ScreenInfo implements Packet {
         OTHER
     }
 
-    private final @Positive int width;
-    private final @Positive int height;
+    private final int width;
+    private final int height;
     private final State state;
 
-    public ScreenInfo(@Positive int width, @Positive int height, State state) {
+    public ScreenInfo(int width, int height, State state) {
         this.width = width;
         this.height = height;
         this.state = state;
     }
 
-    public @Positive int width() {
+    public int width() {
         return width;
     }
 
-    public @Positive int height() {
+    public int height() {
         return height;
     }
 
@@ -76,7 +76,7 @@ public final class ScreenInfo implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "Ir";
         }
     }

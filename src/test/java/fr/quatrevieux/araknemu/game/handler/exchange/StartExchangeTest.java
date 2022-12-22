@@ -38,7 +38,6 @@ class StartExchangeTest extends GameBaseCase {
     private ExplorationPlayer other;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -50,7 +49,6 @@ class StartExchangeTest extends GameBaseCase {
         other.interactions().start(new PlayerExchangeRequest(other, player));
     }
 
-    @Test
     void functionalSuccess() throws Exception {
         handlePacket(new AcceptExchangeRequest());
 
@@ -60,7 +58,6 @@ class StartExchangeTest extends GameBaseCase {
         assertInstanceOf(ExchangeDialog.class, other.interactions().get(Interaction.class));
     }
 
-    @Test
     void functionalNotExploring() {
         session.setExploration(null);
 

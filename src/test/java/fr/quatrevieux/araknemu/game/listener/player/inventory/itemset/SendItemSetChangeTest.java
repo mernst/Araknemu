@@ -36,7 +36,6 @@ class SendItemSetChangeTest extends GameBaseCase {
     private ItemService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,7 +46,6 @@ class SendItemSetChangeTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onEquipmentChangedWithItemSet() throws SQLException, ContainerException {
         Item item = service.create(2425);
 
@@ -63,7 +61,6 @@ class SendItemSetChangeTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onEquipmentChangedWithoutItemSet() throws SQLException, ContainerException {
         Item item = service.create(39);
 

@@ -29,14 +29,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class JoinFightTest extends FightBaseCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         dataSet.pushMaps().pushSubAreas().pushAreas();
     }
 
-    @Test
     void generateForChallenge() throws Exception {
         Fight fight = createFight();
 
@@ -46,7 +44,6 @@ class JoinFightTest extends FightBaseCase {
         );
     }
 
-    @Test
     void generateForPvm() throws Exception {
         Fight fight = createPvmFight();
 

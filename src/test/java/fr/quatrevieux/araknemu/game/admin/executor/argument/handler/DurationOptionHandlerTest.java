@@ -36,7 +36,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DurationOptionHandlerTest extends TestCase {
     static class Arguments {
-        @Argument
         public Duration duration;
     }
 
@@ -58,7 +57,6 @@ class DurationOptionHandlerTest extends TestCase {
         }
     }
 
-    @Test
     void hydrate() throws Exception {
         Command command = new Command();
         AnnotationHydrator hydrator = new AnnotationHydrator();

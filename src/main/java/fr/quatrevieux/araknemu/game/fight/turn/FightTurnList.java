@@ -40,7 +40,7 @@ public final class FightTurnList {
 
     private final List<Fighter> fighters;
     private Fighter current;
-    private @Nullable FightTurn turn;
+    private FightTurn turn;
     private int index;
     private final AtomicBoolean active = new AtomicBoolean(false);
 

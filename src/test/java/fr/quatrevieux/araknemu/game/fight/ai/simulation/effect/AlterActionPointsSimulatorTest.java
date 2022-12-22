@@ -48,7 +48,6 @@ class AlterActionPointsSimulatorTest extends FightBaseCase {
     private Fighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -56,7 +55,6 @@ class AlterActionPointsSimulatorTest extends FightBaseCase {
         fighter = player.fighter();
     }
 
-    @Test
     void simulateOnCurrentTurn() {
         AlterActionPointsSimulator simulator = new AlterActionPointsSimulator(200);
 
@@ -80,7 +78,6 @@ class AlterActionPointsSimulatorTest extends FightBaseCase {
         assertEquals(0.1, simulation.actionPointsCost());
     }
 
-    @Test
     void simulateNegativeCurrentTurn() {
         AlterActionPointsSimulator simulator = new AlterActionPointsSimulator(-200);
 
@@ -104,7 +101,6 @@ class AlterActionPointsSimulatorTest extends FightBaseCase {
         assertEquals(15, simulation.actionPointsCost());
     }
 
-    @Test
     void simulateBuff() {
         AlterActionPointsSimulator simulator = new AlterActionPointsSimulator(200);
 
@@ -149,7 +145,6 @@ class AlterActionPointsSimulatorTest extends FightBaseCase {
         assertEquals(20000, simulation.selfBoost());
     }
 
-    @Test
     void simulateArea() {
         AlterActionPointsSimulator simulator = new AlterActionPointsSimulator(200);
 
@@ -175,8 +170,6 @@ class AlterActionPointsSimulatorTest extends FightBaseCase {
         assertEquals(200, simulation.enemiesBoost());
     }
 
-    @ParameterizedTest
-    @MethodSource("provideCurrentTurnEffects")
     void onCurrentTurnShouldAlterSpellAPCost(int effectValue, double expectedBoost, double expectedApCost) {
         AlterActionPointsSimulator simulator = new AlterActionPointsSimulator(200);
 
@@ -212,8 +205,6 @@ class AlterActionPointsSimulatorTest extends FightBaseCase {
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("provideCurrentNegativeTurnEffects")
     void onCurrentTurnWithNegativeEffect(int effectValue, double expectedApCost) {
         AlterActionPointsSimulator simulator = new AlterActionPointsSimulator(-200);
 

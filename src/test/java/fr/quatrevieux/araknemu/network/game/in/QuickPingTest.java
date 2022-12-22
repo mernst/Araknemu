@@ -25,7 +25,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class QuickPingTest extends TestCase {
-    @Test
     void parse() {
         assertInstanceOf(QuickPing.class, new QuickPing.Parser().parse(""));
     }

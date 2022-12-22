@@ -35,7 +35,6 @@ class SqlPlayerSpellRepositoryTest extends GameBaseCase {
     private SqlPlayerSpellRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -46,12 +45,10 @@ class SqlPlayerSpellRepositoryTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(new PlayerSpell(123, 0, false, 0, 5)));
     }
 
-    @Test
     void addAndGet() {
         PlayerSpell spell = repository.add(
             new PlayerSpell(1, 3, true, 5, 3)
@@ -66,7 +63,6 @@ class SqlPlayerSpellRepositoryTest extends GameBaseCase {
         assertEquals(5, spell.level());
     }
 
-    @Test
     void has() {
         PlayerSpell spell = repository.add(
             new PlayerSpell(1, 3, true, 5, 3)
@@ -76,7 +72,6 @@ class SqlPlayerSpellRepositoryTest extends GameBaseCase {
         assertFalse(repository.has(new PlayerSpell(0, 0, false, 0, 0)));
     }
 
-    @Test
     void addForReplace() {
         PlayerSpell spell = repository.add(
             new PlayerSpell(1, 3, true, 1, 3)
@@ -96,7 +91,6 @@ class SqlPlayerSpellRepositoryTest extends GameBaseCase {
         assertEquals(4, spell.position());
     }
 
-    @Test
     void delete() {
         PlayerSpell spell = repository.add(
             new PlayerSpell(1, 3, true, 1, 3)
@@ -107,14 +101,12 @@ class SqlPlayerSpellRepositoryTest extends GameBaseCase {
         assertFalse(repository.has(spell));
     }
 
-    @Test
     void deleteNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.delete(
             new PlayerSpell(1, 3, true, 1, 3)
         ));
     }
 
-    @Test
     void byPlayer() {
         repository.add(new PlayerSpell(1, 3, true, 1, 3));
         repository.add(new PlayerSpell(1, 9, true, 1, 63));

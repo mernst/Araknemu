@@ -48,7 +48,6 @@ class SkipTurnHandlerTest extends FightBaseCase {
     private SkipTurnHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -66,7 +65,6 @@ class SkipTurnHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handle() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -91,7 +89,6 @@ class SkipTurnHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void handleSelfCast() {
         // #61 Skip next turn not working on self-buff
         SpellEffect effect = Mockito.mock(SpellEffect.class);
@@ -111,7 +108,6 @@ class SkipTurnHandlerTest extends FightBaseCase {
         assertEquals(2, buff.get().remainingTurns());
     }
 
-    @Test
     void buff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

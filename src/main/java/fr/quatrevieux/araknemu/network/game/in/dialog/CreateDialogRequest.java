@@ -47,7 +47,7 @@ public final class CreateDialogRequest implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "DC";
         }
     }

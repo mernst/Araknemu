@@ -38,7 +38,7 @@ public class SpellLaunchValidator implements CastConstraintValidator<Spell> {
     }
 
     @Override
-    public @Nullable Error validate(Turn turn, Spell castable, BattlefieldCell target) {
+    public Error validate(Turn turn, Spell castable, BattlefieldCell target) {
         return check(turn, castable, target) ? null : Error.cantCast();
     }
 }

@@ -44,7 +44,7 @@ public final class IniPool implements Pool {
     }
 
     @Override
-    public @Nullable String get(String key) {
+    public String get(String key) {
         return section.get(key);
     }
 

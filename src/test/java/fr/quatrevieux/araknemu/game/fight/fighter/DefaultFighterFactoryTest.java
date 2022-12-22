@@ -48,7 +48,6 @@ class DefaultFighterFactoryTest extends FightBaseCase {
     private ListenerAggregate dispatcher;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -57,7 +56,6 @@ class DefaultFighterFactoryTest extends FightBaseCase {
         );
     }
 
-    @Test
     void createPlayerFighter() throws SQLException, ContainerException {
         AtomicReference<PlayerFighterCreated> ref = new AtomicReference<>();
         dispatcher.add(PlayerFighterCreated.class, ref::set);
@@ -79,7 +77,6 @@ class DefaultFighterFactoryTest extends FightBaseCase {
         assertTrue(fighter.dispatcher().has(SendSpellBoosted.class));
     }
 
-    @Test
     void generate() {
         Fighter fighter = Mockito.mock(Fighter.class);
 
@@ -93,7 +90,6 @@ class DefaultFighterFactoryTest extends FightBaseCase {
         }));
     }
 
-    @Test
     void createMonsterFighter() throws Exception {
         dataSet.pushMonsterTemplates();
         dataSet.pushMonsterSpells();
@@ -112,7 +108,6 @@ class DefaultFighterFactoryTest extends FightBaseCase {
         assertEquals(-3, factory.create(monster, fight.team(1)).id());
     }
 
-    @Test
     void generatedIdOverflow() throws Exception {
         dataSet.pushMonsterTemplates();
         dataSet.pushMonsterSpells();

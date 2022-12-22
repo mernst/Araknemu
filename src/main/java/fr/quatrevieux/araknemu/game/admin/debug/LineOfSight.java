@@ -115,14 +115,13 @@ public final class LineOfSight extends AbstractCommand<LineOfSight.Arguments> {
 
     @SuppressWarnings("initialization.field.uninitialized")
     public static final class Arguments {
-        @Argument(metaVar = "target cell id")
-        private @NonNegative Integer cellId;
+        private Integer cellId;
 
-        public void setCellId(@NonNegative Integer cellId) {
+        public void setCellId(Integer cellId) {
             this.cellId = cellId;
         }
 
-        public @NonNegative int cellId() {
+        public int cellId() {
             return cellId;
         }
 

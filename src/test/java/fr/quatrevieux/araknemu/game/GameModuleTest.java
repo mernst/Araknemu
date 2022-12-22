@@ -107,7 +107,6 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 class GameModuleTest extends GameBaseCase {
-    @Test
     void instances() throws ContainerException, SQLException {
         Container container = new ItemPoolContainer();
 

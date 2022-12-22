@@ -30,9 +30,9 @@ import org.checkerframework.checker.index.qual.NonNegative;
 public final class MonsterRewardData {
     private final int id;
     private final Interval kamas;
-    private final @NonNegative long[] experiences;
+    private final long[] experiences;
 
-    public MonsterRewardData(int id, Interval kamas, @NonNegative long[] experiences) {
+    public MonsterRewardData(int id, Interval kamas, long[] experiences) {
         this.id = id;
         this.kamas = kamas;
         this.experiences = experiences;
@@ -57,7 +57,7 @@ public final class MonsterRewardData {
     /**
      * Reward experience per grade
      */
-    public @NonNegative long[] experiences() {
+    public long[] experiences() {
         return experiences;
     }
 }

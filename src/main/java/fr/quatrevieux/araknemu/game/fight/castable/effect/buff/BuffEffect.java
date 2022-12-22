@@ -32,10 +32,10 @@ public final class BuffEffect implements SpellEffect {
     private final SpellEffect baseEffect;
 
     private final int effect;
-    private final @NonNegative int value;
-    private final @GTENegativeOne int duration;
+    private final int value;
+    private final int duration;
 
-    private BuffEffect(SpellEffect baseEffect, int effect, @NonNegative int value, @GTENegativeOne int duration) {
+    private BuffEffect(SpellEffect baseEffect, int effect, int value, int duration) {
         this.baseEffect = baseEffect;
         this.effect = effect;
         this.value = value;
@@ -48,12 +48,12 @@ public final class BuffEffect implements SpellEffect {
     }
 
     @Override
-    public @NonNegative int min() {
+    public int min() {
         return value;
     }
 
     @Override
-    public @NonNegative int max() {
+    public int max() {
         return 0;
     }
 
@@ -63,12 +63,12 @@ public final class BuffEffect implements SpellEffect {
     }
 
     @Override
-    public @GTENegativeOne int duration() {
+    public int duration() {
         return duration;
     }
 
     @Override
-    public @NonNegative int probability() {
+    public int probability() {
         return 0;
     }
 
@@ -93,7 +93,7 @@ public final class BuffEffect implements SpellEffect {
      * @param baseEffect The spell effect
      * @param value The applied value
      */
-    public static BuffEffect fixed(SpellEffect baseEffect, @NonNegative int value) {
+    public static BuffEffect fixed(SpellEffect baseEffect, int value) {
         return new BuffEffect(baseEffect, baseEffect.effect(), value, baseEffect.duration());
     }
 
@@ -104,7 +104,7 @@ public final class BuffEffect implements SpellEffect {
      * @param effect The overridden effect id
      * @param value The applied value
      */
-    public static BuffEffect withCustomEffect(SpellEffect baseEffect, int effect, @NonNegative int value) {
+    public static BuffEffect withCustomEffect(SpellEffect baseEffect, int effect, int value) {
         return new BuffEffect(baseEffect, effect, value, baseEffect.duration());
     }
 
@@ -115,7 +115,7 @@ public final class BuffEffect implements SpellEffect {
      * @param effect The overridden effect id
      * @param value The overridden effect duration
      */
-    public static BuffEffect withCustomEffectAndDuration(SpellEffect baseEffect, int effect, @NonNegative int value, @GTENegativeOne int duration) {
+    public static BuffEffect withCustomEffectAndDuration(SpellEffect baseEffect, int effect, int value, int duration) {
         return new BuffEffect(baseEffect, effect, value, duration);
     }
 }

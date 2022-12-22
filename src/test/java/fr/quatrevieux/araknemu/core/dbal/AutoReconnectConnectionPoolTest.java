@@ -38,7 +38,6 @@ class AutoReconnectConnectionPoolTest {
     private AutoReconnectConnectionPool pool;
     private Logger logger;
 
-    @BeforeEach
     void setUp() throws IOException, SQLException {
         SQLiteDriver driver = new SQLiteDriver(
             new DefaultConfiguration(new IniDriver(new Ini(new File("src/test/test_config.ini"))))
@@ -51,12 +50,10 @@ class AutoReconnectConnectionPoolTest {
         pool.initialize();
     }
 
-    @AfterEach
     void tearDown() throws Exception {
         pool.close();
     }
 
-    @Test
     void executeWithoutDisconnect() throws SQLException {
         int result = pool.execute(c -> {
             try (Statement stmt = c.createStatement()) {
@@ -70,7 +67,6 @@ class AutoReconnectConnectionPoolTest {
         Mockito.verify(logger, Mockito.never()).warn(Mockito.anyString());
     }
 
-    @Test
     void executeWithDisconnect() throws SQLException {
         Connection connection = pool.acquire();
         pool.release(connection);
@@ -89,7 +85,6 @@ class AutoReconnectConnectionPoolTest {
         Mockito.verify(logger).warn("Recoverable SQL error occurs. Retry on a new connection");
     }
 
-    @Test
     void executeNotDisconnectError() {
         assertThrows(SQLException.class, () -> pool.execute(c -> {
             try (Statement stmt = c.createStatement()) {
@@ -101,7 +96,6 @@ class AutoReconnectConnectionPoolTest {
         Mockito.verify(logger, Mockito.never()).warn(Mockito.anyString());
     }
 
-    @Test
     void size() throws SQLException {
         assertEquals(1, pool.size());
 
@@ -112,7 +106,6 @@ class AutoReconnectConnectionPoolTest {
         assertEquals(1, pool.size());
     }
 
-    @Test
     void cannotReconnect() {
         assertThrows(SQLException.class, () -> pool.execute(c -> {
             throw new SQLRecoverableException();

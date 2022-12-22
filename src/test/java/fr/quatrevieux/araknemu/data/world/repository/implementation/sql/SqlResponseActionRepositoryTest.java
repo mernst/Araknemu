@@ -36,7 +36,6 @@ class SqlResponseActionRepositoryTest extends GameBaseCase {
     private SqlResponseActionRepository repository;
 
 
-    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -48,7 +47,6 @@ class SqlResponseActionRepositoryTest extends GameBaseCase {
         repository = new SqlResponseActionRepository(new ConnectionPoolExecutor(app.database().get("game")));
     }
 
-    @Test
     void get() {
         ResponseAction ra = repository.get(new ResponseAction(2, "ADDITEM", null));
 
@@ -57,7 +55,6 @@ class SqlResponseActionRepositoryTest extends GameBaseCase {
         assertEquals("1124;1", ra.arguments());
     }
 
-    @Test
     void has() {
         assertTrue(repository.has(new ResponseAction(2, "ADDITEM", null)));
         assertTrue(repository.has(new ResponseAction(2, "LEAVE", null)));
@@ -67,7 +64,6 @@ class SqlResponseActionRepositoryTest extends GameBaseCase {
         assertFalse(repository.has(new ResponseAction(404, "LEAVE", null)));
     }
 
-    @Test
     void all() {
         Map<Integer, List<ResponseAction>> actions = repository.all();
 
@@ -79,7 +75,6 @@ class SqlResponseActionRepositoryTest extends GameBaseCase {
         assertEquals("ADDITEM", actions.get(2).get(1).action());
     }
 
-    @Test
     void byQuestion() {
         assertEquals(new HashMap<>(), repository.byQuestion(new Question(0, new int[0], null, null)));
 

@@ -37,7 +37,6 @@ class SqlMapTriggerRepositoryTest extends GameBaseCase {
     private SqlMapTriggerRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -48,12 +47,10 @@ class SqlMapTriggerRepositoryTest extends GameBaseCase {
         dataSet.use(MapTrigger.class);
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(new MapTrigger(741, 456, 0, null, null)));
     }
 
-    @Test
     void getFound() throws SQLException, ContainerException {
         MapTrigger trigger = dataSet.pushTrigger(new MapTrigger(456, 123, Teleport.ACTION_ID, "741,258", ""));
 
@@ -65,7 +62,6 @@ class SqlMapTriggerRepositoryTest extends GameBaseCase {
         assertEquals("741,258", db.arguments());
     }
 
-    @Test
     void has() throws SQLException, ContainerException {
         MapTrigger trigger = dataSet.pushTrigger(new MapTrigger(456, 123, Teleport.ACTION_ID, "741,258", ""));
 
@@ -73,7 +69,6 @@ class SqlMapTriggerRepositoryTest extends GameBaseCase {
         assertFalse(repository.has(new MapTrigger(1, 2, 0, null, null)));
     }
 
-    @Test
     void findByMap() throws SQLException, ContainerException {
         dataSet.pushTrigger(new MapTrigger(456, 123, Teleport.ACTION_ID, "741,258", ""));
         dataSet.pushTrigger(new MapTrigger(457, 123, Teleport.ACTION_ID, "741,258", ""));
@@ -84,7 +79,6 @@ class SqlMapTriggerRepositoryTest extends GameBaseCase {
         assertCount(2, triggers);
     }
 
-    @Test
     void all() throws SQLException, ContainerException {
         dataSet.pushTrigger(new MapTrigger(456, 123, Teleport.ACTION_ID, "741,258", ""));
         dataSet.pushTrigger(new MapTrigger(457, 123, Teleport.ACTION_ID, "741,258", ""));

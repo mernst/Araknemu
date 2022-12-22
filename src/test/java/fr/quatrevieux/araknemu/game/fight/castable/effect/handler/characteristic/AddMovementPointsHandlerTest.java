@@ -51,7 +51,6 @@ class AddMovementPointsHandlerTest extends FightBaseCase {
     private AddMovementPointsHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -69,7 +68,6 @@ class AddMovementPointsHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handleWillAddToCurrentTurn() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -88,7 +86,6 @@ class AddMovementPointsHandlerTest extends FightBaseCase {
         assertEquals(13, caster.turn().points().movementPoints());
     }
 
-    @Test
     void buff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -116,7 +113,6 @@ class AddMovementPointsHandlerTest extends FightBaseCase {
         assertEquals(buff1.get().effect().min(), buff2.get().effect().min());
     }
 
-    @Test
     void onBuffStartedAndTerminatedOnTarget() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -135,7 +131,6 @@ class AddMovementPointsHandlerTest extends FightBaseCase {
         assertEquals(3, target.characteristics().get(Characteristic.MOVEMENT_POINT));
     }
 
-    @Test
     void onBuffStartedAndTerminatedOnCaster() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 

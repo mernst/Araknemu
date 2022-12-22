@@ -54,7 +54,6 @@ class FixedStealLifeHandlerTest extends FightBaseCase {
     private FixedStealLifeHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -72,7 +71,6 @@ class FixedStealLifeHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void applyRandomEffect() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -99,7 +97,6 @@ class FixedStealLifeHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyFixedEffect() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -125,7 +122,6 @@ class FixedStealLifeHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyShouldNotCallBuffHooks() {
         BuffHook hook = Mockito.mock(BuffHook.class);
         Buff buff = new Buff(Mockito.mock(SpellEffect.class), Mockito.mock(Spell.class), target, target, hook);
@@ -155,7 +151,6 @@ class FixedStealLifeHandlerTest extends FightBaseCase {
         Mockito.verify(hook, Mockito.never()).onBuffDamage(Mockito.any(), Mockito.any(), Mockito.any());
     }
 
-    @Test
     void boostShouldBeIgnored() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -177,7 +172,6 @@ class FixedStealLifeHandlerTest extends FightBaseCase {
         assertEquals(10, damage);
     }
 
-    @Test
     void applyToEmptyCell() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -195,7 +189,6 @@ class FixedStealLifeHandlerTest extends FightBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void applyToEmptyCellWithArea() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -222,7 +215,6 @@ class FixedStealLifeHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyWithAreaMultipleFighters() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -241,7 +233,6 @@ class FixedStealLifeHandlerTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.alterLifePoints(caster, caster, -10));
     }
 
-    @Test
     void buffNotSupported() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

@@ -31,7 +31,6 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AddBuffTest {
-    @Test
     void generate() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Fighter fighter = Mockito.mock(Fighter.class);
@@ -50,7 +49,6 @@ class AddBuffTest {
         assertEquals("GIE99;123;5;7;0;;3;456", new AddBuff(buff).toString());
     }
 
-    @Test
     void generateWithoutMax() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Fighter fighter = Mockito.mock(Fighter.class);
@@ -68,7 +66,6 @@ class AddBuffTest {
         assertEquals("GIE99;123;5;;0;;3;456", new AddBuff(buff).toString());
     }
 
-    @Test
     void generateWithoutSpell() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Fighter fighter = Mockito.mock(Fighter.class);

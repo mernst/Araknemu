@@ -28,17 +28,17 @@ import org.checkerframework.checker.index.qual.NonNegative;
  * Entity for Dofus map
  */
 public final class MapTemplate {
-    private final @NonNegative int id;
+    private final int id;
     private final String date;
     private final Dimensions dimensions;
     private final String key;
     private final CellData[] cells;
-    private final @NonNegative int[][] fightPlaces;
+    private final int[][] fightPlaces;
     private final Geolocation geolocation;
     private final int subAreaId;
     private final boolean indoor;
 
-    public MapTemplate(@NonNegative int id, String date, Dimensions dimensions, String key, CellData[] cells, @NonNegative int[][] fightPlaces, Geolocation geolocation, int subAreaId, boolean indoor) {
+    public MapTemplate(int id, String date, Dimensions dimensions, String key, CellData[] cells, int[][] fightPlaces, Geolocation geolocation, int subAreaId, boolean indoor) {
         this.id = id;
         this.date = date;
         this.dimensions = dimensions;
@@ -50,7 +50,7 @@ public final class MapTemplate {
         this.indoor = indoor;
     }
 
-    public @NonNegative int id() {
+    public int id() {
         return id;
     }
 
@@ -74,7 +74,7 @@ public final class MapTemplate {
      * Cell ids for start place on fights
      * The first index is used as team number
      */
-    public @NonNegative int[][] fightPlaces() {
+    public int[][] fightPlaces() {
         return fightPlaces;
     }
 

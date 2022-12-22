@@ -42,7 +42,6 @@ class ValidateGameActionTest extends GameBaseCase {
     private ExplorationMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -55,7 +54,6 @@ class ValidateGameActionTest extends GameBaseCase {
         map = explorationPlayer().map();
     }
 
-    @Test
     void handleSuccessMove() throws Exception {
         handler.handle(
             session,
@@ -72,12 +70,10 @@ class ValidateGameActionTest extends GameBaseCase {
         assertTrue(explorationPlayer().interactions().busy());
     }
 
-    @Test
     void handleBadRequest() {
         assertThrows(ErrorPacket.class, () -> handler.handle(session, new GameActionRequest(ActionType.NONE.id(), new String[0])));
     }
 
-    @Test
     void handleFailedWhenInteracting() throws SQLException, ContainerException {
         Interaction interaction = Mockito.mock(Interaction.class);
         Mockito.when(interaction.start()).thenReturn(interaction);

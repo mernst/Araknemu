@@ -29,14 +29,14 @@ import java.util.Random;
  */
 public final class RandomStringUtil {
     private final Random random;
-    private final @MinLen(1) String charset;
+    private final String charset;
 
     /**
      * Create instance
      * @param random The random generator instance
      * @param charset  The charset to use
      */
-    public RandomStringUtil(Random random, @MinLen(1) String charset) {
+    public RandomStringUtil(Random random, String charset) {
         this.random = random;
         this.charset = charset;
     }
@@ -46,7 +46,7 @@ public final class RandomStringUtil {
      *
      * @param length The required string length
      */
-    public String generate(@NonNegative int length) {
+    public String generate(int length) {
         final char[] buffer = new char[length];
 
         for (int i = 0; i < length; ++i) {

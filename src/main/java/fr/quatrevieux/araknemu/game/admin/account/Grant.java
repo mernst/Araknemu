@@ -75,11 +75,6 @@ public final class Grant extends AbstractCommand<Grant.Arguments> {
 
     @SuppressWarnings("initialization.field.uninitialized")
     public static final class Arguments {
-        @Argument(
-            metaVar = "PERMISSIONS", required = true, handler = CustomEnumOptionHandler.class,
-            usage = "List of permissions to grant on the current account." +
-                "\nAvailable permissions : {{permission.enum}}"
-        )
         private Permission[] permissions;
     }
 }

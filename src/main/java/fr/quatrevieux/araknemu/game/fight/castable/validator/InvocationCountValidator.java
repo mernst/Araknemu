@@ -60,7 +60,7 @@ public final class InvocationCountValidator implements CastConstraintValidator<S
     }
 
     @Override
-    public @Nullable Error validate(Turn turn, Spell castable, BattlefieldCell target) {
+    public Error validate(Turn turn, Spell castable, BattlefieldCell target) {
         return check(turn, castable, target) ? null : Error.cantCastMaxSummonedCreaturesReached(max(turn.fighter()));
     }
 

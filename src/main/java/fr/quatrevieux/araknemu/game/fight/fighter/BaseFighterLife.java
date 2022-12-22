@@ -30,27 +30,27 @@ import org.checkerframework.checker.index.qual.NonNegative;
 public final class BaseFighterLife implements FighterLife {
     private final Fighter fighter;
 
-    private @NonNegative int max;
-    private @NonNegative int current;
+    private int max;
+    private int current;
     private boolean dead = false;
 
-    public BaseFighterLife(Fighter fighter, @NonNegative int life, @NonNegative int max) {
+    public BaseFighterLife(Fighter fighter, int life, int max) {
         this.max = max;
         this.current = life;
         this.fighter = fighter;
     }
 
-    public BaseFighterLife(Fighter fighter, @NonNegative int life) {
+    public BaseFighterLife(Fighter fighter, int life) {
         this(fighter, life, life);
     }
 
     @Override
-    public @NonNegative int current() {
+    public int current() {
         return current;
     }
 
     @Override
-    public @NonNegative int max() {
+    public int max() {
         return max;
     }
 

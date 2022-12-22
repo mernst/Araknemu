@@ -55,9 +55,9 @@ public final class NettyServer<S extends Session> implements Server<S> {
     private final int port;
     private final Duration readTimeout;
 
-    private @MonotonicNonNull Channel serverChannel;
-    private @MonotonicNonNull EventLoopGroup loopGroup;
-    private @MonotonicNonNull SessionHandlerAdapter<S> handlerAdapter;
+    private Channel serverChannel;
+    private EventLoopGroup loopGroup;
+    private SessionHandlerAdapter<S> handlerAdapter;
 
     public NettyServer(SessionFactory<S> factory, int port, Duration readTimeout) {
         this.factory = factory;
@@ -120,7 +120,6 @@ public final class NettyServer<S extends Session> implements Server<S> {
         return handlerAdapter != null ? handlerAdapter.sessions() : Collections.emptyList();
     }
 
-    @ChannelHandler.Sharable
     public static final class MessageEndEncoder extends MessageToMessageEncoder<Object> {
         @Override
         protected void encode(ChannelHandlerContext ctx, Object msg, List<Object> out) {

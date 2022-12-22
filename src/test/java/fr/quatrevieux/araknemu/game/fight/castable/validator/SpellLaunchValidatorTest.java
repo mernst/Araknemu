@@ -45,7 +45,6 @@ class SpellLaunchValidatorTest extends FightBaseCase {
     private SpellLaunchValidator validator;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -57,7 +56,6 @@ class SpellLaunchValidatorTest extends FightBaseCase {
         validator = new SpellLaunchValidator();
     }
 
-    @Test
     void validateWithoutLaunchedSpellHistory() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -72,7 +70,6 @@ class SpellLaunchValidatorTest extends FightBaseCase {
         assertNull(validator.validate(turn, spell, fighter.cell()));
     }
 
-    @Test
     void validateWithLaunchedSpellValid() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -90,7 +87,6 @@ class SpellLaunchValidatorTest extends FightBaseCase {
         assertNull(validator.validate(turn, spell, fighter.cell()));
     }
 
-    @Test
     void validateWithLaunchedSpellError() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);

@@ -32,7 +32,6 @@ class ExecuteCommandTest extends GameBaseCase {
     private ExecuteCommand handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -44,7 +43,6 @@ class ExecuteCommandTest extends GameBaseCase {
         );
     }
 
-    @Test
     void handleSuccess() throws Exception {
         handler.handle(session, new AdminCommand("echo hello world"));
 
@@ -53,7 +51,6 @@ class ExecuteCommandTest extends GameBaseCase {
         );
     }
 
-    @Test
     void handleWithError() throws Exception {
         requestStack.clear();
         handler.handle(session, new AdminCommand("badCommand"));

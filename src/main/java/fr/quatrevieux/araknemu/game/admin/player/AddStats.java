@@ -77,23 +77,8 @@ public final class AddStats extends AbstractCommand<AddStats.Arguments> {
 
     @SuppressWarnings("initialization.field.uninitialized")
     public static final class Arguments {
-        @Argument(
-            index = 0,
-            required = true,
-            handler = CustomEnumOptionHandler.class,
-            metaVar = "CHARACTERISTIC",
-            usage = "The characteristic to add.\n" +
-                "This parameter is case insensitive.\n" +
-                "It's value must be one of those : {{characteristic.enum}}"
-        )
         private Characteristic characteristic;
 
-        @Argument(
-            index = 1,
-            required = true,
-            metaVar = "VALUE",
-            usage = "The value to add, must be an integer. Negative values are allowed, but be careful with negative vitality !!!"
-        )
         private int value;
     }
 }

@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GeolocationTest {
-    @Test
     void equal() {
         Geolocation geolocation = new Geolocation(1, 3);
 
@@ -38,7 +37,6 @@ class GeolocationTest {
         assertNotEquals(geolocation, new Object());
     }
 
-    @Test
     void hash() {
         Geolocation geolocation = new Geolocation(1, 3);
 
@@ -48,7 +46,6 @@ class GeolocationTest {
         assertNotEquals(new Geolocation(1, 2).hashCode(), geolocation.hashCode());
     }
 
-    @Test
     void string() {
         assertEquals("[1,3]", new Geolocation(1, 3).toString());
     }

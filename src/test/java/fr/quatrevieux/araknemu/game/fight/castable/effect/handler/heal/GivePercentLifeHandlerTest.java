@@ -48,7 +48,6 @@ class GivePercentLifeHandlerTest extends FightBaseCase {
     private int lastTargetLife;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -67,7 +66,6 @@ class GivePercentLifeHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void applyRandomEffect() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -91,7 +89,6 @@ class GivePercentLifeHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyFixedEffect() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -113,7 +110,6 @@ class GivePercentLifeHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyToEmptyCellShouldRemoveCasterLife() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -131,7 +127,6 @@ class GivePercentLifeHandlerTest extends FightBaseCase {
         requestStack.assertLast(ActionEffect.alterLifePoints(caster, caster, -29));
     }
 
-    @Test
     void applyToEmptyCellWithArea() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -154,7 +149,6 @@ class GivePercentLifeHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyShouldIgnoreSelfTarget() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -178,7 +172,6 @@ class GivePercentLifeHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void withMultipleAlliesShouldOnlyRemoveCasterLifeOnce() {
         fight = fightBuilder()
             .addSelf(fb -> fb.currentLife(250).maxLife(250).cell(298))
@@ -214,7 +207,6 @@ class GivePercentLifeHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void buffNotSupported() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

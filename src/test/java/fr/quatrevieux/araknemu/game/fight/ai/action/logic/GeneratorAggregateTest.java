@@ -33,7 +33,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 class GeneratorAggregateTest {
-    @Test
     void initializeShouldInitializeAllActions() {
         ActionGenerator g1 = Mockito.mock(ActionGenerator.class);
         ActionGenerator g2 = Mockito.mock(ActionGenerator.class);
@@ -49,7 +48,6 @@ class GeneratorAggregateTest {
         Mockito.verify(g3).initialize(ai);
     }
 
-    @Test
     void generateShouldStopAndReturnTheFirstSuccessfulAction() {
         ActionGenerator g1 = Mockito.mock(ActionGenerator.class);
         ActionGenerator g2 = Mockito.mock(ActionGenerator.class);
@@ -70,7 +68,6 @@ class GeneratorAggregateTest {
         Mockito.verify(g3, Mockito.never()).generate(ai, actions);
     }
 
-    @Test
     void generateAllFailedShouldReturnEmptyOptional() {
         ActionGenerator g1 = Mockito.mock(ActionGenerator.class);
         ActionGenerator g2 = Mockito.mock(ActionGenerator.class);

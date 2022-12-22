@@ -30,14 +30,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class CheckDofusVersionTest extends RealmBaseCase {
     private CheckDofusVersion handler;
 
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         handler = new CheckDofusVersion(configuration);
     }
 
-    @Test
     void testSuccess() {
         handler.handle(
             session,
@@ -48,7 +46,6 @@ class CheckDofusVersionTest extends RealmBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void badVersion() {
         handler.handle(
             session,

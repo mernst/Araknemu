@@ -33,7 +33,7 @@ public final class RingSlot extends AbstractWearableSlot {
     public static final int RING1 = 2;
     public static final int RING2 = 4;
 
-    public RingSlot(Dispatcher dispatcher, ItemStorage<InventoryEntry> storage, GamePlayer owner, @IntVal({RING1, RING2}) int id) {
+    public RingSlot(Dispatcher dispatcher, ItemStorage<InventoryEntry> storage, GamePlayer owner, int id) {
         super(dispatcher, storage, owner, id, SuperType.RING);
     }
 }

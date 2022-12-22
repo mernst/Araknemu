@@ -52,7 +52,6 @@ class DamageApplierTest extends FightBaseCase {
     private Fight fight;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -65,7 +64,6 @@ class DamageApplierTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void applyFixedWithoutBoost() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -81,7 +79,6 @@ class DamageApplierTest extends FightBaseCase {
         requestStack.assertLast(ActionEffect.alterLifePoints(caster, target, -10));
     }
 
-    @Test
     void applyRandomWithoutBoost() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -98,7 +95,6 @@ class DamageApplierTest extends FightBaseCase {
         requestStack.assertLast(ActionEffect.alterLifePoints(caster, target, value));
     }
 
-    @Test
     void applyWithBoost() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -115,7 +111,6 @@ class DamageApplierTest extends FightBaseCase {
         assertEquals(-27, value);
     }
 
-    @Test
     void applyWithResistance() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -131,7 +126,6 @@ class DamageApplierTest extends FightBaseCase {
         assertEquals(-2, value);
     }
 
-    @Test
     void applyWithTooHighResistance() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -146,7 +140,6 @@ class DamageApplierTest extends FightBaseCase {
         assertEquals(0, value);
     }
 
-    @Test
     void applyWithValueHigherThanTargetLife() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -162,7 +155,6 @@ class DamageApplierTest extends FightBaseCase {
         requestStack.assertLast(ActionEffect.fighterDie(caster, target));
     }
 
-    @Test
     void applyWithReduceBuff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -187,7 +179,6 @@ class DamageApplierTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.reducedDamage(target, 7));
     }
 
-    @Test
     void applyDirectDamageShouldCallBuffHook() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -211,7 +202,7 @@ class DamageApplierTest extends FightBaseCase {
             }
 
             @Override
-            public void onDirectDamageApplied(Buff buff, Fighter caster, @Positive int damage) {
+            public void onDirectDamageApplied(Buff buff, Fighter caster, int damage) {
                 appliedDamageBuff.set(buff);
                 appliedDamageCaster.set(caster);
                 appliedDamageValue.set(damage);
@@ -233,7 +224,6 @@ class DamageApplierTest extends FightBaseCase {
         assertEquals(10, appliedDamageValue.get());
     }
 
-    @Test
     void applyBuffDamageShouldCallBuffHook() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -255,7 +245,7 @@ class DamageApplierTest extends FightBaseCase {
             }
 
             @Override
-            public void onDirectDamageApplied(Buff buff, Fighter caster, @Positive int damage) {
+            public void onDirectDamageApplied(Buff buff, Fighter caster, int damage) {
                 appliedDamageHookCalled.set(true);
             }
         });
@@ -273,7 +263,6 @@ class DamageApplierTest extends FightBaseCase {
         assertFalse(appliedDamageHookCalled.get());
     }
 
-    @Test
     void applyWithCounterDamageCharacteristic() {
         target.characteristics().alter(Characteristic.COUNTER_DAMAGE, 5);
         SpellEffect effect = Mockito.mock(SpellEffect.class);
@@ -311,7 +300,6 @@ class DamageApplierTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyWithCounterDamageShouldNotExceedHalfOfDamage() {
         target.characteristics().alter(Characteristic.COUNTER_DAMAGE, 10);
         SpellEffect effect = Mockito.mock(SpellEffect.class);
@@ -332,7 +320,6 @@ class DamageApplierTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyWithCounterDamageShouldTakeResistanceInAccount() {
         target.characteristics().alter(Characteristic.COUNTER_DAMAGE, 10);
         caster.characteristics().alter(Characteristic.RESISTANCE_AIR, 2);
@@ -355,7 +342,6 @@ class DamageApplierTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyWithCounterDamageChangeTarget() throws SQLException {
         PlayerFighter newTarget = makePlayerFighter(makeSimpleGamePlayer(11));
         fight.team(0).join(newTarget);
@@ -391,7 +377,6 @@ class DamageApplierTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyWithCounterDamageShouldIgnoreSelfTarget() {
         caster.characteristics().alter(Characteristic.COUNTER_DAMAGE, 10);
         SpellEffect effect = Mockito.mock(SpellEffect.class);
@@ -409,7 +394,6 @@ class DamageApplierTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyWithCounterDamageNoDamageShouldBeIgnored() {
         target.characteristics().alter(Characteristic.COUNTER_DAMAGE, 5);
         target.characteristics().alter(Characteristic.RESISTANCE_AIR, 10);
@@ -436,7 +420,6 @@ class DamageApplierTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyWithCounterDamageAndNegativeMultiplierShouldHealTarget() {
         target.characteristics().alter(Characteristic.COUNTER_DAMAGE, 5);
         caster.life().alter(caster, -10);
@@ -467,7 +450,6 @@ class DamageApplierTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyWithNegativeMultiplierShouldHealTargetAndNotCallDirectDamageAppliedHook() {
         target.life().alter(target, -20);
         SpellEffect effect = Mockito.mock(SpellEffect.class);
@@ -481,7 +463,7 @@ class DamageApplierTest extends FightBaseCase {
             }
 
             @Override
-            public void onDirectDamageApplied(Buff buff, Fighter caster, @Positive int damage) {
+            public void onDirectDamageApplied(Buff buff, Fighter caster, int damage) {
                 appliedDamageHookCalled.set(true);
             }
         });
@@ -500,7 +482,6 @@ class DamageApplierTest extends FightBaseCase {
         requestStack.assertAll(ActionEffect.alterLifePoints(caster, target, 10));
     }
 
-    @Test
     void applyFixedBase() {
         DamageApplier applier = new DamageApplier(Element.EARTH, fight);
 
@@ -520,7 +501,7 @@ class DamageApplierTest extends FightBaseCase {
             }
 
             @Override
-            public void onDirectDamageApplied(Buff buff, Fighter caster, @Positive int damage) {
+            public void onDirectDamageApplied(Buff buff, Fighter caster, int damage) {
                 appliedDamageBuff.set(buff);
                 appliedDamageCaster.set(caster);
                 appliedDamageValue.set(damage);
@@ -546,7 +527,6 @@ class DamageApplierTest extends FightBaseCase {
         assertEquals(10, appliedDamageValue.get());
     }
 
-    @Test
     void applyFixedShouldIgnoreBoost() {
         caster.characteristics().alter(Characteristic.STRENGTH, 100);
         caster.characteristics().alter(Characteristic.FIXED_DAMAGE, 100);
@@ -562,7 +542,6 @@ class DamageApplierTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyFixedWithCounterDamageCharacteristic() {
         target.characteristics().alter(Characteristic.COUNTER_DAMAGE, 5);
         SpellEffect effect = Mockito.mock(SpellEffect.class);
@@ -600,7 +579,6 @@ class DamageApplierTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyFixedWithResistance() {
         target.characteristics().alter(Characteristic.RESISTANCE_EARTH, 3);
         target.characteristics().alter(Characteristic.RESISTANCE_PERCENT_EARTH, 10);
@@ -616,7 +594,6 @@ class DamageApplierTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyIndirectFixedBase() {
         DamageApplier applier = new DamageApplier(Element.EARTH, fight);
 
@@ -634,7 +611,7 @@ class DamageApplierTest extends FightBaseCase {
             }
 
             @Override
-            public void onDirectDamageApplied(Buff buff, Fighter caster, @Positive int damage) {
+            public void onDirectDamageApplied(Buff buff, Fighter caster, int damage) {
                 appliedDamageHookCalled.set(true);
             }
         });
@@ -656,7 +633,6 @@ class DamageApplierTest extends FightBaseCase {
         assertFalse(appliedDamageHookCalled.get());
     }
 
-    @Test
     void applyIndirectFixedShouldIgnoreBoost() {
         caster.characteristics().alter(Characteristic.STRENGTH, 100);
         caster.characteristics().alter(Characteristic.FIXED_DAMAGE, 100);
@@ -672,7 +648,6 @@ class DamageApplierTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyIndirectFixedWithCounterDamageCharacteristicShouldBeIgnored() {
         target.characteristics().alter(Characteristic.COUNTER_DAMAGE, 5);
         SpellEffect effect = Mockito.mock(SpellEffect.class);
@@ -698,7 +673,6 @@ class DamageApplierTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyIndirectFixedWithResistance() {
         target.characteristics().alter(Characteristic.RESISTANCE_EARTH, 3);
         target.characteristics().alter(Characteristic.RESISTANCE_PERCENT_EARTH, 10);
@@ -714,7 +688,6 @@ class DamageApplierTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyFixedBuffDamage() {
         DamageApplier applier = new DamageApplier(Element.AIR, fight);
 
@@ -744,7 +717,6 @@ class DamageApplierTest extends FightBaseCase {
         assertEquals(10, calledDamage.get().value());
     }
 
-    @Test
     void applyFixedBuffDamageWithResistance() {
         target.characteristics().alter(Characteristic.RESISTANCE_PERCENT_AIR, 50);
         target.characteristics().alter(Characteristic.RESISTANCE_AIR, 3);
@@ -758,7 +730,6 @@ class DamageApplierTest extends FightBaseCase {
         assertEquals(-2, target.life().current() - target.life().max());
     }
 
-    @Test
     void applyShouldCallOnCastDamageOnCaster() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -778,7 +749,6 @@ class DamageApplierTest extends FightBaseCase {
         Mockito.verify(hook, Mockito.times(1)).onCastDamage(Mockito.eq(buff), Mockito.argThat(damage -> damage.value() == 10), Mockito.eq(target));
     }
 
-    @Test
     void applyFixedShouldCallOnCastDamageOnCaster() {
         DamageApplier applier = new DamageApplier(Element.AIR, fight);
 
@@ -794,7 +764,6 @@ class DamageApplierTest extends FightBaseCase {
         Mockito.verify(hook, Mockito.times(1)).onCastDamage(Mockito.eq(buff), Mockito.argThat(damage -> damage.value() == 10), Mockito.eq(target));
     }
 
-    @Test
     void applyBuffShouldCallOnCastDamageOnCaster() {
         DamageApplier applier = new DamageApplier(Element.AIR, fight);
 
@@ -814,7 +783,6 @@ class DamageApplierTest extends FightBaseCase {
         Mockito.verify(hook, Mockito.times(1)).onCastDamage(Mockito.eq(buff), Mockito.argThat(damage -> damage.value() == 10), Mockito.eq(target));
     }
 
-    @Test
     void applyFixedBuffShouldCallOnCastDamageOnCaster() {
         DamageApplier applier = new DamageApplier(Element.AIR, fight);
 

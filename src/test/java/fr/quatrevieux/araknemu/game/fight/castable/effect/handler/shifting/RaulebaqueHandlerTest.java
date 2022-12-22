@@ -42,7 +42,6 @@ class RaulebaqueHandlerTest extends FightBaseCase {
     private RaulebaqueHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -62,7 +61,6 @@ class RaulebaqueHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handleSimple() {
         caster.move(fight.map().get(125));
         other.fighter().move(fight.map().get(325));
@@ -77,7 +75,6 @@ class RaulebaqueHandlerTest extends FightBaseCase {
         assertEquals(321, other.fighter().cell().id());
     }
 
-    @Test
     void handleWillNotTeleportAddedFighters() throws SQLException, ContainerException, JoinFightException {
         caster.move(fight.map().get(125));
         other.fighter().move(fight.map().get(325));
@@ -99,7 +96,6 @@ class RaulebaqueHandlerTest extends FightBaseCase {
         assertEquals(236, newFighter.cell().id());
     }
 
-    @Test
     void handleWillExchangePlaceIfTargetIsNotAvailable() throws SQLException, ContainerException, JoinFightException {
         caster.move(fight.map().get(125));
         other.fighter().move(fight.map().get(325));
@@ -119,7 +115,6 @@ class RaulebaqueHandlerTest extends FightBaseCase {
         assertEquals(125, newFighter.cell().id());
     }
 
-    @Test
     void handleWithoutChanges() {
         FightCastScope scope = makeCastScopeForEffect(784);
 
@@ -131,7 +126,6 @@ class RaulebaqueHandlerTest extends FightBaseCase {
         assertEquals(321, other.fighter().cell().id());
     }
 
-    @Test
     void handleWillNotMoveDeadFighter() {
         FightCastScope scope = makeCastScopeForEffect(784);
 
@@ -146,7 +140,6 @@ class RaulebaqueHandlerTest extends FightBaseCase {
         assertEquals(124, other.fighter().cell().id());
     }
 
-    @Test
     void buff() {
         FightCastScope scope = makeCastScopeForEffect(784);
 

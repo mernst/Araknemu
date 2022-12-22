@@ -44,7 +44,6 @@ class MonsterGroupSpriteTest extends GameBaseCase {
     private MonsterGroupSprite sprite;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -81,12 +80,10 @@ class MonsterGroupSpriteTest extends GameBaseCase {
         sprite = new MonsterGroupSprite(group);
     }
 
-    @Test
     void generate() {
         assertEquals("123;4;;-503;31,34,36,36;-3;1563^100,1568^100,1566^100,1566^100;4,9,2,6;-1,-1,-1;0,0,0,0;-1,-1,-1;0,0,0,0;-1,-1,-1;0,0,0,0;-1,-1,-1;0,0,0,0;", sprite.toString());
     }
 
-    @Test
     void values() {
         assertEquals(-503, sprite.id());
         assertEquals(123, sprite.cell());

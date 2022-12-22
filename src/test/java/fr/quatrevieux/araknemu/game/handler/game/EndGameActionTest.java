@@ -35,14 +35,12 @@ class EndGameActionTest extends GameBaseCase {
     private EndGameAction handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         handler = new EndGameAction();
     }
 
-    @Test
     void handleSuccess() throws Exception {
         dataSet.pushMaps().pushSubAreas().pushAreas();
 

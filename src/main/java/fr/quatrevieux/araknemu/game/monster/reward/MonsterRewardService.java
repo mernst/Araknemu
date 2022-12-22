@@ -78,7 +78,7 @@ public final class MonsterRewardService implements PreloadableService {
      * @param monsterId The monster id to load
      * @param gradeNumber The grade number (starts at 1)
      */
-    public MonsterReward get(int monsterId, @Positive int gradeNumber) {
+    public MonsterReward get(int monsterId, int gradeNumber) {
         return rewards
             .computeIfAbsent(monsterId, id -> preloading
                 ? NullMonsterGradesReward.INSTANCE

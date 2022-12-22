@@ -35,44 +35,36 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class RealmConfigurationTest {
     private RealmConfiguration configuration;
 
-    @BeforeEach
     void setUp() throws IOException {
         configuration = new RealmConfiguration(new IniDriver(
             new Ini(new File("src/test/test_config.ini"))
         ).pool("realm"));
     }
 
-    @Test
     void port() {
         assertEquals(456, configuration.port());
     }
 
-    @Test
     void clientVersion() {
         assertEquals("1.29.1", configuration.clientVersion());
     }
 
-    @Test
     void inactivityTime() {
         assertEquals(Duration.ofMinutes(15), configuration.inactivityTime());
     }
 
-    @Test
     void packetRateLimit() {
         assertEquals(100, configuration.packetRateLimit());
     }
 
-    @Test
     void passwordHashAlgorithms() {
         assertArrayEquals(new String[] {"argon2", "plain"}, configuration.passwordHashAlgorithms());
     }
 
-    @Test
     void banIpRefresh() {
         assertEquals(Duration.ofSeconds(30), configuration.banIpRefresh());
     }
 
-    @Test
     void argon2() {
         assertEquals(4, configuration.argon2().iterations());
         assertEquals(8, configuration.argon2().parallelism());

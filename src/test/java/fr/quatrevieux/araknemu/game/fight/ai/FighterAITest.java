@@ -49,7 +49,6 @@ class FighterAITest extends FightBaseCase {
     private Fighter otherEnemy;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -64,7 +63,6 @@ class FighterAITest extends FightBaseCase {
         fight.nextState();
     }
 
-    @Test
     void getters() {
         FighterAI ai = new FighterAI(fighter, fight, NullGenerator.get());
 
@@ -72,7 +70,6 @@ class FighterAITest extends FightBaseCase {
         assertEquals(enemy, ai.enemy().get());
     }
 
-    @Test
     void notStarted() {
         FighterAI ai = new FighterAI(fighter, fight, NullGenerator.get());
 
@@ -80,7 +77,6 @@ class FighterAITest extends FightBaseCase {
         assertThrows(IllegalStateException.class, ai::run);
     }
 
-    @Test
     void enemyShouldFilterDeadFighters() {
         FighterAI ai = new FighterAI(fighter, fight, NullGenerator.get());
 
@@ -89,7 +85,6 @@ class FighterAITest extends FightBaseCase {
         assertEquals(otherEnemy, ai.enemy().get());
     }
 
-    @RepeatedIfExceptionsTest
     void startEmptyShouldStop() throws InterruptedException {
         fight.turnList().start();
         FightTurn turn = fight.turnList().current().get();
@@ -100,7 +95,6 @@ class FighterAITest extends FightBaseCase {
         assertFalse(turn.active());
     }
 
-    @RepeatedIfExceptionsTest
     void startUnit() throws InterruptedException {
         ActionGenerator generator1 = Mockito.mock(ActionGenerator.class);
         ActionGenerator generator2 = Mockito.mock(ActionGenerator.class);
@@ -124,7 +118,6 @@ class FighterAITest extends FightBaseCase {
         assertTrue(turn.active());
     }
 
-    @RepeatedIfExceptionsTest
     void startWithoutAvailableActionShouldStopTurn() throws InterruptedException {
         ActionGenerator generator1 = Mockito.mock(ActionGenerator.class);
         ActionGenerator generator2 = Mockito.mock(ActionGenerator.class);
@@ -148,7 +141,6 @@ class FighterAITest extends FightBaseCase {
         assertFalse(turn.active());
     }
 
-    @RepeatedIfExceptionsTest
     void startWithInactiveTurnShouldNotExecuteActions() throws InterruptedException {
         ActionGenerator generator1 = Mockito.mock(ActionGenerator.class);
         ActionGenerator generator2 = Mockito.mock(ActionGenerator.class);
@@ -168,14 +160,12 @@ class FighterAITest extends FightBaseCase {
         Mockito.verify(generator2, Mockito.never()).generate(Mockito.eq(ai), Mockito.any(AiActionFactory.class));
     }
 
-    @Test
     void runWithoutStart() {
         FighterAI ai = new FighterAI(fighter, fight, NullGenerator.get());
 
         assertThrows(IllegalStateException.class, ai::run);
     }
 
-    @Test
     void helper() {
         FighterAI ai = new FighterAI(fighter, fight, NullGenerator.get());
 

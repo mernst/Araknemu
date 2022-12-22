@@ -39,7 +39,6 @@ class AreaServiceTest extends GameBaseCase {
     private AreaService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -55,7 +54,6 @@ class AreaServiceTest extends GameBaseCase {
         service.preload(container.get(Logger.class));
     }
 
-    @Test
     void list() {
         assertCount(7, service.list());
         assertSame(
@@ -64,7 +62,6 @@ class AreaServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void get() {
         ExplorationSubArea area = service.get(3);
 
@@ -75,7 +72,6 @@ class AreaServiceTest extends GameBaseCase {
         assertSame(area, service.get(3));
     }
 
-    @Test
     void playerLoadedListener() throws SQLException, ContainerException {
         ListenerAggregate dispatcher = new DefaultListenerAggregate();
         dispatcher.register(service);
@@ -85,7 +81,6 @@ class AreaServiceTest extends GameBaseCase {
         assertTrue(gamePlayer().dispatcher().has(InitializeAreas.class));
     }
 
-    @Test
     void name() {
         assertEquals("map.area", service.name());
     }

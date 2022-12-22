@@ -33,7 +33,6 @@ class SendFightLeavedTest extends FightBaseCase {
     private PlayerFighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -42,7 +41,6 @@ class SendFightLeavedTest extends FightBaseCase {
         listener = new SendFightLeaved(fighter);
     }
 
-    @Test
     void onFighterRemoved() {
         listener.on(new FightLeaved());
 

@@ -33,7 +33,6 @@ class SendStatsTest extends FightBaseCase {
     private SendStats listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -41,7 +40,6 @@ class SendStatsTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onCharacteristicsChanged() throws SQLException, ContainerException {
         listener.on(new CharacteristicsChanged());
 
@@ -50,7 +48,6 @@ class SendStatsTest extends FightBaseCase {
         );
     }
 
-    @Test
     void onCharacteristicsChangedWithFighter() throws Exception {
         createFight();
         PlayerFighter fighter = player.fighter();

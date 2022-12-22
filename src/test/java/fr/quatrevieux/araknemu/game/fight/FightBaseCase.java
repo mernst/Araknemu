@@ -100,7 +100,6 @@ public class FightBaseCase extends GameBaseCase {
     private int lastPlayerId = 5;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -112,7 +111,6 @@ public class FightBaseCase extends GameBaseCase {
     }
 
     @Override
-    @AfterEach
     public void tearDown() throws ContainerException {
         executor.shutdownNow();
 

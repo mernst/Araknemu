@@ -29,22 +29,18 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class MapCellsTransformerTest {
     private MapCellsTransformer transformer;
 
-    @BeforeEach
     void setUp() {
         transformer = new MapCellsTransformer();
     }
 
-    @Test
     void unserializeNull() {
         assertNull(transformer.unserialize(null));
     }
 
-    @Test
     void serialize() {
         assertThrows(UnsupportedOperationException.class, () -> transformer.serialize(null));
     }
 
-    @Test
     void unserializeSameDataWillReturnSameObject() {
         assertArrayEquals(
             transformer.unserialize("Hhaaeaaaaa"),

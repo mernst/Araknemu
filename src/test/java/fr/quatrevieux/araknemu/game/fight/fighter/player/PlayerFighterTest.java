@@ -64,7 +64,6 @@ class PlayerFighterTest extends FightBaseCase {
     private Fight fight;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -80,23 +79,19 @@ class PlayerFighterTest extends FightBaseCase {
         );
     }
 
-    @Test
     void player() throws SQLException, ContainerException {
         assertSame(gamePlayer(), fighter.player());
     }
 
-    @Test
     void invoker() {
         assertNull(fighter.invoker());
         assertFalse(fighter.invoked());
     }
 
-    @Test
     void sprite() {
         assertInstanceOf(PlayerFighterSprite.class, fighter.sprite());
     }
 
-    @Test
     void team() throws Exception {
         FightTeam team = new SimpleTeam(fight, fighter, new ArrayList<>(), 0);
         fighter.setTeam(team);
@@ -104,14 +99,12 @@ class PlayerFighterTest extends FightBaseCase {
         assertSame(team, fighter.team());
     }
 
-    @Test
     void fight() {
         fighter.joinFight(fight, map.get(123));
 
         assertSame(fight, fighter.fight());
     }
 
-    @Test
     void joinFight() {
         assertFalse(fighter.isOnFight());
 
@@ -123,7 +116,6 @@ class PlayerFighterTest extends FightBaseCase {
         assertTrue(fighter.isOnFight());
     }
 
-    @Test
     void moveFirstTime() {
         fighter.move(map.get(123));
 
@@ -131,7 +123,6 @@ class PlayerFighterTest extends FightBaseCase {
         assertSame(fighter, map.get(123).fighter());
     }
 
-    @Test
     void moveWillLeaveLastCell() {
         fighter.move(map.get(123));
         fighter.move(map.get(124));
@@ -142,7 +133,6 @@ class PlayerFighterTest extends FightBaseCase {
         assertFalse(map.get(123).hasFighter());
     }
 
-    @Test
     void moveRemoveCell() {
         fighter.move(map.get(123));
         fighter.move(null);
@@ -151,14 +141,12 @@ class PlayerFighterTest extends FightBaseCase {
         assertFalse(map.get(123).hasFighter());
     }
 
-    @Test
     void send() {
         fighter.send("test");
 
         requestStack.assertLast("test");
     }
 
-    @Test
     void setReady() {
         fighter.joinFight(fight, map.get(123));
 
@@ -171,7 +159,6 @@ class PlayerFighterTest extends FightBaseCase {
         assertTrue(ref.get().ready());
     }
 
-    @Test
     void unsetReady() {
         fighter.joinFight(fight, map.get(123));
         fighter.setReady(true);
@@ -185,13 +172,11 @@ class PlayerFighterTest extends FightBaseCase {
         assertFalse(ref.get().ready());
     }
 
-    @Test
     void turnNotSet() {
         assertThrows(FightException.class, () -> fighter.turn());
         assertFalse(fighter.isPlaying());
     }
 
-    @Test
     void playAndStop() {
         FightTurn turn = new FightTurn(fighter, fight, Duration.ofSeconds(10));
         turn.start();
@@ -214,13 +199,11 @@ class PlayerFighterTest extends FightBaseCase {
         assertThrows(FightException.class, () -> fighter.turn());
     }
 
-    @Test
     void life() throws SQLException, ContainerException {
         assertEquals(gamePlayer().properties().life().current(), fighter.life().current());
         assertEquals(gamePlayer().properties().life().max(), fighter.life().max());
     }
 
-    @Test
     void lifeAfterInitIsNotSyncWithPlayer() throws SQLException, ContainerException {
         gamePlayer().properties().life().set(100);
         assertEquals(100, fighter.life().current());
@@ -231,7 +214,6 @@ class PlayerFighterTest extends FightBaseCase {
         assertEquals(100, fighter.life().current());
     }
 
-    @Test
     void dead() {
         fighter.joinFight(fight, map.get(123));
         fighter.init();
@@ -242,18 +224,15 @@ class PlayerFighterTest extends FightBaseCase {
         assertTrue(fighter.dead());
     }
 
-    @Test
     void characteristics() throws SQLException, ContainerException {
         assertEquals(gamePlayer().properties().characteristics().initiative(), fighter.characteristics().initiative());
         assertEquals(gamePlayer().properties().characteristics().get(Characteristic.ACTION_POINT), fighter.characteristics().get(Characteristic.ACTION_POINT));
     }
 
-    @Test
     void weaponNoWeapon() {
         assertThrows(FightException.class, () -> fighter.weapon());
     }
 
-    @Test
     void weaponEquiped() throws ContainerException, SQLException, InventoryException {
         equipWeapon(player);
 
@@ -264,22 +243,18 @@ class PlayerFighterTest extends FightBaseCase {
         assertEquals(7, weapon.effects().get(0).max());
     }
 
-    @Test
     void buffs() {
         assertInstanceOf(BuffList.class, fighter.buffs());
     }
 
-    @Test
     void properties() {
         assertInstanceOf(PlayerFighterProperties.class, fighter.properties());
     }
 
-    @Test
     void states() {
         assertInstanceOf(States.class, fighter.states());
     }
 
-    @Test
     void attachments() {
         fighter.attach("key", 42);
         assertSame(42, fighter.attachment("key"));
@@ -290,7 +265,6 @@ class PlayerFighterTest extends FightBaseCase {
         assertSame(launchedSpells, fighter.attachment(LaunchedSpells.class));
     }
 
-    @Test
     void init() {
         AtomicReference<FighterInitialized> ref = new AtomicReference<>();
         fight.dispatcher().add(FighterInitialized.class, ref::set);
@@ -301,14 +275,12 @@ class PlayerFighterTest extends FightBaseCase {
         assertSame(fighter, ref.get().fighter());
     }
 
-    @Test
     void notInFight() {
         assertThrows(IllegalStateException.class, () -> fighter.fight());
         assertThrows(IllegalStateException.class, () -> fighter.init());
         assertThrows(IllegalStateException.class, () -> fighter.team());
     }
 
-    @Test
     void registerUnregister() {
         fighter.register(session);
         assertSame(fighter, session.fighter());
@@ -317,7 +289,6 @@ class PlayerFighterTest extends FightBaseCase {
         assertNull(session.fighter());
     }
 
-    @Test
     void orientation() {
         assertEquals(Direction.SOUTH_EAST, fighter.orientation());
 
@@ -325,7 +296,6 @@ class PlayerFighterTest extends FightBaseCase {
         assertEquals(Direction.NORTH_EAST, fighter.orientation());
     }
 
-    @Test
     void apply() {
         FighterOperation operation = Mockito.mock(FighterOperation.class);
 
@@ -333,7 +303,6 @@ class PlayerFighterTest extends FightBaseCase {
         Mockito.verify(operation).onPlayer(fighter);
     }
 
-    @Test
     void hidden() {
         fighter.joinFight(fight, fight.map().get(123));
 

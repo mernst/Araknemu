@@ -79,7 +79,6 @@ public class FunctionalTest extends GameBaseCase {
     private Fight fight;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -88,7 +87,6 @@ public class FunctionalTest extends GameBaseCase {
         service = container.get(FightService.class);
     }
 
-    @RepeatedIfExceptionsTest
     void challengeFight() throws Exception {
         dataSet.pushWeaponTemplates();
         FightHandler<ChallengeBuilder> handler = service.handler(ChallengeBuilder.class);

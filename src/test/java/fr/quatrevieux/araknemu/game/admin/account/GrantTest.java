@@ -40,7 +40,6 @@ class GrantTest extends CommandTestCase {
     private GameSession targetSession;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,7 +48,6 @@ class GrantTest extends CommandTestCase {
         command = new Grant(account);
     }
 
-    @Test
     void grantOnePermission() throws AdminException, SQLException {
         execute("grant", "access");
 
@@ -60,7 +58,6 @@ class GrantTest extends CommandTestCase {
         assertOutput("Permissions updated for ACCOUNT_10");
     }
 
-    @Test
     void grantMultiplePermissions() throws AdminException, SQLException {
         execute("grant", "access", "manage_player");
 
@@ -70,7 +67,6 @@ class GrantTest extends CommandTestCase {
         assertTrue(account.isGranted(Permission.MANAGE_PLAYER));
     }
 
-    @Test
     void notLoggedAccountShouldFailed() throws SQLException, AdminException {
         account = new GameAccount(new Account(11, "test", "test", "test"), container.get(AccountService.class), 2);
         command = new Grant(account);
@@ -79,7 +75,6 @@ class GrantTest extends CommandTestCase {
         assertOutput("Cannot change permissions for test : the account is not logged");
     }
 
-    @Test
     void help() {
         assertHelp(
             "grant - Grant a temporary permission to an account",

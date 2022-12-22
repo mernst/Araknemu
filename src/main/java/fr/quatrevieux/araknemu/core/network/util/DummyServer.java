@@ -68,7 +68,7 @@ public final class DummyServer<S extends Session> implements Server<S> {
     /**
      * Create a new session
      */
-    public S createSession(@Nullable String ipAddress) {
+    public S createSession(String ipAddress) {
         final DummyChannel channel = new DummyChannel(ipAddress);
 
         channel.setId(++lastId);

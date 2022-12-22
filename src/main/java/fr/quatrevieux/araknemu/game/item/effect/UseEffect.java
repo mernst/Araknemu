@@ -37,9 +37,9 @@ import java.util.Arrays;
 public final class UseEffect implements ItemEffect {
     private final UseEffectHandler handler;
     private final Effect effect;
-    private final @NonNegative int @ArrayLen(3) [] arguments;
+    private final int[] arguments;
 
-    public UseEffect(UseEffectHandler handler, Effect effect, @NonNegative int @ArrayLen(3)[] arguments) {
+    public UseEffect(UseEffectHandler handler, Effect effect, int[] arguments) {
         this.handler = handler;
         this.effect = effect;
         this.arguments = arguments;
@@ -61,12 +61,12 @@ public final class UseEffect implements ItemEffect {
         );
     }
 
-    public @NonNegative int @ArrayLen(3)[] arguments() {
+    public int[] arguments() {
         return arguments;
     }
 
     @Override
-    public boolean equals(@Nullable Object o) {
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
@@ -96,7 +96,7 @@ public final class UseEffect implements ItemEffect {
      *
      * @see UseEffectHandler#checkTarget(UseEffect, ExplorationPlayer, ExplorationPlayer, ExplorationMapCell)
      */
-    public boolean checkTarget(ExplorationPlayer caster, @Nullable ExplorationPlayer target, @Nullable ExplorationMapCell cell) {
+    public boolean checkTarget(ExplorationPlayer caster, ExplorationPlayer target, ExplorationMapCell cell) {
         return handler.checkTarget(this, caster, target, cell);
     }
 
@@ -123,7 +123,7 @@ public final class UseEffect implements ItemEffect {
      *
      * @see UseEffectHandler#applyToTarget(UseEffect, ExplorationPlayer, ExplorationPlayer, ExplorationMapCell)
      */
-    public void applyToTarget(ExplorationPlayer caster, @Nullable ExplorationPlayer target, @Nullable ExplorationMapCell cell) {
+    public void applyToTarget(ExplorationPlayer caster, ExplorationPlayer target, ExplorationMapCell cell) {
         handler.applyToTarget(this, caster, target, cell);
     }
 

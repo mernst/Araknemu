@@ -53,8 +53,8 @@ public final class PlayerFighter extends AbstractFighter implements Fighter, Pla
     private final FighterSpellList spells;
 
     private boolean ready = false;
-    private @MonotonicNonNull CastableWeapon weapon;
-    private @MonotonicNonNull FightTeam team;
+    private CastableWeapon weapon;
+    private FightTeam team;
 
     @SuppressWarnings({"assignment", "argument", "method.invocation"})
     public PlayerFighter(GamePlayer player) {
@@ -152,7 +152,7 @@ public final class PlayerFighter extends AbstractFighter implements Fighter, Pla
     }
 
     @Override
-    public @Positive int level() {
+    public int level() {
         return player.properties().experience().level();
     }
 
@@ -197,7 +197,7 @@ public final class PlayerFighter extends AbstractFighter implements Fighter, Pla
         fight().dispatch(new FighterReadyStateChanged(this));
     }
 
-    public @Nullable FighterData invoker() {
+    public FighterData invoker() {
         return null;
     }
 }

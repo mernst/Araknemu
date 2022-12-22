@@ -59,7 +59,6 @@ class IndirectIndirectPercentLifeDamageHandlerTest extends FightBaseCase {
     private IndirectPercentLifeDamageHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -76,7 +75,6 @@ class IndirectIndirectPercentLifeDamageHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void applyRandomEffect() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -99,7 +97,6 @@ class IndirectIndirectPercentLifeDamageHandlerTest extends FightBaseCase {
         requestStack.assertLast(ActionEffect.alterLifePoints(caster, target, -damage));
     }
 
-    @Test
     void applyFixedEffect() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -121,8 +118,6 @@ class IndirectIndirectPercentLifeDamageHandlerTest extends FightBaseCase {
         requestStack.assertLast(ActionEffect.alterLifePoints(caster, target, -29));
     }
 
-    @ParameterizedTest
-    @MethodSource("provideLifeAndExpectedDamage")
     void applyShouldConsiderCurrentLife(int life, int expectedDamage) {
         caster.life().alter(caster, life - caster.life().current());
 
@@ -155,7 +150,6 @@ class IndirectIndirectPercentLifeDamageHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyCannotBeBoosted() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -177,7 +171,6 @@ class IndirectIndirectPercentLifeDamageHandlerTest extends FightBaseCase {
         assertEquals(29, damage);
     }
 
-    @Test
     void applyResistanceShouldBeApplied() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -200,7 +193,6 @@ class IndirectIndirectPercentLifeDamageHandlerTest extends FightBaseCase {
         assertEquals(21, damage);
     }
 
-    @Test
     void applyToEmptyCell() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -218,7 +210,6 @@ class IndirectIndirectPercentLifeDamageHandlerTest extends FightBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void applyToEmptyCellWithArea() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -240,7 +231,6 @@ class IndirectIndirectPercentLifeDamageHandlerTest extends FightBaseCase {
         requestStack.assertLast(ActionEffect.alterLifePoints(caster, target, -29));
     }
 
-    @Test
     void applyWithAreaMultipleFighters() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -259,7 +249,6 @@ class IndirectIndirectPercentLifeDamageHandlerTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.alterLifePoints(caster, caster, -29));
     }
 
-    @Test
     void applyShouldCallIndirectBuffHook() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -283,7 +272,6 @@ class IndirectIndirectPercentLifeDamageHandlerTest extends FightBaseCase {
         Mockito.verify(hook, Mockito.times(1)).onIndirectDamage(Mockito.any(), Mockito.any(), Mockito.any());
     }
 
-    @Test
     void buffNotSupported() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

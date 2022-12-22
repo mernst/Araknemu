@@ -146,7 +146,7 @@ final class SqlMonsterTemplateRepository implements MonsterTemplateRepository {
             throw new RepositoryException("Read-only entity");
         }
 
-        private MonsterTemplate.Grade[] parseGrades(String @SameLen({"#2", "#3", "#4"}) [] characteristics, String @SameLen({"#1", "#3", "#4"}) [] lifePoints, String @SameLen({"#1", "#2", "#4"}) [] initiatives, String @SameLen({"#1", "#2", "#3"}) [] spells) {
+        private MonsterTemplate.Grade[] parseGrades(String[] characteristics, String[] lifePoints, String[] initiatives, String[] spells) {
             final MonsterTemplate.Grade[] grades = new MonsterTemplate.Grade[characteristics.length];
 
             for (int i = 0; i < characteristics.length; ++i) {
@@ -156,7 +156,7 @@ final class SqlMonsterTemplateRepository implements MonsterTemplateRepository {
                     throw new TransformerException("Invalid grade '" + grades[i] + "'");
                 }
 
-                final Map<Integer, @Positive Integer> gradeSpells = new HashMap<>();
+                final Map<Integer, Integer> gradeSpells = new HashMap<>();
 
                 for (String spell : StringUtils.split(spells[i], ";")) {
                     final String[] data = StringUtils.split(spell, "@", 2);

@@ -84,7 +84,7 @@ public final class Move implements BlockingAction {
     }
 
     @Override
-    public void cancel(@Nullable String argument) {
+    public void cancel(String argument) {
         if (argument == null) {
             return;
         }

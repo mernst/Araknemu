@@ -36,9 +36,9 @@ import org.checkerframework.common.value.qual.MinLen;
 public final class ItemsMovement implements Packet {
     private final int id;
     private final int quantity;
-    private final @NonNegative int price;
+    private final int price;
 
-    public ItemsMovement(int id, int quantity, @NonNegative int price) {
+    public ItemsMovement(int id, int quantity, int price) {
         this.id = id;
         this.quantity = quantity;
         this.price = price;
@@ -74,7 +74,7 @@ public final class ItemsMovement implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "EMO";
         }
     }

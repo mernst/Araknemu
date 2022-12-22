@@ -57,7 +57,7 @@ public final class AnnotationHydrator implements ArgumentsHydrator {
     }
 
     @Override
-    public <@Nullable A> A hydrate(Command<A> command, @Nullable A commandArguments, CommandParser.Arguments parsedArguments) throws Exception {
+    public <A> A hydrate(Command<A> command, A commandArguments, CommandParser.Arguments parsedArguments) throws Exception {
         if (commandArguments == null) {
             throw new IllegalArgumentException("A command arguments instance must be provided");
         }
@@ -72,7 +72,7 @@ public final class AnnotationHydrator implements ArgumentsHydrator {
 
     @Override
     @SuppressWarnings("argument") // args4j do not use nullable annotations
-    public <A> CommandHelp help(Command<A> command, @Nullable A commandArguments, CommandHelp help) {
+    public <A> CommandHelp help(Command<A> command, A commandArguments, CommandHelp help) {
         final HelpGenerator generator = new HelpGenerator(command, new CmdLineParser(commandArguments, parserProperties));
 
         return help.modify(builder -> {
@@ -83,7 +83,7 @@ public final class AnnotationHydrator implements ArgumentsHydrator {
     }
 
     @Override
-    public <A> boolean supports(Command<A> command, @Nullable A commandArguments) {
+    public <A> boolean supports(Command<A> command, A commandArguments) {
         return commandArguments != null;
     }
 

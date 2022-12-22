@@ -58,7 +58,6 @@ class MonsterGroupTest extends GameBaseCase {
     private ExplorationMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -97,7 +96,6 @@ class MonsterGroupTest extends GameBaseCase {
         map.add(group);
     }
 
-    @Test
     void values() {
         assertEquals(map.get(123), group.cell());
         assertEquals(Direction.WEST, group.orientation());
@@ -106,19 +104,16 @@ class MonsterGroupTest extends GameBaseCase {
         assertEquals(new Position(10340, 125), group.winFightTeleportPosition());
     }
 
-    @Test
     void sprite() {
         assertSame(group.sprite(), group.sprite());
         assertInstanceOf(MonsterGroupSprite.class, group.sprite());
         assertEquals("123;4;;-503;31,34,36,36;-3;1563^100,1568^100,1566^100,1566^100;4,9,2,6;-1,-1,-1;0,0,0,0;-1,-1,-1;0,0,0,0;-1,-1,-1;0,0,0,0;-1,-1,-1;0,0,0,0;", group.sprite().toString());
     }
 
-    @Test
     void id() {
         assertEquals(-503, group.id());
     }
 
-    @Test
     void apply() {
         Object o = new Object();
         Operation<Object> operation = Mockito.mock(Operation.class);
@@ -129,7 +124,6 @@ class MonsterGroupTest extends GameBaseCase {
         Mockito.verify(operation).onMonsterGroup(group);
     }
 
-    @Test
     void startFight() throws SQLException {
         ExplorationPlayer player = explorationPlayer();
         player.changeMap(map, 123);
@@ -145,7 +139,6 @@ class MonsterGroupTest extends GameBaseCase {
         assertInstanceOf(PvmType.class, fight.type());
     }
 
-    @Test
     void move() {
         AtomicReference<CreatureMoving> ref = new AtomicReference<>();
         map.dispatcher().add(CreatureMoving.class, ref::set);

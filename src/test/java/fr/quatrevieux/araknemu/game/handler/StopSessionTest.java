@@ -58,7 +58,6 @@ class StopSessionTest extends FightBaseCase {
     private AccountService accountService;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -68,7 +67,6 @@ class StopSessionTest extends FightBaseCase {
         accountService = container.get(AccountService.class);
     }
 
-    @Test
     void withAttachedAccount() throws ContainerException {
         GameAccount account = new GameAccount(
             new Account(2),
@@ -90,7 +88,6 @@ class StopSessionTest extends FightBaseCase {
         assertBetween(0, 1, Instant.now().getEpochSecond() - dataSet.refresh(log).endDate().getEpochSecond());
     }
 
-    @Test
     void withSimplePlayer() throws SQLException, ContainerException {
         GamePlayer player = gamePlayer();
 
@@ -103,7 +100,6 @@ class StopSessionTest extends FightBaseCase {
         assertNull(session.player());
     }
 
-    @Test
     void withExplorationPlayer() throws SQLException, ContainerException {
         ExplorationPlayer player = explorationPlayer();
         ExplorationMap map = player.map();
@@ -119,7 +115,6 @@ class StopSessionTest extends FightBaseCase {
         assertFalse(map.creatures().contains(player));
     }
 
-    @Test
     void withPlayerWillSaveThePlayer() throws SQLException, ContainerException, NoSuchFieldException, IllegalAccessException {
         GamePlayer player = gamePlayer(true);
 
@@ -136,7 +131,6 @@ class StopSessionTest extends FightBaseCase {
         assertEquals(12, savedPlayer.boostPoints());
     }
 
-    @Test
     void withFighterWillLeaveTheFight() throws Exception {
         Fight fight = createFight();
         PlayerFighter fighter = player.fighter();
@@ -147,7 +141,6 @@ class StopSessionTest extends FightBaseCase {
         assertFalse(fight.fighters().contains(fighter));
     }
 
-    @Test
     void withFighterWillLeaveTheFightOnActiveFight() throws Exception {
         Fight fight = createFight();
         PlayerFighter fighter = player.fighter();
@@ -161,7 +154,6 @@ class StopSessionTest extends FightBaseCase {
         assertTrue(fighter.dead());
     }
 
-    @Test
     void withFighterShouldApplyPunishRewardsOnActiveFight() throws Exception {
         Fight fight = createPvmFight();
         PlayerFighter fighter = player.fighter();
@@ -179,7 +171,6 @@ class StopSessionTest extends FightBaseCase {
         assertEquals(player.savedPosition(), player.position());
     }
 
-    @Test
     void withFighterShouldApplyPunishRewardsOnPlacement() throws Exception {
         Fight fight = createPvmFight();
         PlayerFighter fighter = player.fighter();
@@ -195,7 +186,6 @@ class StopSessionTest extends FightBaseCase {
         assertEquals(player.savedPosition(), player.position());
     }
 
-    @Test
     void dispatchDisconnectedOnlyOnce() throws SQLException, ContainerException {
         explorationPlayer();
 
@@ -207,7 +197,6 @@ class StopSessionTest extends FightBaseCase {
         assertEquals(1, count.get());
     }
 
-    @Test
     void withExceptionOnDisconnectShouldContinueProcessAndLogError() throws SQLException, ContainerException {
         ExplorationPlayer player = explorationPlayer();
         player.dispatcher().add(new Listener<Disconnected>() {
@@ -234,7 +223,6 @@ class StopSessionTest extends FightBaseCase {
         assertFalse(map.creatures().contains(player));
     }
 
-    @RepeatedIfExceptionsTest
     void saveCorrectLifeWhenSessionClosed() throws Exception{
         ExplorationPlayer explorationPlayer = explorationPlayer();
         explorationPlayer.player().properties().life().set(5);
@@ -245,7 +233,6 @@ class StopSessionTest extends FightBaseCase {
         assertBetween(6, 8, dataSet.refresh(new Player(explorationPlayer.id())).life());
     }
 
-    @Test
     void withSpectatorWillLeaveTheFight() throws Exception {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         fight.state(PlacementState.class).startFight();

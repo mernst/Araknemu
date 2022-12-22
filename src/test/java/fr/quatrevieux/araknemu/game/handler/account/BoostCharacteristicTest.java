@@ -43,7 +43,6 @@ class BoostCharacteristicTest extends FightBaseCase {
     private BoostCharacteristic handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -53,7 +52,6 @@ class BoostCharacteristicTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handleSuccess() throws Exception {
         this.<Player>readField(gamePlayer(), "entity").setBoostPoints(10);
         requestStack.clear();
@@ -69,7 +67,6 @@ class BoostCharacteristicTest extends FightBaseCase {
         assertEquals(8, gamePlayer().properties().characteristics().boostPoints());
     }
 
-    @Test
     void handleError() throws Exception {
         this.<Player>readField(gamePlayer(), "entity").setBoostPoints(0);
         requestStack.clear();
@@ -77,7 +74,6 @@ class BoostCharacteristicTest extends FightBaseCase {
         assertThrows(ErrorPacket.class, () -> handler.handle(session, new AskBoost(Characteristic.INTELLIGENCE)));
     }
 
-    @Test
     void functionalInActiveFight() throws Exception {
         this.<Player>readField(gamePlayer(), "entity").setBoostPoints(10);
 
@@ -87,7 +83,6 @@ class BoostCharacteristicTest extends FightBaseCase {
         assertErrorPacket(Error.cantDoDuringFight(), () -> handlePacket(new AskBoost(Characteristic.INTELLIGENCE)));
     }
 
-    @Test
     void functionalSuccess() throws Exception {
         this.<Player>readField(gamePlayer(), "entity").setBoostPoints(10);
         requestStack.clear();
@@ -103,7 +98,6 @@ class BoostCharacteristicTest extends FightBaseCase {
         assertEquals(8, gamePlayer().properties().characteristics().boostPoints());
     }
 
-    @Test
     void functionalSuccessDuringPlacement() throws Exception {
         this.<Player>readField(gamePlayer(), "entity").setBoostPoints(10);
 

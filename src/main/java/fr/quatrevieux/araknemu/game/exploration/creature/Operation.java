@@ -35,28 +35,28 @@ public interface Operation<R> {
     /**
      * Apply the operation on an exploration player
      */
-    public default @Nullable R onExplorationPlayer(ExplorationPlayer player) {
+    public default R onExplorationPlayer(ExplorationPlayer player) {
         return onCreature(player);
     }
 
     /**
      * Apply the operation on a NPC
      */
-    public default @Nullable R onNpc(GameNpc npc) {
+    public default R onNpc(GameNpc npc) {
         return onCreature(npc);
     }
 
     /**
      * Apply the operation on a monster group
      */
-    public default @Nullable R onMonsterGroup(MonsterGroup monsterGroup) {
+    public default R onMonsterGroup(MonsterGroup monsterGroup) {
         return onCreature(monsterGroup);
     }
 
     /**
      * Generic operation to apply to all creatures
      */
-    public default @Nullable R onCreature(ExplorationCreature creature) {
+    public default R onCreature(ExplorationCreature creature) {
         return null;
     }
 }

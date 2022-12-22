@@ -32,7 +32,6 @@ class SubscriptionRemovedAcknowledgeTest extends GameBaseCase {
     private SubscriptionRemovedAcknowledge listner;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -41,7 +40,6 @@ class SubscriptionRemovedAcknowledgeTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onSubscriptionRemoved() {
         listner.on(
             new ChannelSubscriptionRemoved(Arrays.asList(ChannelType.PRIVATE, ChannelType.MESSAGES))

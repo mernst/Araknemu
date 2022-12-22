@@ -58,7 +58,7 @@ public final class BankExchangeParty implements ExchangeParty {
     }
 
     @Override
-    public @Nullable Creature target() {
+    public Creature target() {
         // Bank do not have target
         return null;
     }
@@ -130,7 +130,7 @@ public final class BankExchangeParty implements ExchangeParty {
     /**
      * Remove kamas from inventory and store into bank
      */
-    private void addKamasToBank(@NonNegative long quantity) {
+    private void addKamasToBank(long quantity) {
         final long actualQuantity = Math.min(quantity, player.inventory().kamas());
 
         if (actualQuantity > 0) {
@@ -142,7 +142,7 @@ public final class BankExchangeParty implements ExchangeParty {
     /**
      * Retrieve kamas from the bank, and add into inventory
      */
-    private void removeKamasFromBank(@NonNegative long quantity) {
+    private void removeKamasFromBank(long quantity) {
         final long actualQuantity = Math.min(quantity, bank.kamas());
 
         if (actualQuantity > 0) {
@@ -157,7 +157,7 @@ public final class BankExchangeParty implements ExchangeParty {
      * @param entry The player's inventory item
      * @param quantity The quantity to add
      */
-    private void addItemToBank(ItemEntry entry, @Positive int quantity) {
+    private void addItemToBank(ItemEntry entry, int quantity) {
         if (!entry.isDefaultPosition()) {
             throw new InventoryException("The item should be in default position");
         }
@@ -176,7 +176,7 @@ public final class BankExchangeParty implements ExchangeParty {
      * @param entry The bank item to move
      * @param quantity The quantity to move
      */
-    private void removeItemFromBank(ItemEntry entry, @Positive int quantity) {
+    private void removeItemFromBank(ItemEntry entry, int quantity) {
         final int actualQuantity = Math.min(entry.quantity(), quantity);
 
         if (actualQuantity > 0) {

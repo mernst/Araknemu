@@ -47,7 +47,6 @@ class AuthenticationServiceTest extends RealmBaseCase {
     private AuthenticationAccount _account;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -61,7 +60,6 @@ class AuthenticationServiceTest extends RealmBaseCase {
         dataSet.use(Account.class, Banishment.class);
     }
 
-    @Test
     void login() {
         AuthenticationAccount account = new AuthenticationAccount(
             new Account(1),
@@ -77,7 +75,6 @@ class AuthenticationServiceTest extends RealmBaseCase {
         assertTrue(service.isAuthenticated(account));
     }
 
-    @Test
     void logout() {
         AuthenticationAccount account = new AuthenticationAccount(
             new Account(1),
@@ -94,7 +91,6 @@ class AuthenticationServiceTest extends RealmBaseCase {
         assertFalse(service.isAuthenticated(account));
     }
 
-    @Test
     void isAuthenticated() {
         AuthenticationAccount account1 = new AuthenticationAccount(
             new Account(1),
@@ -126,7 +122,6 @@ class AuthenticationServiceTest extends RealmBaseCase {
         assertFalse(service.isAuthenticated(account3));
     }
 
-    @Test
     void authenticateAccountNotFound() {
         service.authenticate(new AuthenticationRequest() {
             @Override
@@ -168,7 +163,6 @@ class AuthenticationServiceTest extends RealmBaseCase {
         assertEquals("invalidCredentials", response);
     }
 
-    @Test
     void authenticateInvalidPassword() throws ContainerException {
         dataSet.push(new Account(-1, "test", "pass", "pseudo"));
 
@@ -212,7 +206,6 @@ class AuthenticationServiceTest extends RealmBaseCase {
         assertEquals("invalidCredentials", response);
     }
 
-    @Test
     void authenticateAlreadyConnected() throws ContainerException {
         Account account = dataSet.push(new Account(-1, "test", "pass", "pseudo"));
 
@@ -265,7 +258,6 @@ class AuthenticationServiceTest extends RealmBaseCase {
         assertEquals("alreadyConnected", response);
     }
 
-    @Test
     void authenticateIsPlaying() throws ContainerException {
         connector.checkLogin = true;
         Account account = dataSet.push(new Account(-1, "test", "pass", "pseudo"));
@@ -318,7 +310,6 @@ class AuthenticationServiceTest extends RealmBaseCase {
         assertEquals("isPlaying", response);
     }
 
-    @Test
     void authenticateBanned() throws ContainerException {
         connector.checkLogin = true;
         Account account = dataSet.push(new Account(-1, "test", "pass", "pseudo"));
@@ -372,7 +363,6 @@ class AuthenticationServiceTest extends RealmBaseCase {
         assertEquals("banned", response);
     }
 
-    @Test
     void authenticateSuccess() throws ContainerException {
         connector.checkLogin = false;
 
@@ -420,7 +410,6 @@ class AuthenticationServiceTest extends RealmBaseCase {
         assertEquals("pseudo", _account.pseudo());
     }
 
-    @Test
     void authenticateSuccessShouldRehashPassword() throws ContainerException {
         connector.checkLogin = false;
 
@@ -469,7 +458,6 @@ class AuthenticationServiceTest extends RealmBaseCase {
         assertTrue(dataSet.refresh(entity).password().startsWith("$argon2id$v=19$m=65536,t=4,p=8$"));
     }
 
-    @Test
     void authenticateSuccessWithArgon2Pass() throws ContainerException {
         connector.checkLogin = false;
 
@@ -517,7 +505,6 @@ class AuthenticationServiceTest extends RealmBaseCase {
         assertEquals("pseudo", _account.pseudo());
     }
 
-    @Test
     void listenerOnHostUpdatedShouldSendToAuthenticatedAccountsHostsList() {
         AuthenticationAccount account = new AuthenticationAccount(
             new Account(1),

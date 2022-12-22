@@ -33,7 +33,6 @@ class CommandNotFoundExceptionHandlerTest extends CommandTestCase {
     private CommandNotFoundExceptionHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -41,7 +40,6 @@ class CommandNotFoundExceptionHandlerTest extends CommandTestCase {
         performer = new PerformerWrapper(user());
     }
 
-    @Test
     void withoutArguments() {
         CommandNotFoundException exception = new CommandNotFoundException("foo");
 
@@ -50,7 +48,6 @@ class CommandNotFoundExceptionHandlerTest extends CommandTestCase {
         assertOutput("Command 'foo' is not found");
     }
 
-    @Test
     void withArgumentsShouldFoundNearestCommandName() {
         CommandNotFoundException exception = new CommandNotFoundException("gitu");
         CommandParser.Arguments arguments = new CommandParser.Arguments("", "!", "gitu", Arrays.asList("gitu", "map", "10340"), performer.self());

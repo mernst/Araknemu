@@ -35,7 +35,6 @@ class PlayerConstraintsTest extends GameBaseCase {
     private PlayerConstraints constraints;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,31 +46,26 @@ class PlayerConstraintsTest extends GameBaseCase {
         dataSet.use(Player.class);
     }
 
-    @Test
     void emptyName() {
         assertFalse(constraints.check(Player.forCreation(1, 1, "", Race.FECA, Gender.MALE, new Colors(-1, -1, -1))));
         assertEquals(PlayerConstraints.Error.CREATE_CHARACTER_BAD_NAME, constraints.error());
     }
 
-    @Test
     void nameTooShort() {
         assertFalse(constraints.check(Player.forCreation(1, 1, "a", Race.FECA, Gender.MALE, new Colors(-1, -1, -1))));
         assertEquals(PlayerConstraints.Error.CREATE_CHARACTER_BAD_NAME, constraints.error());
     }
 
-    @Test
     void nameTooLong() {
         assertFalse(constraints.check(Player.forCreation(1, 1, "Myverylongnamewithtoomuchcharacters", Race.FECA, Gender.MALE, new Colors(-1, -1, -1))));
         assertEquals(PlayerConstraints.Error.CREATE_CHARACTER_BAD_NAME, constraints.error());
     }
 
-    @Test
     void nameBadFormat() {
         assertFalse(constraints.check(Player.forCreation(1, 1, "-My-invalid-name-", Race.FECA, Gender.MALE, new Colors(-1, -1, -1))));
         assertEquals(PlayerConstraints.Error.CREATE_CHARACTER_BAD_NAME, constraints.error());
     }
 
-    @Test
     void nameAlreadyUsed() throws ContainerException {
         dataSet.push(Player.forCreation(1, 1, "My-name", Race.FECA, Gender.MALE, new Colors(-1, -1, -1)));
 
@@ -79,7 +73,6 @@ class PlayerConstraintsTest extends GameBaseCase {
         assertEquals(PlayerConstraints.Error.NAME_ALEREADY_EXISTS, constraints.error());
     }
 
-    @Test
     void tooMuchCharacters() throws ContainerException {
         dataSet.push(Player.forCreation(1, 1, "One", Race.FECA, Gender.MALE, new Colors(-1, -1, -1)));
         dataSet.push(Player.forCreation(1, 1, "Two", Race.FECA, Gender.MALE, new Colors(-1, -1, -1)));

@@ -39,7 +39,6 @@ class SqlPlayerItemRepositoryTest extends GameBaseCase {
     private SqlPlayerItemRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -51,12 +50,10 @@ class SqlPlayerItemRepositoryTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(new PlayerItem(123, 123, 0, null, 0, 0)));
     }
 
-    @Test
     void addAndGet() {
         PlayerItem item = repository.add(
             new PlayerItem(
@@ -78,7 +75,6 @@ class SqlPlayerItemRepositoryTest extends GameBaseCase {
         assertEquals(5, item.quantity());
     }
 
-    @Test
     void getShouldFixInvalidPosition() {
         PlayerItem item1 = repository.add(
             new PlayerItem(
@@ -108,7 +104,6 @@ class SqlPlayerItemRepositoryTest extends GameBaseCase {
         assertEquals(-1, item2.position());
     }
 
-    @Test
     void has() {
         PlayerItem item = repository.add(
             new PlayerItem(
@@ -125,7 +120,6 @@ class SqlPlayerItemRepositoryTest extends GameBaseCase {
         assertFalse(repository.has(new PlayerItem(0, 0, 0, null, 0, 0)));
     }
 
-    @Test
     void update() {
         PlayerItem item = repository.add(
             new PlayerItem(
@@ -152,7 +146,6 @@ class SqlPlayerItemRepositoryTest extends GameBaseCase {
         assertEquals(1, item.quantity());
     }
 
-    @Test
     void updateNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.update(
             new PlayerItem(
@@ -166,7 +159,6 @@ class SqlPlayerItemRepositoryTest extends GameBaseCase {
         ));
     }
 
-    @Test
     void delete() {
         PlayerItem item = repository.add(
             new PlayerItem(
@@ -184,7 +176,6 @@ class SqlPlayerItemRepositoryTest extends GameBaseCase {
         assertFalse(repository.has(item));
     }
 
-    @Test
     void deleteNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.delete(
             new PlayerItem(
@@ -198,7 +189,6 @@ class SqlPlayerItemRepositoryTest extends GameBaseCase {
         ));
     }
 
-    @Test
     void byPlayer() {
         repository.add(new PlayerItem(
             1,
@@ -232,7 +222,6 @@ class SqlPlayerItemRepositoryTest extends GameBaseCase {
         assertCount(2, items);
     }
 
-    @Test
     void forCharacterList() throws ContainerException {
         repository.add(new PlayerItem(1, 1, 12, new ArrayList<>(), 1, 0));
         repository.add(new PlayerItem(1, 2, 23, new ArrayList<>(), 1, 1));

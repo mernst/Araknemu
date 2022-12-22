@@ -33,14 +33,14 @@ import java.util.Map;
  *
  * @see fr.quatrevieux.araknemu.data.world.entity.environment.npc.NpcExchange#requiredItems()
  */
-public final class ExchangeItemsTransformer implements Transformer<Map<Integer, @Positive Integer>> {
+public final class ExchangeItemsTransformer implements Transformer<Map<Integer, Integer>> {
     @Override
-    public @PolyNull String serialize(@PolyNull Map<Integer, @Positive Integer> value) {
+    public String serialize(Map<Integer, Integer> value) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public @PolyNull Map<Integer, @Positive Integer> unserialize(@PolyNull String serialize) throws TransformerException {
+    public Map<Integer, Integer> unserialize(String serialize) throws TransformerException {
         if (serialize == null) {
             return null;
         }
@@ -49,7 +49,7 @@ public final class ExchangeItemsTransformer implements Transformer<Map<Integer, 
             return new HashMap<>();
         }
 
-        final Map<Integer, @Positive Integer> items = new HashMap<>();
+        final Map<Integer, Integer> items = new HashMap<>();
         final Splitter splitter = new Splitter(serialize, ';');
 
         while (splitter.hasNext()) {

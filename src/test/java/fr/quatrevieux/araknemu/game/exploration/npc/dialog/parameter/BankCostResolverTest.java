@@ -36,7 +36,6 @@ class BankCostResolverTest extends GameBaseCase {
     private BankCostResolver resolver;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,17 +48,14 @@ class BankCostResolverTest extends GameBaseCase {
         resolver = new BankCostResolver(container.get(BankService.class));
     }
 
-    @Test
     void name() {
         assertEquals("bankCost", resolver.name());
     }
 
-    @Test
     void valueEmpty() throws SQLException {
         assertEquals(0L, resolver.value(explorationPlayer()));
     }
 
-    @Test
     void valueNotEmpty() throws SQLException {
         Bank bank = container.get(BankService.class).load(explorationPlayer().account());
 

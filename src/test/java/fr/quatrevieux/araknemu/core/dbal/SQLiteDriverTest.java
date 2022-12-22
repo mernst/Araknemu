@@ -35,7 +35,6 @@ import java.sql.Statement;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SQLiteDriverTest {
-    @Test
     void newConnectionInMemory() throws SQLException, IOException {
         SQLiteDriver driver = new SQLiteDriver(
             new DefaultConfiguration(new IniDriver(new Ini(new File("src/test/test_config.ini"))))
@@ -65,7 +64,6 @@ class SQLiteDriverTest {
         }
     }
 
-    @Test
     void sharedConnection() throws SQLException, IOException {
         SQLiteDriver driver = new SQLiteDriver(
             new DefaultConfiguration(new IniDriver(new Ini(new File("src/test/test_config.ini"))))
@@ -100,7 +98,6 @@ class SQLiteDriverTest {
         }
     }
 
-    @Test
     void notSharedConnection() throws SQLException, IOException {
         SQLiteDriver driver = new SQLiteDriver(
             new DefaultConfiguration(new IniDriver(new Ini(new File("src/test/test_config.ini"))))
@@ -129,7 +126,6 @@ class SQLiteDriverTest {
         }
     }
 
-    @Test
     void newConnectionInFile() throws SQLException, IOException {
         SQLiteDriver driver = new SQLiteDriver(
             new DefaultConfiguration(new IniDriver(new Ini(new File("src/test/test_config.ini"))))

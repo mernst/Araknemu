@@ -25,7 +25,6 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;
 
 class NotTest {
-    @Test
     void check() {
         Object entity = new Object();
         EntityConstraint constraint = Mockito.mock(EntityConstraint.class);
@@ -38,7 +37,6 @@ class NotTest {
         assertTrue(not.check(entity));
     }
 
-    @Test
     void error() {
         Object error = new Object();
 

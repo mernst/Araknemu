@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameActionAcknowledgeTest {
-    @Test
     void parse() {
         GameActionAcknowledge.Parser parser = new GameActionAcknowledge.Parser();
 

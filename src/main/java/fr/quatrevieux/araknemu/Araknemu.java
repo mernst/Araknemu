@@ -54,7 +54,7 @@ public class Araknemu {
     /**
      * Get the current version of the server (retrieved from pom.xml)
      */
-    public static final @Nullable String VERSION = Araknemu.class.getPackage() != null ? Araknemu.class.getPackage().getImplementationVersion() : null;
+    public static final String VERSION = Araknemu.class.getPackage() != null ? Araknemu.class.getPackage().getImplementationVersion() : null;
     public static final String NAME = "Araknemu";
     public static final String YEAR = "2017-2021";
     public static final String AUTHOR = "Vincent Quatrevieux";
@@ -65,7 +65,7 @@ public class Araknemu {
     private final DatabaseHandler database;
     private final List<Service> services = new ArrayList<>();
     private boolean started = false;
-    private @MonotonicNonNull Instant startDate;
+    private Instant startDate;
 
     public Araknemu(Configuration configuration, DatabaseHandler database) {
         this.configuration = configuration;
@@ -75,7 +75,6 @@ public class Araknemu {
     /**
      * Boot all services
      */
-    @EnsuresNonNull("startDate")
     public void boot() throws BootException {
         System.out.println(NAME + " Copyright (c) " + YEAR + " " + AUTHOR);
         System.out.println("This program comes with ABSOLUTELY NO WARRANTY.");

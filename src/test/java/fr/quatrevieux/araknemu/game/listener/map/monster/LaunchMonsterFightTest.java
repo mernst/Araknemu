@@ -38,7 +38,6 @@ class LaunchMonsterFightTest extends GameBaseCase {
     private ExplorationMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -59,14 +58,12 @@ class LaunchMonsterFightTest extends GameBaseCase {
         player.changeMap(map, 123);
     }
 
-    @Test
     void onMoveFinishedWithoutMonsters() {
         listener.on(new PlayerMoveFinished(player, map.get(185)));
 
         assertTrue(map.creatures().contains(player));
     }
 
-    @Test
     void onMoveFinishedWithMonsterGroupShouldStartsFight() {
         listener.on(new PlayerMoveFinished(player, map.get(123)));
 

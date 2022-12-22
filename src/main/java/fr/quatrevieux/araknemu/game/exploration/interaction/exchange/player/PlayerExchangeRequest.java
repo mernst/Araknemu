@@ -48,7 +48,7 @@ public final class PlayerExchangeRequest implements ExchangeInteraction, Invitat
     }
 
     @Override
-    public @Nullable Interaction start() {
+    public Interaction start() {
         return invitation.start();
     }
 

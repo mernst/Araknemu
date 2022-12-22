@@ -32,14 +32,12 @@ class SendDateAndTimeTest extends GameBaseCase {
     private SendDateAndTime handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         handler = new SendDateAndTime();
     }
 
-    @Test
     void handler() throws Exception {
         handler.handle(session, new AskDate());
 

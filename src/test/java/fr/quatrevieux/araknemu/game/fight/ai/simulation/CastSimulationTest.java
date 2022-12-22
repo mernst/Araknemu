@@ -50,7 +50,6 @@ class CastSimulationTest extends FightBaseCase {
     private Spell spell;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -66,7 +65,6 @@ class CastSimulationTest extends FightBaseCase {
         fight.nextState();
     }
 
-    @Test
     void heal() {
         fighter.life().alter(fighter, -10);
         allie.life().alter(fighter, -10);
@@ -81,8 +79,6 @@ class CastSimulationTest extends FightBaseCase {
         assertEquals(3, simulation.enemiesLife());
     }
 
-    @ParameterizedTest
-    @MethodSource("provideHeal")
     void healLimitByLostLife(Interval value, double expectedValue) {
         fighter.life().alter(fighter, -10);
 
@@ -101,7 +97,6 @@ class CastSimulationTest extends FightBaseCase {
         );
     }
 
-    @Test
     void addDamage() {
         simulation.addDamage(new Interval(5, 5), fighter);
         simulation.addDamage(new Interval(4, 4), allie);
@@ -112,15 +107,12 @@ class CastSimulationTest extends FightBaseCase {
         assertEquals(-3, simulation.enemiesLife());
     }
 
-    @Test
     void addDamageLimitByLife() {
         simulation.addDamage(new Interval(100, 100), ennemy);
 
         assertEquals(-50, simulation.enemiesLife());
     }
 
-    @ParameterizedTest
-    @MethodSource("providePoison")
     void addPoison(Interval damage, int duration, double expectedDamage) {
         // life = 50
         simulation.addPoison(damage, duration, allie);
@@ -140,7 +132,6 @@ class CastSimulationTest extends FightBaseCase {
         );
     }
 
-    @Test
     void addBoost() {
         simulation.addBoost(5, fighter);
         simulation.addBoost(4, allie);
@@ -151,7 +142,6 @@ class CastSimulationTest extends FightBaseCase {
         assertEquals(3, simulation.enemiesBoost());
     }
 
-    @Test
     void killDamage() {
         simulation.addDamage(new Interval(1000, 1000), allie);
 
@@ -172,8 +162,6 @@ class CastSimulationTest extends FightBaseCase {
         assertEquals(1, simulation.suicideProbability());
     }
 
-    @ParameterizedTest
-    @MethodSource("provideKillChanceDamage")
     void killChance(Interval damage, double chance, double expectedDamage) {
         // life = 50
         simulation.addDamage(damage, allie);
@@ -196,7 +184,6 @@ class CastSimulationTest extends FightBaseCase {
         );
     }
 
-    @Test
     void suicide() {
         simulation.addDamage(new Interval(1000, 1000), fighter);
 
@@ -205,7 +192,6 @@ class CastSimulationTest extends FightBaseCase {
         assertEquals(0, simulation.killedEnemies());
     }
 
-    @Test
     void merge() {
         simulation.addDamage(new Interval(15, 15), ennemy);
         simulation.addBoost(15, ennemy);
@@ -221,7 +207,6 @@ class CastSimulationTest extends FightBaseCase {
         assertEquals(13, simulation.enemiesBoost());
     }
 
-    @Test
     void mergeKill() {
         simulation.addDamage(new Interval(15, 15), ennemy);
 
@@ -234,7 +219,6 @@ class CastSimulationTest extends FightBaseCase {
         assertEquals(.2, simulation.killedEnemies());
     }
 
-    @Test
     void mergeSuicide() {
         simulation.addDamage(new Interval(0, 500), fighter);
         assertEquals(0.41, simulation.suicideProbability());
@@ -249,7 +233,6 @@ class CastSimulationTest extends FightBaseCase {
         assertEquals(.415, simulation.suicideProbability());
     }
 
-    @Test
     void alterActionPoints() {
         Mockito.when(spell.apCost()).thenReturn(3);
         assertEquals(3, simulation.actionPointsCost());
@@ -265,7 +248,6 @@ class CastSimulationTest extends FightBaseCase {
         assertEquals(1.5, simulation.actionPointsCost());
     }
 
-    @Test
     void addHealBuff() {
         fighter.life().alter(fighter, -10);
         simulation.addHealBuff(new Interval(5, 10), 3, fighter);
@@ -274,7 +256,6 @@ class CastSimulationTest extends FightBaseCase {
         assertEquals(11.25, simulation.selfBoost());
     }
 
-    @Test
     void addHealBuffAlreadyFullLife() {
         simulation.addHealBuff(new Interval(5, 10), 3, fighter);
 
@@ -282,7 +263,6 @@ class CastSimulationTest extends FightBaseCase {
         assertEquals(11.25, simulation.selfBoost());
     }
 
-    @Test
     void addHealBuffOnlyOneTurnShouldNotSetAsBuff() {
         fighter.life().alter(fighter, -10);
         simulation.addHealBuff(new Interval(5, 10), 1, fighter);

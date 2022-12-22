@@ -46,7 +46,6 @@ class HealSimulatorTest extends FightBaseCase {
     private Fighter target;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -61,7 +60,6 @@ class HealSimulatorTest extends FightBaseCase {
         fighter.life().alter(fighter, -40);
     }
 
-    @Test
     void simulateSimple() {
         assertEquals(25, simulate());
 
@@ -69,7 +67,6 @@ class HealSimulatorTest extends FightBaseCase {
         assertEquals(10, simulate());
     }
 
-    @Test
     void simulateWithBoost() {
         fighter.characteristics().alter(Characteristic.HEALTH_BOOST, 5);
         assertEquals(30, simulate());
@@ -78,7 +75,6 @@ class HealSimulatorTest extends FightBaseCase {
         assertEquals(35, simulate());
     }
 
-    @Test
     void simulateBuff() {
         HealSimulator simulator = new HealSimulator();
 
@@ -116,7 +112,6 @@ class HealSimulatorTest extends FightBaseCase {
         assertEquals(168.75, simulation.selfBoost());
     }
 
-    @Test
     void simulateWithBuffCappedByCurrentLife() {
         fighter.life().alter(fighter, 30);
 
@@ -143,7 +138,6 @@ class HealSimulatorTest extends FightBaseCase {
 
     }
 
-    @Test
     void simulateInfiniteBuff() {
         HealSimulator simulator = new HealSimulator();
 
@@ -167,7 +161,6 @@ class HealSimulatorTest extends FightBaseCase {
         assertEquals(168.75, simulation.selfBoost());
     }
 
-    @Test
     void simulateArea() {
         HealSimulator simulator = new HealSimulator();
 

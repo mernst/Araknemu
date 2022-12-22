@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UseSmileyTest {
-    @Test
     void parse() {
         assertEquals(10, new UseSmiley.Parser().parse("10").smiley());
     }

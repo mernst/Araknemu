@@ -44,7 +44,7 @@ public final class BoostedSpellEffect implements SpellEffect {
     }
 
     @Override
-    public @NonNegative int min() {
+    public int min() {
         if (isBoostableDamageEffect()) {
             return Math.max(effect.min() + modifiers.baseDamage(), 0);
         }
@@ -53,7 +53,7 @@ public final class BoostedSpellEffect implements SpellEffect {
     }
 
     @Override
-    public @NonNegative int max() {
+    public int max() {
         if (isBoostableDamageEffect()) {
             return Math.max(effect.max() + modifiers.baseDamage(), 0);
         }
@@ -80,12 +80,12 @@ public final class BoostedSpellEffect implements SpellEffect {
     }
 
     @Override
-    public @GTENegativeOne int duration() {
+    public int duration() {
         return effect.duration();
     }
 
     @Override
-    public @NonNegative int probability() {
+    public int probability() {
         return effect.probability();
     }
 

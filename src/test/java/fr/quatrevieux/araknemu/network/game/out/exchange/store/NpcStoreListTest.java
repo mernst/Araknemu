@@ -29,7 +29,6 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 class NpcStoreListTest extends GameBaseCase {
-    @Test
     void generate() throws SQLException {
         dataSet.pushItemTemplates();
 

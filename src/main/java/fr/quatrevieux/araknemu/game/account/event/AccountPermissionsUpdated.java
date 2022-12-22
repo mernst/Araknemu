@@ -32,14 +32,14 @@ import java.util.Optional;
  * @see GameAccount#revoke(GameAccount)
  */
 public final class AccountPermissionsUpdated {
-    private final @Nullable GameAccount performer;
+    private final GameAccount performer;
     private final GameAccount account;
 
     /**
      * @param performer The admin account which grants or revokes permissions. This parameter can be null
      * @param account The target account
      */
-    public AccountPermissionsUpdated(@Nullable GameAccount performer, GameAccount account) {
+    public AccountPermissionsUpdated(GameAccount performer, GameAccount account) {
         this.performer = performer;
         this.account = account;
     }

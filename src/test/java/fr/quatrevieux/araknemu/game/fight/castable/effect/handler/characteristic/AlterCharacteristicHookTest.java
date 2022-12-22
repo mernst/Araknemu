@@ -40,7 +40,6 @@ class AlterCharacteristicHookTest extends FightBaseCase {
     private PlayerFighter target;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -55,7 +54,6 @@ class AlterCharacteristicHookTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void add() {
         AlterCharacteristicHook hook = AlterCharacteristicHook.add(fight, Characteristic.STRENGTH);
 
@@ -77,7 +75,6 @@ class AlterCharacteristicHookTest extends FightBaseCase {
         assertEquals(0, target.characteristics().get(Characteristic.STRENGTH));
     }
 
-    @Test
     void remove() {
         AlterCharacteristicHook hook = AlterCharacteristicHook.remove(fight, Characteristic.STRENGTH);
 

@@ -32,21 +32,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MessageTest extends CommandTestCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         command = new Message(container.get(PlayerService.class));
     }
 
-    @Test
     void simpleMessage() throws AdminException, SQLException {
         execute("msg", "Hello", "World", "!");
 
         requestStack.assertLast(new ServerMessage("Hello World !"));
     }
 
-    @Test
     void withColor() throws AdminException, SQLException {
         execute("msg", "--color", "ff0000", "Hello", "World", "!");
         requestStack.assertLast(new ServerMessage("<font color=\"#ff0000\">Hello World !</font>"));
@@ -64,7 +61,6 @@ class MessageTest extends CommandTestCase {
         requestStack.assertLast(new ServerMessage("<font color=\"#DD7700\">Hello World !</font>"));
     }
 
-    @Test
     void markdown() throws AdminException, SQLException {
         execute("msg", "**Hello", "World", "!**");
         requestStack.assertLast(new ServerMessage("<b>Hello World !</b>"));
@@ -91,13 +87,11 @@ class MessageTest extends CommandTestCase {
         requestStack.assertLast(new ServerMessage("<u><a href=\"http://example.com\"><i><b>my link</b></i></a></u>"));
     }
 
-    @Test
     void noMd() throws AdminException, SQLException {
         execute("msg", "--no-md", "**Hello", "World", "!**");
         requestStack.assertLast(new ServerMessage("**Hello World !**"));
     }
 
-    @Test
     void help() {
         assertHelp(
             "msg - Send a message to all connected players",

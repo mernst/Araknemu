@@ -34,21 +34,18 @@ class StartTutorialTest extends GameBaseCase {
     private StartTutorial listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         listener = new StartTutorial(gamePlayer());
     }
 
-    @Test
     void onNewPlayer() {
         listener.on(new GameJoined());
 
         requestStack.assertLast(new GameBegin());
     }
 
-    @Test
     void onNotNewPlayer() throws SQLException {
         ConnectionLog log = dataSet.push(new ConnectionLog(gamePlayer().account().id(), Instant.now(), ""));
         log.setPlayerId(gamePlayer().id());

@@ -38,7 +38,6 @@ class UsableSlotTest extends GameBaseCase {
     private UsableSlot slot;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -50,24 +49,20 @@ class UsableSlotTest extends GameBaseCase {
         slot = new UsableSlot(Mockito.mock(ItemStorage.class), 40);
     }
 
-    @Test
     void checkBadClass() throws ContainerException {
         assertThrows(InventoryException.class, () -> slot.check(container.get(ItemService.class).create(39), 1));
     }
 
-    @Test
     void checkAlreadySet() throws ContainerException {
         slot.uncheckedSet(new InventoryEntry(null, null, null));
 
         assertThrows(InventoryException.class, () -> slot.check(container.get(ItemService.class).create(800), 10));
     }
 
-    @Test
     void checkSuccess() throws ContainerException, InventoryException {
         slot.check(container.get(ItemService.class).create(468), 100);
     }
 
-    @Test
     void setFail() {
         assertThrows(InventoryException.class, () -> slot.set(
             new InventoryEntry(null, new PlayerItem(1, 1, 39, new ArrayList<>(), 1, -1), container.get(ItemService.class).create(39)
@@ -76,7 +71,6 @@ class UsableSlotTest extends GameBaseCase {
         assertFalse(slot.entry().isPresent());
     }
 
-    @Test
     void setSuccess() throws ContainerException, InventoryException {
         InventoryEntry entry = new InventoryEntry(null, new PlayerItem(1, 1, 468, new ArrayList<>(), 100, -1), container.get(ItemService.class).create(468));
 
@@ -86,7 +80,6 @@ class UsableSlotTest extends GameBaseCase {
         assertFalse(slot.equipment().isPresent());
     }
 
-    @Test
     void equipment() {
         assertFalse(slot.equipment().isPresent());
     }

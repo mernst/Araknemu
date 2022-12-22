@@ -31,12 +31,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ExchangeItemsTransformerTest {
     private ExchangeItemsTransformer transformer;
 
-    @BeforeEach
     void setUp() {
         transformer = new ExchangeItemsTransformer();
     }
 
-    @Test
     void unserialize() {
         assertNull(transformer.unserialize(null));
         assertEquals(new HashMap<>(), transformer.unserialize(""));
@@ -45,7 +43,6 @@ class ExchangeItemsTransformerTest {
         assertEquals(new HashMap<Integer, Integer>() {{ put(123, 4); put(567, 1); }}, transformer.unserialize("123:4;567"));
     }
 
-    @Test
     void serialize() {
         assertThrows(UnsupportedOperationException.class, () -> transformer.serialize(new HashMap<>()));
     }

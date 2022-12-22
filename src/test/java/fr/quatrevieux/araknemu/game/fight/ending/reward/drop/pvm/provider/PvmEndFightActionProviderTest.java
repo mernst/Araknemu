@@ -42,7 +42,6 @@ class PvmEndFightActionProviderTest extends FightBaseCase {
     private MonsterGroup group;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -53,7 +52,6 @@ class PvmEndFightActionProviderTest extends FightBaseCase {
         group = ((MonsterGroupTeam) fight.team(1)).group();
     }
 
-    @Test
     void withoutTeleport() {
         Position last = player.position();
 
@@ -71,7 +69,6 @@ class PvmEndFightActionProviderTest extends FightBaseCase {
         assertEquals(last, player.position());
     }
 
-    @Test
     void withTeleport() throws NoSuchFieldException, IllegalAccessException {
         setGroupTeleportPosition(new Position(10340, 125));
 
@@ -89,7 +86,6 @@ class PvmEndFightActionProviderTest extends FightBaseCase {
         assertEquals(new Position(10340, 125), player.position());
     }
 
-    @Test
     void monstersNotLoosers() throws NoSuchFieldException, IllegalAccessException {
         setGroupTeleportPosition(new Position(10340, 125));
         Position last = player.position();

@@ -44,7 +44,6 @@ class NoEffectHandlerTest extends FightBaseCase {
     private NoEffectHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -62,7 +61,6 @@ class NoEffectHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void buffShouldDoNothing() {
         requestStack.clear();
         SpellEffect effect = Mockito.mock(SpellEffect.class);
@@ -83,7 +81,6 @@ class NoEffectHandlerTest extends FightBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void handleShouldNoNothing() {
         requestStack.clear();
         SpellEffect effect = Mockito.mock(SpellEffect.class);

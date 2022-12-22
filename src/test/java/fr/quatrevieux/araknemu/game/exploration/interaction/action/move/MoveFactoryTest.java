@@ -36,7 +36,6 @@ class MoveFactoryTest extends GameBaseCase {
     private MoveFactory factory;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -44,7 +43,6 @@ class MoveFactoryTest extends GameBaseCase {
         factory = new MoveFactory(new ValidateWalkable());
     }
 
-    @Test
     void create() throws Exception {
         explorationPlayer().move(explorationPlayer().map().get(100), Direction.SOUTH_EAST);
 
@@ -60,25 +58,21 @@ class MoveFactoryTest extends GameBaseCase {
         assertEquals(explorationPlayer().map().get(69), move.path().get(3).cell());
     }
 
-    @Test
     void createNotOnMap() throws SQLException {
         explorationPlayer().leave();
 
         assertThrows(IllegalArgumentException.class, () -> factory.create(explorationPlayer(), ActionType.MOVE, new String[] {"ebIgbf"}));
     }
 
-    @Test
     void createMissingPath() throws Exception {
         explorationPlayer().move(explorationPlayer().map().get(100), Direction.SOUTH_EAST);
         assertThrows(IllegalArgumentException.class, () -> factory.create(explorationPlayer(), ActionType.MOVE, new String[] {}));
     }
 
-    @Test
     void type() {
         assertSame(ActionType.MOVE, factory.type());
     }
 
-    @Test
     void register() throws Exception {
         explorationPlayer().move(explorationPlayer().map().get(100), Direction.SOUTH_EAST);
         ExplorationActionRegistry registry = new ExplorationActionRegistry();

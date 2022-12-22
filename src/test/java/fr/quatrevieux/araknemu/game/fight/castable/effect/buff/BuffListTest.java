@@ -47,7 +47,6 @@ class BuffListTest extends FightBaseCase {
     private Fight fight;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -57,7 +56,6 @@ class BuffListTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void add() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         BuffHook hook = Mockito.mock(BuffHook.class);
@@ -71,7 +69,6 @@ class BuffListTest extends FightBaseCase {
         assertArrayEquals(new Buff[] {buff}, list.stream().toArray());
     }
 
-    @Test
     void addWithDurationZero() {
         // #61 Buff removed on end turn
         SpellEffect effect = Mockito.mock(SpellEffect.class);
@@ -86,7 +83,6 @@ class BuffListTest extends FightBaseCase {
         assertEquals(1, buff.remainingTurns());
     }
 
-    @Test
     void addWithInfiniteDuration() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         BuffHook hook = Mockito.mock(BuffHook.class);
@@ -107,7 +103,6 @@ class BuffListTest extends FightBaseCase {
         assertTrue(list.stream().anyMatch(buff::equals));
     }
 
-    @Test
     void addMultiple() {
         Buff buff1 = new Buff(Mockito.mock(SpellEffect.class), Mockito.mock(Spell.class), other.fighter(), player.fighter(), Mockito.mock(BuffHook.class));
         Buff buff2 = new Buff(Mockito.mock(SpellEffect.class), Mockito.mock(Spell.class), other.fighter(), player.fighter(), Mockito.mock(BuffHook.class));
@@ -120,7 +115,6 @@ class BuffListTest extends FightBaseCase {
         assertArrayEquals(new Buff[] {buff1, buff2, buff3}, list.stream().toArray());
     }
 
-    @Test
     void addWhenTurnIsActiveShouldIncrementRemainingTurns() {
         fight.nextState();
         fight.turnList().start();
@@ -137,12 +131,10 @@ class BuffListTest extends FightBaseCase {
         assertEquals(2, buff.remainingTurns());
     }
 
-    @Test
     void onStartTurnWithoutBuff() {
         assertTrue(list.onStartTurn());
     }
 
-    @Test
     void onStartTurnWithOneBuffWillReturnTheBuffHookResponse() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         BuffHook hook = Mockito.mock(BuffHook.class);
@@ -156,7 +148,6 @@ class BuffListTest extends FightBaseCase {
         Mockito.verify(hook).onStartTurn(buff);
     }
 
-    @Test
     void onStartTurnWithMultipleBuff() {
         BuffHook hook1, hook2, hook3;
 
@@ -179,7 +170,6 @@ class BuffListTest extends FightBaseCase {
         Mockito.verify(hook3).onStartTurn(buff3);
     }
 
-    @Test
     void onEndTurn() {
         Turn turn = Mockito.mock(Turn.class);
         BuffHook hook1, hook2, hook3;
@@ -199,7 +189,6 @@ class BuffListTest extends FightBaseCase {
         Mockito.verify(hook3).onEndTurn(buff3, turn);
     }
 
-    @Test
     void onCast() {
         BuffHook hook1, hook2, hook3;
 
@@ -220,7 +209,6 @@ class BuffListTest extends FightBaseCase {
         Mockito.verify(hook3).onCast(buff3, cast);
     }
 
-    @Test
     void onCastTarget() {
         BuffHook hook1, hook2, hook3;
 
@@ -245,7 +233,6 @@ class BuffListTest extends FightBaseCase {
         Mockito.verify(hook3).onCastTarget(buff3, cast);
     }
 
-    @Test
     void onCastTargetWithReturnFalseShouldStopNextHooks() {
         BuffHook hook1, hook2, hook3;
 
@@ -270,7 +257,6 @@ class BuffListTest extends FightBaseCase {
         Mockito.verify(hook3, Mockito.never()).onCastTarget(buff3, cast);
     }
 
-    @Test
     void onDirectDamage() {
         BuffHook hook1, hook2, hook3;
 
@@ -292,7 +278,6 @@ class BuffListTest extends FightBaseCase {
         Mockito.verify(hook3).onDirectDamage(buff3, fighter, damage);
     }
 
-    @Test
     void onDirectDamageApplied() {
         BuffHook hook1, hook2, hook3;
 
@@ -313,14 +298,13 @@ class BuffListTest extends FightBaseCase {
         Mockito.verify(hook3).onDirectDamageApplied(buff3, fighter, 15);
     }
 
-    @Test
     void addingBuffDuringHookCall() {
         BuffHook hook2 = Mockito.mock(BuffHook.class);
         Buff buff2 = new Buff(Mockito.mock(SpellEffect.class), Mockito.mock(Spell.class), other.fighter(), player.fighter(), hook2);
 
         BuffHook hook1 = new BuffHook() {
             @Override
-            public void onDirectDamageApplied(Buff buff, Fighter caster, @Positive int damage) {
+            public void onDirectDamageApplied(Buff buff, Fighter caster, int damage) {
                 list.add(buff2);
             }
         };
@@ -337,7 +321,6 @@ class BuffListTest extends FightBaseCase {
         Mockito.verify(hook2).onDirectDamageApplied(buff2, fighter, 15);
     }
 
-    @Test
     void onIndirectDamage() {
         BuffHook hook1, hook2, hook3;
 
@@ -359,7 +342,6 @@ class BuffListTest extends FightBaseCase {
         Mockito.verify(hook3).onIndirectDamage(buff3, fighter, damage);
     }
 
-    @Test
     void onBuffDamage() {
         BuffHook hook1, hook2, hook3;
 
@@ -381,7 +363,6 @@ class BuffListTest extends FightBaseCase {
         Mockito.verify(hook3).onBuffDamage(buff3, buff, damage);
     }
 
-    @Test
     void onLifeAltered() {
         BuffHook hook1, hook2, hook3;
 
@@ -400,7 +381,6 @@ class BuffListTest extends FightBaseCase {
         Mockito.verify(hook3).onLifeAltered(buff3, 10);
     }
 
-    @Test
     void onReflectedDamage() {
         BuffHook hook1, hook2, hook3;
 
@@ -421,7 +401,6 @@ class BuffListTest extends FightBaseCase {
         Mockito.verify(hook3).onReflectedDamage(buff3, damage);
     }
 
-    @Test
     void onCastDamage() {
         BuffHook hook1, hook2, hook3;
 
@@ -442,7 +421,6 @@ class BuffListTest extends FightBaseCase {
         Mockito.verify(hook3).onCastDamage(buff3, damage, other.fighter());
     }
 
-    @Test
     void onEffectValueCast() {
         BuffHook hook1, hook2, hook3;
 
@@ -463,7 +441,6 @@ class BuffListTest extends FightBaseCase {
         Mockito.verify(hook3).onEffectValueCast(buff3, ev);
     }
 
-    @Test
     void onEffectValueTarget() {
         BuffHook hook1, hook2, hook3;
 
@@ -484,7 +461,6 @@ class BuffListTest extends FightBaseCase {
         Mockito.verify(hook3).onEffectValueTarget(buff3, ev);
     }
 
-    @Test
     void refreshWillDecrementRemaingTurnsAndRemoveExpiredBuffs() {
         BuffHook hook1, hook2, hook3;
 
@@ -511,7 +487,6 @@ class BuffListTest extends FightBaseCase {
         Mockito.verify(hook1).onBuffTerminated(buff1);
     }
 
-    @Test
     void addMultipleAndRemoveThoseThatCanBeRemoved(){
         BuffHook hook1, hook2, hook3; 
         Buff buff1 = new Buff(Mockito.mock(SpellEffect.class), Mockito.mock(Spell.class), other.fighter(), player.fighter(), hook1 = Mockito.mock(BuffHook.class));
@@ -533,7 +508,6 @@ class BuffListTest extends FightBaseCase {
         assertFalse(list.removeAll());
     }
 
-    @Test
     void removeAllWithoutUndispellableBuff(){
         BuffHook hook1, hook2, hook3;
         Buff buff1 = new Buff(Mockito.mock(SpellEffect.class), Mockito.mock(Spell.class), other.fighter(), player.fighter(), hook1 = Mockito.mock(BuffHook.class));
@@ -555,7 +529,6 @@ class BuffListTest extends FightBaseCase {
         assertFalse(list.removeAll());
     }
 
-    @Test
     void removeByCaster(){
         BuffHook hook1, hook2, hook3;
         Buff buff1 = new Buff(Mockito.mock(SpellEffect.class), Mockito.mock(Spell.class), other.fighter(), player.fighter(), hook1 = Mockito.mock(BuffHook.class));

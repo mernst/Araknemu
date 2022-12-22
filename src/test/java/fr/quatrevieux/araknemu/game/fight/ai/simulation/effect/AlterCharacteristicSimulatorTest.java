@@ -44,7 +44,6 @@ class AlterCharacteristicSimulatorTest extends FightBaseCase {
     private Fighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,7 +51,6 @@ class AlterCharacteristicSimulatorTest extends FightBaseCase {
         fighter = player.fighter();
     }
 
-    @Test
     void simulateSimple() {
         AlterCharacteristicSimulator simulator = new AlterCharacteristicSimulator();
 
@@ -74,7 +72,6 @@ class AlterCharacteristicSimulatorTest extends FightBaseCase {
         assertEquals(10, simulation.selfBoost());
     }
 
-    @Test
     void simulateNegative() {
         AlterCharacteristicSimulator simulator = new AlterCharacteristicSimulator(-5);
 
@@ -96,7 +93,6 @@ class AlterCharacteristicSimulatorTest extends FightBaseCase {
         assertEquals(-50, simulation.selfBoost());
     }
 
-    @Test
     void simulateBuff() {
         AlterCharacteristicSimulator simulator = new AlterCharacteristicSimulator();
 
@@ -137,7 +133,6 @@ class AlterCharacteristicSimulatorTest extends FightBaseCase {
         assertEquals(100, simulation.selfBoost());
     }
 
-    @Test
     void simulateArea() {
         AlterCharacteristicSimulator simulator = new AlterCharacteristicSimulator();
 

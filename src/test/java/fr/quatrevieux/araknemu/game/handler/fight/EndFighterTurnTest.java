@@ -39,7 +39,6 @@ class EndFighterTurnTest extends FightBaseCase {
     private Fight fight;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,14 +46,12 @@ class EndFighterTurnTest extends FightBaseCase {
         fight = createFight();
     }
 
-    @Test
     void notActiveTurn() {
         requestStack.clear();
         handler.handle(session, new TurnEnd());
         requestStack.assertEmpty();
     }
 
-    @Test
     void success() {
         fight.state(PlacementState.class).startFight();
         fight.turnList().start();

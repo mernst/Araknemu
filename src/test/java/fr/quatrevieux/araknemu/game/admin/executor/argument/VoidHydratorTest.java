@@ -38,12 +38,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class VoidHydratorTest {
     private VoidHydrator hydrator;
 
-    @BeforeEach
     void setUp() {
         hydrator = new VoidHydrator();
     }
 
-    @Test
     void notSupported() {
         Command<Object> command = new Command<Object>() {
             @Override
@@ -72,7 +70,6 @@ class VoidHydratorTest {
         assertFalse(hydrator.supports(command, new Object()));
     }
 
-    @Test
     void implicit() throws Exception {
         Command<Void> command = new Command<Void>() {
             @Override

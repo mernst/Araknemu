@@ -38,7 +38,6 @@ class SessionLogServiceTest extends GameBaseCase {
     private SessionLogService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -46,7 +45,6 @@ class SessionLogServiceTest extends GameBaseCase {
         dataSet.use(ConnectionLog.class);
     }
 
-    @Test
     void create() {
         GameAccount account = new GameAccount(
             new Account(1, "toto", "", "bob", EnumSet.noneOf(Permission.class), "my question", "my response"),
@@ -64,7 +62,6 @@ class SessionLogServiceTest extends GameBaseCase {
         assertEquals(session.account().id(), log.accountId());
     }
 
-    @Test
     void loadWithoutLogShouldCreateNewOne() {
         GameAccount account = new GameAccount(
             new Account(1, "toto", "", "bob", EnumSet.noneOf(Permission.class), "my question", "my response"),
@@ -82,7 +79,6 @@ class SessionLogServiceTest extends GameBaseCase {
         assertEquals(session.account().id(), log.accountId());
     }
 
-    @Test
     void loadSuccess() {
         GameAccount account = new GameAccount(
             new Account(1, "toto", "", "bob", EnumSet.noneOf(Permission.class), "my question", "my response"),

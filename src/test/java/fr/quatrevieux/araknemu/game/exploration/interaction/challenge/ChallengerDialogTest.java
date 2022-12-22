@@ -43,7 +43,6 @@ class ChallengerDialogTest extends GameBaseCase {
     private ChallengerDialog dialog;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -59,17 +58,14 @@ class ChallengerDialogTest extends GameBaseCase {
         dialog = new ChallengerDialog(invitation);
     }
 
-    @Test
     void self() {
         assertSame(challenger, dialog.self());
     }
 
-    @Test
     void interlocutor() {
         assertSame(initiator, dialog.interlocutor());
     }
 
-    @Test
     void stop() {
         dialog.stop();
 
@@ -81,7 +77,6 @@ class ChallengerDialogTest extends GameBaseCase {
         );
     }
 
-    @Test
     void decline() {
         dialog.decline();
 
@@ -93,7 +88,6 @@ class ChallengerDialogTest extends GameBaseCase {
         );
     }
 
-    @Test
     void accept() {
         ExplorationMap map = initiator.map();
 

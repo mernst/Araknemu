@@ -33,7 +33,6 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AiModuleTest extends FightBaseCase {
-    @Test
     void fighterInitialized() throws Exception {
         Fight fight = createPvmFight();
 
@@ -47,7 +46,6 @@ class AiModuleTest extends FightBaseCase {
         assertNull(player.fighter().attachment(FighterAI.class));
     }
 
-    @Test
     void turnStartedWithoutAi() throws Exception {
         Fight fight = createPvmFight();
         fight.register(new AiModule(container.get(AiFactory.class)));
@@ -66,7 +64,6 @@ class AiModuleTest extends FightBaseCase {
         Mockito.verify(action).run();
     }
 
-    @RepeatedIfExceptionsTest
     void turnStartedWithAi() throws Exception {
         Fight fight = createPvmFight();
         fight.register(new AiModule(container.get(AiFactory.class)));

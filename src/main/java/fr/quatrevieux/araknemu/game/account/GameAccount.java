@@ -57,8 +57,6 @@ public final class GameAccount extends AbstractLivingAccount<GameSession> {
      * @param session Session to attach
      */
     @Override
-    @Deterministic
-    @EnsuresNonNull("#1.account()")
     public void attach(GameSession session) {
         super.attach(session);
 
@@ -136,7 +134,7 @@ public final class GameAccount extends AbstractLivingAccount<GameSession> {
      * @param permissions The permissions to add
      * @param performer The admin account which grants those permissions. Can be null.
      */
-    public void grant(Permission[] permissions, @Nullable GameAccount performer) {
+    public void grant(Permission[] permissions, GameAccount performer) {
         temporaryPermissions.addAll(Arrays.asList(permissions));
 
         if (session != null) {
@@ -150,7 +148,7 @@ public final class GameAccount extends AbstractLivingAccount<GameSession> {
      *
      * @param performer The admin account which revoke permissions. Can be null.
      */
-    public void revoke(@Nullable GameAccount performer) {
+    public void revoke(GameAccount performer) {
         if (temporaryPermissions.isEmpty()) {
             return;
         }

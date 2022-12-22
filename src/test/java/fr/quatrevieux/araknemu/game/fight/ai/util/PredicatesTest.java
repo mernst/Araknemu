@@ -27,7 +27,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PredicatesTest extends AiBaseCase {
-    @Test
     void hasEnemyInRangeSuccess() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -38,7 +37,6 @@ class PredicatesTest extends AiBaseCase {
         assertTrue(Predicates.<Fighter>hasEnemyInRange().test(ai));
     }
 
-    @Test
     void hasEnemyInRangeWithoutAttackSpells() throws NoSuchFieldException, IllegalAccessException {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -51,7 +49,6 @@ class PredicatesTest extends AiBaseCase {
         assertFalse(Predicates.<Fighter>hasEnemyInRange().test(ai));
     }
 
-    @Test
     void hasEnemyInRangeTooFar() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -61,7 +58,6 @@ class PredicatesTest extends AiBaseCase {
         assertFalse(Predicates.<Fighter>hasEnemyInRange().test(ai));
     }
 
-    @Test
     void hasAllies() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -88,7 +84,6 @@ class PredicatesTest extends AiBaseCase {
         assertFalse(Predicates.<Fighter>hasAllies().test(ai));
     }
 
-    @Test
     void hasLessThanPercentLife() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123).currentLife(50).maxLife(100))

@@ -24,7 +24,6 @@ import fr.quatrevieux.araknemu.realm.RealmBaseCase;
 import org.junit.jupiter.api.Test;
 
 class StartSessionTest extends RealmBaseCase {
-    @Test
     void handle() {
         StartSession handler = new StartSession();
 

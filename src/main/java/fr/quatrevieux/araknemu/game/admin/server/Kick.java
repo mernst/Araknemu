@@ -100,7 +100,6 @@ public final class Kick extends AbstractCommand<Kick.Arguments> {
         @Option(name = "--ip", metaVar = "IP_ADDRESS", usage = "Kick by IP address mask")
         private IPAddressString ip;
 
-        @Argument(metaVar = "MESSAGE", handler = ConcatRestOfArgumentsHandler.class, usage = "The message to send. Must be defined after all options.")
         private String message = "";
 
         /**

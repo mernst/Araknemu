@@ -34,7 +34,6 @@ class SendTurnListTest extends FightBaseCase {
     private SendTurnList listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -44,7 +43,6 @@ class SendTurnListTest extends FightBaseCase {
         fight.state(PlacementState.class).startFight();
     }
 
-    @Test
     void onTurnListChanged() {
         listener.on(new TurnListChanged(fight.turnList()));
 

@@ -41,7 +41,6 @@ import java.util.concurrent.atomic.AtomicReference;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameSessionTest extends GameBaseCase {
-    @Test
     void account() throws ContainerException {
         GameSession session = new GameSession(new ConfigurableSession(new DummyChannel()));
 
@@ -55,7 +54,6 @@ class GameSessionTest extends GameBaseCase {
         assertSame(account, session.account());
     }
 
-    @Test
     void player() throws ContainerException, SQLException {
         GameSession session = new GameSession(new ConfigurableSession(new DummyChannel()));
 
@@ -71,7 +69,6 @@ class GameSessionTest extends GameBaseCase {
         assertNull(session.player());
     }
 
-    @Test
     void exploration() throws ContainerException, SQLException {
         GameSession session = new GameSession(new ConfigurableSession(new DummyChannel()));
 
@@ -82,7 +79,6 @@ class GameSessionTest extends GameBaseCase {
         assertSame(player, session.exploration());
     }
 
-    @Test
     void fighter() throws SQLException, ContainerException {
         GameSession session = new GameSession(new ConfigurableSession(new DummyChannel()));
 
@@ -94,7 +90,6 @@ class GameSessionTest extends GameBaseCase {
         assertSame(fighter, session.fighter());
     }
 
-    @Test
     void spectator() throws SQLException, ContainerException {
         GameSession session = new GameSession(new ConfigurableSession(new DummyChannel()));
 
@@ -106,7 +101,6 @@ class GameSessionTest extends GameBaseCase {
         assertSame(spectator, session.spectator());
     }
 
-    @Test
     void log() throws ContainerException {
         login();
         GameSession session = new GameSession(new ConfigurableSession(new DummyChannel()));
@@ -119,7 +113,6 @@ class GameSessionTest extends GameBaseCase {
         assertSame(log, session.log().get());
     }
 
-    @Test
     void dispatchWithPlayer() throws ContainerException, SQLException {
         GameSession session = new GameSession(new ConfigurableSession(new DummyChannel()));
         GamePlayer player = makeSimpleGamePlayer(10);
@@ -134,7 +127,6 @@ class GameSessionTest extends GameBaseCase {
         assertSame(event, ref.get());
     }
 
-    @Test
     void dispatchWithExploration() throws ContainerException, SQLException {
         GameSession session = new GameSession(new ConfigurableSession(new DummyChannel()));
         GamePlayer player = makeSimpleGamePlayer(10);
@@ -156,7 +148,6 @@ class GameSessionTest extends GameBaseCase {
         assertSame(event, ref2.get());
     }
 
-    @Test
     void dispatchWithSpectator() throws ContainerException, SQLException {
         GameSession session = new GameSession(new ConfigurableSession(new DummyChannel()));
         GamePlayer player = makeSimpleGamePlayer(10);
@@ -178,7 +169,6 @@ class GameSessionTest extends GameBaseCase {
         assertSame(event, ref2.get());
     }
 
-    @Test
     void string() throws SQLException {
         GameSession session = new GameSession(new ConfigurableSession(new DummyChannel()));
 

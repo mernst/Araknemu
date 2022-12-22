@@ -28,7 +28,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class FightersHelperTest extends AiBaseCase {
-    @Test
     void stream() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -40,7 +39,6 @@ class FightersHelperTest extends AiBaseCase {
         assertArrayEquals(new Object[] {getEnemy(0), getEnemy(1)}, helper().stream().toArray());
     }
 
-    @Test
     void adjacent() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(210))
@@ -54,7 +52,6 @@ class FightersHelperTest extends AiBaseCase {
         assertArrayEquals(new Object[] {}, helper().adjacent(ai.map().get(120)).toArray());
     }
 
-    @Test
     void adjacentShouldFilterHiddenFighters() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(210))
@@ -70,7 +67,6 @@ class FightersHelperTest extends AiBaseCase {
         assertArrayEquals(new Object[] {}, helper().adjacent(ai.map().get(120)).toArray());
     }
 
-    @Test
     void cells() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -81,7 +77,6 @@ class FightersHelperTest extends AiBaseCase {
         assertArrayEquals(new Object[] {ai.map().get(125), ai.map().get(135)}, helper().cells().toArray());
     }
 
-    @Test
     void cellsShouldFilterHiddenFighter() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -94,7 +89,6 @@ class FightersHelperTest extends AiBaseCase {
         assertArrayEquals(new Object[] {ai.map().get(135)}, helper().cells().toArray());
     }
 
-    @Test
     void count() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -105,7 +99,6 @@ class FightersHelperTest extends AiBaseCase {
         assertEquals(2, helper().count());
     }
 
-    @Test
     void countShouldNotIgnoreHiddenFighter() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -118,7 +111,6 @@ class FightersHelperTest extends AiBaseCase {
         assertEquals(2, helper().count());
     }
 
-    @Test
     void nearest() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -138,7 +130,6 @@ class FightersHelperTest extends AiBaseCase {
         assertEquals(getEnemy(1), helper().nearest().get());
     }
 
-    @Test
     void nearestWithHiddenFighterShouldBeIgnored() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -153,7 +144,6 @@ class FightersHelperTest extends AiBaseCase {
         assertFalse(helper().nearest().isPresent());
     }
 
-    @Test
     void inRange() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -167,7 +157,6 @@ class FightersHelperTest extends AiBaseCase {
         assertArrayEquals(new Object[] {getEnemy(1)}, helper().inRange(new Interval(5, 5)).toArray());
     }
 
-    @Test
     void inRangeWithHiddenFighterShouldBeIgnored() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))

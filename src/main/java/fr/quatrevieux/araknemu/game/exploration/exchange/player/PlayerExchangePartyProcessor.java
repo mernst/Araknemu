@@ -50,7 +50,7 @@ public final class PlayerExchangePartyProcessor implements ExchangePartyProcesso
             valid = false;
         }
 
-        for (Map.Entry<ItemEntry, @Positive Integer> entry : storage.items().entrySet()) {
+        for (Map.Entry<ItemEntry, Integer> entry : storage.items().entrySet()) {
             if (entry.getValue() > entry.getKey().quantity()) {
                 storage.setItem(entry.getKey(), entry.getKey().quantity());
 
@@ -95,12 +95,12 @@ public final class PlayerExchangePartyProcessor implements ExchangePartyProcesso
     }
 
     @Override
-    public void addKamas(@Positive long kamas) {
+    public void addKamas(long kamas) {
         player.inventory().addKamas(kamas);
     }
 
     @Override
-    public void addItem(Item item, @Positive int quantity) {
+    public void addItem(Item item, int quantity) {
         player.inventory().add(item, quantity);
     }
 }

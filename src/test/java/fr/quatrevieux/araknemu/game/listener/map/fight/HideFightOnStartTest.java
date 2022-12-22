@@ -36,7 +36,6 @@ class HideFightOnStartTest extends FightBaseCase {
     private ExplorationMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,7 +46,6 @@ class HideFightOnStartTest extends FightBaseCase {
         explorationPlayer().changeMap(map, 123);
     }
 
-    @Test
     void onFightStarted() throws SQLException, ContainerException {
         Fight fight = createSimpleFight(map);
         requestStack.clear();

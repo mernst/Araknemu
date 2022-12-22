@@ -43,9 +43,9 @@ public final class PvmBuilder implements FightBuilder {
     private final RandomUtil random;
     private final PvmType type;
 
-    private @MonotonicNonNull ExplorationMap map;
-    private @MonotonicNonNull GamePlayer initiator;
-    private @MonotonicNonNull MonsterGroup group;
+    private ExplorationMap map;
+    private GamePlayer initiator;
+    private MonsterGroup group;
     private boolean randomize = true;
 
     public PvmBuilder(FightService service, FighterFactory fighterFactory, RandomUtil random, PvmType type) {

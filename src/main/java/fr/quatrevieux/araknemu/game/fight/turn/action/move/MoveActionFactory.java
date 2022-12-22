@@ -29,7 +29,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 /**
  * Factory for a move action
  */
-public interface MoveActionFactory<@NonNull F extends @NonNull ActiveFighter> extends FightActionFactory<F> {
+public interface MoveActionFactory<F extends ActiveFighter> extends FightActionFactory<F> {
     /**
      * Create the move action
      *

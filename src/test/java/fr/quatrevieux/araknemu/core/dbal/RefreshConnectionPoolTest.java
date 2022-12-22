@@ -41,7 +41,6 @@ class RefreshConnectionPoolTest {
     private RefreshConnectionPool pool;
     private Logger logger;
 
-    @BeforeEach
     void setUp() throws IOException, SQLException {
         SQLiteDriver driver = new SQLiteDriver(
             new DefaultConfiguration(new IniDriver(new Ini(new File("src/test/test_config.ini"))))
@@ -54,12 +53,10 @@ class RefreshConnectionPoolTest {
         pool.initialize();
     }
 
-    @AfterEach
     void tearDown() throws Exception {
         pool.close();
     }
 
-    @Test
     void execute() throws SQLException {
         int result = pool.execute(connection -> {
             try (Statement stmt = connection.createStatement()) {
@@ -70,7 +67,6 @@ class RefreshConnectionPoolTest {
         assertEquals(1, result);
     }
 
-    @RepeatedIfExceptionsTest
     void refreshNoClosedConnections() throws InterruptedException {
         Thread.sleep(10);
 
@@ -79,7 +75,6 @@ class RefreshConnectionPoolTest {
         Mockito.verify(logger, Mockito.never()).warn(Mockito.anyString());
     }
 
-    @RepeatedIfExceptionsTest
     void refreshWithClosedConnections() throws Exception {
         Connection connection = pool.acquire();
         pool.release(connection);
@@ -92,7 +87,6 @@ class RefreshConnectionPoolTest {
         Mockito.verify(logger).warn("Closed connection detected");
     }
 
-    @RepeatedIfExceptionsTest
     void refreshWithEmptyPool() throws Exception {
         Connection connection1 = pool.acquire();
         pool.release(connection1);

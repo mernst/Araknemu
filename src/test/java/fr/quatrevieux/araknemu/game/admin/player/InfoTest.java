@@ -32,14 +32,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InfoTest extends CommandTestCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         command = new Info(gamePlayer());
     }
 
-    @Test
     void execute() throws ContainerException, SQLException, AdminException {
         execute("info");
 
@@ -56,7 +54,6 @@ class InfoTest extends CommandTestCase {
         );
     }
 
-    @Test
     void help() {
         assertHelp(
             "info - Display information on the selected player",

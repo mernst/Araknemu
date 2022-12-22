@@ -44,7 +44,6 @@ class PlayerExperienceServiceTest extends GameBaseCase {
     private PlayerExperienceService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -58,7 +57,6 @@ class PlayerExperienceServiceTest extends GameBaseCase {
         service.init(container.get(Logger.class));
     }
 
-    @Test
     void preload() {
         Logger logger = Mockito.mock(Logger.class);
 
@@ -68,7 +66,6 @@ class PlayerExperienceServiceTest extends GameBaseCase {
         Mockito.verify(logger).info("{} player levels loaded", 200);
     }
 
-    @Test
     void playerLoadlistener() throws SQLException, ContainerException {
         ListenerAggregate dispatcher = new DefaultListenerAggregate();
         dispatcher.register(service);
@@ -80,7 +77,6 @@ class PlayerExperienceServiceTest extends GameBaseCase {
         assertTrue(gamePlayer().dispatcher().has(RebuildLifePointsOnLevelUp.class)); // Issue #55
     }
 
-    @Test
     void load() throws ContainerException {
         Player player = dataSet.pushPlayer("a", 1, 2);
         player.setLevel(25);
@@ -95,12 +91,10 @@ class PlayerExperienceServiceTest extends GameBaseCase {
         assertFalse(level.maxLevelReached());
     }
 
-    @Test
     void maxLevel() {
         assertEquals(200, service.maxLevel());
     }
 
-    @Test
     void byLevel() {
         PlayerExperience experience = service.byLevel(125);
 
@@ -108,7 +102,6 @@ class PlayerExperienceServiceTest extends GameBaseCase {
         assertEquals(240452000, experience.experience());
     }
 
-    @Test
     void byLevelHigherThanMax() {
         PlayerExperience experience = service.byLevel(300);
 
@@ -116,7 +109,6 @@ class PlayerExperienceServiceTest extends GameBaseCase {
         assertEquals(7407232000L, experience.experience());
     }
 
-    @Test
     void applyNewLevelBonus() {
         Player player = new Player(1);
         player.setLevel(5);
@@ -129,7 +121,6 @@ class PlayerExperienceServiceTest extends GameBaseCase {
         assertEquals(7, player.spellPoints());
     }
 
-    @Test
     void name() {
         assertEquals("player.experience", service.name());
     }

@@ -50,14 +50,12 @@ class FightChannelTest extends FightBaseCase {
     private FightChannel channel;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         channel = new FightChannel();
     }
 
-    @Test
     void sendItem() throws SQLException, ContainerException {
         channel.send(
             gamePlayer(),
@@ -67,7 +65,6 @@ class FightChannelTest extends FightBaseCase {
         requestStack.assertLast(Information.cannotPostItemOnChannel());
     }
 
-    @Test
     void authorized() throws Exception {
         assertFalse(channel.authorized(gamePlayer()));
 
@@ -75,7 +72,6 @@ class FightChannelTest extends FightBaseCase {
         assertTrue(channel.authorized(gamePlayer()));
     }
 
-    @Test
     void sendToFight() throws Exception {
         Fight fight = createFight();
 
@@ -91,7 +87,6 @@ class FightChannelTest extends FightBaseCase {
         assertEquals(2, count.get());
     }
 
-    @Test
     void sendToFightShouldAlsoSendToSpectators() throws Exception {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
 
@@ -107,7 +102,6 @@ class FightChannelTest extends FightBaseCase {
         requestStack.assertLast(new MessageSent(from, ChannelType.MESSAGES, "hello", ""));
     }
 
-    @Test
     void cannotSendItems() throws SQLException, ChatException {
         channel.send(
             gamePlayer(),

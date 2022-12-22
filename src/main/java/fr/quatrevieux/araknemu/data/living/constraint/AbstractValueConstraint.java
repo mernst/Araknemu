@@ -28,11 +28,11 @@ import org.checkerframework.checker.nullness.qual.NonNull;
  * @param <E> The error type
  * @param <V> The value type
  */
-public abstract class AbstractValueConstraint<T, @NonNull E, V> implements EntityConstraint<T, E> {
-    private final @NonNull E error;
+public abstract class AbstractValueConstraint<T, E, V> implements EntityConstraint<T, E> {
+    private final E error;
     private final Getter<T, V> getter;
 
-    public AbstractValueConstraint(@NonNull E error, Getter<T, V> getter) {
+    public AbstractValueConstraint(E error, Getter<T, V> getter) {
         this.error = error;
         this.getter = getter;
     }
@@ -44,7 +44,7 @@ public abstract class AbstractValueConstraint<T, @NonNull E, V> implements Entit
     }
 
     @Override
-    public @NonNull E error() {
+    public E error() {
         return error;
     }
 

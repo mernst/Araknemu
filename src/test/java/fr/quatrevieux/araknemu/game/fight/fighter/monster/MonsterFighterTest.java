@@ -66,7 +66,6 @@ class MonsterFighterTest extends FightBaseCase {
     private MonsterGroupTeam team;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -100,7 +99,6 @@ class MonsterFighterTest extends FightBaseCase {
         fighter = (MonsterFighter) team.fighters().stream().findFirst().get();
     }
 
-    @Test
     void values() {
         assertSame(team, fighter.team());
         assertEquals(-1, fighter.id());
@@ -119,7 +117,6 @@ class MonsterFighterTest extends FightBaseCase {
         assertEquals(12, fighter.reward().experience());
     }
 
-    @Test
     void equals() throws SQLException {
         assertEquals(fighter, fighter);
         assertEquals(fighter.hashCode(), fighter.hashCode());
@@ -134,7 +131,6 @@ class MonsterFighterTest extends FightBaseCase {
         assertNotEquals(fighter, other);
     }
 
-    @Test
     void attachments() {
         fighter.attach("key", 42);
         assertSame(42, fighter.attachment("key"));
@@ -145,7 +141,6 @@ class MonsterFighterTest extends FightBaseCase {
         assertSame(launchedSpells, fighter.attachment(LaunchedSpells.class));
     }
 
-    @Test
     void orientation() {
         assertEquals(Direction.SOUTH_EAST, fighter.orientation());
 
@@ -153,7 +148,6 @@ class MonsterFighterTest extends FightBaseCase {
         assertEquals(Direction.NORTH_EAST, fighter.orientation());
     }
 
-    @Test
     void init() throws Exception {
         Fight fight = createFight();
 
@@ -166,7 +160,6 @@ class MonsterFighterTest extends FightBaseCase {
         assertSame(fighter, ref.get().fighter());
     }
 
-    @Test
     void dead() throws Exception {
         Fight fight = createFight();
 
@@ -179,7 +172,6 @@ class MonsterFighterTest extends FightBaseCase {
         assertTrue(fighter.dead());
     }
 
-    @Test
     void joinFight() throws Exception {
         Fight fight = createFight();
 
@@ -193,7 +185,6 @@ class MonsterFighterTest extends FightBaseCase {
         assertTrue(fighter.isOnFight());
     }
 
-    @Test
     void joinFightAlreadyJoinedShouldRaisedException() throws Exception {
         Fight fight = createFight();
 
@@ -201,7 +192,6 @@ class MonsterFighterTest extends FightBaseCase {
         assertThrows(IllegalStateException.class, () -> fighter.joinFight(fight, fight.map().get(123)));
     }
 
-    @Test
     void sprite() throws Exception {
         Fight fight = createFight();
         fighter.joinFight(fight, fight.map().get(123));
@@ -210,7 +200,6 @@ class MonsterFighterTest extends FightBaseCase {
         assertEquals("123;1;0;-1;31;-2;1563^100;3;-1;-1;-1;0,0,0,0;20;4;2;3;7;7;-7;-7;7;5;1", fighter.sprite().toString());
     }
 
-    @Test
     void moveFirstTime() throws Exception {
         Fight fight = createFight();
 
@@ -220,7 +209,6 @@ class MonsterFighterTest extends FightBaseCase {
         assertSame(fighter, fight.map().get(123).fighter());
     }
 
-    @Test
     void moveWillLeaveLastCell() throws Exception {
         Fight fight = createFight();
 
@@ -233,7 +221,6 @@ class MonsterFighterTest extends FightBaseCase {
         assertFalse(fight.map().get(123).hasFighter());
     }
 
-    @Test
     void moveRemoveCell() throws Exception {
         Fight fight = createFight();
 
@@ -244,12 +231,10 @@ class MonsterFighterTest extends FightBaseCase {
         assertFalse(fight.map().get(123).hasFighter());
     }
 
-    @Test
     void spells() {
         assertIterableEquals(fighter.spells(), container.get(MonsterService.class).load(31).all().get(2).spells());
     }
 
-    @Test
     void dispatcher() {
         Object event = new Object();
 
@@ -261,7 +246,6 @@ class MonsterFighterTest extends FightBaseCase {
         assertSame(event, ref.get());
     }
 
-    @Test
     void playStop() throws Exception {
         Fight fight = createFight();
         fighter.joinFight(fight, fight.map().get(123));
@@ -288,7 +272,6 @@ class MonsterFighterTest extends FightBaseCase {
         assertThrows(FightException.class, () -> fighter.turn());
     }
 
-    @Test
     void apply() {
         FighterOperation operation = Mockito.mock(FighterOperation.class);
 
@@ -296,7 +279,6 @@ class MonsterFighterTest extends FightBaseCase {
         Mockito.verify(operation).onMonster(fighter);
     }
 
-    @Test
     void hidden() throws Exception {
         Fight fight = createFight();
         fighter.joinFight(fight, fight.map().get(123));

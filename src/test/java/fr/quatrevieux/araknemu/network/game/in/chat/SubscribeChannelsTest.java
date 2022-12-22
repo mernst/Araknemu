@@ -30,7 +30,6 @@ import java.util.EnumSet;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SubscribeChannelsTest {
-    @Test
     void parseSingleChannel() {
         SubscribeChannels.Parser parser = new SubscribeChannels.Parser();
 
@@ -40,7 +39,6 @@ class SubscribeChannelsTest {
         assertEquals(EnumSet.of(ChannelType.INFO), sub.channels());
     }
 
-    @Test
     void parseUnsubscribe() {
         SubscribeChannels.Parser parser = new SubscribeChannels.Parser();
 
@@ -50,7 +48,6 @@ class SubscribeChannelsTest {
         assertEquals(EnumSet.of(ChannelType.INFO), sub.channels());
     }
 
-    @Test
     void parseMultipleChannels() {
         SubscribeChannels.Parser parser = new SubscribeChannels.Parser();
 
@@ -64,7 +61,6 @@ class SubscribeChannelsTest {
         ), sub.channels());
     }
 
-    @Test
     void parseInvalid() {
         SubscribeChannels.Parser parser = new SubscribeChannels.Parser();
 

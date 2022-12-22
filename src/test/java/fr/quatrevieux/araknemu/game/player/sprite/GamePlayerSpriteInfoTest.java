@@ -32,7 +32,6 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GamePlayerSpriteInfoTest extends GameBaseCase {
-    @Test
     void values() throws SQLException, ContainerException {
         gamePlayer(true);
 

@@ -51,7 +51,6 @@ class NpcServiceTest extends GameBaseCase {
     private NpcService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -68,7 +67,6 @@ class NpcServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void listenersOnMapLoadedShouldAddNpc() throws ContainerException, SQLException {
         ExplorationMap map = container.get(ExplorationMapService.class).load(10340);
 
@@ -92,7 +90,6 @@ class NpcServiceTest extends GameBaseCase {
         assertEquals(878, npc.template().id());
     }
 
-    @Test
     void listenersOnMapLoadedPreloaded() throws ContainerException, SQLException {
         ExplorationMap map = container.get(ExplorationMapService.class).load(10340);
 
@@ -114,7 +111,6 @@ class NpcServiceTest extends GameBaseCase {
         assertEquals(878, npc.template().id());
     }
 
-    @Test
     void preload() throws SQLException, ContainerException {
         Logger logger = Mockito.mock(Logger.class);
 
@@ -126,7 +122,6 @@ class NpcServiceTest extends GameBaseCase {
         Mockito.verify(logger).info("{} NPCs loaded", 3);
     }
 
-    @Test
     void get() throws SQLException, ContainerException {
         dataSet.pushNpcs();
 
@@ -141,7 +136,6 @@ class NpcServiceTest extends GameBaseCase {
         assertCount(2, question.responses(explorationPlayer()));
     }
 
-    @Test
     void getWithStore() throws SQLException, ContainerException {
         dataSet.pushNpcWithStore();
 
@@ -153,7 +147,6 @@ class NpcServiceTest extends GameBaseCase {
         assertTrue(store.has(2425));
     }
 
-    @Test
     void getWithExchange() throws SQLException, ContainerException {
         dataSet
             .pushNpcs()
@@ -167,7 +160,6 @@ class NpcServiceTest extends GameBaseCase {
         assertInstanceOf(GameNpcExchange.class, npc.exchangeFactory(ExchangeType.NPC_EXCHANGE));
     }
 
-    @Test
     void name() {
         assertEquals("npc", service.name());
     }

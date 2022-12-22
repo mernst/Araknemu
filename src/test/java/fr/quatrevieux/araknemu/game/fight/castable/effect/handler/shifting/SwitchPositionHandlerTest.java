@@ -43,7 +43,6 @@ class SwitchPositionHandlerTest extends FightBaseCase {
     private Fight fight;
     private SwitchPositionHandler handler;
 
-    @Test
     void applySuccess() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(150))
@@ -80,7 +79,6 @@ class SwitchPositionHandlerTest extends FightBaseCase {
         assertSame(lastCell, other.cell());
     }
 
-    @Test
     void applyWithoutTargetShouldDoNothing() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(150))
@@ -111,7 +109,6 @@ class SwitchPositionHandlerTest extends FightBaseCase {
         assertSame(caster, lastCell.fighter());
     }
 
-    @Test
     void buffNotSupported() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(165))

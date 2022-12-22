@@ -34,14 +34,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InfoTest extends CommandTestCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         command = new Info(app, container.get(PlayerService.class), container.get(GameService.class), container.get(FightService.class));
     }
 
-    @Test
     void execute() throws SQLException, AdminException, BootException {
         app.boot();
         execute("info");
@@ -51,7 +49,6 @@ class InfoTest extends CommandTestCase {
         assertOutputContains("Fights : 0 fights with 0 fighters");
     }
 
-    @Test
     void help() {
         assertHelp(
             "info - Display information about the server",

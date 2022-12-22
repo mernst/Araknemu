@@ -32,7 +32,7 @@ public interface SinglePacketParser<P extends Packet> extends PacketParser {
      * Get the packet identification code
      * This code is the 2 or 3 first chars of the incoming packet
      */
-    public @MinLen(2) String code();
+    public String code();
 
     /**
      * Create the tokenizer for the current packet

@@ -44,7 +44,6 @@ class PunishmentSimulatorTest extends FightBaseCase {
     private PunishmentSimulator simulator;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -53,7 +52,6 @@ class PunishmentSimulatorTest extends FightBaseCase {
         simulator = new PunishmentSimulator();
     }
 
-    @Test
     void simulateSimple() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -73,7 +71,6 @@ class PunishmentSimulatorTest extends FightBaseCase {
         assertEquals(10, simulation.selfBoost());
     }
 
-    @Test
     void simulateBuff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -112,7 +109,6 @@ class PunishmentSimulatorTest extends FightBaseCase {
         assertEquals(100, simulation.selfBoost());
     }
 
-    @Test
     void simulateArea() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

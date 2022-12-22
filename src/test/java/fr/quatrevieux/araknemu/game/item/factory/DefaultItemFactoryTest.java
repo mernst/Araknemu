@@ -40,7 +40,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DefaultItemFactoryTest extends GameBaseCase {
-    @Test
     void typeNotFound() {
         DefaultItemFactory factory = new DefaultItemFactory();
 
@@ -50,7 +49,6 @@ class DefaultItemFactoryTest extends GameBaseCase {
         assertThrows(NoSuchElementException.class, () -> factory.retrieve(new ItemTemplate(39, 1, "Petite Amulette du Hibou", 1, Arrays.asList(new ItemTemplateEffectEntry(Effect.ADD_INTELLIGENCE, 2, 0, 0, "0d0+2")), 4, "", 0, "", 100), type, null, new ArrayList<>()), "Invalid type AMULETTE");
     }
 
-    @Test
     void createSuccess() throws ContainerException {
         DefaultItemFactory factory = new DefaultItemFactory(
             new ResourceFactory(container.get(EffectToSpecialMapping.class))
@@ -66,7 +64,6 @@ class DefaultItemFactoryTest extends GameBaseCase {
         assertSame(type, item.type());
     }
 
-    @Test
     void retrieveSuccess() throws ContainerException {
         DefaultItemFactory factory = new DefaultItemFactory(
             new ResourceFactory(container.get(EffectToSpecialMapping.class))

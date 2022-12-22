@@ -38,7 +38,6 @@ class SendTeamOptionChangedTest extends FightBaseCase {
     private Fight fight;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -50,7 +49,6 @@ class SendTeamOptionChangedTest extends FightBaseCase {
         fight = createSimpleFight(map);
     }
 
-    @Test
     void onSpectatorOptionChanged() {
         dispatcher.dispatch(new AllowSpectatorChanged(fight.team(0).options(), true));
         requestStack.assertLast(new FightOption(fight.team(0).id(), FightOption.Type.BLOCK_SPECTATOR, false));
@@ -60,7 +58,6 @@ class SendTeamOptionChangedTest extends FightBaseCase {
         requestStack.assertLast(new FightOption(fight.team(0).id(), FightOption.Type.BLOCK_SPECTATOR, true));
     }
 
-    @Test
     void onBlockJoinChanged() {
         dispatcher.dispatch(new AllowJoinTeamChanged(fight.team(0).options(), true));
         requestStack.assertLast(new FightOption(fight.team(0).id(), FightOption.Type.BLOCK_JOINER, false));
@@ -70,7 +67,6 @@ class SendTeamOptionChangedTest extends FightBaseCase {
         requestStack.assertLast(new FightOption(fight.team(0).id(), FightOption.Type.BLOCK_JOINER, true));
     }
 
-    @Test
     void onNeedHelpChanged() {
         ConfigurableTeamOptions.class.cast(fight.team(0).options()).toggleNeedHelp();
         dispatcher.dispatch(new NeedHelpChanged(fight.team(0).options(), true));

@@ -28,12 +28,12 @@ public interface Life {
     /**
      * Get the maximum creature life
      */
-    public @NonNegative int max();
+    public int max();
 
     /**
      * Get the current creature life point
      */
-    public @NonNegative int current();
+    public int current();
 
     /**
      * Check if the creature is full life

@@ -27,7 +27,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class InventoryAccessoryTest {
-    @Test
     void data() {
         InventoryAccessory accessory = new InventoryAccessory(
             new InventoryEntry(null, new PlayerItem(1, 1, 123, null, 0, 6), null)

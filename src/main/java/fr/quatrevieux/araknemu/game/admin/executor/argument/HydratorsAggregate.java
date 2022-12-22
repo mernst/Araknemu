@@ -59,7 +59,7 @@ public final class HydratorsAggregate implements ArgumentsHydrator {
     }
 
     @Override
-    public <@Nullable A> A hydrate(Command<A> command, @Nullable A commandArguments, CommandParser.Arguments parsedArguments) throws Exception {
+    public <A> A hydrate(Command<A> command, A commandArguments, CommandParser.Arguments parsedArguments) throws Exception {
         return supportedHydrator(command, commandArguments)
             .orElseThrow(() -> new CommandException(command.name(), "Cannot parse arguments for command " + command.getClass().getSimpleName()))
             .hydrate(command, commandArguments, parsedArguments)
@@ -75,11 +75,11 @@ public final class HydratorsAggregate implements ArgumentsHydrator {
     }
 
     @Override
-    public <A> boolean supports(Command<A> command, @Nullable A commandArguments) {
+    public <A> boolean supports(Command<A> command, A commandArguments) {
         return supportedHydrator(command, commandArguments).isPresent();
     }
 
-    private <A> Optional<ArgumentsHydrator> supportedHydrator(Command<A> command, @Nullable A commandArguments) {
+    private <A> Optional<ArgumentsHydrator> supportedHydrator(Command<A> command, A commandArguments) {
         for (ArgumentsHydrator hydrator : hydrators) {
             if (hydrator.supports(command, commandArguments)) {
                 return Optional.of(hydrator);

@@ -51,7 +51,6 @@ class HealOrMultiplyDamageHandlerTest extends FightBaseCase {
     private HealOrMultiplyDamageHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -68,7 +67,6 @@ class HealOrMultiplyDamageHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handle() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -84,7 +82,6 @@ class HealOrMultiplyDamageHandlerTest extends FightBaseCase {
         assertThrows(UnsupportedOperationException.class, () -> handler.handle(scope, scope.effects().get(0)));
     }
 
-    @Test
     void buff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -110,7 +107,6 @@ class HealOrMultiplyDamageHandlerTest extends FightBaseCase {
         assertEquals(5, found.get().remainingTurns());
     }
 
-    @Test
     void onDamageWithMultiplyEffect() {
         SpellEffect returnEffect = Mockito.mock(SpellEffect.class);
 
@@ -127,7 +123,6 @@ class HealOrMultiplyDamageHandlerTest extends FightBaseCase {
         assertEquals(40, damage.value());
     }
 
-    @Test
     void onDamageWithHealEffect() {
         SpellEffect returnEffect = Mockito.mock(SpellEffect.class);
 
@@ -144,7 +139,6 @@ class HealOrMultiplyDamageHandlerTest extends FightBaseCase {
         assertEquals(-20, damage.value());
     }
 
-    @Test
     void onReflectedDamageWithMultiplyEffect() {
         SpellEffect returnEffect = Mockito.mock(SpellEffect.class);
 
@@ -161,7 +155,6 @@ class HealOrMultiplyDamageHandlerTest extends FightBaseCase {
         assertEquals(20, damage.value());
     }
 
-    @Test
     void onReflectedDamageWithHealEffect() {
         SpellEffect returnEffect = Mockito.mock(SpellEffect.class);
 
@@ -178,7 +171,6 @@ class HealOrMultiplyDamageHandlerTest extends FightBaseCase {
         assertEquals(-10, damage.value());
     }
 
-    @Test
     void onDamageWithRandom() {
         SpellEffect returnEffect = Mockito.mock(SpellEffect.class);
 

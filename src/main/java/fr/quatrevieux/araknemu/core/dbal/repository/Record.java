@@ -73,7 +73,7 @@ public final class Record {
      *
      * @see ResultSet#getString(String) The called method
      */
-    public @Nullable String getNullableString(String column) throws SQLException {
+    public String getNullableString(String column) throws SQLException {
         return resultSet.getString(column);
     }
 
@@ -91,7 +91,7 @@ public final class Record {
      * @throws SQLException If the columnLabel is not valid; if a database access error occurs or this method is called on a closed result set
      * @throws RecordException When the transformer failed to parse the value, or if the value is null
      */
-    public <T> @NonNull T unserialize(String column, Transformer<T> transformer) throws SQLException {
+    public <T> T unserialize(String column, Transformer<T> transformer) throws SQLException {
         final String value = getString(column);
 
         try {
@@ -115,7 +115,7 @@ public final class Record {
      * @throws SQLException If the columnLabel is not valid; if a database access error occurs or this method is called on a closed result set
      * @throws RecordException When the transformer failed to parse the value
      */
-    public <T> @Nullable T nullableUnserialize(String column, Transformer<T> transformer) throws SQLException {
+    public <T> T nullableUnserialize(String column, Transformer<T> transformer) throws SQLException {
         final String value = resultSet.getString(column);
 
         try {
@@ -164,7 +164,7 @@ public final class Record {
      *
      * @see ResultSet#getInt(String) The called method
      */
-    public @GTENegativeOne int getGTENegativeOneInt(String column) throws SQLException {
+    public int getGTENegativeOneInt(String column) throws SQLException {
         final int value = resultSet.getInt(column);
 
         if (value < -1) {
@@ -184,7 +184,7 @@ public final class Record {
      *
      * @see ResultSet#getInt(String) The called method
      */
-    public @NonNegative int getNonNegativeInt(String column) throws SQLException {
+    public int getNonNegativeInt(String column) throws SQLException {
         final int value = resultSet.getInt(column);
 
         if (value < 0) {
@@ -204,7 +204,7 @@ public final class Record {
      *
      * @see ResultSet#getInt(String) The called method
      */
-    public @Positive int getPositiveInt(String column) throws SQLException {
+    public int getPositiveInt(String column) throws SQLException {
         final int value = resultSet.getInt(column);
 
         if (value < 1) {
@@ -237,7 +237,7 @@ public final class Record {
      *
      * @see ResultSet#getLong(String) The called method
      */
-    public @NonNegative long getNonNegativeLong(String column) throws SQLException {
+    public long getNonNegativeLong(String column) throws SQLException {
         final long value = resultSet.getLong(column);
 
         if (value < 0) {
@@ -349,7 +349,7 @@ public final class Record {
      * @throws SQLException If the columnLabel is not valid; if a database access error occurs or this method is called on a closed result set
      * @throws RecordException If the value contains invalid integers
      */
-    public int @Nullable [] getNullableIntArray(String column, char separator) throws SQLException {
+    public int[] getNullableIntArray(String column, char separator) throws SQLException {
         final String csv = resultSet.getString(column);
 
         if (csv == null) {

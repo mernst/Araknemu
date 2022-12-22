@@ -33,17 +33,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class ItemEffectsTransformerTest extends TestCase {
     private ItemEffectsTransformer transformer = new ItemEffectsTransformer();
 
-    @Test
     void serializeNull() {
         assertEquals("", transformer.serialize(null));
     }
 
-    @Test
     void serializeEmpty() {
         assertEquals("", transformer.serialize(new ArrayList<>()));
     }
 
-    @Test
     void serializeWithOneEffect() {
         assertEquals(
             "63#a#f#0#1d6+9",
@@ -51,7 +48,6 @@ class ItemEffectsTransformerTest extends TestCase {
         );
     }
 
-    @Test
     void serializeWithTwoEffects() {
         assertEquals(
             "63#a#f#0#1d6+9,7e#5#a#0#1d6+4",
@@ -62,7 +58,6 @@ class ItemEffectsTransformerTest extends TestCase {
         );
     }
 
-    @Test
     void unserializeComplex() {
         List<ItemTemplateEffectEntry> effects = transformer.unserialize("64#b#f#0#1d5+10,7d#b#0#0#0d0+11,9a#f#0#0#0d0+15");
 
@@ -84,7 +79,6 @@ class ItemEffectsTransformerTest extends TestCase {
         assertEquals(0, effects.get(2).special());
     }
 
-    @Test
     void unserializeWithoutText() {
         List<ItemTemplateEffectEntry> effects = transformer.unserialize("64#b#f#0");
 
@@ -96,17 +90,14 @@ class ItemEffectsTransformerTest extends TestCase {
         assertEquals(0, effects.get(0).special());
     }
 
-    @Test
     void unserializeNull() {
         assertTrue(transformer.unserialize(null).isEmpty());
     }
 
-    @Test
     void unserializeEmpty() {
         assertTrue(transformer.unserialize("").isEmpty());
     }
 
-    @Test
     void unserializeInvalidData() {
         assertThrows(IllegalArgumentException.class, () -> transformer.unserialize("invalid data"));
     }

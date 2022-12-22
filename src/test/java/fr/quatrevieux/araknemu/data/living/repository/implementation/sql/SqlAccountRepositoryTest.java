@@ -39,7 +39,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class SqlAccountRepositoryTest extends DatabaseTestCase {
     private fr.quatrevieux.araknemu.data.living.repository.account.AccountRepository repository;
 
-    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -48,17 +47,14 @@ class SqlAccountRepositoryTest extends DatabaseTestCase {
         repository.initialize();
     }
 
-    @AfterEach
     void tearDown() throws SQLException {
         dropTable("ACCOUNT");
     }
 
-    @Test
     void testInitialize() throws SQLException {
         assertTableExists("ACCOUNT");
     }
 
-    @Test
     void testAdd() {
         Account account = repository.add(new Account(0, "test", "password", "testouille"));
 
@@ -70,19 +66,16 @@ class SqlAccountRepositoryTest extends DatabaseTestCase {
         assertEquals(2, repository.add(new Account(0)).id());
     }
 
-    @Test
     void testGet() {
         Account account = repository.add(new Account(0, "test", "password", "pseudo"));
 
         assertEquals(account, repository.get(account));
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(new Account(5)));
     }
 
-    @Test
     void testHas() {
         Account inserted = repository.add(new Account(0, "test", "password", "testouille"));
 
@@ -90,7 +83,6 @@ class SqlAccountRepositoryTest extends DatabaseTestCase {
         assertTrue(repository.has(inserted));
     }
 
-    @Test
     void testDelete() {
         Account inserted = repository.add(new Account(0, "test", "password", "testouille"));
 
@@ -99,7 +91,6 @@ class SqlAccountRepositoryTest extends DatabaseTestCase {
         assertFalse(repository.has(inserted));
     }
 
-    @Test
     void findByUsername() {
         Account inserted = repository.add(new Account(0, "test", "password", "testouille"));
         repository.add(new Account(0, "other", "pass", "aaa"));
@@ -107,7 +98,6 @@ class SqlAccountRepositoryTest extends DatabaseTestCase {
         assertEquals(inserted, repository.findByUsername("test"));
     }
 
-    @Test
     void findByPseudo() {
         Account inserted = repository.add(new Account(0, "test", "password", "testouille"));
         repository.add(new Account(0, "other", "pass", "aaa"));
@@ -116,7 +106,6 @@ class SqlAccountRepositoryTest extends DatabaseTestCase {
         assertFalse(repository.findByPseudo("not_found").isPresent());
     }
 
-    @Test
     void permissions() {
         Account account = repository.add(new Account(0, "other", "pass", "aaa", EnumSet.of(Permission.ACCESS), "", ""));
         account = repository.get(account);
@@ -127,7 +116,6 @@ class SqlAccountRepositoryTest extends DatabaseTestCase {
         );
     }
 
-    @Test
     void questionAndAnswer() {
         Account account = repository.add(new Account(0, "other", "pass", "aaa", EnumSet.noneOf(Permission.class), "azerty", "uiop"));
         account = repository.get(account);
@@ -136,7 +124,6 @@ class SqlAccountRepositoryTest extends DatabaseTestCase {
         assertEquals("uiop", account.answer());
     }
 
-    @Test
     void savePassword() {
         Account account = repository.add(new Account(0, "other", "pass", "aaa", EnumSet.noneOf(Permission.class), "azerty", "uiop"));
 
@@ -146,7 +133,6 @@ class SqlAccountRepositoryTest extends DatabaseTestCase {
         assertEquals("newPass", repository.get(account).password());
     }
 
-    @Test
     void findByIds() {
         Account account1 = repository.add(new Account(-1, "name", "pass", "pseudo", Collections.emptySet(), "", ""));
         Account account2 = repository.add(new Account(-1, "name2", "pass", "pseudo2", Collections.emptySet(), "", ""));

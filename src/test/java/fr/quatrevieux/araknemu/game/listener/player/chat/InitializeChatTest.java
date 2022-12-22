@@ -32,7 +32,6 @@ class InitializeChatTest extends GameBaseCase {
     private InitializeChat  listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -41,7 +40,6 @@ class InitializeChatTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onGameJoined() {
         listener.on(new GameJoined());
 

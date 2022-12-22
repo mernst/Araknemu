@@ -61,7 +61,7 @@ public final class ExplorationMap implements DofusMap<ExplorationMapCell>, Dispa
     private final MapTemplate template;
     private final ExplorationSubArea subArea;
 
-    private final Map<@NonNegative Integer, ExplorationMapCell> cells;
+    private final Map<Integer, ExplorationMapCell> cells;
     private final ConcurrentMap<Integer, ExplorationCreature> creatures = new ConcurrentHashMap<>();
 
     private final ListenerAggregate dispatcher = new DefaultListenerAggregate();
@@ -82,8 +82,7 @@ public final class ExplorationMap implements DofusMap<ExplorationMapCell>, Dispa
      *
      * filename : data/maps/[id]_[date](X).swf
      */
-    @Pure
-    public @NonNegative int id() {
+    public int id() {
         return template.id();
     }
 
@@ -92,7 +91,6 @@ public final class ExplorationMap implements DofusMap<ExplorationMapCell>, Dispa
      *
      * filename : data/maps/[id]_[date](X).swf
      */
-    @Pure
     public String date() {
         return template.date();
     }
@@ -101,7 +99,6 @@ public final class ExplorationMap implements DofusMap<ExplorationMapCell>, Dispa
      * Get the map decryption key
      * Used by map swf which finish with "X.swf"
      */
-    @Pure
     public String key() {
         return template.key();
     }
@@ -112,7 +109,6 @@ public final class ExplorationMap implements DofusMap<ExplorationMapCell>, Dispa
      * /!\ Because cells are interleaved, the real height of the map is x2,
      *     and the width is lower one every two lines
      */
-    @Pure
     @Override
     public Dimensions dimensions() {
         return template.dimensions();
@@ -121,17 +117,15 @@ public final class ExplorationMap implements DofusMap<ExplorationMapCell>, Dispa
     /**
      * Get the number of cells of the map
      */
-    @Pure
     @Override
     @SuppressWarnings("return") // Cannot infer template.cells().length to be equals to this length
-    public @LengthOf("this") int size() {
+    public int size() {
         return template.cells().length;
     }
 
     @Override
-    @SideEffectFree
     @SuppressWarnings("array.access.unsafe.high") // Cannot infer template.cells().length to be equals to this length
-    public ExplorationMapCell get(@IndexFor("this") int id) {
+    public ExplorationMapCell get(int id) {
         final ExplorationMapCell cell = cells.get(id);
 
         if (cell != null) {
@@ -188,7 +182,6 @@ public final class ExplorationMap implements DofusMap<ExplorationMapCell>, Dispa
      *
      * @param id The creature id
      */
-    @Pure
     public ExplorationCreature creature(int id) {
         final ExplorationCreature creature = creatures.get(id);
 
@@ -204,7 +197,6 @@ public final class ExplorationMap implements DofusMap<ExplorationMapCell>, Dispa
      *
      * @param id The creature id
      */
-    @Pure
     public boolean has(int id) {
         return creatures.containsKey(id);
     }
@@ -229,7 +221,7 @@ public final class ExplorationMap implements DofusMap<ExplorationMapCell>, Dispa
      *
      * @see ExplorationCreature#apply(Operation)
      */
-    public <R> @Nullable R apply(Operation<R> operation) {
+    public <R> R apply(Operation<R> operation) {
         for (ExplorationCreature creature : creatures.values()) {
             final R result = creature.apply(operation);
 
@@ -244,7 +236,6 @@ public final class ExplorationMap implements DofusMap<ExplorationMapCell>, Dispa
     /**
      * Can launch a fight on the map ?
      */
-    @Pure
     public boolean canLaunchFight() {
         return template.fightPlaces().length >= 2;
     }
@@ -257,7 +248,7 @@ public final class ExplorationMap implements DofusMap<ExplorationMapCell>, Dispa
      * @return List of placement cells, or empty list if there is not place for the given team
      */
     @SuppressWarnings("methodref.param") // places are considered as safe cell ids
-    public List<ExplorationMapCell> fightPlaces(@NonNegative int team) {
+    public List<ExplorationMapCell> fightPlaces(int team) {
         final int[][] places = template.fightPlaces();
 
         if (team >= places.length) {

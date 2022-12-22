@@ -31,7 +31,6 @@ class SendUsedActionPointsTest extends FightBaseCase {
     private SendUsedActionPoints listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -40,7 +39,6 @@ class SendUsedActionPointsTest extends FightBaseCase {
         );
     }
 
-    @Test
     void onActionPointsUsed() {
         listener.on(new ActionPointsUsed(player.fighter(), 4));
 

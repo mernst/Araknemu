@@ -32,7 +32,6 @@ class SendMapDataTest extends GameBaseCase {
     private SendMapData listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -43,7 +42,6 @@ class SendMapDataTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onMapLoaded() throws ContainerException {
         ExplorationMap map = container.get(ExplorationMapService.class).load(10300);
 

@@ -126,19 +126,10 @@ public final class GetItem extends AbstractCommand<GetItem.Arguments> {
         )
         private @Nullable List<ItemTemplateEffectEntry> effects = null;
 
-        @Argument(
-            required = true, index = 0, metaVar = "ITEM_ID",
-            usage = "The id of the item to generate. It can be found using /ui itemsummoner command"
-        )
         private int itemId;
 
-        @Argument(
-            index = 1, metaVar = "QUANTITY",
-            usage = "The quantity of item to generate. By default all generated items will gets the same characteristics unless --each option is used."
-        )
-        private @Positive int quantity = 1;
+        private int quantity = 1;
 
-        @Pure
         public boolean max() {
             return max;
         }
@@ -147,7 +138,6 @@ public final class GetItem extends AbstractCommand<GetItem.Arguments> {
             this.max = max;
         }
 
-        @Pure
         public boolean each() {
             return each;
         }
@@ -156,29 +146,24 @@ public final class GetItem extends AbstractCommand<GetItem.Arguments> {
             this.each = each;
         }
 
-        @Pure
-        public @Nullable List<ItemTemplateEffectEntry> effects() {
+        public List<ItemTemplateEffectEntry> effects() {
             return effects;
         }
 
-        @EnsuresNonNullIf(expression = "effects()", result = true)
         @SuppressWarnings("contracts.conditional.postcondition")
         public boolean hasCustomEffects() {
             return effects != null;
         }
 
-        @Pure
         public int itemId() {
             return itemId;
         }
 
-        @Pure
-        public @Positive int times() {
+        public int times() {
             return each ? quantity : 1;
         }
 
-        @Pure
-        public @Positive int quantity() {
+        public int quantity() {
             return each ? 1 : quantity;
         }
     }

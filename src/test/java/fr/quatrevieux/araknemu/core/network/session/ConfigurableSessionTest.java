@@ -35,18 +35,15 @@ class ConfigurableSessionTest extends TestCase {
     private ConfigurableSession session;
     private DummyChannel channel;
 
-    @BeforeEach
     void setUp() {
         channel = new DummyChannel();
         session = new ConfigurableSession(channel);
     }
 
-    @Test
     void channel() {
         assertSame(channel, session.channel());
     }
 
-    @Test
     void send() {
         session.addSendTransformer(packet -> packet + "a");
         session.addSendTransformer(packet -> "b" + packet);
@@ -56,7 +53,6 @@ class ConfigurableSessionTest extends TestCase {
         assertEquals("btesta", channel.getMessages().peek());
     }
 
-    @Test
     void sendWithCancelSendPacket() {
         session.addSendTransformer(packet -> null);
 
@@ -65,7 +61,6 @@ class ConfigurableSessionTest extends TestCase {
         assertTrue(channel.getMessages().empty());
     }
 
-    @Test
     void sendWithSessionClosed() {
         session.close();
         session.send("test");
@@ -73,7 +68,6 @@ class ConfigurableSessionTest extends TestCase {
         assertTrue(channel.getMessages().empty());
     }
 
-    @Test
     void receiveFinalMiddleware() throws Exception {
         ConfigurableSession.ReceivePacketMiddleware middleware = Mockito.mock(ConfigurableSession.ReceivePacketMiddleware.class);
         session.addReceiveMiddleware(middleware);
@@ -83,7 +77,6 @@ class ConfigurableSessionTest extends TestCase {
         Mockito.verify(middleware).handlePacket(Mockito.eq("packet"), Mockito.any(Consumer.class));
     }
 
-    @Test
     void receiveWithTransformationMiddleware() throws Exception {
         ConfigurableSession.ReceivePacketMiddleware middleware = Mockito.mock(ConfigurableSession.ReceivePacketMiddleware.class);
 
@@ -96,7 +89,6 @@ class ConfigurableSessionTest extends TestCase {
         Mockito.verify(middleware).handlePacket(Mockito.eq("packetab"), Mockito.any(Consumer.class));
     }
 
-    @Test
     void receiveWithExceptionShouldBeCatchByHandler() {
         final Exception e = new Exception("my error");
 
@@ -110,7 +102,6 @@ class ConfigurableSessionTest extends TestCase {
         Mockito.verify(predicate).test(e);
     }
 
-    @Test
     void receiveWithClosedSessionShouldIgnoreThePacket() throws Exception {
         ConfigurableSession.ReceivePacketMiddleware middleware = Mockito.mock(ConfigurableSession.ReceivePacketMiddleware.class);
         session.addReceiveMiddleware(middleware);
@@ -121,7 +112,6 @@ class ConfigurableSessionTest extends TestCase {
         Mockito.verify(middleware, Mockito.never()).handlePacket(Mockito.anyString(), Mockito.any(Consumer.class));
     }
 
-    @Test
     void receiveInternalPacketOnClosedSessionShouldHandleThePacket() throws Exception {
         ConfigurableSession.ReceivePacketMiddleware middleware = Mockito.mock(ConfigurableSession.ReceivePacketMiddleware.class);
         session.addReceiveMiddleware(middleware);
@@ -134,7 +124,6 @@ class ConfigurableSessionTest extends TestCase {
         Mockito.verify(middleware).handlePacket(Mockito.eq(packet), Mockito.any(Consumer.class));
     }
 
-    @Test
     void exceptionStopHandlingWhenReturnFalse() {
         Predicate handler1 = Mockito.mock(Predicate.class);
         Predicate handler2 = Mockito.mock(Predicate.class);
@@ -153,7 +142,6 @@ class ConfigurableSessionTest extends TestCase {
         Mockito.verify(handler2, Mockito.never()).test(e);
     }
 
-    @Test
     void exceptionContinueHandlingWhenReturnTrue() {
         Predicate handler1 = Mockito.mock(Predicate.class);
         Predicate handler2 = Mockito.mock(Predicate.class);
@@ -172,7 +160,6 @@ class ConfigurableSessionTest extends TestCase {
         Mockito.verify(handler2).test(e);
     }
 
-    @Test
     void exceptionFilterByExceptionType() {
         Predicate handler1 = Mockito.mock(Predicate.class);
         Predicate handler2 = Mockito.mock(Predicate.class);
@@ -191,12 +178,10 @@ class ConfigurableSessionTest extends TestCase {
         Mockito.verify(handler2).test(e);
     }
 
-    @Test
     void exceptionNotHandled() {
         assertThrows(IllegalArgumentException.class, () -> session.exception(new Exception()));
     }
 
-    @Test
     void close() {
         session.close();
 

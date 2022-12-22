@@ -27,7 +27,6 @@ class EntityCheckTest {
     class Entity {
     }
 
-    @Test
     void check() {
         Object error = new Object();
         Entity e = new Entity();

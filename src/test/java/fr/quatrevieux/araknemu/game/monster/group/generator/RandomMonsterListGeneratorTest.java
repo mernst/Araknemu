@@ -39,7 +39,6 @@ class RandomMonsterListGeneratorTest  extends GameBaseCase {
     private RandomMonsterListGenerator generator;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,14 +51,12 @@ class RandomMonsterListGeneratorTest  extends GameBaseCase {
         generator = new RandomMonsterListGenerator(container.get(MonsterService.class));
     }
 
-    @Test
     void groupSize1() {
         MonsterGroupData data = new MonsterGroupData(1, Duration.ZERO, 1, 1, Arrays.asList(new MonsterGroupData.Monster(31, new Interval(3, 3), 1)), "", new Position(0, 0), false);
 
         assertCount(1, generator.generate(data));
     }
 
-    @Test
     void groupSize2() {
         Map<Integer, Integer> counts = countsForMaxSize(2);
 
@@ -67,7 +64,6 @@ class RandomMonsterListGeneratorTest  extends GameBaseCase {
         assertBetween(480, 520, counts.get(2));
     }
 
-    @Test
     void groupSize3() {
         Map<Integer, Integer> counts = countsForMaxSize(3);
 
@@ -76,7 +72,6 @@ class RandomMonsterListGeneratorTest  extends GameBaseCase {
         assertBetween(320, 345, counts.get(3));
     }
 
-    @Test
     void groupSize4() {
         Map<Integer, Integer> counts = countsForMaxSize(4);
 
@@ -86,7 +81,6 @@ class RandomMonsterListGeneratorTest  extends GameBaseCase {
         assertBetween(250, 270, counts.get(4));
     }
 
-    @Test
     void groupSize5() {
         Map<Integer, Integer> counts = countsForMaxSize(5);
 
@@ -97,7 +91,6 @@ class RandomMonsterListGeneratorTest  extends GameBaseCase {
         assertBetween(140, 160, counts.get(5));
     }
 
-    @Test
     void groupSize6() {
         Map<Integer, Integer> counts = countsForMaxSize(6);
 
@@ -109,7 +102,6 @@ class RandomMonsterListGeneratorTest  extends GameBaseCase {
         assertBetween(140, 160, counts.get(6));
     }
 
-    @Test
     void groupSize7() {
         Map<Integer, Integer> counts = countsForMaxSize(7);
 
@@ -122,7 +114,6 @@ class RandomMonsterListGeneratorTest  extends GameBaseCase {
         assertBetween(80, 100, counts.get(7));
     }
 
-    @Test
     void groupSize8() {
         Map<Integer, Integer> counts = countsForMaxSize(8);
 
@@ -136,7 +127,6 @@ class RandomMonsterListGeneratorTest  extends GameBaseCase {
         assertBetween(80, 100, counts.get(8));
     }
 
-    @Test
     void groupSize0() {
         Map<Integer, Integer> counts = countsForMaxSize(0);
 
@@ -150,7 +140,6 @@ class RandomMonsterListGeneratorTest  extends GameBaseCase {
         assertBetween(80, 100, counts.get(8));
     }
 
-    @Test
     void rate() {
         MonsterGroupData data = new MonsterGroupData(1, Duration.ZERO, 1, 1, Arrays.asList(new MonsterGroupData.Monster(31, new Interval(0, 100), 2), new MonsterGroupData.Monster(34, new Interval(0, 100), 1)), "", new Position(0, 0), false);
 

@@ -48,7 +48,7 @@ public final class PingResponse implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "rpong";
         }
     }

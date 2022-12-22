@@ -28,12 +28,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class SendSmileyToExplorationMapTest extends GameBaseCase {
-    @Test
     void notExploring()  {
         assertThrows(CloseImmediately.class, () -> handlePacket(new UseSmiley(3)));
     }
 
-    @Test
     void inExploration() throws Exception {
         explorationPlayer();
 

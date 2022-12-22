@@ -43,7 +43,6 @@ class AddChatChannelsTest extends GameBaseCase {
     private AddChatChannels listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -53,7 +52,6 @@ class AddChatChannelsTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onSimpleCharacterCreation() throws ContainerException {
         AccountCharacter character = new AccountCharacter(
             new GameAccount(
@@ -84,7 +82,6 @@ class AddChatChannelsTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onAdminCharacterCreation() throws ContainerException {
         AccountCharacter character = new AccountCharacter(
             new GameAccount(

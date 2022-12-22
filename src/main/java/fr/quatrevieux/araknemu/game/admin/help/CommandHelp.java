@@ -43,8 +43,8 @@ public final class CommandHelp {
 
     private final Command command;
 
-    private @Nullable String synopsis;
-    private @Nullable String description;
+    private String synopsis;
+    private String description;
     private final Map<String, String> options;
     private final List<LinkItem> examples;
     private final List<LinkItem> seeAlso;

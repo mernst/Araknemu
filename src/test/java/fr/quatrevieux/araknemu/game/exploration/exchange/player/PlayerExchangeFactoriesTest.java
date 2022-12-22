@@ -31,7 +31,6 @@ class PlayerExchangeFactoriesTest extends GameBaseCase {
     private ExplorationPlayer player;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -39,7 +38,6 @@ class PlayerExchangeFactoriesTest extends GameBaseCase {
         player = explorationPlayer();
     }
 
-    @Test
     void createPlayerExchange() throws Exception {
         ExplorationPlayer target = makeOtherExplorationPlayer();
         target.changeMap(player.map(), 123);

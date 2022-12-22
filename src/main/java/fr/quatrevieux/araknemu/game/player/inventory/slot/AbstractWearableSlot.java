@@ -36,7 +36,7 @@ import org.checkerframework.common.value.qual.IntRange;
  * Base slot class for wearable
  */
 public abstract class AbstractWearableSlot extends AbstractEquipmentSlot {
-    public AbstractWearableSlot(Dispatcher dispatcher, ItemStorage<InventoryEntry> storage, GamePlayer owner, @IntRange(from = 0, to = InventorySlots.SLOT_MAX) int id, SuperType type) {
+    public AbstractWearableSlot(Dispatcher dispatcher, ItemStorage<InventoryEntry> storage, GamePlayer owner, int id, SuperType type) {
         super(
             dispatcher,
             new SimpleSlot(

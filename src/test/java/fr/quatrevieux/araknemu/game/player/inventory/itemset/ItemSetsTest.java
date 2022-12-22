@@ -45,7 +45,6 @@ class ItemSetsTest extends GameBaseCase {
     private ItemService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -61,7 +60,6 @@ class ItemSetsTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getNotPresent() {
         PlayerItemSet itemSet = itemSets.get(
             service.itemSet(1)
@@ -75,7 +73,6 @@ class ItemSetsTest extends GameBaseCase {
         assertCount(0, itemSet.items());
     }
 
-    @Test
     void getPresent() throws SQLException, ContainerException, InventoryException {
         InventoryEntry entry1 = gamePlayer().inventory().add(service.create(2425), 1, 0);
         InventoryEntry entry2 = gamePlayer().inventory().add(service.create(2411), 1, 6);
@@ -105,7 +102,6 @@ class ItemSetsTest extends GameBaseCase {
         assertEquals(10, itemSet.bonus().characteristics().get(1).value());
     }
 
-    @Test
     void all() throws SQLException, ContainerException, InventoryException {
         InventoryEntry entry1 = gamePlayer().inventory().add(service.create(2425), 1, 0);
         InventoryEntry entry2 = gamePlayer().inventory().add(service.create(2414), 1, 7);
@@ -130,7 +126,6 @@ class ItemSetsTest extends GameBaseCase {
         );
     }
 
-    @Test
     void apply() throws SQLException, ContainerException, InventoryException {
         gamePlayer().inventory().add(service.create(2425), 1, 0);
         gamePlayer().inventory().add(service.create(2414), 1, 7);
@@ -144,7 +139,6 @@ class ItemSetsTest extends GameBaseCase {
         assertEquals(5, characteristics.get(Characteristic.INTELLIGENCE));
     }
 
-    @Test
     void applySpecials() throws SQLException, ContainerException, InventoryException {
         gamePlayer().inventory().add(service.create(8213), 1, 0);
         gamePlayer().inventory().add(service.create(8219), 1, 2);

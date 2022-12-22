@@ -28,12 +28,12 @@ import org.checkerframework.dataflow.qual.Pure;
  */
 public final class MapTrigger {
     private final int map;
-    private final @NonNegative int cell;
+    private final int cell;
     private final int action;
     private final String arguments;
     private final String conditions;
 
-    public MapTrigger(int map, @NonNegative int cell, int action, String arguments, String conditions) {
+    public MapTrigger(int map, int cell, int action, String arguments, String conditions) {
         this.map = map;
         this.cell = cell;
         this.action = action;
@@ -41,27 +41,22 @@ public final class MapTrigger {
         this.conditions = conditions;
     }
 
-    @Pure
     public int map() {
         return map;
     }
 
-    @Pure
-    public @NonNegative int cell() {
+    public int cell() {
         return cell;
     }
 
-    @Pure
     public int action() {
         return action;
     }
 
-    @Pure
     public String arguments() {
         return arguments;
     }
 
-    @Pure
     public String conditions() {
         return conditions;
     }

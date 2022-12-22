@@ -45,7 +45,7 @@ public enum Alignment {
     /**
      * Get an alignment by its id
      */
-    public static Alignment byId(@GTENegativeOne int id) {
+    public static Alignment byId(int id) {
         final int index = id + 1;
 
         if (index >= VALUES.length) {

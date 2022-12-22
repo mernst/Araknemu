@@ -31,12 +31,10 @@ class BitSetTest {
 
     private BitSet<MyItems> set;
 
-    @BeforeEach
     void setUp() {
         set = new BitSet<>();
     }
 
-    @Test
     void defaults() {
         assertFalse(set.check(MyItems.A));
         assertFalse(set.check(MyItems.B));
@@ -45,7 +43,6 @@ class BitSetTest {
         assertEquals(0, set.toInt());
     }
 
-    @Test
     void setUnsetOne() {
         assertTrue(set.set(MyItems.A));
         assertTrue(set.check(MyItems.A));
@@ -54,7 +51,6 @@ class BitSetTest {
         assertFalse(set.check(MyItems.A));
     }
 
-    @Test
     void setAlreadySet() {
         assertTrue(set.set(MyItems.A));
         assertTrue(set.check(MyItems.A));
@@ -63,7 +59,6 @@ class BitSetTest {
         assertTrue(set.check(MyItems.A));
     }
 
-    @Test
     void multiple() {
         assertTrue(set.set(MyItems.A));
         assertTrue(set.set(MyItems.C));
@@ -83,7 +78,6 @@ class BitSetTest {
         assertFalse(set.check(MyItems.B));
     }
 
-    @Test
     void toInt() {
         assertEquals(0, set.toInt());
 

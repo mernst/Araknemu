@@ -42,8 +42,8 @@ public final class PlayerExchangeStorage implements ExchangeStorage {
     private final ExplorationPlayer player;
     private final ListenerAggregate dispatcher = new DefaultListenerAggregate();
 
-    private final Map<ItemEntry, @Positive Integer> items = new HashMap<>();
-    private @NonNegative long kamas = 0;
+    private final Map<ItemEntry, Integer> items = new HashMap<>();
+    private long kamas = 0;
     private volatile boolean accepted = false;
 
     public PlayerExchangeStorage(ExplorationPlayer player) {
@@ -51,12 +51,12 @@ public final class PlayerExchangeStorage implements ExchangeStorage {
     }
 
     @Override
-    public Map<ItemEntry, @Positive Integer> items() {
+    public Map<ItemEntry, Integer> items() {
         return Collections.unmodifiableMap(items);
     }
 
     @Override
-    public @NonNegative long kamas() {
+    public long kamas() {
         return kamas;
     }
 
@@ -79,7 +79,7 @@ public final class PlayerExchangeStorage implements ExchangeStorage {
      * Get the current quantity of the item in the exchange
      */
     @SuppressWarnings("argument") // DefaultValue is 0, so it's not positive
-    public @NonNegative int quantity(ItemEntry item) {
+    public int quantity(ItemEntry item) {
         return items.getOrDefault(item, 0);
     }
 
@@ -89,7 +89,7 @@ public final class PlayerExchangeStorage implements ExchangeStorage {
      * @param item The item to exchange
      * @param quantity The quantity
      */
-    public void setItem(ItemEntry item, @NonNegative int quantity) {
+    public void setItem(ItemEntry item, int quantity) {
         if (quantity <= 0) {
             items.remove(item);
         } else {
@@ -104,7 +104,7 @@ public final class PlayerExchangeStorage implements ExchangeStorage {
      *
      * @param kamas The kamas quantity
      */
-    public void setKamas(@NonNegative long kamas) {
+    public void setKamas(long kamas) {
         this.kamas = kamas;
         dispatcher.dispatch(new KamasChanged(kamas, this));
     }

@@ -100,6 +100,6 @@ public final class ExceptionHandler {
          * @param error The triggered error
          * @param arguments The execution arguments. Can be null
          */
-        public void handle(AdminPerformer performer, T error, CommandParser.@Nullable Arguments arguments);
+        public void handle(AdminPerformer performer, T error, CommandParser.Arguments arguments);
     }
 }

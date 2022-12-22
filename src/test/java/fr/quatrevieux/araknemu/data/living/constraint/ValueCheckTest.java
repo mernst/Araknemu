@@ -38,7 +38,6 @@ class ValueCheckTest {
         }
     }
 
-    @Test
     void check() {
         ValueCheck.Checker<String> checker = Mockito.mock(ValueCheck.Checker.class);
 

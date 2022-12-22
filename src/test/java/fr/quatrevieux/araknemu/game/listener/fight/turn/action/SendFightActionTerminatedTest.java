@@ -41,7 +41,6 @@ class SendFightActionTerminatedTest extends FightBaseCase {
     private SendFightActionTerminated listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,7 +51,6 @@ class SendFightActionTerminatedTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onFightActionTerminated() {
         Move move = new Move(
             player.fighter(),
@@ -73,7 +71,6 @@ class SendFightActionTerminatedTest extends FightBaseCase {
         requestStack.assertAll(new FinishFightAction(move));
     }
 
-    @Test
     void onFightActionTerminatedWithDeadFighter() {
         player.fighter().life().alter(player.fighter(), -1000);
 

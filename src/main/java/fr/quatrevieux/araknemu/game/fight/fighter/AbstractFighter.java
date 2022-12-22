@@ -50,9 +50,9 @@ public abstract class AbstractFighter implements Fighter {
     private final Map<Object, Object> attachments = new HashMap<>();
 
     // Mutable attributes
-    private @Nullable FightCell cell;
-    private @MonotonicNonNull Fight fight;
-    private @Nullable FightTurn turn;
+    private FightCell cell;
+    private Fight fight;
+    private FightTurn turn;
     private Direction orientation = Direction.SOUTH_EAST;
     private boolean hidden = false;
 
@@ -85,7 +85,7 @@ public abstract class AbstractFighter implements Fighter {
     }
 
     @Override
-    public final void move(@Nullable FightCell cell) {
+    public final void move(FightCell cell) {
         if (this.cell != null) {
             this.cell.removeFighter();
         }
@@ -175,7 +175,7 @@ public abstract class AbstractFighter implements Fighter {
     }
 
     @Override
-    public final @Nullable Object attachment(Object key) {
+    public final Object attachment(Object key) {
         return attachments.get(key);
     }
 
@@ -203,7 +203,7 @@ public abstract class AbstractFighter implements Fighter {
     }
 
     @Override
-    public final boolean equals(@Nullable Object obj) {
+    public final boolean equals(Object obj) {
         if (obj == this) {
             return true;
         }

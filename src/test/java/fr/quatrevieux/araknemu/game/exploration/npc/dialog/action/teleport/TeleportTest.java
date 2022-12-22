@@ -37,7 +37,6 @@ class TeleportTest extends GameBaseCase {
     private Teleport.Factory factory;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -48,17 +47,14 @@ class TeleportTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void factory() {
         assertInstanceOf(Teleport.class, factory.create(new ResponseAction(1, "", "10340,128")));
     }
 
-    @Test
     void check() {
         assertTrue(factory.create(new ResponseAction(1, "", "10340,128")).check(player));
     }
 
-    @Test
     void apply() {
         factory.create(new ResponseAction(1, "", "10340,128")).apply(player);
 
@@ -71,7 +67,6 @@ class TeleportTest extends GameBaseCase {
         );
     }
 
-    @Test
     void applyInvalidCell() {
         assertThrows(IllegalArgumentException.class, () -> factory.create(new ResponseAction(1, "", "10340,1000")).apply(player));
 
@@ -79,7 +74,6 @@ class TeleportTest extends GameBaseCase {
         assertEquals(279, player.cell().id());
     }
 
-    @Test
     void applyWithCinematic() {
         factory.create(new ResponseAction(1, "", "10340,128,5")).apply(player);
 

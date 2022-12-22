@@ -38,7 +38,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EffectValueTest extends FightBaseCase {
-    @Test
     void defaultsWithRandomEffect() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -51,7 +50,6 @@ class EffectValueTest extends FightBaseCase {
         assertEquals(new Interval(5, 10), value.interval());
     }
 
-    @Test
     void randomize() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -66,7 +64,6 @@ class EffectValueTest extends FightBaseCase {
         assertEquals(new Interval(5, 10), value.interval());
     }
 
-    @Test
     void roll() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -81,7 +78,6 @@ class EffectValueTest extends FightBaseCase {
         assertEquals(Interval.of(value.value()), value.interval());
     }
 
-    @Test
     void defaultsWithFixedEffect() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -94,7 +90,6 @@ class EffectValueTest extends FightBaseCase {
         assertEquals(new Interval(5, 5), value.interval());
     }
 
-    @Test
     void minimizeWithRandomEffect() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -108,7 +103,6 @@ class EffectValueTest extends FightBaseCase {
         assertEquals(new Interval(5, 5), value.interval());
     }
 
-    @Test
     void maximizeWithRandomEffect() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -122,7 +116,6 @@ class EffectValueTest extends FightBaseCase {
         assertEquals(new Interval(10, 10), value.interval());
     }
 
-    @Test
     void minimizeWithFixedEffect() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -136,7 +129,6 @@ class EffectValueTest extends FightBaseCase {
         assertEquals(new Interval(5, 5), value.interval());
     }
 
-    @Test
     void maximizeWithFixedEffect() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -150,7 +142,6 @@ class EffectValueTest extends FightBaseCase {
         assertEquals(new Interval(5, 5), value.interval());
     }
 
-    @Test
     void fixed() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -164,7 +155,6 @@ class EffectValueTest extends FightBaseCase {
         assertEquals(new Interval(10, 10), value.interval());
     }
 
-    @Test
     void percent() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -178,7 +168,6 @@ class EffectValueTest extends FightBaseCase {
         assertEquals(new Interval(6, 6), value.interval());
     }
 
-    @Test
     void boostAndPercent() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -195,7 +184,6 @@ class EffectValueTest extends FightBaseCase {
         assertEquals(new Interval(12, 12), value.interval());
     }
 
-    @Test
     void fixedAndPercent() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -212,7 +200,6 @@ class EffectValueTest extends FightBaseCase {
         assertEquals(new Interval(11, 11), value.interval());
     }
 
-    @Test
     void fixedAndPercentAndMultiply() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -230,7 +217,6 @@ class EffectValueTest extends FightBaseCase {
         assertEquals(new Interval(22, 22), value.interval());
     }
 
-    @Test
     void allWithEffectBoost() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -250,7 +236,6 @@ class EffectValueTest extends FightBaseCase {
         assertEquals(new Interval(36, 36), value.interval());
     }
 
-    @Test
     void createShouldCallBuffs() throws Exception {
         Fight fight = createFight(true);
 
@@ -278,7 +263,6 @@ class EffectValueTest extends FightBaseCase {
         Mockito.verify(targetHook, Mockito.times(1)).onEffectValueTarget(targetBuff, ev);
     }
 
-    @Test
     void forEachTargetsShouldCallBuffs() throws Exception {
         Fight fight = createFight(true);
 
@@ -318,7 +302,6 @@ class EffectValueTest extends FightBaseCase {
         Mockito.verify(targetHook, Mockito.times(1)).onEffectValueTarget(targetBuff, values.get(1));
     }
 
-    @Test
     void forEachTargetsWithMaximizeOnOneTarget() throws Exception {
         Fight fight = createFight(true);
 

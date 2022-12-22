@@ -46,13 +46,13 @@ import java.util.List;
  */
 public final class BaseBuilder implements FightBuilder {
     private final FightService service;
-    private final @Nullable RandomUtil random;
+    private final RandomUtil random;
     private final FightType type;
 
-    private @MonotonicNonNull FightMap map;
+    private FightMap map;
     private final List<TeamFactory> teamFactories = new ArrayList<>();
 
-    public BaseBuilder(FightService service, @Nullable RandomUtil random, FightType type) {
+    public BaseBuilder(FightService service, RandomUtil random, FightType type) {
         this.service = service;
         this.random = random;
         this.type = type;
@@ -99,7 +99,7 @@ public final class BaseBuilder implements FightBuilder {
         );
     }
 
-    private FightTeam.Factory createTeamFactory(TeamFactory teamFactory, @NonNegative int number) {
+    private FightTeam.Factory createTeamFactory(TeamFactory teamFactory, int number) {
         return fight -> teamFactory.create(fight, number, NullnessUtil.castNonNull(map).startPlaces(number));
     }
 

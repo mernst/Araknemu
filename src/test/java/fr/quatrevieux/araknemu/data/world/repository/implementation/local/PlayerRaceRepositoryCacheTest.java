@@ -39,7 +39,6 @@ class PlayerRaceRepositoryCacheTest extends GameBaseCase {
     private PlayerRaceRepositoryCache repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -50,12 +49,10 @@ class PlayerRaceRepositoryCacheTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(Race.NO_CLASS));
     }
 
-    @Test
     void get() {
         PlayerRace race = repository.get(Race.CRA);
 
@@ -66,7 +63,6 @@ class PlayerRaceRepositoryCacheTest extends GameBaseCase {
         assertEquals(7, race.baseStats().get(100).get(Characteristic.ACTION_POINT));
     }
 
-    @Test
     void getWillReturnSameInstance() {
         assertSame(
             repository.get(Race.CRA),
@@ -74,7 +70,6 @@ class PlayerRaceRepositoryCacheTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getWithEntity() {
         assertSame(
             repository.get(new PlayerRace(Race.CRA)),
@@ -82,20 +77,17 @@ class PlayerRaceRepositoryCacheTest extends GameBaseCase {
         );
     }
 
-    @Test
     void hasLoaded() {
         repository.get(Race.CRA);
 
         assertTrue(repository.has(new PlayerRace(Race.CRA)));
     }
 
-    @Test
     void hasNotLoaded() {
         assertTrue(repository.has(new PlayerRace(Race.CRA)));
         assertFalse(repository.has(new PlayerRace(Race.NO_CLASS)));
     }
 
-    @Test
     void load() {
         Collection<PlayerRace> races = repository.load();
 

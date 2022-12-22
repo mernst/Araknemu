@@ -27,7 +27,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 public class ParsePacketException extends RuntimeException {
     private final String packet;
 
-    public ParsePacketException(String packet, String message, @Nullable Throwable cause) {
+    public ParsePacketException(String packet, String message, Throwable cause) {
         super(message, cause);
 
         this.packet = packet;

@@ -33,14 +33,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class RaceBaseStatsTransformerTest extends TestCase {
     private RaceBaseStatsTransformer transformer = new RaceBaseStatsTransformer(new ImmutableCharacteristicsTransformer());
 
-    @Test
     void invalid() {
         assertThrows(IllegalArgumentException.class, () -> transformer.unserialize(null));
         assertThrows(IllegalArgumentException.class, () -> transformer.unserialize(""));
         assertThrows(UnsupportedOperationException.class, () -> transformer.serialize(null));
     }
 
-    @Test
     void unserialize() {
         SortedMap<Integer, Characteristics> stats = transformer.unserialize("8:6;9:3;h:1;@1|8:7;9:3;h:1;@100");
 

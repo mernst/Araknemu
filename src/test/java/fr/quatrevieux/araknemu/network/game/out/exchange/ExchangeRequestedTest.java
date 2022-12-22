@@ -26,7 +26,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ExchangeRequestedTest extends GameBaseCase {
-    @Test
     void generate() throws Exception {
         assertEquals(
             "ERK1|2|1",

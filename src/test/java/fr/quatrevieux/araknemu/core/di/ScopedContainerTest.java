@@ -27,7 +27,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class ScopedContainerTest {
     private ItemPoolContainer baseContainer;
 
-    @BeforeEach
     void setUp() {
         baseContainer = new ItemPoolContainer();
         baseContainer.register(new ItemPoolContainerTest.Module());
@@ -38,7 +37,6 @@ class ScopedContainerTest {
     static interface ClassInterface {}
     static interface OtherInterface {}
 
-    @Test
     void getHas() {
         NewClass nc = new NewClass();
         OtherClass oc = new OtherClass();
@@ -68,7 +66,6 @@ class ScopedContainerTest {
         assertSame(baseContainer.get(ItemPoolContainerTest.A.class), scoped.get(ItemPoolContainerTest.A.class));
     }
 
-    @Test
     void register() {
         ScopedContainer scoped = ScopedContainer.fromMapping(baseContainer, new ScopedContainer.Mapping[] {});
 

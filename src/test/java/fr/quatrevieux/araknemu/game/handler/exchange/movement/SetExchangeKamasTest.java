@@ -35,7 +35,6 @@ class SetExchangeKamasTest extends GameBaseCase {
     private ExplorationPlayer other;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -51,14 +50,12 @@ class SetExchangeKamasTest extends GameBaseCase {
         dataSet.pushItemTemplates().pushItemSets();
     }
 
-    @Test
     void success() throws Exception {
         handlePacket(new KamasMovement(1000));
 
         requestStack.assertLast(new LocalExchangeKamas(1000));
     }
 
-    @Test
     void notExploring() {
         session.setExploration(null);
 

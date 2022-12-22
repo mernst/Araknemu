@@ -33,7 +33,6 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 class SearchFriendTest extends RealmBaseCase {
-    @Test
     void success() throws Exception {
         dataSet.push(new Account(1, "john", "", "john"));
         dataSet.push(Player.forCreation(1, 1, "bob", Race.CRA, Gender.FEMALE, new Colors(-1, -1, -1)));

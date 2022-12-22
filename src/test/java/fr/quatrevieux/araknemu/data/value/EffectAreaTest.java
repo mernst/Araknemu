@@ -26,21 +26,18 @@ import java.util.NoSuchElementException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EffectAreaTest {
-    @Test
     void equalsSameObjects() {
         EffectArea area = new EffectArea(EffectArea.Type.CIRCLE, 3);
 
         assertTrue(area.equals(area));
     }
 
-    @Test
     void equalsNull() {
         EffectArea area = new EffectArea(EffectArea.Type.CIRCLE, 3);
 
         assertFalse(area.equals(null));
     }
 
-    @Test
     void equals() {
         EffectArea area = new EffectArea(EffectArea.Type.CIRCLE, 3);
 
@@ -49,7 +46,6 @@ class EffectAreaTest {
         assertTrue(area.equals(new EffectArea(EffectArea.Type.CIRCLE, 3)));
     }
 
-    @Test
     void hashCodeValue() {
         EffectArea area = new EffectArea(EffectArea.Type.CIRCLE, 3);
 
@@ -59,7 +55,6 @@ class EffectAreaTest {
         assertNotEquals(area.hashCode(), new EffectArea(EffectArea.Type.CIRCLE, 4).hashCode());
     }
 
-    @Test
     void typeByChar() {
         assertSame(EffectArea.Type.RING, EffectArea.Type.byChar('O'));
         assertThrows(NoSuchElementException.class, () -> EffectArea.Type.byChar('_'));

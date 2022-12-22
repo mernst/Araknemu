@@ -38,7 +38,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class SimpleConnectionPoolTest {
     private Driver driver;
 
-    @BeforeEach
     void setUp() throws IOException {
         driver = new SQLiteDriver(
             new DefaultConfiguration(new IniDriver(new Ini(new File("src/test/test_config.ini"))))
@@ -47,7 +46,6 @@ class SimpleConnectionPoolTest {
         );
     }
 
-    @Test
     void acquireWillCreateConnections() throws SQLException {
         SimpleConnectionPool pool = new SimpleConnectionPool(driver, 2, LogManager.getLogger());
 
@@ -60,7 +58,6 @@ class SimpleConnectionPoolTest {
         connection2.close();
     }
 
-    @Test
     void acquireAndRelease() throws SQLException {
         SimpleConnectionPool pool = new SimpleConnectionPool(driver, 1, LogManager.getLogger());
 
@@ -70,7 +67,6 @@ class SimpleConnectionPoolTest {
         }
     }
 
-    @Test
     void releasePoolFull() throws SQLException {
         SimpleConnectionPool pool = new SimpleConnectionPool(driver, 1, LogManager.getLogger());
 
@@ -84,7 +80,6 @@ class SimpleConnectionPoolTest {
         assertTrue(connection2.isClosed());
     }
 
-    @Test
     void releaseClosedConnection() throws SQLException {
         SimpleConnectionPool pool = new SimpleConnectionPool(driver, 1, LogManager.getLogger());
 
@@ -96,7 +91,6 @@ class SimpleConnectionPoolTest {
         assertNotSame(connection, pool.acquire());
     }
 
-    @Test
     void execute() throws SQLException {
         SimpleConnectionPool pool = new SimpleConnectionPool(driver, 1, LogManager.getLogger());
 
@@ -128,7 +122,6 @@ class SimpleConnectionPoolTest {
         });
     }
 
-    @Test
     void stop() throws SQLException {
         SimpleConnectionPool pool = new SimpleConnectionPool(driver, 2, LogManager.getLogger());
 

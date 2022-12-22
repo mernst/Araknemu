@@ -41,12 +41,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class StringListHydratorTest {
     private StringListHydrator hydrator;
 
-    @BeforeEach
     void setUp() {
         hydrator = new StringListHydrator();
     }
 
-    @Test
     void notAList() {
         Command<Object> command = new Command<Object>() {
             @Override
@@ -75,7 +73,6 @@ class StringListHydratorTest {
         assertFalse(hydrator.supports(command, new Object()));
     }
 
-    @Test
     void notAListOfString() {
         Command<List<Integer>> command = new Command<List<Integer>>() {
             @Override
@@ -103,7 +100,6 @@ class StringListHydratorTest {
         assertFalse(hydrator.supports(command, Arrays.asList(1, 2)));
     }
 
-    @Test
     void implicitListOfString() {
         Command<List<String>> command = new Command<List<String>>() {
             @Override
@@ -137,7 +133,6 @@ class StringListHydratorTest {
         assertIterableEquals(Arrays.asList("bar", "baz"), param);
     }
 
-    @Test
     void explicitListOfString() {
         Command<List<String>> command = new Command<List<String>>() {
             @Override

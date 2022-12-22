@@ -28,7 +28,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 class PacketTokenizerTest {
-    @Test
     void empty() {
         PacketTokenizer splitter = new PacketTokenizer("PK", "", ',');
 
@@ -46,7 +45,6 @@ class PacketTokenizerTest {
         }
     }
 
-    @Test
     void withoutSeparator() {
         PacketTokenizer splitter = new PacketTokenizer("PK", "foo", ',');
 
@@ -64,7 +62,6 @@ class PacketTokenizerTest {
         }
     }
 
-    @Test
     void onlySeparators() {
         PacketTokenizer splitter = new PacketTokenizer("PK", ",,", ',');
 
@@ -87,7 +84,6 @@ class PacketTokenizerTest {
             assertEquals("PK,,", e.packet());
         }
     }
-    @Test
     void nextPartOrDefault() {
         PacketTokenizer splitter = new PacketTokenizer("PK", "foo,bar", ',');
 
@@ -104,7 +100,6 @@ class PacketTokenizerTest {
         }
     }
 
-    @Test
     void nextInt() {
         PacketTokenizer splitter = new PacketTokenizer("PK", "12,-23,,invalid", ',');
 
@@ -122,7 +117,6 @@ class PacketTokenizerTest {
         }
     }
 
-    @Test
     void nextIntOrDefault() {
         PacketTokenizer splitter = new PacketTokenizer("PK", "12,-23,,invalid", ',');
 
@@ -140,7 +134,6 @@ class PacketTokenizerTest {
         }
     }
 
-    @Test
     void nextNonNegativeOrNegativeOneInt() {
         PacketTokenizer splitter = new PacketTokenizer("PK", "12,-23,-1,0,,invalid", ',');
 
@@ -160,7 +153,6 @@ class PacketTokenizerTest {
         }
     }
 
-    @Test
     void nextNonNegativeOrNegativeOneIntOrDefault() {
         PacketTokenizer splitter = new PacketTokenizer("PK", "12,-23,-1,0,,invalid", ',');
 
@@ -180,7 +172,6 @@ class PacketTokenizerTest {
         }
     }
 
-    @Test
     void nextNonNegativeInt() {
         PacketTokenizer splitter = new PacketTokenizer("PK", "12,-23,-1,0,,invalid", ',');
 
@@ -200,7 +191,6 @@ class PacketTokenizerTest {
         }
     }
 
-    @Test
     void nextNonNegativeIntOrDefault() {
         PacketTokenizer splitter = new PacketTokenizer("PK", "12,-23,-1,0,,invalid", ',');
 
@@ -220,7 +210,6 @@ class PacketTokenizerTest {
         }
     }
 
-    @Test
     void nextPositiveInt() {
         PacketTokenizer splitter = new PacketTokenizer("PK", "12,-23,-1,0,1,,invalid", ',');
 
@@ -241,7 +230,6 @@ class PacketTokenizerTest {
         }
     }
 
-    @Test
     void nextPositiveIntOrDefault() {
         PacketTokenizer splitter = new PacketTokenizer("PK", "12,-23,-1,0,1,,invalid", ',');
 

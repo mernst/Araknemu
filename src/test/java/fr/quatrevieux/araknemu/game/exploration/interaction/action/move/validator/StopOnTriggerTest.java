@@ -45,7 +45,6 @@ class StopOnTriggerTest extends GameBaseCase {
     private ExplorationMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -57,7 +56,6 @@ class StopOnTriggerTest extends GameBaseCase {
         validator = new StopOnTrigger();
     }
 
-    @Test
     void onPlayerMovingWithNonWalkableCell() throws SQLException, ContainerException {
         ExplorationPlayer player = explorationPlayer();
 
@@ -80,7 +78,6 @@ class StopOnTriggerTest extends GameBaseCase {
         assertEquals(3, path.size());
     }
 
-    @Test
     void onPlayerMovingWithValidPath() throws SQLException, ContainerException, PathException {
         ExplorationPlayer player = explorationPlayer();
 
@@ -96,7 +93,6 @@ class StopOnTriggerTest extends GameBaseCase {
         assertEquals(map.get(395), path.get(path.size() - 1).cell());
     }
 
-    @Test
     void shouldIgnoreTheFirstCellOnPath() throws SQLException, ContainerException {
         ExplorationPlayer player = explorationPlayer();
 

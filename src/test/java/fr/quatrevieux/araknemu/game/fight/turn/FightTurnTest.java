@@ -51,7 +51,6 @@ class FightTurnTest extends FightBaseCase {
     private Fight fight;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -67,14 +66,12 @@ class FightTurnTest extends FightBaseCase {
     }
 
     @Override
-    @AfterEach
     public void tearDown() throws fr.quatrevieux.araknemu.core.di.ContainerException {
         fight.cancel(true);
 
         super.tearDown();
     }
 
-    @Test
     void getters() {
         assertSame(player.fighter(), turn.fighter());
         assertSame(fight, turn.fight());
@@ -82,13 +79,11 @@ class FightTurnTest extends FightBaseCase {
         assertFalse(turn.active());
     }
 
-    @Test
     void stopNotStarted() {
         turn.stop();
         assertFalse(turn.active());
     }
 
-    @Test
     void start() {
         AtomicReference<TurnStarted> ref = new AtomicReference<>();
         fight.dispatcher().add(TurnStarted.class, ref::set);
@@ -100,7 +95,6 @@ class FightTurnTest extends FightBaseCase {
         assertSame(turn, player.fighter().turn());
     }
 
-    @Test
     void startWillInitPoints() {
         assertThrows(IllegalStateException.class, turn::points);
 
@@ -110,7 +104,6 @@ class FightTurnTest extends FightBaseCase {
         assertEquals(3, turn.points().movementPoints());
     }
 
-    @RepeatedIfExceptionsTest
     void autoStopOnTimeout() throws InterruptedException {
         turn.start();
         assertTrue(turn.active());
@@ -119,7 +112,6 @@ class FightTurnTest extends FightBaseCase {
         assertFalse(turn.active());
     }
 
-    @Test
     void stop() {
         turn.start();
 
@@ -133,12 +125,10 @@ class FightTurnTest extends FightBaseCase {
         assertSame(other.fighter(), fight.turnList().current().get().fighter());
     }
 
-    @Test
     void performNotActive() {
         assertThrows(FightException.class, () -> turn.perform(Mockito.mock(Action.class)));
     }
 
-    @Test
     void performInvalidAction() {
         turn.start();
 
@@ -148,7 +138,6 @@ class FightTurnTest extends FightBaseCase {
         assertThrows(FightException.class, () -> turn.perform(action));
     }
 
-    @Test
     void performSuccess() {
         turn.start();
 
@@ -164,7 +153,6 @@ class FightTurnTest extends FightBaseCase {
         Mockito.verify(action).start();
     }
 
-    @Test
     void performDead() {
         turn.start();
 
@@ -177,7 +165,6 @@ class FightTurnTest extends FightBaseCase {
         assertThrows(FightException.class, () -> turn.perform(action));
     }
 
-    @Test
     void terminate() {
         turn.start();
 
@@ -195,7 +182,6 @@ class FightTurnTest extends FightBaseCase {
         Mockito.verify(result).apply(turn);
     }
 
-    @Test
     void stopWillWaitForActionTermination() {
         turn.start();
 
@@ -219,7 +205,6 @@ class FightTurnTest extends FightBaseCase {
         assertSame(turn, ref.get().turn());
     }
 
-    @Test
     void stopWillDecrementBuffRemainingTurnsAndCallEndTurn() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -235,7 +220,6 @@ class FightTurnTest extends FightBaseCase {
         assertTrue(player.fighter().buffs().stream().anyMatch(other -> other.equals(buff)));
     }
 
-    @Test
     void stopWillRemoveExpiredBuff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         BuffHook hook = Mockito.mock(BuffHook.class);
@@ -254,7 +238,6 @@ class FightTurnTest extends FightBaseCase {
         Mockito.verify(hook).onBuffTerminated(buff);
     }
 
-    @Test
     void stopWillRemoveExpiredStates() {
         player.fighter().states().push(5, 1);
 
@@ -264,7 +247,6 @@ class FightTurnTest extends FightBaseCase {
         assertFalse(player.fighter().states().has(5));
     }
 
-    @Test
     void startWithSkipTurnBuff() {
         AtomicReference<TurnStarted> ref = new AtomicReference<>();
         fight.dispatcher().add(TurnStarted.class, ref::set);
@@ -290,7 +272,6 @@ class FightTurnTest extends FightBaseCase {
         assertFalse(player.fighter().states().has(5));
     }
 
-    @Test
     void startStopWillCallBuffHook() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         BuffHook hook = Mockito.mock(BuffHook.class);
@@ -309,7 +290,6 @@ class FightTurnTest extends FightBaseCase {
         Mockito.verify(hook).onEndTurn(buff, turn);
     }
 
-    @Test
     void laterNoPendingAction() {
         Runnable runnable = Mockito.mock(Runnable.class);
 
@@ -318,7 +298,6 @@ class FightTurnTest extends FightBaseCase {
         Mockito.verify(runnable).run();
     }
 
-    @Test
     void laterWithPendingAction() {
         Action action = Mockito.mock(Action.class);
         ActionResult result = Mockito.mock(ActionResult.class);

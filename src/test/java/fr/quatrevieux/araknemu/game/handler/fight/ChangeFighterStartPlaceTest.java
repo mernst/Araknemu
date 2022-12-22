@@ -41,7 +41,6 @@ class ChangeFighterStartPlaceTest extends FightBaseCase {
     private PlayerFighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,7 +48,6 @@ class ChangeFighterStartPlaceTest extends FightBaseCase {
         handler = new ChangeFighterStartPlace();
     }
 
-    @Test
     void handleError() throws Exception {
         fight = createFight();
         fighter = player.fighter();
@@ -65,7 +63,6 @@ class ChangeFighterStartPlaceTest extends FightBaseCase {
         }
     }
 
-    @Test
     void handleInvalidCell() throws Exception {
         fight = createFight();
         fighter = player.fighter();
@@ -81,7 +78,6 @@ class ChangeFighterStartPlaceTest extends FightBaseCase {
         }
     }
 
-    @Test
     void handleSuccess() throws Exception {
         fight = createFight();
         fighter = player.fighter();
@@ -93,12 +89,10 @@ class ChangeFighterStartPlaceTest extends FightBaseCase {
         assertEquals(123, fighter.cell().id());
     }
 
-    @Test
     void functionalNotInFight() {
         assertThrows(CloseImmediately.class, () -> handlePacket(new FighterChangePlace(123)));
     }
 
-    @RepeatedIfExceptionsTest
     void functionalSuccess() throws Exception {
         fight = createFight();
         fighter = player.fighter();

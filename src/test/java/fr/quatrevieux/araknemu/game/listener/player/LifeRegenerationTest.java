@@ -39,7 +39,6 @@ class LifeRegenerationTest extends GameBaseCase {
     private ExplorationPlayer player;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -50,7 +49,6 @@ class LifeRegenerationTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onStartExploration() throws Exception{
         player.dispatch(new StartExploration(player));
         requestStack.assertLast(new StartLifeTimer(1000));
@@ -60,7 +58,6 @@ class LifeRegenerationTest extends GameBaseCase {
         assertNotEquals(0, (long) privateLongField.get(player.properties().life()));
     }
 
-    @Test
     void onStopExploration() throws Exception{
         player.dispatch(new StopExploration(session, explorationPlayer()));
         requestStack.assertLast(new StopLifeTimer());
@@ -70,7 +67,6 @@ class LifeRegenerationTest extends GameBaseCase {
         assertEquals(0, (long) privateLongField.get(player.properties().life()));
     }
 
-    @Test
     void onStartExplorationWithCustomRate() throws Exception {
         setConfigValue("player.lifeRegeneration.base", "100");
 
@@ -82,7 +78,6 @@ class LifeRegenerationTest extends GameBaseCase {
         assertNotEquals(0, (long) privateLongField.get(player.properties().life()));
     }
 
-    @Test
     void onStartExplorationRegenDisabled() throws Exception {
         setConfigValue("player.lifeRegeneration.base", "0");
         requestStack.clear();

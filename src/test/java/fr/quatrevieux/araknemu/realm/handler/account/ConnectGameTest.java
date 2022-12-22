@@ -37,7 +37,6 @@ class ConnectGameTest extends RealmBaseCase {
     private ConnectGame handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -54,13 +53,11 @@ class ConnectGameTest extends RealmBaseCase {
         );
     }
 
-    @Test
     void handleInvalidServer() {
         handler.handle(session, new ChooseServer(10));
         requestStack.assertLast(new SelectServerError(SelectServerError.Error.CANT_SELECT));
     }
 
-    @Test
     void handleSuccess() {
         gameHost.setCanLog(true);
         connector.token = "my_token";

@@ -28,9 +28,9 @@ import org.checkerframework.checker.nullness.qual.NonNull;
  * Decorate a container item to cache its value (useful for persistent values)
  * @param <T> Item type
  */
-public final class CachedItem<T extends @NonNull Object> implements ContainerItem<T> {
+public final class CachedItem<T extends Object> implements ContainerItem<T> {
     private final ContainerItem<T> inner;
-    private @MonotonicNonNull T value;
+    private T value;
 
     public CachedItem(ContainerItem<T> inner) {
         this.inner = inner;
@@ -42,7 +42,7 @@ public final class CachedItem<T extends @NonNull Object> implements ContainerIte
     }
 
     @Override
-    public @NonNull T value(Container container) throws ContainerException {
+    public T value(Container container) throws ContainerException {
         if (value == null) {
             value = inner.value(container);
         }

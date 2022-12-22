@@ -34,7 +34,6 @@ class PositionResolverTest extends GameBaseCase {
     private PositionResolver resolver;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,7 +46,6 @@ class PositionResolverTest extends GameBaseCase {
         resolver = new PositionResolver(gamePlayer(), container.get(GeolocationService.class));
     }
 
-    @Test
     void resolve() throws SQLException {
         explorationPlayer();
         Target target = new Target(explorationPlayer().map(), 123);
@@ -58,7 +56,6 @@ class PositionResolverTest extends GameBaseCase {
         assertEquals(container.get(ExplorationMapService.class).load(10340), target.map());
     }
 
-    @Test
     void resolveWithComma() throws SQLException {
         explorationPlayer();
         Target target = new Target(explorationPlayer().map(), 123);
@@ -69,7 +66,6 @@ class PositionResolverTest extends GameBaseCase {
         assertEquals(container.get(ExplorationMapService.class).load(10340), target.map());
     }
 
-    @Test
     void resolveNotExploring() throws SQLException {
         Target target = new Target(explorationPlayer().map(), 123);
 
@@ -79,7 +75,6 @@ class PositionResolverTest extends GameBaseCase {
         assertEquals(container.get(ExplorationMapService.class).load(10340), target.map());
     }
 
-    @Test
     void resolveNotFound() throws SQLException {
         assertThrows(IllegalArgumentException.class, () -> resolver.resolve("0;0", new Target(null, 0)));
         explorationPlayer();

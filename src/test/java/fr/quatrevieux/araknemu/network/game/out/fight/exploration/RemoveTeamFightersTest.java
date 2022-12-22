@@ -34,7 +34,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RemoveTeamFightersTest extends FightBaseCase {
 
-    @Test
     void generate() throws Exception {
         PlayerFighter fighter = new PlayerFighter(gamePlayer(true));
         FightTeam team = new SimpleTeam(createFight(), fighter, new ArrayList<>(), 1);

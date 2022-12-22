@@ -33,15 +33,15 @@ public class HandlingException extends RuntimeException {
         super(message);
     }
 
-    public HandlingException(String message, @Nullable Throwable cause) {
+    public HandlingException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public HandlingException(@Nullable Throwable cause) {
+    public HandlingException(Throwable cause) {
         super(cause);
     }
 
-    public HandlingException(String message, @Nullable Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public HandlingException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }

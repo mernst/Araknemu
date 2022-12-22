@@ -50,7 +50,6 @@ class CastScopeTest extends FightBaseCase {
     private PlayerFighter target;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -60,7 +59,6 @@ class CastScopeTest extends FightBaseCase {
         target = other.fighter();
     }
 
-    @Test
     void getters() {
         Fighter caster = Mockito.mock(Fighter.class);
         FightCell target = Mockito.mock(FightCell.class);
@@ -73,7 +71,6 @@ class CastScopeTest extends FightBaseCase {
         assertSame(action, scope.action());
     }
 
-    @Test
     void withEffectsWillResolveTarget() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -91,7 +88,6 @@ class CastScopeTest extends FightBaseCase {
         assertEquals(Collections.singleton(target), scope.effects().get(0).targets());
     }
 
-    @Test
     void withEffectsWithFreeCellConstraintWillNotResolveTargets() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -109,7 +105,6 @@ class CastScopeTest extends FightBaseCase {
         assertEquals(Collections.emptyList(), scope.effects().get(0).targets());
     }
 
-    @Test
     void resolveTargetsWithAreaTwoFighters() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -125,7 +120,6 @@ class CastScopeTest extends FightBaseCase {
         assertEquals(Arrays.asList(caster, target), scope.effects().get(0).targets());
     }
 
-    @Test
     void resolveTargetsWithAreaOneFighter() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -141,7 +135,6 @@ class CastScopeTest extends FightBaseCase {
         assertEquals(Collections.singleton(target), scope.effects().get(0).targets());
     }
 
-    @Test
     void resolveTargetsWithAreaNoTargets() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -157,7 +150,6 @@ class CastScopeTest extends FightBaseCase {
         assertEquals(Collections.emptyList(), scope.effects().get(0).targets());
     }
 
-    @Test
     void withRandomEffectsOnlyProbableEffectsHalfProbability() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -194,7 +186,6 @@ class CastScopeTest extends FightBaseCase {
         assertBetween(400, 600, c2);
     }
 
-    @Test
     void withRandomEffectsOnlyProbableEffectsNotHalfProbability() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -231,7 +222,6 @@ class CastScopeTest extends FightBaseCase {
         assertBetween(100, 300, c2);
     }
 
-    @Test
     void withRandomEffectsWithOnProbableEffectCanBeNotChoose() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -258,7 +248,6 @@ class CastScopeTest extends FightBaseCase {
         assertBetween(100, 300, count);
     }
 
-    @Test
     void withRandomEffectsWithRandomAndPermanentEffects() {
         Spell spell = Mockito.mock(Spell.class);
         SpellConstraints constraints = Mockito.mock(SpellConstraints.class);
@@ -293,7 +282,6 @@ class CastScopeTest extends FightBaseCase {
         assertBetween(400, 600, count);
     }
 
-    @Test
     void spell() {
         Spell spell = Mockito.mock(Spell.class);
         CastScope<Fighter, FightCell> scope = FightCastScope.simple(spell, caster, target.cell(), Collections.emptyList());
@@ -301,7 +289,6 @@ class CastScopeTest extends FightBaseCase {
         assertEquals(Optional.of(spell), scope.spell());
     }
 
-    @Test
     void spellNotASpell() {
         Castable action = Mockito.mock(Castable.class);
         CastScope<Fighter, FightCell> scope = FightCastScope.simple(action, caster, target.cell(), Collections.emptyList());
@@ -309,7 +296,6 @@ class CastScopeTest extends FightBaseCase {
         assertEquals(Optional.empty(), scope.spell());
     }
 
-    @Test
     void targets() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -326,7 +312,6 @@ class CastScopeTest extends FightBaseCase {
         assertCollectionEquals(scope.effects().get(0).targets(), target, caster);
     }
 
-    @Test
     void targetsWithDeadFighter() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -345,7 +330,6 @@ class CastScopeTest extends FightBaseCase {
         assertCollectionEquals(scope.effects().get(0).targets(), caster);
     }
 
-    @Test
     void replaceTarget() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -364,7 +348,6 @@ class CastScopeTest extends FightBaseCase {
         assertCollectionEquals(scope.effects().get(0).targets(), caster, caster);
     }
 
-    @Test
     void replaceTargetChaining() {
         Fight fight = fightBuilder()
             .addSelf(fb -> fb.cell(277))
@@ -396,7 +379,6 @@ class CastScopeTest extends FightBaseCase {
         assertCollectionEquals(scope.effects().get(0).targets(), fighters.get(3));
     }
 
-    @Test
     void replaceTargetChainingWithRecursionOnFirstTarget() {
         Fight fight = fightBuilder()
             .addSelf(fb -> fb.cell(277))
@@ -429,7 +411,6 @@ class CastScopeTest extends FightBaseCase {
         assertCollectionEquals(scope.effects().get(0).targets(), fighters.get(1));
     }
 
-    @Test
     void replaceTargetChainingWithRecursionOnMiddleTarget() {
         Fight fight = fightBuilder()
             .addSelf(fb -> fb.cell(277))
@@ -462,7 +443,6 @@ class CastScopeTest extends FightBaseCase {
         assertCollectionEquals(scope.effects().get(0).targets(), fighters.get(2));
     }
 
-    @Test
     void removeTargetWithReplaceTargetChain() {
         Fight fight = fightBuilder()
             .addSelf(fb -> fb.cell(277))
@@ -495,7 +475,6 @@ class CastScopeTest extends FightBaseCase {
         assertTrue(scope.effects().get(0).targets().isEmpty());
     }
 
-    @Test
     void removeTarget() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -519,7 +498,6 @@ class CastScopeTest extends FightBaseCase {
         assertTrue(scope.effects().get(0).targets().isEmpty());
     }
 
-    @Test
     void effectTargetsFilter() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -535,7 +513,6 @@ class CastScopeTest extends FightBaseCase {
         assertCollectionEquals(scope.effects().get(0).targets(), target);
     }
 
-    @Test
     void effectTargetsOnlyCaster() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

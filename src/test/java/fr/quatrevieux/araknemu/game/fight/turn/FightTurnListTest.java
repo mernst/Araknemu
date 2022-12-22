@@ -52,7 +52,6 @@ class FightTurnListTest extends FightBaseCase {
     private FightTurnList turnList;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -60,7 +59,6 @@ class FightTurnListTest extends FightBaseCase {
         turnList = new FightTurnList(fight, new AlternateTeamFighterOrder());
     }
 
-    @Test
     void constructorWillOrderFighters() {
         assertEquals(
             Arrays.asList(player.fighter(), other.fighter()),
@@ -70,19 +68,16 @@ class FightTurnListTest extends FightBaseCase {
         assertSame(player.fighter(), turnList.currentFighter());
     }
 
-    @Test
     void constructorWithoutFighters() {
         fight.cancel(true);
 
         assertThrowsWithMessage(IllegalStateException.class, "Cannot initialise turn list without fighters", () -> new FightTurnList(fight, new AlternateTeamFighterOrder()));
     }
 
-    @Test
     void currentNotStarted() {
         assertFalse(turnList.current().isPresent());
     }
 
-    @Test
     void start() {
         turnList.start();
 
@@ -91,14 +86,12 @@ class FightTurnListTest extends FightBaseCase {
         assertSame(turnList.current().get(), player.fighter().turn());
     }
 
-    @Test
     void startAlreadyStartedShouldRaiseException() {
         turnList.start();
 
         assertThrows(IllegalStateException.class, turnList::start);
     }
 
-    @Test
     void nextWillStartNextFighterTurn() {
         turnList.start();
 
@@ -140,7 +133,6 @@ class FightTurnListTest extends FightBaseCase {
         assertNotNull(ref2.get());
     }
 
-    @Test
     void nextOnEndOfListWillRestartToFirst() {
         turnList.start();
 
@@ -150,7 +142,6 @@ class FightTurnListTest extends FightBaseCase {
         assertSame(player.fighter(), turnList.current().get().fighter());
     }
 
-    @Test
     void nextWillSkipDeadFighter() {
         fight.fighters().forEach(Fighter::init);
         turnList.start();
@@ -163,7 +154,6 @@ class FightTurnListTest extends FightBaseCase {
         assertSame(player.fighter(), turnList.currentFighter());
     }
 
-    @Test
     void stop() {
         // @todo to remove : because turn is linked to fight and not to turn list, calling turn.stop() will stop the incorrect turnlist
         // so it will be not initialized
@@ -176,12 +166,10 @@ class FightTurnListTest extends FightBaseCase {
         assertSame(player.fighter(), turnList.currentFighter());
     }
 
-    @Test
     void stopNotActive() {
         turnList.stop();
     }
 
-    @Test
     void remove() {
         turnList.start();
 
@@ -195,7 +183,6 @@ class FightTurnListTest extends FightBaseCase {
         assertFalse(turnList.fighters().contains(player.fighter()));
     }
 
-    @Test
     void removeAndNext() throws SQLException {
         PlayerFighter third = makePlayerFighter(makeSimpleGamePlayer(5));
         fight.team(0).join(third);
@@ -219,7 +206,6 @@ class FightTurnListTest extends FightBaseCase {
     /**
      * Bug: https://github.com/Arakne/Araknemu/issues/127
      */
-    @Test
     void removeCurrentFighterShouldNotSkipFighterTurn() throws SQLException {
         PlayerFighter third = makePlayerFighter(makeSimpleGamePlayer(5));
         fight.team(0).join(third);
@@ -242,7 +228,6 @@ class FightTurnListTest extends FightBaseCase {
     /**
      * Bug: https://github.com/Arakne/Araknemu/issues/127
      */
-    @Test
     void removeFighterBeforeCurrentShouldNotSkipFighterTurn() throws SQLException {
         PlayerFighter third = makePlayerFighter(makeSimpleGamePlayer(5));
         fight.team(0).join(third);
@@ -267,7 +252,6 @@ class FightTurnListTest extends FightBaseCase {
         assertEquals(player.fighter(), turnList.currentFighter());
     }
 
-    @Test
     void removeFighterNotFound() throws SQLException {
         PlayerFighter third = makePlayerFighter(makeSimpleGamePlayer(5));
 
@@ -276,7 +260,6 @@ class FightTurnListTest extends FightBaseCase {
         assertThrows(NoSuchElementException.class, () -> turnList.remove(third));
     }
 
-    @Test
     void add() throws NoSuchFieldException, IllegalAccessException {
         turnList.start();
 

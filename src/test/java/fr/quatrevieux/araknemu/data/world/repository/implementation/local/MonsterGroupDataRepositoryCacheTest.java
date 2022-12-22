@@ -34,7 +34,6 @@ class MonsterGroupDataRepositoryCacheTest extends GameBaseCase {
     private MonsterGroupDataRepositoryCache repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -45,12 +44,10 @@ class MonsterGroupDataRepositoryCacheTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(-5));
     }
 
-    @Test
     void getSame() {
         assertSame(
             repository.get(2),
@@ -58,7 +55,6 @@ class MonsterGroupDataRepositoryCacheTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getUsingEntity() {
         assertSame(
             repository.get(new MonsterGroupData(2, null, 0, 0, null, null, null, false)),
@@ -66,19 +62,16 @@ class MonsterGroupDataRepositoryCacheTest extends GameBaseCase {
         );
     }
 
-    @Test
     void hasNotLoaded() {
         assertTrue(repository.has(new MonsterGroupData(2, null, 0, 0, null, null, null, false)));
         assertFalse(repository.has(new MonsterGroupData(-2, null, 0, 0, null, null, null, false)));
     }
 
-    @Test
     void hasCached() {
         repository.get(2);
         assertTrue(repository.has(new MonsterGroupData(2, null, 0, 0, null, null, null, false)));
     }
 
-    @Test
     void all() {
         List<MonsterGroupData> groups = repository.all();
 

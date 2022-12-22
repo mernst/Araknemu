@@ -36,7 +36,6 @@ class SqlNpcTemplateRepositoryTest extends GameBaseCase {
     private SqlNpcTemplateRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,12 +46,10 @@ class SqlNpcTemplateRepositoryTest extends GameBaseCase {
         repository = new SqlNpcTemplateRepository(new ConnectionPoolExecutor(app.database().get("game")));
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(-5));
     }
 
-    @Test
     void getById() {
         NpcTemplate template = repository.get(23);
 
@@ -68,7 +65,6 @@ class SqlNpcTemplateRepositoryTest extends GameBaseCase {
         assertFalse(template.storeItems().isPresent());
     }
 
-    @Test
     void getWithStore() throws SQLException {
         dataSet.pushNpcWithStore();
 
@@ -77,7 +73,6 @@ class SqlNpcTemplateRepositoryTest extends GameBaseCase {
         assertArrayEquals(new int[] {39, 2425}, template.storeItems().get());
     }
 
-    @Test
     void getByEntity() {
         NpcTemplate template = repository.get(new NpcTemplate(23, 0, 0, 0, null, null, null, 0, 0, null));
 
@@ -92,7 +87,6 @@ class SqlNpcTemplateRepositoryTest extends GameBaseCase {
         assertEquals(0, template.customArtwork());
     }
 
-    @Test
     void has() {
         assertTrue(repository.has(new NpcTemplate(23, 0, 0, 0, null, null, null, 0, 0, null)));
         assertTrue(repository.has(new NpcTemplate(40, 0, 0, 0, null, null, null, 0, 0, null)));
@@ -100,7 +94,6 @@ class SqlNpcTemplateRepositoryTest extends GameBaseCase {
         assertFalse(repository.has(new NpcTemplate(-5, 0, 0, 0, null, null, null, 0, 0, null)));
     }
 
-    @Test
     void all() {
         assertArrayEquals(
             new Object[] {23, 40, 878},

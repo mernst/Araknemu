@@ -37,7 +37,7 @@ public final class NeedHelpRequest implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "fH";
         }
     }

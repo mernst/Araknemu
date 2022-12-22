@@ -29,22 +29,18 @@ import static org.junit.jupiter.api.Assertions.*;
 class ExchangeRequestTest {
     private ExchangeRequest.Parser parser;
 
-    @BeforeEach
     void setUp() {
         parser = new ExchangeRequest.Parser();
     }
 
-    @Test
     void parseBadPartsNumber() {
         assertThrows(ParsePacketException.class, () -> parser.parse("2"));
     }
 
-    @Test
     void parseBadType() {
         assertThrows(ParsePacketException.class, () -> parser.parse("33|123"));
     }
 
-    @Test
     void parseWithId() {
         ExchangeRequest request = parser.parse("2|123");
 
@@ -53,7 +49,6 @@ class ExchangeRequestTest {
         assertFalse(request.cell().isPresent());
     }
 
-    @Test
     void parseWithIdAndCell() {
         ExchangeRequest request = parser.parse("2|123|145");
 
@@ -62,7 +57,6 @@ class ExchangeRequestTest {
         assertEquals(145, request.cell().get().intValue());
     }
 
-    @Test
     void parseWithCell() {
         ExchangeRequest request = parser.parse("2||145");
 

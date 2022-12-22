@@ -31,9 +31,9 @@ import java.util.List;
  */
 public final class DefaultMonsterReward implements MonsterReward {
     private final MonsterGradesReward reward;
-    private final @Positive int grade;
+    private final int grade;
 
-    public DefaultMonsterReward(MonsterGradesReward reward, @Positive int grade) {
+    public DefaultMonsterReward(MonsterGradesReward reward, int grade) {
         this.reward = reward;
         this.grade = grade;
     }
@@ -44,7 +44,7 @@ public final class DefaultMonsterReward implements MonsterReward {
     }
 
     @Override
-    public @NonNegative long experience() {
+    public long experience() {
         return reward.experience(grade);
     }
 

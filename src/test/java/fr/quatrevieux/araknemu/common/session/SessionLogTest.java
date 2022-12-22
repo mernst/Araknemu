@@ -36,7 +36,6 @@ class SessionLogTest extends GameBaseCase {
     private ConnectionLog entity;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,25 +48,21 @@ class SessionLogTest extends GameBaseCase {
         );
     }
 
-    @Test
     void setServerId() {
         sessionLog.setServerId(4);
         assertEquals(4, dataSet.refresh(entity).serverId());
     }
 
-    @Test
     void setPlayerId() {
         sessionLog.setPlayerId(9);
         assertEquals(9, dataSet.refresh(entity).playerId());
     }
 
-    @Test
     void stop() {
         sessionLog.stop();
         assertBetween(0, 1, Instant.now().getEpochSecond() - dataSet.refresh(entity).endDate().getEpochSecond());
     }
 
-    @Test
     void last() {
         assertFalse(sessionLog.last().isPresent());
 
@@ -81,13 +76,11 @@ class SessionLogTest extends GameBaseCase {
         assertEquals(log.accountId(), sessionLog.last().get().accountId());
     }
 
-    @Test
     void setClientUid() {
         sessionLog.setClientUid("my_uid");
         assertEquals("my_uid", dataSet.refresh(entity).clientUid());
     }
 
-    @Test
     void hasAlreadyPlayed() {
         Player player = new Player(5);
 

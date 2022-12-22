@@ -33,18 +33,18 @@ import org.checkerframework.checker.index.qual.IndexFor;
 public final class ChangeMap implements Action {
     private final ExplorationPlayer player;
     private final ExplorationMap map;
-    private final @IndexFor("map") int cell;
+    private final int cell;
     private final int cinematic;
 
     @SuppressWarnings("assignment") // map and cell type are not inferred
-    public ChangeMap(ExplorationPlayer player, ExplorationMap map, @IndexFor("#2") int cell, int cinematic) {
+    public ChangeMap(ExplorationPlayer player, ExplorationMap map, int cell, int cinematic) {
         this.player = player;
         this.map = map;
         this.cell = cell;
         this.cinematic = cinematic;
     }
 
-    public ChangeMap(ExplorationPlayer player, ExplorationMap map, @IndexFor("#2") int cell) {
+    public ChangeMap(ExplorationPlayer player, ExplorationMap map, int cell) {
         this(player, map, cell, 0);
     }
 

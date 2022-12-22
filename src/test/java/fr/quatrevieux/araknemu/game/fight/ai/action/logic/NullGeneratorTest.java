@@ -28,7 +28,6 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;
 
 class NullGeneratorTest {
-    @Test
     void initializeShouldDoNothing() {
         AI ai = Mockito.mock(AI.class);
         NullGenerator.INSTANCE.initialize(ai);
@@ -36,12 +35,10 @@ class NullGeneratorTest {
         Mockito.verifyNoInteractions(ai);
     }
 
-    @Test
     void shouldAlwaysGeneratesEmpty() {
         assertFalse(NullGenerator.INSTANCE.generate(Mockito.mock(AI.class), Mockito.mock(AiActionFactory.class)).isPresent());
     }
 
-    @Test
     void get() {
         assertSame(NullGenerator.get(), NullGenerator.get());
     }

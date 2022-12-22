@@ -39,7 +39,6 @@ class RefreshStatesTest extends FightBaseCase {
     private FightTurn turn;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -51,7 +50,6 @@ class RefreshStatesTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onTurnTerminated() {
         fighter.states().push(2);
         fighter.states().push(3, 1);

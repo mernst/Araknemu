@@ -35,7 +35,6 @@ class SqlMonsterRewardRepositoryTest extends GameBaseCase {
     private SqlMonsterRewardRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -44,12 +43,10 @@ class SqlMonsterRewardRepositoryTest extends GameBaseCase {
         repository = new SqlMonsterRewardRepository(new ConnectionPoolExecutor(app.database().get("game")));
     }
 
-    @Test
     void getNotFound() {
         assertFalse(repository.get(-5).isPresent());
     }
 
-    @Test
     void getById() {
         Optional<MonsterRewardData> reward = repository.get(31);
 
@@ -59,7 +56,6 @@ class SqlMonsterRewardRepositoryTest extends GameBaseCase {
         assertArrayEquals(new long[] {3, 7, 12, 18, 26}, reward.get().experiences());
     }
 
-    @Test
     void getByEntity() {
         MonsterRewardData reward = repository.get(new MonsterRewardData(31, null, null));
 
@@ -69,14 +65,12 @@ class SqlMonsterRewardRepositoryTest extends GameBaseCase {
         assertArrayEquals(new long[] {3, 7, 12, 18, 26}, reward.experiences());
     }
 
-    @Test
     void has() {
         assertTrue(repository.has(new MonsterRewardData(31, null, null)));
         assertTrue(repository.has(new MonsterRewardData(36, null, null)));
         assertFalse(repository.has(new MonsterRewardData(-1, null, null)));
     }
 
-    @Test
     void all() {
         List<MonsterRewardData> rewards = repository.all();
 

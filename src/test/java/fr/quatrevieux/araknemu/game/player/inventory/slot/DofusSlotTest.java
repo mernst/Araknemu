@@ -41,7 +41,6 @@ class DofusSlotTest extends GameBaseCase {
     private DofusSlot slot;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -50,36 +49,30 @@ class DofusSlotTest extends GameBaseCase {
         slot = new DofusSlot(new DefaultListenerAggregate(), Mockito.mock(ItemStorage.class), gamePlayer(), DofusSlot.SLOT_IDS[0]);
     }
 
-    @Test
     void checkBadType() throws ContainerException {
         assertThrows(InventoryException.class, () -> slot.check(container.get(ItemService.class).create(39), 1));
     }
 
-    @Test
     void checkBadQuantity() throws ContainerException {
         assertThrows(InventoryException.class, () -> slot.check(container.get(ItemService.class).create(694), 10));
     }
 
-    @Test
     void checkAlreadySet() throws ContainerException {
         slot.uncheckedSet(new InventoryEntry(null, null, null));
 
         assertThrows(InventoryException.class, () -> slot.check(container.get(ItemService.class).create(694), 1));
     }
 
-    @Test
     void checkBadLevel() throws ContainerException, SQLException {
         dataSet.pushHighLevelItems();
 
         assertThrows(BadLevelException.class, () -> slot.check(container.get(ItemService.class).create(111694), 1));
     }
 
-    @Test
     void checkSuccess() throws ContainerException, InventoryException {
         slot.check(container.get(ItemService.class).create(694), 1);
     }
 
-    @Test
     void setFail() {
         assertThrows(InventoryException.class, () -> slot.set(
             new InventoryEntry(null, new PlayerItem(1, 1, 39, new ArrayList<>(), 1, -1), container.get(ItemService.class).create(39)
@@ -89,7 +82,6 @@ class DofusSlotTest extends GameBaseCase {
         assertFalse(slot.equipment().isPresent());
     }
 
-    @Test
     void setSuccess() throws ContainerException, InventoryException {
         InventoryEntry entry = new InventoryEntry(null, new PlayerItem(1, 1, 694, new ArrayList<>(), 1, -1), container.get(ItemService.class).create(694));
 

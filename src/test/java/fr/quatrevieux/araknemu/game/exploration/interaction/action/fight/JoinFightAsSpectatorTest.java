@@ -55,7 +55,6 @@ class JoinFightAsSpectatorTest extends FightBaseCase {
     private JoinFightAsSpectator action;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -68,7 +67,6 @@ class JoinFightAsSpectatorTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void busy() throws SQLException, ContainerException {
         explorationPlayer().interactions().push(new MyBlockingAction());
         assertTrue(explorationPlayer().interactions().busy());
@@ -80,7 +78,6 @@ class JoinFightAsSpectatorTest extends FightBaseCase {
         );
     }
 
-    @Test
     void notActive() throws SQLException {
         action.start(new ActionQueue());
         assertFalse(explorationPlayer().player().isSpectator());
@@ -88,7 +85,6 @@ class JoinFightAsSpectatorTest extends FightBaseCase {
         requestStack.assertLast(Error.cantJoinFightAsSpectator());
     }
 
-    @Test
     void badMap() throws SQLException, ContainerException {
         explorationPlayer().changeMap(container.get(ExplorationMapService.class).load(10540), 123);
 
@@ -100,7 +96,6 @@ class JoinFightAsSpectatorTest extends FightBaseCase {
         );
     }
 
-    @Test
     void notOnMap() throws SQLException, ContainerException {
         explorationPlayer().leave();
 
@@ -112,7 +107,6 @@ class JoinFightAsSpectatorTest extends FightBaseCase {
         );
     }
 
-    @Test
     void success() throws InterruptedException, SQLException {
         fight.nextState();
         fight.turnList().start();
@@ -136,7 +130,6 @@ class JoinFightAsSpectatorTest extends FightBaseCase {
         );
     }
 
-    @Test
     void spectatorsNotAllowed() throws InterruptedException, SQLException {
         fight.nextState();
         fight.turnList().start();

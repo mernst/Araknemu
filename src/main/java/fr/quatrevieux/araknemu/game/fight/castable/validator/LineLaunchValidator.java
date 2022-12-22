@@ -31,7 +31,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  */
 public final class LineLaunchValidator implements CastConstraintValidator {
     @Override
-    public @Nullable Error validate(Turn turn, Castable castable, BattlefieldCell target) {
+    public Error validate(Turn turn, Castable castable, BattlefieldCell target) {
         if (check(turn, castable, target)) {
             return null;
         }

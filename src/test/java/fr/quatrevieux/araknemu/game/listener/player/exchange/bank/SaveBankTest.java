@@ -38,7 +38,6 @@ class SaveBankTest extends GameBaseCase {
     private Bank bank;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,7 +51,6 @@ class SaveBankTest extends GameBaseCase {
         bank.dispatcher().register(new SaveBank(container.get(BankItemRepository.class)));
     }
 
-    @Test
     void addItem() {
         BankEntry entry = bank.add(container.get(ItemService.class).create(2422), 3);
 
@@ -62,7 +60,6 @@ class SaveBankTest extends GameBaseCase {
         assertEquals(3, entity.quantity());
     }
 
-    @Test
     void setQuantity() {
         BankEntry entry = bank.add(container.get(ItemService.class).create(2422), 3);
         entry.add(2);
@@ -72,7 +69,6 @@ class SaveBankTest extends GameBaseCase {
         assertEquals(5, entity.quantity());
     }
 
-    @Test
     void delete() {
         BankEntry entry = bank.add(container.get(ItemService.class).create(2422), 3);
         bank.delete(entry.id());
@@ -80,7 +76,6 @@ class SaveBankTest extends GameBaseCase {
         assertThrows(EntityNotFoundException.class, () -> dataSet.refresh(entry.entity()));
     }
 
-    @Test
     void setQuantityWillRemove() {
         BankEntry entry = bank.add(container.get(ItemService.class).create(2422), 3);
         entry.remove(3);

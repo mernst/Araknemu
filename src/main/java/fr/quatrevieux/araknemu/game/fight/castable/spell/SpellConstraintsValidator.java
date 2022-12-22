@@ -65,7 +65,7 @@ public final class SpellConstraintsValidator implements CastConstraintValidator<
     }
 
     @Override
-    public @Nullable Error validate(Turn turn, Spell spell, BattlefieldCell target) {
+    public Error validate(Turn turn, Spell spell, BattlefieldCell target) {
         return validator.validate(turn, spell, target);
     }
 }

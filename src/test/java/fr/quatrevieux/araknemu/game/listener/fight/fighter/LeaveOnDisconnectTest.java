@@ -39,7 +39,6 @@ class LeaveOnDisconnectTest extends FightBaseCase {
     private LeaveOnDisconnect listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,7 +51,6 @@ class LeaveOnDisconnectTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onDisconnect() throws InterruptedException {
         listener.on(new Disconnected());
 

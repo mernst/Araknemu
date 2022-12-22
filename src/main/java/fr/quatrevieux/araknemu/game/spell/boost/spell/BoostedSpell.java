@@ -57,7 +57,7 @@ public final class BoostedSpell implements Spell {
     }
 
     @Override
-    public @Positive int level() {
+    public int level() {
         return spell.level();
     }
 
@@ -80,17 +80,17 @@ public final class BoostedSpell implements Spell {
     }
 
     @Override
-    public @NonNegative int apCost() {
+    public int apCost() {
         return Math.max(spell.apCost() - modifiers.apCost(), 0);
     }
 
     @Override
-    public @NonNegative int criticalHit() {
+    public int criticalHit() {
         return Math.max(spell.criticalHit() - modifiers.criticalHit(), 0);
     }
 
     @Override
-    public @NonNegative int criticalFailure() {
+    public int criticalFailure() {
         return spell.criticalFailure();
     }
 

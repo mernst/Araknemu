@@ -50,7 +50,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 // @todo test with unmodifiable team options
 class ToggleBlockSpectatorsTest extends FightBaseCase {
-    @RepeatedIfExceptionsTest
     void shouldSendInformationMessageOnToggle() throws Exception {
         Fight fight = createFight();
 
@@ -63,7 +62,6 @@ class ToggleBlockSpectatorsTest extends FightBaseCase {
         assertTrue(fight.team(0).options().allowSpectators());
     }
 
-    @RepeatedIfExceptionsTest
     void shouldIgnoreIfNotTeamLeader() throws Exception {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         fight.state(PlacementState.class).joinTeam(makePlayerFighter(gamePlayer()), fight.team(0));
@@ -74,12 +72,10 @@ class ToggleBlockSpectatorsTest extends FightBaseCase {
         assertTrue(fight.team(0).options().allowSpectators());
     }
 
-    @Test
     void notInFightShouldFail() {
         assertThrows(CloseImmediately.class, () -> handlePacket(new BlockSpectatorRequest()));
     }
 
-    @Test
     void fromExplorationMapShouldSendTeamOptionAndDenyJoin() throws Exception {
         explorationPlayer().changeMap(container.get(ExplorationMapService.class).load(10340), 150);
         ToggleBlockSpectator handler = new ToggleBlockSpectator();
@@ -98,7 +94,6 @@ class ToggleBlockSpectatorsTest extends FightBaseCase {
         requestStack.assertLast(new FightOption(leader.team().id(), FightOption.Type.BLOCK_SPECTATOR, false));
     }
 
-    @Test
     void shouldKickSpectators() throws Exception {
         ToggleBlockSpectator handler = new ToggleBlockSpectator();
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));

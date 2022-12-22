@@ -41,7 +41,6 @@ class TargetExchangeRequestDialogTest extends GameBaseCase {
     private TargetExchangeRequestDialog dialog;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -57,7 +56,6 @@ class TargetExchangeRequestDialogTest extends GameBaseCase {
         other.interactions().start(new InitiatorExchangeRequestDialog(request.invitation(other, player)));
     }
 
-    @Test
     void stop() {
         dialog.stop();
 
@@ -67,7 +65,6 @@ class TargetExchangeRequestDialogTest extends GameBaseCase {
         assertFalse(other.interactions().interacting());
     }
 
-    @Test
     void leave() {
         dialog.leave();
 
@@ -77,7 +74,6 @@ class TargetExchangeRequestDialogTest extends GameBaseCase {
         assertFalse(other.interactions().interacting());
     }
 
-    @Test
     void accept() {
         dialog.accept();
 

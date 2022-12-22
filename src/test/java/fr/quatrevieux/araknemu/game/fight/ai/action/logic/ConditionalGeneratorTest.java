@@ -32,7 +32,6 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ConditionalGeneratorTest {
-    @Test
     void initializeShouldInitializeAllActions() {
         ActionGenerator gs = Mockito.mock(ActionGenerator.class);
         ActionGenerator go = Mockito.mock(ActionGenerator.class);
@@ -46,7 +45,6 @@ class ConditionalGeneratorTest {
         Mockito.verify(go).initialize(ai);
     }
 
-    @Test
     void generateSuccess() {
         ActionGenerator gs = Mockito.mock(ActionGenerator.class);
         ActionGenerator go = Mockito.mock(ActionGenerator.class);
@@ -63,7 +61,6 @@ class ConditionalGeneratorTest {
         Mockito.verify(go, Mockito.never()).generate(ai, actions);
     }
 
-    @Test
     void generateOtherwise() {
         ActionGenerator gs = Mockito.mock(ActionGenerator.class);
         ActionGenerator go = Mockito.mock(ActionGenerator.class);

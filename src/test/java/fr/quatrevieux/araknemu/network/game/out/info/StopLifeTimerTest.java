@@ -25,12 +25,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class StopLifeTimerTest {
 
-    @Test
     void stop() {
         assertEquals("ILF0", new StopLifeTimer().toString());
     }
 
-    @Test
     void stopWithNumberOfLifeRegenerated() {
         assertEquals("ILF53", new StopLifeTimer(53).toString());
     }

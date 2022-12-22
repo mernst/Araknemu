@@ -125,7 +125,7 @@ public final class CastSimulation {
      * @param value The heal value
      * @param target The target fighter
      */
-    public void addHealBuff(final Interval value, final @Positive int duration, final FighterData target) {
+    public void addHealBuff(final Interval value, final int duration, final FighterData target) {
         addHeal(value, target);
 
         if (duration > 1) {
@@ -163,7 +163,7 @@ public final class CastSimulation {
      * @param duration The poison duration in turns
      * @param target The target fighter
      */
-    public void addPoison(final Interval value, final @Positive int duration, final FighterData target) {
+    public void addPoison(final Interval value, final int duration, final FighterData target) {
         apply(new EffectValueComputer() {
             @Override
             public double lifeChange() {

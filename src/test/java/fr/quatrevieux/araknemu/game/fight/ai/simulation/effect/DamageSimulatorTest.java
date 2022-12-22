@@ -46,7 +46,6 @@ class DamageSimulatorTest extends FightBaseCase {
     private Fighter target;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -55,12 +54,10 @@ class DamageSimulatorTest extends FightBaseCase {
         target = other.fighter();
     }
 
-    @Test
     void simulateSimple() {
         assertEquals(-15, simulate());
     }
 
-    @Test
     void simulateWithResistance() {
         target.characteristics().alter(Characteristic.RESISTANCE_EARTH, 5);
         assertEquals(-10, simulate());
@@ -69,7 +66,6 @@ class DamageSimulatorTest extends FightBaseCase {
         assertEquals(-6, simulate());
     }
 
-    @Test
     void simulateWithBoost() {
         fighter.characteristics().alter(Characteristic.FIXED_DAMAGE, 5);
         assertEquals(-20, simulate());
@@ -81,7 +77,6 @@ class DamageSimulatorTest extends FightBaseCase {
         assertEquals(-32, simulate());
     }
 
-    @Test
     void simulateBuff() {
         DamageSimulator simulator = new DamageSimulator(Element.EARTH);
 
@@ -116,7 +111,6 @@ class DamageSimulatorTest extends FightBaseCase {
         assertEquals(-112.5, simulation.selfLife());
     }
 
-    @Test
     void simulateInfiniteBuff() {
         DamageSimulator simulator = new DamageSimulator(Element.EARTH);
 
@@ -139,7 +133,6 @@ class DamageSimulatorTest extends FightBaseCase {
         assertEquals(-112.5, simulation.selfLife());
     }
 
-    @Test
     void simulateArea() {
         DamageSimulator simulator = new DamageSimulator(Element.EARTH);
 

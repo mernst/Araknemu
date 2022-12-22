@@ -45,18 +45,18 @@ public final class Player implements WalletEntity {
     private Race race;
     private Gender gender;
     private Colors colors;
-    private @Positive int level;
+    private int level;
     private MutableCharacteristics stats;
     private Position position;
     private Set<ChannelType> channels;
-    private @NonNegative int boostPoints;
-    private @NonNegative int spellPoints;
-    private @NonNegative int life;
-    private @NonNegative long experience;
+    private int boostPoints;
+    private int spellPoints;
+    private int life;
+    private long experience;
     private Position savedPosition;
-    private @NonNegative long kamas;
+    private long kamas;
 
-    public Player(int id, int accountId, int serverId, String name, Race race, Gender gender, Colors colors, @Positive int level, MutableCharacteristics stats, Position position, Set<ChannelType> channels, @NonNegative int boostPoints, @NonNegative int spellPoints, @NonNegative int life, @NonNegative long experience, Position savedPosition, @NonNegative long kamas) {
+    public Player(int id, int accountId, int serverId, String name, Race race, Gender gender, Colors colors, int level, MutableCharacteristics stats, Position position, Set<ChannelType> channels, int boostPoints, int spellPoints, int life, long experience, Position savedPosition, long kamas) {
         this.id = id;
         this.accountId = accountId;
         this.serverId = serverId;
@@ -76,7 +76,7 @@ public final class Player implements WalletEntity {
         this.kamas = kamas;
     }
 
-    public Player(int id, int accountId, int serverId, String name, Race race, Gender gender, Colors colors, @Positive int level, MutableCharacteristics characteristics) {
+    public Player(int id, int accountId, int serverId, String name, Race race, Gender gender, Colors colors, int level, MutableCharacteristics characteristics) {
         this(id, accountId, serverId, name, race, gender, colors, level, characteristics, new Position(0, 0), EnumSet.noneOf(ChannelType.class), 0, 0, Integer.MAX_VALUE, 0, new Position(0, 0), 0);
     }
 
@@ -112,11 +112,11 @@ public final class Player implements WalletEntity {
         return colors;
     }
 
-    public @Positive int level() {
+    public int level() {
         return level;
     }
 
-    public void setLevel(@Positive int level) {
+    public void setLevel(int level) {
         this.level = level;
     }
 
@@ -140,35 +140,35 @@ public final class Player implements WalletEntity {
         this.channels = channels;
     }
 
-    public @NonNegative int boostPoints() {
+    public int boostPoints() {
         return boostPoints;
     }
 
-    public void setBoostPoints(@NonNegative int boostPoints) {
+    public void setBoostPoints(int boostPoints) {
         this.boostPoints = boostPoints;
     }
 
-    public @NonNegative int spellPoints() {
+    public int spellPoints() {
         return spellPoints;
     }
 
-    public void setSpellPoints(@NonNegative int spellPoints) {
+    public void setSpellPoints(int spellPoints) {
         this.spellPoints = spellPoints;
     }
 
-    public @NonNegative int life() {
+    public int life() {
         return life;
     }
 
-    public void setLife(@NonNegative int life) {
+    public void setLife(int life) {
         this.life = life;
     }
 
-    public @NonNegative long experience() {
+    public long experience() {
         return experience;
     }
 
-    public void setExperience(@NonNegative long experience) {
+    public void setExperience(long experience) {
         this.experience = experience;
     }
 
@@ -181,12 +181,12 @@ public final class Player implements WalletEntity {
     }
 
     @Override
-    public @NonNegative long kamas() {
+    public long kamas() {
         return kamas;
     }
 
     @Override
-    public void setKamas(@NonNegative long kamas) {
+    public void setKamas(long kamas) {
         this.kamas = kamas;
     }
 

@@ -34,13 +34,13 @@ import java.util.Optional;
 public final class BanEntry<A extends LivingAccount> {
     private final A account;
     private final Banishment entity;
-    private final @Nullable A banisher;
+    private final A banisher;
 
     public BanEntry(A account, Banishment entity) {
         this(account, entity, null);
     }
 
-    public BanEntry(A account, Banishment entity, @Nullable A banisher) {
+    public BanEntry(A account, Banishment entity, A banisher) {
         this.account = account;
         this.entity = entity;
         this.banisher = banisher;

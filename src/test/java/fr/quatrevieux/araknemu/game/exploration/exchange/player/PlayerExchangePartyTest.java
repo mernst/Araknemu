@@ -48,7 +48,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
     private PlayerExchangeParty distant;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -66,7 +65,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         distant = parties[1];
     }
 
-    @Test
     void getters() {
         Assertions.assertEquals(ExchangeType.PLAYER_EXCHANGE, local.type());
         assertEquals(ExchangeType.PLAYER_EXCHANGE, distant.type());
@@ -75,12 +73,10 @@ class PlayerExchangePartyTest extends GameBaseCase {
         assertEquals(other, distant.actor());
     }
 
-    @Test
     void dialog() {
         assertInstanceOf(ExchangeDialog.class, local.dialog());
     }
 
-    @Test
     void start() {
         local.start();
 
@@ -88,7 +84,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         requestStack.assertLast(new ExchangeCreated(ExchangeType.PLAYER_EXCHANGE));
     }
 
-    @Test
     void leave() {
         local.start();
         distant.start();
@@ -103,19 +98,16 @@ class PlayerExchangePartyTest extends GameBaseCase {
         requestStack.assertLast(ExchangeLeaved.cancelled());
     }
 
-    @Test
     void send() {
         local.send("my packet");
 
         requestStack.assertLast("my packet");
     }
 
-    @Test
     void kamasNegative() {
         assertThrows(IllegalArgumentException.class, () -> local.kamas(-5));
     }
 
-    @Test
     void kamasAlreadyAccepted() {
         local.start();
         distant.start();
@@ -126,7 +118,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         assertThrows(IllegalStateException.class, () -> local.kamas(5));
     }
 
-    @Test
     void kamasShouldChangeTheCurrentKamasAndSendPacket() {
         local.kamas(10);
         requestStack.assertLast(new LocalExchangeKamas(10));
@@ -135,13 +126,11 @@ class PlayerExchangePartyTest extends GameBaseCase {
         requestStack.assertLast(new LocalExchangeKamas(100));
     }
 
-    @Test
     void kamasHigherThatCurrentKamasShouldLimit() {
         local.kamas(1000000);
         requestStack.assertLast(new LocalExchangeKamas(15225));
     }
 
-    @Test
     void kamasDistantShouldSendPacketToLocal() {
         other.inventory().addKamas(1000);
 
@@ -149,7 +138,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         requestStack.assertLast(new DistantExchangeKamas(1000));
     }
 
-    @Test
     void kamasShouldUnsetCurrentAcceptedState() {
         local.toggleAccept();
         requestStack.clear();
@@ -158,7 +146,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         requestStack.assertOne(new ExchangeAccepted(false, player));
     }
 
-    @Test
     void kamasShouldUnsetDistantAcceptedState() {
         distant.toggleAccept();
         requestStack.clear();
@@ -167,7 +154,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         requestStack.assertOne(new ExchangeAccepted(false, other));
     }
 
-    @Test
     void itemAlreadyAcceptedShouldRaiseException() {
         local.start();
         distant.start();
@@ -182,7 +168,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         assertThrows(IllegalStateException.class, () -> local.item(entry.id(), 1));
     }
 
-    @Test
     void itemShouldModifyQuantity() {
         InventoryEntry entry = player.inventory().add(
             container.get(ItemService.class).create(2422),
@@ -199,7 +184,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         requestStack.assertLast(new LocalExchangeObject(entry, 1));
     }
 
-    @Test
     void itemAddAndRemove() {
         InventoryEntry entry = player.inventory().add(
             container.get(ItemService.class).create(2422),
@@ -213,7 +197,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         requestStack.assertLast(new LocalExchangeObject(entry, 0));
     }
 
-    @Test
     void itemShouldLimitQuantity() {
         InventoryEntry entry = player.inventory().add(
             container.get(ItemService.class).create(2422),
@@ -227,7 +210,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         requestStack.assertLast(new LocalExchangeObject(entry, 0));
     }
 
-    @Test
     void itemShouldUnsetCurrentAcceptedState() {
         InventoryEntry entry = player.inventory().add(
             container.get(ItemService.class).create(2422),
@@ -241,7 +223,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         requestStack.assertOne(new ExchangeAccepted(false, player));
     }
 
-    @Test
     void itemShouldUnsetDistantAcceptedState() {
         InventoryEntry entry = player.inventory().add(
             container.get(ItemService.class).create(2422),
@@ -255,7 +236,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         requestStack.assertOne(new ExchangeAccepted(false, other));
     }
 
-    @Test
     void toggleAccept() {
         local.toggleAccept();
         requestStack.assertOne(new ExchangeAccepted(true, player));
@@ -264,7 +244,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         requestStack.assertOne(new ExchangeAccepted(false, player));
     }
 
-    @Test
     void toggleAcceptDistantShouldSendPacketToLocal() {
         distant.toggleAccept();
         requestStack.assertOne(new ExchangeAccepted(true, other));
@@ -273,7 +252,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         requestStack.assertOne(new ExchangeAccepted(false, other));
     }
 
-    @Test
     void processShouldLeaveExchange() {
         local.start();
         distant.start();
@@ -287,7 +265,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         assertFalse(other.interactions().busy());
     }
 
-    @Test
     void processWithItemShouldRemoveTheExchangedQuantity() {
         local.start();
         distant.start();
@@ -309,7 +286,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         );
     }
 
-    @Test
     void processWithItemAllQuantityShouldRemoveTheEntryFromInventory() {
         local.start();
         distant.start();
@@ -329,7 +305,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         );
     }
 
-    @Test
     void processWithItemShouldStack() {
         local.start();
         distant.start();
@@ -347,7 +322,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         assertEquals(13, distantEntry.quantity());
     }
 
-    @Test
     void processWithKamas() {
         other.inventory().addKamas(1000);
 
@@ -364,7 +338,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         assertEquals(5500, other.inventory().kamas());
     }
 
-    @Test
     void processComplex() {
         InventoryEntry localEntry1 = player.inventory().add(container.get(ItemService.class).create(39));
         InventoryEntry localEntry2 = player.inventory().add(container.get(ItemService.class).create(40));
@@ -394,7 +367,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         assertEquals(5000, other.inventory().kamas());
     }
 
-    @Test
     void processWithLocalInvalidKamasShouldResetExchange() {
         local.start();
         distant.start();
@@ -418,7 +390,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         requestStack.assertOne(new LocalExchangeKamas(225));
     }
 
-    @Test
     void processWithDistantInvalidKamasShouldResetExchange() {
         other.inventory().addKamas(5000);
 
@@ -444,7 +415,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         requestStack.assertOne(new DistantExchangeKamas(500));
     }
 
-    @Test
     void processWithLocalInvalidQuantityShouldResetExchange() {
         local.start();
         distant.start();
@@ -472,7 +442,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         requestStack.assertOne(new LocalExchangeObject(entry, 2));
     }
 
-    @Test
     void processWithDistantInvalidQuantityShouldResetExchange() {
         local.start();
         distant.start();
@@ -500,7 +469,6 @@ class PlayerExchangePartyTest extends GameBaseCase {
         requestStack.assertOne(new DistantExchangeObject(entry, 2));
     }
 
-    @Test
     void processWithLocalAndDistantInvalidKamasShouldResetExchangeForBoth() {
         other.inventory().addKamas(5000);
 

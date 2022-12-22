@@ -41,7 +41,6 @@ class PlayerFighterLifeTest extends FightBaseCase {
     private PlayerFighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -51,21 +50,18 @@ class PlayerFighterLifeTest extends FightBaseCase {
         life = new PlayerFighterLife(gamePlayer(true).properties().life(), fighter);
     }
 
-    @Test
     void initAlreadyInitialised() {
         life.init();
 
         assertThrows(IllegalStateException.class, () -> life.init());
     }
 
-    @Test
     void defaults() throws SQLException, ContainerException {
         assertEquals(gamePlayer().properties().life().current(), life.current());
         assertEquals(gamePlayer().properties().life().max(), life.max());
         assertFalse(life.dead());
     }
 
-    @Test
     void notInit() throws SQLException, ContainerException {
         gamePlayer().properties().life().set(100);
 
@@ -76,7 +72,6 @@ class PlayerFighterLifeTest extends FightBaseCase {
         assertThrows(IllegalStateException.class, () -> life.alterMax(fighter, 10));
     }
 
-    @Test
     void initialized() throws SQLException, ContainerException {
         int current = life.current(),
             max = life.max()
@@ -90,7 +85,6 @@ class PlayerFighterLifeTest extends FightBaseCase {
         assertEquals(max, life.max());
     }
 
-    @Test
     void alterOnDamage() {
         player.properties().life().set(100);
         life.init();
@@ -108,7 +102,6 @@ class PlayerFighterLifeTest extends FightBaseCase {
         assertEquals(-10, ref.get().value());
     }
 
-    @Test
     void alterOnDamageHigherThanCurrentLife() {
         player.properties().life().set(100);
         life.init();
@@ -126,7 +119,6 @@ class PlayerFighterLifeTest extends FightBaseCase {
         assertEquals(-100, ref.get().value());
     }
 
-    @Test
     void alterOnHeal() {
         player.properties().life().set(100);
         life.init();
@@ -144,7 +136,6 @@ class PlayerFighterLifeTest extends FightBaseCase {
         assertEquals(10, ref.get().value());
     }
 
-    @Test
     void alterOnHealHigherThanMax() {
         player.properties().life().set(100);
         life.init();
@@ -165,7 +156,6 @@ class PlayerFighterLifeTest extends FightBaseCase {
     /**
      * #56 : Dot not heal when dead
      */
-    @Test
     void alterHealIfDead() {
         life.init();
         life.alter(fighter, -1000);
@@ -184,7 +174,6 @@ class PlayerFighterLifeTest extends FightBaseCase {
     /**
      * #56 : Dot not heal when dead
      */
-    @Test
     void alterDamageIfDead() {
         life.init();
         life.alter(fighter, -1000);
@@ -200,7 +189,6 @@ class PlayerFighterLifeTest extends FightBaseCase {
         assertNull(ref.get());
     }
 
-    @Test
     void alterOnDie() {
         player.properties().life().set(100);
         life.init();
@@ -218,7 +206,6 @@ class PlayerFighterLifeTest extends FightBaseCase {
         assertTrue(life.dead());
     }
 
-    @Test
     void alterMax() {
         player.properties().life().set(100);
         life.init();
@@ -229,7 +216,6 @@ class PlayerFighterLifeTest extends FightBaseCase {
         assertEquals(200, life.current());
     }
 
-    @Test
     void kill() {
         life.init();
 

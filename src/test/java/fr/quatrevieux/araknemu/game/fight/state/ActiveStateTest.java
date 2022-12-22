@@ -68,7 +68,6 @@ class ActiveStateTest extends GameBaseCase {
     private ScheduledExecutorService executor;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -101,21 +100,18 @@ class ActiveStateTest extends GameBaseCase {
     }
 
     @Override
-    @AfterEach
     public void tearDown() throws ContainerException {
         executor.shutdownNow();
 
         super.tearDown();
     }
 
-    @Test
     void notStarted() {
         assertThrows(IllegalStateException.class, state::listeners);
         assertThrows(IllegalStateException.class, () -> state.leave(fighter));
         state.terminate();
     }
 
-    @RepeatedIfExceptionsTest
     void start() throws InterruptedException {
         state.start(fight);
 
@@ -150,7 +146,6 @@ class ActiveStateTest extends GameBaseCase {
         );
     }
 
-    @Test
     void terminateSuccess() {
         fight.nextState();
         state.terminate();
@@ -177,13 +172,11 @@ class ActiveStateTest extends GameBaseCase {
         assertFalse(fight.active());
     }
 
-    @Test
     void terminateBadState() {
         state.start(fight);
         state.terminate();
     }
 
-    @Test
     void leaveFightLastOfTeamWillTerminateTheFight() {
         fight.nextState();
 
@@ -196,7 +189,6 @@ class ActiveStateTest extends GameBaseCase {
         requestStack.assertLast(ActionEffect.fighterDie(other, other));
     }
 
-    @Test
     void leaveFightCancelledShouldDoNothing() {
         fight.nextState();
         state.terminate();
@@ -207,7 +199,6 @@ class ActiveStateTest extends GameBaseCase {
         assertContains(other, fight.fighters());
     }
 
-    @Test
     void leaveNotLastOfTeamWillKillAndRemoveTheFighterFromFight() throws SQLException, ContainerException, JoinFightException {
         PlayerFighter mutineer = new PlayerFighter(makeSimpleGamePlayer(10));
 
@@ -232,7 +223,6 @@ class ActiveStateTest extends GameBaseCase {
         );
     }
 
-    @Test
     void leaveNotLastOfTeamWillDispatchLeavedEventWithALooserReward() throws SQLException, ContainerException, JoinFightException {
         AtomicReference<FightLeaved> ref = new AtomicReference<>();
         fighter.dispatcher().add(FightLeaved.class, ref::set);

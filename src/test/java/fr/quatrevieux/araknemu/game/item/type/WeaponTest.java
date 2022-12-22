@@ -39,7 +39,6 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 class WeaponTest extends TestCase {
-    @Test
     void getters() {
         Weapon weapon = new Weapon(
             new ItemTemplate(40, 6, "Petite Epée de Boisaille", 1, Arrays.asList(new ItemTemplateEffectEntry(Effect.INFLICT_DAMAGE_NEUTRAL, 1, 7, 0, "1d7+0")), 20, "CS>4", 0, "4;1;1;50;30;5;0", 200),
@@ -58,7 +57,6 @@ class WeaponTest extends TestCase {
         assertFalse(weapon.set().isPresent());
     }
 
-    @Test
     void effects() {
         Weapon weapon = new Weapon(
             new ItemTemplate(40, 6, "Petite Epée de Boisaille", 1, Arrays.asList(new ItemTemplateEffectEntry(Effect.INFLICT_DAMAGE_NEUTRAL, 1, 7, 0, "1d7+0")), 20, "CS>4", 0, "4;1;1;50;30;5;0", 200),
@@ -80,7 +78,6 @@ class WeaponTest extends TestCase {
         );
     }
 
-    @Test
     void equalsBadType() {
         assertNotEquals(
             new Weapon(
@@ -97,7 +94,6 @@ class WeaponTest extends TestCase {
         );
     }
 
-    @Test
     void equalsBadWeaponEffect() {
         assertNotEquals(
             new Weapon(
@@ -123,7 +119,6 @@ class WeaponTest extends TestCase {
         );
     }
 
-    @Test
     void equalsOk() {
         assertEquals(
             new Weapon(
@@ -149,7 +144,6 @@ class WeaponTest extends TestCase {
         );
     }
 
-    @Test
     void equalsNull() {
         assertNotEquals(
             new Weapon(

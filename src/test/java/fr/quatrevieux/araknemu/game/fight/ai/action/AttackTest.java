@@ -38,14 +38,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AttackTest extends AiBaseCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         action = new Attack(container.get(Simulator.class));
     }
 
-    @Test
     void success() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122))
@@ -55,7 +53,6 @@ class AttackTest extends AiBaseCase {
         assertCast(3, 125);
     }
 
-    @Test
     void shouldKillEnemyWhenLowLife() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122))
@@ -66,7 +63,6 @@ class AttackTest extends AiBaseCase {
         assertCast(3, 135);
     }
 
-    @Test
     void notEnoughAP() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122))
@@ -77,7 +73,6 @@ class AttackTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void notAP() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122))
@@ -88,7 +83,6 @@ class AttackTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void withAreaSpell() throws SQLException {
         dataSet.pushFunctionalSpells();
 
@@ -107,7 +101,6 @@ class AttackTest extends AiBaseCase {
         assertNotInCastEffectArea(122);
     }
 
-    @Test
     void allowAttackAlliesIfMostDamageAreForEnemies() throws SQLException, NoSuchFieldException, IllegalAccessException {
         dataSet.pushFunctionalSpells();
 
@@ -129,7 +122,6 @@ class AttackTest extends AiBaseCase {
         assertInCastEffectArea(152, 167, 137, 138, 166);
     }
 
-    @Test
     void disallowAttackAlliesIfMostDamageAreForAllies() throws SQLException, NoSuchFieldException, IllegalAccessException {
         dataSet.pushFunctionalSpells();
 
@@ -146,7 +138,6 @@ class AttackTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void disallowAttackAlliesIfItKilledMoreAlliesThanEnemies() throws SQLException, NoSuchFieldException, IllegalAccessException {
         dataSet.pushFunctionalSpells();
 
@@ -163,7 +154,6 @@ class AttackTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void allowAttackAlliesIfItKilledMoreEnemies() throws SQLException, NoSuchFieldException, IllegalAccessException {
         dataSet.pushFunctionalSpells();
 
@@ -183,7 +173,6 @@ class AttackTest extends AiBaseCase {
         assertEquals(152, cast.target().id());
     }
 
-    @Test
     void allowAttackAlliesIfItKilledAtLeastOneEnemy() throws SQLException, NoSuchFieldException, IllegalAccessException {
         dataSet.pushFunctionalSpells();
 
@@ -204,7 +193,6 @@ class AttackTest extends AiBaseCase {
         assertEquals(152, cast.target().id());
     }
 
-    @Test
     void allowAttackAlliesIfItKillTheLastEnemy() throws SQLException, NoSuchFieldException, IllegalAccessException {
         dataSet.pushFunctionalSpells();
 
@@ -223,7 +211,6 @@ class AttackTest extends AiBaseCase {
         assertEquals(152, cast.target().id());
     }
 
-    @Test
     void suicideStrategyAllow() throws SQLException, NoSuchFieldException, IllegalAccessException {
         dataSet.pushFunctionalSpells();
         player.properties().experience().add(10000000000L);
@@ -246,7 +233,6 @@ class AttackTest extends AiBaseCase {
         assertEquals(137, cast.target().id());
     }
 
-    @Test
     void suicideStrategyDeny() throws SQLException, NoSuchFieldException, IllegalAccessException {
         dataSet.pushFunctionalSpells();
         player.properties().experience().add(10000000000L);
@@ -266,7 +252,6 @@ class AttackTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void suicideStrategyIfKillEnemy() throws SQLException, NoSuchFieldException, IllegalAccessException {
         dataSet.pushFunctionalSpells();
         player.properties().experience().add(10000000000L);
@@ -298,7 +283,6 @@ class AttackTest extends AiBaseCase {
         assertCast(157, 137);
     }
 
-    @Test
     void shouldConsiderBoostOnSameDamage() throws SQLException, NoSuchFieldException, IllegalAccessException {
         dataSet.pushFunctionalSpells();
 
@@ -326,7 +310,6 @@ class AttackTest extends AiBaseCase {
         assertCast(183, 167);
     }
 
-    @Test
     void scoreShouldHandleSpellAPCost() {
         Spell spell = Mockito.mock(Spell.class);
 
@@ -350,7 +333,6 @@ class AttackTest extends AiBaseCase {
         assertEquals(3.75, Attack.class.cast(action).score(simulation));
     }
 
-    @Test
     void score() throws SQLException {
         dataSet.pushFunctionalSpells();
 
@@ -364,7 +346,6 @@ class AttackTest extends AiBaseCase {
         assertEquals(0, computeScore(183, 110), 0.001); // no target
     }
 
-    @Test
     void scoreShouldLimitBoostAndDebuff() throws SQLException {
         dataSet.pushFunctionalSpells();
 

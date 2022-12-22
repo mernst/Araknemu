@@ -32,9 +32,9 @@ import org.checkerframework.common.value.qual.MinLen;
  * https://github.com/Emudofus/Dofus/blob/1.29/dofus/aks/Chat.as#L140
  */
 public final class UseSmiley implements Packet {
-    private final @Positive int smiley;
+    private final int smiley;
 
-    public UseSmiley(@Positive int smiley) {
+    public UseSmiley(int smiley) {
         this.smiley = smiley;
     }
 
@@ -42,7 +42,7 @@ public final class UseSmiley implements Packet {
      * Get the smiley id
      * Smileys are located on "clips/smileys/[id].swf" on the Dofus client
      */
-    public @Positive int smiley() {
+    public int smiley() {
         return smiley;
     }
 
@@ -53,7 +53,7 @@ public final class UseSmiley implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "BS";
         }
     }

@@ -41,14 +41,12 @@ class AggregatePacketParserTest {
         }
     }
 
-    @Test
     public void packetNotFound() {
         AggregatePacketParser parser = new AggregatePacketParser(new SinglePacketParser[]{});
 
         assertThrows(UndefinedPacketException.class, () -> parser.parse("not found"));
     }
 
-    @Test
     public void parseSuccess() {
         AggregatePacketParser parser = new AggregatePacketParser(new SinglePacketParser[]{
             new AskQueuePosition.Parser()
@@ -57,7 +55,6 @@ class AggregatePacketParserTest {
         assertTrue(parser.parse("Af") instanceof AskQueuePosition);
     }
 
-    @Test
     public void parseSuccessWithArgument() {
         ParserStub stub = new ParserStub();
 
@@ -70,7 +67,6 @@ class AggregatePacketParserTest {
         assertEquals("123", stub.input);
     }
 
-    @Test
     public void register() {
         AggregatePacketParser parser = new AggregatePacketParser(new SinglePacketParser[]{});
         assertThrows(UndefinedPacketException.class, () -> parser.parse("Af"));

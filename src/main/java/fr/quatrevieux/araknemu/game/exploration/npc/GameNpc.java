@@ -52,7 +52,7 @@ public final class GameNpc implements ExplorationCreature {
 
     private final Sprite sprite;
 
-    private @MonotonicNonNull ExplorationMapCell cell;
+    private ExplorationMapCell cell;
 
     @SuppressWarnings({"assignment", "argument"})
     public GameNpc(Npc entity, NpcTemplate template, Collection<NpcQuestion> questions, Collection<ExchangeProvider.Factory> exchangeFactories) {
@@ -89,7 +89,7 @@ public final class GameNpc implements ExplorationCreature {
     }
 
     @Override
-    public <R> @Nullable R apply(Operation<R> operation) {
+    public <R> R apply(Operation<R> operation) {
         return operation.onNpc(this);
     }
 

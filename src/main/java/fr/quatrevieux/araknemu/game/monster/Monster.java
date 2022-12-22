@@ -36,10 +36,10 @@ public final class Monster {
     private final MonsterTemplate template;
     private final SpellList spellList;
     private final MonsterReward reward;
-    private final @NonNegative @IndexFor("template.grades()") int grade;
+    private final int grade;
 
     @SuppressWarnings({"argument", "assignment"}) // checker do not track reference of template
-    public Monster(MonsterTemplate template, SpellList spellList, MonsterReward reward, @NonNegative @IndexFor("#1.grades()") int grade) {
+    public Monster(MonsterTemplate template, SpellList spellList, MonsterReward reward, int grade) {
         this.template = template;
         this.spellList = spellList;
         this.reward = reward;
@@ -60,14 +60,14 @@ public final class Monster {
         return template.gfxId();
     }
 
-    public @Positive int gradeNumber() {
+    public int gradeNumber() {
         return grade + 1;
     }
 
     /**
      * The grade level
      */
-    public @Positive int level() {
+    public int level() {
         return template.grades()[grade].level();
     }
 

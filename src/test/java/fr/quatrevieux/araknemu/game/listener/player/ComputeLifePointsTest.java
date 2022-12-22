@@ -33,7 +33,6 @@ class ComputeLifePointsTest extends GameBaseCase {
     private ComputeLifePoints listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -42,7 +41,6 @@ class ComputeLifePointsTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onCharacteristicsChanged() {
         player.properties().characteristics().base().set(Characteristic.VITALITY, 100);
 

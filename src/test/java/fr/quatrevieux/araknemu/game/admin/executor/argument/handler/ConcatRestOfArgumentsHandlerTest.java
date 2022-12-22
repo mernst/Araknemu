@@ -36,10 +36,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ConcatRestOfArgumentsHandlerTest extends TestCase {
     static class Arguments {
-        @Argument(index = 0)
         public String foo;
 
-        @Argument(index = 1, handler = ConcatRestOfArgumentsHandler.class)
         public String args;
     }
 
@@ -61,7 +59,6 @@ class ConcatRestOfArgumentsHandlerTest extends TestCase {
         }
     }
 
-    @Test
     void hydrate() throws Exception {
         ConcatRestOfArgumentsHandlerTest.Command command = new ConcatRestOfArgumentsHandlerTest.Command();
         AnnotationHydrator hydrator = new AnnotationHydrator();

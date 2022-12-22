@@ -71,7 +71,7 @@ public final class InvocationFighter extends AbstractFighter {
     }
 
     @Override
-    public @Positive int level() {
+    public int level() {
         return monster.level();
     }
 
@@ -116,7 +116,7 @@ public final class InvocationFighter extends AbstractFighter {
     }
 
     @Override
-    public @NonNull FighterData invoker() {
+    public FighterData invoker() {
         return invoker;
     }
 

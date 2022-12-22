@@ -69,7 +69,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 class AdminModuleTest extends GameBaseCase {
-    @Test
     void instances() throws SQLException, CommandNotFoundException {
         Container container = new ItemPoolContainer();
 
@@ -95,7 +94,6 @@ class AdminModuleTest extends GameBaseCase {
         assertInstanceOf(ExceptionHandler.class, container.get(ExceptionHandler.class));
     }
 
-    @Test
     void playerResolver() throws SQLException, ContextException, CommandNotFoundException {
         Container container = new ItemPoolContainer();
 
@@ -115,7 +113,6 @@ class AdminModuleTest extends GameBaseCase {
         assertInstanceOf(fr.quatrevieux.araknemu.game.admin.player.Message.class, context.command("msg"));
     }
 
-    @Test
     void playerResolverScripts() throws SQLException, ContextException, CommandNotFoundException, NoSuchFieldException, IllegalAccessException {
         setConfigValue("admin", "player.scripts.enable", "true");
         setConfigValue("admin", "player.scripts.path", "src/test/scripts/commands/player");
@@ -136,7 +133,6 @@ class AdminModuleTest extends GameBaseCase {
         assertSame(gamePlayer(), command.getClass().getField("player").get(command));
     }
 
-    @Test
     void accountResolver() throws SQLException, CommandNotFoundException {
         Container container = new ItemPoolContainer();
 
@@ -154,7 +150,6 @@ class AdminModuleTest extends GameBaseCase {
         assertInstanceOf(Ban.class, context.command("ban"));
     }
 
-    @Test
     void accountResolverScripts() throws SQLException, ContextException, CommandNotFoundException, NoSuchFieldException, IllegalAccessException {
         setConfigValue("admin", "account.scripts.enable", "true");
         setConfigValue("admin", "account.scripts.path", "src/test/scripts/commands/account");
@@ -175,7 +170,6 @@ class AdminModuleTest extends GameBaseCase {
         assertSame(gamePlayer().account(), command.getClass().getField("account").get(command));
     }
 
-    @Test
     void debugResolver() throws SQLException, CommandNotFoundException {
         Container container = new ItemPoolContainer();
 
@@ -193,7 +187,6 @@ class AdminModuleTest extends GameBaseCase {
         assertInstanceOf(LineOfSight.class, context.command("lineofsight"));
     }
 
-    @Test
     void debugResolverScripts() throws SQLException, ContextException, CommandNotFoundException, NoSuchFieldException, IllegalAccessException {
         setConfigValue("admin", "debug.scripts.enable", "true");
         setConfigValue("admin", "debug.scripts.path", "src/test/scripts/commands/simple");
@@ -212,7 +205,6 @@ class AdminModuleTest extends GameBaseCase {
         assertNotNull(context.command("simple"));
     }
 
-    @Test
     void serverResolver() throws SQLException, CommandNotFoundException {
         Container container = new ItemPoolContainer();
 
@@ -236,7 +228,6 @@ class AdminModuleTest extends GameBaseCase {
         assertInstanceOf(Kick.class, context.command("kick"));
     }
 
-    @Test
     void serverResolverScripts() throws SQLException, ContextException, CommandNotFoundException, NoSuchFieldException, IllegalAccessException {
         setConfigValue("admin", "server.scripts.enable", "true");
         setConfigValue("admin", "server.scripts.path", "src/test/scripts/commands/simple");

@@ -30,12 +30,10 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CharacterSelectedTest extends GameBaseCase {
-    @Test
     void generate() throws ContainerException, SQLException {
         assertEquals("ASK|1|Bob|50||0|10|7b|1c8|315|", new CharacterSelected(gamePlayer()).toString());
     }
 
-    @Test
     void generateWithItems() throws SQLException, ContainerException, InventoryException {
         dataSet.pushItemTemplates();
 

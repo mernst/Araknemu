@@ -27,11 +27,11 @@ import org.checkerframework.dataflow.qual.Pure;
  * Spawn position for the monster group on map
  */
 public final class MonsterGroupPosition {
-    private final @NonNegative int map;
-    private final @GTENegativeOne int cell;
+    private final int map;
+    private final int cell;
     private final int groupId;
 
-    public MonsterGroupPosition(@NonNegative int map, @GTENegativeOne int cell, int groupId) {
+    public MonsterGroupPosition(int map, int cell, int groupId) {
         this.map = map;
         this.cell = cell;
         this.groupId = groupId;
@@ -43,8 +43,7 @@ public final class MonsterGroupPosition {
      *
      * @see fr.quatrevieux.araknemu.data.world.entity.environment.MapTemplate#id()
      */
-    @Pure
-    public @NonNegative int map() {
+    public int map() {
         return map;
     }
 
@@ -54,8 +53,7 @@ public final class MonsterGroupPosition {
      *
      * This is part of primary key
      */
-    @Pure
-    public @GTENegativeOne int cell() {
+    public int cell() {
         return cell;
     }
 
@@ -64,7 +62,6 @@ public final class MonsterGroupPosition {
      *
      * @see MonsterGroupData#id()
      */
-    @Pure
     public int groupId() {
         return groupId;
     }

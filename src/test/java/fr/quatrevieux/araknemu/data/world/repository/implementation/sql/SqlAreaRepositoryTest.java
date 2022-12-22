@@ -36,7 +36,6 @@ class SqlAreaRepositoryTest extends GameBaseCase {
     private SqlAreaRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -44,12 +43,10 @@ class SqlAreaRepositoryTest extends GameBaseCase {
         repository = new SqlAreaRepository(new ConnectionPoolExecutor(app.database().get("game")));
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(new Area(45, null, 0)));
     }
 
-    @Test
     void getFound() throws SQLException, ContainerException {
         dataSet.pushArea(new Area(0, "Amakna", 0));
 
@@ -60,7 +57,6 @@ class SqlAreaRepositoryTest extends GameBaseCase {
         assertEquals("Amakna", area.name());
     }
 
-    @Test
     void getById() throws SQLException, ContainerException {
         dataSet.pushArea(new Area(0, "Amakna", 0));
 
@@ -71,7 +67,6 @@ class SqlAreaRepositoryTest extends GameBaseCase {
         assertEquals("Amakna", area.name());
     }
 
-    @Test
     void has() throws SQLException, ContainerException {
         Area area = new Area(0, "Amakna", 0);
 
@@ -82,7 +77,6 @@ class SqlAreaRepositoryTest extends GameBaseCase {
         assertTrue(repository.has(area));
     }
 
-    @Test
     void all() throws SQLException, ContainerException {
         dataSet.pushAreas();
 

@@ -26,7 +26,6 @@ import java.util.NoSuchElementException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AccessoryTypeTest {
-    @Test
     void bySlot() {
         assertEquals(AccessoryType.WEAPON, AccessoryType.bySlot(1));
         assertEquals(AccessoryType.HELMET, AccessoryType.bySlot(6));
@@ -37,7 +36,6 @@ class AccessoryTypeTest {
         assertThrows(NoSuchElementException.class, () -> AccessoryType.bySlot(0));
     }
 
-    @Test
     void isAccessorySlot() {
         assertTrue(AccessoryType.isAccessorySlot(1));
         assertTrue(AccessoryType.isAccessorySlot(6));
@@ -45,7 +43,6 @@ class AccessoryTypeTest {
         assertFalse(AccessoryType.isAccessorySlot(0));
     }
 
-    @Test
     void slots() {
         assertArrayEquals(
             new int[] {1, 6, 7, 8, 15},

@@ -37,7 +37,6 @@ class SendFighterRemovedTest extends FightBaseCase {
     private Fighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,7 +48,6 @@ class SendFighterRemovedTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onFighterRemoved() {
         listener.on(new FighterRemoved(fighter, fight));
 

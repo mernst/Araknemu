@@ -35,7 +35,6 @@ class WalkableFightCellTest extends GameBaseCase {
     private FightMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -48,7 +47,6 @@ class WalkableFightCellTest extends GameBaseCase {
         );
     }
 
-    @Test
     void initialState() {
         assertEquals(123, cell.id());
         assertTrue(cell.walkable());
@@ -60,7 +58,6 @@ class WalkableFightCellTest extends GameBaseCase {
         assertSame(cell, cell.coordinate().cell());
     }
 
-    @Test
     void withFighter() {
         Fighter fighter = Mockito.mock(Fighter.class);
 
@@ -72,7 +69,6 @@ class WalkableFightCellTest extends GameBaseCase {
         assertTrue(cell.sightBlocking());
     }
 
-    @Test
     void setAlreadySet() {
         Fighter fighter = Mockito.mock(Fighter.class);
 
@@ -81,12 +77,10 @@ class WalkableFightCellTest extends GameBaseCase {
         assertThrows(FightMapException.class, () -> cell.set(fighter));
     }
 
-    @Test
     void removeFighterNotSet() {
         assertThrows(FightMapException.class, () -> cell.removeFighter());
     }
 
-    @Test
     void removeFighterSuccess() {
         Fighter fighter = Mockito.mock(Fighter.class);
         cell.set(fighter);
@@ -96,7 +90,6 @@ class WalkableFightCellTest extends GameBaseCase {
         assertFalse(cell.hasFighter());
     }
 
-    @Test
     void equals() throws ContainerException {
         WalkableFightCell other = new WalkableFightCell(
             map = new FightMap(container.get(MapTemplateRepository.class).get(10340)),

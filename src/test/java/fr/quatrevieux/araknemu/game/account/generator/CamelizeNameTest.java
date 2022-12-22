@@ -25,7 +25,6 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CamelizeNameTest {
-    @Test
     void generateSimple() throws NameGenerationException {
         NameGenerator generator = Mockito.mock(NameGenerator.class);
         CamelizeName camelizeName = new CamelizeName(generator);
@@ -35,7 +34,6 @@ class CamelizeNameTest {
         assertEquals("Mysimplename", camelizeName.generate());
     }
 
-    @Test
     void generateWithHyphen() throws NameGenerationException {
         NameGenerator generator = Mockito.mock(NameGenerator.class);
         CamelizeName camelizeName = new CamelizeName(generator);

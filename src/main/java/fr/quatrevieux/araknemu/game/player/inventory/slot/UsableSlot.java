@@ -41,7 +41,7 @@ public final class UsableSlot implements InventorySlot {
 
     private final InventorySlot slot;
 
-    public UsableSlot(ItemStorage<InventoryEntry> storage, @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int id) {
+    public UsableSlot(ItemStorage<InventoryEntry> storage, int id) {
         slot = new SimpleSlot(
             id,
             new SlotConstraint[] {
@@ -52,7 +52,7 @@ public final class UsableSlot implements InventorySlot {
     }
 
     @Override
-    public @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int id() {
+    public int id() {
         return slot.id();
     }
 
@@ -72,12 +72,12 @@ public final class UsableSlot implements InventorySlot {
     }
 
     @Override
-    public InventoryEntry set(Item item, @Positive int quantity) throws InventoryException {
+    public InventoryEntry set(Item item, int quantity) throws InventoryException {
         return slot.set(item, quantity);
     }
 
     @Override
-    public void uncheckedSet(@Nullable InventoryEntry entry) {
+    public void uncheckedSet(InventoryEntry entry) {
         slot.uncheckedSet(entry);
     }
 }

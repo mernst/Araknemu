@@ -50,7 +50,7 @@ public final class LivingMonsterGroupPosition {
     private final MonsterGroupData data;
     private final SpawnCellSelector cellSelector;
 
-    private @MonotonicNonNull ExplorationMap map;
+    private ExplorationMap map;
 
     public LivingMonsterGroupPosition(MonsterGroupFactory factory, MonsterEnvironmentService environmentService, FightService fightService, MonsterGroupData data, SpawnCellSelector cellSelector, boolean fixed) {
         this.factory = factory;
@@ -164,7 +164,6 @@ public final class LivingMonsterGroupPosition {
     /**
      * Get stream of groups related to the current group position
      */
-    @RequiresNonNull("map")
     private Stream<MonsterGroup> groupStream() {
         return map.creatures().stream()
             .filter(MonsterGroup.class::isInstance)

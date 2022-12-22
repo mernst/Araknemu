@@ -40,7 +40,6 @@ class PlacementCellsGeneratorTest extends GameBaseCase {
     private FightMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -48,7 +47,6 @@ class PlacementCellsGeneratorTest extends GameBaseCase {
         map = container.get(FightService.class).map(container.get(ExplorationMapService.class).load(10340));
     }
 
-    @Test
     void nextSimple() {
         PlacementCellsGenerator generator = new PlacementCellsGenerator(map, Arrays.asList(map.get(123), map.get(124), map.get(125)));
 
@@ -57,7 +55,6 @@ class PlacementCellsGeneratorTest extends GameBaseCase {
         assertEquals(125, generator.next().id());
     }
 
-    @Test
     void nextWithNonFreeCells() {
         PlacementCellsGenerator generator = new PlacementCellsGenerator(map, Arrays.asList(map.get(123), map.get(124), map.get(125)));
 
@@ -67,7 +64,6 @@ class PlacementCellsGeneratorTest extends GameBaseCase {
         assertEquals(125, generator.next().id());
     }
 
-    @Test
     void nextWithNonAvailableCells() {
         PlacementCellsGenerator generator = new PlacementCellsGenerator(map, new ArrayList<>());
 
@@ -77,7 +73,6 @@ class PlacementCellsGeneratorTest extends GameBaseCase {
         }
     }
 
-    @Test
     void nextWithAllAvailableCellsNotFree() {
         PlacementCellsGenerator generator = new PlacementCellsGenerator(map, Arrays.asList(map.get(123), map.get(124), map.get(125)));
 

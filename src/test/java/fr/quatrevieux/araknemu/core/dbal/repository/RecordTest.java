@@ -51,7 +51,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class RecordTest extends TestCase {
     private ConnectionPoolExecutor pool;
 
-    @BeforeEach
     void setUp() throws IOException, SQLException {
         pool = new ConnectionPoolExecutor(
             new DefaultDatabaseHandler(
@@ -67,12 +66,10 @@ class RecordTest extends TestCase {
         pool.query("CREATE TABLE TEST (ID INTEGER PRIMARY KEY AUTOINCREMENT, VALUE TEXT)");
     }
 
-    @AfterEach
     void tearDown() throws SQLException {
         pool.query("DROP TABLE TEST");
     }
 
-    @Test
     void getString() throws SQLException {
         push(1, null);
         push(2, "");
@@ -84,7 +81,6 @@ class RecordTest extends TestCase {
         assertEquals("foo", get(3, record -> record.getString("VALUE")));
     }
 
-    @Test
     void getNullableString() throws SQLException {
         push(1, null);
         push(2, "");
@@ -96,16 +92,15 @@ class RecordTest extends TestCase {
         assertEquals("foo", get(3, record -> record.getNullableString("VALUE")));
     }
 
-    @Test
     void unserialize() throws SQLException {
         Transformer<String> transformer = new Transformer<String>() {
             @Override
-            public @PolyNull String serialize(@PolyNull String value) {
+            public String serialize(String value) {
                 return null;
             }
 
             @Override
-            public @PolyNull String unserialize(@PolyNull String serialize) throws TransformerException {
+            public String unserialize(String serialize) throws TransformerException {
                 if ("error".equals(serialize)) {
                     throw new TransformerException("error");
                 }
@@ -126,16 +121,15 @@ class RecordTest extends TestCase {
         assertThrowsWithMessage(RecordException.class, "Invalid value error for column VALUE", () -> get(4, record -> record.unserialize("VALUE", transformer)));
     }
 
-    @Test
     void nullableUnserialize() throws SQLException {
         Transformer<String> transformer = new Transformer<String>() {
             @Override
-            public @PolyNull String serialize(@PolyNull String value) {
+            public String serialize(String value) {
                 return null;
             }
 
             @Override
-            public @PolyNull String unserialize(@PolyNull String serialize) throws TransformerException {
+            public String unserialize(String serialize) throws TransformerException {
                 if ("error".equals(serialize)) {
                     throw new TransformerException("error");
                 }
@@ -156,7 +150,6 @@ class RecordTest extends TestCase {
         assertThrowsWithMessage(RecordException.class, "Invalid value error for column VALUE", () -> get(4, record -> record.nullableUnserialize("VALUE", transformer)));
     }
 
-    @Test
     void getInt() throws SQLException {
         push(1, null);
         push(2, "");
@@ -170,7 +163,6 @@ class RecordTest extends TestCase {
         assertEquals(-5, (int) get(4, record -> record.getInt("VALUE")));
     }
 
-    @Test
     void getOptionalInt() throws SQLException {
         push(1, null);
         push(2, "");
@@ -184,7 +176,6 @@ class RecordTest extends TestCase {
         assertEquals(OptionalInt.of(-5), get(4, record -> record.getOptionalInt("VALUE")));
     }
 
-    @Test
     void getGTENegativeOneInt() throws SQLException {
         push(1, null);
         push(2, "");
@@ -202,7 +193,6 @@ class RecordTest extends TestCase {
         assertEquals(0, (int) get(6, record -> record.getGTENegativeOneInt("VALUE")));
     }
 
-    @Test
     void getNonNegativeInt() throws SQLException {
         push(1, null);
         push(2, "");
@@ -220,7 +210,6 @@ class RecordTest extends TestCase {
         assertEquals(0, (int) get(6, record -> record.getNonNegativeInt("VALUE")));
     }
 
-    @Test
     void getPositiveInt() throws SQLException {
         push(1, null);
         push(2, "");
@@ -238,7 +227,6 @@ class RecordTest extends TestCase {
         assertEquals(1, (int) get(6, record -> record.getPositiveInt("VALUE")));
     }
 
-    @Test
     void getLong() throws SQLException {
         push(1, null);
         push(2, "");
@@ -252,7 +240,6 @@ class RecordTest extends TestCase {
         assertEquals(-5L, (long) get(4, record -> record.getLong("VALUE")));
     }
 
-    @Test
     void getNonNegativeLong() throws SQLException {
         push(1, null);
         push(2, "");
@@ -270,7 +257,6 @@ class RecordTest extends TestCase {
         assertEquals(0L, (long) get(6, record -> record.getNonNegativeLong("VALUE")));
     }
 
-    @Test
     void getArrayValue() throws SQLException {
         Object[] arr = new Object[] {new Object(), new Object(), new Object()};
 
@@ -290,7 +276,6 @@ class RecordTest extends TestCase {
         assertThrowsWithMessage(RecordException.class, "Column VALUE must be an index of array of length 3", () -> get(6, record -> record.getArrayValue("VALUE", arr)));
     }
 
-    @Test
     void getBoolean() throws SQLException {
         push(1, null);
         push(2, "");
@@ -304,7 +289,6 @@ class RecordTest extends TestCase {
         assertFalse((boolean) get(4, record -> record.getBoolean("VALUE")));
     }
 
-    @Test
     void getDouble() throws SQLException {
         push(1, null);
         push(2, "");
@@ -316,7 +300,6 @@ class RecordTest extends TestCase {
         assertEquals(12.3, (double) get(3, record -> record.getDouble("VALUE")));
     }
 
-    @Test
     void getCsvArray() throws SQLException {
         push(1, null);
         push(2, "");
@@ -330,7 +313,6 @@ class RecordTest extends TestCase {
         assertArrayEquals(new String[] {"foo", "bar", "baz"}, get(4, record -> record.getCsvArray("VALUE", ',')));
     }
 
-    @Test
     void getIntArray() throws SQLException {
         push(1, null);
         push(2, "");
@@ -346,7 +328,6 @@ class RecordTest extends TestCase {
         assertArrayEquals(new int[] {15, 58, 63}, get(5, record -> record.getIntArray("VALUE", ',')));
     }
 
-    @Test
     void getNullableIntArray() throws SQLException {
         push(1, null);
         push(2, "");

@@ -39,7 +39,6 @@ class SpellNotFoundTest extends FightBaseCase {
     private Fighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -54,7 +53,6 @@ class SpellNotFoundTest extends FightBaseCase {
         turn.start();
     }
 
-    @Test
     void values() {
         SpellNotFound cast = new SpellNotFound(fighter);
 
@@ -62,7 +60,6 @@ class SpellNotFoundTest extends FightBaseCase {
         assertSame(ActionType.CAST, cast.type());
     }
 
-    @Test
     void validateSpellNotFound() {
         SpellNotFound cast = new SpellNotFound(fighter);
 
@@ -70,7 +67,6 @@ class SpellNotFoundTest extends FightBaseCase {
         requestStack.assertLast(Error.cantCastNotFound());
     }
 
-    @Test
     void unsupportedMethods() {
         SpellNotFound cast = new SpellNotFound(fighter);
 

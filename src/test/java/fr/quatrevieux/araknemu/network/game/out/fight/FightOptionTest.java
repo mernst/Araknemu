@@ -27,14 +27,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FightOptionTest extends FightBaseCase {
-    @Test
     void string() {
         assertEquals("Go+H123", new FightOption(123, FightOption.Type.NEED_HELP, true).toString());
         assertEquals("Go-H123", new FightOption(123, FightOption.Type.NEED_HELP, false).toString());
         assertEquals("Go+S123", new FightOption(123, FightOption.Type.BLOCK_SPECTATOR, true).toString());
     }
 
-    @Test
     void blockSpectators() throws Exception {
         Fight fight = createFight();
         ConfigurableTeamOptions options = (ConfigurableTeamOptions) fight.team(0).options();
@@ -45,7 +43,6 @@ class FightOptionTest extends FightBaseCase {
         assertEquals("Go+S1", FightOption.blockSpectators(options).toString());
     }
 
-    @Test
     void blockJoiner() throws Exception {
         Fight fight = createFight();
         ConfigurableTeamOptions options = (ConfigurableTeamOptions) fight.team(0).options();
@@ -56,7 +53,6 @@ class FightOptionTest extends FightBaseCase {
         assertEquals("Go+A1", FightOption.blockJoiner(options).toString());
     }
 
-    @Test
     void needHelp() throws Exception {
         Fight fight = createFight();
         ConfigurableTeamOptions options = (ConfigurableTeamOptions) fight.team(0).options();

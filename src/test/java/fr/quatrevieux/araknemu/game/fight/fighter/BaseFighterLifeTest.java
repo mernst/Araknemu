@@ -59,7 +59,6 @@ class BaseFighterLifeTest extends FightBaseCase {
     private MonsterFighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -98,14 +97,12 @@ class BaseFighterLifeTest extends FightBaseCase {
         life = new BaseFighterLife(fighter, 100);
     }
 
-    @Test
     void defaults() {
         assertEquals(100, life.current());
         assertEquals(100, life.max());
         assertFalse(life.dead());
     }
 
-    @Test
     void alterOnDamage() {
         AtomicReference<FighterLifeChanged> ref = new AtomicReference<>();
         fight.dispatcher().add(FighterLifeChanged.class, ref::set);
@@ -120,7 +117,6 @@ class BaseFighterLifeTest extends FightBaseCase {
         assertEquals(-10, ref.get().value());
     }
 
-    @Test
     void alterOnDamageHigherThanCurrentLife() {
         AtomicReference<FighterLifeChanged> ref = new AtomicReference<>();
         fight.dispatcher().add(FighterLifeChanged.class, ref::set);
@@ -135,7 +131,6 @@ class BaseFighterLifeTest extends FightBaseCase {
         assertEquals(-100, ref.get().value());
     }
 
-    @Test
     void alterOnHeal() {
         life.alter(fighter, -50);
 
@@ -152,7 +147,6 @@ class BaseFighterLifeTest extends FightBaseCase {
         assertEquals(10, ref.get().value());
     }
 
-    @Test
     void alterOnHealHigherThanMax() {
         life.alter(fighter, -50);
 
@@ -172,7 +166,6 @@ class BaseFighterLifeTest extends FightBaseCase {
     /**
      * #56 : Dot not heal when dead
      */
-    @Test
     void alterHealIfDead() {
         life.alter(fighter, -1000);
 
@@ -190,7 +183,6 @@ class BaseFighterLifeTest extends FightBaseCase {
     /**
      * #56 : Dot not heal when dead
      */
-    @Test
     void alterDamageIfDead() {
         life.alter(fighter, -1000);
 
@@ -205,7 +197,6 @@ class BaseFighterLifeTest extends FightBaseCase {
         assertNull(ref.get());
     }
 
-    @Test
     void alterOnDie() {
         AtomicReference<FighterDie> ref = new AtomicReference<>();
         fight.dispatcher().add(FighterDie.class, ref::set);
@@ -220,7 +211,6 @@ class BaseFighterLifeTest extends FightBaseCase {
         assertTrue(life.dead());
     }
 
-    @Test
     void alterShouldCallOnLifeAlteredBuffs() {
         life.alter(fighter, -50);
 
@@ -233,7 +223,6 @@ class BaseFighterLifeTest extends FightBaseCase {
         Mockito.verify(hook).onLifeAltered(buff, 10);
     }
 
-    @Test
     void alterShouldNotCallOnLifeAlteredBuffsWhenDie() {
         BuffHook hook = Mockito.mock(BuffHook.class);
         Buff buff = new Buff(Mockito.mock(SpellEffect.class), Mockito.mock(Spell.class), fighter, fighter, hook);
@@ -244,7 +233,6 @@ class BaseFighterLifeTest extends FightBaseCase {
         Mockito.verify(hook, Mockito.never()).onLifeAltered(Mockito.any(), Mockito.anyInt());
     }
 
-    @Test
     void alterMaxPositive() {
         AtomicReference<FighterMaxLifeChanged> ref = new AtomicReference<>();
         fight.dispatcher().add(FighterMaxLifeChanged.class, ref::set);
@@ -259,7 +247,6 @@ class BaseFighterLifeTest extends FightBaseCase {
         assertSame(fighter, ref.get().fighter());
     }
 
-    @Test
     void alterMaxNotFullLife() {
         life.alter(fighter, -50);
 
@@ -270,7 +257,6 @@ class BaseFighterLifeTest extends FightBaseCase {
         assertEquals(200, life.max());
     }
 
-    @Test
     void alterMaxNegative() {
         AtomicReference<FighterMaxLifeChanged> ref = new AtomicReference<>();
         fight.dispatcher().add(FighterMaxLifeChanged.class, ref::set);
@@ -285,7 +271,6 @@ class BaseFighterLifeTest extends FightBaseCase {
         assertSame(fighter, ref.get().fighter());
     }
 
-    @Test
     void alterMaxNegativeMoreThanCurrentLifeShouldKillFighter() {
         AtomicReference<FighterMaxLifeChanged> ref = new AtomicReference<>();
         fight.dispatcher().add(FighterMaxLifeChanged.class, ref::set);
@@ -299,7 +284,6 @@ class BaseFighterLifeTest extends FightBaseCase {
         assertNull(ref.get());
     }
 
-    @Test
     void alterMaxDeadShouldDoNothing() {
         life.kill(fighter);
 
@@ -315,7 +299,6 @@ class BaseFighterLifeTest extends FightBaseCase {
         assertNull(ref.get());
     }
 
-    @Test
     void kill() {
         AtomicReference<FighterDie> ref = new AtomicReference<>();
         fight.dispatcher().add(FighterDie.class, ref::set);

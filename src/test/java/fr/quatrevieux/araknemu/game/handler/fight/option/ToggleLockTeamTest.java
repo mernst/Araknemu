@@ -43,7 +43,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 // @todo test with unmodifiable team options
 class ToggleLockTeamTest extends FightBaseCase {
-    @RepeatedIfExceptionsTest
     void shouldSendInformationMessageOnToggle() throws Exception {
         Fight fight = createFight();
 
@@ -56,7 +55,6 @@ class ToggleLockTeamTest extends FightBaseCase {
         assertTrue(fight.team(0).options().allowJoinTeam());
     }
 
-    @Test
     void shouldIgnoreIfNotTeamLeader() throws Exception {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         fight.state(PlacementState.class).joinTeam(makePlayerFighter(gamePlayer()), fight.team(0));
@@ -67,7 +65,6 @@ class ToggleLockTeamTest extends FightBaseCase {
         assertTrue(fight.team(0).options().allowJoinTeam());
     }
 
-    @Test
     void shouldIgnoreIfActiveFight() throws Exception {
         Fight fight = createFight();
         fight.nextState();
@@ -78,12 +75,10 @@ class ToggleLockTeamTest extends FightBaseCase {
         assertTrue(fight.team(0).options().allowJoinTeam());
     }
 
-    @Test
     void notInFightShouldFail() {
         assertThrows(CloseImmediately.class, () -> handlePacket(new LockTeamRequest()));
     }
 
-    @Test
     void fromExplorationMapShouldSendTeamOptionAndDenyJoin() throws Exception {
         explorationPlayer().changeMap(container.get(ExplorationMapService.class).load(10340), 150);
         ToggleLockTeam handler = new ToggleLockTeam();

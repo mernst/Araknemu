@@ -99,7 +99,7 @@ public final class ProxyAI implements AI<ActiveFighter> {
      *
      * @see fr.quatrevieux.araknemu.game.fight.ai.util.AIHelper#withPosition(FightCell)
      */
-    public ProxyAI withPosition(@NonNegative int cellId) {
+    public ProxyAI withPosition(int cellId) {
         final ProxyAI newAi = new ProxyAI(this);
 
         newAi.map = newAi.map.modify(modifier -> {

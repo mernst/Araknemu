@@ -48,7 +48,6 @@ class AuthenticateTest extends RealmBaseCase {
     private Authenticate handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -64,7 +63,6 @@ class AuthenticateTest extends RealmBaseCase {
         ;
     }
 
-    @Test
     void handleSuccess() {
         handler.handle(session, new Credentials(
             "login",
@@ -90,7 +88,6 @@ class AuthenticateTest extends RealmBaseCase {
         assertBetween(0, 1, Instant.now().getEpochSecond() - log.startDate().getEpochSecond());
     }
 
-    @Test
     void handleSuccessWithGameMaster() throws ContainerException {
         dataSet.push(new Account(-1, "other", "password", "pseudo2", EnumSet.allOf(Permission.class), "My other question", "response"));
 
@@ -112,7 +109,6 @@ class AuthenticateTest extends RealmBaseCase {
         );
     }
 
-    @Test
     void handleInvalidCredentials() {
         handler.handle(session, new Credentials(
             "login",
@@ -125,7 +121,6 @@ class AuthenticateTest extends RealmBaseCase {
         requestStack.assertLast(new LoginError(LoginError.LOGIN_ERROR));
     }
 
-    @Test
     void handleAlreadyLoggedIn() throws ContainerException {
         AuthenticationAccount account = new AuthenticationAccount(
             (Account) dataSet.get("login_account"),
@@ -145,7 +140,6 @@ class AuthenticateTest extends RealmBaseCase {
         requestStack.assertLast(new LoginError(LoginError.ALREADY_LOGGED));
     }
 
-    @Test
     void handleIsPlaying() throws ContainerException {
         connector.checkLogin = true;
 
@@ -160,7 +154,6 @@ class AuthenticateTest extends RealmBaseCase {
         requestStack.assertLast(new LoginError(LoginError.ALREADY_LOGGED_GAME_SERVER));
     }
 
-    @Test
     void handleBanned() throws ContainerException {
         connector.checkLogin = true;
         dataSet.push(new Banishment(Account.class.cast(dataSet.get("login_account")).id(), Instant.now().minus(1, ChronoUnit.HOURS), Instant.now().plus(1, ChronoUnit.HOURS), "test", 3));

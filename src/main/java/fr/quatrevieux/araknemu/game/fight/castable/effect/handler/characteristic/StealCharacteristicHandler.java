@@ -106,7 +106,7 @@ public class StealCharacteristicHandler implements EffectHandler {
         private final Fighter caster;
         private final SpellEffect spellEffect;
         private final Castable action;
-        private @NonNegative int total = 0;
+        private int total = 0;
 
         public Applier(Fighter caster, SpellEffect spellEffect, Castable action) {
             this.caster = caster;
@@ -131,7 +131,7 @@ public class StealCharacteristicHandler implements EffectHandler {
         /**
          * Total stolen characteristic value
          */
-        public @NonNegative int total() {
+        public int total() {
             return total;
         }
     }

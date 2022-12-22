@@ -27,7 +27,6 @@ import java.util.EnumSet;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ElementTest {
-    @Test
     void fromBitSet() {
         assertEquals(Collections.emptySet(), Element.fromBitSet(0));
         assertEquals(EnumSet.of(Element.NEUTRAL), Element.fromBitSet(1));

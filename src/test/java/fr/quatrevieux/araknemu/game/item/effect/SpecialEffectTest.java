@@ -33,7 +33,6 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SpecialEffectTest extends GameBaseCase {
-    @Test
     void getters() {
         SpecialEffect effect = new SpecialEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {1, 2, 3}, "a");
 
@@ -42,14 +41,12 @@ class SpecialEffectTest extends GameBaseCase {
         assertEquals("a", effect.text());
     }
 
-    @Test
     void equalsSameInstance() {
         SpecialEffect effect = new SpecialEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {1, 2, 3}, "a");
 
         assertEquals(effect, effect);
     }
 
-    @Test
     void equalsNotSame() {
         assertEquals(
             new SpecialEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {1, 2, 3}, "a"),
@@ -57,12 +54,10 @@ class SpecialEffectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void equalsBadClass() {
         assertNotEquals(new SpecialEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {1, 2, 3}, "a"), new Object());
     }
 
-    @Test
     void equalsBadEffect() {
         assertNotEquals(
             new SpecialEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {1, 2, 3}, "a"),
@@ -70,7 +65,6 @@ class SpecialEffectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void equalsBadArgument() {
         assertNotEquals(
             new SpecialEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {1, 2, 3}, "a"),
@@ -78,7 +72,6 @@ class SpecialEffectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void equalsBadText() {
         assertNotEquals(
             new SpecialEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {1, 2, 3}, "a"),
@@ -86,7 +79,6 @@ class SpecialEffectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void hashCodeEquals() {
         assertEquals(
             new SpecialEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {1, 2, 3}, "a").hashCode(),
@@ -94,7 +86,6 @@ class SpecialEffectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void hashCodeNotEquals() {
         assertNotEquals(
             new SpecialEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {1, 2, 3}, "a").hashCode(),
@@ -102,7 +93,6 @@ class SpecialEffectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void debugString() {
         assertEquals(
             "SpecialEffect{NULL2:[1, 2, 3], 'a'}",
@@ -110,7 +100,6 @@ class SpecialEffectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void toTemplate() {
         ItemTemplateEffectEntry template = new SpecialEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {1, 2, 3}, "a").toTemplate();
 
@@ -121,7 +110,6 @@ class SpecialEffectTest extends GameBaseCase {
         assertEquals("a", template.text());
     }
 
-    @Test
     void apply() throws SQLException, ContainerException {
         SpecialEffect effect = new SpecialEffect(
             new AddSpecialEffect(SpecialEffects.Type.PODS),
@@ -134,7 +122,6 @@ class SpecialEffectTest extends GameBaseCase {
         assertEquals(150, gamePlayer().properties().characteristics().specials().get(SpecialEffects.Type.PODS));
     }
 
-    @Test
     void relieve() throws SQLException, ContainerException {
         SpecialEffect effect = new SpecialEffect(
             new AddSpecialEffect(SpecialEffects.Type.PODS),

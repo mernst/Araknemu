@@ -110,7 +110,7 @@ public final class AddCharacteristicOnDamageHandler implements EffectHandler, Bu
     }
 
     @Override
-    public void onDirectDamageApplied(Buff buff, Fighter caster, @Positive int damage) {
+    public void onDirectDamageApplied(Buff buff, Fighter caster, int damage) {
         final Fighter target = buff.target();
         final int boostEffectId = buff.effect().min();
         final AlterCharacteristicHook hook = hooksMapping.get(boostEffectId);
@@ -134,7 +134,7 @@ public final class AddCharacteristicOnDamageHandler implements EffectHandler, Bu
         ));
     }
 
-    private @NonNegative int currentBoostValue(Buff buff, FighterData target) {
+    private int currentBoostValue(Buff buff, FighterData target) {
         // Add 1 to duration in case of self damage
         final int expectedEffectDuration = buff.effect().special() + (target.equals(fight.turnList().currentFighter()) ? 1 : 0);
 

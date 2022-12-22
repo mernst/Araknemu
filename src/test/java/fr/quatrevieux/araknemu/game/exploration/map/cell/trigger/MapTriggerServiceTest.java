@@ -50,7 +50,6 @@ class MapTriggerServiceTest extends GameBaseCase {
     private MapTriggerService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -61,7 +60,6 @@ class MapTriggerServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void forMap() throws SQLException, ContainerException {
         dataSet.pushTrigger(new MapTrigger(10300, 123, 0, "13001,321", "-1"));
         dataSet.pushTrigger(new MapTrigger(10300, 456, 0, "13002,125", "-1"));
@@ -75,7 +73,6 @@ class MapTriggerServiceTest extends GameBaseCase {
         assertEquals(456, actions.toArray(new CellAction[0])[1].cell());
     }
 
-    @Test
     void listeners() throws ContainerException {
         ListenerAggregate dispatcher = new DefaultListenerAggregate();
         dispatcher.register(service);
@@ -90,7 +87,6 @@ class MapTriggerServiceTest extends GameBaseCase {
         assertTrue(map.dispatcher().has(PerformCellActions.class));
     }
 
-    @Test
     void preload() throws SQLException, ContainerException {
         dataSet.pushTrigger(new MapTrigger(10300, 123, 0, "13001,321", "-1"));
         dataSet.pushTrigger(new MapTrigger(10300, 456, 0, "13002,125", "-1"));
@@ -104,7 +100,6 @@ class MapTriggerServiceTest extends GameBaseCase {
         Mockito.verify(logger).info("{} triggers loaded", 3);
     }
 
-    @Test
     void forMapPreload() throws SQLException, ContainerException {
         dataSet.pushTrigger(new MapTrigger(10300, 123, 0, "13001,321", "-1"));
         dataSet.pushTrigger(new MapTrigger(10300, 456, 0, "13002,125", "-1"));
@@ -117,7 +112,6 @@ class MapTriggerServiceTest extends GameBaseCase {
         assertContainsOnly(Teleport.class, actions);
     }
 
-    @Test
     void name() {
         assertEquals("map.trigger", service.name());
     }

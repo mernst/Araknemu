@@ -34,12 +34,12 @@ public interface ExchangeStorage {
     /**
      * Get the current items on the exchange
      */
-    public Map<ItemEntry, @Positive Integer> items();
+    public Map<ItemEntry, Integer> items();
 
     /**
      * Get the current kamas quantity on the exchange
      */
-    public @NonNegative long kamas();
+    public long kamas();
 
     /**
      * Get the accept state

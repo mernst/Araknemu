@@ -44,8 +44,7 @@ public final class CommandExecutionException extends CommandException {
     }
 
     @Override
-    @Pure
-    public synchronized @NonNull Throwable getCause() {
+    public synchronized Throwable getCause() {
         return NullnessUtil.castNonNull(super.getCause());
     }
 }

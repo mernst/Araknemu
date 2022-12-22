@@ -27,10 +27,10 @@ import org.checkerframework.checker.nullness.qual.NonNull;
  * @param <T> Entity type
  * @param <E> Error type
  */
-public final class MaxLength<T, @NonNull E> extends AbstractValueConstraint<T, E, String> {
+public final class MaxLength<T, E> extends AbstractValueConstraint<T, E, String> {
     private final int length;
 
-    public MaxLength(@NonNull E error, Getter<T, String> getter, int length) {
+    public MaxLength(E error, Getter<T, String> getter, int length) {
         super(error, getter);
         this.length = length;
     }

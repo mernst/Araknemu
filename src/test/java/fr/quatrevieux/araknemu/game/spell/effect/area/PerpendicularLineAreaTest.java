@@ -34,7 +34,6 @@ class PerpendicularLineAreaTest extends GameBaseCase {
     private FightMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -42,7 +41,6 @@ class PerpendicularLineAreaTest extends GameBaseCase {
         map = new FightMap(container.get(MapTemplateRepository.class).get(10340));
     }
 
-    @Test
     void getters() {
         PerpendicularLineArea area = new PerpendicularLineArea(new EffectArea(EffectArea.Type.PERPENDICULAR_LINE, 2));
 
@@ -50,7 +48,6 @@ class PerpendicularLineAreaTest extends GameBaseCase {
         assertEquals(2, area.size());
     }
 
-    @Test
     void resolveSize0() {
         assertEquals(
             Collections.singleton(map.get(123)),
@@ -58,7 +55,6 @@ class PerpendicularLineAreaTest extends GameBaseCase {
         );
     }
 
-    @Test
     void resolve() {
         assertCollectionEquals(
             new PerpendicularLineArea(new EffectArea(EffectArea.Type.LINE, 3)).resolve(map.get(123), map.get(137)),

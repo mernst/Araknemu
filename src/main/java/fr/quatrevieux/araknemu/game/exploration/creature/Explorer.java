@@ -33,7 +33,6 @@ public interface Explorer {
     /**
      * Get the current position
      */
-    @Pure
     public Position position();
 
     /**
@@ -48,6 +47,5 @@ public interface Explorer {
     /**
      * Get the current map
      */
-    @Pure
-    public @Nullable ExplorationMap map();
+    public ExplorationMap map();
 }

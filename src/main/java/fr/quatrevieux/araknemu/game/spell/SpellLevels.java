@@ -54,7 +54,7 @@ public final class SpellLevels {
     /**
      * Get spell at level
      */
-    public Spell level(@Positive int level) {
+    public Spell level(int level) {
         final int index = level - 1;
 
         if (index >= levels.length) {
@@ -67,7 +67,7 @@ public final class SpellLevels {
     /**
      * Get the maximum spell level
      */
-    public @NonNegative int max() {
+    public int max() {
         return levels.length;
     }
 }

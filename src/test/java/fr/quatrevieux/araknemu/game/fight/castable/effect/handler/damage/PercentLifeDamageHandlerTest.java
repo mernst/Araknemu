@@ -55,7 +55,6 @@ class PercentLifeDamageHandlerTest extends FightBaseCase {
     private PercentLifeDamageHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -72,7 +71,6 @@ class PercentLifeDamageHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void applyRandomEffect() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -95,7 +93,6 @@ class PercentLifeDamageHandlerTest extends FightBaseCase {
         requestStack.assertLast(ActionEffect.alterLifePoints(caster, target, -damage));
     }
 
-    @Test
     void applyFixedEffect() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -117,8 +114,6 @@ class PercentLifeDamageHandlerTest extends FightBaseCase {
         requestStack.assertLast(ActionEffect.alterLifePoints(caster, target, -29));
     }
 
-    @ParameterizedTest
-    @MethodSource("provideLifeAndExpectedDamage")
     void applyShouldConsiderCurrentLife(int life, int expectedDamage) {
         caster.life().alter(caster, life - caster.life().current());
 
@@ -151,7 +146,6 @@ class PercentLifeDamageHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyCannotBeBoosted() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -173,7 +167,6 @@ class PercentLifeDamageHandlerTest extends FightBaseCase {
         assertEquals(29, damage);
     }
 
-    @Test
     void applyResistanceShouldBeApplied() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -196,7 +189,6 @@ class PercentLifeDamageHandlerTest extends FightBaseCase {
         assertEquals(21, damage);
     }
 
-    @Test
     void applyToEmptyCell() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -214,7 +206,6 @@ class PercentLifeDamageHandlerTest extends FightBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void applyToEmptyCellWithArea() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -236,7 +227,6 @@ class PercentLifeDamageHandlerTest extends FightBaseCase {
         requestStack.assertLast(ActionEffect.alterLifePoints(caster, target, -29));
     }
 
-    @Test
     void applyWithAreaMultipleFighters() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -255,7 +245,6 @@ class PercentLifeDamageHandlerTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.alterLifePoints(caster, caster, -29));
     }
 
-    @Test
     void buffWillAddBuffToList() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -282,7 +271,6 @@ class PercentLifeDamageHandlerTest extends FightBaseCase {
         assertEquals(5, found.get().remainingTurns());
     }
 
-    @Test
     void buffWithAreaMultipleFighters() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -301,7 +289,6 @@ class PercentLifeDamageHandlerTest extends FightBaseCase {
         assertTrue(target.buffs().stream().anyMatch(buff -> buff.effect().equals(effect)));
     }
 
-    @Test
     void onStartTurn() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 
@@ -317,7 +304,6 @@ class PercentLifeDamageHandlerTest extends FightBaseCase {
         requestStack.assertLast(ActionEffect.alterLifePoints(caster, target, -damage));
     }
 
-    @Test
     void onStartTurnOnDie() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 

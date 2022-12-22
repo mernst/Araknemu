@@ -56,7 +56,6 @@ class AddVitalityNotDispellableHandlerTest extends FightBaseCase {
     private AddVitalityNotDispellableHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -74,7 +73,6 @@ class AddVitalityNotDispellableHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handle() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -89,7 +87,6 @@ class AddVitalityNotDispellableHandlerTest extends FightBaseCase {
         assertThrows(UnsupportedOperationException.class, () -> handler.handle(scope, scope.effects().get(0)));
     }
 
-    @Test
     void buff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -119,7 +116,6 @@ class AddVitalityNotDispellableHandlerTest extends FightBaseCase {
         assertFalse(buff2.get().canBeDispelled());
     }
 
-    @Test
     void buffWithOneTargetMaximized() {
         target.buffs().add(new Buff(Mockito.mock(SpellEffect.class), Mockito.mock(Spell.class), target, target, new BuffHook() {
             @Override
@@ -154,7 +150,6 @@ class AddVitalityNotDispellableHandlerTest extends FightBaseCase {
         assertEquals(10000, buff2.get().effect().min());
     }
 
-    @Test
     void onBuffStartedAndTerminated() {
         requestStack.clear();
         SpellEffect effect = Mockito.mock(SpellEffect.class);

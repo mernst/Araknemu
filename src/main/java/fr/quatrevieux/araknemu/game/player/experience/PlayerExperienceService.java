@@ -121,7 +121,7 @@ public final class PlayerExperienceService implements PreloadableService, Events
      * @param entity The player entity
      * @param newLevel The reached level
      */
-    void applyLevelUpBonus(Player entity, @Positive int newLevel) {
+    void applyLevelUpBonus(Player entity, int newLevel) {
         final int diff = newLevel - entity.level();
 
         if (diff > 0) {

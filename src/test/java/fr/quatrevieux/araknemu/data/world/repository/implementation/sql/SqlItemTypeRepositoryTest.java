@@ -37,7 +37,6 @@ class SqlItemTypeRepositoryTest extends GameBaseCase {
     private SqlItemTypeRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -46,12 +45,10 @@ class SqlItemTypeRepositoryTest extends GameBaseCase {
         dataSet.pushItemTypes();
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(-5));
     }
 
-    @Test
     void getById() {
         ItemType type = repository.get(1);
 
@@ -61,7 +58,6 @@ class SqlItemTypeRepositoryTest extends GameBaseCase {
         assertNull(type.effectArea());
     }
 
-    @Test
     void getWithEffectArea() {
         ItemType type = repository.get(7);
 
@@ -71,7 +67,6 @@ class SqlItemTypeRepositoryTest extends GameBaseCase {
         assertEquals(new EffectArea(EffectArea.Type.CROSS, 1), type.effectArea());
     }
 
-    @Test
     void getByEntity() {
         ItemType type = repository.get(new ItemType(1, null, null, null));
 
@@ -81,13 +76,11 @@ class SqlItemTypeRepositoryTest extends GameBaseCase {
         assertNull(type.effectArea());
     }
 
-    @Test
     void has() {
         assertTrue(repository.has(new ItemType(1, null, null, null)));
         assertFalse(repository.has(new ItemType(-5, null, null, null)));
     }
 
-    @Test
     void load() {
         Collection<ItemType> types = repository.load();
 

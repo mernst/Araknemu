@@ -28,7 +28,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  */
 public final class ParsedArgumentsHydrator extends AbstractTypedArgumentsHydrator<CommandParser.Arguments> {
     @Override
-    protected CommandParser.Arguments typedHydrate(Command<CommandParser.Arguments> command, CommandParser.@Nullable Arguments commandArguments, CommandParser.Arguments parsedArguments) throws Exception {
+    protected CommandParser.Arguments typedHydrate(Command<CommandParser.Arguments> command, CommandParser.Arguments commandArguments, CommandParser.Arguments parsedArguments) throws Exception {
         return parsedArguments;
     }
 

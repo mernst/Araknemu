@@ -34,7 +34,6 @@ import java.util.concurrent.atomic.AtomicReference;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RealmPacketParserMiddlewareTest {
-    @Test
     void loginProcedure() {
         ConfigurableSession session = new ConfigurableSession(new DummyChannel());
 
@@ -62,7 +61,6 @@ class RealmPacketParserMiddlewareTest {
         assertTrue(receivedPackets.get(2) instanceof AskQueuePosition);
     }
 
-    @Test
     void invalidPacketDuringLogin() {
         ConfigurableSession session = new ConfigurableSession(new DummyChannel());
 

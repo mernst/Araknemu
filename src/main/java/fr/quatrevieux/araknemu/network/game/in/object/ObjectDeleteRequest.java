@@ -33,9 +33,9 @@ import org.checkerframework.common.value.qual.MinLen;
  */
 public final class ObjectDeleteRequest implements Packet {
     private final int id;
-    private final @Positive int quantity;
+    private final int quantity;
 
-    public ObjectDeleteRequest(int id, @Positive int quantity) {
+    public ObjectDeleteRequest(int id, int quantity) {
         this.id = id;
         this.quantity = quantity;
     }
@@ -44,7 +44,7 @@ public final class ObjectDeleteRequest implements Packet {
         return id;
     }
 
-    public @Positive int quantity() {
+    public int quantity() {
         return quantity;
     }
 
@@ -60,7 +60,7 @@ public final class ObjectDeleteRequest implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "Od";
         }
     }

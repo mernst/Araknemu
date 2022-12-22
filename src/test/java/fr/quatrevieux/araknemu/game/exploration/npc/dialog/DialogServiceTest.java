@@ -45,7 +45,6 @@ class DialogServiceTest extends GameBaseCase {
     private Logger logger;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -63,7 +62,6 @@ class DialogServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void preload() {
         Logger logger = Mockito.mock(Logger.class);
 
@@ -76,12 +74,10 @@ class DialogServiceTest extends GameBaseCase {
         Mockito.verify(logger).info("{} questions loaded", 6);
     }
 
-    @Test
     void byIdsEmpty() {
         assertEquals(Collections.emptyList(), service.byIds(new int[0]));
     }
 
-    @Test
     void byIds() {
         Collection<NpcQuestion> questions = service.byIds(new int[] {3596, 3786});
 
@@ -93,13 +89,11 @@ class DialogServiceTest extends GameBaseCase {
         assertEquals(3786, array[1].id());
     }
 
-    @Test
     void byIdsNotFound() {
         assertEquals(Collections.emptyList(), service.byIds(new int[] {1225, 745}));
         Mockito.verify(logger).warn("NPC question not found : requested {}, actual {}", "[1225, 745]", "[]");
     }
 
-    @Test
     void byIdsWillFilterNotFound() {
         Collection<NpcQuestion> questions = service.byIds(new int[] {3596, 7458});
 
@@ -111,7 +105,6 @@ class DialogServiceTest extends GameBaseCase {
         Mockito.verify(logger).warn("NPC question not found : requested {}, actual {}", "[3596, 7458]", "[3596]");
     }
 
-    @Test
     void byIdsWillReturnSameInstance() {
         Collection<NpcQuestion> questions = service.byIds(new int[] {3596, 3786});
 
@@ -122,7 +115,6 @@ class DialogServiceTest extends GameBaseCase {
         assertSame(question, array[1]);
     }
 
-    @Test
     void responses() throws SQLException, ContainerException {
         NpcQuestion question = service.byIds(new int[] {3786}).stream().findFirst().get();
 
@@ -133,7 +125,6 @@ class DialogServiceTest extends GameBaseCase {
         assertEquals(3324, responses[1].id());
     }
 
-    @Test
     void actionFactoryNotFound() throws SQLException, ContainerException {
         dataSet.pushQuestion(new Question(1, new int[] {1}, new String[0], ""));
         dataSet.pushResponseAction(new ResponseAction(1, "not_found", ""));
@@ -144,7 +135,6 @@ class DialogServiceTest extends GameBaseCase {
         Mockito.verify(logger).warn("Response action {} is not supported for response {}", "not_found", 1);
     }
 
-    @Test
     void byNpc() throws ContainerException, SQLException {
         dataSet.pushNpcs();
 
@@ -154,7 +144,6 @@ class DialogServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void name() {
         assertEquals("npc.dialog", service.name());
     }

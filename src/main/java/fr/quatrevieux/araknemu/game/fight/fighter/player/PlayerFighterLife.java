@@ -35,7 +35,7 @@ public final class PlayerFighterLife implements FighterLife {
     private final Life baseLife;
     private final Fighter fighter;
 
-    private @MonotonicNonNull BaseFighterLife delegate;
+    private BaseFighterLife delegate;
 
     public PlayerFighterLife(Life baseLife, Fighter fighter) {
         this.baseLife = baseLife;
@@ -43,12 +43,12 @@ public final class PlayerFighterLife implements FighterLife {
     }
 
     @Override
-    public @NonNegative int current() {
+    public int current() {
         return delegate != null ? delegate.current() : baseLife.current();
     }
 
     @Override
-    public @NonNegative int max() {
+    public int max() {
         return delegate != null ? delegate.max() : baseLife.max();
     }
 

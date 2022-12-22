@@ -39,7 +39,6 @@ class FloodGuardChannelTest extends GameBaseCase {
     private Channel inner;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,7 +48,6 @@ class FloodGuardChannelTest extends GameBaseCase {
         );
     }
 
-    @Test
     void authorized() throws SQLException, ContainerException {
         Mockito.when(inner.authorized(gamePlayer())).thenReturn(true);
 
@@ -57,7 +55,6 @@ class FloodGuardChannelTest extends GameBaseCase {
         Mockito.verify(inner).authorized(gamePlayer());
     }
 
-    @Test
     void sendFirstTime() throws SQLException, ContainerException, ChatException {
         Message message = new Message(
             ChannelType.TRADE,
@@ -71,7 +68,6 @@ class FloodGuardChannelTest extends GameBaseCase {
         Mockito.verify(inner).send(gamePlayer(), message);
     }
 
-    @Test
     void sendTwice() throws SQLException, ContainerException, ChatException {
         Message message = new Message(
             ChannelType.TRADE,

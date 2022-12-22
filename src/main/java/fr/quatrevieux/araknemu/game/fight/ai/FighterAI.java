@@ -48,7 +48,7 @@ public final class FighterAI implements Runnable, AI<Fighter> {
     private final ActionGenerator<Fighter> generator;
     private final AIHelper helper;
 
-    private @Nullable Turn turn;
+    private Turn turn;
 
     /**
      * Creates the AI
@@ -115,7 +115,7 @@ public final class FighterAI implements Runnable, AI<Fighter> {
     }
 
     @Override
-    public @NonNull Turn turn() {
+    public Turn turn() {
         final Turn turn = this.turn;
 
         if (turn == null) {

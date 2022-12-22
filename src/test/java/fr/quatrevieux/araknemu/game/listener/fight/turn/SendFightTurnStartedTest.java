@@ -36,7 +36,6 @@ class SendFightTurnStartedTest extends FightBaseCase {
     private SendFightTurnStarted listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -44,7 +43,6 @@ class SendFightTurnStartedTest extends FightBaseCase {
         listener = new SendFightTurnStarted(fight);
     }
 
-    @Test
     void onTurnStopped() {
         FightTurn turn = new FightTurn(player.fighter(), fight, Duration.ofSeconds(30));
 

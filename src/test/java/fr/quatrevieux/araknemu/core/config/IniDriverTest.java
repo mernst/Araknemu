@@ -32,25 +32,21 @@ import static org.junit.jupiter.api.Assertions.*;
 class IniDriverTest {
     private IniDriver driver;
 
-    @BeforeEach
     void setUp() throws IOException {
         driver = new IniDriver(
             new Ini(new File("src/test/test_config.ini"))
         );
     }
 
-    @Test
     void has() {
         assertTrue(driver.has("realm"));
         assertFalse(driver.has("not_found"));
     }
 
-    @Test
     void get() {
         assertTrue(driver.get("realm") instanceof Profile.Section);
     }
 
-    @Test
     void pool() {
         Pool pool = driver.pool("realm");
 

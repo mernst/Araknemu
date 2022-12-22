@@ -26,7 +26,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SpellMoveTest extends GameBaseCase {
-    @Test
     void parse() {
         SpellMove move = new SpellMove.Parser().parse("123|5");
 
@@ -34,7 +33,6 @@ class SpellMoveTest extends GameBaseCase {
         assertEquals(5, move.position());
     }
 
-    @Test
     void parseInvalidPosition() {
         assertThrows(ParsePacketException.class, () -> new SpellMove.Parser().parse("123|64"));
         assertThrows(ParsePacketException.class, () -> new SpellMove.Parser().parse("123|-2"));

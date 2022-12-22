@@ -37,7 +37,6 @@ class RestrictionsTest extends GameBaseCase {
     private ExplorationPlayer exploration;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -46,7 +45,6 @@ class RestrictionsTest extends GameBaseCase {
         restrictions = new Restrictions(exploration);
     }
 
-    @Test
     void defaults() {
         assertTrue(restrictions.canAssault());
         assertTrue(restrictions.canChallenge());
@@ -59,7 +57,6 @@ class RestrictionsTest extends GameBaseCase {
         assertEquals(0, restrictions.toInt());
     }
 
-    @Test
     void refreshDefaults() {
         restrictions.refresh();
 
@@ -74,7 +71,6 @@ class RestrictionsTest extends GameBaseCase {
         assertEquals(8, restrictions.toInt());
     }
 
-    @Test
     void refreshWithoutChanges() {
         restrictions.refresh();
 
@@ -86,7 +82,6 @@ class RestrictionsTest extends GameBaseCase {
         assertNull(ref.get());
     }
 
-    @Test
     void refreshWithChallenge() {
         restrictions.refresh();
         exploration.player().restrictions().set(fr.quatrevieux.araknemu.game.player.Restrictions.Restriction.DENY_CHALLENGE);
@@ -102,7 +97,6 @@ class RestrictionsTest extends GameBaseCase {
         assertFalse(restrictions.canChallenge());
     }
 
-    @Test
     void refreshWithAssault() {
         restrictions.refresh();
         exploration.player().restrictions().set(fr.quatrevieux.araknemu.game.player.Restrictions.Restriction.DENY_ASSAULT);
@@ -118,7 +112,6 @@ class RestrictionsTest extends GameBaseCase {
         assertFalse(restrictions.canAssault());
     }
 
-    @Test
     void refreshWithAttack() {
         restrictions.refresh();
         exploration.player().restrictions().set(fr.quatrevieux.araknemu.game.player.Restrictions.Restriction.ALLOW_ATTACK);
@@ -134,7 +127,6 @@ class RestrictionsTest extends GameBaseCase {
         assertTrue(restrictions.canAttack());
     }
 
-    @Test
     void functionalRestrictionChangedChain() {
         requestStack.clear();
 

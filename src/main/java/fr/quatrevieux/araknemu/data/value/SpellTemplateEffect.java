@@ -27,14 +27,14 @@ import org.checkerframework.checker.index.qual.NonNegative;
  */
 public final class SpellTemplateEffect {
     private final int effect;
-    private final @NonNegative int min;
-    private final @NonNegative int max;
+    private final int min;
+    private final int max;
     private final int special;
-    private final @GTENegativeOne int duration;
-    private final @NonNegative int probability;
+    private final int duration;
+    private final int probability;
     private final String text;
 
-    public SpellTemplateEffect(int effect, @NonNegative int min, @NonNegative int max, int special, @GTENegativeOne int duration, @NonNegative int probability, String text) {
+    public SpellTemplateEffect(int effect, int min, int max, int special, int duration, int probability, String text) {
         this.effect = effect;
         this.min = min;
         this.max = max;
@@ -54,7 +54,7 @@ public final class SpellTemplateEffect {
     /**
      * Get the minimal jet value, or the first argument
      */
-    public @NonNegative int min() {
+    public int min() {
         return min;
     }
 
@@ -63,7 +63,7 @@ public final class SpellTemplateEffect {
      *
      * If the value is zero, the effect value is constant (min)
      */
-    public @NonNegative int max() {
+    public int max() {
         return max;
     }
 
@@ -82,7 +82,7 @@ public final class SpellTemplateEffect {
      * If this value is zero, the effect will be applied immediately
      * If the value is -1, the duration will be considered as infinite
      */
-    public @GTENegativeOne int duration() {
+    public int duration() {
         return duration;
     }
 
@@ -91,7 +91,7 @@ public final class SpellTemplateEffect {
      * If this value is zero, the effect will always be applied
      * For not null probability, only one effect will be choose across all "conditional" effects
      */
-    public @NonNegative int probability() {
+    public int probability() {
         return probability;
     }
 

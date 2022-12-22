@@ -39,7 +39,6 @@ class ShutdownServiceTest extends GameBaseCase {
     private ListenerAggregate dispatcher;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -54,7 +53,6 @@ class ShutdownServiceTest extends GameBaseCase {
     }
 
     @Override
-    @AfterEach
     public void tearDown() throws fr.quatrevieux.araknemu.core.di.ContainerException {
         try {
             super.tearDown();
@@ -63,21 +61,18 @@ class ShutdownServiceTest extends GameBaseCase {
         }
     }
 
-    @Test
     void now() throws InterruptedException {
         service.now();
 
         assertFalse(app.started());
     }
 
-    @Test
     void nowWithScheduled() {
         service.schedule(Duration.ofSeconds(1));
         assertThrows(IllegalStateException.class, service::now);
         service.cancel();
     }
 
-    @Test
     void schedule() throws InterruptedException {
         AtomicReference<ShutdownScheduled> ref = new AtomicReference<>();
         dispatcher.add(ShutdownScheduled.class, ref::set);
@@ -94,14 +89,12 @@ class ShutdownServiceTest extends GameBaseCase {
         assertFalse(app.started());
     }
 
-    @Test
     void scheduleAlreadyScheduled() {
         service.schedule(Duration.ofSeconds(1));
         assertThrows(IllegalStateException.class, () -> service.schedule(Duration.ofMillis(100)));
         service.cancel();
     }
 
-    @Test
     void cancel() {
         service.schedule(Duration.ofSeconds(1));
         assertTrue(service.cancel());
@@ -109,7 +102,6 @@ class ShutdownServiceTest extends GameBaseCase {
         assertFalse(service.cancel());
     }
 
-    @Test
     void shutdownShouldSendShutdownMessageAndCloseSessions() throws SQLException, InterruptedException {
         gamePlayer(true);
         service.now();

@@ -35,7 +35,7 @@ import java.util.List;
 public final class StringListHydrator implements ArgumentsHydrator {
     @Override
     @SuppressWarnings("unchecked")
-    public <@Nullable A> A hydrate(Command<A> command, @Nullable A commandArguments, CommandParser.Arguments parsedArguments) {
+    public <A> A hydrate(Command<A> command, A commandArguments, CommandParser.Arguments parsedArguments) {
         final List<String> inputArguments = parsedArguments.arguments().subList(1, parsedArguments.arguments().size());
 
         if (commandArguments == null) {
@@ -50,7 +50,7 @@ public final class StringListHydrator implements ArgumentsHydrator {
     }
 
     @Override
-    public <A> boolean supports(Command<A> command, @Nullable A commandArguments) {
+    public <A> boolean supports(Command<A> command, A commandArguments) {
         if (commandArguments != null && !(commandArguments instanceof List)) {
             return false;
         }

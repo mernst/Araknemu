@@ -31,7 +31,6 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UpdateSpellTest extends GameBaseCase {
-    @Test
     void generate() throws ContainerException, SQLException {
         dataSet.pushSpells();
 

@@ -34,7 +34,6 @@ class SendAdminAccessTest extends GameBaseCase {
     private GameAccount performer;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -43,7 +42,6 @@ class SendAdminAccessTest extends GameBaseCase {
         performer = makeSimpleGamePlayer(10, server.createSession(), true).account();
     }
 
-    @Test
     void onPermissionsGranted() throws Exception {
         account.grant(Permission.MANAGE_PLAYER);
         requestStack.clear();
@@ -53,7 +51,6 @@ class SendAdminAccessTest extends GameBaseCase {
         requestStack.assertLast(new TemporaryRightsGranted("ACCOUNT_10"));
     }
 
-    @Test
     void onPermissionsGrantedWithoutPerformer() throws Exception {
         account.grant(Permission.MANAGE_PLAYER);
         requestStack.clear();
@@ -63,7 +60,6 @@ class SendAdminAccessTest extends GameBaseCase {
         requestStack.assertLast(new TemporaryRightsGranted("System"));
     }
 
-    @Test
     void onPermissionsRevoked() throws Exception {
         requestStack.clear();
 
@@ -72,7 +68,6 @@ class SendAdminAccessTest extends GameBaseCase {
         requestStack.assertLast(new TemporaryRightsRevoked("ACCOUNT_10"));
     }
 
-    @Test
     void onPermissionsRevokedWithoutPerformer() throws Exception {
         requestStack.clear();
 

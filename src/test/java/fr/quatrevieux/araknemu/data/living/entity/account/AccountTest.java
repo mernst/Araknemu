@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AccountTest {
-    @Test
     void hashAndEquals() {
         Account account = new Account(15,"foo", "bar", "baz");
 

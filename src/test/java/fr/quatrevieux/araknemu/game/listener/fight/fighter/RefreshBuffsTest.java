@@ -43,7 +43,6 @@ class RefreshBuffsTest extends FightBaseCase {
     private FightTurn turn;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -55,7 +54,6 @@ class RefreshBuffsTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onTurnTerminated() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 

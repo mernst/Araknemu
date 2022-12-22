@@ -41,7 +41,6 @@ class AddItemsTest extends FightBaseCase {
     private PlayerFighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -54,7 +53,6 @@ class AddItemsTest extends FightBaseCase {
         fighter = player.fighter();
     }
 
-    @Test
     void applyWithoutItems() {
         DropReward reward = new DropReward(RewardType.WINNER, fighter, Collections.emptyList());
 
@@ -62,7 +60,6 @@ class AddItemsTest extends FightBaseCase {
         assertEquals(0, player.inventory().weight());
     }
 
-    @Test
     void applyWithOneItem() {
         Map<Integer, Integer> items = new HashMap<>();
         items.put(39, 1);
@@ -76,7 +73,6 @@ class AddItemsTest extends FightBaseCase {
         assertEquals(1, player.inventory().get(1).quantity());
     }
 
-    @Test
     void applyWithTwoSameItemsWithStats() {
         DropReward reward = new DropReward(RewardType.WINNER, fighter, Collections.emptyList());
         reward.addItem(2411, 2);
@@ -89,7 +85,6 @@ class AddItemsTest extends FightBaseCase {
         assertEquals(1, player.inventory().get(2).quantity());
     }
 
-    @Test
     void applyWithMultipleItems() {
         DropReward reward = new DropReward(RewardType.WINNER, fighter, Collections.emptyList());
         reward.addItem(39);
@@ -102,7 +97,6 @@ class AddItemsTest extends FightBaseCase {
         assertEquals(2425, player.inventory().get(3).item().template().id());
     }
 
-    @Test
     void applyOnMonster() {
         MonsterFighter fighter = (MonsterFighter) fight.team(1).fighters().stream().findFirst().get();
 

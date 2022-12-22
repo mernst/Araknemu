@@ -35,7 +35,6 @@ class SaveSubscriptionTest extends GameBaseCase {
     private SaveSubscription handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -44,7 +43,6 @@ class SaveSubscriptionTest extends GameBaseCase {
         handler = new SaveSubscription();
     }
 
-    @Test
     void handleAddSubscription() throws Exception {
         gamePlayer().subscriptions().clear();
 
@@ -70,7 +68,6 @@ class SaveSubscriptionTest extends GameBaseCase {
         );
     }
 
-    @Test
     void handleRemoveSubscriptions() throws Exception {
         handler.handle(session, new SubscribeChannels(false, Arrays.asList(
             ChannelType.PRIVATE,

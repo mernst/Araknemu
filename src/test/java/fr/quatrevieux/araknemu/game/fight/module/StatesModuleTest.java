@@ -33,7 +33,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StatesModuleTest extends FightBaseCase {
-    @Test
     void listeners() throws Exception {
         Fight fight = createFight(false);
 
@@ -50,7 +49,6 @@ class StatesModuleTest extends FightBaseCase {
         assertFalse(fight.dispatcher().has(SendState.class));
     }
 
-    @Test
     void pushStateEffect() throws Exception {
         Fight fight = createFight(false);
 
@@ -65,7 +63,6 @@ class StatesModuleTest extends FightBaseCase {
         requestStack.assertLast(ActionEffect.addState(other.fighter(), 0));
     }
 
-    @Test
     void removeStateEffect() throws Exception {
         Fight fight = createFight(false);
 

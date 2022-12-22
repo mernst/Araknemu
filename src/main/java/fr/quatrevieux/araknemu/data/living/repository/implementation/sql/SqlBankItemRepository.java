@@ -165,7 +165,7 @@ final class SqlBankItemRepository implements BankItemRepository {
     }
 
     @Override
-    public @NonNegative int count(AccountBank bank) throws RepositoryException {
+    public int count(AccountBank bank) throws RepositoryException {
         return Asserter.castNonNegative(utils.aggregate(
             "SELECT COUNT(*) FROM BANK_ITEM WHERE ACCOUNT_ID = ? AND SERVER_ID = ?",
             stmt -> {

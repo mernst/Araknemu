@@ -35,7 +35,7 @@ import org.checkerframework.dataflow.qual.Pure;
 public final class RealmSession extends AbstractDelegatedSession implements AccountSession<AuthenticationAccount> {
     private final ConnectionKey key;
 
-    private @Nullable AuthenticationAccount account;
+    private AuthenticationAccount account;
 
     public RealmSession(Session session) {
         super(session);
@@ -51,26 +51,22 @@ public final class RealmSession extends AbstractDelegatedSession implements Acco
     }
 
     @Override
-    @EnsuresNonNull({"account()", "this.account"})
     @SuppressWarnings("contracts.postcondition")
     public void attach(AuthenticationAccount account) {
         this.account = account;
     }
 
     @Override
-    public @Nullable AuthenticationAccount detach() {
+    public AuthenticationAccount detach() {
         return account = null;
     }
 
     @Override
-    @Pure
-    public @Nullable AuthenticationAccount account() {
+    public AuthenticationAccount account() {
         return account;
     }
 
     @Override
-    @Pure
-    @EnsuresNonNullIf(expression = {"account()", "this.account"}, result = true)
     @SuppressWarnings({"contracts.postcondition", "contracts.conditional.postcondition.true.override", "contracts.conditional.postcondition"})
     public boolean isLogged() {
         return account != null;

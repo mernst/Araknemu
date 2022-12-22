@@ -34,10 +34,10 @@ public final class Teleport implements CellAction {
     public static final int ACTION_ID = 0;
 
     private final ExplorationMapService service;
-    private final @NonNegative int cell;
+    private final int cell;
     private final Position target;
 
-    public Teleport(ExplorationMapService service, @NonNegative int cell, Position target) {
+    public Teleport(ExplorationMapService service, int cell, Position target) {
         this.service = service;
         this.cell = cell;
         this.target = target;
@@ -65,7 +65,7 @@ public final class Teleport implements CellAction {
     }
 
     @Override
-    public @NonNegative int cell() {
+    public int cell() {
         return cell;
     }
 }

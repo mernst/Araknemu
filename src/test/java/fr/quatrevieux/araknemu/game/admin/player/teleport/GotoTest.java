@@ -36,7 +36,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GotoTest extends CommandTestCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -54,7 +53,6 @@ class GotoTest extends CommandTestCase {
         });
     }
 
-    @Test
     void executeMapOnExplorationPlayer() throws ContainerException, SQLException, AdminException {
         ExplorationPlayer player = explorationPlayer();
 
@@ -64,7 +62,6 @@ class GotoTest extends CommandTestCase {
         assertOutput("Teleport Bob to [3,6] (10340) at cell 15");
     }
 
-    @Test
     void executePositionOnExplorationPlayer() throws ContainerException, SQLException, AdminException {
         ExplorationPlayer player = explorationPlayer();
 
@@ -74,7 +71,6 @@ class GotoTest extends CommandTestCase {
         assertOutput("Teleport Bob to [3,6] (10340) at cell 15");
     }
 
-    @Test
     void executePlayerOnExplorationPlayer() throws Exception {
         ExplorationPlayer other = makeOtherExplorationPlayer();
         ExplorationPlayer player = explorationPlayer();
@@ -85,7 +81,6 @@ class GotoTest extends CommandTestCase {
         assertOutput("Teleport Bob to [-51,10] (10540) at cell 15");
     }
 
-    @Test
     void executeCellOnExplorationPlayer() throws Exception {
         ExplorationPlayer player = explorationPlayer();
 
@@ -96,7 +91,6 @@ class GotoTest extends CommandTestCase {
         assertOutput("Teleport Bob to [-4,3] (10300) at cell 266");
     }
 
-    @Test
     void executeMapAndCell() throws ContainerException, SQLException, AdminException {
         ExplorationPlayer player = explorationPlayer();
 
@@ -107,7 +101,6 @@ class GotoTest extends CommandTestCase {
         assertOutput("Teleport Bob to [3,6] (10340) at cell 42");
     }
 
-    @Test
     void executeNotExploring() throws ContainerException, SQLException, AdminException {
         assertThrows(AdminException.class, () -> execute("goto", "map", "10340"));
 
@@ -115,7 +108,6 @@ class GotoTest extends CommandTestCase {
         assertEquals(200, gamePlayer().position().cell());
     }
 
-    @Test
     void executeBusy() throws ContainerException, SQLException {
         ExplorationPlayer player = explorationPlayer();
         player.interactions().start(new Interaction() {
@@ -136,7 +128,6 @@ class GotoTest extends CommandTestCase {
         assertEquals(279, gamePlayer().position().cell());
     }
 
-    @Test
     void executeNotExploringForce() throws ContainerException, SQLException, AdminException {
         execute("goto", "map", "10340", "--force");
 
@@ -147,7 +138,6 @@ class GotoTest extends CommandTestCase {
         );
     }
 
-    @Test
     void executeBusyForce() throws ContainerException, SQLException, AdminException {
         ExplorationPlayer player = explorationPlayer();
         player.interactions().start(new Interaction() {
@@ -174,7 +164,6 @@ class GotoTest extends CommandTestCase {
         );
     }
 
-    @Test
     void executeAutoResolveMap() throws ContainerException, SQLException, AdminException {
         ExplorationPlayer player = explorationPlayer();
 
@@ -183,7 +172,6 @@ class GotoTest extends CommandTestCase {
         assertEquals(10340, player.map().id());
     }
 
-    @Test
     void executeAutoResolvePosition() throws ContainerException, SQLException, AdminException {
         ExplorationPlayer player = explorationPlayer();
 
@@ -192,7 +180,6 @@ class GotoTest extends CommandTestCase {
         assertEquals(10340, player.map().id());
     }
 
-    @Test
     void executeAutoResolvePlayer() throws Exception {
         ExplorationPlayer other = makeOtherExplorationPlayer();
         ExplorationPlayer player = explorationPlayer();
@@ -202,7 +189,6 @@ class GotoTest extends CommandTestCase {
         assertEquals(10540, player.map().id());
     }
 
-    @Test
     void invalidArguments() throws SQLException {
         explorationPlayer();
 
@@ -211,7 +197,6 @@ class GotoTest extends CommandTestCase {
         assertThrows(AdminException.class, () -> execute("goto", "invalid"));
     }
 
-    @Test
     void help() {
         assertHelp(
             "goto - Teleport the player to the desired location",

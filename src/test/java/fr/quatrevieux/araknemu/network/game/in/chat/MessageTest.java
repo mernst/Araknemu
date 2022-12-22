@@ -29,17 +29,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class MessageTest {
     private Message.Parser parser;
 
-    @BeforeEach
     void setUp() {
         parser = new Message.Parser();
     }
 
-    @Test
     void parseInvalid() {
         assertThrows(ParsePacketException.class, () -> parser.parse("invalid"));
     }
 
-    @Test
     void parseWithGlobalChannel() {
         Message message = parser.parse("*|My message|my items");
 
@@ -49,7 +46,6 @@ class MessageTest {
         assertEquals("my items", message.items());
     }
 
-    @Test
     void parseWisp() {
         Message message = parser.parse("Bob|My message|my items");
 
@@ -59,7 +55,6 @@ class MessageTest {
         assertEquals("my items", message.items());
     }
 
-    @Test
     void parseWithoutItem() {
         Message message = parser.parse("Bob|My message|");
 

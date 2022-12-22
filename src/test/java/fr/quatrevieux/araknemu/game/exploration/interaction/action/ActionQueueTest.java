@@ -32,7 +32,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class ActionQueueTest extends GameBaseCase {
     private ActionQueue queue;
 
-    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -40,7 +39,6 @@ class ActionQueueTest extends GameBaseCase {
         queue = new ActionQueue();
     }
 
-    @Test
     void pushFirstWillRunAndSetBusy() {
         BlockingAction action = Mockito.spy(MyBlockingAction.class);
 
@@ -50,7 +48,6 @@ class ActionQueueTest extends GameBaseCase {
         assertTrue(queue.isBusy());
     }
 
-    @Test
     void pushWillSetIdOnTheFirst() {
         BlockingAction a1 = Mockito.spy(MyBlockingAction.class);
         BlockingAction a2 = Mockito.spy(MyBlockingAction.class);
@@ -65,7 +62,6 @@ class ActionQueueTest extends GameBaseCase {
         Mockito.verify(a3, Mockito.never()).setId(Mockito.anyInt());
     }
 
-    @Test
     void pushTwoWillStartOnlyTheFirstOnBlocking() {
         BlockingAction a1 = Mockito.spy(MyBlockingAction.class);
         BlockingAction a2 = Mockito.spy(MyBlockingAction.class);
@@ -79,7 +75,6 @@ class ActionQueueTest extends GameBaseCase {
         assertTrue(queue.isBusy());
     }
 
-    @Test
     void endWithOneBlockingActionWillTerminateTheCurrentActionAndClearTheQueue() {
         BlockingAction action = Mockito.spy(MyBlockingAction.class);
         Mockito.when(action.id()).thenReturn(1);
@@ -91,7 +86,6 @@ class ActionQueueTest extends GameBaseCase {
         assertFalse(queue.isBusy());
     }
 
-    @Test
     void endWithTwoActionWillStartTheNextAction() {
         BlockingAction a1 = Mockito.spy(MyBlockingAction.class);
         BlockingAction a2 = Mockito.spy(MyBlockingAction.class);
@@ -108,7 +102,6 @@ class ActionQueueTest extends GameBaseCase {
         assertTrue(queue.isBusy());
     }
 
-    @Test
     void startWithExceptionWillRemoveTheAction() {
         BlockingAction action = Mockito.spy(MyBlockingAction.class);
 
@@ -118,7 +111,6 @@ class ActionQueueTest extends GameBaseCase {
         assertFalse(queue.isBusy());
     }
 
-    @Test
     void startWithExceptionWillExecuteTheNextAction() {
         BlockingAction a1 = Mockito.spy(MyBlockingAction.class);
         BlockingAction a2 = Mockito.spy(MyBlockingAction.class);
@@ -143,12 +135,10 @@ class ActionQueueTest extends GameBaseCase {
         assertFalse(queue.isBusy());
     }
 
-    @Test
     void endWithoutAction() {
         assertThrows(NoSuchElementException.class, () -> queue.end(1));
     }
 
-    @Test
     void endWithBadId() {
         BlockingAction a1 = Mockito.spy(MyBlockingAction.class);
         Mockito.when(a1.id()).thenReturn(1);
@@ -158,12 +148,10 @@ class ActionQueueTest extends GameBaseCase {
         assertThrows(NoSuchElementException.class, () -> queue.end(15), "The action ID do not corresponds");
     }
 
-    @Test
     void cancelWithoutAction() {
         assertThrows(NoSuchElementException.class, () -> queue.cancel(1, "arg"));
     }
 
-    @Test
     void cancelWithBadId() {
         BlockingAction a1 = Mockito.spy(MyBlockingAction.class);
         Mockito.when(a1.id()).thenReturn(1);
@@ -173,7 +161,6 @@ class ActionQueueTest extends GameBaseCase {
         assertThrows(NoSuchElementException.class, () -> queue.cancel(15, "arg"), "The action ID do not corresponds");
     }
 
-    @Test
     void cancelWillClearTheQueue() {
         BlockingAction a1 = Mockito.spy(MyBlockingAction.class);
         BlockingAction a2 = Mockito.spy(MyBlockingAction.class);
@@ -192,7 +179,6 @@ class ActionQueueTest extends GameBaseCase {
         assertFalse(queue.isBusy());
     }
 
-    @Test
     void pushNonBlockingActionWillExecuteAll() {
         Action a1 = Mockito.mock(Action.class);
         Action a2 = Mockito.mock(Action.class);
@@ -209,7 +195,6 @@ class ActionQueueTest extends GameBaseCase {
         assertFalse(queue.isBusy());
     }
 
-    @Test
     void nonBlockingActionAfterBlockingWillBeExecuteAtEnd() {
         BlockingAction a1 = Mockito.spy(MyBlockingAction.class);
         Action a2 = Mockito.mock(Action.class);
@@ -226,12 +211,10 @@ class ActionQueueTest extends GameBaseCase {
         assertFalse(queue.isBusy());
     }
 
-    @Test
     void stopWithoutActions() {
         queue.stop();
     }
 
-    @Test
     void stopWithOnlyOneCurrentAction() {
         BlockingAction a1 = Mockito.spy(MyBlockingAction.class);
 
@@ -243,7 +226,6 @@ class ActionQueueTest extends GameBaseCase {
         Mockito.verify(a1).cancel(null);
     }
 
-    @Test
     void stopWithPendingAction() {
         BlockingAction a1 = Mockito.spy(MyBlockingAction.class);
         Action a2 = Mockito.mock(Action.class);

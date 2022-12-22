@@ -35,7 +35,7 @@ public final class AskRegionalVersion implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "AV";
         }
     }

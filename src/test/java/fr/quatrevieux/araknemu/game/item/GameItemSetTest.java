@@ -36,7 +36,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class GameItemSetTest extends TestCase {
     private GameItemSet itemSet;
 
-    @BeforeEach
     void setUp() {
         itemSet = new GameItemSet(
             new ItemSet(1, "My itemset", new ArrayList<>()),
@@ -55,13 +54,11 @@ class GameItemSetTest extends TestCase {
         );
     }
 
-    @Test
     void getters() {
         assertEquals(1, itemSet.id());
         assertEquals("My itemset", itemSet.name());
     }
 
-    @Test
     void bonusWithLowItemNumber() {
         GameItemSet.Bonus bonus = itemSet.bonus(1);
 
@@ -70,7 +67,6 @@ class GameItemSetTest extends TestCase {
         assertCount(0, bonus.specials());
     }
 
-    @Test
     void bonus() {
         GameItemSet.Bonus bonus = itemSet.bonus(2);
 
@@ -84,7 +80,6 @@ class GameItemSetTest extends TestCase {
         );
     }
 
-    @Test
     void bonusWithHighItemNumber() {
         GameItemSet.Bonus bonus = itemSet.bonus(8);
 

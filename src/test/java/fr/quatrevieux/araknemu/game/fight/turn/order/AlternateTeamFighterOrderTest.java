@@ -302,7 +302,6 @@ class AlternateTeamFighterOrderTest extends TestCase {
 
     }
 
-    @Test
     void computeWithTwoFighters() {
         List<Fighter> fighters = strategy.compute(
             Arrays.asList(
@@ -316,7 +315,6 @@ class AlternateTeamFighterOrderTest extends TestCase {
         assertEquals(1, fighters.get(1).id());
     }
 
-    @Test
     void computeWithMultipleFightersWithOnePerTeam() {
         List<Fighter> fighters = strategy.compute(
             Arrays.asList(
@@ -336,7 +334,6 @@ class AlternateTeamFighterOrderTest extends TestCase {
         assertEquals(1, fighters.get(4).id());
     }
 
-    @Test
     void computeWithMultipleFightersWithTwoTeamOfSameSize() {
         List<Fighter> fighters = strategy.compute(
             Arrays.asList(
@@ -362,7 +359,6 @@ class AlternateTeamFighterOrderTest extends TestCase {
         assertEquals(1, fighters.get(5).id());
     }
 
-    @Test
     void computeWithMultipleFightersWithTwoTeamWithDifferentSizeWillSetFighterOfBiggestTeamAtTheEnd() {
         List<Fighter> fighters = strategy.compute(
             Arrays.asList(

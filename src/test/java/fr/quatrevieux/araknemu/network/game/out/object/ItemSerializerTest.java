@@ -37,7 +37,6 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ItemSerializerTest {
-    @Test
     void itemWithStats() {
         assertEquals(
             "c~27~5~0~7e#2#0#0#0d0+2",

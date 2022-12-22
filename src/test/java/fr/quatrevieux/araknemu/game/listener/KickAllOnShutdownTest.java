@@ -35,7 +35,6 @@ class KickAllOnShutdownTest extends GameBaseCase {
     private GameService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -43,7 +42,6 @@ class KickAllOnShutdownTest extends GameBaseCase {
         listener = new KickAllOnShutdown();
     }
 
-    @Test
     void shutdownShouldSendShutdownMessageAndCloseSessions() throws SQLException {
         gamePlayer(true);
 

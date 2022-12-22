@@ -29,7 +29,6 @@ class PlayerFighterPropertiesTest extends FightBaseCase {
     private PlayerFighterProperties properties;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -37,7 +36,6 @@ class PlayerFighterPropertiesTest extends FightBaseCase {
         properties = new PlayerFighterProperties(player.fighter(), player.properties());
     }
 
-    @Test
     void getters() {
         assertInstanceOf(PlayerFighterCharacteristics.class, properties.characteristics());
         assertInstanceOf(PlayerFighterLife.class, properties.life());

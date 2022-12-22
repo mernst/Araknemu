@@ -34,7 +34,6 @@ class ItemTemplateRepositoryCacheTest extends GameBaseCase {
     private ItemTemplateRepositoryCache repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -45,12 +44,10 @@ class ItemTemplateRepositoryCacheTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(-5));
     }
 
-    @Test
     void getSame() {
         assertSame(
             repository.get(40),
@@ -58,7 +55,6 @@ class ItemTemplateRepositoryCacheTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getUsingEntity() {
         assertSame(
             repository.get(new ItemTemplate(40, 0, null, 0, null, 0, null, 0, null, 0)),
@@ -66,19 +62,16 @@ class ItemTemplateRepositoryCacheTest extends GameBaseCase {
         );
     }
 
-    @Test
     void hasNotLoaded() {
         assertTrue(repository.has(new ItemTemplate(40, 0, null, 0, null, 0, null, 0, null, 0)));
         assertFalse(repository.has(new ItemTemplate(-5, 0, null, 0, null, 0, null, 0, null, 0)));
     }
 
-    @Test
     void hasCached() {
         repository.get(40);
         assertTrue(repository.has(new ItemTemplate(40, 0, null, 0, null, 0, null, 0, null, 0)));
     }
 
-    @Test
     void load() {
         Collection<ItemTemplate> templates = repository.load();
 

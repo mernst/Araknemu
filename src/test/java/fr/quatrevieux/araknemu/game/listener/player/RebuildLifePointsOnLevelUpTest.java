@@ -32,7 +32,6 @@ class RebuildLifePointsOnLevelUpTest extends GameBaseCase {
     private RebuildLifePointsOnLevelUp listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -43,7 +42,6 @@ class RebuildLifePointsOnLevelUpTest extends GameBaseCase {
         player.dispatcher().remove(RebuildLifePointsOnLevelUp.class);
     }
 
-    @Test
     void onCharacteristicsChanged() {
         player.properties().experience().add(860000);
         listener.on(new PlayerLevelUp(51));

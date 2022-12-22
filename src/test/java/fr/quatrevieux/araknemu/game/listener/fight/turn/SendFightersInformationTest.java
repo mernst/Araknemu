@@ -33,7 +33,6 @@ class SendFightersInformationTest extends FightBaseCase {
     private SendFightersInformation listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -41,7 +40,6 @@ class SendFightersInformationTest extends FightBaseCase {
         listener = new SendFightersInformation(fight);
     }
 
-    @Test
     void onNextTurnInitiated() {
         listener.on(new NextTurnInitiated());
 

@@ -62,11 +62,6 @@ public final class AddXp extends AbstractCommand<AddXp.Arguments> {
     }
 
     public static final class Arguments {
-        @Argument(
-            required = true,
-            metaVar = "QUANTITY",
-            usage = "The experience quantity to add. Must be an unsigned number."
-        )
-        private @Positive long quantity;
+        private long quantity;
     }
 }

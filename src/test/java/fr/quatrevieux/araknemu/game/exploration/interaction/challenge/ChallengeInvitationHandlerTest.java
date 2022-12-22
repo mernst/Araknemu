@@ -46,7 +46,6 @@ class ChallengeInvitationHandlerTest extends GameBaseCase {
     private Invitation invitation;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -61,13 +60,11 @@ class ChallengeInvitationHandlerTest extends GameBaseCase {
         invitation = handler.invitation(initiator, challenger);
     }
 
-    @Test
     void getters() {
         assertSame(initiator, invitation.initiator());
         assertSame(challenger, invitation.target());
     }
 
-    @Test
     void startInitiatorBusy() {
         Interaction interaction = Mockito.mock(Interaction.class);
         Mockito.when(interaction.start()).thenReturn(interaction);
@@ -82,7 +79,6 @@ class ChallengeInvitationHandlerTest extends GameBaseCase {
         );
     }
 
-    @Test
     void startChallengerBusy() {
         Interaction interaction = Mockito.mock(Interaction.class);
         Mockito.when(interaction.start()).thenReturn(interaction);
@@ -96,7 +92,6 @@ class ChallengeInvitationHandlerTest extends GameBaseCase {
         );
     }
 
-    @Test
     void startInitiatorCantChallenge() {
         initiator.player().restrictions().set(Restrictions.Restriction.DENY_CHALLENGE);
 
@@ -107,7 +102,6 @@ class ChallengeInvitationHandlerTest extends GameBaseCase {
         );
     }
 
-    @Test
     void startChallengerCantChallenge() {
         challenger.player().restrictions().set(Restrictions.Restriction.DENY_CHALLENGE);
         challenger.restrictions().refresh();
@@ -119,7 +113,6 @@ class ChallengeInvitationHandlerTest extends GameBaseCase {
         );
     }
 
-    @Test
     void startNotOnSameMap() throws ContainerException {
         challenger.changeMap(
             container.get(ExplorationMapService.class).load(10540),
@@ -133,7 +126,6 @@ class ChallengeInvitationHandlerTest extends GameBaseCase {
         );
     }
 
-    @Test
     void startNotOnMap() throws ContainerException {
         initiator.leave();
 
@@ -144,7 +136,6 @@ class ChallengeInvitationHandlerTest extends GameBaseCase {
         );
     }
 
-    @Test
     void startCannotLaunchFightOnMap() throws ContainerException {
         initiator.changeMap(container.get(ExplorationMapService.class).load(10300), 132);
         challenger.changeMap(container.get(ExplorationMapService.class).load(10300), 132);
@@ -156,7 +147,6 @@ class ChallengeInvitationHandlerTest extends GameBaseCase {
         );
     }
 
-    @Test
     void startSuccess() {
         Interaction interaction = invitation.start();
 
@@ -169,7 +159,6 @@ class ChallengeInvitationHandlerTest extends GameBaseCase {
         );
     }
 
-    @Test
     void stop() {
         initiator.interactions().start(invitation);
         invitation.stop();
@@ -178,7 +167,6 @@ class ChallengeInvitationHandlerTest extends GameBaseCase {
         assertFalse(challenger.interactions().interacting());
     }
 
-    @Test
     void acceptInitiatorLeaveMap() {
         initiator.interactions().start(invitation);
 

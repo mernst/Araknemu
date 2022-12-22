@@ -26,7 +26,6 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LocalExchangeObjectTest {
-    @Test
     void generateAddObject() {
         ItemEntry entry = Mockito.mock(ItemEntry.class);
         Mockito.when(entry.id()).thenReturn(5);
@@ -34,7 +33,6 @@ class LocalExchangeObjectTest {
         assertEquals("EMKO+5|3", new LocalExchangeObject(entry, 3).toString());
     }
 
-    @Test
     void generateRemoveObject() {
         ItemEntry entry = Mockito.mock(ItemEntry.class);
         Mockito.when(entry.id()).thenReturn(5);

@@ -35,7 +35,6 @@ class ServerContextTest extends GameBaseCase {
     private ServerContext context;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -54,7 +53,6 @@ class ServerContextTest extends GameBaseCase {
         );
     }
 
-    @Test
     void commands() throws CommandNotFoundException {
         assertInstanceOf(Online.class, context.command("online"));
 

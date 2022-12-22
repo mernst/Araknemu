@@ -49,5 +49,5 @@ public interface CastConstraintValidator<C extends Castable> {
      *
      * @return The error if constraint failed, or null
      */
-    public @Nullable Error validate(Turn turn, C castable, BattlefieldCell target);
+    public Error validate(Turn turn, C castable, BattlefieldCell target);
 }

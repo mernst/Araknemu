@@ -36,7 +36,6 @@ class ChallengeActionsFactoriesTest extends FightBaseCase {
     private ExplorationActionRegistry factory;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -45,7 +44,6 @@ class ChallengeActionsFactoriesTest extends FightBaseCase {
         dataSet.pushMaps().pushSubAreas().pushAreas();
     }
 
-    @Test
     void ask() throws Exception {
         ExplorationPlayer other = new ExplorationPlayer(this.other);
 
@@ -59,7 +57,6 @@ class ChallengeActionsFactoriesTest extends FightBaseCase {
         assertArrayEquals(new Object[] {other.id()}, action.arguments());
     }
 
-    @Test
     void accept() throws Exception {
         ExplorationPlayer other = new ExplorationPlayer(this.other);
 
@@ -73,7 +70,6 @@ class ChallengeActionsFactoriesTest extends FightBaseCase {
         assertArrayEquals(new Object[] {other.id()}, action.arguments());
     }
 
-    @Test
     void refuse() throws Exception {
         ExplorationPlayer other = new ExplorationPlayer(this.other);
 
@@ -87,7 +83,6 @@ class ChallengeActionsFactoriesTest extends FightBaseCase {
         assertArrayEquals(new Object[] {other.id()}, action.arguments());
     }
 
-    @Test
     void missingTarget() throws Exception {
         ExplorationPlayer other = new ExplorationPlayer(this.other);
 

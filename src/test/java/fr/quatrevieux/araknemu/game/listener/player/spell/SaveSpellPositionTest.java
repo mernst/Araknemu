@@ -34,7 +34,6 @@ class SaveSpellPositionTest extends GameBaseCase {
     private SaveSpellPosition listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -45,7 +44,6 @@ class SaveSpellPositionTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onSpellMoved() throws ContainerException {
         PlayerSpell entity = new PlayerSpell(1, 2, true, 5, 12);
 

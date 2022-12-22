@@ -35,7 +35,6 @@ class SendSpellBoostedTest extends FightBaseCase {
     private SendSpellBoosted listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -44,14 +43,12 @@ class SendSpellBoostedTest extends FightBaseCase {
         listener = new SendSpellBoosted(player.fighter());
     }
 
-    @Test
     void onSpellBoostChanged() {
         listener.on(new SpellBoostChanged(3, SpellsBoosts.Modifier.DAMAGE, 10));
 
         requestStack.assertLast(new SpellBoost(3, SpellsBoosts.Modifier.DAMAGE, 10));
     }
 
-    @Test
     void onSpellBoostChangedWithBaseSpellBoost() {
         player.properties().spells().boosts().boost(3, SpellsBoosts.Modifier.DAMAGE, 5);
         listener.on(new SpellBoostChanged(3, SpellsBoosts.Modifier.DAMAGE, 10));
@@ -59,7 +56,6 @@ class SendSpellBoostedTest extends FightBaseCase {
         requestStack.assertLast(new SpellBoost(3, SpellsBoosts.Modifier.DAMAGE, 15));
     }
 
-    @Test
     void functional() {
         player.fighter().spells().boost(3, SpellsBoosts.Modifier.DAMAGE, 10);
         requestStack.assertLast(new SpellBoost(3, SpellsBoosts.Modifier.DAMAGE, 10));

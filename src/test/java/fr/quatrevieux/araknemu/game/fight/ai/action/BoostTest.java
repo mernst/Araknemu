@@ -33,14 +33,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BoostTest extends AiBaseCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         dataSet.pushFunctionalSpells();
     }
 
-    @Test
     void success() {
         action = Boost.self(container.get(Simulator.class));
 
@@ -52,7 +50,6 @@ class BoostTest extends AiBaseCase {
         assertCast(126, 122);
     }
 
-    @Test
     void notEnoughAP() {
         action = Boost.self(container.get(Simulator.class));
 
@@ -66,7 +63,6 @@ class BoostTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void notAP() {
         action = Boost.self(container.get(Simulator.class));
 
@@ -79,7 +75,6 @@ class BoostTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void withAreaSpell() {
         action = Boost.self(container.get(Simulator.class));
 
@@ -97,7 +92,6 @@ class BoostTest extends AiBaseCase {
         assertNotInCastEffectArea(125);
     }
 
-    @Test
     void selfBoostShouldIgnoreSpellWithoutDelay() throws NoSuchFieldException, IllegalAccessException {
         action = Boost.self(container.get(Simulator.class));
 
@@ -111,7 +105,6 @@ class BoostTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void allyBoostShouldAllowSpellWithoutDelay() throws NoSuchFieldException, IllegalAccessException {
         action = Boost.allies(container.get(Simulator.class));
 
@@ -126,7 +119,6 @@ class BoostTest extends AiBaseCase {
         assertCast(148, 136);
     }
 
-    @Test
     void allyBoostShouldShouldIgnoreBoostSpellIfGeneratesTooManyDamage() throws NoSuchFieldException, IllegalAccessException {
         action = Boost.allies(container.get(Simulator.class));
 
@@ -151,7 +143,6 @@ class BoostTest extends AiBaseCase {
         assertCast(145, 122);
     }
 
-    @Test
     void allyBoostShouldAllowsDamageIfLow() throws NoSuchFieldException, IllegalAccessException {
         action = Boost.allies(container.get(Simulator.class));
 
@@ -168,7 +159,6 @@ class BoostTest extends AiBaseCase {
         assertInCastEffectArea(136);
     }
 
-    @Test
     void allyBoostShouldFavorBoostWithoutDamage() throws NoSuchFieldException, IllegalAccessException {
         action = Boost.allies(container.get(Simulator.class));
 
@@ -185,7 +175,6 @@ class BoostTest extends AiBaseCase {
         assertCast(148, 136);
     }
 
-    @Test
     void allyBoostShouldShouldIgnoreBoostSpellIfKillAlly() throws NoSuchFieldException, IllegalAccessException {
         action = Boost.allies(container.get(Simulator.class));
 
@@ -201,7 +190,6 @@ class BoostTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void scoreShouldHandleSpellAPCost() {
         Boost action = Boost.self(container.get(Simulator.class));
 

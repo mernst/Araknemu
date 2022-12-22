@@ -25,7 +25,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SpellBoostTest {
-    @Test
     void generate() {
         assertEquals(
             "SB287;12;25",

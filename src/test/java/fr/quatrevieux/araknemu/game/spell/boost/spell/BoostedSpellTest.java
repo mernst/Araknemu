@@ -38,7 +38,6 @@ class BoostedSpellTest extends GameBaseCase {
     private MapSpellModifiers modifiers;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,7 +51,6 @@ class BoostedSpellTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getters() {
         assertEquals(2, spell.id());
         assertEquals(1, spell.level());
@@ -62,7 +60,6 @@ class BoostedSpellTest extends GameBaseCase {
         assertInstanceOf(BoostedSpellConstraints.class, spell.constraints());
     }
 
-    @Test
     void apCost() {
         assertEquals(3, spell.apCost());
 
@@ -71,7 +68,6 @@ class BoostedSpellTest extends GameBaseCase {
         assertEquals(1, spell.apCost());
     }
 
-    @Test
     void criticalHit() {
         assertEquals(50, spell.criticalHit());
 
@@ -80,7 +76,6 @@ class BoostedSpellTest extends GameBaseCase {
         assertEquals(20, spell.criticalHit());
     }
 
-    @Test
     void modifiableRange() {
         assertTrue(spell.modifiableRange());
 
@@ -88,7 +83,6 @@ class BoostedSpellTest extends GameBaseCase {
         assertTrue(spell.modifiableRange());
     }
 
-    @Test
     void effects() {
         assertContainsOnly(BoostedSpellEffect.class, spell.effects());
 
@@ -102,7 +96,6 @@ class BoostedSpellTest extends GameBaseCase {
         assertEquals(5, spell.effects().get(1).boost());
     }
 
-    @Test
     void criticalEffects() {
         assertContainsOnly(BoostedSpellEffect.class, spell.criticalEffects());
 

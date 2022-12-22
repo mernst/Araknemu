@@ -34,7 +34,6 @@ class ClearFighterTest extends FightBaseCase {
     private Fighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -43,7 +42,6 @@ class ClearFighterTest extends FightBaseCase {
         fighter = player.fighter();
     }
 
-    @Test
     void onFighterRemoved() {
         listener.on(new FighterRemoved(fighter, fight));
 

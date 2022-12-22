@@ -38,7 +38,6 @@ class InitializeGameTest extends GameBaseCase {
     private ExplorationPlayer player;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,7 +51,6 @@ class InitializeGameTest extends GameBaseCase {
         dataSet.pushMaps().pushSubAreas().pushAreas();
     }
 
-    @Test
     void onStartExploration() throws SQLException, ContainerException {
         listener.on(new StartExploration(player));
 

@@ -47,7 +47,6 @@ class MonsterGroupFactoryTest extends GameBaseCase {
     private ExplorationMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -78,7 +77,6 @@ class MonsterGroupFactoryTest extends GameBaseCase {
         repository = container.get(MonsterGroupDataRepository.class);
     }
 
-    @Test
     void create() {
         MonsterGroup group = factory.create(repository.get(1), living);
 
@@ -87,7 +85,6 @@ class MonsterGroupFactoryTest extends GameBaseCase {
         assertBetween(1, 4, group.monsters().size());
     }
 
-    @Test
     void createIdIncrement() {
         assertEquals(-103, factory.create(repository.get(1), living).id());
         assertEquals(-203, factory.create(repository.get(1), living).id());

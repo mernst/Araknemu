@@ -44,7 +44,6 @@ class OpenBankTest extends GameBaseCase {
     private ExplorationPlayer player;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -60,17 +59,14 @@ class OpenBankTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void factory() {
         assertInstanceOf(OpenBank.class, factory.create(new ResponseAction(1, "BANK", "")));
     }
 
-    @Test
     void check() {
         assertTrue(factory.create(new ResponseAction(1, "BANK", "")).check(player));
     }
 
-    @Test
     void applySuccess() {
         requestStack.clear();
         factory.create(new ResponseAction(1, "BANK", "")).apply(player);
@@ -84,7 +80,6 @@ class OpenBankTest extends GameBaseCase {
         assertInstanceOf(ExchangeDialog.class, player.interactions().get(Interaction.class));
     }
 
-    @Test
     void applyWithCostPayedByPlayer() {
         Bank bank = container.get(BankService.class).load(player.account());
 
@@ -100,7 +95,6 @@ class OpenBankTest extends GameBaseCase {
         assertEquals(15222, player.inventory().kamas());
     }
 
-    @Test
     void applyWithCostPayedByBank() {
         Bank bank = container.get(BankService.class).load(player.account());
 
@@ -124,7 +118,6 @@ class OpenBankTest extends GameBaseCase {
         assertEquals(997, container.get(BankService.class).load(player.account()).kamas());
     }
 
-    @Test
     void applyWithCostPayedByBothPlayerAndBank() {
         Bank bank = container.get(BankService.class).load(player.account());
 
@@ -149,7 +142,6 @@ class OpenBankTest extends GameBaseCase {
         assertEquals(0, container.get(BankService.class).load(player.account()).kamas());
     }
 
-    @Test
     void applyNotEnoughKamas() {
         Bank bank = container.get(BankService.class).load(player.account());
 

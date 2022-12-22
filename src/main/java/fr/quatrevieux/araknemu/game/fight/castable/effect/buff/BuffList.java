@@ -132,7 +132,7 @@ public final class BuffList implements Iterable<Buff>, Buffs {
     }
 
     @Override
-    public void onDirectDamageApplied(Fighter caster, @Positive int value) {
+    public void onDirectDamageApplied(Fighter caster, int value) {
         for (Buff buff : buffs) {
             buff.hook().onDirectDamageApplied(buff, caster, value);
         }

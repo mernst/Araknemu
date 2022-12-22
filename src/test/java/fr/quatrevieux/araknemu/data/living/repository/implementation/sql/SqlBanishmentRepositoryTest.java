@@ -40,7 +40,6 @@ class SqlBanishmentRepositoryTest extends RealmBaseCase {
     private SqlBanishmentRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,12 +51,10 @@ class SqlBanishmentRepositoryTest extends RealmBaseCase {
         );
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(new Banishment(1, 0, null, null, null, 0)));
     }
 
-    @Test
     void addAndGet() {
         Banishment banishment = new Banishment(5, Instant.parse("2020-07-25T15:00:00.Z"), Instant.parse("2020-07-30T15:00:00.Z"), "my cause", 3);
         banishment = repository.add(banishment);
@@ -71,21 +68,18 @@ class SqlBanishmentRepositoryTest extends RealmBaseCase {
         assertEquals(3, repository.get(banishment).banisherId());
     }
 
-    @Test
     void delete() {
         Banishment banishment = repository.add(new Banishment(5, Instant.parse("2020-07-25T15:00:00.Z"), Instant.parse("2020-07-30T15:00:00.Z"), "my cause", 3));
         repository.delete(banishment);
         assertFalse(repository.has(banishment));
     }
 
-    @Test
     void has() {
         assertFalse(repository.has(new Banishment(1, 0, null, null, null, 0)));
         Banishment banishment = repository.add(new Banishment(5, Instant.parse("2020-07-25T15:00:00.Z"), Instant.parse("2020-07-30T15:00:00.Z"), "my cause", 3));
         assertTrue(repository.has(banishment));
     }
 
-    @Test
     void isBanned() {
         assertFalse(repository.isBanned(5));
 
@@ -102,7 +96,6 @@ class SqlBanishmentRepositoryTest extends RealmBaseCase {
         assertTrue(repository.isBanned(5));
     }
 
-    @Test
     void forAccount() {
         dataSet.push(new Banishment(4, Instant.parse("2020-07-25T15:00:00.Z"), Instant.parse("2020-07-30T15:00:00.Z"), "ban 1", -1));
         dataSet.push(new Banishment(4, Instant.parse("2020-07-25T16:00:00.Z"), Instant.parse("2020-07-30T15:00:00.Z"), "ban 2", 1));
@@ -127,7 +120,6 @@ class SqlBanishmentRepositoryTest extends RealmBaseCase {
         assertEquals(-1, entries.get(3).banisherId());
     }
 
-    @Test
     void removeActive() {
         dataSet.push(new Banishment(4, Instant.now().minus(1, ChronoUnit.HOURS), Instant.now().plus(1, ChronoUnit.HOURS), "cause", -1));
         dataSet.push(new Banishment(4, Instant.now().minus(1, ChronoUnit.HOURS), Instant.now().plus(1, ChronoUnit.HOURS), "cause", -1));

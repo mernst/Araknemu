@@ -28,10 +28,10 @@ import org.checkerframework.checker.nullness.qual.NonNull;
  * @param <E> The error type
  * @param <V> The value type
  */
-public final class ValueCheck<T, @NonNull E, V> extends AbstractValueConstraint<T, E, V> {
+public final class ValueCheck<T, E, V> extends AbstractValueConstraint<T, E, V> {
     private final Checker<V> checker;
 
-    public ValueCheck(@NonNull E error, Getter<T, V> getter, Checker<V> checker) {
+    public ValueCheck(E error, Getter<T, V> getter, Checker<V> checker) {
         super(error, getter);
         this.checker = checker;
     }

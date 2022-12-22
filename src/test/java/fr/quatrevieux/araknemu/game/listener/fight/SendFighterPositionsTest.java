@@ -34,7 +34,6 @@ class SendFighterPositionsTest extends GameBaseCase {
     private SendFighterPositions listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -58,7 +57,6 @@ class SendFighterPositionsTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onFighterPlaceChanged() {
         listener.on(new FighterPlaceChanged(fight.fighters().get(0)));
 

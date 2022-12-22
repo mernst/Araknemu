@@ -37,7 +37,6 @@ class RegexTest {
         }
     }
 
-    @Test
     void check() {
         Regex<Entity, Object> maxLength = new Regex<>(new Object(), Entity::getValue, "\\w{4,10}");
 

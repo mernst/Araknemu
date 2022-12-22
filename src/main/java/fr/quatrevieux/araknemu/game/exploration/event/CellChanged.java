@@ -28,9 +28,9 @@ import org.checkerframework.checker.index.qual.NonNegative;
  */
 public final class CellChanged {
     private final ExplorationPlayer player;
-    private final @NonNegative int cell;
+    private final int cell;
 
-    public CellChanged(ExplorationPlayer player, @NonNegative int cell) {
+    public CellChanged(ExplorationPlayer player, int cell) {
         this.player = player;
         this.cell = cell;
     }
@@ -39,7 +39,7 @@ public final class CellChanged {
         return player;
     }
 
-    public @NonNegative int cell() {
+    public int cell() {
         return cell;
     }
 }

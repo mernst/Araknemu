@@ -37,7 +37,6 @@ class SqlConnectionLogRepositoryTest extends GameBaseCase {
     private SqlConnectionLogRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,12 +48,10 @@ class SqlConnectionLogRepositoryTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(new ConnectionLog(1, Instant.now(), "")));
     }
 
-    @Test
     void has() {
         ConnectionLog log = new ConnectionLog(1, Instant.parse("2020-06-05T14:25:31.00Z"), "145.25.211.5");
 
@@ -64,7 +61,6 @@ class SqlConnectionLogRepositoryTest extends GameBaseCase {
         assertTrue(repository.has(log));
     }
 
-    @Test
     void addAndGet() {
         ConnectionLog log = new ConnectionLog(1, Instant.parse("2020-06-05T14:25:31.00Z"), "145.25.211.5");
         assertSame(log, repository.add(log));
@@ -79,7 +75,6 @@ class SqlConnectionLogRepositoryTest extends GameBaseCase {
         assertNull(savedLog.endDate());
     }
 
-    @Test
     void save() {
         ConnectionLog log = new ConnectionLog(1, Instant.parse("2020-06-05T14:25:31.00Z"), "145.25.211.5");
         assertSame(log, repository.add(log));
@@ -116,7 +111,6 @@ class SqlConnectionLogRepositoryTest extends GameBaseCase {
         assertEquals(Instant.parse("2020-06-05T16:10:21.00Z"), log.endDate());
     }
 
-    @Test
     void clientUid() {
         ConnectionLog log = new ConnectionLog(1, Instant.parse("2020-06-05T14:25:31.00Z"), "145.25.211.5");
         repository.add(log);
@@ -128,7 +122,6 @@ class SqlConnectionLogRepositoryTest extends GameBaseCase {
         assertEquals("my_uid", repository.get(log).clientUid());
     }
 
-    @Test
     void lastSession() {
         Account account = new Account(5);
 
@@ -149,7 +142,6 @@ class SqlConnectionLogRepositoryTest extends GameBaseCase {
         assertEquals(other.startDate(), repository.lastSession(account.id()).get().startDate());
     }
 
-    @Test
     void currentSession() {
         assertThrows(EntityNotFoundException.class, () -> repository.currentSession(5));
 
@@ -168,7 +160,6 @@ class SqlConnectionLogRepositoryTest extends GameBaseCase {
         assertThrows(EntityNotFoundException.class, () -> repository.currentSession(5));
     }
 
-    @Test
     void delete() {
         ConnectionLog log = repository.add(new ConnectionLog(5, Instant.parse("2020-06-05T16:10:21.00Z"), ""));
         repository.delete(log);
@@ -176,7 +167,6 @@ class SqlConnectionLogRepositoryTest extends GameBaseCase {
         assertThrows(EntityNotFoundException.class, () -> repository.get(log));
     }
 
-    @Test
     void hasAlreadyPlayed() {
         Player player = new Player(5);
 

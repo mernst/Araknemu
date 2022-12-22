@@ -35,7 +35,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class EnsureFightingTest extends FightBaseCase {
-    @Test
     void handleNotFighting() {
         PacketHandler inner = Mockito.mock(PacketHandler.class);
         EnsureFighting handler = new EnsureFighting<>(inner);
@@ -43,7 +42,6 @@ class EnsureFightingTest extends FightBaseCase {
         assertThrows(CloseImmediately.class, () -> handler.handle(session, Mockito.mock(Packet.class)));
     }
 
-    @RepeatedIfExceptionsTest
     void handleSuccess() throws Exception {
         PacketHandler inner = Mockito.mock(PacketHandler.class);
         EnsureFighting handler = new EnsureFighting<>(inner);
@@ -56,7 +54,6 @@ class EnsureFightingTest extends FightBaseCase {
         Mockito.verify(inner).handle(session, packet);
     }
 
-    @RepeatedIfExceptionsTest
     void handleWithException() throws Exception {
         PacketHandler inner = Mockito.mock(PacketHandler.class);
 
@@ -72,7 +69,6 @@ class EnsureFightingTest extends FightBaseCase {
         requestStack.assertLast("my packet");
     }
 
-    @Test
     void packet() {
         assertEquals(
             FighterChangePlace.class,

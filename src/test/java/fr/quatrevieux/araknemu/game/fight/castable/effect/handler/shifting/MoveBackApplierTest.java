@@ -45,7 +45,6 @@ class MoveBackApplierTest extends FightBaseCase {
     private PlayerFighter target;
     private MoveBackApplier applier;
 
-    @Test
     void applySuccess() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(165))
@@ -67,8 +66,6 @@ class MoveBackApplierTest extends FightBaseCase {
         assertSame(destination, target.cell());
     }
 
-    @ParameterizedTest
-    @MethodSource("provideDistances")
     void applyBlocked(int distance, int min, int max) {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(210))
@@ -97,7 +94,6 @@ class MoveBackApplierTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyBlockedByFighterShouldGetHalfDamage() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(210))
@@ -117,7 +113,6 @@ class MoveBackApplierTest extends FightBaseCase {
         assertEquals(damage / 2, enemies.get(1).life().max() - enemies.get(1).life().current());
     }
 
-    @Test
     void applyBlockedChainDamage() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(305))
@@ -142,7 +137,6 @@ class MoveBackApplierTest extends FightBaseCase {
         assertEquals(0, enemies.get(4).life().max() - enemies.get(4).life().current());
     }
 
-    @Test
     void applyBlockedWithoutMovementShouldNotPerformMove() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(210))

@@ -33,7 +33,6 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class StorageObjectTest extends GameBaseCase {
-    @Test
     void generateAdd() throws SQLException {
         dataSet
             .pushItemTemplates()
@@ -47,7 +46,6 @@ class StorageObjectTest extends GameBaseCase {
         assertEquals("EsKO+1|2|2422|8a#f#0#0#0d0+15,7d#21#0#0#0d0+33", new StorageObject(entry).toString());
     }
 
-    @Test
     void generateRemove() throws SQLException {
         dataSet
             .pushItemTemplates()

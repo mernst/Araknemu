@@ -44,7 +44,6 @@ class RevealInvisibleHandlerTest extends FightBaseCase {
     private RevealInvisibleHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -62,7 +61,6 @@ class RevealInvisibleHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void apply() {
         target.setHidden(target, true);
 
@@ -82,7 +80,6 @@ class RevealInvisibleHandlerTest extends FightBaseCase {
         requestStack.assertLast(ActionEffect.fighterVisible(caster, target));
     }
 
-    @Test
     void applyNotHidden() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -100,7 +97,6 @@ class RevealInvisibleHandlerTest extends FightBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void buffNotSupported() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

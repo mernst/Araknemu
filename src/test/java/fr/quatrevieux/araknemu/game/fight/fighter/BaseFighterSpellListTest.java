@@ -39,7 +39,6 @@ class BaseFighterSpellListTest extends FightBaseCase {
     private BaseFighterSpellList spells;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,20 +46,17 @@ class BaseFighterSpellListTest extends FightBaseCase {
         spells = new BaseFighterSpellList(player.fighter().spells());
     }
 
-    @Test
     void get() {
         assertSame(player.properties().spells().get(3), spells.get(3));
         assertSame(player.properties().spells().get(6), spells.get(6));
     }
 
-    @Test
     void has() {
         assertTrue(spells.has(3));
         assertTrue(spells.has(6));
         assertFalse(spells.has(404));
     }
 
-    @Test
     void boost() {
         spells.boost(3, SpellsBoosts.Modifier.BASE_DAMAGE, 5);
 
@@ -75,7 +71,6 @@ class BaseFighterSpellListTest extends FightBaseCase {
         assertEquals(6, spells.get(3).effects().get(0).max());
     }
 
-    @Test
     void iterator() {
         assertIterableEquals(Arrays.asList(
             player.properties().spells().get(17),

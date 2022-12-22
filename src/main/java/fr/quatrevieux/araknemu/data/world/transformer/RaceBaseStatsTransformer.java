@@ -33,7 +33,7 @@ import java.util.TreeMap;
 /**
  *
  */
-public final class RaceBaseStatsTransformer implements Transformer<SortedMap<@Positive Integer, Characteristics>> {
+public final class RaceBaseStatsTransformer implements Transformer<SortedMap<Integer, Characteristics>> {
     private final Transformer<Characteristics> characteristicsTransformer;
 
     public RaceBaseStatsTransformer(Transformer<Characteristics> characteristicsTransformer) {
@@ -41,17 +41,17 @@ public final class RaceBaseStatsTransformer implements Transformer<SortedMap<@Po
     }
 
     @Override
-    public @PolyNull String serialize(@PolyNull SortedMap<@Positive Integer, Characteristics> value) {
+    public String serialize(SortedMap<Integer, Characteristics> value) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public @NonNull SortedMap<@Positive Integer, Characteristics> unserialize(@PolyNull String serialize) {
+    public SortedMap<Integer, Characteristics> unserialize(String serialize) {
         if (serialize == null || serialize.isEmpty()) {
             throw new IllegalArgumentException("Race stats cannot be empty");
         }
 
-        final SortedMap<@Positive Integer, Characteristics> stats = new TreeMap<>(Collections.reverseOrder());
+        final SortedMap<Integer, Characteristics> stats = new TreeMap<>(Collections.reverseOrder());
         final Splitter splitter = new Splitter(serialize, '|');
 
         while (splitter.hasNext()) {

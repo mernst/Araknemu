@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LogFormatterTest {
-    @Test
     void format() {
         assertEquals("Hello World !", LogFormatter.format("Hello World !"));
         assertEquals("Hello John !", LogFormatter.format("Hello {} !", "John"));

@@ -26,7 +26,6 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CellShownTest {
-    @Test
     void string() {
         Creature creature = Mockito.mock(Creature.class);
         Mockito.when(creature.id()).thenReturn(12);

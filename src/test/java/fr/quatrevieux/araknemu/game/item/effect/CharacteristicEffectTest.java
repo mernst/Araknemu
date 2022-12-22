@@ -27,7 +27,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CharacteristicEffectTest {
-    @Test
     void getters() {
         CharacteristicEffect effect = new CharacteristicEffect(Effect.SUB_STRENGTH, 20, -1, Characteristic.STRENGTH);
 
@@ -37,19 +36,16 @@ class CharacteristicEffectTest {
         assertEquals(Characteristic.STRENGTH, effect.characteristic());
     }
 
-    @Test
     void equalsSame() {
         CharacteristicEffect effect = new CharacteristicEffect(Effect.SUB_STRENGTH, 20, -1, Characteristic.STRENGTH);
 
         assertEquals(effect, effect);
     }
 
-    @Test
     void equalsBadClass() {
         assertNotEquals(new CharacteristicEffect(Effect.SUB_STRENGTH, 20, -1, Characteristic.STRENGTH), new Object());
     }
 
-    @Test
     void equalsBadValue() {
         assertNotEquals(
             new CharacteristicEffect(Effect.SUB_STRENGTH, 21, -1, Characteristic.STRENGTH),
@@ -57,7 +53,6 @@ class CharacteristicEffectTest {
         );
     }
 
-    @Test
     void equalsBadEffect() {
         assertNotEquals(
             new CharacteristicEffect(Effect.ADD_STRENGTH, 20, -1, Characteristic.STRENGTH),
@@ -65,7 +60,6 @@ class CharacteristicEffectTest {
         );
     }
 
-    @Test
     void equalsNotSame() {
         assertEquals(
             new CharacteristicEffect(Effect.SUB_STRENGTH, 20, -1, Characteristic.STRENGTH),
@@ -73,7 +67,6 @@ class CharacteristicEffectTest {
         );
     }
 
-    @Test
     void hashCodeEquals() {
         assertEquals(
             new CharacteristicEffect(Effect.SUB_STRENGTH, 20, -1, Characteristic.STRENGTH).hashCode(),
@@ -81,7 +74,6 @@ class CharacteristicEffectTest {
         );
     }
 
-    @Test
     void hashCodeNotEquals() {
         assertNotEquals(
             new CharacteristicEffect(Effect.SUB_STRENGTH, 21, -1, Characteristic.STRENGTH).hashCode(),
@@ -89,7 +81,6 @@ class CharacteristicEffectTest {
         );
     }
 
-    @Test
     void debugString() {
         assertEquals(
             "CharacteristicEffect{SUB_STRENGTH:20}",
@@ -97,7 +88,6 @@ class CharacteristicEffectTest {
         );
     }
 
-    @Test
     void toTemplate() {
         ItemTemplateEffectEntry entry = new CharacteristicEffect(Effect.SUB_STRENGTH, 20, -1, Characteristic.STRENGTH).toTemplate();
 

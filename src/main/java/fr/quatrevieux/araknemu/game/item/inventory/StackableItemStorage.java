@@ -63,7 +63,7 @@ public final class StackableItemStorage<E extends ItemEntry> implements ItemStor
     }
 
     @Override
-    public E add(Item item, @Positive int quantity, @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int position) throws InventoryException {
+    public E add(Item item, int quantity, int position) throws InventoryException {
         if (position == stackPosition) {
             final E entry = stackMap.get(item);
 
@@ -130,8 +130,7 @@ public final class StackableItemStorage<E extends ItemEntry> implements ItemStor
      *
      * Issue #73 : Quantity must be checked, the entry may be deleted without remove from index
      */
-    @EnsuresNonNullIf(expression = "#1", result = true)
-    private boolean checkStackedEntry(@Nullable E entry) {
+    private boolean checkStackedEntry(E entry) {
         return entry != null && entry.position() == stackPosition && entry.quantity() > 0;
     }
 }

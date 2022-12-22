@@ -150,7 +150,7 @@ final class SqlPlayerSpellRepository implements PlayerSpellRepository {
             throw new UnsupportedOperationException();
         }
 
-        private @IntRange(from = 1, to = 63) int castPosition(int position) {
+        private int castPosition(int position) {
             if (position < 1 || position > 63) {
                 return PlayerSpell.DEFAULT_POSITION;
             }

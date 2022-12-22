@@ -38,14 +38,12 @@ class PlayingLoaderTest extends LoaderTestCase {
     private PlayingLoader loader;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         loader = new PlayingLoader();
     }
 
-    @Test
     void load() throws ContainerException {
         PacketHandler[] handlers = loader.load(container);
 

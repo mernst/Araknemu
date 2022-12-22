@@ -46,7 +46,6 @@ class StoreDialogTest extends GameBaseCase {
     private StoreDialog dialog;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -60,7 +59,6 @@ class StoreDialogTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void start() {
         player.interactions().start(dialog);
 
@@ -73,7 +71,6 @@ class StoreDialogTest extends GameBaseCase {
         );
     }
 
-    @Test
     void stop() {
         player.interactions().start(dialog);
 
@@ -83,7 +80,6 @@ class StoreDialogTest extends GameBaseCase {
         assertFalse(player.interactions().busy());
     }
 
-    @Test
     void leave() {
         player.interactions().start(dialog);
 
@@ -93,7 +89,6 @@ class StoreDialogTest extends GameBaseCase {
         assertFalse(player.interactions().busy());
     }
 
-    @Test
     void buySuccess() {
         dialog.buy(39, 2);
 
@@ -104,14 +99,12 @@ class StoreDialogTest extends GameBaseCase {
         requestStack.assertLast(ItemBought.success());
     }
 
-    @Test
     void buyFailed() {
         dialog.buy(404, 1);
 
         requestStack.assertLast(ItemBought.failed());
     }
 
-    @Test
     void sellSuccess() {
         ItemEntry entry = player.inventory().add(container.get(ItemService.class).create(39), 3);
 
@@ -123,7 +116,6 @@ class StoreDialogTest extends GameBaseCase {
         requestStack.assertLast(ItemSold.success());
     }
 
-    @Test
     void sellFailed() {
         dialog.sell(404, 1);
 

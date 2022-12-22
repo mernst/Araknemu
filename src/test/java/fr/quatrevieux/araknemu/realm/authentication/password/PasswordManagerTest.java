@@ -33,7 +33,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class PasswordManagerTest extends TestCase {
     private PasswordManager manager;
 
-    @BeforeEach
     void setUp() {
         manager = new PasswordManager(
             Arrays.asList("argon2", "plain"),
@@ -42,7 +41,6 @@ class PasswordManagerTest extends TestCase {
         );
     }
 
-    @Test
     void constructorWithInvalidAlgo() {
         assertThrowsWithMessage(IllegalArgumentException.class, "Hash algorithms [invalid, plain] are not registered", () -> new PasswordManager(
             Arrays.asList("argon2", "invalid", "plain"),
@@ -50,7 +48,6 @@ class PasswordManagerTest extends TestCase {
         ));
     }
 
-    @Test
     void get() {
         assertInstanceOf(PlainTextHash.PlainTextPassword.class, manager.get("plain"));
         assertEquals("plain", manager.get("plain").toString());
@@ -59,7 +56,6 @@ class PasswordManagerTest extends TestCase {
         assertTrue(manager.get("$argon2id$v=19$m=65536,t=4,p=8$VD0Sb6gphmn8Nzqrq+SBzA$5QJbvXjQSFzeM9oFhqYLS73uQS/2K0q4WUX1Fgvr+uU").check("test"));
     }
 
-    @Test
     void getUnsupported() {
         manager = new PasswordManager(
             Arrays.asList("argon2"),
@@ -69,7 +65,6 @@ class PasswordManagerTest extends TestCase {
         assertThrows(IllegalArgumentException.class, () -> manager.get("invalid"));
     }
 
-    @Test
     void hash() {
         Password password = manager.hash("test");
 
@@ -78,7 +73,6 @@ class PasswordManagerTest extends TestCase {
         assertTrue(password.check("test"));
     }
 
-    @Test
     void hashWithPlainTextAsDefault() {
         manager = new PasswordManager(
             Arrays.asList("plain"),
@@ -90,7 +84,6 @@ class PasswordManagerTest extends TestCase {
         assertEquals("test", password.toString());
     }
 
-    @Test
     void rehash() {
         Password password = manager.hash("test");
 

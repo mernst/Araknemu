@@ -33,21 +33,18 @@ import static org.junit.jupiter.api.Assertions.*;
 class DatabaseConfigurationTest {
     private DatabaseConfiguration configuration;
 
-    @BeforeEach
     void setUp() throws IOException {
         configuration = new DefaultConfiguration(new IniDriver(new Ini(new File("src/test/test_config.ini"))))
                 .module(DatabaseConfiguration.MODULE)
         ;
     }
 
-    @Test
     void module() {
         assertNotNull(configuration.connection("realm"));
         assertEquals("realm", configuration.connection("realm").name());
         assertNotSame(configuration.connection("realm"), configuration.connection("test_sqlite"));
     }
 
-    @Test
     void realm() {
         DatabaseConfiguration.Connection config = configuration.connection("realm");
 
@@ -59,7 +56,6 @@ class DatabaseConfigurationTest {
         assertEquals(4, config.maxPoolSize());
     }
 
-    @Test
     void test_sqlite() {
         DatabaseConfiguration.Connection config = configuration.connection("test_sqlite");
 
@@ -70,7 +66,6 @@ class DatabaseConfigurationTest {
         assertEquals(16, config.maxPoolSize());
     }
 
-    @Test
     void test_mysql() {
         DatabaseConfiguration.Connection config = configuration.connection("test_mysql");
 
@@ -81,7 +76,6 @@ class DatabaseConfigurationTest {
         assertEquals(16, config.maxPoolSize());
     }
 
-    @Test
     void defaults() {
         DatabaseConfiguration.Connection config = configuration.connection("test_sqlite");
 

@@ -47,7 +47,6 @@ class SendFightActionTest extends FightBaseCase {
     private SendFightAction listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -58,7 +57,6 @@ class SendFightActionTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onActionStarted() {
         Move move = new Move(
             player.fighter(),
@@ -81,7 +79,6 @@ class SendFightActionTest extends FightBaseCase {
         requestStack.assertAll(new StartFightAction(move), new FightAction(result));
     }
 
-    @Test
     void onActionStartedShouldBeSentToOtherFighter() {
         Move move = new Move(
             other.fighter(),
@@ -104,7 +101,6 @@ class SendFightActionTest extends FightBaseCase {
         requestStack.assertAll(new FightAction(result));
     }
 
-    @Test
     void whenSecretShouldNotBeSendToOtherFighter() {
         other.fighter().setHidden(other.fighter(), true);
         requestStack.clear();
@@ -129,7 +125,6 @@ class SendFightActionTest extends FightBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void whenSecretShouldBeSendToCurrentFighter() {
         other.fighter().setHidden(player.fighter(), true);
         requestStack.clear();
@@ -154,7 +149,6 @@ class SendFightActionTest extends FightBaseCase {
         requestStack.assertAll(new StartFightAction(move), new FightAction(result));
     }
 
-    @Test
     void notSecretHiddenShouldSendPosition() {
         player.fighter().setHidden(player.fighter(), true);
         requestStack.clear();
@@ -171,7 +165,6 @@ class SendFightActionTest extends FightBaseCase {
         );
     }
 
-    @Test
     void onActionFailed() {
         Move move = new Move(
             player.fighter(),
@@ -193,7 +186,6 @@ class SendFightActionTest extends FightBaseCase {
         requestStack.assertAll(new FightAction(result));
     }
 
-    @Test
     void whenSecretAndMonsterFighterShouldSendNothing() throws Exception {
         fight = createPvmFight();
         listener = new SendFightAction(fight);

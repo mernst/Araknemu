@@ -36,7 +36,6 @@ import java.sql.SQLException;
 import java.util.EnumSet;
 
 class InfoTest extends CommandTestCase {
-    @Test
     void executeSimple() throws ContainerException, AdminException, SQLException {
         command = new Info(
             container.get(AccountService.class).load(dataSet.push(new Account(-1, "azerty", "", "uiop"))),
@@ -56,7 +55,6 @@ class InfoTest extends CommandTestCase {
         );
     }
 
-    @Test
     void executeLogged() throws ContainerException, AdminException, SQLException {
         GameAccount account = container.get(AccountService.class).load(dataSet.push(new Account(-1, "azerty", "", "uiop")));
 
@@ -72,7 +70,6 @@ class InfoTest extends CommandTestCase {
         assertOutputContains("Logged: Yes");
     }
 
-    @Test
     void executeAdmin() throws ContainerException, AdminException, SQLException {
         GameAccount account = container.get(AccountService.class).load(dataSet.push(new Account(-1, "azerty", "", "uiop", EnumSet.of(Permission.ACCESS, Permission.MANAGE_ACCOUNT), "", "")));
 

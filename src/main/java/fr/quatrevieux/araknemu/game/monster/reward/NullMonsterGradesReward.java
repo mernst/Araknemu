@@ -40,7 +40,7 @@ public final class NullMonsterGradesReward implements MonsterGradesReward {
         }
 
         @Override
-        public @NonNegative long experience() {
+        public long experience() {
             return 0;
         }
 
@@ -56,7 +56,7 @@ public final class NullMonsterGradesReward implements MonsterGradesReward {
     }
 
     @Override
-    public @NonNegative long experience(int gradeNumber) {
+    public long experience(int gradeNumber) {
         return 0;
     }
 

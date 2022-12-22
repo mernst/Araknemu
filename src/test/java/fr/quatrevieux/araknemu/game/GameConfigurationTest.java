@@ -29,7 +29,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class GameConfigurationTest extends GameBaseCase {
     private GameConfiguration configuration;
 
-    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -37,7 +36,6 @@ class GameConfigurationTest extends GameBaseCase {
         configuration = app.configuration().module(GameConfiguration.MODULE);
     }
 
-    @Test
     void values() {
         assertEquals(2, configuration.id());
         assertEquals(456, configuration.port());
@@ -48,7 +46,6 @@ class GameConfigurationTest extends GameBaseCase {
         assertEquals(Duration.ofMinutes(10), configuration.banIpRefresh());
     }
 
-    @Test
     void preload() {
         assertTrue(configuration.preload("bar"));
         assertTrue(configuration.preload("bar.baz"));
@@ -57,14 +54,12 @@ class GameConfigurationTest extends GameBaseCase {
         assertFalse(configuration.preload("foo.bar.baz"));
     }
 
-    @Test
     void chat() {
         assertEquals(30, configuration.chat().floodTime());
         assertEquals("*#%!pi$:?", configuration.chat().defaultChannels());
         assertEquals("@", configuration.chat().adminChannels());
     }
 
-    @Test
     void player() {
         assertEquals(20, configuration.player().deleteAnswerLevel());
         assertEquals(4, configuration.player().minNameGeneratedLength());
@@ -75,7 +70,6 @@ class GameConfigurationTest extends GameBaseCase {
         assertTrue(configuration.player().restoreLifeOnLevelUp());
     }
 
-    @Test
     void activity() {
         assertEquals(1, configuration.activity().threadsCount());
         assertEquals(120, configuration.activity().monsterMoveInterval());
@@ -87,13 +81,11 @@ class GameConfigurationTest extends GameBaseCase {
         assertEquals(3, configuration.activity().monsterMoveDistance());
     }
 
-    @Test
     void economy() {
         assertEquals(0.1, configuration.economy().npcSellPriceMultiplier());
         assertEquals(1, configuration.economy().bankCostPerEntry());
     }
 
-    @Test
     void fight() {
         assertEquals(4, configuration.fight().threadsCount());
         setConfigValue("fight.threadsCount", "8");
@@ -111,7 +103,6 @@ class GameConfigurationTest extends GameBaseCase {
         assertEquals(1.0, configuration.fight().dropRate());
     }
 
-    @Test
     void autosave() {
         assertTrue(configuration.autosaveEnabled());
         assertEquals(Duration.ofHours(4), configuration.autosaveInterval());

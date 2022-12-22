@@ -47,7 +47,7 @@ public interface UseEffectHandler {
      * @param target The effect target (can be null)
      * @param cell The target cell. null if no cell is targeted
      */
-    public default void applyToTarget(UseEffect effect, ExplorationPlayer caster, @Nullable ExplorationPlayer target, @Nullable ExplorationMapCell cell) {}
+    public default void applyToTarget(UseEffect effect, ExplorationPlayer caster, ExplorationPlayer target, ExplorationMapCell cell) {}
 
     /**
      * Check if the effect can be used
@@ -69,7 +69,7 @@ public interface UseEffectHandler {
      *
      * @return True if the effect can be applied or false
      */
-    public boolean checkTarget(UseEffect effect, ExplorationPlayer caster, @Nullable ExplorationPlayer target, @Nullable ExplorationMapCell cell);
+    public boolean checkTarget(UseEffect effect, ExplorationPlayer caster, ExplorationPlayer target, ExplorationMapCell cell);
 
     /**
      * Check if the effect can be used by a fighter during placement

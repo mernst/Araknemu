@@ -28,7 +28,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
  *
  * @param <T> Item type
  */
-public final class FactoryItem<T extends @NonNull Object> implements ContainerItem<T> {
+public final class FactoryItem<T extends Object> implements ContainerItem<T> {
     private final Class<T> type;
     private final Factory<T> factory;
 
@@ -43,7 +43,7 @@ public final class FactoryItem<T extends @NonNull Object> implements ContainerIt
     }
 
     @Override
-    public @NonNull T value(Container container) throws ContainerException {
+    public T value(Container container) throws ContainerException {
         return factory.make(container);
     }
 
@@ -55,6 +55,6 @@ public final class FactoryItem<T extends @NonNull Object> implements ContainerIt
          *
          * @return The new instance
          */
-        public @NonNull T make(Container container) throws ContainerException;
+        public T make(Container container) throws ContainerException;
     }
 }

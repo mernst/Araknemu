@@ -31,14 +31,12 @@ class SpellEffectServiceTest extends GameBaseCase {
     private SpellEffectService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         service = new SpellEffectService();
     }
 
-    @Test
     void area() {
         assertSame(CellArea.INSTANCE, service.area(new EffectArea(EffectArea.Type.CELL, 0)));
         assertInstanceOf(CircleArea.class, service.area(new EffectArea(EffectArea.Type.CIRCLE, 3)));

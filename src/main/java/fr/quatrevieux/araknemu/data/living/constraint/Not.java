@@ -28,7 +28,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  * @param <T> The entity type
  * @param <E> The error type
  */
-public final class Not<T, @NonNull E> implements EntityConstraint<T, E> {
+public final class Not<T, E> implements EntityConstraint<T, E> {
     private final EntityConstraint<T, E> constraint;
 
     public Not(EntityConstraint<T, E> constraint) {
@@ -42,7 +42,7 @@ public final class Not<T, @NonNull E> implements EntityConstraint<T, E> {
     }
 
     @Override
-    public @Nullable E error() {
+    public E error() {
         return constraint.error();
     }
 }

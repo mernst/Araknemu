@@ -44,8 +44,8 @@ public final class MoveBackApplier {
     public static final int MAX_DAMAGE = 8;
 
     private final Fight fight;
-    private final @NonNegative int baseDamage;
-    private final @Positive int maxDamage;
+    private final int baseDamage;
+    private final int maxDamage;
 
     private final Decoder<FightCell> decoder;
     private final RandomUtil random = new RandomUtil();
@@ -59,7 +59,7 @@ public final class MoveBackApplier {
      * @param baseDamage The base damage per remaining distance
      * @param maxDamage The maximum damage of the random part per remaining distance
      */
-    public MoveBackApplier(Fight fight, @NonNegative int baseDamage, @Positive int maxDamage) {
+    public MoveBackApplier(Fight fight, int baseDamage, int maxDamage) {
         this.fight = fight;
         this.baseDamage = baseDamage;
         this.maxDamage = maxDamage;
@@ -73,7 +73,7 @@ public final class MoveBackApplier {
      * @param target The spell target
      * @param distance The move back distance
      */
-    public void apply(Fighter caster, Fighter target, @NonNegative int distance) {
+    public void apply(Fighter caster, Fighter target, int distance) {
         final Direction direction = caster.cell().coordinate().directionTo(target.cell());
         FightCell destination = target.cell();
 
@@ -112,7 +112,7 @@ public final class MoveBackApplier {
      * @param direction The move direction
      * @param distance Remain move distance
      */
-    private void applyBlockingDamageChain(Fighter caster, Fighter target, FightCell lastCell, Direction direction, @NonNegative int distance) {
+    private void applyBlockingDamageChain(Fighter caster, Fighter target, FightCell lastCell, Direction direction, int distance) {
         int damage = computeDamage(caster, distance);
 
         if (damage <= 0) {
@@ -148,7 +148,7 @@ public final class MoveBackApplier {
      *
      * @return The damage
      */
-    private @NonNegative int computeDamage(FighterData caster, @NonNegative int distance) {
+    private int computeDamage(FighterData caster, int distance) {
         return (baseDamage + random.rand(1, maxDamage) * caster.level() / 50) * distance;
     }
 }

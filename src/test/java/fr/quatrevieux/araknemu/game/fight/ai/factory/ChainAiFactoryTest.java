@@ -35,7 +35,6 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 class ChainAiFactoryTest extends FightBaseCase {
     private Fighter fighter;
 
-    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -45,17 +44,14 @@ class ChainAiFactoryTest extends FightBaseCase {
         fighter = player.fighter();
     }
 
-    @Test
     void createEmpty() {
         assertFalse(new ChainAiFactory().create(fighter).isPresent());
     }
 
-    @Test
     void createNoneMatch() {
         assertFalse(new ChainAiFactory(fighter -> Optional.empty()).create(fighter).isPresent());
     }
 
-    @Test
     void createSuccess() {
         final FighterAI ai = new FighterAI(fighter, fighter.fight(), NullGenerator.get());
 

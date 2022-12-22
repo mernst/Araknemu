@@ -50,7 +50,6 @@ class PushStateHandlerTest extends FightBaseCase {
     private PushStateHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -68,7 +67,6 @@ class PushStateHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handle() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -87,7 +85,6 @@ class PushStateHandlerTest extends FightBaseCase {
         assertTrue(target.states().has(4));
     }
 
-    @Test
     void buff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -116,7 +113,6 @@ class PushStateHandlerTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.removeState(target, 4));
     }
 
-    @Test
     void buffSelfCastWillAddOneTurn() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

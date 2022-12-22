@@ -39,7 +39,6 @@ class GoToAstrubTest extends GameBaseCase {
     private GoToAstrub.Factory factory;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -50,17 +49,14 @@ class GoToAstrubTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void factory() {
         assertInstanceOf(GoToAstrub.class, factory.create(new ResponseAction(1, "", "")));
     }
 
-    @Test
     void check() {
         assertTrue(factory.create(new ResponseAction(1, "", "")).check(player));
     }
 
-    @Test
     void apply() {
         factory.create(new ResponseAction(1, "", "")).apply(player);
 

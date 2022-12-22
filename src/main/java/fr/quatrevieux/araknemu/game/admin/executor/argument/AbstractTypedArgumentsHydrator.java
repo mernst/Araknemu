@@ -32,17 +32,17 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 public abstract class AbstractTypedArgumentsHydrator<T> implements ArgumentsHydrator {
     @Override
     @SuppressWarnings("unchecked")
-    public final <@Nullable A> A hydrate(Command<A> command, @Nullable A commandArguments, CommandParser.Arguments parsedArguments) throws Exception {
-        return (A) typedHydrate((Command<T>) command, (@Nullable T) commandArguments, parsedArguments);
+    public final <A> A hydrate(Command<A> command, A commandArguments, CommandParser.Arguments parsedArguments) throws Exception {
+        return (A) typedHydrate((Command<T>) command, (T) commandArguments, parsedArguments);
     }
 
     /**
      * Implementation of the hydrate method with correct type
      */
-    protected abstract T typedHydrate(Command<T> command, @Nullable T commandArguments, CommandParser.Arguments parsedArguments) throws Exception;
+    protected abstract T typedHydrate(Command<T> command, T commandArguments, CommandParser.Arguments parsedArguments) throws Exception;
 
     @Override
-    public final <A> boolean supports(Command<A> command, @Nullable A commandArguments) {
+    public final <A> boolean supports(Command<A> command, A commandArguments) {
         final Class<T> supported = type();
 
         if (supported.isInstance(commandArguments)) {

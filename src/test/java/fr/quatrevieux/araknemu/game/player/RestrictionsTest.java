@@ -37,7 +37,6 @@ class RestrictionsTest extends GameBaseCase {
     private ListenerAggregate dispatcher;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -46,7 +45,6 @@ class RestrictionsTest extends GameBaseCase {
         );
     }
 
-    @Test
     void initDefaults() throws SQLException, ContainerException {
         restrictions.init(gamePlayer());
 
@@ -68,7 +66,6 @@ class RestrictionsTest extends GameBaseCase {
         assertEquals(8192 | 32, restrictions.toInt());
     }
 
-    @Test
     void set() {
         AtomicReference<RestrictionsChanged> ref = new AtomicReference<>();
         dispatcher.add(RestrictionsChanged.class, ref::set);
@@ -84,7 +81,6 @@ class RestrictionsTest extends GameBaseCase {
         assertSame(restrictions, ref.get().restrictions());
     }
 
-    @Test
     void setAlreadySetShouldNotDispatchEvent() {
         restrictions.set(Restrictions.Restriction.DENY_ASSAULT);
 
@@ -96,7 +92,6 @@ class RestrictionsTest extends GameBaseCase {
         assertNull(ref.get());
     }
 
-    @Test
     void unset() {
         restrictions.set(Restrictions.Restriction.DENY_ASSAULT);
 
@@ -114,7 +109,6 @@ class RestrictionsTest extends GameBaseCase {
         assertSame(restrictions, ref.get().restrictions());
     }
 
-    @Test
     void unsetNotYetSetShouldNotDispatchEvent() {
         AtomicReference<RestrictionsChanged> ref = new AtomicReference<>();
         dispatcher.add(RestrictionsChanged.class, ref::set);
@@ -124,7 +118,6 @@ class RestrictionsTest extends GameBaseCase {
         assertNull(ref.get());
     }
 
-    @Test
     void canAssault() {
         assertTrue(restrictions.canAssault());
 
@@ -133,7 +126,6 @@ class RestrictionsTest extends GameBaseCase {
         assertFalse(restrictions.canAssault());
     }
 
-    @Test
     void canChallenge() {
         assertTrue(restrictions.canChallenge());
 
@@ -142,7 +134,6 @@ class RestrictionsTest extends GameBaseCase {
         assertFalse(restrictions.canChallenge());
     }
 
-    @Test
     void canExchange() {
         assertTrue(restrictions.canExchange());
 
@@ -151,7 +142,6 @@ class RestrictionsTest extends GameBaseCase {
         assertFalse(restrictions.canExchange());
     }
 
-    @Test
     void canAttack() {
         assertFalse(restrictions.canAttack());
 
@@ -160,7 +150,6 @@ class RestrictionsTest extends GameBaseCase {
         assertTrue(restrictions.canAttack());
     }
 
-    @Test
     void canChat() {
         assertTrue(restrictions.canChat());
 
@@ -169,7 +158,6 @@ class RestrictionsTest extends GameBaseCase {
         assertFalse(restrictions.canChat());
     }
 
-    @Test
     void canBeMerchant() {
         assertTrue(restrictions.canBeMerchant());
 
@@ -178,7 +166,6 @@ class RestrictionsTest extends GameBaseCase {
         assertFalse(restrictions.canBeMerchant());
     }
 
-    @Test
     void canUseObject() {
         assertTrue(restrictions.canUseObject());
 
@@ -187,7 +174,6 @@ class RestrictionsTest extends GameBaseCase {
         assertFalse(restrictions.canUseObject());
     }
 
-    @Test
     void canInteractCollector() {
         assertTrue(restrictions.canInteractCollector());
 
@@ -196,7 +182,6 @@ class RestrictionsTest extends GameBaseCase {
         assertFalse(restrictions.canInteractCollector());
     }
 
-    @Test
     void canUseIO() {
         assertTrue(restrictions.canUseIO());
 
@@ -205,7 +190,6 @@ class RestrictionsTest extends GameBaseCase {
         assertFalse(restrictions.canUseIO());
     }
 
-    @Test
     void canSpeakNPC() {
         assertTrue(restrictions.canSpeakNPC());
 
@@ -214,7 +198,6 @@ class RestrictionsTest extends GameBaseCase {
         assertFalse(restrictions.canSpeakNPC());
     }
 
-    @Test
     void canAttackDungeonWhenMutant() {
         assertFalse(restrictions.canAttackDungeonWhenMutant());
 
@@ -223,7 +206,6 @@ class RestrictionsTest extends GameBaseCase {
         assertTrue(restrictions.canAttackDungeonWhenMutant());
     }
 
-    @Test
     void canMoveAllDirections() {
         assertFalse(restrictions.canMoveAllDirections());
 
@@ -232,7 +214,6 @@ class RestrictionsTest extends GameBaseCase {
         assertTrue(restrictions.canMoveAllDirections());
     }
 
-    @Test
     void canAttackMonsterWhenMutant() {
         assertFalse(restrictions.canAttackMonsterWhenMutant());
 
@@ -241,7 +222,6 @@ class RestrictionsTest extends GameBaseCase {
         assertTrue(restrictions.canAttackMonsterWhenMutant());
     }
 
-    @Test
     void canInteractWithPrism() {
         assertTrue(restrictions.canInteractWithPrism());
 

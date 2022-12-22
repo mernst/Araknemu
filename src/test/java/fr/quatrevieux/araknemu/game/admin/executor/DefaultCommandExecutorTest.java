@@ -43,7 +43,6 @@ class DefaultCommandExecutorTest extends GameBaseCase {
     private AdminPerformer performer;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -53,7 +52,6 @@ class DefaultCommandExecutorTest extends GameBaseCase {
         gamePlayer().account().grant(Permission.ACCESS);
     }
 
-    @Test
     void notGranted() throws AdminException {
         Command<Void> command = new AbstractCommand<Void>() {
             @Override
@@ -73,7 +71,6 @@ class DefaultCommandExecutorTest extends GameBaseCase {
         assertThrows(CommandPermissionsException.class, () -> executor.execute(command, performer, new CommandParser.Arguments("", "", "", Arrays.asList("foo", "bar"), null)));
     }
 
-    @Test
     void notSupportedArgument() throws AdminException {
         class MyCommand extends AbstractCommand<Object> {
             @Override
@@ -94,7 +91,6 @@ class DefaultCommandExecutorTest extends GameBaseCase {
         assertThrowsWithMessage(CommandException.class, "Cannot parse arguments for command MyCommand", () -> executor.execute(command, performer, new CommandParser.Arguments("", "", "", Arrays.asList("foo", "bar"), null)));
     }
 
-    @Test
     void hydratorAdminException() throws AdminException {
         class MyCommand extends AbstractCommand<String> {
             @Override
@@ -115,7 +111,6 @@ class DefaultCommandExecutorTest extends GameBaseCase {
         assertThrowsWithMessage(CommandException.class, "Argument is missing", () -> executor.execute(command, performer, new CommandParser.Arguments("", "", "", Arrays.asList("foo"), null)));
     }
 
-    @Test
     void hydratorOtherException() throws AdminException {
         class MyCommand extends AbstractCommand<MyCommand.Arguments> {
             @Override
@@ -137,7 +132,6 @@ class DefaultCommandExecutorTest extends GameBaseCase {
             }
 
             class Arguments {
-                @Argument(required = true, metaVar = "foo")
                 public String foo;
             }
         }
@@ -147,7 +141,6 @@ class DefaultCommandExecutorTest extends GameBaseCase {
         assertThrowsWithMessage(CommandException.class, "Argument \"foo\" is required", () -> executor.execute(command, performer, new CommandParser.Arguments("", "", "", Arrays.asList("foo"), null)));
     }
 
-    @Test
     void executeSuccess() throws AdminException {
         class MyCommand extends AbstractCommand<MyCommand.Arguments> {
             public Arguments arguments;
@@ -174,7 +167,6 @@ class DefaultCommandExecutorTest extends GameBaseCase {
             }
 
             class Arguments {
-                @Argument
                 public String foo;
             }
         }

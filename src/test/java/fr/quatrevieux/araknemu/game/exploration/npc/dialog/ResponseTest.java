@@ -33,17 +33,14 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ResponseTest extends GameBaseCase {
-    @Test
     void id() {
         assertEquals(123, new Response(123, new ArrayList<>()).id());
     }
 
-    @Test
     void checkWithoutAction() throws SQLException, ContainerException {
         assertFalse(new Response(123, new ArrayList<>()).check(explorationPlayer()));
     }
 
-    @Test
     void checkInvalid() throws SQLException, ContainerException {
         ExplorationPlayer player = explorationPlayer();
 
@@ -56,7 +53,6 @@ class ResponseTest extends GameBaseCase {
         assertFalse(new Response(123, Arrays.asList(a1, a2)).check(explorationPlayer()));
     }
 
-    @Test
     void checkSuccess() throws SQLException, ContainerException {
         ExplorationPlayer player = explorationPlayer();
 
@@ -69,7 +65,6 @@ class ResponseTest extends GameBaseCase {
         assertTrue(new Response(123, Arrays.asList(a1, a2)).check(explorationPlayer()));
     }
 
-    @Test
     void apply() throws SQLException, ContainerException {
         ExplorationPlayer player = explorationPlayer();
 

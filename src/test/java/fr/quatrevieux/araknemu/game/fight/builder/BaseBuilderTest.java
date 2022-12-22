@@ -49,7 +49,6 @@ class BaseBuilderTest extends GameBaseCase {
     private FightType type;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -59,7 +58,6 @@ class BaseBuilderTest extends GameBaseCase {
         builder = new BaseBuilder(container.get(FightService.class), new RandomUtil(), type);
     }
 
-    @Test
     void buildSimple() throws Exception {
         PlayerFighter fighter = new PlayerFighter(gamePlayer());
         PlayerFighter other = new PlayerFighter(makeOtherPlayer());
@@ -84,19 +82,16 @@ class BaseBuilderTest extends GameBaseCase {
         assertEquals(1, fight.id());
     }
 
-    @Test
     void buildWithoutTeam() {
         builder.map(container.get(ExplorationMapService.class).load(10340));
 
         assertThrows(IllegalStateException.class, () -> builder.build(1));
     }
 
-    @Test
     void buildWithoutMap() {
         assertThrows(IllegalStateException.class, () -> builder.build(1));
     }
 
-    @Test
     void buildWillRandomizeTeamNumbers() throws Exception {
         PlayerFighter fighter = new PlayerFighter(gamePlayer());
         PlayerFighter other = new PlayerFighter(makeOtherPlayer());
@@ -127,7 +122,6 @@ class BaseBuilderTest extends GameBaseCase {
         assertNotEquals(100, nbTeam0);
     }
 
-    @Test
     void buildWithoutRandomizeTeam() throws Exception {
         GamePlayer player1 = gamePlayer();
         GamePlayer player2 = makeOtherPlayer();

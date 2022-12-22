@@ -65,7 +65,7 @@ public final class NpcQuestion {
      * @return List of parameters. Must be stringifiable
      */
     public Object[] parameters(ExplorationPlayer player) {
-        return Arrays.<@MinLen(1) String>stream(entity.parameters())
+        return Arrays.<String>stream(entity.parameters())
             .map(parameter -> parametersResolver.resolve(parameter, player))
             .toArray()
         ;

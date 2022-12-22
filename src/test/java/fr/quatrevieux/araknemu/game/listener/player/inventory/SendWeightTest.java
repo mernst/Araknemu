@@ -40,7 +40,6 @@ class SendWeightTest extends GameBaseCase {
     private GamePlayer player;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -57,21 +56,18 @@ class SendWeightTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onGameJoined() {
         dispatcher.dispatch(new GameJoined());
 
         requestStack.assertLast(new InventoryWeight(player));
     }
 
-    @Test
     void onCharacteristicsChanged() {
         dispatcher.dispatch(new CharacteristicsChanged());
 
         requestStack.assertLast(new InventoryWeight(player));
     }
 
-    @Test
     void onObjectQuantityChanged() throws ContainerException {
         InventoryEntry entry = player.inventory().add(container.get(ItemService.class).create(2411));
 
@@ -80,7 +76,6 @@ class SendWeightTest extends GameBaseCase {
         requestStack.assertLast(new InventoryWeight(player));
     }
 
-    @Test
     void onObjectAdded() throws ContainerException {
         InventoryEntry entry = player.inventory().add(container.get(ItemService.class).create(2411));
 
@@ -89,7 +84,6 @@ class SendWeightTest extends GameBaseCase {
         requestStack.assertLast(new InventoryWeight(player));
     }
 
-    @Test
     void onObjectDeleted() throws ContainerException {
         InventoryEntry entry = player.inventory().add(container.get(ItemService.class).create(2411));
 

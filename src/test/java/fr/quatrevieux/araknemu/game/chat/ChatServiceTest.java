@@ -46,7 +46,6 @@ class ChatServiceTest extends GameBaseCase {
     private ChatService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -59,7 +58,6 @@ class ChatServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void listeners() {
         ListenerAggregate dispatcher = new DefaultListenerAggregate();
         dispatcher.register(service);
@@ -67,7 +65,6 @@ class ChatServiceTest extends GameBaseCase {
         assertTrue(dispatcher.has(AddChatChannels.class));
     }
 
-    @Test
     void playerLoadListener() throws SQLException, ContainerException {
         ListenerAggregate dispatcher = new DefaultListenerAggregate();
         dispatcher.register(service);
@@ -79,7 +76,6 @@ class ChatServiceTest extends GameBaseCase {
         assertTrue(gamePlayer().dispatcher().has(PrivateMessageReceived.class));
     }
 
-    @Test
     void sendMapChat() throws SQLException, ContainerException, ChatException {
         explorationPlayer();
         gamePlayer().dispatcher().add(new MessageReceived(
@@ -101,7 +97,6 @@ class ChatServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void sendSyntaxError() throws SQLException, ContainerException, ChatException {
         explorationPlayer();
 
@@ -111,14 +106,12 @@ class ChatServiceTest extends GameBaseCase {
         assertThrows(ChatException.class, () -> service.send(gamePlayer(), new Message(ChannelType.MESSAGES, "", "°0", "123!45#10")));
     }
 
-    @Test
     void sendUnauthorized() throws SQLException, ContainerException, ChatException {
         explorationPlayer();
 
         assertThrows(ChatException.class, () -> service.send(gamePlayer(), new Message(ChannelType.ADMIN, "", "°0", "1234")));
     }
 
-    @Test
     void sendWithItemSuccess() throws SQLException, ContainerException, ChatException {
         gamePlayer(true).dispatcher().add(new MessageReceived(
             gamePlayer()

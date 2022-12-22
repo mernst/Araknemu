@@ -37,7 +37,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerSpriteTest extends GameBaseCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,7 +46,6 @@ class PlayerSpriteTest extends GameBaseCase {
         ;
     }
 
-    @Test
     void data() throws SQLException, ContainerException {
         GamePlayer player = gamePlayer();
 
@@ -61,7 +59,6 @@ class PlayerSpriteTest extends GameBaseCase {
         assertEquals(10, sprite.gfxId());
     }
 
-    @Test
     void generateString() throws SQLException, ContainerException {
         assertEquals(
             "200;1;0;1;Bob;1;10^100x100;0;;7b;1c8;315;,,,,;;;;;;8;",
@@ -69,7 +66,6 @@ class PlayerSpriteTest extends GameBaseCase {
         );
     }
 
-    @Test
     void withRestrictions() throws SQLException, ContainerException {
         ExplorationPlayer exploration = explorationPlayer();
         exploration.player().restrictions().set(
@@ -83,7 +79,6 @@ class PlayerSpriteTest extends GameBaseCase {
         );
     }
 
-    @Test
     void withAccessories() throws SQLException, ContainerException, InventoryException {
         gamePlayer().inventory().add(container.get(ItemService.class).create(2411), 1, 6);
         gamePlayer().inventory().add(container.get(ItemService.class).create(2414), 1, 7);
@@ -95,7 +90,6 @@ class PlayerSpriteTest extends GameBaseCase {
         );
     }
 
-    @Test
     void withOrientation() throws SQLException, ContainerException {
         ExplorationPlayer exploration = new ExplorationPlayer(gamePlayer());
 

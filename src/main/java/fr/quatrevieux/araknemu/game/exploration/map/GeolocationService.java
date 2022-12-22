@@ -74,7 +74,7 @@ public final class GeolocationService {
         private static final int NONE = 0;
 
         private int superArea = 0;
-        private @MonotonicNonNull Integer subArea;
+        private Integer subArea;
         private boolean indoor = false;
 
         /**

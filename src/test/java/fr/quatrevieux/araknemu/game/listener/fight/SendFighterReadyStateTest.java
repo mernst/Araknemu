@@ -32,7 +32,6 @@ class SendFighterReadyStateTest extends FightBaseCase {
     private PlayerFighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -44,7 +43,6 @@ class SendFighterReadyStateTest extends FightBaseCase {
         listener = new SendFighterReadyState(fight);
     }
 
-    @Test
     void onFighterReadyStateChanged() {
         listener.on(new FighterReadyStateChanged(fighter));
 

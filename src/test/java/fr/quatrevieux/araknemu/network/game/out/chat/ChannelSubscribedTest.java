@@ -27,7 +27,6 @@ import java.util.EnumSet;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ChannelSubscribedTest {
-    @Test
     void generate() {
         assertEquals(
             "cC+i*p",

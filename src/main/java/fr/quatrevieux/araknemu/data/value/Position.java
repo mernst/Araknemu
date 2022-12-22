@@ -28,25 +28,22 @@ import org.checkerframework.dataflow.qual.Pure;
  * Position object into the world
  */
 public final class Position {
-    private final @NonNegative int map;
-    private final @NonNegative int cell;
+    private final int map;
+    private final int cell;
 
-    public Position(@NonNegative int map, @NonNegative int cell) {
+    public Position(int map, int cell) {
         this.map = map;
         this.cell = cell;
     }
 
-    @Pure
-    public @NonNegative int map() {
+    public int map() {
         return map;
     }
 
-    @Pure
-    public @NonNegative int cell() {
+    public int cell() {
         return cell;
     }
 
-    @Pure
     public boolean isNull() {
         return map == 0 && cell == 0;
     }
@@ -54,25 +51,25 @@ public final class Position {
     /**
      * Change the cell position
      */
-    public Position newCell(@NonNegative int cell) {
+    public Position newCell(int cell) {
         return new Position(map, cell);
     }
 
     @Override
-    public boolean equals(@Nullable Object o) {
+    public boolean equals(Object o) {
         return
             this == o
             || (o instanceof Position && equals((Position) o))
         ;
     }
 
-    public boolean equals(@Nullable Position other) {
+    public boolean equals(Position other) {
         return other != null && other.cell == cell && other.map == map;
     }
 
     @Override
     public int hashCode() {
-        @Signed int result = map;
+        int result = map;
         result = 31 * result + cell;
         return result;
     }

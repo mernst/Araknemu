@@ -29,12 +29,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class ItemPoolContainerTest {
     private ItemPoolContainer container;
 
-    @BeforeEach
     void setUp() {
         container = new ItemPoolContainer();
     }
 
-    @Test
     void has() {
         assertFalse(container.has(RandomUtils.class));
 
@@ -44,12 +42,10 @@ class ItemPoolContainerTest {
         assertTrue(container.has(RandomUtils.class));
     }
 
-    @Test
     void getNotFound() {
         assertThrows(ItemNotFoundException.class, () -> container.get(RandomUtils.class));
     }
 
-    @Test
     void getSuccess() throws ContainerException {
         RandomUtils ru = new RandomUtils();
         ItemPoolContainer.Configurator configurator = container.configurator();
@@ -58,7 +54,6 @@ class ItemPoolContainerTest {
         assertSame(ru, container.get(RandomUtils.class));
     }
 
-    @Test
     void configuratorSet() throws ContainerException {
         ItemPoolContainer.Configurator configurator = container.configurator();
 
@@ -66,7 +61,6 @@ class ItemPoolContainerTest {
         assertTrue(container.get(Object.class) instanceof RandomUtils);
     }
 
-    @Test
     void configuratorFactory() throws ContainerException {
         ItemPoolContainer.Configurator configurator = container.configurator();
 
@@ -76,7 +70,6 @@ class ItemPoolContainerTest {
         assertNotSame(container.get(ConnectionKey.class), container.get(ConnectionKey.class));
     }
 
-    @Test
     void configuratorPersist() throws ContainerException {
         ItemPoolContainer.Configurator configurator = container.configurator();
 
@@ -105,7 +98,6 @@ class ItemPoolContainerTest {
         }
     }
 
-    @Test
     void register() throws ContainerException {
         container.register(new Module());
 
@@ -115,7 +107,6 @@ class ItemPoolContainerTest {
         assertSame(container.get(A.class), container.get(B.class).a);
     }
 
-    @Test
     void with() {
         container.register(new Module());
 
@@ -129,7 +120,6 @@ class ItemPoolContainerTest {
         assertSame(scoped.get(A.class), container.get(A.class));
     }
 
-    @Test
     void withAll() {
         container.register(new Module());
 

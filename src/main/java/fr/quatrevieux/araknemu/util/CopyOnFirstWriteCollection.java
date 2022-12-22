@@ -39,7 +39,7 @@ import java.util.function.Function;
  */
 public final class CopyOnFirstWriteCollection<E> implements Collection<E> {
     private Collection<E> inner;
-    private @Nullable Function<Collection<E>, Collection<E>> copyFactory;
+    private Function<Collection<E>, Collection<E>> copyFactory;
 
     public CopyOnFirstWriteCollection(Collection<E> inner, Function<Collection<E>, Collection<E>> copyFactory) {
         this.inner = inner;
@@ -51,7 +51,7 @@ public final class CopyOnFirstWriteCollection<E> implements Collection<E> {
     }
 
     @Override
-    public @NonNegative int size() {
+    public int size() {
         return inner.size();
     }
 
@@ -95,7 +95,7 @@ public final class CopyOnFirstWriteCollection<E> implements Collection<E> {
 
     @Override
     @SuppressWarnings({"override.param", "return"})
-    public <T> T @NonNull[] toArray(T @NonNull[] a) {
+    public <T> T[] toArray(T[] a) {
         return inner.toArray(a);
     }
 

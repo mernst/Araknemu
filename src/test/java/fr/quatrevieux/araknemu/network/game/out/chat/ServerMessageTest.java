@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ServerMessageTest {
-    @Test
     void string() {
         assertEquals("csHello World !", new ServerMessage("Hello World !").toString());
     }

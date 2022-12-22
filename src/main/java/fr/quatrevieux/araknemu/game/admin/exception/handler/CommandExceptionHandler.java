@@ -31,7 +31,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  */
 public final class CommandExceptionHandler implements ExceptionHandler.Function<CommandException> {
     @Override
-    public void handle(AdminPerformer performer, CommandException error, CommandParser.@Nullable Arguments arguments) {
+    public void handle(AdminPerformer performer, CommandException error, CommandParser.Arguments arguments) {
         performer.error("An error occurs during execution of '{}' : {}", error.command(), error.getMessage() != null ? error.getMessage() : error.toString());
         performer.error(
             "See {} for usage",

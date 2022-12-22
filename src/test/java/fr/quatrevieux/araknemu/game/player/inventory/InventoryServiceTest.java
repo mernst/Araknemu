@@ -59,7 +59,6 @@ class InventoryServiceTest extends GameBaseCase {
     private PlayerItemRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -72,14 +71,12 @@ class InventoryServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void loadEmptyInventory() throws SQLException {
         PlayerInventory inventory = service.load(new Player(5)).attach(gamePlayer());
 
         assertFalse(inventory.iterator().hasNext());
     }
 
-    @Test
     void loadInventory() throws ItemNotFoundException, SQLException {
         Player player = new Player(5);
 
@@ -94,7 +91,6 @@ class InventoryServiceTest extends GameBaseCase {
         assertEquals(284, inventory.get(32).templateId());
     }
 
-    @Test
     void playerLoadedListener() throws SQLException, ContainerException {
         ListenerAggregate dispatcher = new DefaultListenerAggregate();
         dispatcher.register(service);
@@ -114,7 +110,6 @@ class InventoryServiceTest extends GameBaseCase {
         assertSubscriberRegistered(new SendWeight(gamePlayer()), gamePlayer().dispatcher());
     }
 
-    @Test
     void explorationPlayerCreatedListener() throws Exception {
         ExplorationPlayer player = new ExplorationPlayer(gamePlayer());
 
@@ -125,7 +120,6 @@ class InventoryServiceTest extends GameBaseCase {
         assertTrue(player.dispatcher().has(SendAccessories.class));
     }
 
-    @Test
     void playerFighterCreatedListener() throws Exception {
         PlayerFighter fighter = new PlayerFighter(gamePlayer());
 
@@ -136,7 +130,6 @@ class InventoryServiceTest extends GameBaseCase {
         assertTrue(fighter.dispatcher().has(SendFighterAccessories.class));
     }
 
-    @Test
     void deleteItemEntry() {
         InventoryEntry entry = new InventoryEntry(
             null,
@@ -151,7 +144,6 @@ class InventoryServiceTest extends GameBaseCase {
         assertFalse(container.get(PlayerItemRepository.class).has(entry.entity()));
     }
 
-    @Test
     void updateItemEntry() throws ContainerException {
         InventoryEntry entry = new InventoryEntry(
             null,
@@ -167,7 +159,6 @@ class InventoryServiceTest extends GameBaseCase {
         assertEquals(1, container.get(PlayerItemRepository.class).get(entry.entity()).position());
     }
 
-    @Test
     void saveItemEntry() throws ContainerException {
         InventoryEntry entry = new InventoryEntry(
             null,

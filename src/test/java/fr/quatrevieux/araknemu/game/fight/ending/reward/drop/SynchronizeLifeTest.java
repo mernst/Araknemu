@@ -37,7 +37,6 @@ class SynchronizeLifeTest extends FightBaseCase {
     private Fight fight;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -46,7 +45,6 @@ class SynchronizeLifeTest extends FightBaseCase {
         fight.nextState();
     }
 
-    @Test
     void applyOnPlayer() {
         player.fighter().life().alter(player.fighter(), -100);
 
@@ -57,7 +55,6 @@ class SynchronizeLifeTest extends FightBaseCase {
         assertEquals(195, player.properties().life().current());
     }
 
-    @Test
     void applyOnPlayerFullLife() {
         DropReward reward = new DropReward(RewardType.WINNER, player.fighter(), Collections.emptyList());
 
@@ -66,7 +63,6 @@ class SynchronizeLifeTest extends FightBaseCase {
         assertTrue(player.properties().life().isFull());
     }
 
-    @Test
     void applyOnMonster() {
         MonsterFighter fighter = (MonsterFighter) fight.team(1).fighters().stream().findFirst().get();
 

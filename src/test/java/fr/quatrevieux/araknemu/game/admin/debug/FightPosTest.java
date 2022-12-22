@@ -36,7 +36,6 @@ import java.sql.SQLException;
 
 class FightPosTest extends CommandTestCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -50,14 +49,12 @@ class FightPosTest extends CommandTestCase {
         requestStack.clear();
     }
 
-    @Test
     void hide() throws AdminException, SQLException {
         executeWithAdminUser("fightpos", "hide");
 
         requestStack.assertLast("GV");
     }
 
-    @Test
     void notOnMap() throws SQLException, AdminException {
         explorationPlayer().leave();
 
@@ -67,7 +64,6 @@ class FightPosTest extends CommandTestCase {
         );
     }
 
-    @Test
     void noFightPos() throws AdminException, SQLException {
         explorationPlayer().changeMap(container.get(ExplorationMapService.class).load(10300), 200);
 
@@ -78,7 +74,6 @@ class FightPosTest extends CommandTestCase {
         );
     }
 
-    @Test
     void noDisplay() throws AdminException, SQLException {
         executeWithAdminUser("fightpos");
 
@@ -87,7 +82,6 @@ class FightPosTest extends CommandTestCase {
         );
     }
 
-    @Test
     void show() throws AdminException, ContainerException, SQLException {
         executeWithAdminUser("fightpos", "show");
 

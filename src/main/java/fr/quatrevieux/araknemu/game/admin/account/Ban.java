@@ -139,12 +139,6 @@ public final class Ban extends AbstractCommand<Ban.Arguments> implements SubArgu
 
     @SuppressWarnings("initialization.field.uninitialized")
     public static final class Arguments implements SubArguments<Ban> {
-        @Argument(required = true, metaVar = "ACTION")
-        @SubCommands({
-            @SubCommand(name = "for", impl = ForArguments.class),
-            @SubCommand(name = "list", impl = ListArguments.class),
-            @SubCommand(name = "unban", impl = UnbanArguments.class),
-        })
         private SubArguments<Ban> action;
 
         @Override
@@ -153,10 +147,8 @@ public final class Ban extends AbstractCommand<Ban.Arguments> implements SubArgu
         }
 
         public static final class ForArguments implements SubArguments<Ban> {
-            @Argument(index = 0, required = true, metaVar = "DURATION")
             private Duration duration;
 
-            @Argument(index = 1, required = true, metaVar = "CAUSE", handler = ConcatRestOfArgumentsHandler.class)
             private String cause;
 
             @Override

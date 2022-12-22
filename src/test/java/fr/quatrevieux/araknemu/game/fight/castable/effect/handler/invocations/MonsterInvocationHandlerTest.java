@@ -49,7 +49,6 @@ class MonsterInvocationHandlerTest extends FightBaseCase {
     private MonsterInvocationHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -65,7 +64,6 @@ class MonsterInvocationHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handle() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -97,7 +95,6 @@ class MonsterInvocationHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void buff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

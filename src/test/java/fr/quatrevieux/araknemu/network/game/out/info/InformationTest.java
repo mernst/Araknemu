@@ -27,7 +27,6 @@ import java.time.Instant;
 import static org.junit.jupiter.api.Assertions.*;
 
 class InformationTest {
-    @Test
     void chatFlood() {
         assertEquals(
             "Im0115;1234",
@@ -35,7 +34,6 @@ class InformationTest {
         );
     }
 
-    @Test
     void heal() {
         assertEquals(
             "Im01;10",
@@ -43,7 +41,6 @@ class InformationTest {
         );
     }
 
-    @Test
     void spellLearn() {
         assertEquals(
             "Im03;10",
@@ -51,7 +48,6 @@ class InformationTest {
         );
     }
 
-    @Test
     void characteristicBoosted() {
         assertEquals("Im09;10", Information.characteristicBoosted(Characteristic.WISDOM, 10).toString());
         assertEquals("Im010;10", Information.characteristicBoosted(Characteristic.STRENGTH, 10).toString());
@@ -63,7 +59,6 @@ class InformationTest {
         assertNull(Information.characteristicBoosted(Characteristic.FIXED_DAMAGE, 10));
     }
 
-    @Test
     void cannotPostItemOnChannel() {
         assertEquals(
             "Im0114;",
@@ -71,7 +66,6 @@ class InformationTest {
         );
     }
 
-    @Test
     void positionSaved() {
         assertEquals(
             "Im06;",
@@ -79,7 +73,6 @@ class InformationTest {
         );
     }
 
-    @Test
     void bankTaxPayed() {
         assertEquals(
             "Im020;42",
@@ -87,7 +80,6 @@ class InformationTest {
         );
     }
 
-    @Test
     void lastLogin() {
         assertEquals(
             "Im0152;2020~6~20~16~25~141.22.12.34",
@@ -95,7 +87,6 @@ class InformationTest {
         );
     }
 
-    @Test
     void currentIpAddress() {
         assertEquals(
             "Im0153;141.22.12.34",
@@ -103,12 +94,10 @@ class InformationTest {
         );
     }
 
-    @Test
     void spectatorHasJoinFight() {
         assertEquals("Im036;Bob", Information.spectatorHasJoinFight("Bob").toString());
     }
 
-    @Test
     void teamOptions() {
         assertEquals("Im0103;", Information.helpRequested().toString());
         assertEquals("Im0104;", Information.helpRequestStopped().toString());

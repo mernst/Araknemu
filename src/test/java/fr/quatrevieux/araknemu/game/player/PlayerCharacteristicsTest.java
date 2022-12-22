@@ -57,7 +57,6 @@ class PlayerCharacteristicsTest extends GameBaseCase {
     private ListenerAggregate dispatcher;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -70,7 +69,6 @@ class PlayerCharacteristicsTest extends GameBaseCase {
         );
     }
 
-    @Test
     void defaults() {
         assertInstanceOf(MutableComputedCharacteristics.class, characteristics.base());
         assertEquals(new DefaultCharacteristics(), characteristics.boost());
@@ -78,14 +76,12 @@ class PlayerCharacteristicsTest extends GameBaseCase {
         assertEquals(new ComputedCharacteristics<>(new DefaultCharacteristics()), characteristics.stuff());
     }
 
-    @Test
     void getFromBaseStats() {
         base.set(Characteristic.INTELLIGENCE, 250);
 
         assertEquals(250, characteristics.get(Characteristic.INTELLIGENCE));
     }
 
-    @Test
     void rebuildStuffStats() throws SQLException, ContainerException, InventoryException {
         dataSet
             .pushItemTemplates()
@@ -105,7 +101,6 @@ class PlayerCharacteristicsTest extends GameBaseCase {
         assertEquals(55, characteristics.stuff().get(Characteristic.STRENGTH));
     }
 
-    @Test
     void rebuildStuffStatsWithFullItemSet() throws SQLException, ContainerException, InventoryException {
         dataSet
             .pushItemTemplates()
@@ -132,7 +127,6 @@ class PlayerCharacteristicsTest extends GameBaseCase {
         assertEquals(1, gamePlayer().properties().characteristics().stuff().get(Characteristic.MAX_SUMMONED_CREATURES));
     }
 
-    @Test
     void rebuildSpecialEffectsWithItemSetWithSpecialEffects() throws ContainerException, SQLException, InventoryException {
         dataSet
             .pushItemTemplates()
@@ -152,7 +146,6 @@ class PlayerCharacteristicsTest extends GameBaseCase {
         assertEquals(60, gamePlayer().properties().characteristics().specials().get(SpecialEffects.Type.INITIATIVE));
     }
 
-    @Test
     void getFromBaseAndStuff() throws SQLException, ContainerException, InventoryException {
         dataSet
             .pushItemTemplates()
@@ -169,7 +162,6 @@ class PlayerCharacteristicsTest extends GameBaseCase {
         assertEquals(105, characteristics.get(Characteristic.STRENGTH));
     }
 
-    @Test
     void boostCharacteristicSuccess() throws SQLException, ContainerException {
         gamePlayer().entity().setBoostPoints(10);
 
@@ -183,7 +175,6 @@ class PlayerCharacteristicsTest extends GameBaseCase {
         assertEquals(7, gamePlayer().entity().boostPoints());
     }
 
-    @Test
     void boostCharacteristicNotEnoughPoints() throws SQLException, ContainerException {
         gamePlayer().entity().setBoostPoints(1);
 
@@ -197,19 +188,16 @@ class PlayerCharacteristicsTest extends GameBaseCase {
         assertEquals(1, gamePlayer().entity().boostPoints());
     }
 
-    @Test
     void boostCharacteristicBadStats() throws SQLException, ContainerException {
         assertThrows(NoSuchElementException.class, () -> characteristics.boostCharacteristic(Characteristic.ACTION_POINT));
     }
 
-    @Test
     void initiative() {
         characteristics.specials().add(SpecialEffects.Type.INITIATIVE, 200);
 
         assertEquals(473, characteristics.initiative());
     }
 
-    @Test
     void discernment() throws SQLException, ContainerException {
         characteristics.specials().add(SpecialEffects.Type.DISCERNMENT, 15);
         gamePlayer().entity().stats().set(Characteristic.LUCK, 120);
@@ -217,7 +205,6 @@ class PlayerCharacteristicsTest extends GameBaseCase {
         assertEquals(127, characteristics.discernment());
     }
 
-    @Test
     void rebuildSpecialEffects() throws SQLException, ContainerException, InventoryException {
         dataSet
             .pushItemTemplates()
@@ -233,7 +220,6 @@ class PlayerCharacteristicsTest extends GameBaseCase {
         assertEquals(300, gamePlayer().properties().characteristics().specials().get(SpecialEffects.Type.INITIATIVE));
     }
 
-    @Test
     void pods() {
         assertEquals(1250, characteristics.pods());
 
@@ -244,7 +230,6 @@ class PlayerCharacteristicsTest extends GameBaseCase {
         assertEquals(1850, characteristics.pods());
     }
 
-    @Test
     void pointsResistance() throws SQLException {
         assertEquals(0, characteristics.get(Characteristic.RESISTANCE_ACTION_POINT));
         assertEquals(0, characteristics.get(Characteristic.RESISTANCE_MOVEMENT_POINT));
@@ -258,7 +243,6 @@ class PlayerCharacteristicsTest extends GameBaseCase {
         assertEquals(12, characteristics.base().get(Characteristic.RESISTANCE_MOVEMENT_POINT));
     }
 
-    @Test
     void stuffStatsWithPointResistance() throws SQLException, ContainerException, InventoryException {
         gamePlayer().entity().stats().set(Characteristic.WISDOM, 12);
 

@@ -44,7 +44,7 @@ public interface Spell extends Castable {
     /**
      * Get the spell level in interval [1-6]
      */
-    public @Positive int level();
+    public int level();
 
     /**
      * Minimal player level for use the spell

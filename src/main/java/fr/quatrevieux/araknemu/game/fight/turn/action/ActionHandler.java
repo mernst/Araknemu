@@ -38,7 +38,7 @@ public final class ActionHandler {
 
     private final Collection<Runnable> termination = new ArrayList<>();
 
-    private @Nullable PendingAction pending;
+    private PendingAction pending;
 
     public ActionHandler(FightTurn turn, Fight fight) {
         this.turn = turn;

@@ -36,7 +36,7 @@ public interface FightTeam extends Sender, Team<Fighter> {
     /**
      * Get the team leader (the fight initiator)
      */
-    public @Nullable Fighter leader();
+    public Fighter leader();
 
     /**
      * Get the team id (must be unique over the map)

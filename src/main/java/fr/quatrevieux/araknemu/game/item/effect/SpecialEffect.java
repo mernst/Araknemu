@@ -35,10 +35,10 @@ import java.util.Arrays;
 public final class SpecialEffect implements ItemEffect {
     private final SpecialEffectHandler handler;
     private final Effect effect;
-    private final @NonNegative int @ArrayLen(3)[] arguments;
+    private final int[] arguments;
     private final String text;
 
-    public SpecialEffect(SpecialEffectHandler handler, Effect effect, @NonNegative int @ArrayLen(3)[] arguments, String text) {
+    public SpecialEffect(SpecialEffectHandler handler, Effect effect, int[] arguments, String text) {
         this.handler = handler;
         this.effect = effect;
         this.arguments = arguments;
@@ -61,7 +61,7 @@ public final class SpecialEffect implements ItemEffect {
         );
     }
 
-    public @NonNegative int @ArrayLen(3)[] arguments() {
+    public int[] arguments() {
         return arguments;
     }
 
@@ -84,7 +84,7 @@ public final class SpecialEffect implements ItemEffect {
     }
 
     @Override
-    public boolean equals(@Nullable Object o) {
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }

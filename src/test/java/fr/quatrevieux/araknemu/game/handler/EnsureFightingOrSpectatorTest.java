@@ -35,7 +35,6 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EnsureFightingOrSpectatorTest extends FightBaseCase {
-    @Test
     void handleNotFightingNorSpectator() {
         PacketHandler spe = Mockito.mock(PacketHandler.class);
         PacketHandler fig = Mockito.mock(PacketHandler.class);
@@ -45,7 +44,6 @@ class EnsureFightingOrSpectatorTest extends FightBaseCase {
         assertThrows(CloseImmediately.class, () -> handler.handle(session, Mockito.mock(Packet.class)));
     }
 
-    @Test
     void handleOnFight() throws Exception {
         PacketHandler spe = Mockito.mock(PacketHandler.class);
         PacketHandler fig = Mockito.mock(PacketHandler.class);
@@ -61,7 +59,6 @@ class EnsureFightingOrSpectatorTest extends FightBaseCase {
         Mockito.verify(spe, Mockito.never()).handle(session, packet);
     }
 
-    @Test
     void handleOnSpectator() throws Exception {
         PacketHandler spe = Mockito.mock(PacketHandler.class);
         PacketHandler fig = Mockito.mock(PacketHandler.class);
@@ -77,7 +74,6 @@ class EnsureFightingOrSpectatorTest extends FightBaseCase {
         Mockito.verify(fig, Mockito.never()).handle(session, packet);
     }
 
-    @Test
     void packet() {
         assertEquals(
             GameActionRequest.class,

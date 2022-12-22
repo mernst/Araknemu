@@ -31,9 +31,9 @@ public final class ItemType {
     private final int id;
     private final String name;
     private final SuperType superType;
-    private final @Nullable EffectArea effectArea;
+    private final EffectArea effectArea;
 
-    public ItemType(int id, String name, SuperType superType, @Nullable EffectArea effectArea) {
+    public ItemType(int id, String name, SuperType superType, EffectArea effectArea) {
         this.id = id;
         this.name = name;
         this.superType = superType;
@@ -46,7 +46,6 @@ public final class ItemType {
      * This is the primary key.
      * The value can be found in `items_xx_xxx.swf` file, as key of `I.t` object.
      */
-    @Pure
     public int id() {
         return id;
     }
@@ -55,12 +54,10 @@ public final class ItemType {
      * Human-readable item type
      * Not used internally
      */
-    @Pure
     public String name() {
         return name;
     }
 
-    @Pure
     public SuperType superType() {
         return superType;
     }
@@ -71,8 +68,7 @@ public final class ItemType {
      * This value is provided only for weapon types.
      * Other item types should return null.
      */
-    @Pure
-    public @Nullable EffectArea effectArea() {
+    public EffectArea effectArea() {
         return effectArea;
     }
 

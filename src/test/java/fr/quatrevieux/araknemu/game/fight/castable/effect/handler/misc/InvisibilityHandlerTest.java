@@ -53,7 +53,6 @@ class InvisibilityHandlerTest extends FightBaseCase {
     private InvisibilityHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -71,7 +70,6 @@ class InvisibilityHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handle() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -86,7 +84,6 @@ class InvisibilityHandlerTest extends FightBaseCase {
         assertThrows(UnsupportedOperationException.class, () -> handler.handle(scope, scope.effects().get(0)));
     }
 
-    @Test
     void buffWillAddBuffToListAndHideTarget() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -116,7 +113,6 @@ class InvisibilityHandlerTest extends FightBaseCase {
         requestStack.assertOne(new ActionEffect(150, caster, target.id(), 1));
     }
 
-    @Test
     void buffWithAreaMultipleFighters() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -139,7 +135,6 @@ class InvisibilityHandlerTest extends FightBaseCase {
         assertTrue(target.buffs().stream().anyMatch(buff -> buff.effect().equals(effect)));
     }
 
-    @Test
     void buffTerminatedShouldMakeFighterVisible() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -165,7 +160,6 @@ class InvisibilityHandlerTest extends FightBaseCase {
         requestStack.assertOne(new FighterPositions(Collections.singleton(target)));
     }
 
-    @Test
     void onCastDirectAttackShouldMakeFighterVisible() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -198,7 +192,6 @@ class InvisibilityHandlerTest extends FightBaseCase {
         requestStack.assertOne(new ActionEffect(150, target, target.id(), 0));
     }
 
-    @Test
     void onCastPoisonShouldShowCasterCell() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -231,7 +224,6 @@ class InvisibilityHandlerTest extends FightBaseCase {
         requestStack.assertOne(new CellShown(target, target.cell().id()));
     }
 
-    @Test
     void onCastNotAttackShouldShowCasterCell() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -263,7 +255,6 @@ class InvisibilityHandlerTest extends FightBaseCase {
         requestStack.assertOne(new CellShown(target, target.cell().id()));
     }
 
-    @Test
     void onCastShouldNotShowFighterCellIfAlreadyVisible() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -297,7 +288,6 @@ class InvisibilityHandlerTest extends FightBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void buffTerminatedWithOtherBuffActiveShouldNotSetVisible() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -340,7 +330,6 @@ class InvisibilityHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void buffMultipleBuffTerminateOnSameTurn() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -372,7 +361,6 @@ class InvisibilityHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void buffTerminatedWithOtherBuffNotInvisibilityShouldBeIgnored() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -410,7 +398,6 @@ class InvisibilityHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void onCastWithTwoActiveBuffShouldOnlyShowCellOnce() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -447,7 +434,6 @@ class InvisibilityHandlerTest extends FightBaseCase {
         requestStack.assertAll(new CellShown(target, target.cell().id()));
     }
 
-    @Test
     void onCastUnitWithoutActiveBuffShouldShowCell() {
         SpellEffect otherBuffEffect = Mockito.mock(SpellEffect.class);
         Mockito.when(otherBuffEffect.effect()).thenReturn(144);

@@ -36,7 +36,6 @@ class PlayerResolverTest extends GameBaseCase {
     private PlayerResolver resolver;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,7 +48,6 @@ class PlayerResolverTest extends GameBaseCase {
         resolver = new PlayerResolver(container.get(PlayerService.class), container.get(ExplorationMapService.class));
     }
 
-    @Test
     void resolveNotExploring() throws Exception {
         GamePlayer player = makeOtherPlayer();
         Target target = new Target(explorationPlayer().map(), 123);
@@ -60,7 +58,6 @@ class PlayerResolverTest extends GameBaseCase {
         assertEquals(container.get(ExplorationMapService.class).load(10540), target.map());
     }
 
-    @Test
     void resolveExploringNotOnMap() throws Exception {
         ExplorationPlayer player = makeOtherExplorationPlayer();
         Target target = new Target(explorationPlayer().map(), 123);
@@ -71,7 +68,6 @@ class PlayerResolverTest extends GameBaseCase {
         assertEquals(container.get(ExplorationMapService.class).load(10540), target.map());
     }
 
-    @Test
     void resolveExploring() throws Exception {
         ExplorationPlayer player = makeOtherExplorationPlayer();
         player.changeMap(container.get(ExplorationMapService.class).load(10340), 250);
@@ -83,7 +79,6 @@ class PlayerResolverTest extends GameBaseCase {
         assertEquals(container.get(ExplorationMapService.class).load(10340), target.map());
     }
 
-    @Test
     void resolveNotFound() {
         assertThrows(IllegalArgumentException.class, () -> resolver.resolve("not found", new Target(null, 0)));
     }

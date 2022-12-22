@@ -37,7 +37,7 @@ public final class QuickPing implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "qping";
         }
     }

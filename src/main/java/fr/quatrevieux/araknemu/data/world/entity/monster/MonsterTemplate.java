@@ -88,19 +88,18 @@ public final class MonsterTemplate {
     /**
      * List of available grades (level, characteristics, spells...)
      */
-    @Pure
     public Grade[] grades() {
         return grades;
     }
 
     public static final class Grade {
-        private final @Positive int level;
-        private final @Positive int life;
+        private final int level;
+        private final int life;
         private final int initiative;
         private final Characteristics characteristics;
-        private final Map<Integer, @Positive Integer> spells;
+        private final Map<Integer, Integer> spells;
 
-        public Grade(@Positive int level, @Positive int life, int initiative, Characteristics characteristics, Map<Integer, @Positive Integer> spells) {
+        public Grade(int level, int life, int initiative, Characteristics characteristics, Map<Integer, Integer> spells) {
             this.level = level;
             this.life = life;
             this.initiative = initiative;
@@ -112,14 +111,14 @@ public final class MonsterTemplate {
          * The monster level
          * Will be displayed on the sprite (information for the player), but has no more effects
          */
-        public @Positive int level() {
+        public int level() {
             return level;
         }
 
         /**
          * The monster max life
          */
-        public @Positive int life() {
+        public int life() {
             return life;
         }
 
@@ -142,7 +141,7 @@ public final class MonsterTemplate {
          * Get the monster spells
          * The response is a map with spell id as key and spell level as value
          */
-        public Map<Integer, @Positive Integer> spells() {
+        public Map<Integer, Integer> spells() {
             return spells;
         }
     }

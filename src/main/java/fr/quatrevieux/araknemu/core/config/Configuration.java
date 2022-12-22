@@ -32,5 +32,5 @@ public interface Configuration {
      *
      * @return The module instance
      */
-    public <C extends @NonNull Object> @NonNull C module(ConfigurationModule<C> module);
+    public <C extends Object> C module(ConfigurationModule<C> module);
 }

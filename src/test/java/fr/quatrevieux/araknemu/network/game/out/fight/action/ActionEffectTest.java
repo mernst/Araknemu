@@ -36,7 +36,6 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ActionEffectTest extends FightBaseCase {
-    @Test
     void usedMovementPoints() {
         Fighter fighter = Mockito.mock(Fighter.class);
         Mockito.when(fighter.id()).thenReturn(123);
@@ -47,7 +46,6 @@ class ActionEffectTest extends FightBaseCase {
         );
     }
 
-    @Test
     void usedActionPoints() {
         Fighter fighter = Mockito.mock(Fighter.class);
         Mockito.when(fighter.id()).thenReturn(123);
@@ -58,7 +56,6 @@ class ActionEffectTest extends FightBaseCase {
         );
     }
 
-    @Test
     void alterLifePoints() {
         Fighter fighter = Mockito.mock(Fighter.class);
         Mockito.when(fighter.id()).thenReturn(123);
@@ -72,7 +69,6 @@ class ActionEffectTest extends FightBaseCase {
         );
     }
 
-    @Test
     void criticalHitSpell() {
         Fighter fighter = Mockito.mock(Fighter.class);
         Mockito.when(fighter.id()).thenReturn(123);
@@ -86,7 +82,6 @@ class ActionEffectTest extends FightBaseCase {
         );
     }
 
-    @Test
     void fighterDie() {
         Fighter caster = Mockito.mock(Fighter.class);
         Mockito.when(caster.id()).thenReturn(123);
@@ -100,7 +95,6 @@ class ActionEffectTest extends FightBaseCase {
         );
     }
 
-    @Test
     void teleport() {
         Fighter caster = Mockito.mock(Fighter.class);
         Mockito.when(caster.id()).thenReturn(123);
@@ -117,7 +111,6 @@ class ActionEffectTest extends FightBaseCase {
         );
     }
 
-    @Test
     void criticalHitCloseCombat() {
         Fighter caster = Mockito.mock(Fighter.class);
         Mockito.when(caster.id()).thenReturn(123);
@@ -128,7 +121,6 @@ class ActionEffectTest extends FightBaseCase {
         );
     }
 
-    @Test
     void skipNextTurn() {
         Fighter caster = Mockito.mock(Fighter.class);
         Mockito.when(caster.id()).thenReturn(123);
@@ -142,7 +134,6 @@ class ActionEffectTest extends FightBaseCase {
         );
     }
 
-    @Test
     void returnSpell() {
         Fighter fighter = Mockito.mock(Fighter.class);
         Mockito.when(fighter.id()).thenReturn(456);
@@ -151,7 +142,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;106;456;456,0", ActionEffect.returnSpell(fighter, false).toString());
     }
 
-    @Test
     void buff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Fighter caster = Mockito.mock(Fighter.class);
@@ -170,7 +160,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;111;123;456,-3,5", ActionEffect.buff(buff, -3).toString());
     }
 
-    @Test
     void addActionPoints() {
         Fighter fighter = Mockito.mock(Fighter.class);
         Mockito.when(fighter.id()).thenReturn(456);
@@ -178,7 +167,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;120;456;456,2", ActionEffect.addActionPoints(fighter, 2).toString());
     }
 
-    @Test
     void removeActionPoints() {
         Fighter fighter = Mockito.mock(Fighter.class);
         Mockito.when(fighter.id()).thenReturn(456);
@@ -186,7 +174,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;168;456;456,-2", ActionEffect.removeActionPoints(fighter, 2).toString());
     }
 
-    @Test
     void addMovementPoints() {
         Fighter fighter = Mockito.mock(Fighter.class);
         Mockito.when(fighter.id()).thenReturn(456);
@@ -194,7 +181,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;128;456;456,2", ActionEffect.addMovementPoints(fighter, 2).toString());
     }
 
-    @Test
     void removeMovementPoints() {
         Fighter fighter = Mockito.mock(Fighter.class);
         Mockito.when(fighter.id()).thenReturn(456);
@@ -202,7 +188,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;169;456;456,-2", ActionEffect.removeMovementPoints(fighter, 2).toString());
     }
 
-    @Test
     void reduceDamage() {
         Fighter fighter = Mockito.mock(Fighter.class);
         Mockito.when(fighter.id()).thenReturn(456);
@@ -210,7 +195,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;105;456;456,5", ActionEffect.reducedDamage(fighter, 5).toString());
     }
 
-    @Test
     void addState() {
         Fighter fighter = Mockito.mock(Fighter.class);
         Mockito.when(fighter.id()).thenReturn(456);
@@ -218,7 +202,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;950;456;456,5,1", ActionEffect.addState(fighter, 5).toString());
     }
 
-    @Test
     void removeState() {
         Fighter fighter = Mockito.mock(Fighter.class);
         Mockito.when(fighter.id()).thenReturn(456);
@@ -226,7 +209,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;950;456;456,5,0", ActionEffect.removeState(fighter, 5).toString());
     }
 
-    @Test
     void dispelBuffs() {
         Fighter fighter = Mockito.mock(Fighter.class);
         Fighter fighter2 = Mockito.mock(Fighter.class);
@@ -237,7 +219,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;132;456;460", ActionEffect.dispelBuffs(fighter, fighter2).toString());
     }
 
-    @Test
     void slide() {
         Fighter fighter = Mockito.mock(Fighter.class);
         Fighter fighter2 = Mockito.mock(Fighter.class);
@@ -250,7 +231,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;5;456;460,123", ActionEffect.slide(fighter, fighter2, cell).toString());
     }
 
-    @Test
     void reflectedDamage() {
         Fighter fighter = Mockito.mock(Fighter.class);
 
@@ -259,7 +239,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;107;456;456,15", ActionEffect.reflectedDamage(fighter, 15).toString());
     }
 
-    @Test
     void dodgeActionPointLost() {
         Fighter caster = Mockito.mock(Fighter.class);
         Fighter target = Mockito.mock(Fighter.class);
@@ -270,7 +249,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;308;456;123,2", ActionEffect.dodgeActionPointLost(caster, target, 2).toString());
     }
 
-    @Test
     void dodgeMovementPointLost() {
         Fighter caster = Mockito.mock(Fighter.class);
         Fighter target = Mockito.mock(Fighter.class);
@@ -281,7 +259,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;309;456;123,2", ActionEffect.dodgeMovementPointLost(caster, target, 2).toString());
     }
 
-    @Test
     void changeAppearance() {
         Fighter caster = Mockito.mock(Fighter.class);
         Fighter target = Mockito.mock(Fighter.class);
@@ -296,7 +273,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;149;456;123,10,147,5", ActionEffect.changeAppearance(caster, target, 147, 5).toString());
     }
 
-    @Test
     void resetAppearance() {
         Fighter caster = Mockito.mock(Fighter.class);
         Fighter target = Mockito.mock(Fighter.class);
@@ -311,7 +287,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;149;456;123,10,10,0", ActionEffect.resetAppearance(caster, target).toString());
     }
 
-    @Test
     void launchVisualEffect() {
         Fighter caster = Mockito.mock(Fighter.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -326,7 +301,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;208;456;325,12,11,0,1,3", ActionEffect.launchVisualEffect(caster, cell, spell).toString());
     }
 
-    @Test
     void boostSight() {
         Fighter caster = Mockito.mock(Fighter.class);
         Mockito.when(caster.id()).thenReturn(456);
@@ -337,7 +311,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;117;456;123,5,3", ActionEffect.boostSight(caster, target, 5, 3).toString());
     }
 
-    @Test
     void decreaseSight() {
         Fighter caster = Mockito.mock(Fighter.class);
         Mockito.when(caster.id()).thenReturn(456);
@@ -348,7 +321,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;116;456;123,5,3", ActionEffect.decreaseSight(caster, target, 5, 3).toString());
     }
 
-    @Test
     void fighterHidden() {
         Fighter caster = Mockito.mock(Fighter.class);
         Mockito.when(caster.id()).thenReturn(456);
@@ -359,7 +331,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;150;456;123,1", ActionEffect.fighterHidden(caster, target).toString());
     }
 
-    @Test
     void fighterVisible() {
         Fighter caster = Mockito.mock(Fighter.class);
         Mockito.when(caster.id()).thenReturn(456);
@@ -370,7 +341,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;150;456;123,0", ActionEffect.fighterVisible(caster, target).toString());
     }
 
-    @Test
     void addInvocation() throws Exception {
         dataSet
             .pushMonsterTemplates()
@@ -384,7 +354,6 @@ class ActionEffectTest extends FightBaseCase {
         assertEquals("GA;181;1;+118;1;0;-5;36;-2;1566^100;2;-1;-1;-1;0,0,0,0;60;5;3;30;0;-10;7;-45;16;16;0", ActionEffect.addInvocation(fight.fighters().get(0), fighter).toString());
     }
 
-    @Test
     void packet() {
         Fighter caster = Mockito.mock(Fighter.class);
         Mockito.when(caster.id()).thenReturn(456);

@@ -86,7 +86,6 @@ public final class GamePlayer implements PlayerSessionScope {
     }
 
     @Override
-    @Pure
     public ListenerAggregate dispatcher() {
         return dispatcher;
     }
@@ -97,7 +96,6 @@ public final class GamePlayer implements PlayerSessionScope {
      * This value do not depends of the current player state (exploring / fighting) and should be modified carefully
      */
     @Override
-    @Pure
     public PlayerData properties() {
         return data;
     }
@@ -117,12 +115,10 @@ public final class GamePlayer implements PlayerSessionScope {
         session.setPlayer(null);
     }
 
-    @Pure
     public int id() {
         return entity.id();
     }
 
-    @Pure
     public GameAccount account() {
         return account;
     }
@@ -130,7 +126,6 @@ public final class GamePlayer implements PlayerSessionScope {
     /**
      * Get the current player position
      */
-    @Pure
     public Position position() {
         return entity.position();
     }
@@ -145,7 +140,6 @@ public final class GamePlayer implements PlayerSessionScope {
     /**
      * Get the player saved position (teleport when die)
      */
-    @Pure
     public Position savedPosition() {
         return entity.savedPosition();
     }
@@ -160,12 +154,10 @@ public final class GamePlayer implements PlayerSessionScope {
     /**
      * Get the player race
      */
-    @Pure
     public GamePlayerRace race() {
         return race;
     }
 
-    @Pure
     public String name() {
         return entity.name();
     }
@@ -173,7 +165,6 @@ public final class GamePlayer implements PlayerSessionScope {
     /**
      * Get channels subscriptions
      */
-    @Pure
     public Set<ChannelType> subscriptions() {
         return channels;
     }
@@ -181,7 +172,6 @@ public final class GamePlayer implements PlayerSessionScope {
     /**
      * Get the current session scope
      */
-    @Pure
     public PlayerSessionScope scope() {
         return scope;
     }
@@ -213,7 +203,6 @@ public final class GamePlayer implements PlayerSessionScope {
     /**
      * Check if the player is exploring
      */
-    @Pure
     public boolean isExploring() {
         return session.exploration() != null;
     }
@@ -223,7 +212,6 @@ public final class GamePlayer implements PlayerSessionScope {
      *
      * @throws IllegalStateException When the player is not on exploration state
      */
-    @Pure
     public ExplorationPlayer exploration() {
         final ExplorationPlayer exploration = session.exploration();
 
@@ -237,7 +225,6 @@ public final class GamePlayer implements PlayerSessionScope {
     /**
      * Get the attached fighter
      */
-    @Pure
     public PlayerFighter fighter() {
         final PlayerFighter fighter = session.fighter();
 
@@ -251,7 +238,6 @@ public final class GamePlayer implements PlayerSessionScope {
     /**
      * Check if the current player is in fight
      */
-    @Pure
     public boolean isFighting() {
         return session.fighter() != null;
     }
@@ -259,7 +245,6 @@ public final class GamePlayer implements PlayerSessionScope {
     /**
      * Get the attached spectator
      */
-    @Pure
     public Spectator spectator() {
         final Spectator spectator = session.spectator();
 
@@ -273,7 +258,6 @@ public final class GamePlayer implements PlayerSessionScope {
     /**
      * Check if the current player is a spectator
      */
-    @Pure
     public boolean isSpectator() {
         return session.spectator() != null;
     }
@@ -286,7 +270,6 @@ public final class GamePlayer implements PlayerSessionScope {
         service.save(this);
     }
 
-    @Pure
     public PlayerInventory inventory() {
         return inventory;
     }
@@ -294,7 +277,6 @@ public final class GamePlayer implements PlayerSessionScope {
     /**
      * Get the player sprite info
      */
-    @Pure
     public SpriteInfo spriteInfo() {
         return spriteInfo;
     }
@@ -302,7 +284,6 @@ public final class GamePlayer implements PlayerSessionScope {
     /**
      * Get the current player restrictions
      */
-    @Pure
     public Restrictions restrictions() {
         return restrictions;
     }
@@ -314,7 +295,6 @@ public final class GamePlayer implements PlayerSessionScope {
         return session.log().map(log -> !log.hasAlreadyPlayed(entity)).orElse(false);
     }
 
-    @Pure
     Player entity() {
         return entity;
     }

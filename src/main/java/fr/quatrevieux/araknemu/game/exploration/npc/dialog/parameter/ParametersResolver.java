@@ -49,7 +49,7 @@ public final class ParametersResolver {
      *
      * @return The parameter value
      */
-    public Object resolve(@MinLen(1) String name, ExplorationPlayer player) {
+    public Object resolve(String name, ExplorationPlayer player) {
         if (isVariable(name)) {
             final String varName = name.substring(1, name.length() - 1);
 
@@ -81,7 +81,7 @@ public final class ParametersResolver {
      *
      * @return true if the parameter is a variable, or false for a constant
      */
-    private boolean isVariable(@MinLen(1) String name) {
+    private boolean isVariable(String name) {
         return name.charAt(0) == '[' && name.charAt(name.length() - 1) == ']';
     }
 }

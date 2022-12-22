@@ -37,14 +37,14 @@ public final class ServerContextResolver implements ConfigurableContextResolver<
     private final Context parentContext;
 
     private final List<AbstractContextConfigurator<ServerContext>> configurators = new ArrayList<>();
-    private @MonotonicNonNull ServerContext context;
+    private ServerContext context;
 
     public ServerContextResolver(Context parentContext) {
         this.parentContext = parentContext;
     }
 
     @Override
-    public Context resolve(AdminPerformer performer, @Nullable Supplier<String> argument) {
+    public Context resolve(AdminPerformer performer, Supplier<String> argument) {
         if (context != null) {
             return context;
         }

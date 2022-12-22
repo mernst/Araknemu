@@ -43,14 +43,12 @@ class BanIpCheckTest extends GameBaseCase {
     private BanIpService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         banIpCheck = new BanIpCheck(service = container.get(BanIpService.class));
     }
 
-    @Test
     void ipNotBannedShouldDoNothing() {
         SessionConfigurator<TestSession> configurator = new SessionConfigurator<>(TestSession::new);
         configurator.add(banIpCheck);
@@ -61,7 +59,6 @@ class BanIpCheckTest extends GameBaseCase {
         assertTrue(DummyChannel.class.cast(session.channel()).getMessages().empty());
     }
 
-    @Test
     void ipBannedShouldCloseSession() {
         service.newRule(new IPAddressString("14.25.36.98")).apply();
 

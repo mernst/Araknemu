@@ -34,7 +34,6 @@ class PrivateMessageReceivedTest extends GameBaseCase {
     private GamePlayer other;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,7 +46,6 @@ class PrivateMessageReceivedTest extends GameBaseCase {
         other = makeOtherPlayer();
     }
 
-    @Test
     void onSendMessage() throws SQLException, ContainerException {
         listener.on(
             new ConcealedMessage(
@@ -68,7 +66,6 @@ class PrivateMessageReceivedTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onReceiveMessage() throws SQLException, ContainerException {
         listener.on(
             new ConcealedMessage(

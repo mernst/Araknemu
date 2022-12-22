@@ -32,7 +32,6 @@ import java.util.concurrent.atomic.AtomicReference;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DispatchEventTest extends GameBaseCase {
-    @Test
     void onExplorationPlayer() throws SQLException, ContainerException {
         Object event = new Object();
         AtomicReference<Object> ref = new AtomicReference<>();
@@ -44,7 +43,6 @@ class DispatchEventTest extends GameBaseCase {
         assertSame(event, ref.get());
     }
 
-    @Test
     void onNpc() throws SQLException, ContainerException {
         dataSet
             .pushMaps()

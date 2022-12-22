@@ -35,7 +35,6 @@ class SendSpriteRestrictionsTest extends GameBaseCase {
     private SendSpriteRestrictions listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -43,7 +42,6 @@ class SendSpriteRestrictionsTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onRestrictionsChanged() throws SQLException, ContainerException {
         listener.on(new RestrictionsChanged(explorationPlayer(), explorationPlayer().restrictions()));
 

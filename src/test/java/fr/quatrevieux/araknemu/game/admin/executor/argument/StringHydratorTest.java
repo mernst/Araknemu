@@ -40,12 +40,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class StringHydratorTest {
     private StringHydrator hydrator;
 
-    @BeforeEach
     void setUp() {
         hydrator = new StringHydrator();
     }
 
-    @Test
     void notSupported() {
         Command<Object> command = new Command<Object>() {
             @Override
@@ -74,7 +72,6 @@ class StringHydratorTest {
         assertFalse(hydrator.supports(command, new Object()));
     }
 
-    @Test
     void implicitUsingExecuteArgument() throws Exception {
         Command<String> command = new Command<String>() {
             @Override
@@ -106,7 +103,6 @@ class StringHydratorTest {
         assertEquals("foo", hydrator.hydrate(command, "foo", new CommandParser.Arguments("", "", "", Arrays.asList("foo"), null)));
     }
 
-    @Test
     void explicitCreateArgumentType() throws Exception {
         Command<String> command = new Command<String>() {
             @Override

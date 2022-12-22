@@ -31,7 +31,6 @@ class SessionConfiguratorTest extends TestCase {
         }
     }
 
-    @Test
     void create() {
         SessionConfigurator<TestSession> configurator = new SessionConfigurator<>(TestSession::new);
 

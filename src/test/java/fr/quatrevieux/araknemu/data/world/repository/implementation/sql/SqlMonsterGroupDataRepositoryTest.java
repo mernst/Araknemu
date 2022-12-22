@@ -37,7 +37,6 @@ class SqlMonsterGroupDataRepositoryTest extends GameBaseCase {
     private SqlMonsterGroupDataRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,12 +48,10 @@ class SqlMonsterGroupDataRepositoryTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(-5));
     }
 
-    @Test
     void getById() {
         MonsterGroupData data = repository.get(1);
 
@@ -75,18 +72,15 @@ class SqlMonsterGroupDataRepositoryTest extends GameBaseCase {
         assertEquals(new Position(0, 0), data.winFightTeleport());
     }
 
-    @Test
     void getWithWinFightTeleport() {
         assertEquals(new Position(10340, 125), repository.get(3).winFightTeleport());
     }
 
-    @Test
     void getWithFixedTeamNumber() {
         assertFalse(repository.get(1).fixedTeamNumber());
         assertTrue(repository.get(2).fixedTeamNumber());
     }
 
-    @Test
     void getByEntity() {
         MonsterGroupData data = repository.get(new MonsterGroupData(1, null, 0, 0, null, null, null, false));
 
@@ -103,13 +97,11 @@ class SqlMonsterGroupDataRepositoryTest extends GameBaseCase {
         assertEquals(new Interval(10, 10), data.monsters().get(1).level());
     }
 
-    @Test
     void has() {
         assertTrue(repository.has(new MonsterGroupData(1, null, 0, 0, null, null, null, false)));
         assertFalse(repository.has(new MonsterGroupData(-5, null, 0, 0, null, null, null, false)));
     }
 
-    @Test
     void all() {
         assertArrayEquals(
             new int[] {1, 2, 3},

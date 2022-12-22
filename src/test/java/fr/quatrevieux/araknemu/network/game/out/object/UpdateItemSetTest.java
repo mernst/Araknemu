@@ -38,7 +38,6 @@ class UpdateItemSetTest extends GameBaseCase {
     private ItemTemplateRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -50,7 +49,6 @@ class UpdateItemSetTest extends GameBaseCase {
         repository = container.get(ItemTemplateRepository.class);
     }
 
-    @Test
     void generateWithEmptySet() {
         assertEquals(
             "OS-1",
@@ -62,7 +60,6 @@ class UpdateItemSetTest extends GameBaseCase {
         );
     }
 
-    @Test
     void generateWithItems() {
         assertEquals(
             "OS+1|2425;2411|76#5#0#0#,7e#5#0#0#",

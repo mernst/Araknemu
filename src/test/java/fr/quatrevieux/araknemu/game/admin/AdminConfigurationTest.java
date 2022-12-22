@@ -30,7 +30,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class AdminConfigurationTest extends GameBaseCase {
     private AdminConfiguration configuration;
 
-    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -38,7 +37,6 @@ class AdminConfigurationTest extends GameBaseCase {
         configuration = app.configuration().module(AdminConfiguration.MODULE);
     }
 
-    @Test
     void contextDefaults() {
         removeConfigValue("admin", "debug.scripts.enable");
 
@@ -46,7 +44,6 @@ class AdminConfigurationTest extends GameBaseCase {
         assertEquals("scripts/commands/debug", configuration.context("debug").scriptsPath());
     }
 
-    @Test
     void contextConfigured() {
         setConfigValue("admin", "debug.scripts.enable", "false");
         setConfigValue("admin", "debug.scripts.path", "my/custom/path");

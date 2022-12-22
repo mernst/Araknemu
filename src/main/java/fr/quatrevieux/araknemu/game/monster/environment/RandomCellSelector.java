@@ -36,8 +36,8 @@ import java.util.List;
 public final class RandomCellSelector implements SpawnCellSelector {
     private static final RandomUtil RANDOM = RandomUtil.createShared();
 
-    private @MonotonicNonNull ExplorationMap map;
-    private @IndexFor("map") int @MonotonicNonNull @MinLen(1) [] availableCells;
+    private ExplorationMap map;
+    private int[] availableCells;
 
     @Override
     @SuppressWarnings("assignment") // cell ids are safe
@@ -66,7 +66,7 @@ public final class RandomCellSelector implements SpawnCellSelector {
     @SuppressWarnings("assignment") // checker do not follow reference of this.map
     public ExplorationMapCell cell() {
         final ExplorationMap map = this.map;
-        final @IndexFor("map") int[] availableCells = this.availableCells;
+        final int[] availableCells = this.availableCells;
 
         if (map == null || availableCells == null) {
             throw new IllegalStateException("Map must be loaded before");

@@ -34,7 +34,6 @@ class LineAreaTest extends GameBaseCase {
     private FightMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -42,7 +41,6 @@ class LineAreaTest extends GameBaseCase {
         map = new FightMap(container.get(MapTemplateRepository.class).get(10340));
     }
 
-    @Test
     void getters() {
         LineArea area = new LineArea(new EffectArea(EffectArea.Type.LINE, 2));
 
@@ -50,7 +48,6 @@ class LineAreaTest extends GameBaseCase {
         assertEquals(2, area.size());
     }
 
-    @Test
     void resolveSize0() {
         assertEquals(
             Collections.singleton(map.get(123)),
@@ -58,7 +55,6 @@ class LineAreaTest extends GameBaseCase {
         );
     }
 
-    @Test
     void resolve() {
         assertCollectionEquals(
             new LineArea(new EffectArea(EffectArea.Type.LINE, 3)).resolve(map.get(123), map.get(137)), // NORTH_WEST
@@ -70,7 +66,6 @@ class LineAreaTest extends GameBaseCase {
         );
     }
 
-    @Test
     void resolveWithNegativeCellId() {
         assertCollectionEquals(
             new LineArea(new EffectArea(EffectArea.Type.LINE, 3)).resolve(map.get(0), map.get(15)), // NORTH_WEST
@@ -79,7 +74,6 @@ class LineAreaTest extends GameBaseCase {
         );
     }
 
-    @Test
     void resolveWithTooHighCellId() {
         assertCollectionEquals(
             new LineArea(new EffectArea(EffectArea.Type.LINE, 3)).resolve(map.get(470), map.get(456)), // SOUTH_WEST
@@ -88,7 +82,6 @@ class LineAreaTest extends GameBaseCase {
         );
     }
 
-    @Test
     void resolveWithOutlineCell() {
         assertCollectionEquals(
             new LineArea(new EffectArea(EffectArea.Type.LINE, 5)).resolve(map.get(405), map.get(270)), // SOUTH_EAST

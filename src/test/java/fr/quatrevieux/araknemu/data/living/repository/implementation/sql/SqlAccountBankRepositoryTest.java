@@ -33,7 +33,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class SqlAccountBankRepositoryTest extends DatabaseTestCase {
     private fr.quatrevieux.araknemu.data.living.repository.account.AccountBankRepository repository;
 
-    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -42,17 +41,14 @@ class SqlAccountBankRepositoryTest extends DatabaseTestCase {
         repository.initialize();
     }
 
-    @AfterEach
     void tearDown() throws SQLException {
         dropTable("BANK");
     }
 
-    @Test
     void testInitialize() throws SQLException {
         assertTableExists("BANK");
     }
 
-    @Test
     void testAdd() {
         AccountBank bank = repository.add(new AccountBank(1, 2, 5000));
 
@@ -61,7 +57,6 @@ class SqlAccountBankRepositoryTest extends DatabaseTestCase {
         assertEquals(5000, bank.kamas());
     }
 
-    @Test
     void testAddForUpdate() {
         AccountBank bank = repository.add(new AccountBank(1, 2, 5000));
 
@@ -72,7 +67,6 @@ class SqlAccountBankRepositoryTest extends DatabaseTestCase {
         assertEquals(10000, repository.get(bank).kamas());
     }
 
-    @Test
     void testGet() {
         repository.add(new AccountBank(1, 2, 5000));
 
@@ -83,14 +77,12 @@ class SqlAccountBankRepositoryTest extends DatabaseTestCase {
         assertEquals(5000, bank.kamas());
     }
 
-    @Test
     void getNotFound() {
         AccountBank bank = new AccountBank(1, 2, 0);
 
         assertSame(bank, repository.get(bank));
     }
 
-    @Test
     void testHas() {
         repository.add(new AccountBank(1, 2, 5000));
 
@@ -98,7 +90,6 @@ class SqlAccountBankRepositoryTest extends DatabaseTestCase {
         assertTrue(repository.has(new AccountBank(1, 2, 0)));
     }
 
-    @Test
     void testDelete() {
         AccountBank bank = repository.add(new AccountBank(1, 2, 5000));
 

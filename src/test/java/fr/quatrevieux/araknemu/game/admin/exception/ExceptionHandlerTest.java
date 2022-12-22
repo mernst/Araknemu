@@ -37,7 +37,6 @@ class ExceptionHandlerTest extends CommandTestCase {
     private ExceptionHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -45,7 +44,6 @@ class ExceptionHandlerTest extends CommandTestCase {
         handler = new ExceptionHandler();
     }
 
-    @Test
     void simpleErrors() {
         assertHandle(new CommandNotFoundException("TEST"), "Command 'TEST' is not found");
         assertHandle(new CommandException("TEST", "MY ERROR"),
@@ -59,7 +57,6 @@ class ExceptionHandlerTest extends CommandTestCase {
         assertHandle(new Exception("my error"), "Error : java.lang.Exception: my error");
     }
 
-    @Test
     void commandExecutionError() {
         CommandParser.Arguments arguments = new CommandParser.Arguments("", "!", "foo", Arrays.asList("foo", "bar", "baz"), performer.self());
 

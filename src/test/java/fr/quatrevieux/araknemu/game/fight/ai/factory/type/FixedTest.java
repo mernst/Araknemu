@@ -26,7 +26,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class FixedTest extends AiBaseCase {
-    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -35,7 +34,6 @@ class FixedTest extends AiBaseCase {
         dataSet.pushFunctionalSpells();
     }
 
-    @Test
     void shouldAttackIfPossible() {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(342))
@@ -45,7 +43,6 @@ class FixedTest extends AiBaseCase {
         assertCast(3, 327);
     }
 
-    @Test
     void shouldDoNothingOtherwise() {
         configureFight(b -> b
             .addSelf(fb -> fb.cell(210).spell(27, 5))

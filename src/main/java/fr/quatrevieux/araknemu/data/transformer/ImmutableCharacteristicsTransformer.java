@@ -29,12 +29,12 @@ public final class ImmutableCharacteristicsTransformer implements Transformer<Ch
     private final CharacteristicsTransformer inner = new CharacteristicsTransformer();
 
     @Override
-    public @PolyNull String serialize(@PolyNull Characteristics value) {
+    public String serialize(Characteristics value) {
         return inner.serialize(value);
     }
 
     @Override
-    public @PolyNull Characteristics unserialize(@PolyNull String serialize) {
+    public Characteristics unserialize(String serialize) {
         return inner.unserialize(serialize);
     }
 }

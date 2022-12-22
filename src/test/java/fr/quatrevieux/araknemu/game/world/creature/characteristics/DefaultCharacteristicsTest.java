@@ -29,7 +29,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class DefaultCharacteristicsTest {
-    @Test
     void getSet() {
         DefaultCharacteristics characteristics = new DefaultCharacteristics();
 
@@ -38,17 +37,14 @@ class DefaultCharacteristicsTest {
         assertEquals(5, characteristics.get(Characteristic.INTELLIGENCE));
     }
 
-    @Test
     void getDefault() {
         assertEquals(0, new DefaultCharacteristics().get(Characteristic.ACTION_POINT));
     }
 
-    @Test
     void equalsBadInstance() {
         assertFalse(new DefaultCharacteristics().equals(new ArrayList<>()));
     }
 
-    @Test
     void equalsTwoEmptyInstances() {
         assertEquals(
             new DefaultCharacteristics(),
@@ -56,14 +52,12 @@ class DefaultCharacteristicsTest {
         );
     }
 
-    @Test
     void equalsSameInstance() {
         Characteristics c = new DefaultCharacteristics();
 
         assertEquals(c, c);
     }
 
-    @Test
     void equalsNotSameValue() {
         DefaultCharacteristics c1 = new DefaultCharacteristics();
         c1.set(Characteristic.ACTION_POINT, 3);
@@ -74,7 +68,6 @@ class DefaultCharacteristicsTest {
         assertFalse(c1.equals(c2));
     }
 
-    @Test
     void equalsWithSameValues() {
         DefaultCharacteristics c1 = new DefaultCharacteristics();
 
@@ -89,7 +82,6 @@ class DefaultCharacteristicsTest {
         assertEquals(c1, c2);
     }
 
-    @Test
     void equalsWillIgnoreNullValues() {
         DefaultCharacteristics c1 = new DefaultCharacteristics();
 
@@ -106,12 +98,10 @@ class DefaultCharacteristicsTest {
         assertEquals(c1, c2);
     }
 
-    @Test
     void hashCodeEmptyCharacteristics() {
         assertEquals(0, new DefaultCharacteristics().hashCode());
     }
 
-    @Test
     void hashCodeEquals() {
         DefaultCharacteristics c1 = new DefaultCharacteristics();
 
@@ -128,7 +118,6 @@ class DefaultCharacteristicsTest {
         assertEquals(c1.hashCode(), c2.hashCode());
     }
 
-    @Test
     void hashCodeMayBeDifferentForNotEqualsValues() {
         DefaultCharacteristics c1 = new DefaultCharacteristics();
         c1.set(Characteristic.ACTION_POINT, 3);
@@ -142,7 +131,6 @@ class DefaultCharacteristicsTest {
         );
     }
 
-    @Test
     void addFromNotSetValue() {
         DefaultCharacteristics c = new DefaultCharacteristics();
 
@@ -151,7 +139,6 @@ class DefaultCharacteristicsTest {
         assertEquals(20, c.get(Characteristic.INTELLIGENCE));
     }
 
-    @Test
     void addFromSetValue() {
         DefaultCharacteristics c = new DefaultCharacteristics();
         c.set(Characteristic.INTELLIGENCE, 50);

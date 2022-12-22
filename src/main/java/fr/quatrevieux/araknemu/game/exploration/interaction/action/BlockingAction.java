@@ -34,7 +34,7 @@ public interface BlockingAction extends Action {
      *
      * @param argument The cancel argument. Null if called by {@link ActionQueue#stop()}
      */
-    public void cancel(@Nullable String argument);
+    public void cancel(String argument);
 
     /**
      * End the action normally (i.e. the action is successfully done)

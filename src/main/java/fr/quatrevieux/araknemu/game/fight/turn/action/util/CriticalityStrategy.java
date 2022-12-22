@@ -35,7 +35,7 @@ public interface CriticalityStrategy {
      *
      * @return Get the critical hit rate. The lower value is 2 (1/2). Higher the value is, lower is the critical probability
      */
-    public @Positive int hitRate(ActiveFighter fighter, @Positive int base);
+    public int hitRate(ActiveFighter fighter, int base);
 
     /**
      * Compute the critical failure rate
@@ -45,7 +45,7 @@ public interface CriticalityStrategy {
      *
      * @return Get the critical failure rate. The lower value is 2 (1/2).
      */
-    public @Positive int failureRate(ActiveFighter fighter, @Positive int base);
+    public int failureRate(ActiveFighter fighter, int base);
 
     /**
      * Random check is it's a critical hit
@@ -55,7 +55,7 @@ public interface CriticalityStrategy {
      *
      * @return true on critical
      */
-    public boolean hit(ActiveFighter fighter, @NonNegative int baseRate);
+    public boolean hit(ActiveFighter fighter, int baseRate);
 
     /**
      * Random check is it's a critical failure
@@ -65,5 +65,5 @@ public interface CriticalityStrategy {
      *
      * @return true on failure
      */
-    public boolean failed(ActiveFighter fighter, @NonNegative int baseRate);
+    public boolean failed(ActiveFighter fighter, int baseRate);
 }

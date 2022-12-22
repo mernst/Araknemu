@@ -32,14 +32,14 @@ public final class DummyChannel implements Channel {
     private long id = 1;
     private boolean isAlive = true;
     private Stack<Object> messages = new Stack<>();
-    private @Nullable DummyServer<?> server;
+    private DummyServer<?> server;
     private String ipAddress;
 
     public DummyChannel() {
         this("127.0.0.1");
     }
 
-    public DummyChannel(@Nullable String ipAddress) {
+    public DummyChannel(String ipAddress) {
         this.ipAddress = ipAddress == null ? "127.0.0.1" : ipAddress;
     }
 

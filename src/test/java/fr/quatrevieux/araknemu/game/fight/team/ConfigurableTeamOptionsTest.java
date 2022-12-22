@@ -35,7 +35,6 @@ class ConfigurableTeamOptionsTest extends FightBaseCase {
     private ConfigurableTeamOptions options;
     private Fight fight;
 
-    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -44,7 +43,6 @@ class ConfigurableTeamOptionsTest extends FightBaseCase {
         options = new ConfigurableTeamOptions(fight.team(0), fight);
     }
 
-    @Test
     void defaultValues() {
         assertTrue(options.allowSpectators());
         assertTrue(options.allowJoinTeam());
@@ -56,7 +54,6 @@ class ConfigurableTeamOptionsTest extends FightBaseCase {
         assertFalse(options.needHelpHasBeenUpdated());
     }
 
-    @Test
     void toggleAllowSpectators() {
         AtomicReference<AllowSpectatorChanged> ref = new AtomicReference<>();
         fight.dispatcher().add(AllowSpectatorChanged.class, ref::set);
@@ -76,7 +73,6 @@ class ConfigurableTeamOptionsTest extends FightBaseCase {
         assertSame(options, ref.get().options());
     }
 
-    @Test
     void toggleAllowJoinTeam() {
         AtomicReference<AllowJoinTeamChanged> ref = new AtomicReference<>();
         fight.dispatcher().add(AllowJoinTeamChanged.class, ref::set);
@@ -96,7 +92,6 @@ class ConfigurableTeamOptionsTest extends FightBaseCase {
         assertSame(options, ref.get().options());
     }
 
-    @Test
     void toggleNeedHelp() {
         AtomicReference<NeedHelpChanged> ref = new AtomicReference<>();
         fight.dispatcher().add(NeedHelpChanged.class, ref::set);

@@ -45,7 +45,7 @@ public interface Pool extends Iterable<Map.Entry<String, String>> {
      *
      * @return Configuration value
      */
-    public @Nullable String get(String key);
+    public String get(String key);
 
     /**
      * Get all values at the given key

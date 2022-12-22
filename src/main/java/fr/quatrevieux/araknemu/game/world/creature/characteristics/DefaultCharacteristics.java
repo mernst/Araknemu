@@ -47,7 +47,7 @@ public final class DefaultCharacteristics implements MutableCharacteristics {
     }
 
     @Override
-    public boolean equals(@Nullable Object obj) {
+    public boolean equals(Object obj) {
         if (obj == this) {
             return true;
         }

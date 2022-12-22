@@ -72,7 +72,7 @@ public final class GameActionResponse {
                 return new Object[] {spriteId, arguments[0]};
         }
 
-        final Object @MinLen(2) [] newArguments = new Object[arguments.length + 1];
+        final Object[] newArguments = new Object[arguments.length + 1];
 
         newArguments[0] = spriteId;
         System.arraycopy(arguments, 0, newArguments, 1, arguments.length);

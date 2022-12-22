@@ -35,12 +35,12 @@ public final class InstantTransformer implements Transformer<Instant> {
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneOffset.UTC);
 
     @Override
-    public @PolyNull String serialize(@PolyNull Instant value) {
+    public String serialize(Instant value) {
         return value == null ? null : formatter.format(value);
     }
 
     @Override
-    public @PolyNull Instant unserialize(@PolyNull String serialize) throws TransformerException {
+    public Instant unserialize(String serialize) throws TransformerException {
         return serialize == null ? null : formatter.parse(serialize, Instant::from);
     }
 }

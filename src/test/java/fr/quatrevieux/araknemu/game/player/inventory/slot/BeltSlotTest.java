@@ -41,7 +41,6 @@ class BeltSlotTest extends GameBaseCase {
     private BeltSlot slot;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -53,36 +52,30 @@ class BeltSlotTest extends GameBaseCase {
         slot = new BeltSlot(new DefaultListenerAggregate(), Mockito.mock(ItemStorage.class), gamePlayer());
     }
 
-    @Test
     void checkBadType() throws ContainerException {
         assertThrows(InventoryException.class, () -> slot.check(container.get(ItemService.class).create(2411), 1));
     }
 
-    @Test
     void checkBadQuantity() throws ContainerException {
         assertThrows(InventoryException.class, () -> slot.check(container.get(ItemService.class).create(2428), 10));
     }
 
-    @Test
     void checkAlreadySet() throws ContainerException {
         slot.uncheckedSet(new InventoryEntry(null, null, null));
 
         assertThrows(InventoryException.class, () -> slot.check(container.get(ItemService.class).create(2428), 1));
     }
 
-    @Test
     void checkBadLevel() throws ContainerException, SQLException {
         dataSet.pushHighLevelItems();
 
         assertThrows(BadLevelException.class, () -> slot.check(container.get(ItemService.class).create(112428), 1));
     }
 
-    @Test
     void checkSuccess() throws ContainerException, InventoryException {
         slot.check(container.get(ItemService.class).create(2428), 1);
     }
 
-    @Test
     void setFail() {
         assertThrows(InventoryException.class, () -> slot.set(
             new InventoryEntry(null, new PlayerItem(1, 1, 2411, new ArrayList<>(), 1, -1), container.get(ItemService.class).create(2411)
@@ -92,7 +85,6 @@ class BeltSlotTest extends GameBaseCase {
         assertFalse(slot.equipment().isPresent());
     }
 
-    @Test
     void setSuccess() throws ContainerException, InventoryException {
         InventoryEntry entry = new InventoryEntry(null, new PlayerItem(1, 1, 2428, new ArrayList<>(), 1, -1), container.get(ItemService.class).create(2428));
 

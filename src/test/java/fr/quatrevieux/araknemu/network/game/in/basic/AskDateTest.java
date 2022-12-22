@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AskDateTest {
-    @Test
     void parser() {
         AskDate.Parser parser = new AskDate.Parser();
 

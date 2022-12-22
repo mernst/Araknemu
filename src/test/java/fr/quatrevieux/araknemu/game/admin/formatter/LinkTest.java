@@ -24,28 +24,23 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LinkTest {
-    @Test
     void command() {
         assertEquals("<u><a href='asfunction:onHref,ExecCmd,my command,false'>my link</a></u>", new Link().text("my link").command("my command").toString());
     }
 
-    @Test
     void execute() {
         assertEquals("<u><a href='asfunction:onHref,ExecCmd,my command,true'>my link</a></u>", new Link().text("my link").execute("my command").toString());
     }
 
-    @Test
     void playerMenu() {
         assertEquals("<u><a href='asfunction:onHref,ShowPlayerPopupMenu,john'>my link</a></u>", new Link().text("my link").playerMenu("john").toString());
     }
 
-    @Test
     void arguments() {
         assertEquals("<u><a href='asfunction:onHref,arg1,arg2'>my link</a></u>", new Link().text("my link").arguments("arg1", "arg2").toString());
         assertEquals("<u><a href='asfunction:onHref,arg%2Cwith%2Ccomma'>my link</a></u>", new Link().text("my link").arguments("arg,with,comma").toString());
     }
 
-    @Test
     void linkTypes() {
         assertEquals("<u><a href='asfunction:onHref,ExecCmd,command,false'>command</a></u>", Link.Type.WRITE.create("command").toString());
         assertEquals("<u><a href='asfunction:onHref,ExecCmd,command,true'>command</a></u>", Link.Type.EXECUTE.create("command").toString());
@@ -53,7 +48,6 @@ class LinkTest {
         assertEquals("<u><a href='asfunction:onHref,ShowPlayerPopupMenu,player'>player</a></u>", Link.Type.PLAYER.create("player").toString());
     }
 
-    @Test
     void invalid() {
         assertThrows(IllegalStateException.class, () -> new Link().toString());
         assertThrows(IllegalStateException.class, () -> new Link().text("foo").toString());

@@ -47,7 +47,6 @@ class TerminateTurnActionTest extends FightBaseCase {
     private TerminateTurnAction handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -60,7 +59,6 @@ class TerminateTurnActionTest extends FightBaseCase {
         fighter.move(fight.map().get(185));
     }
 
-    @RepeatedIfExceptionsTest
     void terminateMove() {
         FightTurn turn = new FightTurn(fighter, fight, Duration.ofSeconds(30));
         turn.start();
@@ -93,7 +91,6 @@ class TerminateTurnActionTest extends FightBaseCase {
         assertEquals(0, turn.points().movementPoints());
     }
 
-    @Test
     void notActiveTurnShouldNotNothing() {
         requestStack.clear();
         handler.handle(session, new GameActionAcknowledge(0));

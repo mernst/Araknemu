@@ -63,7 +63,6 @@ public final class AuthenticationAccount extends AbstractLivingAccount<RealmSess
      * Attach account to a session
      */
     @Override
-    @EnsuresNonNull("#1.account()")
     @SuppressWarnings("contracts.postcondition") // Caused because non-pure methods are called
     public void attach(RealmSession session) {
         session.attach(this);
@@ -101,7 +100,7 @@ public final class AuthenticationAccount extends AbstractLivingAccount<RealmSess
     }
 
     @Override
-    public boolean equals(@Nullable Object o) {
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }

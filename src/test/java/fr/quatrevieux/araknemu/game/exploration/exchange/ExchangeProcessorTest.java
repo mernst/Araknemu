@@ -40,7 +40,6 @@ class ExchangeProcessorTest extends GameBaseCase {
     private ExchangeProcessor processor;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -66,7 +65,6 @@ class ExchangeProcessorTest extends GameBaseCase {
         );
     }
 
-    @Test
     void cancel() {
         processor.cancel();
 
@@ -74,7 +72,6 @@ class ExchangeProcessorTest extends GameBaseCase {
         assertFalse(player2.interactions().busy());
     }
 
-    @Test
     void accepted() {
         assertFalse(processor.accepted());
 
@@ -85,7 +82,6 @@ class ExchangeProcessorTest extends GameBaseCase {
         assertTrue(processor.accepted());
     }
 
-    @Test
     void resetAccept() {
         storage1.setAccepted(true);
         storage2.setAccepted(true);
@@ -96,7 +92,6 @@ class ExchangeProcessorTest extends GameBaseCase {
         assertFalse(storage2.accepted());
     }
 
-    @Test
     void assertNotAccepted() {
         processor.assertNotAccepted();
 
@@ -107,7 +102,6 @@ class ExchangeProcessorTest extends GameBaseCase {
         assertThrows(IllegalStateException.class, () -> processor.assertNotAccepted());
     }
 
-    @Test
     void processSuccess() {
         player2.inventory().addKamas(1000);
         ItemEntry entry1 = player1.inventory().add(container.get(ItemService.class).create(2422));
@@ -128,7 +122,6 @@ class ExchangeProcessorTest extends GameBaseCase {
         assertEquals(15925, player1.inventory().kamas());
     }
 
-    @Test
     void processFail() {
         storage1.setKamas(100000);
         storage2.setKamas(100000);

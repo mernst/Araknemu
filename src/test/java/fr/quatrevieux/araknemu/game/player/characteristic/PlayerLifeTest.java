@@ -44,7 +44,6 @@ class PlayerLifeTest extends GameBaseCase {
     private Player entity;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -56,12 +55,10 @@ class PlayerLifeTest extends GameBaseCase {
         life.init();
     }
 
-    @Test
     void maxSimple() {
         assertEquals(295, life.max());
     }
 
-    @Test
     void maxLifeWithStuffAndBaseVitality() throws SQLException, ContainerException, InventoryException {
         dataSet
             .pushItemTemplates()
@@ -79,14 +76,12 @@ class PlayerLifeTest extends GameBaseCase {
         assertEquals(373, life.max());
     }
 
-    @Test
     void current() {
         entity.setLife(123);
 
         assertEquals(123, life.current());
     }
 
-    @Test
     void percent() {
         assertEquals(100, life.percent());
 
@@ -94,7 +89,6 @@ class PlayerLifeTest extends GameBaseCase {
         assertEquals(50, life.percent());
     }
 
-    @Test
     void rebuildWithFullLife() {
         assertEquals(295, life.max());
         assertEquals(295, life.current());
@@ -108,7 +102,6 @@ class PlayerLifeTest extends GameBaseCase {
         assertEquals(100, life.percent());
     }
 
-    @Test
     void rebuildWillKeepPercentLife() {
         entity.setLife(59);
 
@@ -123,7 +116,6 @@ class PlayerLifeTest extends GameBaseCase {
         assertEquals(20, life.percent());
     }
 
-    @Test
     void initWithLifePoints() throws SQLException, ContainerException {
         entity.setLife(65);
 
@@ -133,7 +125,6 @@ class PlayerLifeTest extends GameBaseCase {
         assertEquals(65, life.current());
     }
 
-    @Test
     void initWithMaxLifePoints() throws SQLException, ContainerException {
         entity.setLife(-1);
 
@@ -143,7 +134,6 @@ class PlayerLifeTest extends GameBaseCase {
         assertEquals(295, life.current());
     }
 
-    @Test
     void initWithLifePointsUpperThanMax() throws SQLException, ContainerException {
         entity.setLife(10000);
 
@@ -153,7 +143,6 @@ class PlayerLifeTest extends GameBaseCase {
         assertEquals(295, life.current());
     }
 
-    @Test
     void add() {
         entity.setLife(65);
 
@@ -162,7 +151,6 @@ class PlayerLifeTest extends GameBaseCase {
         assertEquals(75, life.current());
     }
 
-    @Test
     void addMoreThanRemaining() {
         entity.setLife(200);
 
@@ -171,7 +159,6 @@ class PlayerLifeTest extends GameBaseCase {
         assertEquals(295, life.current());
     }
 
-    @Test
     void setWillDispatchEvent() throws SQLException, ContainerException {
         AtomicReference<LifeChanged> ref = new AtomicReference<>();
         gamePlayer().dispatcher().add(LifeChanged.class, ref::set);
@@ -183,7 +170,6 @@ class PlayerLifeTest extends GameBaseCase {
         assertEquals(123, ref.get().current());
     }
 
-    @RepeatedIfExceptionsTest
     void lifeRegenerationIsCorrect() throws Exception {
         life.set(5);
         life.startLifeRegeneration(15);
@@ -192,7 +178,6 @@ class PlayerLifeTest extends GameBaseCase {
         assertBetween(6, 8, life.current());
     }
 
-    @RepeatedIfExceptionsTest
     void lifeRegenerationIsCorrectWithDifferentSpeed() throws Exception {
         life.set(5);
         life.startLifeRegeneration(10);
@@ -201,7 +186,6 @@ class PlayerLifeTest extends GameBaseCase {
         assertBetween(14, 16, life.current());
     }
 
-    @RepeatedIfExceptionsTest
     void callCurrentDuringRegeneration() throws Exception {
         life.set(5);
         life.startLifeRegeneration(30);
@@ -215,7 +199,6 @@ class PlayerLifeTest extends GameBaseCase {
         assertBetween(10, 12, life.current());
     }
 
-    @RepeatedIfExceptionsTest
     void setLifeRegeneration() throws Exception {
         life.set(5);
         life.setLifeWithCurrentRegeneration();
@@ -233,7 +216,6 @@ class PlayerLifeTest extends GameBaseCase {
         assertBetween(7,8, entity.life());
     }
 
-    @RepeatedIfExceptionsTest
     void restartRegeneration() throws Exception {
         life.set(5);
 
@@ -248,7 +230,6 @@ class PlayerLifeTest extends GameBaseCase {
         assertBetween(8, 9, life.current());
     }
 
-    @RepeatedIfExceptionsTest
     void setLifeRegenerationWithZeroShouldStopRegen() throws Exception {
         life.set(5);
         life.setLifeWithCurrentRegeneration();

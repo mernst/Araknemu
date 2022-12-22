@@ -39,7 +39,7 @@ public final class KickOrLeaveRequestParser implements SinglePacketParser<Packet
     }
 
     @Override
-    public @MinLen(2) String code() {
+    public String code() {
         return "GQ";
     }
 }

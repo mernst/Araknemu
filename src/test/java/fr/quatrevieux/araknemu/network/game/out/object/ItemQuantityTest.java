@@ -26,7 +26,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ItemQuantityTest {
-    @Test
     void generate() {
         assertEquals(
             "OQ5|2",

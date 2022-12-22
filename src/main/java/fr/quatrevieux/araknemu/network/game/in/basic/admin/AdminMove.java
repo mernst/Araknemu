@@ -60,7 +60,7 @@ public final class AdminMove implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "BaM";
         }
     }

@@ -32,7 +32,6 @@ class InitializeAreasTest extends GameBaseCase {
     private AreaService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,7 +46,6 @@ class InitializeAreasTest extends GameBaseCase {
         listener = new InitializeAreas(gamePlayer(), service);
     }
 
-    @Test
     void onGameJoined() {
         listener.on(new GameJoined());
 

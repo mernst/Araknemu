@@ -32,7 +32,7 @@ public interface Transformer<T> {
      *
      * If the value is null, the method should return null
      */
-    public @PolyNull String serialize(@PolyNull T value);
+    public String serialize(T value);
 
     /**
      * Parse the serialized string to the original object value
@@ -41,5 +41,5 @@ public interface Transformer<T> {
      *
      * @throws TransformerException When invalid serialized data is given
      */
-    public @PolyNull T unserialize(@PolyNull String serialize) throws TransformerException;
+    public T unserialize(String serialize) throws TransformerException;
 }

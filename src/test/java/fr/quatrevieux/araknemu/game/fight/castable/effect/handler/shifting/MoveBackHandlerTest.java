@@ -57,7 +57,6 @@ class MoveBackHandlerTest extends FightBaseCase {
     private PlayerFighter target;
     private MoveBackHandler handler;
 
-    @Test
     void buffNotSupported() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(165))
@@ -82,7 +81,6 @@ class MoveBackHandlerTest extends FightBaseCase {
         assertThrows(UnsupportedOperationException.class, () -> handler.buff(scope, scope.effects().get(0)));
     }
 
-    @Test
     void applySuccess() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(165))
@@ -115,8 +113,6 @@ class MoveBackHandlerTest extends FightBaseCase {
         assertSame(destination, target.cell());
     }
 
-    @ParameterizedTest
-    @MethodSource("provideDistances")
     void applyBlocked(int distance, int min, int max) {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(210))
@@ -157,7 +153,6 @@ class MoveBackHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void applyBlockedByFighterShouldGetHalfDamage() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(210))
@@ -188,7 +183,6 @@ class MoveBackHandlerTest extends FightBaseCase {
         assertEquals(damage / 2, enemies.get(1).life().max() - enemies.get(1).life().current());
     }
 
-    @Test
     void applyBlockedWithoutMovementShouldNotPerformMove() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(210))
@@ -218,7 +212,6 @@ class MoveBackHandlerTest extends FightBaseCase {
         assertSame(fight.map().get(168), enemies.get(0).cell());
     }
 
-    @Test
     void applyWithArea() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(340))

@@ -42,7 +42,6 @@ class LoginTest extends GameBaseCase {
     private Login handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -55,7 +54,6 @@ class LoginTest extends GameBaseCase {
         dataSet.use(Account.class).use(ConnectionLog.class);
     }
 
-    @Test
     void handleSuccess() {
         Account account = new Account(1, "test", "test", "test");
         dataSet.push(account);
@@ -72,7 +70,6 @@ class LoginTest extends GameBaseCase {
         assertEquals(session.account().serverId(), dataSet.refresh(log).serverId());
     }
 
-    @Test
     void handleAlreadyLogged() throws ContainerException {
         session.attach(
             new GameAccount(
@@ -85,12 +82,10 @@ class LoginTest extends GameBaseCase {
         assertThrows(CloseImmediately.class, () -> handler.handle(session, new LoginToken("")));
     }
 
-    @Test
     void handleBadToken() {
         assertThrows(CloseWithPacket.class, () -> handler.handle(session, new LoginToken("")));
     }
 
-    @Test
     void handleAccountNotFound() throws ContainerException {
         String token = container.get(TokenService.class).generate(new Account(-1));
 

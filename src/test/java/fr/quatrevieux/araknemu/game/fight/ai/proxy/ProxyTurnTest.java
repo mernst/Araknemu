@@ -27,7 +27,6 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProxyTurnTest extends AiBaseCase {
-    @Test
     void baseValues() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(152))
@@ -43,7 +42,6 @@ class ProxyTurnTest extends AiBaseCase {
         assertSame(ai.turn().points(), turn.points());
     }
 
-    @Test
     void disallowModifications() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(152))

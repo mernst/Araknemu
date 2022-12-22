@@ -38,7 +38,6 @@ class SqlSubAreaRepositoryTest extends GameBaseCase {
     private SqlSubAreaRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -46,12 +45,10 @@ class SqlSubAreaRepositoryTest extends GameBaseCase {
         repository = new SqlSubAreaRepository(new ConnectionPoolExecutor(app.database().get("game")));
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(new SubArea(45, 0, "", false, null)));
     }
 
-    @Test
     void getFound() throws SQLException, ContainerException {
         dataSet.pushSubArea(new SubArea(4, 0, "La forêt d'Amakna", true, Alignment.NONE));
 
@@ -64,7 +61,6 @@ class SqlSubAreaRepositoryTest extends GameBaseCase {
         assertEquals(Alignment.NONE, area.alignment());
     }
 
-    @Test
     void getById() throws SQLException, ContainerException {
         dataSet.pushSubArea(new SubArea(4, 0, "La forêt d'Amakna", true, Alignment.NONE));
 
@@ -77,7 +73,6 @@ class SqlSubAreaRepositoryTest extends GameBaseCase {
         assertEquals(Alignment.NONE, area.alignment());
     }
 
-    @Test
     void has() throws SQLException, ContainerException {
         SubArea area = new SubArea(4, 0, "La forêt d'Amakna", true, Alignment.NONE);
 
@@ -88,7 +83,6 @@ class SqlSubAreaRepositoryTest extends GameBaseCase {
         assertTrue(repository.has(area));
     }
 
-    @Test
     void all() throws SQLException, ContainerException {
         dataSet.pushSubArea(new SubArea(1, 0, "Port de Madrestam", true, Alignment.NONE));
         dataSet.pushSubArea(new SubArea(2, 0, "La montagne des Craqueleurs", true, Alignment.NEUTRAL));

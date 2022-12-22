@@ -40,7 +40,6 @@ class GamePacketConfiguratorTest extends GameBaseCase {
     private GameSession gameSession;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -54,20 +53,17 @@ class GamePacketConfiguratorTest extends GameBaseCase {
         configurator.configure(session, gameSession);
     }
 
-    @Test
     void opened() throws Exception {
         gameSession.receive(new SessionCreated());
 
         requestStack.assertLast("HG");
     }
 
-    @Test
     void closed() throws Exception {
         gameSession.receive(new SessionClosed());
         assertFalse(session.isLogged());
     }
 
-    @Test
     void messageReceivedSuccess() throws Exception {
         Account account = new Account(1, "", "", "");
         dataSet.push(account);

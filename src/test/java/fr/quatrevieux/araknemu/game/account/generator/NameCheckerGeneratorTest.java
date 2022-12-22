@@ -33,7 +33,6 @@ class NameCheckerGeneratorTest extends GameBaseCase {
     private NameGenerator inner;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,21 +48,18 @@ class NameCheckerGeneratorTest extends GameBaseCase {
         );
     }
 
-    @Test
     void cannotGenerateNameAlreadyUsed() throws NameGenerationException {
         Mockito.when(inner.generate()).thenReturn("Bob");
 
         assertThrows(NameGenerationException.class, () -> nameCheckerGenerator.generate(), "Reach the maximum try number");
     }
 
-    @Test
     void generateFreeName() throws NameGenerationException {
         Mockito.when(inner.generate()).thenReturn("Jean");
 
         assertEquals("Jean", nameCheckerGenerator.generate());
     }
 
-    @Test
     void generateWith2Tries() throws NameGenerationException {
         Mockito.when(inner.generate()).thenReturn("Bob", "Robert");
 

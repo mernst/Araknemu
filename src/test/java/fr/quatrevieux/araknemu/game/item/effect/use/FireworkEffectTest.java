@@ -35,7 +35,6 @@ class FireworkEffectTest extends GameBaseCase {
     private ExplorationPlayer player;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,14 +46,12 @@ class FireworkEffectTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void check() {
         assertFalse(effect.check(new UseEffect(effect, Effect.FIREWORK , new int[] {2900, 0, 6}), player));
         assertFalse(effect.checkTarget(new UseEffect(effect, Effect.FIREWORK , new int[] {2900, 0, 6}), player, null, null));
         assertTrue(effect.checkTarget(new UseEffect(effect, Effect.FIREWORK , new int[] {2900, 0, 6}), player, null, player.map().get(150)));
     }
 
-    @Test
     void applyTarget() {
         effect.applyToTarget(new UseEffect(effect, Effect.FIREWORK , new int[] {6, 0, 2900}), player, null, player.map().get(150));
 

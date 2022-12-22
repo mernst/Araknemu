@@ -55,7 +55,6 @@ class GlobalChannelTest extends GameBaseCase {
 
     private GamePlayer gp1, gp2, gp3, gp4, gp5;
 
-    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -102,7 +101,6 @@ class GlobalChannelTest extends GameBaseCase {
         session5.setPlayer(gp5);
     }
 
-    @Test
     void sendToAll() throws ChatException {
         GlobalChannel channel = new GlobalChannel(ChannelType.TRADE, service);
 
@@ -124,7 +122,6 @@ class GlobalChannelTest extends GameBaseCase {
         assertContains(gp5, receivers);
     }
 
-    @Test
     void authorized() {
         GlobalChannel channel = new GlobalChannel(ChannelType.TRADE, player -> false, service);
         assertFalse(channel.authorized(gp1));
@@ -133,7 +130,6 @@ class GlobalChannelTest extends GameBaseCase {
         assertTrue(channel.authorized(gp1));
     }
 
-    @Test
     void notAuthorized() {
         GlobalChannel channel = new GlobalChannel(ChannelType.TRADE, player -> false, service);
         ChatService service = new ChatService(configuration.chat(), new Channel[] {channel});
@@ -155,7 +151,6 @@ class GlobalChannelTest extends GameBaseCase {
         }
     }
 
-    @Test
     void filter() throws ChatException {
         GlobalChannel channel = new GlobalChannel(ChannelType.TRADE, player -> player.name().contains("o"), service);
 

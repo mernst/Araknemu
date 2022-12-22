@@ -46,7 +46,6 @@ class SpellBookEntryTest extends GameBaseCase {
     private ListenerAggregate dispatcher;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -70,7 +69,6 @@ class SpellBookEntryTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getters() {
         assertEquals(3, entry.spell().id());
         assertEquals(5, entry.spell().level());
@@ -78,7 +76,6 @@ class SpellBookEntryTest extends GameBaseCase {
         assertTrue(entry.classSpell());
     }
 
-    @Test
     void moveFromDefaultToFreePosition() {
         AtomicReference<SpellMoved> ref = new AtomicReference<>();
         dispatcher.add(SpellMoved.class, ref::set);
@@ -89,7 +86,6 @@ class SpellBookEntryTest extends GameBaseCase {
         assertSame(entry, ref.get().entry());
     }
 
-    @Test
     void moveFromPositionToDefault() {
         entry.move(2);
 
@@ -102,7 +98,6 @@ class SpellBookEntryTest extends GameBaseCase {
         assertSame(entry, ref.get().entry());
     }
 
-    @Test
     void moveFromDefaultToUsedPosition() {
         List<SpellMoved> events = new ArrayList<>();
 
@@ -117,7 +112,6 @@ class SpellBookEntryTest extends GameBaseCase {
         assertSame(entry, events.get(1).entry());
     }
 
-    @Test
     void moveFromPositionToUsedPosition() {
         entry.move(2);
 
@@ -134,19 +128,16 @@ class SpellBookEntryTest extends GameBaseCase {
         assertSame(entry, events.get(1).entry());
     }
 
-    @Test
     void moveBadPosition() {
         assertThrows(IllegalArgumentException.class, () -> entry.move(0));
     }
 
-    @Test
     void upgradeTooLowLevel() throws NoSuchFieldException, IllegalAccessException {
         this.<Player>readField(book, "player").setSpellPoints(100);
 
         assertThrows(IllegalStateException.class, () -> entry.upgrade(), "Cannot upgrade spell");
     }
 
-    @Test
     void upgradeMaxLevel() {
         entry = new SpellBookEntry(
             book,
@@ -157,7 +148,6 @@ class SpellBookEntryTest extends GameBaseCase {
         assertThrows(IllegalStateException.class, () -> entry.upgrade(), "Maximum spell level reached");
     }
 
-    @Test
     void upgradeNotEnoughPoints() throws NoSuchFieldException, IllegalAccessException {
         this.<Player>readField(book, "player").setSpellPoints(0);
 
@@ -170,7 +160,6 @@ class SpellBookEntryTest extends GameBaseCase {
         assertThrows(IllegalStateException.class, () -> entry.upgrade(), "Cannot upgrade spell");
     }
 
-    @Test
     void upgradeSuccessWillDispatchEvent() throws NoSuchFieldException, IllegalAccessException {
         this.<Player>readField(book, "player").setSpellPoints(10);
 
@@ -188,7 +177,6 @@ class SpellBookEntryTest extends GameBaseCase {
         assertSame(entry, ref.get().entry());
     }
 
-    @Test
     void upgradeToLevel2() throws NoSuchFieldException, IllegalAccessException {
         this.<Player>readField(book, "player").setSpellPoints(10);
 
@@ -204,7 +192,6 @@ class SpellBookEntryTest extends GameBaseCase {
         assertEquals(9, book.upgradePoints());
     }
 
-    @Test
     void upgradeToLevel3() throws NoSuchFieldException, IllegalAccessException {
         this.<Player>readField(book, "player").setSpellPoints(10);
 
@@ -220,7 +207,6 @@ class SpellBookEntryTest extends GameBaseCase {
         assertEquals(8, book.upgradePoints());
     }
 
-    @Test
     void upgradeToLevel4() throws NoSuchFieldException, IllegalAccessException {
         this.<Player>readField(book, "player").setSpellPoints(10);
 
@@ -236,7 +222,6 @@ class SpellBookEntryTest extends GameBaseCase {
         assertEquals(7, book.upgradePoints());
     }
 
-    @Test
     void upgradeToLevel5() throws NoSuchFieldException, IllegalAccessException {
         this.<Player>readField(book, "player").setSpellPoints(10);
 

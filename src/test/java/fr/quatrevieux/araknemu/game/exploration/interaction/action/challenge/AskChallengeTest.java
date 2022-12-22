@@ -39,7 +39,6 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AskChallengeTest extends GameBaseCase {
-    @Test
     void otherPlayerIsBusy() throws Exception {
         ExplorationPlayer current = explorationPlayer();
         ExplorationPlayer other = new ExplorationPlayer(makeOtherPlayer());
@@ -59,7 +58,6 @@ class AskChallengeTest extends GameBaseCase {
         );
     }
 
-    @Test
     void badMap() throws Exception {
         ExplorationPlayer current = explorationPlayer();
         ExplorationPlayer other = new ExplorationPlayer(makeOtherPlayer());
@@ -80,7 +78,6 @@ class AskChallengeTest extends GameBaseCase {
         );
     }
 
-    @Test
     void notOnMap() throws Exception {
         ExplorationPlayer current = explorationPlayer();
         ExplorationPlayer other = new ExplorationPlayer(makeOtherPlayer());
@@ -95,7 +92,6 @@ class AskChallengeTest extends GameBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void notExplorationPlayer() throws Exception {
         dataSet.pushNpcs();
         ExplorationPlayer current = explorationPlayer();
@@ -113,7 +109,6 @@ class AskChallengeTest extends GameBaseCase {
         assertFalse(current.interactions().interacting());
     }
 
-    @Test
     void success() throws Exception {
         ExplorationPlayer current = explorationPlayer();
         ExplorationPlayer other = new ExplorationPlayer(makeOtherPlayer());

@@ -31,7 +31,6 @@ class SendFighterMaxLifeChangedTest extends FightBaseCase {
     private SendFighterMaxLifeChanged listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -40,7 +39,6 @@ class SendFighterMaxLifeChangedTest extends FightBaseCase {
         );
     }
 
-    @Test
     void onFighterLifeChanged() {
         listener.on(new FighterMaxLifeChanged(player.fighter(), other.fighter()));
 

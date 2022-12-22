@@ -25,7 +25,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ChooseServerTest {
-    @Test
     void parseSuccess() {
         ChooseServer.Parser parser = new ChooseServer.Parser();
 
@@ -34,7 +33,6 @@ class ChooseServerTest {
         assertEquals(123, p.id());
     }
 
-    @Test
     void parseInvalidNumber() {
         ChooseServer.Parser parser = new ChooseServer.Parser();
         assertThrows(ParsePacketException.class, () -> parser.parse("NaN"));

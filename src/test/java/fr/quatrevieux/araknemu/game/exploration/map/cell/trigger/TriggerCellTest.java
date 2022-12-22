@@ -39,7 +39,6 @@ class TriggerCellTest extends GameBaseCase {
     private TriggerCell cell;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -55,7 +54,6 @@ class TriggerCellTest extends GameBaseCase {
         );
     }
 
-    @Test
     void values() throws ContainerException {
         assertEquals(123, cell.id());
         assertTrue(cell.walkable());
@@ -63,20 +61,17 @@ class TriggerCellTest extends GameBaseCase {
         assertFalse(cell.free());
     }
 
-    @Test
     void equals() {
         assertEquals(cell, cell);
         assertNotEquals(cell, new Object());
         assertNotEquals(cell, new TriggerCell(321, null, null));
     }
 
-    @Test
     void hashCodeValue() {
         assertEquals(cell.hashCode(), cell.hashCode());
         assertNotEquals(cell.hashCode(), new TriggerCell(321, null, null).hashCode());
     }
 
-    @Test
     void onStop() throws SQLException, ContainerException {
         ExplorationPlayer player = explorationPlayer();
         requestStack.clear();

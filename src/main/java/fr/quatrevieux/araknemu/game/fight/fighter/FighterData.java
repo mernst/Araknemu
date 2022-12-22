@@ -45,7 +45,7 @@ public interface FighterData extends Creature<BattlefieldCell> {
     /**
      * Get the fighter level
      */
-    public @Positive int level();
+    public int level();
 
     /**
      * Get the fighter life
@@ -96,7 +96,7 @@ public interface FighterData extends Creature<BattlefieldCell> {
      * Get the invoker fighter
      * This value is null if the fighter is not an invocation
      */
-    public @Nullable FighterData invoker();
+    public FighterData invoker();
 
     /**
      * Does the current fighter is an invocation ?

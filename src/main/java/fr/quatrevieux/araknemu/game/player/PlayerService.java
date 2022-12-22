@@ -91,7 +91,6 @@ public final class PlayerService implements EventsSubscriber, Sender {
      * @throws fr.quatrevieux.araknemu.core.dbal.repository.EntityNotFoundException When cannot found player on server
      * @throws RepositoryException For any other repository errors
      */
-    @RequiresNonNull("#1.account()")
     public GamePlayer load(GameSession session, int id) throws RepositoryException {
         if (onlinePlayers.containsKey(id)) {
             throw new IllegalStateException("The player is already loaded");

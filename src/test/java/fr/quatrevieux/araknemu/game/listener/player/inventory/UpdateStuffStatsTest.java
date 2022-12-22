@@ -41,7 +41,6 @@ class UpdateStuffStatsTest extends GameBaseCase {
     private UpdateStuffStats listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -54,7 +53,6 @@ class UpdateStuffStatsTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onEquipmentChanged() throws SQLException, ContainerException {
         GamePlayer player = gamePlayer();
 
@@ -77,7 +75,6 @@ class UpdateStuffStatsTest extends GameBaseCase {
         requestStack.assertOne(new Stats(player.properties()));
     }
 
-    @Test
     void onEquipmentChangedWithSpecialEffect() throws SQLException, ContainerException {
         GamePlayer player = gamePlayer();
 
@@ -95,7 +92,6 @@ class UpdateStuffStatsTest extends GameBaseCase {
         assertEquals(500, player.properties().characteristics().specials().get(SpecialEffects.Type.PODS));
     }
 
-    @Test
     void onEquipmentChangedWithUnequipSpecialEffect() throws SQLException, ContainerException {
         GamePlayer player = gamePlayer();
 

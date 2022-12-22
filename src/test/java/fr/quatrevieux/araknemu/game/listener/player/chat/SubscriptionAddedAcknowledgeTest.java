@@ -32,7 +32,6 @@ class SubscriptionAddedAcknowledgeTest extends GameBaseCase {
     private SubscriptionAddedAcknowledge listner;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -41,7 +40,6 @@ class SubscriptionAddedAcknowledgeTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onSubscriptionAdded() {
         listner.on(
             new ChannelSubscriptionAdded(Arrays.asList(ChannelType.PRIVATE, ChannelType.MESSAGES))

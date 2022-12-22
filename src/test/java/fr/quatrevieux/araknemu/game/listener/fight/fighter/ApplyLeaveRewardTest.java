@@ -37,7 +37,6 @@ class ApplyLeaveRewardTest extends FightBaseCase {
     private ApplyLeaveReward listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -45,7 +44,6 @@ class ApplyLeaveRewardTest extends FightBaseCase {
         listener = new ApplyLeaveReward(player.fighter());
     }
 
-    @Test
     void withReward() {
         long lastXp = player.properties().experience().current();
 
@@ -57,7 +55,6 @@ class ApplyLeaveRewardTest extends FightBaseCase {
         assertEquals(lastXp + 1000, player.properties().experience().current());
     }
 
-    @Test
     void withoutReward() {
         listener.on(new FightLeaved());
     }

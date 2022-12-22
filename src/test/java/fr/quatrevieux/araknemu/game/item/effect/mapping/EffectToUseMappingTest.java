@@ -37,7 +37,6 @@ class EffectToUseMappingTest extends GameBaseCase {
     private EffectToUseMapping mapping;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -46,7 +45,6 @@ class EffectToUseMappingTest extends GameBaseCase {
         );
     }
 
-    @Test
     void createEffectNotHandled() {
         UseEffect effect = mapping.create(new ItemTemplateEffectEntry(Effect.INVOKE_CAPTURE, 1, 2, 3, ""));
 
@@ -54,7 +52,6 @@ class EffectToUseMappingTest extends GameBaseCase {
         assertArrayEquals(new int[] {1, 2, 3}, effect.arguments());
     }
 
-    @Test
     void createEffectHandled() {
         UseEffect effect = mapping.create(new ItemTemplateEffectEntry(Effect.ADD_CHARACT_AGILITY, 1, 2, 0, ""));
 
@@ -62,7 +59,6 @@ class EffectToUseMappingTest extends GameBaseCase {
         assertArrayEquals(new int[] {1, 2, 0}, effect.arguments());
     }
 
-    @Test
     void createFromList() {
         List<UseEffect> effects = mapping.create(
             Arrays.asList(

@@ -52,7 +52,6 @@ class HealOnDamageHandlerTest extends FightBaseCase {
     private int lastTargetLife;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -73,7 +72,6 @@ class HealOnDamageHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void applyFixedEffect() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -92,7 +90,6 @@ class HealOnDamageHandlerTest extends FightBaseCase {
         requestStack.assertLast(ActionEffect.alterLifePoints(caster, target, computeHeal()));
     }
 
-    @Test
     void applyWithBoost() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -113,7 +110,6 @@ class HealOnDamageHandlerTest extends FightBaseCase {
         assertEquals(17, computeHeal());
     }
 
-    @Test
     void buffWillAddBuffToList() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -140,7 +136,6 @@ class HealOnDamageHandlerTest extends FightBaseCase {
         assertEquals(5, found.get().remainingTurns());
     }
 
-    @Test
     void buffWithAreaMultipleFighters() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -159,7 +154,6 @@ class HealOnDamageHandlerTest extends FightBaseCase {
         assertTrue(target.buffs().stream().anyMatch(buff -> buff.effect().equals(effect)));
     }
 
-    @Test
     void onAlterLifeWithDamage() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -183,7 +177,6 @@ class HealOnDamageHandlerTest extends FightBaseCase {
         requestStack.assertLast(ActionEffect.alterLifePoints(caster, target, heal));
     }
 
-    @Test
     void onAlterLifeNotDamageShouldDoNothing() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -205,7 +198,6 @@ class HealOnDamageHandlerTest extends FightBaseCase {
         assertEquals(0, heal);
     }
 
-    @Test
     void onAlterLifeShouldConsiderBoosts() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

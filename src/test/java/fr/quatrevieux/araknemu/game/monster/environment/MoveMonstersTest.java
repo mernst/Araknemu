@@ -48,7 +48,6 @@ class MoveMonstersTest extends GameBaseCase {
     private MoveMonsters task;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -69,19 +68,16 @@ class MoveMonstersTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getters() {
         assertEquals(Duration.ofSeconds(10), task.delay());
         assertFalse(task.retry(container.get(ActivityService.class)));
         assertEquals("Move monsters", task.toString());
     }
 
-    @Test
     void executeWithoutMonsters() {
         task.execute(container.get(Logger.class));
     }
 
-    @Test
     void moveSingleGroup() throws SQLException {
         dataSet.pushMonsterGroupPosition(new MonsterGroupPosition(10340, -1, 3));
         ExplorationMap map = container.get(ExplorationMapService.class).load(10340);
@@ -99,7 +95,6 @@ class MoveMonstersTest extends GameBaseCase {
         requestStack.assertLast(new GameActionResponse("", ActionType.MOVE, group.id(), "acRhcD"));
     }
 
-    @Test
     void fixedGroupShouldNotMove() throws SQLException {
         dataSet.pushMonsterGroupPosition(new MonsterGroupPosition(10340, 123, 3));
         ExplorationMap map = container.get(ExplorationMapService.class).load(10340);
@@ -115,7 +110,6 @@ class MoveMonstersTest extends GameBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void moveOnlyOneGroupPerMap() throws SQLException {
         dataSet.pushMonsterGroupPosition(new MonsterGroupPosition(10340, -1, 2));
         ExplorationMap map = container.get(ExplorationMapService.class).load(10340);
@@ -133,7 +127,6 @@ class MoveMonstersTest extends GameBaseCase {
         assertCount(1, baseCells); // Count the changed cells
     }
 
-    @Test
     void moveChance() throws SQLException {
         task = new MoveMonsters(container.get(MonsterEnvironmentService.class), Duration.ofSeconds(10), 25, 5);
 
@@ -159,7 +152,6 @@ class MoveMonstersTest extends GameBaseCase {
         assertBetween(15, 35, moveCount);
     }
 
-    @Test
     void moveDistance() throws SQLException {
         task = new MoveMonsters(container.get(MonsterEnvironmentService.class), Duration.ofSeconds(10), 100, 20);
 
@@ -185,7 +177,6 @@ class MoveMonstersTest extends GameBaseCase {
         assertEquals(20, maxDistance);
     }
 
-    @Test
     void moveWithoutFreeCellShouldNotMove() throws SQLException {
         task = new MoveMonsters(container.get(MonsterEnvironmentService.class), Duration.ofSeconds(10), 100, 5);
 

@@ -37,7 +37,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RealmServiceTest extends RealmBaseCase {
-    @Test
     void boot() throws BootException {
         InitializableService foo = Mockito.mock(InitializableService.class);
         InitializableService bar = Mockito.mock(InitializableService.class);

@@ -62,7 +62,7 @@ public final class SpellEffectTarget implements EffectTarget {
     }
 
     @Override
-    public boolean equals(@Nullable Object obj) {
+    public boolean equals(Object obj) {
         if (obj == this) {
             return true;
         }

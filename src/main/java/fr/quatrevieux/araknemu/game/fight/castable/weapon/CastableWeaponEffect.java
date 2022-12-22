@@ -50,12 +50,12 @@ public final class CastableWeaponEffect implements SpellEffect {
     }
 
     @Override
-    public @NonNegative int min() {
+    public int min() {
         return applyCriticalBonus(effect.min());
     }
 
     @Override
-    public @NonNegative int max() {
+    public int max() {
         return applyCriticalBonus(effect.max());
     }
 
@@ -65,12 +65,12 @@ public final class CastableWeaponEffect implements SpellEffect {
     }
 
     @Override
-    public @NonNegative int duration() {
+    public int duration() {
         return 0;
     }
 
     @Override
-    public @NonNegative int probability() {
+    public int probability() {
         return 0;
     }
 
@@ -89,7 +89,7 @@ public final class CastableWeaponEffect implements SpellEffect {
         return WeaponEffectTarget.INSTANCE;
     }
 
-    private @NonNegative int applyCriticalBonus(@NonNegative int base) {
+    private int applyCriticalBonus(int base) {
         if (critical) {
             return base + weapon.info().criticalBonus();
         }

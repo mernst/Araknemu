@@ -51,7 +51,6 @@ class SimpleTeamTest extends FightBaseCase {
     private PlayerFighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -64,7 +63,6 @@ class SimpleTeamTest extends FightBaseCase {
         );
     }
 
-    @Test
     void getters() throws Exception {
         assertSame(fighter, team.leader());
         assertEquals(Arrays.asList(fighter), new ArrayList<>(team.fighters())); // Make list copy for equality
@@ -82,14 +80,12 @@ class SimpleTeamTest extends FightBaseCase {
         assertFalse(team.options().needHelp());
     }
 
-    @Test
     void send() {
         team.send("test");
 
         requestStack.assertLast("test");
     }
 
-    @Test
     void alive() throws Exception {
         assertTrue(team.alive());
 
@@ -101,7 +97,6 @@ class SimpleTeamTest extends FightBaseCase {
         assertFalse(team.alive());
     }
 
-    @Test
     void joinNotPlayerFighter() {
         Fighter fighter = Mockito.mock(Fighter.class);
 
@@ -116,7 +111,6 @@ class SimpleTeamTest extends FightBaseCase {
         assertThrows(JoinFightException.class, () -> team.join(fighter));
     }
 
-    @Test
     void joinFullTeam() throws SQLException, ContainerException, JoinFightException {
         team.join(new PlayerFighter(makeSimpleGamePlayer(10)));
 
@@ -129,7 +123,6 @@ class SimpleTeamTest extends FightBaseCase {
         }
     }
 
-    @Test
     void joinSuccess() throws SQLException, ContainerException, JoinFightException {
         PlayerFighter fighter = new PlayerFighter(makeSimpleGamePlayer(10));
         team.join(fighter);
@@ -139,7 +132,6 @@ class SimpleTeamTest extends FightBaseCase {
         assertSame(team, fighter.team());
     }
 
-    @Test
     void joinLocked() throws Exception {
         team.options().toggleAllowJoinTeam();
         PlayerFighter fighter = new PlayerFighter(makeSimpleGamePlayer(10));
@@ -153,7 +145,6 @@ class SimpleTeamTest extends FightBaseCase {
         }
     }
 
-    @Test
     void kick() throws SQLException, ContainerException, JoinFightException {
         PlayerFighter fighter = new PlayerFighter(makeSimpleGamePlayer(10));
         team.join(fighter);

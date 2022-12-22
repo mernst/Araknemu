@@ -29,7 +29,6 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CloseInactiveSessionTest extends RealmBaseCase {
-    @Test
     void handle() {
         session.receive(new SessionIdle(Duration.ofMinutes(15)));
 

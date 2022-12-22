@@ -28,7 +28,6 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RemoveSpriteTest extends GameBaseCase {
-    @Test
     void generate() throws SQLException, ContainerException {
         assertEquals(
             "GM|-1",

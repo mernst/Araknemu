@@ -35,7 +35,6 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  */
 class GoToGeolocationTest extends GameBaseCase {
-    @Test
     void teleportSuccess() throws Exception {
         ExplorationPlayer player = explorationPlayer();
         player.changeCell(250);
@@ -47,7 +46,6 @@ class GoToGeolocationTest extends GameBaseCase {
         assertEquals(250, player.cell().id());
     }
 
-    @Test
     void teleportSuccessWithInvalidTargetCellShouldFindFirstWalkableCell() throws Exception {
         ExplorationPlayer player = explorationPlayer();
         player.account().grant(Permission.ACCESS);
@@ -59,7 +57,6 @@ class GoToGeolocationTest extends GameBaseCase {
         assertTrue(player.cell().walkable());
     }
 
-    @Test
     void teleportNotAdmin() throws Exception {
         ExplorationPlayer player = explorationPlayer();
 
@@ -73,7 +70,6 @@ class GoToGeolocationTest extends GameBaseCase {
         assertNotEquals(10340, player.map().id());
     }
 
-    @Test
     void teleportNotExploring() {
         assertThrows(CloseImmediately.class, () -> handlePacket(new AdminMove(new Geolocation(3, 6))));
     }

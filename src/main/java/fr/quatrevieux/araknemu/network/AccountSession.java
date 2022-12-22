@@ -32,27 +32,23 @@ import org.checkerframework.dataflow.qual.Pure;
  *
  * @param <A> The account type
  */
-public interface AccountSession<A extends @NonNull AbstractLivingAccount<?>> extends Session {
+public interface AccountSession<A extends AbstractLivingAccount<?>> extends Session {
     /**
      * Attach a game account to the session
      *
      * @param account Account to attach
      */
-    @EnsuresNonNull("account()")
     public void attach(A account);
 
     /**
      * Get the attached account
      * Can be null is not yet logged
      */
-    @Pure
-    public @Nullable A account();
+    public A account();
 
     /**
      * Check if an account is attached
      */
-    @Pure
-    @EnsuresNonNullIf(expression = "account()", result = true)
     public boolean isLogged();
 
     /**
@@ -60,5 +56,5 @@ public interface AccountSession<A extends @NonNull AbstractLivingAccount<?>> ext
      *
      * @return The attached account
      */
-    public @Nullable A detach();
+    public A detach();
 }

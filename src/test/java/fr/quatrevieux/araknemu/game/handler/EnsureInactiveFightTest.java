@@ -35,7 +35,6 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class EnsureInactiveFightTest extends FightBaseCase {
-    @Test
     void handleExploring() throws Exception {
         PacketHandler inner = Mockito.mock(PacketHandler.class);
         EnsureInactiveFight handler = new EnsureInactiveFight<>(inner);
@@ -48,7 +47,6 @@ class EnsureInactiveFightTest extends FightBaseCase {
         Mockito.verify(inner).handle(session, packet);
     }
 
-    @Test
     void handleFightingNotActive() throws Exception {
         createFight();
 
@@ -62,7 +60,6 @@ class EnsureInactiveFightTest extends FightBaseCase {
         Mockito.verify(inner).handle(session, packet);
     }
 
-    @Test
     void handleFightingActive() throws Exception {
         Fight fight = createFight();
         fight.start(new AlternateTeamFighterOrder());
@@ -77,7 +74,6 @@ class EnsureInactiveFightTest extends FightBaseCase {
         Mockito.verify(inner, Mockito.never()).handle(session, packet);
     }
 
-    @Test
     void packet() throws ContainerException {
         assertEquals(
             AskCharacterList.class,

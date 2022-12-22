@@ -27,7 +27,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 /**
  * Create action for fight
  */
-public interface FightActionFactory<@NonNull F extends @NonNull ActiveFighter> {
+public interface FightActionFactory<F extends ActiveFighter> {
     /**
      * Create the action
      *

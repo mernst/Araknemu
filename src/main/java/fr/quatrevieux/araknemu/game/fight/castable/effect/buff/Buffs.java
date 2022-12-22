@@ -71,7 +71,7 @@ public interface Buffs extends Iterable<Buff> {
     /**
      * @see BuffHook#onDirectDamageApplied(Buff, Fighter, int)
      */
-    public void onDirectDamageApplied(Fighter caster, @Positive int value);
+    public void onDirectDamageApplied(Fighter caster, int value);
 
     /**
      * @see BuffHook#onLifeAltered(Buff, int)

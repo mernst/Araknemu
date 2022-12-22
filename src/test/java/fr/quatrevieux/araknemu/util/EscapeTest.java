@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EscapeTest {
-    @Test
     void html() {
         assertEquals("Hello World !", Escape.html("Hello World !"));
         assertEquals("&lt;strong&gt;Hello World !&lt;/strong&gt;", Escape.html("<strong>Hello World !</strong>"));
@@ -32,7 +31,6 @@ class EscapeTest {
         assertEquals("&amp;&amp;", Escape.html("&&"));
     }
 
-    @Test
     void url() {
         assertEquals("Hello+World+%21", Escape.url("Hello World !"));
     }

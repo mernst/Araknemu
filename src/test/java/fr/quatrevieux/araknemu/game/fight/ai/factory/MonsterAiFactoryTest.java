@@ -40,7 +40,6 @@ class MonsterAiFactoryTest extends FightBaseCase {
     private MonsterAiFactory factory;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,17 +48,14 @@ class MonsterAiFactoryTest extends FightBaseCase {
         factory.register("AGGRESSIVE", new Aggressive(container.get(Simulator.class)));
     }
 
-    @Test
     void createNotAMonster() {
         assertFalse(factory.create(player.fighter()).isPresent());
     }
 
-    @Test
     void createSuccess() {
         assertTrue(factory.create(fight.team(1).fighters().stream().findFirst().get()).isPresent());
     }
 
-    @Test
     void createSuccessWithInvocation() throws SQLException {
         dataSet.pushMonsterTemplateInvocations();
 
@@ -75,7 +71,6 @@ class MonsterAiFactoryTest extends FightBaseCase {
         assertTrue(factory.create(fighter).isPresent());
     }
 
-    @Test
     void createInvalidAiType() {
         factory = new MonsterAiFactory();
 

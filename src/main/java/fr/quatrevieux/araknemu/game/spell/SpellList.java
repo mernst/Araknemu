@@ -38,6 +38,5 @@ public interface SpellList extends Iterable<Spell> {
      *
      * @param spellId ID of the spell to check
      */
-    @Pure
     public boolean has(int spellId);
 }

@@ -38,7 +38,6 @@ class NextQuestionTest extends GameBaseCase {
     private NextQuestion.Factory factory;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -56,23 +55,19 @@ class NextQuestionTest extends GameBaseCase {
         factory = new NextQuestion.Factory(container.get(DialogService.class));
     }
 
-    @Test
     void factory() {
         assertEquals("NEXT", factory.type());
         assertInstanceOf(NextQuestion.class, factory.create(new ResponseAction(1, "NEXT", "123")));
     }
 
-    @Test
     void checkNoQuestions() {
         assertFalse(factory.create(new ResponseAction(1, "NEXT", "")).check(player));
     }
 
-    @Test
     void checkSuccess() {
         assertTrue(factory.create(new ResponseAction(1, "NEXT", "3786")).check(player));
     }
 
-    @Test
     void apply() throws ContainerException {
         factory.create(new ResponseAction(1, "NEXT", "3786")).apply(player);
 

@@ -89,18 +89,6 @@ public abstract class AbstractMessageCommand extends AbstractCommand<AbstractMes
 
     @SuppressWarnings("initialization.field.uninitialized")
     public static final class Arguments {
-        @Argument(
-            metaVar = "MESSAGE", handler = ConcatRestOfArgumentsHandler.class, required = true,
-            usage = "The message to send.\n" +
-                "If --no-md option is not set, the message will be parsed as markdown format.\n" +
-                "Available formats :\n" +
-                "- *message* or _message_ for <i>italic</i>\n" +
-                "- **message** for <i>bold</i>\n" +
-                "- __message__ for <u>underline</u>\n" +
-                "- [test](http://link) for display a clickable link\n" +
-                "- Multiple formats can be applied like : ___**message**___ for <i><u><b>italic + underline + bold</b></u></i>\n" +
-                "<font color=\"#CC0000\">Note: The message must be the last argument, <b>after all options</b></font>"
-        )
         private String message;
 
         @Option(

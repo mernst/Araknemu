@@ -26,7 +26,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CharacterAccessoryTest {
-    @Test
     void data() {
         CharacterAccessory accessory = new CharacterAccessory(
             new PlayerItem(1, 1, 123, null, 0, 6)

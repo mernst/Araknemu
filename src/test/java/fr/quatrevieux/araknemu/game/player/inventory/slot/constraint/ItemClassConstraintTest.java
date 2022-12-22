@@ -38,7 +38,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ItemClassConstraintTest extends GameBaseCase {
     private ItemClassConstraint constraint = new ItemClassConstraint(Wearable.class);
 
-    @Test
     void success() throws InventoryException {
         constraint.check(
             new Wearable(
@@ -52,7 +51,6 @@ class ItemClassConstraintTest extends GameBaseCase {
         );
     }
 
-    @Test
     void error() {
         assertThrows(
             InventoryException.class,

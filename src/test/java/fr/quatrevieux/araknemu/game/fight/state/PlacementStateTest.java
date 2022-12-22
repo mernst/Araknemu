@@ -76,7 +76,6 @@ class PlacementStateTest extends FightBaseCase {
     private PlayerFighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -101,7 +100,6 @@ class PlacementStateTest extends FightBaseCase {
         );
     }
 
-    @Test
     void notStarted() {
         assertThrows(IllegalStateException.class, state::listeners);
         assertThrows(IllegalStateException.class, state::remainingTime);
@@ -111,13 +109,11 @@ class PlacementStateTest extends FightBaseCase {
         state.changePlace(fighter, fight.map().get(0));
     }
 
-    @Test
     void remainingTimeNotSupported() {
         state.start(fight);
         assertThrows(UnsupportedOperationException.class, () -> state.remainingTime());
     }
 
-    @Test
     void start() {
         AtomicReference<FightJoined> ref = new AtomicReference<>();
         PlayerFighter.class.cast(new ArrayList<>(fight.team(0).fighters()).get(0)).dispatcher().add(FightJoined.class, ref::set);
@@ -144,7 +140,6 @@ class PlacementStateTest extends FightBaseCase {
         assertCount(2, fight.fighters());
     }
 
-    @Test
     void startRandomized() {
         state = new PlacementState(true);
 
@@ -158,7 +153,6 @@ class PlacementStateTest extends FightBaseCase {
         assertEquals(fight, fight.fighters().get(1).fight());
     }
 
-    @RepeatedIfExceptionsTest
     void startWithPlacementTimeLimitShouldStartsFightOnTimeOut() throws InterruptedException {
         FightType type = Mockito.mock(FightType.class);
 
@@ -189,7 +183,6 @@ class PlacementStateTest extends FightBaseCase {
         assertInstanceOf(ActiveState.class, fight.state());
     }
 
-    @Test
     void startWithPlacementTimeLimitShouldCancelTimerOnStartFight() throws NoSuchFieldException, IllegalAccessException {
         FightType type = Mockito.mock(FightType.class);
 
@@ -225,7 +218,6 @@ class PlacementStateTest extends FightBaseCase {
         assertTrue(((ScheduledFuture) timer.get(state)).isCancelled());
     }
 
-    @Test
     void startWithPlacementTimeLimitShouldCancelTimerOnCancel() throws NoSuchFieldException, IllegalAccessException {
         FightType type = Mockito.mock(FightType.class);
 
@@ -262,7 +254,6 @@ class PlacementStateTest extends FightBaseCase {
         assertTrue(((ScheduledFuture) timer.get(state)).isCancelled());
     }
 
-    @Test
     void changePlaceToNotWalkable() {
         fight.nextState();
 
@@ -270,7 +261,6 @@ class PlacementStateTest extends FightBaseCase {
         assertEquals(123, fighter.cell().id());
     }
 
-    @Test
     void changePlaceNotTeamCell() {
         fight.nextState();
 
@@ -278,7 +268,6 @@ class PlacementStateTest extends FightBaseCase {
         assertEquals(123, fighter.cell().id());
     }
 
-    @Test
     void changePlaceFighterReady() {
         fight.nextState();
         fighter.setReady(true);
@@ -287,7 +276,6 @@ class PlacementStateTest extends FightBaseCase {
         assertEquals(123, fighter.cell().id());
     }
 
-    @Test
     void changePlaceFightCancelled() {
         fight.nextState();
         FightCell cell = fight.map().get(222);
@@ -297,7 +285,6 @@ class PlacementStateTest extends FightBaseCase {
         assertEquals(123, fighter.cell().id());
     }
 
-    @Test
     void changePlaceFightStarted() {
         fight.nextState();
         state.startFight();
@@ -306,7 +293,6 @@ class PlacementStateTest extends FightBaseCase {
         assertEquals(123, fighter.cell().id());
     }
 
-    @Test
     void changePlaceSuccess() {
         fight.nextState();
 
@@ -318,7 +304,6 @@ class PlacementStateTest extends FightBaseCase {
         requestStack.assertLast(new FighterPositions(fight.fighters()));
     }
 
-    @Test
     void startFightBadStateDoNothing() {
         state.start(fight);
         state.startFight();
@@ -326,7 +311,6 @@ class PlacementStateTest extends FightBaseCase {
         assertInstanceOf(NullState.class, fight.state());
     }
 
-    @Test
     void startFightCancelledDoNothing() {
         fight.nextState();
         fight.cancel();
@@ -335,7 +319,6 @@ class PlacementStateTest extends FightBaseCase {
         assertSame(state, fight.state());
     }
 
-    @Test
     void startFightSuccess() {
         fight.nextState();
 
@@ -351,7 +334,6 @@ class PlacementStateTest extends FightBaseCase {
         assertFalse(fight.dispatcher().has(SendFighterRemoved.class));
     }
 
-    @Test
     void joinTeamSuccess() throws SQLException, ContainerException, JoinFightException {
         fight.nextState();
 
@@ -377,7 +359,6 @@ class PlacementStateTest extends FightBaseCase {
         requestStack.assertLast(new AddSprites(Collections.singleton(newFighter.sprite())));
     }
 
-    @Test
     void joinTeamBadState() throws SQLException, ContainerException {
         fight.nextState();
         state.startFight();
@@ -392,7 +373,6 @@ class PlacementStateTest extends FightBaseCase {
         assertCount(1, fight.team(0).fighters());
     }
 
-    @Test
     void leaveBadState() throws SQLException, ContainerException, JoinFightException {
         PlayerFighter newFighter = makePlayerFighter(makeSimpleGamePlayer(5));
 
@@ -409,7 +389,6 @@ class PlacementStateTest extends FightBaseCase {
         assertContains(newFighter, fight.fighters());
     }
 
-    @Test
     void leaveNotLeader() throws SQLException, ContainerException, JoinFightException {
         PlayerFighter newFighter = makePlayerFighter(makeSimpleGamePlayer(5));
 
@@ -428,7 +407,6 @@ class PlacementStateTest extends FightBaseCase {
         requestStack.assertLast(new RemoveSprite(newFighter.sprite()));
     }
 
-    @Test
     void leaveLeaderWillDissolveTeam() throws SQLException, ContainerException, JoinFightException {
         PlayerFighter newFighter = makePlayerFighter(makeSimpleGamePlayer(5));
 
@@ -446,7 +424,6 @@ class PlacementStateTest extends FightBaseCase {
         requestStack.assertLast(new CancelFight());
     }
 
-    @Test
     void leaveNotLeavableShouldPunishDeserter() throws Exception {
         fight = createPvmFight();
         fight.state(PlacementState.class).leave(player.fighter());
@@ -454,7 +431,6 @@ class PlacementStateTest extends FightBaseCase {
         assertEquals(0, player.properties().life().current());
     }
 
-    @Test
     void kickBadState() throws SQLException, ContainerException, JoinFightException {
         PlayerFighter newFighter = makePlayerFighter(makeSimpleGamePlayer(5));
 
@@ -471,7 +447,6 @@ class PlacementStateTest extends FightBaseCase {
         assertContains(newFighter, fight.fighters());
     }
 
-    @Test
     void kickNotLeavableShouldNotPunishDeserter() throws Exception {
         fight = createPvmFight();
         fight.state(PlacementState.class).kick(player.fighter());
@@ -479,7 +454,6 @@ class PlacementStateTest extends FightBaseCase {
         assertEquals(player.properties().life().max(), player.properties().life().current());
     }
 
-    @Test
     void kickSuccess() throws SQLException, ContainerException, JoinFightException {
         PlayerFighter newFighter = makePlayerFighter(makeSimpleGamePlayer(5));
 

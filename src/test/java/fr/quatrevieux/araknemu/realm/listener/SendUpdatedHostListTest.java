@@ -36,14 +36,12 @@ class SendUpdatedHostListTest extends RealmBaseCase {
     private SendUpdatedHostList listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         listener = new SendUpdatedHostList(container.get(AuthenticationService.class));
     }
 
-    @Test
     void onHostsUpdated() {
         AuthenticationAccount account = new AuthenticationAccount(
             new Account(1),

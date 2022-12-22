@@ -40,7 +40,6 @@ class SpellLevelsTest extends GameBaseCase {
     private SpellLevels levels;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,19 +48,16 @@ class SpellLevelsTest extends GameBaseCase {
         levels = container.get(SpellService.class).get(202);
     }
 
-    @Test
     void getters() {
         assertEquals(202, levels.id());
         assertEquals(5, levels.max());
         assertEquals("Morsure du Bouftou", levels.name());
     }
 
-    @Test
     void levelTooHigh() {
         assertThrows(NoSuchElementException.class, () -> levels.level(6));
     }
 
-    @Test
     void level() {
         Spell spell = levels.level(1);
 

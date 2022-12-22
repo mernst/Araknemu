@@ -32,7 +32,6 @@ import java.util.Collections;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CharacterAccessoriesTest extends TestCase {
-    @Test
     void getNotFound() {
         CharacterAccessories accessories = new CharacterAccessories(Collections.emptyList());
 
@@ -40,7 +39,6 @@ class CharacterAccessoriesTest extends TestCase {
         assertEquals(AccessoryType.HELMET, accessories.get(AccessoryType.HELMET).type());
     }
 
-    @Test
     void get() {
         CharacterAccessories accessories = new CharacterAccessories(
             Arrays.asList(

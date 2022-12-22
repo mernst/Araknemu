@@ -47,7 +47,6 @@ class MoveTest extends FightBaseCase {
     private Fighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -58,7 +57,6 @@ class MoveTest extends FightBaseCase {
         turn.start();
     }
 
-    @Test
     void validateEmptyPath() {
         assertFalse(
             new Move(turn.fighter(),
@@ -71,7 +69,6 @@ class MoveTest extends FightBaseCase {
         );
     }
 
-    @Test
     void validateNotEnoughMovementPoints() {
         assertFalse(
             new Move(turn.fighter(),
@@ -90,7 +87,6 @@ class MoveTest extends FightBaseCase {
         );
     }
 
-    @Test
     void validateRestrictedDirection() {
         assertFalse(
             new Move(turn.fighter(),
@@ -108,7 +104,6 @@ class MoveTest extends FightBaseCase {
         );
     }
 
-    @Test
     void validateNotWalkableCells() {
         assertFalse(
             new Move(turn.fighter(),
@@ -124,7 +119,6 @@ class MoveTest extends FightBaseCase {
         );
     }
 
-    @Test
     void validateValid() {
         assertTrue(
             new Move(turn.fighter(),
@@ -142,7 +136,6 @@ class MoveTest extends FightBaseCase {
         );
     }
 
-    @Test
     void startSuccess() {
         Move move = new Move(turn.fighter(),
             new Path<>(
@@ -174,7 +167,6 @@ class MoveTest extends FightBaseCase {
         assertEquals("Move{size=3, target=198}", move.toString());
     }
 
-    @Test
     void resultShouldBeSecretWhenHidden() {
         turn.fighter().setHidden(turn.fighter(), true);
 
@@ -223,7 +215,6 @@ class MoveTest extends FightBaseCase {
         assertTrue(result.secret());
     }
 
-    @Test
     void startTruncatedBecauseOfEnemy() {
         Move move = new Move(turn.fighter(),
             new Path<>(
@@ -256,7 +247,6 @@ class MoveTest extends FightBaseCase {
         assertEquals("Move{size=3, target=227}", move.toString());
     }
 
-    @Test
     void startWithTackle() {
         Move move = new Move(turn.fighter(),
             new Path<>(
@@ -298,7 +288,6 @@ class MoveTest extends FightBaseCase {
         assertEquals(0, turn.points().actionPoints());
     }
 
-    @Test
     void startWithTackleWithoutActionPoint() {
         fighter.turn().points().removeActionPoints(6);
 
@@ -341,7 +330,6 @@ class MoveTest extends FightBaseCase {
         assertEquals(0, turn.points().actionPoints());
     }
 
-    @Test
     void end() {
         Move move = new Move(turn.fighter(),
             new Path<>(
@@ -362,7 +350,6 @@ class MoveTest extends FightBaseCase {
         assertEquals(Direction.SOUTH_WEST, fighter.orientation());
     }
 
-    @Test
     void duration() {
         Move move = new Move(turn.fighter(),
             new Path<>(

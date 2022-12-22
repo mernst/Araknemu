@@ -36,20 +36,17 @@ class SimpleWalletTest extends TestCase {
     private SimpleWallet wallet;
     private ListenerAggregate dispatcher;
 
-    @BeforeEach
     void setUp() {
         entity = new AccountBank(0, 0, 0);
         dispatcher = new DefaultListenerAggregate();
         wallet = new SimpleWallet(entity, dispatcher);
     }
 
-    @Test
     void kamas() {
         entity.setKamas(1450);
         assertEquals(1450, wallet.kamas());
     }
 
-    @Test
     void addKamas() {
         entity.setKamas(1000);
 
@@ -63,7 +60,6 @@ class SimpleWalletTest extends TestCase {
         assertEquals(1250, ref.get().newQuantity());
     }
 
-    @Test
     void addKamasWithNegativeAmountShouldRaiseException() {
         entity.setKamas(1000);
 
@@ -76,7 +72,6 @@ class SimpleWalletTest extends TestCase {
         assertNull(ref.get());
     }
 
-    @Test
     void removeKamas() {
         entity.setKamas(1000);
 
@@ -90,7 +85,6 @@ class SimpleWalletTest extends TestCase {
         assertEquals(750, ref.get().newQuantity());
     }
 
-    @Test
     void removeKamasWithNegativeAmountShouldRaiseException() {
         entity.setKamas(1000);
 
@@ -103,7 +97,6 @@ class SimpleWalletTest extends TestCase {
         assertNull(ref.get());
     }
 
-    @Test
     void removeKamasWithTooHighAmountShouldRaiseException() {
         entity.setKamas(1000);
 

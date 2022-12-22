@@ -32,14 +32,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AddStatsTest extends CommandTestCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         command = new AddStats(gamePlayer(true));
     }
 
-    @Test
     void executeSuccess() throws ContainerException, SQLException, AdminException {
         execute("addstats", "vitality", "100");
 
@@ -47,7 +45,6 @@ class AddStatsTest extends CommandTestCase {
         assertOutput("Characteristic changed for Bob : VITALITY = 100");
     }
 
-    @Test
     void executeMissingValue() throws ContainerException, SQLException, AdminException {
         assertThrowsWithMessage(
             CommandException.class, "Argument \"VALUE\" is required",
@@ -55,7 +52,6 @@ class AddStatsTest extends CommandTestCase {
         );
     }
 
-    @Test
     void executeMissingCharacteristic() throws ContainerException, SQLException, AdminException {
         assertThrowsWithMessage(
             CommandException.class, "Argument \"CHARACTERISTIC\" is required",
@@ -63,7 +59,6 @@ class AddStatsTest extends CommandTestCase {
         );
     }
 
-    @Test
     void executeInvalidCharacteristic() throws ContainerException, SQLException, AdminException {
         assertThrowsWithMessage(
             CommandException.class, "Invalid value invalid for argument \"CHARACTERISTIC\". Available values : [action-point, movement-point, strength, vitality, wisdom, luck, agility, intelligence, sight-boost, max-summoned-creatures, fixed-damage, physical-damage, weapon-master, percent-damage, health-boost, trap-boost, percent-trap-boost, counter-damage, critical-bonus, fail-malus, resistance-action-point, resistance-movement-point, resistance-neutral, resistance-percent-neutral, resistance-pvp-neutral, resistance-percent-pvp-neutral, resistance-earth, resistance-percent-earth, resistance-pvp-earth, resistance-percent-pvp-earth, resistance-water, resistance-percent-water, resistance-pvp-water, resistance-percent-pvp-water, resistance-air, resistance-percent-air, resistance-pvp-air, resistance-percent-pvp-air, resistance-fire, resistance-percent-fire, resistance-pvp-fire, resistance-percent-pvp-fire]",
@@ -71,7 +66,6 @@ class AddStatsTest extends CommandTestCase {
         );
     }
 
-    @Test
     void help() {
         assertHelp(
             "addstats - Add stats to a player",

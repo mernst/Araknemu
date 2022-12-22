@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameBeginTest {
-    @Test
     void string() {
         assertEquals("TB", new GameBegin().toString());
     }

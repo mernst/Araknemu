@@ -29,7 +29,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AbstractCommandTest extends GameBaseCase {
-    @Test
     void defaults() {
         Command command = new AbstractCommand<Void>() {
             @Override
@@ -57,7 +56,6 @@ class AbstractCommandTest extends GameBaseCase {
         assertEquals(EnumSet.of(Permission.ACCESS), command.permissions());
     }
 
-    @Test
     void withDescriptionAndHelp() {
         Command command = new AbstractCommand<Void>() {
             @Override

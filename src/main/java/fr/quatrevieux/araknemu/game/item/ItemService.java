@@ -127,8 +127,8 @@ public final class ItemService implements PreloadableService {
      *
      * @return Map of item associated with the quantity
      */
-    public Map<Item, @Positive Integer> createBulk(ItemTemplate template, @Positive int quantity) {
-        final Map<Item, @Positive Integer> items = new HashMap<>();
+    public Map<Item, Integer> createBulk(ItemTemplate template, int quantity) {
+        final Map<Item, Integer> items = new HashMap<>();
 
         for (int count = 0; count < quantity; ++count) {
             final Item generated = create(template);

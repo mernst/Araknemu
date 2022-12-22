@@ -36,19 +36,16 @@ class ActionFactoryRegistryTest extends GameBaseCase {
     private ActionFactoryRegistry registry;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         registry = new ActionFactoryRegistry();
     }
 
-    @Test
     void createActionNotFound() {
         assertThrows(NoSuchElementException.class, () -> registry.create(new MapTrigger(10300, 123, 15, "", "")));
     }
 
-    @Test
     void registerAndCreate() throws ContainerException {
         assertSame(registry, registry.register(0, new TeleportFactory(container.get(ExplorationMapService.class))));
 

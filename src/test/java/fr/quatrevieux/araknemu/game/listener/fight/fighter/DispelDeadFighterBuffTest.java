@@ -43,7 +43,6 @@ class DispelDeadFighterBuffTest extends FightBaseCase {
     private DispelDeadFighterBuff listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -58,7 +57,6 @@ class DispelDeadFighterBuffTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onFighterDie() {
         Buff buff1 = new Buff(Mockito.mock(SpellEffect.class), Mockito.mock(Spell.class), other.fighter(), player.fighter(), Mockito.mock(BuffHook.class));
         Buff buff2 = new Buff(Mockito.mock(SpellEffect.class), Mockito.mock(Spell.class), player.fighter(), player.fighter(), Mockito.mock(BuffHook.class), false);
@@ -80,7 +78,6 @@ class DispelDeadFighterBuffTest extends FightBaseCase {
         );
     }
 
-    @Test
     void onFighterDieWithoutBuff() {
         requestStack.clear();
 
@@ -88,7 +85,6 @@ class DispelDeadFighterBuffTest extends FightBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void functional() {
         fight.dispatcher().add(listener);
 

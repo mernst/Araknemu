@@ -34,7 +34,6 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ResourceTest extends GameBaseCase {
-    @Test
     void getters() {
         ItemTemplate template = new ItemTemplate(284, 48, "Sel", 1, new ArrayList<>(), 1, "", 0, "", 10);
         Resource resource = new Resource(
@@ -56,7 +55,6 @@ class ResourceTest extends GameBaseCase {
         assertFalse(resource.set().isPresent());
     }
 
-    @Test
     void specials() {
         ItemTemplate template = new ItemTemplate(284, 48, "Sel", 1, new ArrayList<>(), 1, "", 0, "", 10);
         Resource resource = new Resource(
@@ -75,7 +73,6 @@ class ResourceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void equalsBadClass() {
         ItemTemplate template = new ItemTemplate(284, 48, "Sel", 1, new ArrayList<>(), 1, "", 0, "", 10);
         Resource resource = new Resource(
@@ -89,7 +86,6 @@ class ResourceTest extends GameBaseCase {
         assertNotEquals(resource, new Object());
     }
 
-    @Test
     void equalsBadTemplate() {
         assertNotEquals(
             new Resource(new ItemTemplate(284, 48, "Sel", 1, new ArrayList<>(), 1, "", 0, "", 10), new ItemType(48, "Poudre", SuperType.RESOURCE, null), new ArrayList<>()),
@@ -97,7 +93,6 @@ class ResourceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void equalsBadStats() {
         assertNotEquals(
             new Resource(new ItemTemplate(284, 48, "Sel", 1, new ArrayList<>(), 1, "", 0, "", 10), new ItemType(48, "Poudre", SuperType.RESOURCE, null), Arrays.asList(new SpecialEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {0, 0, 0}, ""))),
@@ -105,7 +100,6 @@ class ResourceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void equalsOk() {
         assertEquals(
             new Resource(new ItemTemplate(284, 48, "Sel", 1, new ArrayList<>(), 1, "", 0, "", 10), new ItemType(48, "Poudre", SuperType.RESOURCE, null), new ArrayList<>()),
@@ -113,7 +107,6 @@ class ResourceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void equalsNull() {
         assertNotEquals(
             new Resource(new ItemTemplate(284, 48, "Sel", 1, new ArrayList<>(), 1, "", 0, "", 10), new ItemType(48, "Poudre", SuperType.RESOURCE, null), new ArrayList<>()),

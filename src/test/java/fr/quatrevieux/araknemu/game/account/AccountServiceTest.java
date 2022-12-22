@@ -49,7 +49,6 @@ class AccountServiceTest extends GameBaseCase {
     private AccountService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -61,12 +60,10 @@ class AccountServiceTest extends GameBaseCase {
         dataSet.use(Account.class);
     }
 
-    @Test
     void loadAccountNotFound() {
         assertThrows(EntityNotFoundException.class, () -> service.load(new Account(-1)));
     }
 
-    @Test
     void loadSuccess() throws ContainerException {
         Account account = new Account(1, "name", "pass", "pseudo");
         dataSet.push(account);
@@ -77,7 +74,6 @@ class AccountServiceTest extends GameBaseCase {
         assertEquals(2, ga.serverId());
     }
 
-    @Test
     void isLogged() {
         assertFalse(service.isLogged(1));
 
@@ -91,7 +87,6 @@ class AccountServiceTest extends GameBaseCase {
         assertTrue(service.isLogged(1));
     }
 
-    @Test
     void getByIds() {
         Account account1 = dataSet.push(new Account(-1, "name", "pass", "pseudo", Collections.emptySet(), "", ""));
         Account account2 = dataSet.push(new Account(-1, "name2", "pass", "pseudo2", Collections.emptySet(), "", ""));
@@ -110,7 +105,6 @@ class AccountServiceTest extends GameBaseCase {
         assertEquals("pseudo2", accounts.get(account2.id()).pseudo());
     }
 
-    @Test
     void findByPseudoLoggedAccount() {
         GameAccount account = new GameAccount(
             dataSet.push(new Account(-1, "name", "pass", "pseudo", Collections.emptySet(), "", "")),
@@ -122,19 +116,16 @@ class AccountServiceTest extends GameBaseCase {
         assertSame(account, service.findByPseudo("pseudo").get());
     }
 
-    @Test
     void findByPseudoNotLoggedAccount() {
         Account account = dataSet.push(new Account(-1, "name", "pass", "pseudo", Collections.emptySet(), "", ""));
 
         assertEquals(account.id(), service.findByPseudo("pseudo").get().id());
     }
 
-    @Test
     void findByPseudoNotFound() {
         assertFalse(service.findByPseudo("not_found").isPresent());
     }
 
-    @Test
     void listenerShouldKickAccountOnBan() {
         dataSet.use(Banishment.class);
         Account account1 = dataSet.push(new Account(-1, "name", "pass", "pseudo", Collections.emptySet(), "", ""));
@@ -154,7 +145,6 @@ class AccountServiceTest extends GameBaseCase {
         assertFalse(session.isAlive());
     }
 
-    @Test
     void listenerShouldKickAccountOnBanWithoutBanisher() {
         dataSet.use(Banishment.class);
         Account account1 = dataSet.push(new Account(-1, "name", "pass", "pseudo", Collections.emptySet(), "", ""));
@@ -172,7 +162,6 @@ class AccountServiceTest extends GameBaseCase {
         assertFalse(session.isAlive());
     }
 
-    @Test
     void listenerShouldSendAdminAccessOnPermissionChanged() throws SQLException {
         GameAccount account = gamePlayer(true).account();
         requestStack.clear();

@@ -46,12 +46,12 @@ public final class UsableFactory implements ItemFactory {
     }
 
     @Override
-    public Item create(ItemTemplate template, ItemType type, @Nullable GameItemSet set, boolean maximize) {
+    public Item create(ItemTemplate template, ItemType type, GameItemSet set, boolean maximize) {
         return create(template, type, template.effects());
     }
 
     @Override
-    public Item retrieve(ItemTemplate template, ItemType type, @Nullable GameItemSet set, List<ItemTemplateEffectEntry> effects) {
+    public Item retrieve(ItemTemplate template, ItemType type, GameItemSet set, List<ItemTemplateEffectEntry> effects) {
         return create(template, type, effects);
     }
 

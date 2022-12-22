@@ -44,7 +44,6 @@ class ValidateOverweightTest extends GameBaseCase {
     private ExplorationMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -58,7 +57,6 @@ class ValidateOverweightTest extends GameBaseCase {
         validator = new ValidateOverweight();
     }
 
-    @Test
     void validateWithOverweight() throws SQLException, ContainerException {
         ExplorationPlayer player = explorationPlayer();
         player.inventory().add(container.get(ItemService.class).create(39), 1000);
@@ -84,7 +82,6 @@ class ValidateOverweightTest extends GameBaseCase {
         }
     }
 
-    @Test
     void validateSuccess() throws SQLException, ContainerException, PathValidationException {
         ExplorationPlayer player = explorationPlayer();
 

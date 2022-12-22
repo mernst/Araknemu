@@ -35,7 +35,6 @@ class AccountContextTest extends GameBaseCase {
     private AccountContext context;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -51,7 +50,6 @@ class AccountContextTest extends GameBaseCase {
         );
     }
 
-    @Test
     void commands() throws CommandNotFoundException {
         assertInstanceOf(Info.class, context.command("info"));
         assertInstanceOf(Grant.class, context.command("grant"));

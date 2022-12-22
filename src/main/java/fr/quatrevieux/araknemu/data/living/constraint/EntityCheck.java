@@ -27,11 +27,11 @@ import org.checkerframework.checker.nullness.qual.NonNull;
  * @param <T> Entity type
  * @param <E> Error type
  */
-public final class EntityCheck<T, @NonNull E> implements EntityConstraint<T, E> {
-    private final @NonNull E error;
+public final class EntityCheck<T, E> implements EntityConstraint<T, E> {
+    private final E error;
     private final Checker<T> checker;
 
-    public EntityCheck(@NonNull E error, Checker<T> checker) {
+    public EntityCheck(E error, Checker<T> checker) {
         this.error = error;
         this.checker = checker;
     }
@@ -43,7 +43,7 @@ public final class EntityCheck<T, @NonNull E> implements EntityConstraint<T, E> 
     }
 
     @Override
-    public @NonNull E error() {
+    public E error() {
         return error;
     }
 

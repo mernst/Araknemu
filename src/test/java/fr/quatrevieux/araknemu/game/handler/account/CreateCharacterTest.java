@@ -47,7 +47,6 @@ class CreateCharacterTest extends GameBaseCase {
     private CreateCharacter handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -66,7 +65,6 @@ class CreateCharacterTest extends GameBaseCase {
         login();
     }
 
-    @Test
     void success() throws Exception {
         handler.handle(session, new AddCharacterRequest(
             "Bob",
@@ -96,7 +94,6 @@ class CreateCharacterTest extends GameBaseCase {
         );
     }
 
-    @Test
     void error() throws Exception {
         try {
             handler.handle(session, new AddCharacterRequest(

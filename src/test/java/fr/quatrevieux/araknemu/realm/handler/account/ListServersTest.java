@@ -45,7 +45,6 @@ class ListServersTest extends RealmBaseCase {
     private ListServers handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -64,7 +63,6 @@ class ListServersTest extends RealmBaseCase {
         dataSet.use(Player.class);
     }
 
-    @Test
     void handleEmptyList() {
         handler.handle(session, new AskServerList());
 
@@ -73,7 +71,6 @@ class ListServersTest extends RealmBaseCase {
         );
     }
 
-    @Test
     void handleOneChar() throws ContainerException {
         dataSet.push(
             Player.forCreation(1, 1, "bob", Race.CRA, Gender.FEMALE, new Colors(-1, -1, -1))
@@ -91,7 +88,6 @@ class ListServersTest extends RealmBaseCase {
         );
     }
 
-    @Test
     void handleMultipleChars() throws ContainerException {
         dataSet.push(Player.forCreation(1, 1, "bob", Race.CRA, Gender.FEMALE, new Colors(-1, -1, -1)));
         dataSet.push(Player.forCreation(1, 1, "cc", Race.CRA, Gender.FEMALE, new Colors(-1, -1, -1)));

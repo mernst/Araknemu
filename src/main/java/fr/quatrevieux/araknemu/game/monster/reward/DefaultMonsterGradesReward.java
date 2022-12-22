@@ -46,7 +46,7 @@ public final class DefaultMonsterGradesReward implements MonsterGradesReward {
 
     @Override
     @SuppressWarnings("array.access.unsafe.high.range") // Grade number is safe
-    public @NonNegative long experience(@Positive int gradeNumber) {
+    public long experience(int gradeNumber) {
         return data.experiences()[gradeNumber - 1];
     }
 
@@ -56,7 +56,7 @@ public final class DefaultMonsterGradesReward implements MonsterGradesReward {
     }
 
     @Override
-    public MonsterReward grade(@Positive int gradeNumber) {
+    public MonsterReward grade(int gradeNumber) {
         return new DefaultMonsterReward(this, gradeNumber);
     }
 }

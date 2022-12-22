@@ -50,7 +50,6 @@ class DispelHandlerTest extends FightBaseCase {
     private DispelHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -68,7 +67,6 @@ class DispelHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handle() {
         // cannot be debuff
         Buff buff_wisdom = makeWisdomBuffThatCannotBeDebuff();
@@ -86,14 +84,12 @@ class DispelHandlerTest extends FightBaseCase {
         );
     }
 
-    @Test
     void buff() {
         FightCastScope scope = makeDebuffSpell(target.cell());
 
         assertThrows(UnsupportedOperationException.class, () -> handler.buff(scope, scope.effects().get(0)));
     }
 
-    @Test
     void notAllBuffsAreRemoved() {
         // can be debuff
         Buff buff_luck = makeLuckBuffThatcanBeDispelled();
@@ -113,7 +109,6 @@ class DispelHandlerTest extends FightBaseCase {
         assertTrue(buff2.isPresent());
     }
 
-    @Test
     void makeSureOnBuffTerminatedIsCalled() {
         BuffHook hook = Mockito.mock(BuffHook.class);
         SpellEffect effect1 = Mockito.mock(SpellEffect.class);

@@ -49,9 +49,8 @@ public final class InventoryEntry extends AbstractItemEntry {
         this.item = item;
     }
 
-    @Pure
     @Override
-    public @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int position() {
+    public int position() {
         return entity.position();
     }
 
@@ -63,7 +62,7 @@ public final class InventoryEntry extends AbstractItemEntry {
      *
      * @throws MoveException When the item is already on the requested position
      */
-    public void move(@IntRange(from = -1, to = InventorySlots.SLOT_MAX) int position, @Positive int quantity) throws InventoryException {
+    public void move(int position, int quantity) throws InventoryException {
         if (quantity > quantity() || quantity <= 0) {
             throw new InventoryException("Invalid quantity given");
         }
@@ -95,12 +94,11 @@ public final class InventoryEntry extends AbstractItemEntry {
     /**
      * Get the database entity
      */
-    @Pure
     PlayerItem entity() {
         return entity;
     }
 
-    private void changePosition(@IntRange(from = -1, to = InventorySlots.SLOT_MAX) int position) {
+    private void changePosition(int position) {
         entity.setPosition(position);
         inventory.dispatch(new ObjectMoved(this));
     }
@@ -108,7 +106,7 @@ public final class InventoryEntry extends AbstractItemEntry {
     /**
      * Create a new entry
      */
-    static InventoryEntry create(PlayerInventory inventory, int id, Item item, @Positive int quantity, @IntRange(from = -1, to = InventorySlots.SLOT_MAX) int position) {
+    static InventoryEntry create(PlayerInventory inventory, int id, Item item, int quantity, int position) {
         return new InventoryEntry(
             inventory,
             new PlayerItem(

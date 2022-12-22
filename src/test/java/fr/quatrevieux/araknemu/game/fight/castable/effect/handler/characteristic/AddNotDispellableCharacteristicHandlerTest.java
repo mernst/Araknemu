@@ -55,7 +55,6 @@ class AddNotDispellableCharacteristicHandlerTest extends FightBaseCase {
     private AddNotDispellableCharacteristicHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -73,7 +72,6 @@ class AddNotDispellableCharacteristicHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handle() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -88,7 +86,6 @@ class AddNotDispellableCharacteristicHandlerTest extends FightBaseCase {
         assertThrows(UnsupportedOperationException.class, () -> handler.handle(scope, scope.effects().get(0)));
     }
 
-    @Test
     void buff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -118,7 +115,6 @@ class AddNotDispellableCharacteristicHandlerTest extends FightBaseCase {
         assertFalse(buff2.get().canBeDispelled());
     }
 
-    @Test
     void buffWithOneTargetMaximized() {
         target.buffs().add(new Buff(Mockito.mock(SpellEffect.class), Mockito.mock(Spell.class), target, target, new BuffHook() {
             @Override
@@ -153,7 +149,6 @@ class AddNotDispellableCharacteristicHandlerTest extends FightBaseCase {
         assertEquals(10000, buff2.get().effect().min());
     }
 
-    @Test
     void onBuffStartedAndTerminated() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
 

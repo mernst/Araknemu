@@ -37,7 +37,7 @@ public final class NullEffectHandler implements UseEffectHandler {
     }
 
     @Override
-    public boolean checkTarget(UseEffect effect, ExplorationPlayer caster, @Nullable ExplorationPlayer target, @Nullable ExplorationMapCell cell) {
+    public boolean checkTarget(UseEffect effect, ExplorationPlayer caster, ExplorationPlayer target, ExplorationMapCell cell) {
         return true;
     }
 

@@ -71,23 +71,19 @@ class DefaultListenerAggregateTest {
         }
     }
 
-    @BeforeEach
     void setUp() {
         dispatcher = new DefaultListenerAggregate();
     }
 
-    @Test
     void dispatchNoListenerRegister() {
         dispatcher.dispatch(new A());
     }
 
-    @Test
     void dispatchListenerNotMatching() {
         dispatcher.add(new ListenerA());
         dispatcher.dispatch(new B());
     }
 
-    @Test
     void dispatchWithListener() {
         ListenerA listenerA = new ListenerA();
 
@@ -99,7 +95,6 @@ class DefaultListenerAggregateTest {
         assertSame(a, listenerA.a);
     }
 
-    @Test
     void dispatchMultipleListener() {
         ListenerA l1 = new ListenerA();
         ListenerA l2 = new ListenerA2();
@@ -118,7 +113,6 @@ class DefaultListenerAggregateTest {
         assertNull(l3.b);
     }
 
-    @Test
     void dispatchWithExceptionShouldNotStopOtherListeners() {
         Logger logger = Mockito.mock(Logger.class);
         dispatcher = new DefaultListenerAggregate(logger);
@@ -148,7 +142,6 @@ class DefaultListenerAggregateTest {
         Mockito.verify(logger).error("Error during execution of listener fr.quatrevieux.araknemu.core.event.DefaultListenerAggregateTest$1", error);
     }
 
-    @Test
     void has() {
         assertFalse(dispatcher.has(ListenerA.class));
 
@@ -157,12 +150,10 @@ class DefaultListenerAggregateTest {
         assertTrue(dispatcher.has(ListenerA.class));
     }
 
-    @Test
     void removeNotRegister() {
         dispatcher.remove(ListenerA.class);
     }
 
-    @Test
     void remove() {
         dispatcher.add(new ListenerA());
         dispatcher.remove(ListenerA.class);
@@ -171,7 +162,6 @@ class DefaultListenerAggregateTest {
         dispatcher.dispatch(new A());
     }
 
-    @Test
     void get() {
         ListenerA listenerA = new ListenerA();
 
@@ -180,7 +170,6 @@ class DefaultListenerAggregateTest {
         assertSame(listenerA, dispatcher.get(ListenerA.class));
     }
 
-    @Test
     void addSimpleListener() {
         AtomicReference<A> ref = new AtomicReference<>();
 
@@ -192,7 +181,6 @@ class DefaultListenerAggregateTest {
         assertSame(a, ref.get());
     }
 
-    @Test
     void removeListenerDuringDispatchShouldBeTakenInAccountAfterDispatch() {
         final Collection<Class> listeners = new ArrayList<>();
 
@@ -237,7 +225,6 @@ class DefaultListenerAggregateTest {
         assertIterableEquals(Arrays.asList(L2.class), listeners);
     }
 
-    @Test
     void addListenerDuringDispatchShouldBeTakenInAccountAfterDispatch() {
         final Collection<Class> listeners = new ArrayList<>();
 
@@ -280,7 +267,6 @@ class DefaultListenerAggregateTest {
         assertIterableEquals(Arrays.asList(L2.class, L1.class), listeners);
     }
 
-    @Test
     void addListenerDuringDispatchForOtherEventShouldBeTakenInAccountImmediately() {
         final Collection<Class> listeners = new ArrayList<>();
 
@@ -323,7 +309,6 @@ class DefaultListenerAggregateTest {
         assertIterableEquals(Arrays.asList(L1.class), listeners);
     }
 
-    @Test
     void dispatchAndRemoveListenerWithSameEventDuringDispatch() {
         final Collection<String> listeners = new ArrayList<>();
 

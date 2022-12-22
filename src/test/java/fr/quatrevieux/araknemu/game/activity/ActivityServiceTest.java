@@ -33,7 +33,6 @@ class ActivityServiceTest extends GameBaseCase {
     private ActivityService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -41,7 +40,6 @@ class ActivityServiceTest extends GameBaseCase {
         service = new ActivityService(configuration.activity(), logger);
     }
 
-    @RepeatedIfExceptionsTest
     void simpleTask() throws InterruptedException {
         Consumer<Logger> action = Mockito.mock(Consumer.class);
 
@@ -56,7 +54,6 @@ class ActivityServiceTest extends GameBaseCase {
         Mockito.verify(logger).info(Mockito.eq("End task {} in {}ms"), Mockito.eq(task), Mockito.anyLong());
     }
 
-    @RepeatedIfExceptionsTest
     void executeWithDelay() throws InterruptedException {
         Consumer<Logger> action = Mockito.mock(Consumer.class);
 
@@ -70,7 +67,6 @@ class ActivityServiceTest extends GameBaseCase {
         Mockito.verify(action).accept(logger);
     }
 
-    @RepeatedIfExceptionsTest
     void executeFailedShouldRetry() throws InterruptedException {
         RuntimeException exception = new RuntimeException("my error");
 
@@ -92,7 +88,6 @@ class ActivityServiceTest extends GameBaseCase {
         Mockito.verify(logger, Mockito.times(3)).error("Execution failed : my error for task my task", exception);
     }
 
-    @RepeatedIfExceptionsTest
     void periodic() throws InterruptedException {
         Consumer<Logger> action = Mockito.mock(Consumer.class);
 
@@ -104,7 +99,6 @@ class ActivityServiceTest extends GameBaseCase {
         Mockito.verify(action, Mockito.atLeast(2)).accept(logger);
     }
 
-    @RepeatedIfExceptionsTest
     void periodicWithException() throws InterruptedException {
         RuntimeException exception = new RuntimeException("my error");
 

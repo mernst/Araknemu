@@ -29,12 +29,12 @@ public interface WalletEntity {
      * Get the current amount of kamas
      * The value is always positive
      */
-    public @NonNegative long kamas();
+    public long kamas();
 
     /**
      * Change the kamas quantity
      *
      * @param kamas The new kamas quantity. Must be positive
      */
-    public void setKamas(@NonNegative long kamas);
+    public void setKamas(long kamas);
 }

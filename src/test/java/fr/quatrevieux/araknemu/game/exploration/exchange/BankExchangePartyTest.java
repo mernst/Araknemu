@@ -48,7 +48,6 @@ class BankExchangePartyTest extends GameBaseCase {
     private ItemService itemService;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -65,25 +64,21 @@ class BankExchangePartyTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void getters() {
         assertSame(player, party.actor());
         assertEquals(ExchangeType.BANK, party.type());
     }
 
-    @Test
     void dialog() {
         assertInstanceOf(ExchangeDialog.class, party.dialog());
     }
 
-    @Test
     void initialize() {
         party.initialize();
 
         requestStack.assertAll(new StorageList(bank));
     }
 
-    @Test
     void start() {
         player.interactions().start(party.dialog());
 
@@ -96,7 +91,6 @@ class BankExchangePartyTest extends GameBaseCase {
         assertInstanceOf(ExchangeDialog.class, player.interactions().get(ExchangeInteraction.class));
     }
 
-    @Test
     void leaveShouldSaveBank() {
         bank.addKamas(1000);
 
@@ -108,12 +102,10 @@ class BankExchangePartyTest extends GameBaseCase {
         assertEquals(1000, dataSet.refresh(new AccountBank(player.account().id(), player.account().serverId(), 0)).kamas());
     }
 
-    @Test
     void toggleAccept() {
         assertThrows(UnsupportedOperationException.class, () -> party.toggleAccept());
     }
 
-    @Test
     void kamasPositive() {
         player.interactions().start(party.dialog());
 
@@ -130,7 +122,6 @@ class BankExchangePartyTest extends GameBaseCase {
         assertEquals(13725, player.inventory().kamas());
     }
 
-    @Test
     void kamasPositiveTooHighShouldLimitToCurrentKamasAmount() {
         player.interactions().start(party.dialog());
 
@@ -141,7 +132,6 @@ class BankExchangePartyTest extends GameBaseCase {
         assertEquals(0, player.inventory().kamas());
     }
 
-    @Test
     void kamasNegative() {
         bank.addKamas(5000);
         player.interactions().start(party.dialog());
@@ -159,7 +149,6 @@ class BankExchangePartyTest extends GameBaseCase {
         assertEquals(16725, player.inventory().kamas());
     }
 
-    @Test
     void kamasNegativeTooHighShouldLimitWithBankKamasQuantity() {
         bank.addKamas(5000);
         player.interactions().start(party.dialog());
@@ -171,7 +160,6 @@ class BankExchangePartyTest extends GameBaseCase {
         assertEquals(20225, player.inventory().kamas());
     }
 
-    @Test
     void kamasZero() {
         player.interactions().start(party.dialog());
         party.kamas(0);
@@ -179,7 +167,6 @@ class BankExchangePartyTest extends GameBaseCase {
         requestStack.assertLast(new StorageMovementError());
     }
 
-    @Test
     void itemPositive() {
         ItemEntry entry = player.inventory().add(itemService.create(39), 5);
         player.interactions().start(party.dialog());
@@ -197,7 +184,6 @@ class BankExchangePartyTest extends GameBaseCase {
         assertEquals(4, bank.get(1).quantity());
     }
 
-    @Test
     void itemPositiveTooHighShouldLimitWithItemQuantity() {
         ItemEntry entry = player.inventory().add(itemService.create(39), 5);
         player.interactions().start(party.dialog());
@@ -209,7 +195,6 @@ class BankExchangePartyTest extends GameBaseCase {
         assertEquals(5, bank.get(1).quantity());
     }
 
-    @Test
     void itemPositiveEquipedItemShouldFailed() {
         ItemEntry entry = player.inventory().add(itemService.create(39), 1, AmuletSlot.SLOT_ID);
         player.interactions().start(party.dialog());
@@ -220,7 +205,6 @@ class BankExchangePartyTest extends GameBaseCase {
         assertEquals(1, entry.quantity());
     }
 
-    @Test
     void itemNegative() {
         ItemEntry entry = bank.add(itemService.create(39), 5);
         player.interactions().start(party.dialog());
@@ -238,7 +222,6 @@ class BankExchangePartyTest extends GameBaseCase {
         assertEquals(4, player.inventory().get(1).quantity());
     }
 
-    @Test
     void itemNegativeTooHighShouldLimitWithItemQuantity() {
         ItemEntry entry = bank.add(itemService.create(39), 5);
         player.interactions().start(party.dialog());
@@ -250,7 +233,6 @@ class BankExchangePartyTest extends GameBaseCase {
         assertEquals(5, player.inventory().get(1).quantity());
     }
 
-    @Test
     void itemInvalid() {
         player.interactions().start(party.dialog());
         party.item(404, 1);
@@ -258,7 +240,6 @@ class BankExchangePartyTest extends GameBaseCase {
         requestStack.assertLast(new StorageMovementError());
     }
 
-    @Test
     void itemZeroQuantity() {
         ItemEntry entry = player.inventory().add(itemService.create(39), 5);
         player.interactions().start(party.dialog());
@@ -268,7 +249,6 @@ class BankExchangePartyTest extends GameBaseCase {
         requestStack.assertLast(new StorageMovementError());
     }
 
-    @Test
     void send() {
         party.send("test");
 

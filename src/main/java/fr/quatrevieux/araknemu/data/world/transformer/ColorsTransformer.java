@@ -35,13 +35,13 @@ import org.checkerframework.checker.nullness.qual.PolyNull;
  */
 public final class ColorsTransformer implements Transformer<Colors> {
     @Override
-    public @PolyNull String serialize(@PolyNull Colors value) {
+    public String serialize(Colors value) {
         return value == null ? null : value.toHexString(",");
     }
 
     @Override
     @SuppressWarnings("argument") // Assume that color values are valid
-    public @PolyNull Colors unserialize(@PolyNull String serialize) throws TransformerException {
+    public Colors unserialize(String serialize) throws TransformerException {
         if (serialize == null) {
             return null;
         }

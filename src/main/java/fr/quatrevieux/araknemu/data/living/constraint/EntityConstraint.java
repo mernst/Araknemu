@@ -42,11 +42,10 @@ public interface EntityConstraint<T, E> {
      *
      * @return true is the entity is valid
      */
-    @EnsuresNonNullIf(expression = "error()", result = false)
     public boolean check(T entity);
 
     /**
      * Get the error information
      */
-    public @Nullable E error();
+    public E error();
 }

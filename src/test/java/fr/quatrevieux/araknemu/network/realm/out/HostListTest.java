@@ -29,7 +29,6 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 class HostListTest {
-    @Test
     void testToString() {
         GameHost h1 = new GameHost(Mockito.mock(GameConnector.class), 1, 123, "127.0.0.1");
         h1.setCanLog(true);

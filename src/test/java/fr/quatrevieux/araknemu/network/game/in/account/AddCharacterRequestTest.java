@@ -28,7 +28,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AddCharacterRequestTest {
-    @Test
     void parseSuccess() {
         AddCharacterRequest.Parser parser = new AddCharacterRequest.Parser();
 
@@ -42,20 +41,17 @@ class AddCharacterRequestTest {
         assertEquals(123, request.colors().color3());
     }
 
-    @Test
     void parseInvalidData() {
         AddCharacterRequest.Parser parser = new AddCharacterRequest.Parser();
 
         assertThrows(ParsePacketException.class, () -> parser.parse("invalid"));
     }
 
-    @Test
     void parseInvalidRace() {
         AddCharacterRequest.Parser parser = new AddCharacterRequest.Parser();
 
         assertThrows(ParsePacketException.class, () -> parser.parse("bob|0|1|145|541|123"));
     }
-    @Test
     void parseInvalidColor() {
         AddCharacterRequest.Parser parser = new AddCharacterRequest.Parser();
 

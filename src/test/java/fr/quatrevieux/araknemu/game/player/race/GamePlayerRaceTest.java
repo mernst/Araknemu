@@ -37,7 +37,6 @@ class GamePlayerRaceTest extends GameBaseCase {
     private PlayerRaceService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,7 +48,6 @@ class GamePlayerRaceTest extends GameBaseCase {
         service = container.get(PlayerRaceService.class);
     }
 
-    @Test
     void life() {
         GamePlayerRace race = service.get(Race.CRA);
 
@@ -58,21 +56,18 @@ class GamePlayerRaceTest extends GameBaseCase {
         assertEquals(795, race.life(150));
     }
 
-    @Test
     void initiativeBase() {
         GamePlayerRace race = service.get(Race.CRA);
 
         assertEquals(100, race.initiative(400));
     }
 
-    @Test
     void initiativeSacri() {
         GamePlayerRace race = service.get(Race.SACRIEUR);
 
         assertEquals(50, race.initiative(400));
     }
 
-    @Test
     void spells() {
         GamePlayerRace race = service.get(Race.FECA);
 
@@ -83,7 +78,6 @@ class GamePlayerRaceTest extends GameBaseCase {
         assertEquals(17, levels.get(2).id());
     }
 
-    @Test
     void getters() {
         GamePlayerRace race = service.get(Race.ENUTROF);
 
@@ -93,7 +87,6 @@ class GamePlayerRaceTest extends GameBaseCase {
         assertEquals(1000, race.startPods());
     }
 
-    @Test
     void baseStatsLowLevel() {
         GamePlayerRace race = service.get(Race.ENUTROF);
 
@@ -106,7 +99,6 @@ class GamePlayerRaceTest extends GameBaseCase {
         assertSame(characteristics, race.baseStats(50));
     }
 
-    @Test
     void baseStatsHighLevel() {
         GamePlayerRace race = service.get(Race.ENUTROF);
 
@@ -119,7 +111,6 @@ class GamePlayerRaceTest extends GameBaseCase {
         assertSame(characteristics, race.baseStats(150));
     }
 
-    @Test
     void astrubPosition() {
         assertEquals(new Position(10340, 250), service.get(Race.ENUTROF).astrubPosition());
     }

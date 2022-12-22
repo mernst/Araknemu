@@ -60,7 +60,6 @@ public final class Npc {
     /**
      * Get the NPC position on map
      */
-    @Pure
     public Position position() {
         return position;
     }

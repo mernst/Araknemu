@@ -42,7 +42,6 @@ class CreateGameTest extends GameBaseCase {
     private CreateGame handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -54,7 +53,6 @@ class CreateGameTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handleBadGameType() throws Exception {
         try {
             handler.handle(session, new CreateGameRequest(CreateGameRequest.Type.FIGHT));
@@ -65,7 +63,6 @@ class CreateGameTest extends GameBaseCase {
         }
     }
 
-    @Test
     void handleSuccess() throws Exception {
         handler.handle(session, new CreateGameRequest(CreateGameRequest.Type.EXPLORATION));
 

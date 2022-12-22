@@ -42,7 +42,6 @@ class ChangeFighterReadyStateTest extends GameBaseCase {
     private GamePlayer other;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -65,7 +64,6 @@ class ChangeFighterReadyStateTest extends GameBaseCase {
             );
     }
 
-    @Test
     void setReady() {
         handler.handle(session, new FighterReady(true));
 
@@ -73,7 +71,6 @@ class ChangeFighterReadyStateTest extends GameBaseCase {
         assertTrue(session.fighter().ready());
     }
 
-    @Test
     void unsetReady() {
         session.fighter().setReady(true);
         requestStack.clear();
@@ -84,7 +81,6 @@ class ChangeFighterReadyStateTest extends GameBaseCase {
         assertFalse(session.fighter().ready());
     }
 
-    @RepeatedIfExceptionsTest
     void setReadyAndStartFight() throws InterruptedException {
         other.fighter().setReady(true);
 

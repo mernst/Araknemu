@@ -30,7 +30,6 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SubAreaListTest {
-    @Test
     void generate() {
         assertEquals(
             "al|1;1|3;0",

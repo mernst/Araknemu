@@ -33,7 +33,6 @@ class EquipmentLevelConstraintTest extends GameBaseCase {
     private EquipmentLevelConstraint constraint;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -46,7 +45,6 @@ class EquipmentLevelConstraintTest extends GameBaseCase {
         constraint = new EquipmentLevelConstraint(gamePlayer());
     }
 
-    @Test
     void checkError() throws ContainerException, InventoryException {
         try {
             constraint.check(container.get(ItemService.class).create(112425), 1);
@@ -57,7 +55,6 @@ class EquipmentLevelConstraintTest extends GameBaseCase {
         }
     }
 
-    @Test
     void checkSuccess() throws ContainerException, InventoryException {
         constraint.check(container.get(ItemService.class).create(2425), 1);
     }

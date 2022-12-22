@@ -35,14 +35,12 @@ class EndFightResultsTest extends FightBaseCase {
     private Fight fight;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         fight = createFight();
     }
 
-    @Test
     void applyToLoosers() {
         Fighter winner = Mockito.mock(Fighter.class);
         Fighter looser = Mockito.mock(Fighter.class);
@@ -56,7 +54,6 @@ class EndFightResultsTest extends FightBaseCase {
         Mockito.verify(looser).apply(operation);
     }
 
-    @Test
     void applyToWinners() {
         Fighter winner = Mockito.mock(Fighter.class);
         Fighter looser = Mockito.mock(Fighter.class);

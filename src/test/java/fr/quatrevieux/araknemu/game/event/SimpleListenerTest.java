@@ -30,14 +30,12 @@ import java.util.function.Consumer;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SimpleListenerTest {
-    @Test
     void event() {
         SimpleListener<MapJoined> listener = new SimpleListener<>(MapJoined.class, mapLoaded -> {});
 
         assertSame(MapJoined.class, listener.event());
     }
 
-    @Test
     void on() {
         Consumer<Disconnected> consumer = Mockito.mock(Consumer.class);
         SimpleListener<Disconnected> listener = new SimpleListener<>(Disconnected.class, consumer);

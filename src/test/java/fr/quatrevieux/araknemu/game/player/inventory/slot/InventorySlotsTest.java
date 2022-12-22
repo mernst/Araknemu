@@ -39,7 +39,6 @@ class InventorySlotsTest extends GameBaseCase {
     private InventorySlots slots;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -54,7 +53,6 @@ class InventorySlotsTest extends GameBaseCase {
         );
     }
 
-    @Test
     void get() throws InventoryException {
         assertInstanceOf(DefaultSlot.class, slots.get(-1));
         assertInstanceOf(AmuletSlot.class, slots.get(0));
@@ -98,12 +96,10 @@ class InventorySlotsTest extends GameBaseCase {
         assertInstanceOf(UsableSlot.class, slots.get(57));
     }
 
-    @Test
     void getInvalid() {
         assertThrows(InventoryException.class, () -> slots.get(123));
     }
 
-    @Test
     void equipments() throws SQLException, ContainerException, InventoryException {
         dataSet
             .pushItemTemplates()

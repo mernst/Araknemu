@@ -50,8 +50,8 @@ public final class FightTurn implements Turn {
 
     private final ActionHandler actionHandler;
 
-    private @MonotonicNonNull ScheduledFuture timer;
-    private @MonotonicNonNull FighterTurnPoints points;
+    private ScheduledFuture timer;
+    private FighterTurnPoints points;
 
     @SuppressWarnings({"assignment", "argument"})
     public FightTurn(Fighter fighter, Fight fight, Duration duration) {
@@ -69,7 +69,6 @@ public final class FightTurn implements Turn {
     /**
      * Get the related fight
      */
-    @Pure
     public Fight fight() {
         return fight;
     }
@@ -91,8 +90,6 @@ public final class FightTurn implements Turn {
      *
      * @return true if the turn is successfully started, or false when turn needs to be skipped
      */
-    @EnsuresNonNull("points")
-    @EnsuresNonNullIf(expression = "timer", result = true)
     public boolean start() {
         points = new FighterTurnPoints(fight, fighter);
 

@@ -32,7 +32,6 @@ class SendPlayerXpTest extends GameBaseCase {
     private SendPlayerXp listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -41,7 +40,6 @@ class SendPlayerXpTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onPlayerXpChanged() throws SQLException, ContainerException {
         listener.on(new PlayerXpChanged());
 

@@ -35,7 +35,6 @@ class FixedMonsterListGeneratorTest extends GameBaseCase {
     private MonsterGroupDataRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,7 +48,6 @@ class FixedMonsterListGeneratorTest extends GameBaseCase {
         generator = new FixedMonsterListGenerator(container.get(MonsterService.class));
     }
 
-    @Test
     void generate() {
         List<Monster> monsters = generator.generate(repository.get(1));
 

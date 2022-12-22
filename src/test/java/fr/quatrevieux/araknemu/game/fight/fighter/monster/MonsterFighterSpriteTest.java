@@ -50,7 +50,6 @@ class MonsterFighterSpriteTest extends FightBaseCase {
     private MonsterFighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -88,24 +87,20 @@ class MonsterFighterSpriteTest extends FightBaseCase {
         fighter.joinFight(fight, fight.map().get(123));
     }
 
-    @Test
     void generate() {
         assertEquals("123;1;0;-1;31;-2;1563^100;3;-1;-1;-1;0,0,0,0;20;4;2;3;7;7;-7;-7;7;5;1", sprite.toString());
     }
 
-    @Test
     void generateDead() {
         fighter.life().kill(fighter);
         assertEquals("-1;1;0;-1;31;-2;1563^100;3;-1;-1;-1;0,0,0,0;0;4;2;3;7;7;-7;-7;7;5;1", sprite.toString());
     }
 
-    @Test
     void generateHidden() {
         fighter.setHidden(fighter, true);
         assertEquals("-1;1;0;-1;31;-2;1563^100;3;-1;-1;-1;0,0,0,0;20;4;2;3;7;7;-7;-7;7;5;1", sprite.toString());
     }
 
-    @Test
     void values() {
         assertEquals(-1, sprite.id());
         assertEquals(123, sprite.cell());

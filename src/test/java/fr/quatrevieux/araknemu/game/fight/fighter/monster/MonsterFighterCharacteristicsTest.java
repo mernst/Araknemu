@@ -53,7 +53,6 @@ class MonsterFighterCharacteristicsTest extends FightBaseCase {
     private MonsterFighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -93,24 +92,20 @@ class MonsterFighterCharacteristicsTest extends FightBaseCase {
         characteristics = new MonsterFighterCharacteristics(service.load(31).all().get(2), fighter);
     }
 
-    @Test
     void initiative() {
         assertEquals(35, characteristics.initiative());
     }
 
-    @Test
     void discernment() {
         assertEquals(0, characteristics.discernment());
     }
 
-    @Test
     void get() {
         assertEquals(90, characteristics.get(Characteristic.STRENGTH));
         assertEquals(4, characteristics.get(Characteristic.ACTION_POINT));
         assertEquals(2, characteristics.get(Characteristic.MOVEMENT_POINT));
     }
 
-    @Test
     void alter() {
         AtomicReference<FighterCharacteristicChanged> ref = new AtomicReference<>();
         fighter.dispatcher().add(FighterCharacteristicChanged.class, ref::set);
@@ -128,7 +123,6 @@ class MonsterFighterCharacteristicsTest extends FightBaseCase {
         assertEquals(-10, ref.get().value());
     }
 
-    @Test
     void initial() {
         assertEquals(90, characteristics.initial().get(Characteristic.STRENGTH));
 

@@ -53,7 +53,7 @@ import java.util.Queue;
 public final class ActionQueue {
     private final Queue<Action> actions = new ArrayDeque<>();
 
-    private @Nullable BlockingAction current;
+    private BlockingAction current;
     private byte lastActionId = 0;
 
     /**

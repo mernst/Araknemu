@@ -30,7 +30,6 @@ class AbstractInformationMessageTest {
         }
     }
 
-    @Test
     void simple() {
         assertEquals(
             "Im012;",
@@ -38,7 +37,6 @@ class AbstractInformationMessageTest {
         );
     }
 
-    @Test
     void multiple() {
         assertEquals(
             "Im05;|6;|7;",
@@ -51,7 +49,6 @@ class AbstractInformationMessageTest {
         );
     }
 
-    @Test
     void withArguments() {
         assertEquals(
             "Im05;Hello~45~World",

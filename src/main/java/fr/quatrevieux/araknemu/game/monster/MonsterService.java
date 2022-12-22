@@ -110,11 +110,11 @@ public final class MonsterService implements PreloadableService {
     /**
      * Create a single monster level
      */
-    private Monster createMonster(MonsterTemplate template, @IndexFor("#1.grades()") int grade) {
+    private Monster createMonster(MonsterTemplate template, int grade) {
         final MonsterTemplate.Grade gradeData = template.grades()[grade];
         final Map<Integer, Spell> spells = new HashMap<>(gradeData.spells().size());
 
-        for (Map.Entry<Integer, @Positive Integer> entry : gradeData.spells().entrySet()) {
+        for (Map.Entry<Integer, Integer> entry : gradeData.spells().entrySet()) {
             spells.put(entry.getKey(), spellService.get(entry.getKey()).level(entry.getValue()));
         }
 

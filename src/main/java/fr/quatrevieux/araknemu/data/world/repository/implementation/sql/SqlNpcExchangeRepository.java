@@ -41,9 +41,9 @@ import java.util.Map;
 final class SqlNpcExchangeRepository implements NpcExchangeRepository {
     private final QueryExecutor executor;
     private final RepositoryUtils<NpcExchange> utils;
-    private final Transformer<Map<Integer, @Positive Integer>> itemsTransformer;
+    private final Transformer<Map<Integer, Integer>> itemsTransformer;
 
-    public SqlNpcExchangeRepository(QueryExecutor executor, Transformer<Map<Integer, @Positive Integer>> itemsTransformer) {
+    public SqlNpcExchangeRepository(QueryExecutor executor, Transformer<Map<Integer, Integer>> itemsTransformer) {
         this.executor = executor;
         this.itemsTransformer = itemsTransformer;
 

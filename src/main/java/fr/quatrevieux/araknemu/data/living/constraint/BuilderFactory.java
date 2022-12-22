@@ -27,9 +27,9 @@ import org.checkerframework.checker.nullness.qual.NonNull;
  * @param <T> The entity type
  * @param <E> The error type
  */
-public interface BuilderFactory<T, @NonNull E> {
+public interface BuilderFactory<T, E> {
     /**
      * Build the builder
      */
-    public void build(ConstraintBuilder<T, @NonNull E> builder);
+    public void build(ConstraintBuilder<T, E> builder);
 }

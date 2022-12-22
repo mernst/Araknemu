@@ -34,7 +34,6 @@ class PlayerRaceServiceTest extends GameBaseCase {
     private PlayerRaceService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,7 +48,6 @@ class PlayerRaceServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void get() {
         GamePlayerRace race = service.get(Race.FECA);
 
@@ -58,7 +56,6 @@ class PlayerRaceServiceTest extends GameBaseCase {
         assertCount(3, race.spells());
     }
 
-    @Test
     void preload() {
         Logger logger = Mockito.mock(Logger.class);
 
@@ -68,7 +65,6 @@ class PlayerRaceServiceTest extends GameBaseCase {
         Mockito.verify(logger).info("{} races loaded", 12);
     }
 
-    @Test
     void name() {
         assertEquals("player.race", service.name());
     }

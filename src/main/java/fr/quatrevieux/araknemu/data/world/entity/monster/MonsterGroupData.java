@@ -35,17 +35,17 @@ import java.util.List;
 public final class MonsterGroupData {
     private final int id;
     private final Duration respawnTime;
-    private final @NonNegative int maxSize;
-    private final @Positive int maxCount;
+    private final int maxSize;
+    private final int maxCount;
     private final List<Monster> monsters;
-    private final @Nullable String comment;
+    private final String comment;
     private final Position winFightTeleport;
     private final boolean fixedTeamNumber;
 
-    private final @Positive int totalRate;
+    private final int totalRate;
 
     @SuppressWarnings("cast.unsafe") // @todo remove when nullable monsters list will be denied
-    public MonsterGroupData(int id, Duration respawnTime, @NonNegative int maxSize, @Positive int maxCount, List<Monster> monsters, @Nullable String comment, Position winFightTeleport, boolean fixedTeamNumber) {
+    public MonsterGroupData(int id, Duration respawnTime, int maxSize, int maxCount, List<Monster> monsters, String comment, Position winFightTeleport, boolean fixedTeamNumber) {
         this.id = id;
         this.respawnTime = respawnTime;
         this.maxSize = maxSize;
@@ -88,7 +88,7 @@ public final class MonsterGroupData {
      * Human readable comment for the group data
      * Not used by the server
      */
-    public @Nullable String comment() {
+    public String comment() {
         return comment;
     }
 
@@ -100,7 +100,7 @@ public final class MonsterGroupData {
      *
      * For dungeon groups, this value should be 0
      */
-    public @NonNegative int maxSize() {
+    public int maxSize() {
         return maxSize;
     }
 
@@ -111,7 +111,7 @@ public final class MonsterGroupData {
      *
      * For dungeon groups, this value should be 1
      */
-    public @Positive int maxCount() {
+    public int maxCount() {
         return maxCount;
     }
 
@@ -130,7 +130,7 @@ public final class MonsterGroupData {
      *
      * @see Monster#rate()
      */
-    public @Positive int totalRate() {
+    public int totalRate() {
         return totalRate;
     }
 
@@ -149,9 +149,9 @@ public final class MonsterGroupData {
     public static final class Monster {
         private final int id;
         private final Interval level;
-        private final @Positive int rate;
+        private final int rate;
 
-        public Monster(int id, Interval level, @Positive int rate) {
+        public Monster(int id, Interval level, int rate) {
             this.id = id;
             this.level = level;
             this.rate = rate;
@@ -185,7 +185,7 @@ public final class MonsterGroupData {
          *
          * @see MonsterGroupData#totalRate()
          */
-        public @Positive int rate() {
+        public int rate() {
             return rate;
         }
     }

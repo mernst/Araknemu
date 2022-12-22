@@ -26,7 +26,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AlterRestrictionsTest {
-    @Test
     void string() {
         Restrictions restrictions = new Restrictions(new DefaultListenerAggregate());
 

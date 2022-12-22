@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PositionTest {
-    @Test
     void data() {
         Position position = new Position(1254, 235);
 
@@ -33,7 +32,6 @@ class PositionTest {
         assertFalse(position.isNull());
     }
 
-    @Test
     void equals() {
         Position position = new Position(1254, 235);
 
@@ -44,14 +42,12 @@ class PositionTest {
         assertEquals(new Position(1254, 235), position);
     }
 
-    @Test
     void hash() {
         assertEquals(new Position(1254, 235).hashCode(), new Position(1254, 235).hashCode());
         assertNotEquals(new Position(1255, 235).hashCode(), new Position(1254, 235).hashCode());
         assertNotEquals(new Position(1254, 234).hashCode(), new Position(1254, 235).hashCode());
     }
 
-    @Test
     void newCell() {
         Position position = new Position(1254, 235);
 
@@ -59,7 +55,6 @@ class PositionTest {
         assertNotSame(position, position.newCell(241).cell());
     }
 
-    @Test
     void generateString() {
         assertEquals("(1254, 235)", new Position(1254, 235).toString());
     }

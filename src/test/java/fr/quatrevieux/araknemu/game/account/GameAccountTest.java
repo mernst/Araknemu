@@ -36,7 +36,6 @@ import java.util.concurrent.atomic.AtomicReference;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameAccountTest extends GameBaseCase {
-    @Test
     void isLogged() throws ContainerException {
         GameAccount account = new GameAccount(
             new Account(-1),
@@ -49,7 +48,6 @@ class GameAccountTest extends GameBaseCase {
         assertTrue(account.isLogged());
     }
 
-    @Test
     void attachDetach() throws ContainerException {
         GameAccount account = new GameAccount(
             new Account(-1),
@@ -65,7 +63,6 @@ class GameAccountTest extends GameBaseCase {
         assertFalse(account.session().isPresent());
     }
 
-    @Test
     void getters() throws ContainerException {
         GameAccount account = new GameAccount(
             new Account(1),
@@ -77,7 +74,6 @@ class GameAccountTest extends GameBaseCase {
         assertEquals(0, account.community());
     }
 
-    @Test
     void isGranted() throws ContainerException {
         GameAccount account = new GameAccount(
             new Account(1, "name", "password", "pseudo", EnumSet.of(Permission.ACCESS), "", ""),
@@ -89,7 +85,6 @@ class GameAccountTest extends GameBaseCase {
         assertFalse(account.isGranted(Permission.SUPER_ADMIN));
     }
 
-    @Test
     void kick() {
         GameAccount account = new GameAccount(
             new Account(1, "name", "password", "pseudo", EnumSet.of(Permission.ACCESS), "", ""),
@@ -107,7 +102,6 @@ class GameAccountTest extends GameBaseCase {
         assertFalse(session.isAlive());
     }
 
-    @Test
     void grantAndRevokeWithoutSession() throws ContainerException {
         GameAccount account = new GameAccount(
             new Account(1, "name", "password", "pseudo", EnumSet.noneOf(Permission.class), "", ""),
@@ -129,7 +123,6 @@ class GameAccountTest extends GameBaseCase {
         assertFalse(account.isMaster());
     }
 
-    @Test
     void grantAndRevokeWithSessionShouldTriggerAccountPermissionsUpdated() throws ContainerException, SQLException {
         GameSession session = server.createSession();
         GamePlayer player = makeSimpleGamePlayer(10, session, true);
@@ -149,7 +142,6 @@ class GameAccountTest extends GameBaseCase {
         assertFalse(ref.get().authorized());
     }
 
-    @Test
     void grantAndRevokeWithSessionShouldTriggerAccountPermissionsUpdatedWithPerformer() throws ContainerException, SQLException {
         GameSession session = server.createSession();
         GamePlayer player = makeSimpleGamePlayer(10, session, true);
@@ -169,7 +161,6 @@ class GameAccountTest extends GameBaseCase {
         assertFalse(ref.get().authorized());
     }
 
-    @Test
     void revokeWithoutTemporaryPermissionsShouldNotDispatchEvent() throws SQLException {
         GameSession session = server.createSession();
         GamePlayer player = makeSimpleGamePlayer(10, session, true);

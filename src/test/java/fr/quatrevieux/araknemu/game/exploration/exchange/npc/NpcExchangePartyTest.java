@@ -48,7 +48,6 @@ class NpcExchangePartyTest extends GameBaseCase {
     private NpcExchangeParty exchangeParty;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -66,7 +65,6 @@ class NpcExchangePartyTest extends GameBaseCase {
         exchangeParty = new NpcExchangeParty(player, npc, (GameNpcExchange) npc.exchangeFactory(ExchangeType.NPC_EXCHANGE));
     }
 
-    @Test
     void dialog() {
         assertInstanceOf(ExchangeDialog.class, exchangeParty.dialog());
 
@@ -74,14 +72,12 @@ class NpcExchangePartyTest extends GameBaseCase {
         requestStack.assertLast(new ExchangeCreated(ExchangeType.NPC_EXCHANGE, npc));
     }
 
-    @Test
     void getters() {
         assertEquals(ExchangeType.NPC_EXCHANGE, exchangeParty.type());
         assertSame(player, exchangeParty.actor());
         assertSame(npc, exchangeParty.target());
     }
 
-    @Test
     void leave() {
         player.interactions().start(exchangeParty.dialog());
         exchangeParty.leave();
@@ -90,7 +86,6 @@ class NpcExchangePartyTest extends GameBaseCase {
         assertFalse(player.interactions().busy());
     }
 
-    @Test
     void acceptWithoutExchangeShouldDoNothing() {
         player.interactions().start(exchangeParty.dialog());
         exchangeParty.toggleAccept();
@@ -99,7 +94,6 @@ class NpcExchangePartyTest extends GameBaseCase {
         assertTrue(player.interactions().busy());
     }
 
-    @Test
     void kamasShouldSendLocalPackets() {
         player.interactions().start(exchangeParty.dialog());
         exchangeParty.kamas(100);
@@ -107,7 +101,6 @@ class NpcExchangePartyTest extends GameBaseCase {
         requestStack.assertLast(new LocalExchangeKamas(100));
     }
 
-    @Test
     void itemShouldSendLocalPackets() {
         player.interactions().start(exchangeParty.dialog());
         ItemEntry entry = player.inventory().add(container.get(ItemService.class).create(39));
@@ -116,7 +109,6 @@ class NpcExchangePartyTest extends GameBaseCase {
         requestStack.assertLast(new LocalExchangeObject(entry, 1));
     }
 
-    @Test
     void distantPackets() {
         player.interactions().start(exchangeParty.dialog());
         ItemEntry entry = player.inventory().add(container.get(ItemService.class).create(2411));
@@ -147,7 +139,6 @@ class NpcExchangePartyTest extends GameBaseCase {
         requestStack.assertOne(new ExchangeAccepted(true, npc));
     }
 
-    @Test
     void process() {
         player.interactions().start(exchangeParty.dialog());
         ItemEntry entry = player.inventory().add(container.get(ItemService.class).create(2411));

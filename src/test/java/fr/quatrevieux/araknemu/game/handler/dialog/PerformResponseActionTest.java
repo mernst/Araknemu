@@ -41,7 +41,6 @@ class PerformResponseActionTest extends GameBaseCase {
     private PerformResponseAction handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -61,7 +60,6 @@ class PerformResponseActionTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handleWithNext() throws ContainerException {
         handler.handle(session, new ChosenResponse(3786, 3323));
 
@@ -75,7 +73,6 @@ class PerformResponseActionTest extends GameBaseCase {
         player.interactions().get(NpcDialog.class).forQuestion(3787);
     }
 
-    @Test
     void handleWithLeave() {
         handler.handle(session, new ChosenResponse(3786, 3324));
 
@@ -83,12 +80,10 @@ class PerformResponseActionTest extends GameBaseCase {
         assertFalse(player.interactions().interacting());
     }
 
-    @Test
     void handleBadQuestion() {
         assertThrows(IllegalArgumentException.class, () -> handler.handle(session, new ChosenResponse(404, 3324)));
     }
 
-    @Test
     void handleBadResponse() {
         assertThrows(NoSuchElementException.class, () -> handler.handle(session, new ChosenResponse(3786, 404)));
     }

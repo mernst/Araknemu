@@ -32,16 +32,16 @@ import org.checkerframework.common.value.qual.MinLen;
  * https://github.com/Emudofus/Dofus/blob/1.29/dofus/aks/Game.as#L77
  */
 public final class ShowCellRequest implements Packet {
-    private final @NonNegative int cellId;
+    private final int cellId;
 
-    public ShowCellRequest(@NonNegative int cellId) {
+    public ShowCellRequest(int cellId) {
         this.cellId = cellId;
     }
 
     /**
      * The shown cell id
      */
-    public @NonNegative int cellId() {
+    public int cellId() {
         return cellId;
     }
 
@@ -52,7 +52,7 @@ public final class ShowCellRequest implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "Gf";
         }
     }

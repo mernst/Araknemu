@@ -38,14 +38,12 @@ class CommonLoaderTest extends LoaderTestCase {
     private CommonLoader loader;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         loader = new CommonLoader();
     }
 
-    @Test
     void load() throws ContainerException {
         PacketHandler[] handlers = loader.load(container);
 

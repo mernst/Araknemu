@@ -41,7 +41,6 @@ class MonsterServiceTest extends GameBaseCase {
     private MonsterService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -57,7 +56,6 @@ class MonsterServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void load() {
         GradeSet grades = service.load(31);
 
@@ -91,7 +89,6 @@ class MonsterServiceTest extends GameBaseCase {
         assertNotSame(service.load(31), service.load(34));
     }
 
-    @Test
     void loadWithoutRewards() throws SQLException {
         dataSet.pushMonsterTemplateWithoutRewards();
 
@@ -110,12 +107,10 @@ class MonsterServiceTest extends GameBaseCase {
         assertEquals(0, first.reward().experience());
     }
 
-    @Test
     void loadNotFound() {
         assertThrows(EntityNotFoundException.class, () -> service.load(404));
     }
 
-    @Test
     void preload() {
         Logger logger = Mockito.mock(Logger.class);
 
@@ -125,7 +120,6 @@ class MonsterServiceTest extends GameBaseCase {
         Mockito.verify(logger).info("{} monsters loaded", 3);
     }
 
-    @Test
     void name() {
         assertEquals("monster", service.name());
     }

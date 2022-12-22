@@ -29,7 +29,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SaveClientUidTest extends GameBaseCase {
-    @Test
     void success() throws Exception {
         login();
         handlePacket(new ClientUid("my_uid"));
@@ -38,7 +37,6 @@ class SaveClientUidTest extends GameBaseCase {
         assertEquals("my_uid", log.clientUid());
     }
 
-    @Test
     void notLogged() {
         assertThrows(CloseImmediately.class, () -> handlePacket(new ClientUid("my_uid")));
     }

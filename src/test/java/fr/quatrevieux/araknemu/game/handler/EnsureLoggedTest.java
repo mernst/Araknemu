@@ -36,7 +36,6 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EnsureLoggedTest extends GameBaseCase {
-    @Test
     void handleNotLogged() {
         PacketHandler inner = Mockito.mock(PacketHandler.class);
         EnsureLogged handler = new EnsureLogged(inner);
@@ -44,7 +43,6 @@ class EnsureLoggedTest extends GameBaseCase {
         assertThrows(CloseImmediately.class, () -> handler.handle(session, Mockito.mock(Packet.class)));
     }
 
-    @Test
     void handleSuccess() throws Exception {
         PacketHandler inner = Mockito.mock(PacketHandler.class);
         EnsureLogged handler = new EnsureLogged(inner);
@@ -63,7 +61,6 @@ class EnsureLoggedTest extends GameBaseCase {
         Mockito.verify(inner).handle(session, packet);
     }
 
-    @Test
     void packet() throws ContainerException {
         assertEquals(
             AskCharacterList.class,

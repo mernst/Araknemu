@@ -43,7 +43,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class UseEffectTest extends GameBaseCase {
-    @Test
     void getters() {
         UseEffect effect = new UseEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {1, 2, 3});
 
@@ -51,14 +50,12 @@ class UseEffectTest extends GameBaseCase {
         assertArrayEquals(new int[] {1, 2, 3}, effect.arguments());
     }
 
-    @Test
     void equalsSameInstance() {
         UseEffect effect = new UseEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {1, 2, 3});
 
         assertEquals(effect, effect);
     }
 
-    @Test
     void equalsNotSame() {
         assertEquals(
             new UseEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {1, 2, 3}),
@@ -66,12 +63,10 @@ class UseEffectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void equalsBadClass() {
         assertNotEquals(new UseEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {1, 2, 3}), new Object());
     }
 
-    @Test
     void equalsBadEffect() {
         assertNotEquals(
             new UseEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {1, 2, 3}),
@@ -79,7 +74,6 @@ class UseEffectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void equalsBadArgument() {
         assertNotEquals(
             new UseEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {1, 2, 3}),
@@ -87,7 +81,6 @@ class UseEffectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void hashCodeEquals() {
         assertEquals(
             new UseEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {1, 2, 3}).hashCode(),
@@ -95,7 +88,6 @@ class UseEffectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void hashCodeNotEquals() {
         assertNotEquals(
             new UseEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {1, 2, 3}).hashCode(),
@@ -103,7 +95,6 @@ class UseEffectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void debugString() {
         assertEquals(
             "UseEffect{NULL2:[1, 2, 3]}",
@@ -111,7 +102,6 @@ class UseEffectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void toTemplate() {
         ItemTemplateEffectEntry template = new UseEffect(NullEffectHandler.INSTANCE, Effect.NULL1, new int[] {1, 2, 3}).toTemplate();
 
@@ -122,7 +112,6 @@ class UseEffectTest extends GameBaseCase {
         assertEquals("", template.text());
     }
 
-    @Test
     void apply() throws SQLException, ContainerException {
         UseEffect effect = new UseEffect(new AddCharacteristicEffect(Characteristic.AGILITY), Effect.NULL1, new int[] {1, 0, 0});
 
@@ -131,7 +120,6 @@ class UseEffectTest extends GameBaseCase {
         assertEquals(1, explorationPlayer().properties().characteristics().base().get(Characteristic.AGILITY));
     }
 
-    @Test
     void applyToTarget() throws SQLException, ContainerException {
         UseEffect effect = new UseEffect(new FireworkEffect(), Effect.NULL1, new int[] {1, 0, 2900});
 
@@ -142,7 +130,6 @@ class UseEffectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void check() throws SQLException, ContainerException {
         UseEffect effect = new UseEffect(new FireworkEffect(), Effect.NULL1, new int[] {1, 0, 2900});
 
@@ -151,7 +138,6 @@ class UseEffectTest extends GameBaseCase {
         assertFalse(effect.checkFighter(container.get(FighterFactory.class).create(gamePlayer())));
     }
 
-    @Test
     void applyToFighter() throws SQLException, ContainerException {
         gamePlayer().properties().life().set(10);
         PlayerFighter fighter = container.get(FighterFactory.class).create(gamePlayer());

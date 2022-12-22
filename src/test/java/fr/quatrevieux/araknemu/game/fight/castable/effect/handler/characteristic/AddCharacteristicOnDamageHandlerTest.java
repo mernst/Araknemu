@@ -56,7 +56,6 @@ class AddCharacteristicOnDamageHandlerTest extends FightBaseCase {
     private AddCharacteristicOnDamageHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -81,7 +80,6 @@ class AddCharacteristicOnDamageHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handle() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -96,7 +94,6 @@ class AddCharacteristicOnDamageHandlerTest extends FightBaseCase {
         assertThrows(UnsupportedOperationException.class, () -> handler.handle(scope, scope.effects().get(0)));
     }
 
-    @Test
     void buff() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -127,7 +124,6 @@ class AddCharacteristicOnDamageHandlerTest extends FightBaseCase {
         assertFalse(buff2.get().canBeDispelled());
     }
 
-    @Test
     void functionalOnDamage() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -169,7 +165,6 @@ class AddCharacteristicOnDamageHandlerTest extends FightBaseCase {
         assertEquals(25, target.characteristics().get(Characteristic.LUCK));
     }
 
-    @Test
     void unsupportedEffect() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -193,7 +188,6 @@ class AddCharacteristicOnDamageHandlerTest extends FightBaseCase {
         assertThrows(IllegalArgumentException.class, () -> new DamageApplier(Element.FIRE, fight).applyFixed(caster, 10, target));
     }
 
-    @Test
     void functionalCharacteristicBoostDependOnFirstSpellEffectParameter() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -226,7 +220,6 @@ class AddCharacteristicOnDamageHandlerTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.buff(characBuff, 10));
     }
 
-    @Test
     void functionalDamageHigherThanMaximumBuff() {
         target.life().alterMax(target, 1000);
 
@@ -266,7 +259,6 @@ class AddCharacteristicOnDamageHandlerTest extends FightBaseCase {
         assertEquals(50, target.characteristics().get(Characteristic.LUCK));
     }
 
-    @Test
     void functionalShouldBeLimitedByMaximum() {
         target.life().alterMax(target, 1000);
 
@@ -306,7 +298,6 @@ class AddCharacteristicOnDamageHandlerTest extends FightBaseCase {
         assertEquals(50, target.characteristics().get(Characteristic.LUCK));
     }
 
-    @Test
     void functionalLimitShouldBeResetBuffRefresh() {
         target.life().alterMax(target, 1000);
 
@@ -343,7 +334,6 @@ class AddCharacteristicOnDamageHandlerTest extends FightBaseCase {
         assertEquals(150, target.characteristics().get(Characteristic.LUCK)); // first buff is terminated
     }
 
-    @Test
     void functionalOnSelfDamage() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

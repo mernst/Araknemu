@@ -38,7 +38,6 @@ class ApplyItemSetSpecialEffectsTest extends GameBaseCase {
     private ApplyItemSetSpecialEffects listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,7 +51,6 @@ class ApplyItemSetSpecialEffectsTest extends GameBaseCase {
         ;
     }
 
-    @Test
     void onEquipmentAdded() throws SQLException, ContainerException, InventoryException {
         gamePlayer().inventory().add(container.get(ItemService.class).create(8213), 1, 0);
         gamePlayer().inventory().add(container.get(ItemService.class).create(8219), 1, 2);
@@ -67,7 +65,6 @@ class ApplyItemSetSpecialEffectsTest extends GameBaseCase {
         assertEquals(30, gamePlayer().properties().characteristics().specials().get(SpecialEffects.Type.INITIATIVE));
     }
 
-    @Test
     void onEquipmentRemoved() throws SQLException, ContainerException, InventoryException {
         gamePlayer().inventory().add(container.get(ItemService.class).create(8213), 1, 0);
         gamePlayer().inventory().add(container.get(ItemService.class).create(8219), 1, 2);

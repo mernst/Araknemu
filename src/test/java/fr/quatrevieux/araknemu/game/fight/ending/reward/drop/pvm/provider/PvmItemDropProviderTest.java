@@ -41,7 +41,6 @@ class PvmItemDropProviderTest extends FightBaseCase {
     private List<MonsterFighter> monsterFighters;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -57,7 +56,6 @@ class PvmItemDropProviderTest extends FightBaseCase {
         }
     }
 
-    @Test
     void withOneMonsterAndFighter() {
         monsterFighters.get(0).reward().items().clear();
 
@@ -81,7 +79,6 @@ class PvmItemDropProviderTest extends FightBaseCase {
         assertEquals(1, (int) items.get(13));
     }
 
-    @Test
     void withRandomRate() {
         monsterFighters.get(0).reward().items().clear();
 
@@ -105,7 +102,6 @@ class PvmItemDropProviderTest extends FightBaseCase {
         assertBetween(90, 110, count);
     }
 
-    @Test
     void withRandomRateAndRateMultiplier() {
         monsterFighters.get(0).reward().items().clear();
 
@@ -132,7 +128,6 @@ class PvmItemDropProviderTest extends FightBaseCase {
         assertBetween(225, 275, count);
     }
 
-    @Test
     void filterByDiscernment() {
         monsterFighters.get(0).reward().items().clear();
 
@@ -155,7 +150,6 @@ class PvmItemDropProviderTest extends FightBaseCase {
         assertEquals(1, (int) items.get(13));
     }
 
-    @Test
     void withMultipleFighters() {
         monsterFighters.get(0).reward().items().clear();
 
@@ -196,7 +190,6 @@ class PvmItemDropProviderTest extends FightBaseCase {
         assertTrue(items.containsKey(14));
     }
 
-    @Test
     void withMultipleMonsters() {
         monsterFighters.get(0).reward().items().clear();
 

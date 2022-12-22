@@ -31,14 +31,12 @@ class SendPongTest extends GameBaseCase {
     private SendPong handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         handler = new SendPong();
     }
 
-    @Test
     void handle() throws Exception {
         handler.handle(session, new Ping());
 

@@ -35,7 +35,6 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SpellListTest extends GameBaseCase {
-    @Test
     void generate() throws ContainerException, SQLException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         dataSet.pushSpells();
 

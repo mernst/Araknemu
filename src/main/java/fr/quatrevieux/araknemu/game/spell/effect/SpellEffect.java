@@ -36,14 +36,14 @@ public interface SpellEffect {
     /**
      * Get the minimal jet value, or the first argument
      */
-    public @NonNegative int min();
+    public int min();
 
     /**
      * Get the maximal jet value, or the first argument
      *
      * If the value is zero, the effect value is constant (min)
      */
-    public @NonNegative int max();
+    public int max();
 
     /**
      * Get the boost value
@@ -66,14 +66,14 @@ public interface SpellEffect {
      * If this value is zero, the effect will be applied immediately
      * If the value is -1, the duration will be considered as infinite
      */
-    public @GTENegativeOne int duration();
+    public int duration();
 
     /**
      * The effect probability in percent
      * If this value is zero, the effect will always be applied
      * For not null probability, only one effect will be choose across all "conditional" effects
      */
-    public @NonNegative int probability();
+    public int probability();
 
     /**
      * Extra effect text. Used for dice notation

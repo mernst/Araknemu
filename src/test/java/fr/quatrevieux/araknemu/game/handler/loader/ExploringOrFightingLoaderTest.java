@@ -32,14 +32,12 @@ class ExploringOrFightingLoaderTest extends LoaderTestCase {
     private ExploringOrFightingLoader loader;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         loader = new ExploringOrFightingLoader();
     }
 
-    @Test
     void load() throws ContainerException {
         PacketHandler[] handlers = loader.load(container);
 

@@ -144,7 +144,7 @@ public interface BuffHook {
      * @param caster Attack caster
      * @param damage Applied damage. Always positive. If an attack is inefficient, this hook will not be called.
      */
-    public default void onDirectDamageApplied(Buff buff, Fighter caster, @Positive int damage) {}
+    public default void onDirectDamageApplied(Buff buff, Fighter caster, int damage) {}
 
     /**
      * The fighter will take damages indirectly (like poison)

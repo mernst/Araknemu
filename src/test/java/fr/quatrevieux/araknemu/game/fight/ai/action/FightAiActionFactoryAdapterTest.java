@@ -41,7 +41,6 @@ class FightAiActionFactoryAdapterTest extends FightBaseCase {
     private Fighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -50,7 +49,6 @@ class FightAiActionFactoryAdapterTest extends FightBaseCase {
         factory = new FightAiActionFactoryAdapter(fighter, fight, fight.actions());
     }
 
-    @Test
     void cast() {
         Action action = factory.cast(
             fighter.spells().get(3),
@@ -63,7 +61,6 @@ class FightAiActionFactoryAdapterTest extends FightBaseCase {
         assertSame(fighter, Cast.class.cast(action).caster());
     }
 
-    @Test
     void castShouldConvertTargetToActualFightCell() {
         FightCell fakeCell = Mockito.mock(FightCell.class);
         Mockito.when(fakeCell.id()).thenReturn(123);
@@ -76,7 +73,6 @@ class FightAiActionFactoryAdapterTest extends FightBaseCase {
         assertSame(fight.map().get(123), Cast.class.cast(action).target());
     }
 
-    @Test
     void move() {
         Action action = factory.move(
             new Decoder<>(fight.map()).decode("aaJbbF", fight.map().get(35))
@@ -87,7 +83,6 @@ class FightAiActionFactoryAdapterTest extends FightBaseCase {
         assertSame(fight.map().get(95), MoveResult.class.cast(action.start()).target());
     }
 
-    @Test
     void moveShouldConvertCellsToActualFightCell() {
         ProxyBattlefield aiMap = new ProxyBattlefield(fight.map());
         aiMap = aiMap.modify(modifier -> {}); // Force creation of proxy cells
@@ -100,7 +95,6 @@ class FightAiActionFactoryAdapterTest extends FightBaseCase {
         assertSame(fight.map().get(95), MoveResult.class.cast(action.start()).target());
     }
 
-    @Test
     void castSpellValidator() {
         assertSame(fight.actions().cast().validator(), factory.castSpellValidator());
     }

@@ -53,7 +53,7 @@ public interface Fighter extends Dispatcher, ActiveFighter {
     /**
      * Go to the given cell
      */
-    public void move(@Nullable FightCell cell);
+    public void move(FightCell cell);
 
     /**
      * Change the hidden state of the fighter

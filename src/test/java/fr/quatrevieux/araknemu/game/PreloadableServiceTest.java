@@ -26,7 +26,6 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PreloadableServiceTest {
-    @Test
     void defaultMethods() {
         PreloadableService s = new PreloadableService() {
             @Override

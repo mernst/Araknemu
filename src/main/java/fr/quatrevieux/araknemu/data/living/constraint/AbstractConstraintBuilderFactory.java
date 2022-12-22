@@ -30,8 +30,8 @@ import org.checkerframework.dataflow.qual.Pure;
  * @param <T> The entity type
  * @param <E> The error type
  */
-public abstract class AbstractConstraintBuilderFactory<T, @NonNull E> implements EntityConstraint<T, E>, BuilderFactory<T, E> {
-    private @MonotonicNonNull EntityConstraint<T, @NonNull E> constraint;
+public abstract class AbstractConstraintBuilderFactory<T, E> implements EntityConstraint<T, E>, BuilderFactory<T, E> {
+    private EntityConstraint<T, E> constraint;
 
     @Override
     @SuppressWarnings("contracts.conditional.postcondition")
@@ -40,17 +40,16 @@ public abstract class AbstractConstraintBuilderFactory<T, @NonNull E> implements
     }
 
     @Override
-    public @Nullable E error() {
+    public E error() {
         return constraint().error();
     }
 
-    @Pure
-    private EntityConstraint<T, @NonNull E> constraint() {
+    private EntityConstraint<T, E> constraint() {
         if (constraint != null) {
             return constraint;
         }
 
-        final ConstraintBuilder<T, @NonNull E> builder = new ConstraintBuilder<>();
+        final ConstraintBuilder<T, E> builder = new ConstraintBuilder<>();
 
         build(builder);
 

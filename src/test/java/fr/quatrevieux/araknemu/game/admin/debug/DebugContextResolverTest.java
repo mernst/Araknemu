@@ -36,19 +36,16 @@ class DebugContextResolverTest extends GameBaseCase {
     private DebugContextResolver resolver;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         resolver = new DebugContextResolver(new NullContext());
     }
 
-    @Test
     void resolve() throws ContextException {
         assertInstanceOf(DebugContext.class, resolver.resolve(null, null));
     }
 
-    @Test
     void register() throws ContextException, CommandNotFoundException {
         Command command = Mockito.mock(Command.class);
         Mockito.when(command.name()).thenReturn("mocked");

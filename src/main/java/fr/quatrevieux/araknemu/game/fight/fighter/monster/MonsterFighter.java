@@ -92,7 +92,7 @@ public final class MonsterFighter extends AbstractFighter {
     }
 
     @Override
-    public @Positive int level() {
+    public int level() {
         return monster.level();
     }
 
@@ -130,7 +130,7 @@ public final class MonsterFighter extends AbstractFighter {
     }
 
     @Override
-    public @Nullable FighterData invoker() {
+    public FighterData invoker() {
         return null;
     }
 }

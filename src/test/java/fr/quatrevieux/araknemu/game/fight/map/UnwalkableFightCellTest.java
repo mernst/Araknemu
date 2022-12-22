@@ -37,7 +37,6 @@ class UnwalkableFightCellTest extends GameBaseCase {
     private FightMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,7 +46,6 @@ class UnwalkableFightCellTest extends GameBaseCase {
         map = new FightMap(mapTemplate);
     }
 
-    @Test
     void sightBlocking() {
         UnwalkableFightCell cell = new UnwalkableFightCell(map, mapTemplate.cells()[0], 0);
         assertFalse(cell.sightBlocking());
@@ -56,7 +54,6 @@ class UnwalkableFightCellTest extends GameBaseCase {
         assertTrue(cell.sightBlocking());
     }
 
-    @Test
     void getters() {
         UnwalkableFightCell cell = new UnwalkableFightCell(map, mapTemplate.cells()[0], 0);
 
@@ -70,21 +67,18 @@ class UnwalkableFightCellTest extends GameBaseCase {
         assertSame(cell, cell.coordinate().cell());
     }
 
-    @Test
     void set() {
         UnwalkableFightCell cell = new UnwalkableFightCell(map, mapTemplate.cells()[0], 0);
 
         assertThrows(FightMapException.class, () -> cell.set(Mockito.mock(Fighter.class)));
     }
 
-    @Test
     void removeFighter() {
         UnwalkableFightCell cell = new UnwalkableFightCell(map, mapTemplate.cells()[0], 0);
 
         assertThrows(FightMapException.class, () -> cell.removeFighter());
     }
 
-    @Test
     void equals() {
         UnwalkableFightCell cell0 = new UnwalkableFightCell(map, mapTemplate.cells()[0], 0);
         UnwalkableFightCell cell1 = new UnwalkableFightCell(map, mapTemplate.cells()[1], 1);

@@ -38,7 +38,7 @@ public final class BankEntry extends AbstractItemEntry {
     }
 
     @Override
-    public @IntVal(DEFAULT_POSITION) int position() {
+    public int position() {
         return DEFAULT_POSITION;
     }
 

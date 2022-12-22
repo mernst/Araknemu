@@ -29,7 +29,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 class AggregateLoaderTest extends GameBaseCase {
-    @Test
     void load() throws ContainerException {
         Loader l1 = Mockito.mock(Loader.class);
         Loader l2 = Mockito.mock(Loader.class);

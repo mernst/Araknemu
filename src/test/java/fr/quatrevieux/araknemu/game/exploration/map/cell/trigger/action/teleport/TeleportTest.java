@@ -39,7 +39,6 @@ class TeleportTest extends GameBaseCase {
     private ExplorationMapService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -47,7 +46,6 @@ class TeleportTest extends GameBaseCase {
         service = container.get(ExplorationMapService.class);
     }
 
-    @Test
     void performOnSameMap() throws Exception {
         teleport = new Teleport(service, 123, new Position(10300, 321));
         teleport.perform(explorationPlayer());
@@ -66,7 +64,6 @@ class TeleportTest extends GameBaseCase {
         );
     }
 
-    @Test
     void performOnSameMapInvalidCell() throws Exception {
         teleport = new Teleport(service, 123, new Position(10300, 1000));
         assertThrows(IllegalStateException.class, () -> teleport.perform(explorationPlayer()));
@@ -75,7 +72,6 @@ class TeleportTest extends GameBaseCase {
         assertFalse(explorationPlayer().interactions().busy());
     }
 
-    @Test
     void teleportOnOtherMap() throws Exception {
         ExplorationPlayer player = explorationPlayer();
         requestStack.clear();
@@ -90,7 +86,6 @@ class TeleportTest extends GameBaseCase {
         );
     }
 
-    @Test
     void teleportOnOtherMapInvalidCell() throws Exception {
         ExplorationPlayer player = explorationPlayer();
         requestStack.clear();

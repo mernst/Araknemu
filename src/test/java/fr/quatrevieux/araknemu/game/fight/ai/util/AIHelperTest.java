@@ -34,7 +34,6 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AIHelperTest extends AiBaseCase {
-    @Test
     void canMoveOk() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -44,7 +43,6 @@ class AIHelperTest extends AiBaseCase {
         assertTrue(ai.helper().canMove());
     }
 
-    @Test
     void canMoveNoMP() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -56,7 +54,6 @@ class AIHelperTest extends AiBaseCase {
         assertFalse(ai.helper().canMove());
     }
 
-    @Test
     void blockedByFighters() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(210))
@@ -67,7 +64,6 @@ class AIHelperTest extends AiBaseCase {
         assertFalse(ai.helper().canMove());
     }
 
-    @Test
     void canCastOk() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -77,7 +73,6 @@ class AIHelperTest extends AiBaseCase {
         assertTrue(ai.helper().canCast());
     }
 
-    @Test
     void canCastNoAP() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -89,7 +84,6 @@ class AIHelperTest extends AiBaseCase {
         assertFalse(ai.helper().canCast());
     }
 
-    @Test
     void canCastNoAvailableSpells() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -101,7 +95,6 @@ class AIHelperTest extends AiBaseCase {
         assertFalse(ai.helper().canCast());
     }
 
-    @Test
     void points() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -130,7 +123,6 @@ class AIHelperTest extends AiBaseCase {
         assertFalse(ai.helper().hasMovementPoints());
     }
 
-    @Test
     void withPosition() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -155,7 +147,6 @@ class AIHelperTest extends AiBaseCase {
         assertTrue(fight.map().get(123).hasFighter());
     }
 
-    @Test
     void helpers() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -173,7 +164,6 @@ class AIHelperTest extends AiBaseCase {
         assertSame(ai.helper().allies(), ai.helper().allies());
     }
 
-    @Test
     void alliesShouldIgnoreSelf() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))
@@ -186,7 +176,6 @@ class AIHelperTest extends AiBaseCase {
         assertArrayEquals(new int [] {135, 150}, ai.helper().allies().cells().mapToInt(MapCell::id).sorted().toArray());
     }
 
-    @Test
     void enemies() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(123))

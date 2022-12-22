@@ -159,13 +159,6 @@ public final class Banip extends AbstractCommand<Banip.Arguments> implements Sub
 
     @SuppressWarnings("initialization.field.uninitialized")
     public static final class Arguments implements SubArguments<Banip> {
-        @Argument(required = true, metaVar = "ACTION")
-        @SubCommands({
-            @SubCommand(name = "add", impl = AddArguments.class),
-            @SubCommand(name = "remove", impl = RemoveArguments.class),
-            @SubCommand(name = "check", impl = CheckArguments.class),
-            @SubCommand(name = "list", impl = ListArguments.class),
-        })
         private SubArguments<Banip> sub;
 
         @Override
@@ -175,7 +168,6 @@ public final class Banip extends AbstractCommand<Banip.Arguments> implements Sub
 
         @SuppressWarnings("initialization.field.uninitialized")
         public abstract static class AbstractIpSubArguments implements SubArguments<Banip> {
-            @Argument(index = 0, required = true, metaVar = "IP_ADDRESS")
             private IPAddressString ipAddress;
 
             public final IPAddressString ipAddress() {
@@ -210,11 +202,6 @@ public final class Banip extends AbstractCommand<Banip.Arguments> implements Sub
         @SuppressWarnings("initialization.field.uninitialized")
         public static final class AddArguments extends AbstractIpSubArguments {
             // @todo do not use sub command here
-            @Argument(index = 1, required = true, handler = SubCommandHandler.class, metaVar = "DURATION")
-            @SubCommands({
-                @SubCommand(name = "for", impl = For.class),
-                @SubCommand(name = "forever", impl = Forever.class),
-            })
             private DurationContainer duration;
 
             public Optional<Duration> duration() {
@@ -238,10 +225,8 @@ public final class Banip extends AbstractCommand<Banip.Arguments> implements Sub
 
             @SuppressWarnings("initialization.field.uninitialized")
             public static final class For implements DurationContainer {
-                @Argument(required = true, metaVar = "DURATION")
                 private Duration duration;
 
-                @Argument(index = 1, required = true, handler = ConcatRestOfArgumentsHandler.class, metaVar = "MESSAGE")
                 private String cause;
 
                 @Override
@@ -257,7 +242,6 @@ public final class Banip extends AbstractCommand<Banip.Arguments> implements Sub
 
             @SuppressWarnings("initialization.field.uninitialized")
             public static final class Forever implements DurationContainer {
-                @Argument(required = true, handler = ConcatRestOfArgumentsHandler.class, metaVar = "MESSAGE")
                 private String cause;
 
                 @Override

@@ -38,12 +38,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class ParsedArgumentsHydratorTest {
     private ParsedArgumentsHydrator hydrator;
 
-    @BeforeEach
     void setUp() {
         hydrator = new ParsedArgumentsHydrator();
     }
 
-    @Test
     void notSupported() {
         Command<Object> command = new Command<Object>() {
             @Override
@@ -72,7 +70,6 @@ class ParsedArgumentsHydratorTest {
         assertFalse(hydrator.supports(command, new Object()));
     }
 
-    @Test
     void implicitUsingExecuteArgument() throws Exception {
         Command<CommandParser.Arguments> command = new Command<CommandParser.Arguments>() {
             @Override
@@ -105,7 +102,6 @@ class ParsedArgumentsHydratorTest {
         assertSame(arguments, hydrator.hydrate(command, new CommandParser.Arguments("", "", "", Arrays.asList("foo", "bar"), null), arguments));
     }
 
-    @Test
     void explicitCreateArgumentType() throws Exception {
         Command<CommandParser.Arguments> command = new Command<CommandParser.Arguments>() {
             @Override

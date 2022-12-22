@@ -41,7 +41,6 @@ class SwitchPositionApplierTest extends FightBaseCase {
     private Fight fight;
     private SwitchPositionApplier applier;
 
-    @Test
     void applySuccess() {
         configureFight(fb -> fb
             .addSelf(b -> b.cell(150))

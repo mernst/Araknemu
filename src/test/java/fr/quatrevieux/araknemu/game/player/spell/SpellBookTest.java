@@ -53,7 +53,6 @@ class SpellBookTest extends GameBaseCase {
     private Player player;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -63,7 +62,6 @@ class SpellBookTest extends GameBaseCase {
         player = dataSet.createPlayer(1);
     }
 
-    @Test
     void all() {
         SpellBook book = new SpellBook(new DefaultListenerAggregate(), player);
 
@@ -73,7 +71,6 @@ class SpellBookTest extends GameBaseCase {
         assertContainsAll(book.all(), book.entry(3), book.entry(6));
     }
 
-    @Test
     void entryNotFound() {
         SpellBook book = new SpellBook(new DefaultListenerAggregate(), player);
 
@@ -83,7 +80,6 @@ class SpellBookTest extends GameBaseCase {
         assertThrows(NoSuchElementException.class, () -> book.entry(789));
     }
 
-    @Test
     void entry() {
         SpellBook book = new SpellBook(new DefaultListenerAggregate(), player);
 
@@ -93,7 +89,6 @@ class SpellBookTest extends GameBaseCase {
         assertSame(service.get(3).level(5), book.entry(3).spell());
     }
 
-    @Test
     void has() {
         SpellBook book = new SpellBook(new DefaultListenerAggregate(), player);
 
@@ -105,7 +100,6 @@ class SpellBookTest extends GameBaseCase {
         assertFalse(book.has(123));
     }
 
-    @Test
     void hasTooHighLevel() throws SQLException {
         dataSet.pushHighLevelSpells();
 
@@ -115,7 +109,6 @@ class SpellBookTest extends GameBaseCase {
         assertFalse(book.has(1908));
     }
 
-    @Test
     void learnSuccess() throws NoSuchFieldException, IllegalAccessException {
         ListenerAggregate dispatcher = new DefaultListenerAggregate();
         SpellBook book = new SpellBook(dispatcher, player);
@@ -143,7 +136,6 @@ class SpellBookTest extends GameBaseCase {
         assertSame(book, field.get(book.entry(3)));
     }
 
-    @Test
     void learnFailed() throws SQLException, ContainerException {
         dataSet.pushHighLevelSpells();
 
@@ -158,7 +150,6 @@ class SpellBookTest extends GameBaseCase {
         assertFalse(book.has(1908));
     }
 
-    @Test
     void canLearnTooLowLevel() throws SQLException, ContainerException {
         dataSet.pushHighLevelSpells();
 
@@ -167,7 +158,6 @@ class SpellBookTest extends GameBaseCase {
         assertFalse(book.canLearn(service.get(1908)));
     }
 
-    @Test
     void canLearnAlreadyLearned() throws SQLException, ContainerException {
         SpellBook book = new SpellBook(new DefaultListenerAggregate(), player);
 
@@ -177,7 +167,6 @@ class SpellBookTest extends GameBaseCase {
         assertFalse(book.canLearn(service.get(3)));
     }
 
-    @Test
     void canUpgradeTooHighLevel() {
         SpellBook book = new SpellBook(new DefaultListenerAggregate(), player);
         player.setLevel(5);
@@ -190,7 +179,6 @@ class SpellBookTest extends GameBaseCase {
         assertFalse(book.canUpgrade(spell));
     }
 
-    @Test
     void canUpgradeNoEnoughPoints() {
         SpellBook book = new SpellBook(new DefaultListenerAggregate(), player);
         player.setLevel(5);
@@ -203,7 +191,6 @@ class SpellBookTest extends GameBaseCase {
         assertFalse(book.canUpgrade(spell));
     }
 
-    @Test
     void canUpgradeExactlyGoodPoints() {
         SpellBook book = new SpellBook(new DefaultListenerAggregate(), player);
         player.setLevel(5);
@@ -216,7 +203,6 @@ class SpellBookTest extends GameBaseCase {
         assertTrue(book.canUpgrade(spell));
     }
 
-    @Test
     void removePointsForUpgrade() {
         SpellBook book = new SpellBook(new DefaultListenerAggregate(), player);
         player.setSpellPoints(5);
@@ -229,7 +215,6 @@ class SpellBookTest extends GameBaseCase {
         assertEquals(1, book.upgradePoints());
     }
 
-    @Test
     void getNotBoosted() {
         SpellBook book = new SpellBook(new DefaultListenerAggregate(), player);
 
@@ -239,7 +224,6 @@ class SpellBookTest extends GameBaseCase {
         assertSame(book.get(3), book.entry(3).spell());
     }
 
-    @Test
     void getBoosted() {
         SpellBook book = new SpellBook(new DefaultListenerAggregate(), player);
 
@@ -256,7 +240,6 @@ class SpellBookTest extends GameBaseCase {
         assertEquals(2, book.get(3).apCost());
     }
 
-    @Test
     void iterator() throws SQLException {
         dataSet.pushHighLevelSpells();
 

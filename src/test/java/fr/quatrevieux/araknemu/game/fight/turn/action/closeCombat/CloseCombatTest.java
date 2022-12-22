@@ -49,7 +49,6 @@ class CloseCombatTest extends FightBaseCase {
     private CloseCombat action;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -66,7 +65,6 @@ class CloseCombatTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void values() {
         action = new CloseCombat(
             fighter,
@@ -78,7 +76,6 @@ class CloseCombatTest extends FightBaseCase {
         assertEquals("CloseCombat{target=186}", action.toString());
     }
 
-    @Test
     void validateNoWeapon() {
         action = new CloseCombat(
             fighter,
@@ -89,7 +86,6 @@ class CloseCombatTest extends FightBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void validateNotEnoughAp() throws InventoryException, ContainerException, SQLException {
         action = new CloseCombat(
             fighter,
@@ -104,7 +100,6 @@ class CloseCombatTest extends FightBaseCase {
         requestStack.assertLast(Error.cantCastNotEnoughActionPoints(2, 4));
     }
 
-    @Test
     void validateInvalidTargetCell() throws InventoryException, ContainerException, SQLException {
         action = new CloseCombat(
             fighter,
@@ -118,7 +113,6 @@ class CloseCombatTest extends FightBaseCase {
         requestStack.assertLast(Error.cantCastCellNotAvailable());
     }
 
-    @Test
     void validateSuccess() throws InventoryException, ContainerException, SQLException {
         action = new CloseCombat(
             fighter,
@@ -130,7 +124,6 @@ class CloseCombatTest extends FightBaseCase {
         assertTrue(action.validate(turn));
     }
 
-    @Test
     void startCriticalFailure() throws InventoryException, ContainerException, SQLException {
         action = new CloseCombat(
             fighter,
@@ -156,7 +149,6 @@ class CloseCombatTest extends FightBaseCase {
         assertArrayEquals(new Object[0], result.arguments());
     }
 
-    @Test
     void startNormalHit() throws InventoryException, ContainerException, SQLException {
         action = new CloseCombat(
             fighter,
@@ -184,7 +176,6 @@ class CloseCombatTest extends FightBaseCase {
         assertEquals(1, CloseCombatSuccess.class.cast(result).effects().get(0).min());
     }
 
-    @Test
     void startCriticalHit() throws InventoryException, ContainerException, SQLException {
         action = new CloseCombat(
             fighter,
@@ -212,7 +203,6 @@ class CloseCombatTest extends FightBaseCase {
         assertEquals(6, CloseCombatSuccess.class.cast(result).effects().get(0).min());
     }
 
-    @Test
     void endNormalHit() throws InventoryException, ContainerException, SQLException {
         action = new CloseCombat(
             fighter,
@@ -241,7 +231,6 @@ class CloseCombatTest extends FightBaseCase {
         );
     }
 
-    @Test
     void endCriticalHit() throws InventoryException, ContainerException, SQLException {
         action = new CloseCombat(
             fighter,
@@ -271,7 +260,6 @@ class CloseCombatTest extends FightBaseCase {
         );
     }
 
-    @Test
     void failed() throws InventoryException, ContainerException, SQLException {
         action = new CloseCombat(
             fighter,
@@ -288,7 +276,6 @@ class CloseCombatTest extends FightBaseCase {
         requestStack.assertOne(ActionEffect.usedActionPoints(fighter, 4));
     }
 
-    @Test
     void hammerWeaponWillNotTargetTheCaster() throws InventoryException, ContainerException, SQLException {
         dataSet.pushItemSets();
 

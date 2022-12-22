@@ -76,7 +76,7 @@ public final class Splitter {
     private final String string;
     private final char delimiter;
 
-    private @NonNegative int currentPosition = 0;
+    private int currentPosition = 0;
 
     /**
      * @param string String to split
@@ -162,7 +162,7 @@ public final class Splitter {
      * @throws NoSuchElementException When no more parts is available (reach end of the packet)
      * @throws NumberFormatException When the number format is invalid
      */
-    public int nextInt(@IntRange(from = Character.MIN_RADIX, to = Character.MAX_RADIX) int base) {
+    public int nextInt(int base) {
         return Integer.parseInt(nextPart(), base);
     }
 
@@ -192,7 +192,7 @@ public final class Splitter {
      * @throws NumberFormatException When the number format is invalid
      * @throws IllegalArgumentException When the number is too low
      */
-    public @GTENegativeOne int nextNonNegativeOrNegativeOneInt() {
+    public int nextNonNegativeOrNegativeOneInt() {
         return ParseUtils.parseNonNegativeOrNegativeOneInt(nextPart());
     }
 
@@ -206,7 +206,7 @@ public final class Splitter {
      * @throws NumberFormatException When the number format is invalid
      * @throws IllegalArgumentException When the number is too low
      */
-    public @GTENegativeOne int nextNonNegativeOrNegativeOneIntOrDefault(@GTENegativeOne int defaultValue) {
+    public int nextNonNegativeOrNegativeOneIntOrDefault(int defaultValue) {
         if (!hasNext()) {
             return defaultValue;
         }
@@ -225,7 +225,7 @@ public final class Splitter {
      * @throws NumberFormatException When the number format is invalid
      * @throws IllegalArgumentException When the number is too low
      */
-    public @NonNegative int nextNonNegativeInt(@IntRange(from = Character.MIN_RADIX, to = Character.MAX_RADIX) int base) {
+    public int nextNonNegativeInt(int base) {
         return ParseUtils.parseNonNegativeInt(nextPart(), base);
     }
 
@@ -236,7 +236,7 @@ public final class Splitter {
      * @throws NumberFormatException When the number format is invalid
      * @throws IllegalArgumentException When the number is too low
      */
-    public @NonNegative int nextNonNegativeInt() {
+    public int nextNonNegativeInt() {
         return ParseUtils.parseNonNegativeInt(nextPart());
     }
 
@@ -250,7 +250,7 @@ public final class Splitter {
      * @throws NumberFormatException When the number format is invalid
      * @throws IllegalArgumentException When the number is too low
      */
-    public @NonNegative int nextNonNegativeIntOrDefault(@NonNegative int defaultValue) {
+    public int nextNonNegativeIntOrDefault(int defaultValue) {
         if (!hasNext()) {
             return defaultValue;
         }
@@ -267,7 +267,7 @@ public final class Splitter {
      * @throws NumberFormatException When the number format is invalid
      * @throws IllegalArgumentException When the number is too low
      */
-    public @Positive int nextPositiveInt() {
+    public int nextPositiveInt() {
         return ParseUtils.parsePositiveInt(nextPart());
     }
 
@@ -281,7 +281,7 @@ public final class Splitter {
      * @throws NumberFormatException When the number format is invalid
      * @throws IllegalArgumentException When the number is too low
      */
-    public @Positive int nextPositiveIntOrDefault(@Positive int defaultValue) {
+    public int nextPositiveIntOrDefault(int defaultValue) {
         if (!hasNext()) {
             return defaultValue;
         }

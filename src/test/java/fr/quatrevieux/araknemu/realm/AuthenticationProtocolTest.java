@@ -42,7 +42,6 @@ public class AuthenticationProtocolTest extends RealmBaseCase {
     private Account account;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,7 +51,6 @@ public class AuthenticationProtocolTest extends RealmBaseCase {
         ;
     }
 
-    @Test
     void failWithBadVersion() throws Exception {
         sendPacket("1.0.4");
 
@@ -60,7 +58,6 @@ public class AuthenticationProtocolTest extends RealmBaseCase {
         assertClosed();
     }
 
-    @Test
     void failWithBadCredentials() throws Exception {
         sendPacket("1.29.1");
         sendPacket("login\n#1password");
@@ -69,7 +66,6 @@ public class AuthenticationProtocolTest extends RealmBaseCase {
         assertClosed();
     }
 
-    @Test
     void failBadPassword() throws Exception {
         sendPacket("1.29.1");
         sendPacket("test\n#1"+ConnectionKeyTest.cryptPassword("bad_password", session.key().key()));
@@ -78,7 +74,6 @@ public class AuthenticationProtocolTest extends RealmBaseCase {
         assertClosed();
     }
 
-    @Test
     void failBanned() throws Exception {
         dataSet.push(new Banishment(Account.class.cast(dataSet.get("test_account")).id(), Instant.now().minus(1, ChronoUnit.HOURS), Instant.now().plus(1, ChronoUnit.HOURS), "test", 3));
 
@@ -89,7 +84,6 @@ public class AuthenticationProtocolTest extends RealmBaseCase {
         assertClosed();
     }
 
-    @Test
     void failIpBanned() {
         container.get(BanIpService.class).newRule(new IPAddressString("36.25.14.78")).apply();
 
@@ -99,7 +93,6 @@ public class AuthenticationProtocolTest extends RealmBaseCase {
         assertFalse(session.isAlive());
     }
 
-    @Test
     void authenticationSuccess() throws Exception {
         sendPacket("1.29.1");
         sendPacket("test\n#1"+ConnectionKeyTest.cryptPassword("password", session.key().key()));
@@ -118,7 +111,6 @@ public class AuthenticationProtocolTest extends RealmBaseCase {
         assertTrue(dataSet.refresh(account).password().startsWith("$argon2id$v=19$m=65536,t=4,p=8$"));
     }
 
-    @Test
     void authenticationSuccessWithArgon2Password() throws Exception {
         AccountRepository repository = container.get(AccountRepository.class);
         account.setPassword("$argon2id$v=19$m=65536,t=4,p=8$wNluVjglTHANEbFv1QqVUg$z6yjCMpUkyWiQ4V8hDTQGPFvZb/pDfge78Pcmn3uUoU");
@@ -139,7 +131,6 @@ public class AuthenticationProtocolTest extends RealmBaseCase {
         );
     }
 
-    @Test
     void authenticateTwiceError() throws Exception {
         RealmSession s1 = sessionHandler.create(new DummyChannel());
 
@@ -160,7 +151,6 @@ public class AuthenticationProtocolTest extends RealmBaseCase {
         assertTrue(s1.account().isLogged());
     }
 
-    @Test
     void authenticateAndLogout() throws Exception {
         RealmSession s1 = sessionHandler.create(new DummyChannel());
 
@@ -177,7 +167,6 @@ public class AuthenticationProtocolTest extends RealmBaseCase {
         assertTrue(session.isLogged());
     }
 
-    @Test
     void selectGameServer() throws Exception {
         sendPacket("1.29.1");
         sendPacket("test\n#1"+ConnectionKeyTest.cryptPassword("password", session.key().key()));

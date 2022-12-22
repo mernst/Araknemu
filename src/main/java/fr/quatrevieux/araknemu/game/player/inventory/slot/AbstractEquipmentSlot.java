@@ -44,7 +44,7 @@ public abstract class AbstractEquipmentSlot implements InventorySlot {
     }
 
     @Override
-    public @IntRange(from = -1, to = 57) int id() {
+    public int id() {
         return slot.id();
     }
 
@@ -63,7 +63,7 @@ public abstract class AbstractEquipmentSlot implements InventorySlot {
     }
 
     @Override
-    public InventoryEntry set(Item item, @Positive int quantity) throws InventoryException {
+    public InventoryEntry set(Item item, int quantity) throws InventoryException {
         final InventoryEntry entry = slot.set(item, quantity);
 
         dispatcher.dispatch(new EquipmentChanged(entry, id(), true));
@@ -80,7 +80,7 @@ public abstract class AbstractEquipmentSlot implements InventorySlot {
     }
 
     @Override
-    public void uncheckedSet(@Nullable InventoryEntry entry) {
+    public void uncheckedSet(InventoryEntry entry) {
         slot.uncheckedSet(entry);
     }
 

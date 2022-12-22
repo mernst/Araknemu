@@ -44,7 +44,6 @@ class WearableFactoryTest extends GameBaseCase {
     private WearableFactory factory;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -53,7 +52,6 @@ class WearableFactoryTest extends GameBaseCase {
         factory = new WearableFactory(SuperType.AMULET, container.get(EffectToCharacteristicMapping.class), container.get(EffectToSpecialMapping.class));
     }
 
-    @Test
     void createSimple() {
         ItemType type = new ItemType(1, "Amulette", SuperType.AMULET, null);
         Item item = factory.create(new ItemTemplate(39, 1, "Petite Amulette du Hibou", 1, Arrays.asList(new ItemTemplateEffectEntry(Effect.ADD_INTELLIGENCE, 2, 0, 0, "0d0+2")), 4, "", 0, "", 100), type, null, true);
@@ -69,7 +67,6 @@ class WearableFactoryTest extends GameBaseCase {
         assertEquals(2, wearable.characteristics().get(0).value());
     }
 
-    @Test
     void createRandomStats() throws ContainerException {
         ItemTemplate template = new ItemTemplate(2425, 1, "Amulette du Bouftou", 3, Arrays.asList(new ItemTemplateEffectEntry(Effect.ADD_INTELLIGENCE, 1, 10, 0, "1d10+0"), new ItemTemplateEffectEntry(Effect.ADD_STRENGTH, 1, 10, 0, "1d10+0")), 10, "", 1, "", 550);
         ItemType type = new ItemType(1, "Amulette", SuperType.AMULET, null);
@@ -92,7 +89,6 @@ class WearableFactoryTest extends GameBaseCase {
         assertBetween(1, 10, wearable.characteristics().get(1).value());
     }
 
-    @Test
     void createMaxStats() throws ContainerException {
         ItemTemplate template = new ItemTemplate(2425, 1, "Amulette du Bouftou", 3,
             Arrays.asList(
@@ -124,7 +120,6 @@ class WearableFactoryTest extends GameBaseCase {
         assertEquals(200, item.specials().get(0).arguments()[0]);
     }
 
-    @Test
     void createSpecial() {
         ItemTemplate template = new ItemTemplate(2425, 1, "Amulette du Bouftou", 3, Arrays.asList(
             new ItemTemplateEffectEntry(Effect.ADD_INTELLIGENCE, 1, 10, 0, "1d10+0"),
@@ -146,7 +141,6 @@ class WearableFactoryTest extends GameBaseCase {
         assertEquals(Effect.NULL1, wearable.specials().get(0).effect());
     }
 
-    @Test
     void retrieve() throws ContainerException {
         GameItemSet set = container.get(ItemService.class).itemSet(1);
         ItemType type = new ItemType(1, "Amulette", SuperType.AMULET, null);

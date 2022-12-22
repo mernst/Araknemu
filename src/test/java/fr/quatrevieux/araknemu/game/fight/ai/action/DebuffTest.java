@@ -33,7 +33,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DebuffTest extends AiBaseCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -41,7 +40,6 @@ class DebuffTest extends AiBaseCase {
         action = new Debuff<>(container.get(Simulator.class));
     }
 
-    @Test
     void success() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(312).spell(81))
@@ -51,7 +49,6 @@ class DebuffTest extends AiBaseCase {
         assertCast(81, 270);
     }
 
-    @Test
     void allowSelfDebuffIfLessThanEnemies() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(307).spell(168))
@@ -62,7 +59,6 @@ class DebuffTest extends AiBaseCase {
         assertCast(168, 293);
     }
 
-    @Test
     void denySelfKill() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(307).spell(168).currentLife(5))
@@ -73,7 +69,6 @@ class DebuffTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void denyAllyKill() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(250).spell(168))
@@ -85,7 +80,6 @@ class DebuffTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void notEnoughAP() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122).spell(168))
@@ -97,7 +91,6 @@ class DebuffTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void notAP() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122).spell(168))
@@ -108,7 +101,6 @@ class DebuffTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void withAreaSpell() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122).spell(168))
@@ -124,7 +116,6 @@ class DebuffTest extends AiBaseCase {
         assertNotInCastEffectArea(125, 122);
     }
 
-    @Test
     void scoreShouldHandleSpellAPCost() {
         Debuff action = (Debuff) this.action;
         Spell spell = Mockito.mock(Spell.class);
@@ -149,7 +140,6 @@ class DebuffTest extends AiBaseCase {
         assertEquals(2.5, action.score(simulation), 0.01);
     }
 
-    @Test
     void score() throws SQLException {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122))

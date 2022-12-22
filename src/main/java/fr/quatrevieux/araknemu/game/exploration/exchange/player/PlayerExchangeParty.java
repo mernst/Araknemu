@@ -44,7 +44,7 @@ public final class PlayerExchangeParty extends AbstractPlayerExchangeParty {
     }
 
     @Override
-    public @Nullable Creature target() {
+    public Creature target() {
         // @todo Does the target player should be sent ?
         return null;
     }

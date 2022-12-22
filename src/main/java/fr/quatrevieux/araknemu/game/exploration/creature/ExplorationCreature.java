@@ -32,5 +32,5 @@ public interface ExplorationCreature extends Creature<ExplorationMapCell> {
      *
      * @return Result of the operation (forward return value of Operation#onXXX() method)
      */
-    public <R> @Nullable R apply(Operation<R> operation);
+    public <R> R apply(Operation<R> operation);
 }

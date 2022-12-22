@@ -44,7 +44,6 @@ class ServerContextResolverTest extends GameBaseCase {
     private AdminUser adminUser;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,14 +51,12 @@ class ServerContextResolverTest extends GameBaseCase {
         adminUser = container.get(AdminSessionService.class).user(gamePlayer());
     }
 
-    @Test
     void resolve() throws ContainerException {
         Context context = resolver.resolve(adminUser, () -> null);
 
         assertInstanceOf(ServerContext.class, context);
     }
 
-    @Test
     void register() throws CommandNotFoundException, SQLException {
         Command command = Mockito.mock(Command.class);
         Mockito.when(command.name()).thenReturn("mocked");
@@ -76,7 +73,6 @@ class ServerContextResolverTest extends GameBaseCase {
         assertSame(command, context.command("mocked"));
     }
 
-    @Test
     void resolveShouldKeepInstance() throws ContainerException, CommandNotFoundException {
         resolver.register(new AbstractContextConfigurator<ServerContext>() {
             @Override

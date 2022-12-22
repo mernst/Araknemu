@@ -71,7 +71,7 @@ public final class DamageSimulator implements EffectSimulator {
         }
     }
 
-    private @NonNegative int computeDamage(@NonNegative int value, FighterData target) {
+    private int computeDamage(int value, FighterData target) {
         final Damage damage = new Damage(value, element)
             .percent(target.characteristics().get(element.percentResistance()))
             .fixed(target.characteristics().get(element.fixedResistance()))

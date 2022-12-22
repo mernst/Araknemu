@@ -48,7 +48,6 @@ class AdminUserTest extends GameBaseCase {
     private Logger logger;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -64,7 +63,6 @@ class AdminUserTest extends GameBaseCase {
         gamePlayer().account().grant(Permission.ACCESS);
     }
 
-    @Test
     void isGranted() throws SQLException, ContainerException {
         assertFalse(user.isGranted(EnumSet.of(Permission.MANAGE_ACCOUNT)));
 
@@ -73,7 +71,6 @@ class AdminUserTest extends GameBaseCase {
         assertTrue(user.isGranted(EnumSet.of(Permission.MANAGE_ACCOUNT)));
     }
 
-    @Test
     void logNoArguments() {
         user.log(LogType.SUCCESS, "My message");
 
@@ -84,7 +81,6 @@ class AdminUserTest extends GameBaseCase {
         Mockito.verify(logger).log(Level.INFO, AdminPerformer.OUTPUT_MARKER, "[{}; type={}] {}", user, LogType.SUCCESS, "My message");
     }
 
-    @Test
     void logOneArgument() {
         user.log(LogType.SUCCESS, "Hello {} !", "John");
 
@@ -95,7 +91,6 @@ class AdminUserTest extends GameBaseCase {
         Mockito.verify(logger).log(Level.INFO, AdminPerformer.OUTPUT_MARKER, "[{}; type={}] {}", user, LogType.SUCCESS, "Hello John !");
     }
 
-    @Test
     void logManyArguments() {
         user.log(LogType.SUCCESS, "Hello {}, My name is {} and I'm {} Y-O !", "John", "Mark", 26);
 
@@ -104,7 +99,6 @@ class AdminUserTest extends GameBaseCase {
         );
     }
 
-    @Test
     void info() {
         user.info("Hello {} !", "John");
 
@@ -115,7 +109,6 @@ class AdminUserTest extends GameBaseCase {
         Mockito.verify(logger).log(Level.INFO, AdminPerformer.OUTPUT_MARKER, "[{}; type={}] {}", user, LogType.DEFAULT, "Hello John !");
     }
 
-    @Test
     void success() {
         user.success("Hello {} !", "John");
 
@@ -126,7 +119,6 @@ class AdminUserTest extends GameBaseCase {
         Mockito.verify(logger).log(Level.INFO, AdminPerformer.OUTPUT_MARKER, "[{}; type={}] {}", user, LogType.SUCCESS, "Hello John !");
     }
 
-    @Test
     void error() {
         user.error("Hello {} !", "John");
 
@@ -137,7 +129,6 @@ class AdminUserTest extends GameBaseCase {
         Mockito.verify(logger).log(Level.INFO, AdminPerformer.OUTPUT_MARKER, "[{}; type={}] {}", user, LogType.ERROR, "Hello John !");
     }
 
-    @Test
     void executeNoPermissions() throws AdminException {
         try {
             user.execute("ban");
@@ -148,7 +139,6 @@ class AdminUserTest extends GameBaseCase {
         Mockito.verify(logger).log(Level.INFO, AdminPerformer.EXECUTE_MARKER, "[{}] {}", user, "ban");
     }
 
-    @Test
     void executeCommandNotFound() throws AdminException {
         try {
             user.execute("not_found_command");
@@ -159,19 +149,16 @@ class AdminUserTest extends GameBaseCase {
         Mockito.verify(logger).log(Level.INFO, AdminPerformer.EXECUTE_MARKER, "[{}] {}", user, "not_found_command");
     }
 
-    @Test
     void executeContextNotFound() {
         assertThrows(ContextException.class, () -> user.execute("@not_found info"));
         Mockito.verify(logger).log(Level.INFO, AdminPerformer.EXECUTE_MARKER, "[{}] {}", user, "@not_found info");
     }
 
-    @Test
     void self() {
         assertInstanceOf(PlayerContext.class, user.self());
         assertSame(user.player(), PlayerContext.class.cast(user.self()).player());
     }
 
-    @Test
     void executeSuccess() throws AdminException {
         user.execute("echo Hello World !");
 
@@ -181,7 +168,6 @@ class AdminUserTest extends GameBaseCase {
         Mockito.verify(logger).log(Level.INFO, AdminPerformer.EXECUTE_MARKER, "[{}] {}", user, "echo Hello World !");
     }
 
-    @Test
     void errorException() {
         user.error(new CommandNotFoundException("test"));
 
@@ -190,19 +176,16 @@ class AdminUserTest extends GameBaseCase {
         );
     }
 
-    @Test
     void player() throws SQLException, ContainerException {
         assertSame(gamePlayer(), user.player());
     }
 
-    @Test
     void send() {
         user.send("test");
 
         requestStack.assertLast("test");
     }
 
-    @Test
     void string() {
         assertEquals("account=1; player=1", user.toString());
     }

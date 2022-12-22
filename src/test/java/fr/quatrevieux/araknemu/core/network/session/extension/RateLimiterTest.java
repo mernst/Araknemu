@@ -38,7 +38,6 @@ class RateLimiterTest {
         }
     }
 
-    @Test
     void limitReached() {
         AtomicInteger receivedPackets = new AtomicInteger();
         AtomicInteger rateLimitExceptions = new AtomicInteger();
@@ -58,7 +57,6 @@ class RateLimiterTest {
         assertEquals(2, rateLimitExceptions.get());
     }
 
-    @Test
     void success() {
         AtomicInteger receivedPackets = new AtomicInteger();
         AtomicInteger rateLimitExceptions = new AtomicInteger();
@@ -78,7 +76,6 @@ class RateLimiterTest {
         assertEquals(0, rateLimitExceptions.get());
     }
 
-    @Test
     void successAfterSleep() throws InterruptedException {
         AtomicInteger receivedPackets = new AtomicInteger();
         AtomicInteger rateLimitExceptions = new AtomicInteger();
@@ -104,7 +101,6 @@ class RateLimiterTest {
         assertEquals(0, rateLimitExceptions.get());
     }
 
-    @Test
     void withInternalPacketShouldIgnore() {
         AtomicInteger receivedPackets = new AtomicInteger();
         AtomicInteger rateLimitExceptions = new AtomicInteger();

@@ -42,7 +42,6 @@ class RevokeTest extends CommandTestCase {
     private GameSession targetSession;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,7 +51,6 @@ class RevokeTest extends CommandTestCase {
         command = new Revoke(account);
     }
 
-    @Test
     void revokeSuccess() throws AdminException, SQLException {
         execute("revoke");
 
@@ -63,7 +61,6 @@ class RevokeTest extends CommandTestCase {
         assertOutput("Permissions revoked for ACCOUNT_10");
     }
 
-    @Test
     void notLoggedAccountShouldFailed() throws SQLException, AdminException {
         account = new GameAccount(new Account(11, "test", "test", "test"), container.get(AccountService.class), 2);
         command = new Revoke(account);
@@ -72,7 +69,6 @@ class RevokeTest extends CommandTestCase {
         assertOutput("Cannot revoke permissions for test : the account is not logged");
     }
 
-    @Test
     void help() {
         assertHelp(
             "revoke - Revoke all temporary permissions of an account",

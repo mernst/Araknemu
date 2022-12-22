@@ -82,7 +82,7 @@ public final class NpcStoreExchange implements Exchange, Sender {
      *
      * @throws IllegalArgumentException When invalid item, quantity is given, or player doesn't have enough kamas
      */
-    public void buy(int itemId, @Positive int quantity) {
+    public void buy(int itemId, int quantity) {
         if (quantity <= 0) {
             throw new IllegalArgumentException("Invalid quantity");
         }
@@ -109,7 +109,7 @@ public final class NpcStoreExchange implements Exchange, Sender {
      *
      * @throws fr.quatrevieux.araknemu.game.item.inventory.exception.InventoryException When cannot sell the item
      */
-    public void sell(int itemId, @Positive int quantity) {
+    public void sell(int itemId, int quantity) {
         final ItemEntry entry = player.inventory().get(itemId);
         final long price = store.sellPrice(entry.item(), quantity);
 

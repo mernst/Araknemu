@@ -36,8 +36,8 @@ import java.util.Optional;
  * Try to move near the selected enemy
  */
 public final class MoveNearEnemy<F extends ActiveFighter> implements ActionGenerator<F> {
-    private @MonotonicNonNull Pathfinder<BattlefieldCell> pathfinder;
-    private @MonotonicNonNull AIHelper helper;
+    private Pathfinder<BattlefieldCell> pathfinder;
+    private AIHelper helper;
 
     @Override
     public void initialize(AI<F> ai) {
@@ -69,7 +69,7 @@ public final class MoveNearEnemy<F extends ActiveFighter> implements ActionGener
     /**
      * Compute the cell cost for optimize the path finding
      */
-    private @Positive int cellCost(BattlefieldCell cell) {
+    private int cellCost(BattlefieldCell cell) {
         // Fix #94 : Some cells are not accessible, but walkable/targetable using teleport.
         // In this case the pathfinder will fail, so instead of ignoring unwalkable cells, simply set a very high cost,
         // which allows the AI to generate a path to an inaccessible cell without throws a PathException

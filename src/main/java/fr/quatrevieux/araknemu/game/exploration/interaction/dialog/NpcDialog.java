@@ -48,7 +48,7 @@ public final class NpcDialog implements Interaction {
     /**
      * Store the current dialog
      */
-    private @MonotonicNonNull Current current;
+    private Current current;
 
     public NpcDialog(ExplorationPlayer player, GameNpc npc) {
         this.player = player;
@@ -57,7 +57,7 @@ public final class NpcDialog implements Interaction {
 
     @Override
     @SuppressWarnings("methodref.return") // orElseGet(null) is not supported
-    public @Nullable Interaction start() {
+    public Interaction start() {
         return npc.question(player)
             .map(this::success)
             .orElseGet(this::error)
@@ -84,10 +84,8 @@ public final class NpcDialog implements Interaction {
      *
      * @throws IllegalArgumentException When invalid question id is given
      */
-    @Pure
-    @EnsuresNonNull({"current", "this.forQuestion(#1).current"})
     @SuppressWarnings("contracts.postcondition") // checker is so dumb...
-    public @This NpcDialog forQuestion(int id) {
+    public NpcDialog forQuestion(int id) {
         if (current == null || current.question.id() != id) {
             throw new IllegalArgumentException("Invalid question id");
         }
@@ -102,7 +100,6 @@ public final class NpcDialog implements Interaction {
      *
      * @throws NoSuchElementException When response is not available
      */
-    @RequiresNonNull("current")
     public void answer(int id) {
         for (Response response : current.responses) {
             if (response.id() == id) {
@@ -127,7 +124,7 @@ public final class NpcDialog implements Interaction {
     /**
      * Cannot start the dialog
      */
-    private @Nullable Interaction error() {
+    private Interaction error() {
         player.send(new DialogCreationError());
 
         return null;

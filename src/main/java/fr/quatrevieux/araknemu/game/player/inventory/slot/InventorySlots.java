@@ -54,7 +54,7 @@ public final class InventorySlots {
     /**
      * Get an inventory slot
      */
-    public InventorySlot get(@IntRange(from = -1, to = InventorySlots.SLOT_MAX) int id) throws InventoryException {
+    public InventorySlot get(int id) throws InventoryException {
         if (id == ItemEntry.DEFAULT_POSITION) {
             return defaultSlot;
         }
@@ -117,13 +117,13 @@ public final class InventorySlots {
     }
 
     private void initNullSlots() {
-        for (@IntRange(from = 15, to = UsableSlot.SLOT_ID_START) int i = 15; i < UsableSlot.SLOT_ID_START; ++i) {
+        for (int i = 15; i < UsableSlot.SLOT_ID_START; ++i) {
             add(new NullSlot(i)); // Add null slot for all unhandled slots
         }
     }
 
     private void initUsableSlots() {
-        for (@IntRange(from = UsableSlot.SLOT_ID_START, to = UsableSlot.SLOT_ID_END + 1) int i = UsableSlot.SLOT_ID_START; i <= UsableSlot.SLOT_ID_END; ++i) {
+        for (int i = UsableSlot.SLOT_ID_START; i <= UsableSlot.SLOT_ID_END; ++i) {
             add(new UsableSlot(storage, i));
         }
     }

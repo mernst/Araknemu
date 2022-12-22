@@ -44,7 +44,6 @@ class SaveInventoryChangeTest extends GameBaseCase {
     private ListenerAggregate dispatcher;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -53,12 +52,10 @@ class SaveInventoryChangeTest extends GameBaseCase {
         dispatcher.register(new SaveInventoryChange(container.get(InventoryService.class)));
     }
 
-    @Test
     void onObjectDeletedBadEntry() {
         dispatcher.dispatch(new ObjectDeleted(Mockito.mock(ItemEntry.class)));
     }
 
-    @Test
     void onObjectDeleted() throws ContainerException {
         PlayerItem entity;
         InventoryEntry entry = new InventoryEntry(
@@ -74,12 +71,10 @@ class SaveInventoryChangeTest extends GameBaseCase {
         assertFalse(container.get(PlayerItemRepository.class).has(entity));
     }
 
-    @Test
     void onObjectMovedBadEntry() {
         dispatcher.dispatch(new ObjectMoved(Mockito.mock(ItemEntry.class)));
     }
 
-    @Test
     void onObjectMoved() throws ContainerException {
         PlayerItem entity;
         InventoryEntry entry = new InventoryEntry(
@@ -96,12 +91,10 @@ class SaveInventoryChangeTest extends GameBaseCase {
         assertEquals(1, container.get(PlayerItemRepository.class).get(entity).position());
     }
 
-    @Test
     void onObjectQuantityChangedBadEntry() {
         dispatcher.dispatch(new ObjectQuantityChanged(Mockito.mock(ItemEntry.class)));
     }
 
-    @Test
     void onObjectQuantityChanged() throws ContainerException {
         PlayerItem entity;
         InventoryEntry entry = new InventoryEntry(
@@ -118,12 +111,10 @@ class SaveInventoryChangeTest extends GameBaseCase {
         assertEquals(10, container.get(PlayerItemRepository.class).get(entity).quantity());
     }
 
-    @Test
     void onObjectAddedBadEntry() {
         dispatcher.dispatch(new ObjectAdded(Mockito.mock(ItemEntry.class)));
     }
 
-    @Test
     void onObjectAdded() throws ContainerException {
         PlayerItem entity;
         InventoryEntry entry = new InventoryEntry(

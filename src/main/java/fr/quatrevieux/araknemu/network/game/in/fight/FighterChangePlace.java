@@ -33,14 +33,13 @@ import org.checkerframework.dataflow.qual.Pure;
  * https://github.com/Emudofus/Dofus/blob/1.29/dofus/aks/Game.as#L31
  */
 public final class FighterChangePlace implements Packet {
-    private final @NonNegative int cellId;
+    private final int cellId;
 
-    public FighterChangePlace(@NonNegative int cellId) {
+    public FighterChangePlace(int cellId) {
         this.cellId = cellId;
     }
 
-    @Pure
-    public @NonNegative int cellId() {
+    public int cellId() {
         return cellId;
     }
 
@@ -51,7 +50,7 @@ public final class FighterChangePlace implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "Gp";
         }
     }

@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AsserterTest {
-    @Test
     void assertPositive() {
         assertEquals(1, Asserter.assertPositive(1));
         assertEquals(123, Asserter.assertPositive(123));
@@ -34,7 +33,6 @@ class AsserterTest {
         assertThrows(IllegalArgumentException.class, () -> Asserter.assertPositive(-12));
     }
 
-    @Test
     void assertNonNegative() {
         assertEquals(0, Asserter.assertNonNegative(0));
         assertEquals(1, Asserter.assertNonNegative(1));
@@ -44,7 +42,6 @@ class AsserterTest {
         assertThrows(IllegalArgumentException.class, () -> Asserter.assertNonNegative(-12));
     }
 
-    @Test
     void assertNonNegativeWithLong() {
         assertEquals(0L, Asserter.assertNonNegative(0L));
         assertEquals(1L, Asserter.assertNonNegative(1L));
@@ -54,7 +51,6 @@ class AsserterTest {
         assertThrows(IllegalArgumentException.class, () -> Asserter.assertNonNegative(-12L));
     }
 
-    @Test
     void assertGTENegativeOne() {
         assertEquals(-1, Asserter.assertGTENegativeOne(-1));
         assertEquals(0, Asserter.assertGTENegativeOne(0));
@@ -64,7 +60,6 @@ class AsserterTest {
         assertThrows(IllegalArgumentException.class, () -> Asserter.assertGTENegativeOne(-12));
     }
 
-    @Test
     void assertPercent() {
         assertEquals(0, Asserter.assertPercent(0));
         assertEquals(1, Asserter.assertPercent(1));
@@ -77,7 +72,6 @@ class AsserterTest {
         assertThrows(IllegalArgumentException.class, () -> Asserter.assertPercent(125));
     }
 
-    @Test
     void assertIndexFor() {
         Object[] arr = new Object[10];
 
@@ -91,7 +85,6 @@ class AsserterTest {
         assertThrows(IndexOutOfBoundsException.class, () -> Asserter.assertIndexFor(arr, 100));
     }
 
-    @Test
     void casts() {
         assertEquals(5, Asserter.castPositive(5));
         assertEquals(5L, Asserter.castPositive(5L));

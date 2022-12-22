@@ -36,12 +36,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class EffectToWeaponMappingTest extends TestCase {
     private EffectToWeaponMapping mapping;
 
-    @BeforeEach
     void setUp() {
         mapping = new EffectToWeaponMapping();
     }
 
-    @Test
     void create() {
         assertEquals(
             new WeaponEffect(Effect.INFLICT_DAMAGE_NEUTRAL, 10, 15, 0),
@@ -49,7 +47,6 @@ class EffectToWeaponMappingTest extends TestCase {
         );
     }
 
-    @Test
     void createFromList() {
         List<WeaponEffect> effects = mapping.create(
             Arrays.asList(

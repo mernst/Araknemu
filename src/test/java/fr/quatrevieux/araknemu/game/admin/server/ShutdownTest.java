@@ -39,14 +39,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ShutdownTest extends CommandTestCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         command = new Shutdown(container.get(ShutdownService.class));
     }
 
-    @AfterEach
     @Override
     public void tearDown() throws ContainerException {
         container.get(ShutdownService.class).cancel();
@@ -54,20 +52,17 @@ class ShutdownTest extends CommandTestCase {
         super.tearDown();
     }
 
-    @Test
     void executeInvalidAction() {
         assertThrowsWithMessage(CommandException.class, "\"invalid\" is not a valid value for \"TIME\"", () -> execute("shutdown", "invalid"));
         assertThrowsWithMessage(CommandException.class, "Argument \"TIME\" is required", () -> execute("shutdown"));
     }
 
-    @Test
     void executeNow() throws SQLException, AdminException, InterruptedException {
         execute("shutdown", "now");
 
         assertFalse(app.started());
     }
 
-    @Test
     void executeIn() throws SQLException, AdminException {
         execute("shutdown", "in", "5m");
 
@@ -75,12 +70,10 @@ class ShutdownTest extends CommandTestCase {
         performer.logs.get(0).message.startsWith("Shutdown scheduled at");
     }
 
-    @Test
     void executeInMissingDelay() {
         assertThrowsWithMessage(CommandException.class, "Argument \"DURATION\" is required", () -> execute("shutdown", "in"));
     }
 
-    @Test
     void executeAt() throws SQLException, AdminException {
         execute("shutdown", "at", "22:45");
 
@@ -91,7 +84,6 @@ class ShutdownTest extends CommandTestCase {
         performer.logs.get(0).message.startsWith("Shutdown scheduled at");
     }
 
-    @Test
     void executeAtBeforeNowShouldBeScheduledNextDay() throws SQLException, AdminException {
         execute("shutdown", "at", "00:01");
 
@@ -103,19 +95,16 @@ class ShutdownTest extends CommandTestCase {
         performer.logs.get(0).message.startsWith("Shutdown scheduled at");
     }
 
-    @Test
     void executeAtMissingTime() {
         assertThrowsWithMessage(CommandException.class, "Argument \"TIME\" is required", () -> execute("shutdown", "at"));
     }
 
-    @Test
     void showNotScheduled() throws SQLException, AdminException {
         execute("shutdown", "show");
 
         assertError("No scheduled shutdown");
     }
 
-    @Test
     void showSuccess() throws SQLException, AdminException {
         container.get(ShutdownService.class).schedule(Duration.ofSeconds(10));
         execute("shutdown", "show");
@@ -123,7 +112,6 @@ class ShutdownTest extends CommandTestCase {
         performer.logs.get(0).message.startsWith("Shutdown scheduled at");
     }
 
-    @Test
     void cancelSuccess() throws SQLException, AdminException {
         container.get(ShutdownService.class).schedule(Duration.ofSeconds(10));
         execute("shutdown", "cancel");
@@ -132,14 +120,12 @@ class ShutdownTest extends CommandTestCase {
         assertSuccess("Shutdown has been cancelled");
     }
 
-    @Test
     void cancelNotScheduled() throws SQLException, AdminException {
         execute("shutdown", "cancel");
 
         assertError("No shutdown has been scheduled");
     }
 
-    @Test
     void help() {
         assertHelp(
             "shutdown - Stop the server",

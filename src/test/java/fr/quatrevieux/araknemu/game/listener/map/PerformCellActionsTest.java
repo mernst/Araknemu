@@ -46,7 +46,6 @@ class PerformCellActionsTest extends GameBaseCase {
     private ExplorationPlayer player;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -58,7 +57,6 @@ class PerformCellActionsTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onBasicCellDoNothing() {
         listener.on(new PlayerMoveFinished(player, map.get(456)));
 
@@ -66,7 +64,6 @@ class PerformCellActionsTest extends GameBaseCase {
         assertFalse(player.interactions().busy());
     }
 
-    @Test
     void onNonEmptyCell() throws SQLException, ContainerException {
         listener.on(new PlayerMoveFinished(player, map.get(120)));
 

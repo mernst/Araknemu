@@ -40,7 +40,6 @@ class GameExceptionConfiguratorTest extends GameBaseCase {
     private Logger logger;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -51,7 +50,6 @@ class GameExceptionConfiguratorTest extends GameBaseCase {
         configurator.configure(session, gameSession);
     }
 
-    @Test
     void exceptionCaughtCloseSession() {
         gameSession.exception(new CloseImmediately("my error"));
 
@@ -59,14 +57,12 @@ class GameExceptionConfiguratorTest extends GameBaseCase {
         Mockito.verify(logger).error(MarkerManager.getMarker("CLOSE_IMMEDIATELY"), "[{}] Session closed : {}", gameSession, "my error");
     }
 
-    @Test
     void exceptionCaughtWritePacket() {
         gameSession.exception(new ErrorPacket(new LoginTokenError()));
 
         requestStack.assertLast(new LoginTokenError());
     }
 
-    @Test
     void exceptionCaughtWritePacketWithCauseException() {
         gameSession.exception(new ErrorPacket(new LoginTokenError(), new Exception("My error")));
 
@@ -74,7 +70,6 @@ class GameExceptionConfiguratorTest extends GameBaseCase {
         Mockito.verify(logger).warn(MarkerManager.getMarker("ERROR_PACKET"), "[{}] Error packet caused by : {}", gameSession, "java.lang.Exception: My error");
     }
 
-    @Test
     void exceptionCaughtWriteAndClose() {
         gameSession.exception(new CloseWithPacket(new LoginTokenError()));
 
@@ -82,7 +77,6 @@ class GameExceptionConfiguratorTest extends GameBaseCase {
         assertFalse(session.isAlive());
     }
 
-    @Test
     void exceptionCaughtRateLimit() {
         gameSession.exception(new RateLimitException());
 

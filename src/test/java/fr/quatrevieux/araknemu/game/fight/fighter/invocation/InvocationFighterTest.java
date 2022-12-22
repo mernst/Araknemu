@@ -63,7 +63,6 @@ class InvocationFighterTest extends FightBaseCase {
     private Fight fight;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -81,7 +80,6 @@ class InvocationFighterTest extends FightBaseCase {
         fighter = new InvocationFighter(-5, service.load(36).get(1), team, player.fighter());
     }
 
-    @Test
     void values() {
         assertSame(team, fighter.team());
         assertEquals(-5, fighter.id());
@@ -98,7 +96,6 @@ class InvocationFighterTest extends FightBaseCase {
         assertTrue(fighter.invoked());
     }
 
-    @Test
     void equals() throws SQLException {
         assertEquals(fighter, fighter);
         assertEquals(fighter.hashCode(), fighter.hashCode());
@@ -113,7 +110,6 @@ class InvocationFighterTest extends FightBaseCase {
         assertNotEquals(fighter, other);
     }
 
-    @Test
     void attachments() {
         fighter.attach("key", 42);
         assertSame(42, fighter.attachment("key"));
@@ -124,7 +120,6 @@ class InvocationFighterTest extends FightBaseCase {
         assertSame(launchedSpells, fighter.attachment(LaunchedSpells.class));
     }
 
-    @Test
     void orientation() {
         assertEquals(Direction.SOUTH_EAST, fighter.orientation());
 
@@ -132,7 +127,6 @@ class InvocationFighterTest extends FightBaseCase {
         assertEquals(Direction.NORTH_EAST, fighter.orientation());
     }
 
-    @Test
     void init() throws Exception {
         Fight fight = createFight();
 
@@ -145,7 +139,6 @@ class InvocationFighterTest extends FightBaseCase {
         assertSame(fighter, ref.get().fighter());
     }
 
-    @Test
     void dead() throws Exception {
         Fight fight = createFight();
 
@@ -158,7 +151,6 @@ class InvocationFighterTest extends FightBaseCase {
         assertTrue(fighter.dead());
     }
 
-    @Test
     void joinFight() throws Exception {
         Fight fight = createFight();
 
@@ -172,7 +164,6 @@ class InvocationFighterTest extends FightBaseCase {
         assertTrue(fighter.isOnFight());
     }
 
-    @Test
     void joinFightAlreadyJoinedShouldRaisedException() throws Exception {
         Fight fight = createFight();
 
@@ -180,7 +171,6 @@ class InvocationFighterTest extends FightBaseCase {
         assertThrows(IllegalStateException.class, () -> fighter.joinFight(fight, fight.map().get(123)));
     }
 
-    @Test
     void sprite() throws Exception {
         Fight fight = createFight();
         fighter.joinFight(fight, fight.map().get(123));
@@ -189,7 +179,6 @@ class InvocationFighterTest extends FightBaseCase {
         assertEquals("123;1;0;-5;36;-2;1566^100;1;-1;-1;-1;0,0,0,0;45;5;3;25;0;-12;6;-50;15;15;0", fighter.sprite().toString());
     }
 
-    @Test
     void moveFirstTime() throws Exception {
         Fight fight = createFight();
 
@@ -199,7 +188,6 @@ class InvocationFighterTest extends FightBaseCase {
         assertSame(fighter, fight.map().get(123).fighter());
     }
 
-    @Test
     void moveWillLeaveLastCell() throws Exception {
         Fight fight = createFight();
 
@@ -212,7 +200,6 @@ class InvocationFighterTest extends FightBaseCase {
         assertFalse(fight.map().get(123).hasFighter());
     }
 
-    @Test
     void moveRemoveCell() throws Exception {
         Fight fight = createFight();
 
@@ -223,12 +210,10 @@ class InvocationFighterTest extends FightBaseCase {
         assertFalse(fight.map().get(123).hasFighter());
     }
 
-    @Test
     void spells() {
         assertIterableEquals(fighter.spells(), container.get(MonsterService.class).load(36).all().get(0).spells());
     }
 
-    @Test
     void dispatcher() {
         Object event = new Object();
 
@@ -240,7 +225,6 @@ class InvocationFighterTest extends FightBaseCase {
         assertSame(event, ref.get());
     }
 
-    @Test
     void playStop() throws Exception {
         Fight fight = createFight();
         fighter.joinFight(fight, fight.map().get(123));
@@ -267,7 +251,6 @@ class InvocationFighterTest extends FightBaseCase {
         assertThrows(FightException.class, () -> fighter.turn());
     }
 
-    @Test
     void apply() {
         FighterOperation operation = Mockito.mock(FighterOperation.class);
 
@@ -275,7 +258,6 @@ class InvocationFighterTest extends FightBaseCase {
         Mockito.verify(operation).onInvocation(fighter);
     }
 
-    @Test
     void hidden() throws Exception {
         Fight fight = createFight();
         fighter.joinFight(fight, fight.map().get(123));

@@ -56,7 +56,6 @@ class StealCharacteristicHandlerTest extends FightBaseCase {
     private StealCharacteristicHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -74,7 +73,6 @@ class StealCharacteristicHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handle() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -89,7 +87,6 @@ class StealCharacteristicHandlerTest extends FightBaseCase {
         assertThrows(UnsupportedOperationException.class, () -> handler.handle(scope, scope.effects().get(0)));
     }
 
-    @Test
     void buffSingleTarget() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -135,7 +132,6 @@ class StealCharacteristicHandlerTest extends FightBaseCase {
         assertEquals(0, target.characteristics().get(Characteristic.LUCK));
     }
 
-    @Test
     void buffSingleTargetMaximized() {
         target.buffs().add(new Buff(Mockito.mock(SpellEffect.class), Mockito.mock(Spell.class), target, target, new BuffHook() {
             @Override
@@ -186,7 +182,6 @@ class StealCharacteristicHandlerTest extends FightBaseCase {
         assertEquals(0, target.characteristics().get(Characteristic.LUCK));
     }
 
-    @Test
     void buffNotTargetShouldDoNothing() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -215,7 +210,6 @@ class StealCharacteristicHandlerTest extends FightBaseCase {
         assertEquals(0, caster.characteristics().get(Characteristic.LUCK));
     }
 
-    @Test
     void buffMultipleTargets() {
         fight = fightBuilder()
             .addSelf(fb -> fb.cell(384))

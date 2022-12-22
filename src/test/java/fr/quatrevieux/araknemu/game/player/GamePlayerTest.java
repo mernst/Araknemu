@@ -62,7 +62,6 @@ class GamePlayerTest extends GameBaseCase {
     private Player entity;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -97,26 +96,22 @@ class GamePlayerTest extends GameBaseCase {
         );
     }
 
-    @Test
     void send() {
         player.send("test");
 
         requestStack.assertLast("test");
     }
 
-    @Test
     void characteristics() {
         assertEquals(150, player.properties().characteristics().get(Characteristic.INTELLIGENCE));
         assertEquals(3, player.properties().characteristics().get(Characteristic.MOVEMENT_POINT));
         assertEquals(6, player.properties().characteristics().get(Characteristic.ACTION_POINT));
     }
 
-    @Test
     void position() {
         assertEquals(new Position(10300, 308), player.position());
     }
 
-    @Test
     void isExploring() {
         assertFalse(player.isExploring());
 
@@ -127,7 +122,6 @@ class GamePlayerTest extends GameBaseCase {
         assertTrue(player.isExploring());
     }
 
-    @Test
     void stopExploringSuccess() {
         ExplorationPlayer exploration = new ExplorationPlayer(player);
         player.start(exploration);
@@ -138,7 +132,6 @@ class GamePlayerTest extends GameBaseCase {
         assertSame(player, player.scope());
     }
 
-    @Test
     void stopExploringWithFightSession() {
         ExplorationPlayer exploration = new ExplorationPlayer(player);
         player.start(exploration);
@@ -151,12 +144,10 @@ class GamePlayerTest extends GameBaseCase {
         assertSame(player.fighter(), player.scope());
     }
 
-    @Test
     void explorationNotExploring() {
         assertThrows(IllegalStateException.class, () -> player.exploration(), "The current player is not an exploration state");
     }
 
-    @Test
     void exploration() {
         ExplorationPlayer exploration = new ExplorationPlayer(player);
         player.start(exploration);
@@ -164,7 +155,6 @@ class GamePlayerTest extends GameBaseCase {
         assertSame(session.exploration(), player.exploration());
     }
 
-    @Test
     void isFighting() {
         assertFalse(player.isFighting());
 
@@ -173,7 +163,6 @@ class GamePlayerTest extends GameBaseCase {
         assertTrue(player.isFighting());
     }
 
-    @Test
     void spectator() {
         assertFalse(player.isSpectator());
 
@@ -185,7 +174,6 @@ class GamePlayerTest extends GameBaseCase {
         assertSame(spectator, player.spectator());
     }
 
-    @Test
     void startAlreadyOnScope() {
         PlayerFighter fighter = new PlayerFighter(player);
         player.start(fighter);
@@ -193,7 +181,6 @@ class GamePlayerTest extends GameBaseCase {
         assertThrows(IllegalStateException.class, () -> player.start(fighter));
     }
 
-    @Test
     void attachFighter() {
         PlayerFighter fighter = new PlayerFighter(player);
         player.start(fighter);
@@ -203,12 +190,10 @@ class GamePlayerTest extends GameBaseCase {
         assertSame(fighter, player.scope());
     }
 
-    @Test
     void fighterNotInFight() {
         assertThrows(IllegalStateException.class, () -> player.fighter());
     }
 
-    @Test
     void stopFighting() {
         PlayerFighter fighter = new PlayerFighter(player);
         player.start(fighter);
@@ -219,7 +204,6 @@ class GamePlayerTest extends GameBaseCase {
         assertSame(player, player.scope());
     }
 
-    @Test
     void registerUnregister() {
         assertNull(session.player());
 
@@ -230,7 +214,6 @@ class GamePlayerTest extends GameBaseCase {
         assertNull(session.player());
     }
 
-    @RepeatedIfExceptionsTest
     void save() throws Exception {
         player.setPosition(
             new Position(7894, 12)
@@ -248,7 +231,6 @@ class GamePlayerTest extends GameBaseCase {
         assertBetween(6, 8, dataSet.refresh(entity).life());
     }
 
-    @Test
     void life() {
         assertInstanceOf(PlayerLife.class, player.properties().life());
         assertEquals(345, player.properties().life().current());
@@ -258,14 +240,12 @@ class GamePlayerTest extends GameBaseCase {
         assertEquals(10, player.properties().life().current());
     }
 
-    @Test
     void restrictionsDefaults() {
         assertTrue(player.restrictions().canMoveAllDirections());
         assertFalse(player.restrictions().canBeMerchant());
         assertTrue(player.restrictions().canExchange());
     }
 
-    @Test
     void savedPosition() {
         assertEquals(new Position(10300, 308), player.savedPosition());
 
@@ -273,7 +253,6 @@ class GamePlayerTest extends GameBaseCase {
         assertEquals(new Position(10340, 255), player.savedPosition());
     }
 
-    @Test
     void isNew() {
         dataSet.use(ConnectionLog.class);
         session.attach(player.account());

@@ -33,7 +33,7 @@ public interface MapTemplateRepository extends Repository<MapTemplate> {
     /**
      * Get a map by its id
      */
-    public MapTemplate get(@NonNegative int id);
+    public MapTemplate get(int id);
 
     /**
      * Find maps matching with given geolocation

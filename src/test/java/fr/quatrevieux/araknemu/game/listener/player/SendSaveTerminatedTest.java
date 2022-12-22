@@ -30,7 +30,6 @@ class SendSaveTerminatedTest extends GameBaseCase {
     private SendSaveTerminated listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -38,7 +37,6 @@ class SendSaveTerminatedTest extends GameBaseCase {
         listener = new SendSaveTerminated(container.get(PlayerService.class));
     }
 
-    @Test
     void onGameSaved() {
         listener.on(new GameSaved());
 

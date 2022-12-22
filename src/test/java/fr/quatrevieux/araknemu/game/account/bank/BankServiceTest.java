@@ -37,7 +37,6 @@ class BankServiceTest extends GameBaseCase {
     private BankService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -55,7 +54,6 @@ class BankServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void loadNotExists() throws SQLException {
         Bank bank = service.load(explorationPlayer().account());
 
@@ -63,7 +61,6 @@ class BankServiceTest extends GameBaseCase {
         assertEquals(0, bank.stream().count());
     }
 
-    @Test
     void loadExists() throws SQLException {
         Bank bank = service.load(explorationPlayer().account());
 
@@ -84,7 +81,6 @@ class BankServiceTest extends GameBaseCase {
         assertEquals(1, bank.get(2).quantity());
     }
 
-    @Test
     void loadItems() throws SQLException {
         Bank bank = service.load(explorationPlayer().account());
 
@@ -102,12 +98,10 @@ class BankServiceTest extends GameBaseCase {
         assertEquals(1, items.get(1).quantity());
     }
 
-    @Test
     void costEmpty() throws SQLException {
         assertEquals(0, service.cost(explorationPlayer().account()));
     }
 
-    @Test
     void costNotEmpty() throws SQLException {
         Bank bank = service.load(explorationPlayer().account());
 

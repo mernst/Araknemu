@@ -33,7 +33,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class MoveToBoostTest extends AiBaseCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -41,12 +40,10 @@ class MoveToBoostTest extends AiBaseCase {
         dataSet.pushFunctionalSpells();
     }
 
-    @Test
     void generateNotInitialized() {
         assertFalse(action.generate(Mockito.mock(AI.class), Mockito.mock(AiActionFactory.class)).isPresent());
     }
 
-    @Test
     void success() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(298).spell(126))
@@ -59,7 +56,6 @@ class MoveToBoostTest extends AiBaseCase {
         assertEquals(313, fighter.cell().id());
     }
 
-    @Test
     void alreadyOnValidCell() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(313).spell(126))
@@ -70,7 +66,6 @@ class MoveToBoostTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void noMP() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(298).spell(126))
@@ -83,7 +78,6 @@ class MoveToBoostTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void noAP() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(298).spell(126))
@@ -96,7 +90,6 @@ class MoveToBoostTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void noEnoughAP() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(298).spell(126))
@@ -109,7 +102,6 @@ class MoveToBoostTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void shouldNotMoveIfBlockedByOtherFighters() throws NoSuchFieldException, IllegalAccessException {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(298).spell(126))
@@ -122,7 +114,6 @@ class MoveToBoostTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void shouldMoveIfCanBoostDespiteEnemyOnAdjacentCell() throws NoSuchFieldException, IllegalAccessException {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(342).spell(27).charac(Characteristic.AGILITY, 100))

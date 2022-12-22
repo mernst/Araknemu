@@ -26,7 +26,6 @@ import java.util.NoSuchElementException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ChannelTypeTest {
-    @Test
     void byChar() {
         assertSame(ChannelType.ADMIN, ChannelType.byChar('@'));
         assertSame(ChannelType.PRIVATE, ChannelType.byChar('p'));

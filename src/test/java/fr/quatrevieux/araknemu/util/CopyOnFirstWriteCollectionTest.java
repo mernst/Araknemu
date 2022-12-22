@@ -28,7 +28,6 @@ import java.util.HashSet;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CopyOnFirstWriteCollectionTest {
-    @Test
     void empty() {
         CopyOnFirstWriteCollection collection = new CopyOnFirstWriteCollection(new ArrayList());
 
@@ -41,7 +40,6 @@ class CopyOnFirstWriteCollectionTest {
         assertTrue(collection.isEmpty());
     }
 
-    @Test
     void read() {
         CopyOnFirstWriteCollection<Integer> collection = new CopyOnFirstWriteCollection<>(Arrays.asList(1, 2, 3));
 
@@ -55,7 +53,6 @@ class CopyOnFirstWriteCollectionTest {
         assertArrayEquals(new Object[] {1, 2, 3}, collection.stream().toArray());
     }
 
-    @Test
     void write() {
         CopyOnFirstWriteCollection<Integer> collection = new CopyOnFirstWriteCollection<>(Arrays.asList(1, 2, 3));
 
@@ -85,7 +82,6 @@ class CopyOnFirstWriteCollectionTest {
         assertArrayEquals(new Object[] {1, 8}, collection.stream().toArray());
     }
 
-    @Test
     void clearNotEmptyAndNotCopied() {
         CopyOnFirstWriteCollection<Integer> collection = new CopyOnFirstWriteCollection<>(Arrays.asList(1, 2, 3));
 
@@ -94,7 +90,6 @@ class CopyOnFirstWriteCollectionTest {
         assertTrue(collection.isEmpty());
     }
 
-    @Test
     void clearNotEmptyCopied() {
         CopyOnFirstWriteCollection<Integer> collection = new CopyOnFirstWriteCollection<>(Arrays.asList(1, 2, 3));
         collection.add(4);
@@ -104,7 +99,6 @@ class CopyOnFirstWriteCollectionTest {
         assertTrue(collection.isEmpty());
     }
 
-    @Test
     void customCollectionFactory() {
         CopyOnFirstWriteCollection<Integer> collection = new CopyOnFirstWriteCollection<>(
             Arrays.asList(1, 2, 3),

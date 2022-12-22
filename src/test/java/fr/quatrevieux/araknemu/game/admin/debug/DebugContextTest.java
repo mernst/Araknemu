@@ -32,7 +32,6 @@ class DebugContextTest extends GameBaseCase {
     private DebugContext context;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,7 +48,6 @@ class DebugContextTest extends GameBaseCase {
         );
     }
 
-    @Test
     void commands() throws CommandNotFoundException {
         assertInstanceOf(FightPos.class, context.command("fightpos"));
 

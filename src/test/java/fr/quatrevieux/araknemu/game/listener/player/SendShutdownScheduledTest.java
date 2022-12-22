@@ -33,14 +33,12 @@ class SendShutdownScheduledTest extends GameBaseCase {
     private SendShutdownScheduled listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         listener = new SendShutdownScheduled(container.get(PlayerService.class));
     }
 
-    @Test
     void onShutdownScheduled() throws SQLException {
         gamePlayer(true);
         listener.on(new ShutdownScheduled(Duration.ofMinutes(10)));

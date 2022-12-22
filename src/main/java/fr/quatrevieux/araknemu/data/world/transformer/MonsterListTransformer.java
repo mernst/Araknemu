@@ -53,12 +53,12 @@ import java.util.List;
  */
 public final class MonsterListTransformer implements Transformer<List<MonsterGroupData.Monster>> {
     @Override
-    public @PolyNull String serialize(@PolyNull List<MonsterGroupData.Monster> value) {
+    public String serialize(List<MonsterGroupData.Monster> value) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public @NonNull List<MonsterGroupData.Monster> unserialize(@PolyNull String serialize) throws TransformerException {
+    public List<MonsterGroupData.Monster> unserialize(String serialize) throws TransformerException {
         if (serialize == null || serialize.isEmpty()) {
             throw new IllegalArgumentException("Monster list cannot be empty");
         }

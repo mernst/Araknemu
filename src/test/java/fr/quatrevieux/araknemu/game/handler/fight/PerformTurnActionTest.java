@@ -39,7 +39,6 @@ class PerformTurnActionTest extends FightBaseCase {
     private PerformTurnAction handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -52,7 +51,6 @@ class PerformTurnActionTest extends FightBaseCase {
         fighter.move(fight.map().get(185));
     }
 
-    @Test
     void moveSuccess() throws Exception {
         FightTurn turn = new FightTurn(fighter, fight, Duration.ofSeconds(30));
         turn.start();
@@ -67,7 +65,6 @@ class PerformTurnActionTest extends FightBaseCase {
         );
     }
 
-    @Test
     void moveInvalid() throws Exception {
         FightTurn turn = new FightTurn(fighter, fight, Duration.ofSeconds(30));
         turn.start();
@@ -84,7 +81,6 @@ class PerformTurnActionTest extends FightBaseCase {
         }
     }
 
-    @Test
     void notActiveTurn() throws Exception {
         try {
             handler.handle(session, new GameActionRequest(1, new String[]{"ddvedg"}));

@@ -43,7 +43,6 @@ class ValidateWalkableTest extends GameBaseCase {
     private ExplorationMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -53,7 +52,6 @@ class ValidateWalkableTest extends GameBaseCase {
         validator = new ValidateWalkable();
     }
 
-    @Test
     void onPlayerMovingWithNonWalkableCell() throws SQLException, ContainerException {
         ExplorationPlayer player = explorationPlayer();
 
@@ -74,7 +72,6 @@ class ValidateWalkableTest extends GameBaseCase {
         assertEquals(1, path.size());
     }
 
-    @Test
     void onPlayerMovingWithValidPath() throws SQLException, ContainerException, PathException {
         ExplorationPlayer player = explorationPlayer();
 

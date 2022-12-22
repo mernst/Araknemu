@@ -39,7 +39,6 @@ class SendTeamFighterAddedTest extends FightBaseCase {
     private PlayerFighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -56,7 +55,6 @@ class SendTeamFighterAddedTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onFighterAdded() {
         fighter.setTeam(fight.team(0));
 

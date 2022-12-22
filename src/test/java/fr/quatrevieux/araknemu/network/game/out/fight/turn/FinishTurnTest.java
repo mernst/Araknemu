@@ -34,7 +34,6 @@ class FinishTurnTest extends FightBaseCase {
     private FightTurn turn;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -42,7 +41,6 @@ class FinishTurnTest extends FightBaseCase {
         turn = new FightTurn(player.fighter(), fight, Duration.ofMillis(10));
     }
 
-    @Test
     void generate() {
         assertEquals(
             "GTF1",

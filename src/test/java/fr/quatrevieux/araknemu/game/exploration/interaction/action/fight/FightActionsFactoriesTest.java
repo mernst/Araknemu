@@ -41,7 +41,6 @@ class FightActionsFactoriesTest extends FightBaseCase {
     private ExplorationActionRegistry factory;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -50,7 +49,6 @@ class FightActionsFactoriesTest extends FightBaseCase {
         dataSet.pushMaps().pushSubAreas().pushAreas();
     }
 
-    @Test
     void joinFight() throws Exception {
         ExplorationPlayer player = explorationPlayer();
 
@@ -64,7 +62,6 @@ class FightActionsFactoriesTest extends FightBaseCase {
         assertInstanceOf(JoinFight.class, action);
     }
 
-    @Test
     void joinFightNotOnMap() throws Exception {
         ExplorationPlayer player = explorationPlayer();
         player.leave();
@@ -76,7 +73,6 @@ class FightActionsFactoriesTest extends FightBaseCase {
         assertThrows(IllegalArgumentException.class, () -> factory.create(player, ActionType.JOIN_FIGHT, new String[] {fight.id() + "", fight.team(0).id() + ""}));
     }
 
-    @Test
     void joinFightAsSpectator() throws Exception {
         ExplorationPlayer player = explorationPlayer();
 
@@ -91,7 +87,6 @@ class FightActionsFactoriesTest extends FightBaseCase {
         assertInstanceOf(JoinFightAsSpectator.class, action);
     }
 
-    @Test
     void joinFightAsSpectatorNotOnMap() throws Exception {
         ExplorationPlayer player = explorationPlayer();
         player.leave();
@@ -104,7 +99,6 @@ class FightActionsFactoriesTest extends FightBaseCase {
         assertThrows(IllegalArgumentException.class, () -> factory.create(player, ActionType.JOIN_FIGHT, new String[] {fight.id() + ""}));
     }
 
-    @Test
     void joinMissingFightId() throws Exception {
         ExplorationPlayer player = explorationPlayer();
 

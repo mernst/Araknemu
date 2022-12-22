@@ -27,7 +27,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class WeaponEffectTest extends TestCase {
-    @Test
     void getters() {
         WeaponEffect effect = new WeaponEffect(Effect.INFLICT_DAMAGE_NEUTRAL, 1, 2, 3);
 
@@ -37,14 +36,12 @@ class WeaponEffectTest extends TestCase {
         assertEquals(3, effect.extra());
     }
 
-    @Test
     void equalsSameInstance() {
         WeaponEffect effect = new WeaponEffect(Effect.INFLICT_DAMAGE_NEUTRAL, 1, 2, 3);
 
         assertEquals(effect, effect);
     }
 
-    @Test
     void equalsNotSame() {
         assertEquals(
             new WeaponEffect(Effect.INFLICT_DAMAGE_NEUTRAL, 1, 2, 3),
@@ -52,12 +49,10 @@ class WeaponEffectTest extends TestCase {
         );
     }
 
-    @Test
     void equalsBadClass() {
         assertNotEquals(new WeaponEffect(Effect.INFLICT_DAMAGE_NEUTRAL, 1, 2, 3), new Object());
     }
 
-    @Test
     void equalsBadEffect() {
         assertNotEquals(
             new WeaponEffect(Effect.INFLICT_DAMAGE_NEUTRAL, 1, 2, 3),
@@ -65,7 +60,6 @@ class WeaponEffectTest extends TestCase {
         );
     }
 
-    @Test
     void equalsBadMin() {
         assertNotEquals(
             new WeaponEffect(Effect.INFLICT_DAMAGE_NEUTRAL, 1, 2, 3),
@@ -73,7 +67,6 @@ class WeaponEffectTest extends TestCase {
         );
     }
 
-    @Test
     void equalsBadMax() {
         assertNotEquals(
             new WeaponEffect(Effect.INFLICT_DAMAGE_NEUTRAL, 1, 2, 3),
@@ -81,7 +74,6 @@ class WeaponEffectTest extends TestCase {
         );
     }
 
-    @Test
     void equalsBadExtra() {
         assertNotEquals(
             new WeaponEffect(Effect.INFLICT_DAMAGE_NEUTRAL, 1, 2, 3),
@@ -89,7 +81,6 @@ class WeaponEffectTest extends TestCase {
         );
     }
 
-    @Test
     void hashCodeEquals() {
         assertEquals(
             new WeaponEffect(Effect.INFLICT_DAMAGE_NEUTRAL, 1, 2, 3).hashCode(),
@@ -97,7 +88,6 @@ class WeaponEffectTest extends TestCase {
         );
     }
 
-    @Test
     void hashCodeNotEquals() {
         assertNotEquals(
             new WeaponEffect(Effect.INFLICT_DAMAGE_NEUTRAL, 1, 2, 3).hashCode(),
@@ -105,7 +95,6 @@ class WeaponEffectTest extends TestCase {
         );
     }
 
-    @Test
     void debugString() {
         assertEquals(
             "WeaponEffect{INFLICT_DAMAGE_EARTH:1, 2, 3}",
@@ -113,7 +102,6 @@ class WeaponEffectTest extends TestCase {
         );
     }
 
-    @Test
     void toTemplate() {
         ItemTemplateEffectEntry template = new WeaponEffect(Effect.INFLICT_DAMAGE_NEUTRAL, 1, 2, 3).toTemplate();
 

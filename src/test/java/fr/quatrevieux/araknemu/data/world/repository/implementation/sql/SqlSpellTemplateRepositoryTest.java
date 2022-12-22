@@ -33,7 +33,6 @@ class SqlSpellTemplateRepositoryTest extends GameBaseCase {
     private SqlSpellTemplateRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -45,12 +44,10 @@ class SqlSpellTemplateRepositoryTest extends GameBaseCase {
         );
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(-5));
     }
 
-    @Test
     void getById() {
         SpellTemplate spell = repository.get(2);
 
@@ -62,7 +59,6 @@ class SqlSpellTemplateRepositoryTest extends GameBaseCase {
         assertArrayEquals(new int[0], spell.targets());
     }
 
-    @Test
     void getByTemplate() {
         SpellTemplate spell = repository.get(new SpellTemplate(2, null, 0, null, null, null));
 
@@ -74,13 +70,11 @@ class SqlSpellTemplateRepositoryTest extends GameBaseCase {
         assertArrayEquals(new int[0], spell.targets());
     }
 
-    @Test
     void has() {
         assertTrue(repository.has(new SpellTemplate(3, null, 0, null, null, null)));
         assertFalse(repository.has(new SpellTemplate(-3, null, 0, null, null, null)));
     }
 
-    @Test
     void load() {
         assertCount(5, repository.load());
     }

@@ -34,7 +34,6 @@ class SqlPlayerExperienceRepositoryTest extends GameBaseCase {
     private SqlPlayerExperienceRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -43,12 +42,10 @@ class SqlPlayerExperienceRepositoryTest extends GameBaseCase {
         repository = new SqlPlayerExperienceRepository(new ConnectionPoolExecutor(app.database().get("game")));
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(new PlayerExperience(741, 0)));
     }
 
-    @Test
     void getFound() {
         PlayerExperience xp = repository.get(new PlayerExperience(12, 0));
 
@@ -56,13 +53,11 @@ class SqlPlayerExperienceRepositoryTest extends GameBaseCase {
         assertEquals(32600, xp.experience());
     }
 
-    @Test
     void has() {
         assertTrue(repository.has(new PlayerExperience(150, 0)));
         assertFalse(repository.has(new PlayerExperience(256, 0)));
     }
 
-    @Test
     void all() {
         List<PlayerExperience> levels = repository.all();
 

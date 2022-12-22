@@ -37,7 +37,6 @@ class AddCharacteristicEffectTest extends GameBaseCase {
     private AddCharacteristicEffect effect;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -48,7 +47,6 @@ class AddCharacteristicEffectTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void applyFixedValue() {
         effect.apply(new UseEffect(null, Effect.ADD_CHARACT_WISDOM, new int[] {2, 0, 0}), player);
 
@@ -58,7 +56,6 @@ class AddCharacteristicEffectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void applyRandomValue() {
         effect.apply(new UseEffect(null, Effect.ADD_CHARACT_WISDOM, new int[] {1, 10, 0}), player);
 
@@ -72,7 +69,6 @@ class AddCharacteristicEffectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void applyNoMessage() {
         effect = new AddCharacteristicEffect(Characteristic.RESISTANCE_ACTION_POINT);
         effect.apply(new UseEffect(null, Effect.ADD_CHARACT_WISDOM, new int[] {10, 0, 0}), player);
@@ -84,7 +80,6 @@ class AddCharacteristicEffectTest extends GameBaseCase {
         );
     }
 
-    @Test
     void check() {
         assertTrue(effect.check(new UseEffect(null, Effect.ADD_CHARACT_WISDOM, new int[] {2, 0, 0}), player));
         assertFalse(effect.checkTarget(new UseEffect(null, Effect.ADD_CHARACT_WISDOM, new int[] {2, 0, 0}), player, null, null));

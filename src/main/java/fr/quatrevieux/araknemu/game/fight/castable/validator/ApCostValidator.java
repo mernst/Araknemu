@@ -35,7 +35,7 @@ public final class ApCostValidator implements CastConstraintValidator {
     }
 
     @Override
-    public @Nullable Error validate(Turn turn, Castable castable, BattlefieldCell target) {
+    public Error validate(Turn turn, Castable castable, BattlefieldCell target) {
         return check(turn, castable, target)
             ? null
             : Error.cantCastNotEnoughActionPoints(turn.points().actionPoints(), castable.apCost())

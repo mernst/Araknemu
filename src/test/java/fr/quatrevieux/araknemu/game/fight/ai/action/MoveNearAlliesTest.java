@@ -28,14 +28,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MoveNearAlliesTest extends AiBaseCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         action = new MoveNearAllies();
     }
 
-    @Test
     void success() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122))
@@ -53,7 +51,6 @@ class MoveNearAlliesTest extends AiBaseCase {
         assertEquals(3, distance(getAlly(1)));
     }
 
-    @Test
     void shouldMoveNearNearestAlly() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(284))
@@ -74,7 +71,6 @@ class MoveNearAlliesTest extends AiBaseCase {
         assertEquals(2, distance(getAlly(2)));
     }
 
-    @Test
     void shouldFavorBestAverageDistance() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(298))
@@ -98,7 +94,6 @@ class MoveNearAlliesTest extends AiBaseCase {
         assertEquals(3, distance(getAlly(3)));
     }
 
-    @Test
     void noMP() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(122))
@@ -111,7 +106,6 @@ class MoveNearAlliesTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void blocked() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(384))
@@ -122,7 +116,6 @@ class MoveNearAlliesTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void noAllies() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(384))
@@ -132,7 +125,6 @@ class MoveNearAlliesTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void alreadyNearAlly() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(356))
@@ -143,7 +135,6 @@ class MoveNearAlliesTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void shouldNotMoveIfBlockAlly() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(143))
@@ -154,7 +145,6 @@ class MoveNearAlliesTest extends AiBaseCase {
         assertDotNotGenerateAction();
     }
 
-    @Test
     void shouldNotMoveToCellWhichCanBlockAlly() {
         configureFight(fb -> fb
             .addSelf(builder -> builder.cell(142))

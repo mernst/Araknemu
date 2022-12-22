@@ -35,7 +35,6 @@ class LeaveExplorationForFightTest extends FightBaseCase {
     private ExplorationPlayer player;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -46,7 +45,6 @@ class LeaveExplorationForFightTest extends FightBaseCase {
         listener = new LeaveExplorationForFight(player);
     }
 
-    @Test
     void onFightJoined() throws Exception {
         ExplorationMap map = player.map();
 

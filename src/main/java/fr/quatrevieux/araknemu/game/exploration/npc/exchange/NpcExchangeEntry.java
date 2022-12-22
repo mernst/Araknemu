@@ -45,11 +45,11 @@ public final class NpcExchangeEntry {
     /** Null instance for an exchange entry */
     public static final NpcExchangeEntry NULL_ENTRY = new NpcExchangeEntry(null, new NpcExchange(-1, -1, 0, Collections.emptyMap(), 0, Collections.emptyMap()), Collections.emptyMap());
 
-    private final @Nullable ItemService itemService;
+    private final ItemService itemService;
     private final NpcExchange entity;
-    private final Map<ItemTemplate, @Positive Integer> templatesAndQuantity;
+    private final Map<ItemTemplate, Integer> templatesAndQuantity;
 
-    public NpcExchangeEntry(@Nullable ItemService itemService, NpcExchange entity, Map<ItemTemplate, @Positive Integer> templatesAndQuantity) {
+    public NpcExchangeEntry(ItemService itemService, NpcExchange entity, Map<ItemTemplate, Integer> templatesAndQuantity) {
         this.itemService = itemService;
         this.entity = entity;
         this.templatesAndQuantity = templatesAndQuantity;
@@ -63,8 +63,6 @@ public final class NpcExchangeEntry {
      *
      * @return true if match
      */
-    @Pure
-    @EnsuresNonNullIf(expression = "itemService", result = true)
     public boolean match(Map<Integer, Integer> items, long kamas) {
         return valid() && entity.requiredKamas() == kamas && entity.requiredItems().equals(items);
     }
@@ -72,17 +70,15 @@ public final class NpcExchangeEntry {
     /**
      * Get the exchanged item templates associated with quantity
      */
-    @Pure
     @SuppressWarnings("return") // Cast from Set to Collection trigger an error
-    public Collection<Map.Entry<ItemTemplate, @Positive Integer>> items() {
+    public Collection<Map.Entry<ItemTemplate, Integer>> items() {
         return templatesAndQuantity.entrySet();
     }
 
     /**
      * Get the exchanged kamas
      */
-    @Pure
-    public @NonNegative long kamas() {
+    public long kamas() {
         return entity.exchangedKamas();
     }
 
@@ -91,9 +87,8 @@ public final class NpcExchangeEntry {
      *
      * @return The items associated with the generated quantity
      */
-    @RequiresNonNull("itemService")
-    public Map<Item, @Positive Integer> generate() {
-        final Map<Item, @Positive Integer> items = new HashMap<>();
+    public Map<Item, Integer> generate() {
+        final Map<Item, Integer> items = new HashMap<>();
 
         templatesAndQuantity.forEach((template, quantity) -> items.putAll(NullnessUtil.castNonNull(itemService).createBulk(template, quantity)));
 
@@ -103,8 +98,6 @@ public final class NpcExchangeEntry {
     /**
      * Check if the entry is valid
      */
-    @Pure
-    @EnsuresNonNullIf(expression = "itemService", result = true)
     public boolean valid() {
         return itemService != null;
     }

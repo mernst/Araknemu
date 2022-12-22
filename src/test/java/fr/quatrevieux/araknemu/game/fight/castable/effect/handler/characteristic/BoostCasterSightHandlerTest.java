@@ -55,7 +55,6 @@ class BoostCasterSightHandlerTest extends FightBaseCase {
     private BoostCasterSightHandler handler;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -73,7 +72,6 @@ class BoostCasterSightHandlerTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handle() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -88,7 +86,6 @@ class BoostCasterSightHandlerTest extends FightBaseCase {
         assertThrows(UnsupportedOperationException.class, () -> handler.handle(scope, scope.effects().get(0)));
     }
 
-    @Test
     void buffShouldOnlyTargetCaster() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);
@@ -116,7 +113,6 @@ class BoostCasterSightHandlerTest extends FightBaseCase {
         assertEquals(buff1.get().effect().min(), caster.characteristics().get(Characteristic.SIGHT_BOOST));
     }
 
-    @Test
     void buffMaximized() {
         caster.buffs().add(new Buff(Mockito.mock(SpellEffect.class), Mockito.mock(Spell.class), caster, caster, new BuffHook() {
             @Override
@@ -151,7 +147,6 @@ class BoostCasterSightHandlerTest extends FightBaseCase {
         assertEquals(10000, caster.characteristics().get(Characteristic.SIGHT_BOOST));
     }
 
-    @Test
     void onBuffStartedAndTerminated() {
         SpellEffect effect = Mockito.mock(SpellEffect.class);
         Spell spell = Mockito.mock(Spell.class);

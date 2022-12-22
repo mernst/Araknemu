@@ -25,7 +25,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LeaveFightRequestTest extends TestCase {
-    @Test
     void parse() {
         assertInstanceOf(LeaveFightRequest.class, new KickOrLeaveRequestParser().parse(""));
     }

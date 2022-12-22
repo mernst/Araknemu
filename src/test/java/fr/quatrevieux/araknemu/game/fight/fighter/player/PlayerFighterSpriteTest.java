@@ -42,7 +42,6 @@ class PlayerFighterSpriteTest extends FightBaseCase {
     private PlayerFighter fighter;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -59,7 +58,6 @@ class PlayerFighterSpriteTest extends FightBaseCase {
         fighter.move(map.get(222));
     }
 
-    @Test
     void generate() {
         assertEquals(
             "222;1;0;1;Bob;1;10^100x100;0;50;0,0,0,0;7b;1c8;315;,,,,;295;6;3;0;0;0;0;0;0;0;0;;",
@@ -67,7 +65,6 @@ class PlayerFighterSpriteTest extends FightBaseCase {
         );
     }
 
-    @Test
     void generateWithPointsResistance() {
         fighter.player().properties().characteristics().base().set(Characteristic.WISDOM, 100);
 
@@ -77,7 +74,6 @@ class PlayerFighterSpriteTest extends FightBaseCase {
         );
     }
 
-    @Test
     void generateDead() throws Exception {
         Fight fight = createFight(false);
         fighter.joinFight(fight, fight.map().get(222));
@@ -90,7 +86,6 @@ class PlayerFighterSpriteTest extends FightBaseCase {
         );
     }
 
-    @Test
     void generateHidden() {
         fighter.setHidden(fighter, true);
 
@@ -100,7 +95,6 @@ class PlayerFighterSpriteTest extends FightBaseCase {
         );
     }
 
-    @Test
     void getters() throws SQLException, ContainerException {
         assertEquals(gamePlayer().id(), sprite.id());
         assertEquals(222, sprite.cell());

@@ -38,31 +38,26 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 class ConditionalBuilderTest extends TestCase {
     private ConditionalBuilder<Fighter> builder;
 
-    @BeforeEach
     void setUp() {
         builder = new ConditionalBuilder<>(ai -> true);
     }
 
-    @Test
     void buildEmpty() throws NoSuchFieldException, IllegalAccessException {
         assertGenerated(builder.build(), NullGenerator.get(), NullGenerator.get());
     }
 
-    @Test
     void onlySuccess() throws NoSuchFieldException, IllegalAccessException {
         ActionGenerator<Fighter> g = Mockito.mock(ActionGenerator.class);
 
         assertGenerated(builder.success(g).build(), g, NullGenerator.get());
     }
 
-    @Test
     void onlyOtherwise() throws NoSuchFieldException, IllegalAccessException {
         ActionGenerator<Fighter> g = Mockito.mock(ActionGenerator.class);
 
         assertGenerated(builder.otherwise(g).build(), NullGenerator.get(), g);
     }
 
-    @Test
     void both() throws NoSuchFieldException, IllegalAccessException {
         ActionGenerator<Fighter> gs = Mockito.mock(ActionGenerator.class);
         ActionGenerator<Fighter> go = Mockito.mock(ActionGenerator.class);
@@ -70,7 +65,6 @@ class ConditionalBuilderTest extends TestCase {
         assertGenerated(builder.success(gs).otherwise(go).build(), gs, go);
     }
 
-    @Test
     void usingMethodReference() throws NoSuchFieldException, IllegalAccessException {
         assertGenerated(
             builder.success(GeneratorBuilder::moveNearEnemy).otherwise(GeneratorBuilder::moveFarEnemies).build(),
@@ -79,7 +73,6 @@ class ConditionalBuilderTest extends TestCase {
         );
     }
 
-    @Test
     void multipleActionShouldGenerateAggregate() throws NoSuchFieldException, IllegalAccessException {
         ActionGenerator<Fighter> gs1 = Mockito.mock(ActionGenerator.class);
         ActionGenerator<Fighter> gs2 = Mockito.mock(ActionGenerator.class);

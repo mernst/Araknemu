@@ -43,7 +43,6 @@ class MoveObjectTest extends FightBaseCase {
     private ItemService itemService;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -77,7 +76,6 @@ class MoveObjectTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void handleSuccess() throws Exception {
         handler.handle(session, new ObjectMoveRequest(1, -1, 1));
 
@@ -85,7 +83,6 @@ class MoveObjectTest extends FightBaseCase {
         assertEquals(1, gamePlayer().inventory().get(1).quantity());
     }
 
-    @Test
     void handleErrorTooLowLevel() throws Exception {
         dataSet.pushHighLevelItems();
 
@@ -98,7 +95,6 @@ class MoveObjectTest extends FightBaseCase {
         );
     }
 
-    @Test
     void handleErrorAlreadyOnRequestPosition() throws Exception {
         handler.handle(session, new ObjectMoveRequest(1, 0, 1));
 
@@ -108,7 +104,6 @@ class MoveObjectTest extends FightBaseCase {
         assertEquals(1, gamePlayer().inventory().get(1).quantity());
     }
 
-    @Test
     void functionalNotAllowedOnActiveFight() throws Exception {
         Fight fight = createFight();
         fight.start(new AlternateTeamFighterOrder());
@@ -116,7 +111,6 @@ class MoveObjectTest extends FightBaseCase {
         assertErrorPacket(Error.cantDoDuringFight(), () -> handlePacket(new ObjectMoveRequest(1, -1, 1)));
     }
 
-    @Test
     void functionalSuccessDuringPlacement() throws Exception {
         createFight();
 

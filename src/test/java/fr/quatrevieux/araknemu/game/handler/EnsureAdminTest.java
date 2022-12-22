@@ -40,7 +40,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class EnsureAdminTest extends GameBaseCase {
-    @Test
     void handleNotLogged() {
         PacketHandler inner = Mockito.mock(PacketHandler.class);
         EnsureAdmin handler = new EnsureAdmin<>(inner);
@@ -48,7 +47,6 @@ class EnsureAdminTest extends GameBaseCase {
         assertThrows(CloseImmediately.class, () -> handler.handle(session, Mockito.mock(Packet.class)));
     }
 
-    @Test
     void handleSuccess() throws Exception {
         PacketHandler inner = Mockito.mock(PacketHandler.class);
         EnsureAdmin handler = new EnsureAdmin<>(inner);
@@ -69,7 +67,6 @@ class EnsureAdminTest extends GameBaseCase {
         Mockito.verify(inner).handle(session, packet);
     }
 
-    @Test
     void handleNotAdmin() throws Exception {
         PacketHandler inner = Mockito.mock(PacketHandler.class);
         EnsureAdmin handler = new EnsureAdmin<>(inner);
@@ -84,7 +81,6 @@ class EnsureAdminTest extends GameBaseCase {
         assertThrows(CloseImmediately.class, () -> handler.handle(session, Mockito.mock(Packet.class)));
     }
 
-    @Test
     void packet() throws ContainerException {
         assertEquals(
             AskCharacterList.class,

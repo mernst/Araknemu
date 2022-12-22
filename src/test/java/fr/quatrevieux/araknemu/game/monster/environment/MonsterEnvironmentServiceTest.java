@@ -55,7 +55,6 @@ class MonsterEnvironmentServiceTest extends GameBaseCase {
     private MonsterEnvironmentService service;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -78,7 +77,6 @@ class MonsterEnvironmentServiceTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onMapLoadedShouldSpawnMonsterGroups() throws SQLException {
         ExplorationMap map = container.get(ExplorationMapService.class).load(10340);
 
@@ -95,7 +93,6 @@ class MonsterEnvironmentServiceTest extends GameBaseCase {
         assertContainsOnly(MonsterGroup.class, creatures);
     }
 
-    @Test
     void byMap() throws SQLException {
         dataSet.pushMonsterGroupPosition(new MonsterGroupPosition(10340, -1, 1));
         dataSet.pushMonsterGroupPosition(new MonsterGroupPosition(10300, 123, 2));
@@ -108,7 +105,6 @@ class MonsterEnvironmentServiceTest extends GameBaseCase {
         assertSame(service.byMap(10340), service.byMap(10340));
     }
 
-    @Test
     void preload() throws SQLException {
         dataSet.pushMonsterGroupPosition(new MonsterGroupPosition(10340, -1, 1));
         dataSet.pushMonsterGroupPosition(new MonsterGroupPosition(10300, 123, 2));
@@ -128,7 +124,6 @@ class MonsterEnvironmentServiceTest extends GameBaseCase {
         assertCount(1, service.byMap(10340));
     }
 
-    @RepeatedIfExceptionsTest
     void respawn() throws InterruptedException, SQLException {
         LivingMonsterGroupPosition monsterGroupPosition = new LivingMonsterGroupPosition(
             container.get(MonsterGroupFactory.class),
@@ -155,7 +150,6 @@ class MonsterEnvironmentServiceTest extends GameBaseCase {
         requestStack.assertLast(new AddSprites(Collections.singleton(lastGroup.sprite())));
     }
 
-    @Test
     void cantRespawnIfAlreadyFull() throws InterruptedException, SQLException {
         LivingMonsterGroupPosition monsterGroupPosition = new LivingMonsterGroupPosition(
             container.get(MonsterGroupFactory.class),
@@ -178,7 +172,6 @@ class MonsterEnvironmentServiceTest extends GameBaseCase {
         requestStack.assertEmpty();
     }
 
-    @RepeatedIfExceptionsTest
     void respawnWithDelay() throws InterruptedException, SQLException {
         LivingMonsterGroupPosition monsterGroupPosition = new LivingMonsterGroupPosition(
             container.get(MonsterGroupFactory.class),
@@ -208,7 +201,6 @@ class MonsterEnvironmentServiceTest extends GameBaseCase {
         requestStack.assertLast(new AddSprites(Collections.singleton(lastGroup.sprite())));
     }
 
-    @RepeatedIfExceptionsTest
     void respawnWithDelayAndRespawnSpeedFactor() throws InterruptedException, SQLException {
         setConfigValue("activity.monsters.respawnSpeedFactor", "4");
         LivingMonsterGroupPosition monsterGroupPosition = new LivingMonsterGroupPosition(
@@ -235,7 +227,6 @@ class MonsterEnvironmentServiceTest extends GameBaseCase {
         requestStack.assertLast(new AddSprites(Collections.singleton(lastGroup.sprite())));
     }
 
-    @Test
     void groups() throws SQLException {
         assertEquals(0, service.groups().count());
 
@@ -251,7 +242,6 @@ class MonsterEnvironmentServiceTest extends GameBaseCase {
         assertTrue(service.groups().skip(2).findFirst().get().fixed());
     }
 
-    @Test
     void name() {
         assertEquals("monster.environment", service.name());
     }

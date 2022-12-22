@@ -64,7 +64,7 @@ public interface ExchangePartyProcessor {
      *
      * @param kamas The amount of kamas. Must be positive
      */
-    public void addKamas(@Positive long kamas);
+    public void addKamas(long kamas);
 
     /**
      * Add an item to the party
@@ -72,5 +72,5 @@ public interface ExchangePartyProcessor {
      * @param item The item
      * @param quantity The quantity. Must be positive
      */
-    public void addItem(Item item, @Positive int quantity);
+    public void addItem(Item item, int quantity);
 }

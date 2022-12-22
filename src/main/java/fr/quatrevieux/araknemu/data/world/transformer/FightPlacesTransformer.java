@@ -32,15 +32,15 @@ import java.util.Arrays;
 /**
  * Transform map fight places
  */
-public final class FightPlacesTransformer implements Transformer<@NonNegative int[][]> {
+public final class FightPlacesTransformer implements Transformer<int[][]> {
     @Override
-    public @PolyNull String serialize(@NonNegative int @PolyNull [][] value) {
+    public String serialize(int[][] value) {
         throw new UnsupportedOperationException();
     }
 
     @Override
     @SuppressWarnings("return") // returned values are non negative
-    public @NonNegative int[][] unserialize(@PolyNull String serialize) {
+    public int[][] unserialize(String serialize) {
         if (serialize == null) {
             return new int[0][];
         }
@@ -56,8 +56,8 @@ public final class FightPlacesTransformer implements Transformer<@NonNegative in
     }
 
     @SuppressWarnings("argument") // String indexes are safe
-    private @NonNegative int[] parseTeamPlaces(String places) {
-        final @NonNegative int[] cells = new int[places.length() / 2];
+    private int[] parseTeamPlaces(String places) {
+        final int[] cells = new int[places.length() / 2];
 
         for (int i = 0; i < cells.length; i++) {
             cells[i] = Asserter.assertNonNegative(Base64.decode(places.substring(2 * i, 2 * i + 2)));

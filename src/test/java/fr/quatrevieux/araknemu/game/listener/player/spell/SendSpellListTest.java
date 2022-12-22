@@ -32,7 +32,6 @@ class SendSpellListTest extends GameBaseCase {
     private SendSpellList listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -43,7 +42,6 @@ class SendSpellListTest extends GameBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void onJoinGame() throws SQLException, ContainerException {
         listener.on(
             new GameJoined()

@@ -41,7 +41,7 @@ public final class AddLifeEffect implements UseEffectHandler {
     }
 
     @Override
-    public void applyToTarget(UseEffect effect, ExplorationPlayer caster, @Nullable ExplorationPlayer target, @Nullable ExplorationMapCell cell) {
+    public void applyToTarget(UseEffect effect, ExplorationPlayer caster, ExplorationPlayer target, ExplorationMapCell cell) {
         apply(effect, NullnessUtil.castNonNull(target)); // target must be checked before using checkTarget()
     }
 
@@ -51,7 +51,7 @@ public final class AddLifeEffect implements UseEffectHandler {
     }
 
     @Override
-    public boolean checkTarget(UseEffect effect, ExplorationPlayer caster, @Nullable ExplorationPlayer target, @Nullable ExplorationMapCell cell) {
+    public boolean checkTarget(UseEffect effect, ExplorationPlayer caster, ExplorationPlayer target, ExplorationMapCell cell) {
         return target != null;
     }
 

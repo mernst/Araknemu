@@ -37,7 +37,6 @@ class FighterPositionsTest extends GameBaseCase {
     private List<Fighter> fighters;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -60,7 +59,6 @@ class FighterPositionsTest extends GameBaseCase {
         fighters.get(1).move(map.get(321));
     }
 
-    @Test
     void generate() {
         assertEquals(
             "GIC|" + fighters.get(0).id() + ";123|" + fighters.get(1).id() + ";321",
@@ -68,7 +66,6 @@ class FighterPositionsTest extends GameBaseCase {
         );
     }
 
-    @Test
     void generateWithSingleFighter() {
         assertEquals(
             "GIC|" + fighters.get(0).id() + ";123",

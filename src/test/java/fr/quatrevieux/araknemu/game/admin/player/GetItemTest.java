@@ -38,7 +38,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GetItemTest extends CommandTestCase {
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -53,7 +52,6 @@ class GetItemTest extends CommandTestCase {
         );
     }
 
-    @Test
     void executeSimple() throws ContainerException, SQLException, AdminException, ItemNotFoundException {
         execute("getitem", "2425");
 
@@ -65,7 +63,6 @@ class GetItemTest extends CommandTestCase {
         assertEquals(1, entry.quantity());
     }
 
-    @Test
     void executeWithQuantity() throws ContainerException, SQLException, AdminException, ItemNotFoundException {
         execute("getitem", "2425", "5");
 
@@ -77,7 +74,6 @@ class GetItemTest extends CommandTestCase {
         assertEquals(5, entry.quantity());
     }
 
-    @Test
     void executeWithMaxStats() throws ContainerException, SQLException, AdminException, ItemNotFoundException {
         execute("getitem", "--max", "2425");
 
@@ -93,7 +89,6 @@ class GetItemTest extends CommandTestCase {
         assertEquals(10, wearable.characteristics().get(1).value());
     }
 
-    @Test
     void executeEach() throws ContainerException, SQLException, AdminException, ItemNotFoundException {
         execute("getitem", "--each", "2425", "5");
 
@@ -107,7 +102,6 @@ class GetItemTest extends CommandTestCase {
         }
     }
 
-    @Test
     void executeWithItemTemplateEffects() throws ContainerException, SQLException, AdminException, ItemNotFoundException {
         execute("getitem", "--effects", "5b#1#32#0#,5c#1#32#0#,5d#1#32#0#,5e#1#32#0#,5f#1#32#0#", "40");
 
@@ -132,7 +126,6 @@ class GetItemTest extends CommandTestCase {
         assertEquals(Effect.STOLEN_NEUTRAL, weapon.weaponEffects().get(4).effect());
     }
 
-    @Test
     void executeWithSimplifiedEffects() throws ContainerException, SQLException, AdminException, ItemNotFoundException {
         execute("getitem", "--effects", "STOLEN_WATER:1:50,STOLEN_EARTH:1:50,STOLEN_WIND:1:50,STOLEN_FIRE:1:50,STOLEN_NEUTRAL:1:50", "40");
 
@@ -157,22 +150,18 @@ class GetItemTest extends CommandTestCase {
         assertEquals(Effect.STOLEN_NEUTRAL, weapon.weaponEffects().get(4).effect());
     }
 
-    @Test
     void errorMissingItemId() {
         assertThrows(CommandException.class, () -> execute("getitem", "--max"), "Missing argument item_id");
     }
 
-    @Test
     void errorBadOption() {
         assertThrows(CommandException.class, () -> execute("getitem", "--bad_option"), "Undefined option bad_option");
     }
 
-    @Test
     void errorBadEffect() {
         assertThrows(CommandException.class, () -> execute("getitem", "--effects", "BAD_EFFECT:5", "2425"), "Undefined effect BAD_EFFECT");
     }
 
-    @Test
     void help() {
         assertHelp(
             "getitem - Add an item to the player",

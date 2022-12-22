@@ -35,7 +35,6 @@ class MessageReceivedTest extends GameBaseCase {
     private GamePlayer other;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -46,7 +45,6 @@ class MessageReceivedTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onBroadcastedMessage() throws SQLException, ContainerException {
         listener.on(
             new BroadcastedMessage(
@@ -67,7 +65,6 @@ class MessageReceivedTest extends GameBaseCase {
         );
     }
 
-    @Test
     void channelNotSubscribedFromMe() throws SQLException, ContainerException {
         gamePlayer().subscriptions().remove(ChannelType.MESSAGES);
 
@@ -90,7 +87,6 @@ class MessageReceivedTest extends GameBaseCase {
         );
     }
 
-    @Test
     void channelNotSubscribedFromOther() throws SQLException, ContainerException {
         gamePlayer().subscriptions().remove(ChannelType.MESSAGES);
 

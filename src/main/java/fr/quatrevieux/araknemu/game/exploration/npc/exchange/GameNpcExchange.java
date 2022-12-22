@@ -60,7 +60,7 @@ public final class GameNpcExchange implements ExchangeProvider.Factory {
      *
      * @return The first matching entry, or null entry if not found
      */
-    public NpcExchangeEntry find(Map<ItemEntry, @Positive Integer> exchangedItems, @NonNegative long exchangedKamas) {
+    public NpcExchangeEntry find(Map<ItemEntry, Integer> exchangedItems, long exchangedKamas) {
         final Map<Integer, Integer> exchangedItemTemplatesWithQuantity = new HashMap<>();
 
         exchangedItems.forEach((itemEntry, quantity) -> exchangedItemTemplatesWithQuantity.put(

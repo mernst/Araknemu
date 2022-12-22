@@ -34,7 +34,6 @@ class MonsterInvocationModuleTest extends FightBaseCase {
     private MonsterService monsterService;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -46,7 +45,6 @@ class MonsterInvocationModuleTest extends FightBaseCase {
         monsterService = container.get(MonsterService.class);
     }
 
-    @Test
     void onFighterDieShouldKillAllItsInvocation() throws Exception {
         FightBuilder builder = fightBuilder();
         builder
@@ -95,7 +93,6 @@ class MonsterInvocationModuleTest extends FightBaseCase {
         assertTrue(fight.fighters().contains(invoc3));
     }
 
-    @Test
     void onFighterDieInvocationShouldBeRemovedFromTurnList() throws Exception {
         Fight fight = createFight(true);
 
@@ -116,7 +113,6 @@ class MonsterInvocationModuleTest extends FightBaseCase {
         assertFalse(fight.fighters().contains(invoc));
     }
 
-    @Test
     void onFighterDieWithEndFightShouldNotCauseConcurrentModification() throws Exception {
         Fight fight = createFight(true);
 

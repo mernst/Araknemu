@@ -34,7 +34,6 @@ class SendSpectatorHasJoinedTest extends FightBaseCase {
     private SendSpectatorHasJoined listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -42,14 +41,12 @@ class SendSpectatorHasJoinedTest extends FightBaseCase {
         listener = new SendSpectatorHasJoined(fight);
     }
 
-    @Test
     void onSpectatorJoined() throws SQLException {
         listener.on(new SpectatorJoined(new Spectator(makeSimpleGamePlayer(5), fight)));
 
         requestStack.assertLast(Information.spectatorHasJoinFight("PLAYER_5"));
     }
 
-    @Test
     void functional() throws SQLException {
         fight.nextState();
         fight.spectators().add(new Spectator(makeSimpleGamePlayer(5), fight));

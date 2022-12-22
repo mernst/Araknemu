@@ -40,7 +40,7 @@ public final class ParseUtils {
      * @throws NumberFormatException When the number format is invalid
      * @throws IllegalArgumentException When the number is too low
      */
-    public static @Positive int parsePositiveInt(String value) {
+    public static int parsePositiveInt(String value) {
         return Asserter.assertPositive(Integer.parseInt(value));
     }
 
@@ -50,7 +50,7 @@ public final class ParseUtils {
      * @throws NumberFormatException When the number format is invalid
      * @throws IllegalArgumentException When the number is too low
      */
-    public static @NonNegative int parseNonNegativeInt(String value) {
+    public static int parseNonNegativeInt(String value) {
         return Asserter.assertNonNegative(Integer.parseInt(value));
     }
 
@@ -62,7 +62,7 @@ public final class ParseUtils {
      * @throws NumberFormatException When the number format is invalid
      * @throws IllegalArgumentException When the number is too low
      */
-    public static @NonNegative int parseNonNegativeInt(String value, @IntRange(from = Character.MIN_RADIX, to = Character.MAX_RADIX) int base) {
+    public static int parseNonNegativeInt(String value, int base) {
         return Asserter.assertNonNegative(Integer.parseInt(value, base));
     }
 
@@ -72,7 +72,7 @@ public final class ParseUtils {
      * @throws NumberFormatException When the number format is invalid
      * @throws IllegalArgumentException When the number is too low
      */
-    public static @GTENegativeOne int parseNonNegativeOrNegativeOneInt(String value) {
+    public static int parseNonNegativeOrNegativeOneInt(String value) {
         return Asserter.assertGTENegativeOne(Integer.parseInt(value));
     }
 
@@ -86,7 +86,7 @@ public final class ParseUtils {
      *
      * @throws IllegalArgumentException If the char is not in range '0' - '9'
      */
-    public static @IntRange(from = 0, to = 9) int parseDecimalChar(char c) {
+    public static int parseDecimalChar(char c) {
         final int parsed = c - '0';
 
         if (parsed > 9 || parsed < 0) {
@@ -107,7 +107,7 @@ public final class ParseUtils {
      *
      * @throws IllegalArgumentException If the char is not in range '0' - '9', or if the string is empty
      */
-    public static @IntRange(from = 0, to = 9) int parseDecimalChar(String str) {
+    public static int parseDecimalChar(String str) {
         if (str.isEmpty()) {
             throw new IllegalArgumentException("The value must not be empty");
         }

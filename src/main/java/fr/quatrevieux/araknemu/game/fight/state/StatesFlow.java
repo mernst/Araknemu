@@ -28,17 +28,16 @@ import org.checkerframework.dataflow.qual.Pure;
  * Handle fight states flow
  */
 public final class StatesFlow {
-    private final FightState @MinLen(1) [] states;
-    private @IndexFor("states") int current = 0;
+    private final FightState[] states;
+    private int current = 0;
 
-    public StatesFlow(FightState @MinLen(1)... states) {
+    public StatesFlow(FightState ... states) {
         this.states = states;
     }
 
     /**
      * Get the current fight state
      */
-    @Pure
     public FightState current() {
         return states[current];
     }

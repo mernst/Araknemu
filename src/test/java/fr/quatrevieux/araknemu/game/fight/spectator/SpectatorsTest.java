@@ -38,7 +38,6 @@ import java.util.concurrent.atomic.AtomicReference;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SpectatorsTest extends FightBaseCase {
-    @Test
     void listeners() throws SQLException {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
 
@@ -46,7 +45,6 @@ class SpectatorsTest extends FightBaseCase {
         assertTrue(fight.dispatcher().has(SendBlockSpectatorsOptionChangedMessage.class));
     }
 
-    @Test
     void addShouldAddToFightAndDispatchSpectatorJoined() throws SQLException {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         fight.nextState();
@@ -64,7 +62,6 @@ class SpectatorsTest extends FightBaseCase {
         requestStack.assertLast("foo");
     }
 
-    @Test
     void cannotAddTwice() throws SQLException {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         fight.nextState();
@@ -84,7 +81,6 @@ class SpectatorsTest extends FightBaseCase {
         assertNull(ref.get());
     }
 
-    @Test
     void removeShouldDispatchSpectatorLeaved() throws SQLException {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         fight.nextState();
@@ -105,7 +101,6 @@ class SpectatorsTest extends FightBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void removeNotAllowedOnNonexistentSpectator() throws SQLException {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         fight.nextState();
@@ -121,7 +116,6 @@ class SpectatorsTest extends FightBaseCase {
         assertNull(ref.get());
     }
 
-    @Test
     void spectatorSessionsShouldBeStoppedOnFightStopWithoutRemoveFromFight() throws SQLException {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         fight.nextState();
@@ -141,7 +135,6 @@ class SpectatorsTest extends FightBaseCase {
         requestStack.assertLast("bar");
     }
 
-    @Test
     void spectatorShouldLeaveOnFightCancel() throws SQLException {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         fight.nextState();
@@ -161,7 +154,6 @@ class SpectatorsTest extends FightBaseCase {
         requestStack.assertEmpty();
     }
 
-    @Test
     void dispatch() throws SQLException {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         fight.nextState();
@@ -181,7 +173,6 @@ class SpectatorsTest extends FightBaseCase {
         assertSame(evt, ref.get());
     }
 
-    @Test
     void canJoin() throws Exception {
         Fight fight = createFight();
         Spectators spectators = new Spectators(fight);
@@ -204,7 +195,6 @@ class SpectatorsTest extends FightBaseCase {
         assertFalse(spectators.canJoin());
     }
 
-    @Test
     void shouldKickWhenSpectatorsHasBeenBlocked() throws SQLException {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         fight.nextState();
@@ -218,7 +208,6 @@ class SpectatorsTest extends FightBaseCase {
         requestStack.assertLast(new CancelFight());
     }
 
-    @Test
     void kickAll() throws SQLException {
         Fight fight = createSimpleFight(container.get(ExplorationMapService.class).load(10340));
         fight.nextState();

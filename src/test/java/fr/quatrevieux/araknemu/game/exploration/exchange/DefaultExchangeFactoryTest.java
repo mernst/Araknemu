@@ -40,7 +40,6 @@ class DefaultExchangeFactoryTest extends GameBaseCase {
     private DefaultExchangeFactory factory;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -50,7 +49,6 @@ class DefaultExchangeFactoryTest extends GameBaseCase {
         );
     }
 
-    @Test
     void createSuccess() throws Exception {
         ExplorationPlayer player = explorationPlayer();
         ExplorationPlayer other = makeOtherExplorationPlayer();
@@ -60,7 +58,6 @@ class DefaultExchangeFactoryTest extends GameBaseCase {
         assertInstanceOf(PlayerExchangeRequest.class, interaction);
     }
 
-    @Test
     void createInvalidType() throws Exception {
         ExplorationPlayer player = explorationPlayer();
         ExplorationPlayer other = makeOtherExplorationPlayer();
@@ -68,14 +65,12 @@ class DefaultExchangeFactoryTest extends GameBaseCase {
         assertThrows(IllegalArgumentException.class, () -> factory.create(ExchangeType.UNKNOWN_14, player, other));
     }
 
-    @Test
     void createInvalidTarget() throws Exception {
         ExplorationPlayer player = explorationPlayer();
 
         assertThrows(IllegalArgumentException.class, () -> factory.create(ExchangeType.PLAYER_EXCHANGE, player, Mockito.mock(ExplorationCreature.class)));
     }
 
-    @Test
     void createNpcStore() throws SQLException {
         dataSet.pushNpcWithStore();
 

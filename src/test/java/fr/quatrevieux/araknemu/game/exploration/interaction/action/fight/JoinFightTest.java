@@ -53,7 +53,6 @@ class JoinFightTest extends FightBaseCase {
     private JoinFight action;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -66,7 +65,6 @@ class JoinFightTest extends FightBaseCase {
         requestStack.clear();
     }
 
-    @Test
     void busy() throws SQLException, ContainerException {
         explorationPlayer().interactions().push(new MyBlockingAction());
         assertTrue(explorationPlayer().interactions().busy());
@@ -78,7 +76,6 @@ class JoinFightTest extends FightBaseCase {
         );
     }
 
-    @Test
     void tooLate() {
         fight.nextState();
 
@@ -89,7 +86,6 @@ class JoinFightTest extends FightBaseCase {
         );
     }
 
-    @Test
     void badMap() throws SQLException, ContainerException {
         explorationPlayer().changeMap(container.get(ExplorationMapService.class).load(10540), 123);
 
@@ -100,7 +96,6 @@ class JoinFightTest extends FightBaseCase {
         );
     }
 
-    @Test
     void notOnMap() throws SQLException, ContainerException {
         explorationPlayer().leave();
 
@@ -111,7 +106,6 @@ class JoinFightTest extends FightBaseCase {
         );
     }
 
-    @RepeatedIfExceptionsTest
     void fullTeam() throws SQLException, ContainerException, JoinFightException, InterruptedException {
         for (int i = 10; fight.team(0).fighters().size() < fight.team(0).startPlaces().size(); ++i) {
             fight.team(0).join(makePlayerFighter(makeSimpleGamePlayer(i)));
@@ -124,7 +118,6 @@ class JoinFightTest extends FightBaseCase {
         );
     }
 
-    @RepeatedIfExceptionsTest
     void success() throws InterruptedException {
         action.start(new ActionQueue());
 
@@ -143,7 +136,6 @@ class JoinFightTest extends FightBaseCase {
         );
     }
 
-    @RepeatedIfExceptionsTest
     void locked() throws InterruptedException {
         ConfigurableTeamOptions.class.cast(fight.team(0).options()).toggleAllowJoinTeam();
 

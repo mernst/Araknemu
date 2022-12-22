@@ -36,7 +36,6 @@ class SqlNpcExchangeRepositoryTest extends GameBaseCase {
     private SqlNpcExchangeRepository repository;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -51,7 +50,6 @@ class SqlNpcExchangeRepositoryTest extends GameBaseCase {
         );
     }
 
-    @Test
     void get() {
         NpcExchange entity = repository.get(new NpcExchange(1, 0, 0, null, 0, null));
 
@@ -65,23 +63,19 @@ class SqlNpcExchangeRepositoryTest extends GameBaseCase {
         assertEquals(10, entity.exchangedKamas());
     }
 
-    @Test
     void getNotFound() {
         assertThrows(EntityNotFoundException.class, () -> repository.get(new NpcExchange(404, 0, 0, null, 0, null)));
     }
 
-    @Test
     void has() {
         assertFalse(repository.has(new NpcExchange(404, 0, 0, null, 0, null)));
         assertTrue(repository.has(new NpcExchange(2, 0, 0, null, 0, null)));
     }
 
-    @Test
     void all() {
         assertCount(3, repository.all());
     }
 
-    @Test
     void byNpcTemplate() {
         assertCount(0, repository.byNpcTemplate(new NpcTemplate(777, 0, 0, 0, null, null, null, 0, 0, null)));
         assertCount(1, repository.byNpcTemplate(new NpcTemplate(848, 0, 0, 0, null, null, null, 0, 0, null)));

@@ -36,10 +36,10 @@ import java.util.Optional;
  */
 public final class ExchangeRequest implements Packet {
     private final ExchangeType type;
-    private final @Nullable Integer id;
-    private final @Nullable Integer cell;
+    private final Integer id;
+    private final Integer cell;
 
-    public ExchangeRequest(ExchangeType type, @Nullable Integer id, @Nullable Integer cell) {
+    public ExchangeRequest(ExchangeType type, Integer id, Integer cell) {
         this.type = type;
         this.id = id;
         this.cell = cell;
@@ -91,7 +91,7 @@ public final class ExchangeRequest implements Packet {
         }
 
         @Override
-        public @MinLen(2) String code() {
+        public String code() {
             return "ER";
         }
     }

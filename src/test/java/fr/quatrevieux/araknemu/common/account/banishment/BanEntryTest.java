@@ -30,7 +30,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BanEntryTest extends GameBaseCase {
-    @Test
     void active() {
         login();
 

@@ -32,7 +32,6 @@ class InventoryWeightTest extends GameBaseCase {
     private GamePlayer player;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -44,7 +43,6 @@ class InventoryWeightTest extends GameBaseCase {
         player = gamePlayer(true);
     }
 
-    @Test
     void generate() throws ContainerException {
         player.inventory().add(container.get(ItemService.class).create(2411), 10);
 

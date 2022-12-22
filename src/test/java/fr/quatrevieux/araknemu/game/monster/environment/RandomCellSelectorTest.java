@@ -40,7 +40,6 @@ class RandomCellSelectorTest extends GameBaseCase {
     private ExplorationMap map;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -49,7 +48,6 @@ class RandomCellSelectorTest extends GameBaseCase {
         selector.setMap(map = container.get(ExplorationMapService.class).load(10340));
     }
 
-    @Test
     void cell() {
         assertNotEquals(selector.cell(), selector.cell());
         assertTrue(selector.cell().free());
@@ -59,7 +57,6 @@ class RandomCellSelectorTest extends GameBaseCase {
         assertTrue(cells.contains(selector.cell()));
     }
 
-    @Test
     void cellWithoutFreePlace() {
         for (int cellId = 0; cellId < map.size(); ++cellId) {
             map.add(new FakeCreature(map.get(cellId)));

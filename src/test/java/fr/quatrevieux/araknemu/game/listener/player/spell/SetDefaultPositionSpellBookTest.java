@@ -43,7 +43,6 @@ class SetDefaultPositionSpellBookTest extends GameBaseCase {
     private SetDefaultPositionSpellBook listener;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -59,7 +58,6 @@ class SetDefaultPositionSpellBookTest extends GameBaseCase {
         );
     }
 
-    @Test
     void onCharacterCreated() throws ContainerException {
         Player player;
 

@@ -33,14 +33,12 @@ class ChallengeBuilderFactoryTest extends GameBaseCase {
     private ChallengeBuilderFactory factory;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         factory = new ChallengeBuilderFactory(container.get(FighterFactory.class), container.get(ChallengeType.class));
     }
 
-    @Test
     void create() throws ContainerException {
         assertNotNull(factory.create(container.get(FightService.class)));
     }

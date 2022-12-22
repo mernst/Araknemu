@@ -101,7 +101,6 @@ public final class FightPos extends AbstractCommand<FightPos.Arguments> {
 
     @SuppressWarnings("initialization.field.uninitialized")
     public static final class Arguments {
-        @Argument
         private Action action;
 
         public void setAction(Action action) {

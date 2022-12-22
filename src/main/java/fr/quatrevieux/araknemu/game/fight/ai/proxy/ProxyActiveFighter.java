@@ -41,14 +41,14 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  */
 public final class ProxyActiveFighter implements ActiveFighter {
     private final ActiveFighter fighter;
-    private final @Nullable BattlefieldCell position;
+    private final BattlefieldCell position;
 
     public ProxyActiveFighter(ActiveFighter fighter) {
         this.fighter = fighter;
         this.position = null;
     }
 
-    private ProxyActiveFighter(ActiveFighter fighter, @Nullable BattlefieldCell position) {
+    private ProxyActiveFighter(ActiveFighter fighter, BattlefieldCell position) {
         this.fighter = fighter;
         this.position = position;
     }
@@ -59,12 +59,12 @@ public final class ProxyActiveFighter implements ActiveFighter {
     }
 
     @Override
-    public @Nullable Object attachment(Object key) {
+    public Object attachment(Object key) {
         return fighter.attachment(key);
     }
 
     @Override
-    public <T> @Nullable T attachment(Class<T> type) {
+    public <T> T attachment(Class<T> type) {
         return fighter.attachment(type);
     }
 
@@ -98,7 +98,7 @@ public final class ProxyActiveFighter implements ActiveFighter {
     }
 
     @Override
-    public @Positive int level() {
+    public int level() {
         return fighter.level();
     }
 
@@ -138,7 +138,7 @@ public final class ProxyActiveFighter implements ActiveFighter {
     }
 
     @Override
-    public boolean equals(@Nullable Object o) {
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
@@ -173,7 +173,7 @@ public final class ProxyActiveFighter implements ActiveFighter {
     }
 
     @Override
-    public @Nullable FighterData invoker() {
+    public FighterData invoker() {
         return fighter.invoker();
     }
 }

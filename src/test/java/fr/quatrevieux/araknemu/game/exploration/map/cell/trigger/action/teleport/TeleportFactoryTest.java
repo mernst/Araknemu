@@ -32,14 +32,12 @@ class TeleportFactoryTest extends GameBaseCase {
     private TeleportFactory factory;
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
         factory = new TeleportFactory(container.get(ExplorationMapService.class));
     }
 
-    @Test
     void create() {
         CellAction action = factory.create(new MapTrigger(10340, 256, Teleport.ACTION_ID, "1300,123", "-1"));
 

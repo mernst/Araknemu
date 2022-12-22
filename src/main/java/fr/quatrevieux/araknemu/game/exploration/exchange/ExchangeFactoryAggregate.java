@@ -46,8 +46,7 @@ public class ExchangeFactoryAggregate<C extends ExplorationCreature> implements 
     /**
      * Register a new factory
      */
-    @RequiresNonNull("factories")
-    protected final void register(@UnknownInitialization ExchangeFactoryAggregate<C> this, ExchangeTypeFactory<C> factory) {
+    protected final void register(ExchangeFactoryAggregate<C> this, ExchangeTypeFactory<C> factory) {
         factories.put(factory.type(), factory);
     }
 

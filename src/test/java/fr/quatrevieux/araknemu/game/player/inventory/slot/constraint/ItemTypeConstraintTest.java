@@ -33,7 +33,6 @@ class ItemTypeConstraintTest extends GameBaseCase {
     private ItemTypeConstraint constraint = new ItemTypeConstraint(SuperType.AMULET);
 
     @Override
-    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -43,7 +42,6 @@ class ItemTypeConstraintTest extends GameBaseCase {
         ;
     }
 
-    @Test
     void success() throws ContainerException, InventoryException {
         constraint.check(
             container.get(ItemService.class).create(2425),
@@ -51,7 +49,6 @@ class ItemTypeConstraintTest extends GameBaseCase {
         );
     }
 
-    @Test
     void fail() {
         assertThrows(
             InventoryException.class,
