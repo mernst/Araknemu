@@ -288,6 +288,10 @@
                             <compilerArgs>
 <!--                                <arg>-Awarns</arg>-->
                                 <arg>-AskipDefs=(Test|BaseCase|DataSet|TestCase|PacketWithParser|OtherPacket|DummyGenerator|Accessors)$</arg>
+				<arg>-Ainfer=ajava</arg>
+				<arg>-Awarns</arg>
+				<arg>-AinferOutputOriginal</arg>
+				<arg>-Aajava=/scratch/mernst/wpi-temp-dir</arg>
                             </compilerArgs>
                         </configuration>
                     </plugin>
