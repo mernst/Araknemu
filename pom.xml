@@ -99,12 +99,12 @@
         <dependency>
             <groupId>org.checkerframework</groupId>
             <artifactId>checker-qual</artifactId>
-            <version>3.21.2</version> <!-- TODO property -->
+            <version>3.29.1-SNAPSHOT</version> <!-- TODO property -->
         </dependency>
         <dependency>
             <groupId>org.checkerframework</groupId>
             <artifactId>checker-util</artifactId>
-            <version>3.21.2</version>
+            <version>3.29.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.google.errorprone</groupId>
@@ -277,7 +277,7 @@
                                 <path>
                                     <groupId>org.checkerframework</groupId>
                                     <artifactId>checker</artifactId>
-                                    <version>3.21.2</version>
+                                    <version>3.29.1-SNAPSHOT</version>
                                 </path>
                             </annotationProcessorPaths>
                             <annotationProcessors>
@@ -297,7 +297,7 @@
                 <dependency>
                     <groupId>org.checkerframework</groupId>
                     <artifactId>checker</artifactId>
-                    <version>3.21.2</version>
+                    <version>3.29.1-SNAPSHOT</version>
                 </dependency>
             </dependencies>
         </profile>
