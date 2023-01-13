@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # This script is a template for the WPI loop for a project with -Ainfer=ajava
 # added to its build file. Fill in the variables at the beginning of the
@@ -14,7 +14,7 @@ WPITEMPDIR=/scratch/mernst/Araknemu-wpi
 # directory ending in build/whole-program-inference. For most projects,
 # this directory is just ./build/whole-program-inference.
 # This example is the output directory when running via the gradle plugin.
-WPIOUTDIR=~/.gradle/workers/build/whole-program-inference
+WPIOUTDIR=./build/whole-program-inference
 
 # The compile and clean commands for the project's build system.
 BUILD_CMD="mvn compile -Pcheckerframework"
